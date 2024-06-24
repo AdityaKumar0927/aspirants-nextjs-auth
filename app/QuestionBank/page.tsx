@@ -7,7 +7,7 @@ interface SidebarProps {
   onUserDashboardClick: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ onSettingsClick, onUserDashboardClick }) => {
+const QuestionBank: React.FC<SidebarProps> = ({ onSettingsClick, onUserDashboardClick }) => {
   return (
     <aside className="w-64 bg-white h-screen p-4">
       <nav>
@@ -54,4 +54,4 @@ const Sidebar: React.FC<SidebarProps> = ({ onSettingsClick, onUserDashboardClick
   );
 };
 
-export default Sidebar;
+export default QuestionBank;
