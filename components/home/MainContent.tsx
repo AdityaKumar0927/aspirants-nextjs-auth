@@ -69,25 +69,6 @@ const MainContent: React.FC = () => {
         case 'home':
           return (
             <>
-              <main className="text-center py-16 px-4">
-                <div className="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full mb-4">
-                  <i className="fas fa-magic"></i> Aspire. Prepare. Succeed.
-                </div>
-                <h1 className="text-4xl font-bold mb-4">
-                  Study for CUET & JEE exams with <span className="text-blue-500">aspirants</span>
-                </h1>
-                <p className="text-lg text-gray-700 mb-4">
-                  Thousands of practice questions, study notes, and flashcards, all in one place.
-                </p>
-                <div className="flex justify-center space-x-4">
-                  <button className="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600">
-                    Try Now
-                  </button>
-                  <button className="bg-white-200 text-gray-700 px-6 py-3 rounded border-2 border-black hover:bg-gray-300">
-                    Browse resources
-                  </button>
-                </div>
-              </main>
               <section className="flex justify-center py-16">
                 <div className="bg-white shadow-blue-300 rounded-lg overflow-hidden w-full max-w-4xl border-2">
                   <div className="flex items-center p-4 border-b border-blue-300"></div>
@@ -128,7 +109,6 @@ const MainContent: React.FC = () => {
                   </div>
                 </div>
               </section>
-              <Footer />
             </>
           );
         default:
