@@ -1,0 +1,31 @@
+[
+    {
+        "questionId": "1",
+        "text": "If \\((\\alpha, \\beta)\\) is the orthocenter of the triangle \\(ABC\\) with vertices \\(A(3,-7)\\), \\(B(-1,2)\\), and \\(C(4,5)\\), then \\(9 \\alpha-6 \\beta+60\\) is equal to",
+        "subject": "Mathematics",
+        "topic": "algebra",
+        "difficulty": "Medium",
+        "type": "Multiple Choice",
+        "year": "2016",
+        "reviewed": false,
+        "completed": false,
+        "options": ["30", "35", "40", "25"],
+        "correctOption": "30",
+        "markscheme": "Finding the orthocenter coordinates and substituting into the given expression, we get \\(9\\alpha - 6\\beta + 60 = 30\\)."
+      }, 
+      {
+        "questionId": "2",
+        "text": "Let \\(S\\) be the set of all \\((\\lambda, \\mu)\\) for which the vectors \\(\\lambda \\hat{i}-\\hat{j}+\\hat{k}\\), \\(\\hat{i}+2 \\hat{j}+\\mu \\hat{k}\\) and \\(3 \\hat{i}-4 \\hat{j}+5 \\hat{k}\\), where \\(\\lambda-\\mu=5\\), are coplanar, then \\(\\sum_{(\\lambda, \\mu) \\in S} 80\\left(\\lambda^{2}+\\mu^{2}\\right)\\) is equal to",
+        "subject": "Mathematics",
+        "topic": "algebra",
+        "difficulty": "Hard",
+        "type": "Multiple Choice",
+        "year": "2016",
+        "reviewed": false,
+        "completed": false,
+        "options": ["2130", "2210", "2290", "2370"],
+        "correctOption": "2370",
+        "markscheme": "The correct answer is calculated based on the equation of coplanarity and the given constraint \\(\\lambda - \\mu = 5\\)."
+      }
+  ]
+  
