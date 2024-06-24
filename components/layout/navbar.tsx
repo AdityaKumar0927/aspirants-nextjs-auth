@@ -32,12 +32,13 @@ export default function NavBar({ session }: { session: Session | null }) {
               className="mr-2 mx-3 rounded-sm"
             ></Image>
           </Link>
+          <Link href="/QuestionBank" className="mr-4">Question Bank</Link>
           <div>
             {session ? (
               <UserDropdown session={session} />
             ) : (
               <button
-                className="rounded-full border border-blue-300 bg-blue-300 p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
+                className="rounded-full border border-black bg-white p-1.5 px-4 text-sm text-black transition-all hover:bg-black hover:text-white"
                 onClick={() => setShowSignInModal(true)}
               >
                 Sign In

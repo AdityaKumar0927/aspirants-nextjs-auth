@@ -1,4 +1,4 @@
-"use client"; // Add this directive at the top
+"use client";
 
 import React from 'react';
 
