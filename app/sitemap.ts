@@ -1,7 +1,12 @@
-import { MetadataRoute } from "next";
 import prisma from "@/lib/prisma";
+import { User } from "next-auth";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+type Sitemap = {
+  url: string;
+  lastModified: Date;
+}[];
+
+export default async function sitemap(): Promise<Sitemap> {
   const users = await prisma.user.findMany({
     select: {
       id: true,
@@ -14,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: "https://aspirants.tech",
       lastModified: new Date(),
     },
-    ...users.map((user) => ({
+    ...users.map((user: User) => ({
       url: `https://aspirants.tech/${user.id}`,
       lastModified: new Date(),
     })),

@@ -2,9 +2,15 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import jsPDF from 'jspdf';
+import { Switch } from '@headlessui/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload, faCog } from '@fortawesome/free-solid-svg-icons';
 import Question from '@/components/shared/Question';
 import Sidebar from '@/components/shared/Sidebar';
-import rawQuestionsData from 'public/questions.json';
+import prisma from "@/lib/prisma";
+import Modal from '@/components/shared/modal';
+import MathRenderer from '@/components/layout/MathRenderer';
+import { useSession, getSession } from "next-auth/react";
 
 interface RawQuestionType {
   questionId: string;
@@ -18,14 +24,6 @@ interface RawQuestionType {
   markscheme?: string;
 }
 
-const handleSettingsClick = () => {
-  // Handle settings click
-};
-
-const handleUserDashboardClick = () => {
-  // Handle user dashboard click
-};
-
 interface QuestionType {
   questionId: string;
   text: string;
@@ -38,18 +36,13 @@ interface QuestionType {
   options?: string[];
   correctOption?: string;
   markscheme?: string;
+  notes?: string;
 }
 
-const questionsData: QuestionType[] = (rawQuestionsData as RawQuestionType[]).map(q => ({
-  ...q,
-  type: q.type as 'Multiple Choice' | 'Numerical',
-  reviewed: false,
-  completed: false,
-}));
-
 const QuestionBank: React.FC = () => {
-  const [questions, setQuestions] = useState<QuestionType[]>(questionsData);
-  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>(questionsData);
+  const { data: session } = useSession();
+  const [questions, setQuestions] = useState<QuestionType[]>([]);
+  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
   const [filters, setFilters] = useState({
     subject: '',
     difficulty: '',
@@ -66,8 +59,24 @@ const QuestionBank: React.FC = () => {
   const [feedback, setFeedback] = useState<Record<string, string>>({});
   const [numericalAnswers, setNumericalAnswers] = useState<Record<string, string>>({});
   const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
+  const [markschemeContent, setMarkschemeContent] = useState<string>('');
+  const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
+  const [markschemesDisabled, setMarkschemesDisabled] = useState<boolean>(false); // State for disabling markschemes
+  const [notes, setNotes] = useState<Record<string, string>>({}); // State for notes
+  const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
 
   const dropdownTimeout = useRef<Record<string, NodeJS.Timeout>>({});
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      const response = await fetch('/api/questions');
+      const data: QuestionType[] = await response.json();
+      setQuestions(data);
+      setFilteredQuestions(data);
+    };
+
+    fetchQuestions();
+  }, []);
 
   const filterQuestions = useCallback(() => {
     let filtered = questions.filter(question => {
@@ -78,20 +87,20 @@ const QuestionBank: React.FC = () => {
         (!filters.type || question.type === filters.type)
       );
     });
-  
+
     if (filters.status === 'review') {
       filtered = filtered.filter(question => question.reviewed);
     } else if (filters.status === 'complete') {
       filtered = filtered.filter(question => question.completed);
     }
-  
+
     setFilteredQuestions(filtered);
   }, [questions, filters]);
-  
+
   useEffect(() => {
     filterQuestions();
   }, [filterQuestions]);
-  
+
   const handleFilterChange = (tag: string, value: string) => {
     setFilters(prevFilters => ({ ...prevFilters, [tag]: value }));
   };
@@ -103,6 +112,7 @@ const QuestionBank: React.FC = () => {
       [questionId]: isCorrect ? 'correct' : 'incorrect',
     });
     markQuestionAsCompleted(questionId);
+    saveUserData();  // Save data after change
   };
 
   const handleNumericalSubmit = (questionId: string, userAnswer: string, correctAnswer: string) => {
@@ -112,6 +122,7 @@ const QuestionBank: React.FC = () => {
       [questionId]: isCorrect ? 'correct' : 'incorrect',
     });
     markQuestionAsCompleted(questionId);
+    saveUserData();  // Save data after change
   };
 
   const handleNumericalChange = (questionId: string, value: string) => {
@@ -119,13 +130,16 @@ const QuestionBank: React.FC = () => {
       ...numericalAnswers,
       [questionId]: value,
     });
+    saveUserData();  // Save data after change
   };
 
   const handleMarkschemeToggle = (questionId: string) => {
-    setShowMarkscheme((prev) => ({
-      ...prev,
-      [questionId]: !prev[questionId],
-    }));
+    if (markschemesDisabled) return; // Prevent showing markscheme if disabled
+    const question = questions.find(q => q.questionId === questionId);
+    if (question) {
+      setMarkschemeContent(question.markscheme || 'No markscheme available.');
+      setShowMarkschemeModal(true);
+    }
   };
 
   const handleMarkForReview = (questionId: string) => {
@@ -134,14 +148,16 @@ const QuestionBank: React.FC = () => {
         q.questionId === questionId ? {...q, reviewed: !q.reviewed} : q
       )
     );
+    saveUserData();  // Save data after change
   };
 
   const markQuestionAsCompleted = (questionId: string) => {
     setQuestions(prevQuestions => 
       prevQuestions.map(q => 
-        q.questionId === questionId ? {...q, completed: true} : q
+        q.questionId === questionId ? {...q, completed: !q.completed} : q // Toggle completion status
       )
     );
+    saveUserData();  // Save data after change
   };
 
   const generatePDF = (type: string) => {
@@ -182,6 +198,55 @@ const QuestionBank: React.FC = () => {
   const years = Array.from(new Set(questions.map(q => q.year)));
   const types = Array.from(new Set(questions.map(q => q.type)));
 
+  const handleNoteChange = (questionId: string, note: string) => {
+    setNotes({
+      ...notes,
+      [questionId]: note,
+    });
+    saveUserData();  // Save data after change
+  };
+
+  const toggleMarkscheme = () => {
+    setMarkschemesDisabled(!markschemesDisabled);
+  };
+
+  const saveUserData = async () => {
+    if (!session) return;
+
+    const userData = {
+      completedQuestions: questions.filter(q => q.completed).map(q => q.questionId),
+      markedForReviewQuestions: questions.filter(q => q.reviewed).map(q => q.questionId),
+      notes,
+    };
+
+    await fetch('/api/saveUserData', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+  };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (!session) return;
+
+      const response = await fetch('/api/getUserData');
+      const userData = await response.json();
+
+      setQuestions(prevQuestions => prevQuestions.map(q => ({
+        ...q,
+        completed: userData.completedQuestions.includes(q.questionId),
+        reviewed: userData.markedForReviewQuestions.includes(q.questionId),
+      })));
+
+      setNotes(userData.notes);
+    };
+
+    fetchUserData();
+  }, [session]);
+
   return (
     <div className="p-8 min-h-screen flex justify-center">
       <div className="max-w-6xl w-full">
@@ -194,19 +259,15 @@ const QuestionBank: React.FC = () => {
             className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md flex items-center space-x-2" 
             onClick={() => generatePDF('questionPaper')}
           >
-            <i className="fas fa-download"></i>
+            <FontAwesomeIcon icon={faDownload} />
             <span>Download question paper</span>
           </button>
           <button 
             className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md flex items-center space-x-2"
             onClick={() => generatePDF('markscheme')}
           >
-            <i className="fas fa-download"></i>
+            <FontAwesomeIcon icon={faDownload} />
             <span>Download markscheme</span>
-          </button>
-          <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md flex items-center space-x-2">
-            <i className="fas fa-ellipsis-h"></i>
-            <span>More</span>
           </button>
         </div>
         <div className="flex space-x-4 mb-6">
@@ -278,11 +339,53 @@ const QuestionBank: React.FC = () => {
               handleMarkComplete={markQuestionAsCompleted}
               isMarkedForReview={question.reviewed}
               isMarkedComplete={question.completed}
+              markschemesDisabled={markschemesDisabled}
+              note={notes[question.questionId] || ''}
+              handleNoteChange={handleNoteChange}
             />
           ))
         ) : (
           <p>No questions found with the selected filters.</p>
         )}
+
+        <Modal showModal={showMarkschemeModal} setShowModal={setShowMarkschemeModal} className="max-w-2xl">
+          <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
+            <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
+              <h2 className="font-display text-2xl font-bold">Markscheme</h2>
+            </div>
+            <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
+              <p className="mb-4">
+                <MathRenderer text={markschemeContent} />
+              </p>
+            </div>
+          </div>
+        </Modal>
+
+        <Modal showModal={showSettingsModal} setShowModal={setShowSettingsModal} className="max-w-sm">
+          <div className="w-full overflow-hidden md:max-w-sm md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
+            <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
+              <h2 className="font-display text-2xl font-bold">Settings</h2>
+            </div>
+            <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-gray-700">Enable Markscheme</span>
+                <Switch
+                  checked={!markschemesDisabled}
+                  onChange={toggleMarkscheme}
+                  className={`${
+                    !markschemesDisabled ? 'bg-blue-600' : 'bg-gray-200'
+                  } relative inline-flex h-6 w-11 items-center rounded-full`}
+                >
+                  <span
+                    className={`${
+                      !markschemesDisabled ? 'translate-x-6' : 'translate-x-1'
+                    } inline-block h-4 w-4 transform bg-white rounded-full transition`}
+                  />
+                </Switch>
+              </div>
+            </div>
+          </div>
+        </Modal>
       </div>
     </div>
   );
