@@ -1,4 +1,3 @@
-// src/components/MainContent.tsx
 "use client";
 
 import React, { useState } from 'react';
@@ -14,6 +13,8 @@ const MainContent: React.FC = () => {
     const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
     const [markedForReview, setMarkedForReview] = useState<string[]>([]);
     const [markedComplete, setMarkedComplete] = useState<string[]>([]);
+    const [markschemesDisabled, setMarkschemesDisabled] = useState(false);
+    const [notes, setNotes] = useState<Record<string, string>>({});
     const [showUserDashboard, setShowUserDashboard] = useState(false);
   
     const handleOptionClick = (questionId: string, option: string, correctOption: string) => {
@@ -63,6 +64,13 @@ const MainContent: React.FC = () => {
     const handleCloseUserDashboard = () => {
       setShowUserDashboard(false);
     };
+
+    const handleNoteChange = (questionId: string, note: string) => {
+      setNotes({
+        ...notes,
+        [questionId]: note,
+      });
+    };
   
     const renderView = () => {
       switch (currentView) {
@@ -102,6 +110,9 @@ const MainContent: React.FC = () => {
                             handleMarkComplete={handleMarkComplete}
                             isMarkedForReview={markedForReview.includes(question.questionId)}
                             isMarkedComplete={markedComplete.includes(question.questionId)}
+                            markschemesDisabled={markschemesDisabled}
+                            note={notes[question.questionId] || ''}
+                            handleNoteChange={handleNoteChange}
                           />
                         ))}
                       </div>
