@@ -69,7 +69,7 @@ const Question: React.FC<QuestionProps> = ({
   };
 
   return (
-    <div className="border-2 border-blue-300 rounded-lg p-4 bg-white mb-6">
+    <div className="border-2 rounded-lg p-4 bg-white mb-6">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-2">
           <span className="text-lg font-semibold">Question {question.questionId}</span>
