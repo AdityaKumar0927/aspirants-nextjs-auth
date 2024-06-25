@@ -26,7 +26,7 @@ export default function NavBar({ session }: { session: Session | null }) {
             <p>aspirants</p>
             <Image
               src="/bulb.svg"
-              alt="Precedent logo"
+              alt="aspirants logo"
               width="30"
               height="30"
               className="mr-2 mx-3 rounded-sm"

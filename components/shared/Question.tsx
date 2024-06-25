@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import Latex from 'react-latex-next';
+import MathRenderer from '@/components/layout/MathRenderer';
 
 interface QuestionProps {
   question: {
@@ -54,14 +54,12 @@ const Question: React.FC<QuestionProps> = ({
     setSelectedOption(option);
     handleAttempt();
     const correctOption = question.correctOption || '';
-    const isCorrect = option === correctOption;
     handleOptionClick(question.questionId, option, correctOption);
   };
 
   const handleNumericalSubmitLocal = () => {
     handleAttempt();
     const correctAnswer = question.correctOption || '';
-    const isCorrect = numericalAnswer === correctAnswer;
     handleNumericalSubmit(question.questionId, numericalAnswer || '', correctAnswer);
   };
 
@@ -95,7 +93,7 @@ const Question: React.FC<QuestionProps> = ({
         </div>
       </div>
       <p className="text-gray-700 mb-4">
-        <Latex>{question.text}</Latex>
+        <MathRenderer text={question.text} />
       </p>
       {question.type === 'Numerical' && (
         <div className="mb-4">
@@ -134,7 +132,7 @@ const Question: React.FC<QuestionProps> = ({
               >
                 {String.fromCharCode(65 + index)}
               </button>
-              <span className="text-gray-700"><Latex>{option}</Latex></span>
+              <span className="text-gray-700"><MathRenderer text={option} /></span>
             </div>
           ))}
           {feedback && (
@@ -153,7 +151,7 @@ const Question: React.FC<QuestionProps> = ({
         <div className="mt-4 p-4 bg-gray-100 rounded">
           <h3 className="text-lg font-semibold">Markscheme</h3>
           <p className="text-gray-700">
-            {question.markscheme ? <Latex>{question.markscheme}</Latex> : 'No answer available'}
+            {question.markscheme ? <MathRenderer text={question.markscheme} /> : 'No answer available'}
           </p>
         </div>
       )}
