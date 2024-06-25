@@ -71,7 +71,7 @@ const MainContent: React.FC = () => {
             <>
               <section className="flex justify-center py-16">
                 <div className="bg-white shadow-blue-300 rounded-lg overflow-hidden w-full max-w-4xl border-2">
-                  <div className="flex items-center p-4 border-b border-blue-300"></div>
+                  <div className="flex items-center p-4 border-b"></div>
                   <div className="flex">
                     <Sidebar onSettingsClick={handleUserDashboardClick} onUserDashboardClick={handleUserDashboardClick} />
                     <main className="w-3/4 p-4">
