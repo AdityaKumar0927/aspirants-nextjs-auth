@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faCog } from '@fortawesome/free-solid-svg-icons';
 import Question from '@/components/shared/Question';
 import Sidebar from '@/components/shared/Sidebar';
-import prisma from "@/lib/prisma";
 import Modal from '@/components/shared/modal';
 import MathRenderer from '@/components/layout/MathRenderer';
 import { useSession, getSession } from "next-auth/react";
