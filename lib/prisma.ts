@@ -7,8 +7,8 @@ declare global {
 
 let prisma: PrismaClient;
 
-if (typeof window === "undefined") {
-  if (process.env.NODE_ENV === "production") {
+if (typeof window === 'undefined') {
+  if (process.env.NODE_ENV === 'production') {
     prisma = new PrismaClient();
   } else {
     if (!global.prisma) {
@@ -18,7 +18,7 @@ if (typeof window === "undefined") {
   }
 } else {
   // Throw an error if prisma is being used on the client side
-  throw new Error("PrismaClient is unable to be run in the browser.");
+  throw new Error('PrismaClient is unable to be run in the browser.');
 }
 
 export default prisma;
