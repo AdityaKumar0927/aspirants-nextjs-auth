@@ -1,3 +1,4 @@
+// src/app/QuestionBank/page.tsx
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
@@ -9,7 +10,7 @@ import Question from '@/components/shared/Question';
 import Sidebar from '@/components/shared/Sidebar';
 import Modal from '@/components/shared/modal';
 import MathRenderer from '@/components/layout/MathRenderer';
-import { useSession, getSession } from "next-auth/react";
+import { useSession } from 'next-auth/react';
 
 interface RawQuestionType {
   questionId: string;
@@ -104,24 +105,24 @@ const QuestionBank: React.FC = () => {
     setFilters(prevFilters => ({ ...prevFilters, [tag]: value }));
   };
 
-  const handleOptionClick = (questionId: string, option: string, correctOption: string) => {
+  const handleOptionClick = async (questionId: string, option: string, correctOption: string) => {
     const isCorrect = option === correctOption;
     setFeedback({
       ...feedback,
       [questionId]: isCorrect ? 'correct' : 'incorrect',
     });
-    markQuestionAsCompleted(questionId);
-    saveUserData();  // Save data after change
+    await markQuestionAsCompleted(questionId);
+    await saveUserData();  // Save data after change
   };
 
-  const handleNumericalSubmit = (questionId: string, userAnswer: string, correctAnswer: string) => {
+  const handleNumericalSubmit = async (questionId: string, userAnswer: string, correctAnswer: string) => {
     const isCorrect = userAnswer === correctAnswer;
     setFeedback({
       ...feedback,
       [questionId]: isCorrect ? 'correct' : 'incorrect',
     });
-    markQuestionAsCompleted(questionId);
-    saveUserData();  // Save data after change
+    await markQuestionAsCompleted(questionId);
+    await saveUserData();  // Save data after change
   };
 
   const handleNumericalChange = (questionId: string, value: string) => {
@@ -129,7 +130,6 @@ const QuestionBank: React.FC = () => {
       ...numericalAnswers,
       [questionId]: value,
     });
-    saveUserData();  // Save data after change
   };
 
   const handleMarkschemeToggle = (questionId: string) => {
@@ -141,22 +141,22 @@ const QuestionBank: React.FC = () => {
     }
   };
 
-  const handleMarkForReview = (questionId: string) => {
+  const handleMarkForReview = async (questionId: string) => {
     setQuestions(prevQuestions => 
       prevQuestions.map(q => 
         q.questionId === questionId ? {...q, reviewed: !q.reviewed} : q
       )
     );
-    saveUserData();  // Save data after change
+    await saveUserData();  // Save data after change
   };
 
-  const markQuestionAsCompleted = (questionId: string) => {
+  const markQuestionAsCompleted = async (questionId: string) => {
     setQuestions(prevQuestions => 
       prevQuestions.map(q => 
         q.questionId === questionId ? {...q, completed: !q.completed} : q // Toggle completion status
       )
     );
-    saveUserData();  // Save data after change
+    await saveUserData();  // Save data after change
   };
 
   const generatePDF = (type: string) => {
@@ -197,16 +197,17 @@ const QuestionBank: React.FC = () => {
   const years = Array.from(new Set(questions.map(q => q.year)));
   const types = Array.from(new Set(questions.map(q => q.type)));
 
-  const handleNoteChange = (questionId: string, note: string) => {
+  const handleNoteChange = async (questionId: string, note: string) => {
     setNotes({
       ...notes,
       [questionId]: note,
     });
-    saveUserData();  // Save data after change
+    await saveUserData();  // Save data after change
   };
 
-  const toggleMarkscheme = () => {
+  const toggleMarkscheme = async () => {
     setMarkschemesDisabled(!markschemesDisabled);
+    await saveUserData();  // Save data after change
   };
 
   const saveUserData = async () => {
