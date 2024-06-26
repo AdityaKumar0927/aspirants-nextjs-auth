@@ -1,15 +1,23 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import useScroll from "@/lib/hooks/use-scroll";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
 import { Session } from "next-auth";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import useScroll from "@/lib/hooks/use-scroll";
 
 export default function NavBar({ session }: { session: Session | null }) {
   const { SignInModal, setShowSignInModal } = useSignInModal();
   const scrolled = useScroll(50);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <>
@@ -22,7 +30,7 @@ export default function NavBar({ session }: { session: Session | null }) {
         } z-30 transition-all`}
       >
         <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between w-full">
-          <Link href="/" className="flex items-cente font-display text-2xl">
+          <Link href="/" className="flex items-center font-display text-2xl">
             <p>aspirants</p>
             <Image
               src="/bulb.svg"
@@ -30,10 +38,10 @@ export default function NavBar({ session }: { session: Session | null }) {
               width="30"
               height="30"
               className="mr-2 mx-3 rounded-sm"
-            ></Image>
+            />
           </Link>
-          <Link href="/QuestionBank" className="mr-4">Question Bank</Link>
-          <div>
+          <div className="hidden md:flex items-center space-x-4">
+            <Link href="/QuestionBank" className="mr-4">Question Bank</Link>
             {session ? (
               <UserDropdown session={session} />
             ) : (
@@ -45,8 +53,32 @@ export default function NavBar({ session }: { session: Session | null }) {
               </button>
             )}
           </div>
+          <div className="md:hidden flex items-center">
+            <button onClick={toggleMenu} className="text-black focus:outline-none">
+              <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} size="lg" />
+            </button>
+          </div>
         </div>
       </div>
+      {menuOpen && (
+        <div className="md:hidden fixed top-0 left-0 right-0 bottom-0 bg-white flex flex-col items-center justify-center z-40">
+          <Link href="/" className="mb-4 text-2xl" onClick={toggleMenu}>Home</Link>
+          <Link href="/QuestionBank" className="mb-4 text-2xl" onClick={toggleMenu}>Question Bank</Link>
+          {session ? (
+            <UserDropdown session={session} />
+          ) : (
+            <button
+              className="rounded-full border border-black bg-white p-1.5 px-4 text-sm text-black transition-all hover:bg-black hover:text-white mb-4"
+              onClick={() => {
+                setShowSignInModal(true);
+                toggleMenu();
+              }}
+            >
+              Sign In
+            </button>
+          )}
+        </div>
+      )}
     </>
   );
 }
