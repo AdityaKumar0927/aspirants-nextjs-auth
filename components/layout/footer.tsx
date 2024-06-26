@@ -1,4 +1,3 @@
-// src/components/Footer.tsx
 "use client";
 
 import { useState } from "react";
@@ -6,34 +5,13 @@ import Modal from "@/components/shared/modal";
 
 export default function Footer() {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const [showCookieModal, setShowCookieModal] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
 
   return (
     <div className="relative w-full py-5 text-center">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 mx-32 gap-8 text-left">
-          <div>
-            <h3 className="font-bold mb-4">Product</h3>
-            <ul>
-              <li className="mb-2"><a href="#" className="text-gray-600">How it works</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Features</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Integrations</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">aspirants Stories</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Pricing</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Enterprise</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Start for free</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold mb-4">Use Cases</h3>
-            <ul>
-              <li className="mb-2"><a href="#" className="text-gray-600">Product Teams</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Design Teams</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Design Agencies</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Tech Startups</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Agile Teams</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Educational Institutions</a></li>
-            </ul>
-          </div>
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex flex-col md:flex-row justify-center space-x-8 text-center md:text-left">
           <div>
             <h3 className="font-bold mb-4">Resources</h3>
             <ul>
@@ -54,9 +32,9 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="flex justify-center items-center mt-10 text-gray-600">
-          <a href="#" className="mr-4">Cookie Statement</a>
-          <a href="#" className="mr-4">Terms of Service</a>
+        <div className="flex flex-col md:flex-row justify-center items-center mt-10 text-gray-600 space-y-2 md:space-y-0 md:space-x-4">
+          <a href="#" onClick={() => setShowCookieModal(true)}>Cookie Statement</a>
+          <a href="#" onClick={() => setShowTermsModal(true)}>Terms of Service</a>
           <a href="#" onClick={() => setShowPrivacyModal(true)}>Privacy Policy</a>
         </div>
         <div className="flex justify-center space-x-4 mt-4">
@@ -68,9 +46,10 @@ export default function Footer() {
           <a href="#" className="text-gray-600"><i className="fab fa-linkedin-in"></i></a>
         </div>
         <div className="text-center text-gray-600 mt-4">
-          © 2024 aspirants.tech. All rights reserved. 
+          © 2024 aspirants.tech. All rights reserved.
         </div>
       </div>
+
       <Modal showModal={showPrivacyModal} setShowModal={setShowPrivacyModal} className="max-w-2xl">
         <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
           <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
@@ -152,6 +131,156 @@ export default function Footer() {
             </p>
             <div className="text-center">
             </div>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal showModal={showCookieModal} setShowModal={setShowCookieModal} className="max-w-2xl">
+        <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
+          <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
+            <h2 className="font-display text-2xl font-bold">Aspirants Cookie Policy</h2>
+          </div>
+          <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
+            <p className="mb-4">
+              This is the cookie policy for Aspirants (“Aspirants”, “we”, “us” or “our”). For more information about how we may use personal data, please read our privacy policy or contact us at [email id].
+            </p>
+            <h3 className="font-semibold mb-2">What is a Cookie</h3>
+            <p className="mb-4">
+              A cookie is a small text file that is downloaded onto your device when you access a website. It is sent through your browser, and it helps us to recognise you and your device.
+            </p>
+            <p className="mb-4">
+              There are technologies, which, although technically not “cookies”, are like cookies. These include:
+            </p>
+            <ul className="list-disc list-inside mb-4">
+              <li className="mb-2">Web beacons/pixels: used to count the number of users who have interacted with some content on our website</li>
+              <li className="mb-2">Local storage: storage of data in your device’s (phone, laptop, computer, etc.) local cache (temporary memory)</li>
+              <li className="mb-2">Scripts: Computer programs designed to give extra functionality</li>
+            </ul>
+            <h3 className="font-semibold mb-2">Different Types of Cookies</h3>
+            <p className="mb-4">
+              The different types of cookies include:
+            </p>
+            <ul className="list-disc list-inside mb-4">
+              <li className="mb-2">First party cookies: these are the cookies created by us which you might encounter while using our website</li>
+              <li className="mb-2">Third party cookies: these are the cookies created by third party platforms which you might encounter while using our website</li>
+              <li className="mb-2">Session cookies: these are the cookies which only last for the duration of your visit to our website</li>
+              <li className="mb-2">Persistent cookies: these are the cookies which last for a longer period of time than Session Cookies</li>
+              <li className="mb-2">Zombie cookies: these are the cookies that are automatically recreated after you delete it. We DO NOT use this type of malicious cookie.</li>
+            </ul>
+            <h3 className="font-semibold mb-2">How we use Cookies</h3>
+            <p className="mb-4">
+              We use cookies for a variety of purposes, including but not limited to:
+            </p>
+            <ul className="list-disc list-inside mb-4">
+              <li className="mb-2">Keeping you logged into our website</li>
+              <li className="mb-2">Analyzing your site usage patterns, such as the duration of your visit, and so on.</li>
+              <li className="mb-2">Tracking you navigate and engage with our site's pages to detect and resolve technical problems.</li>
+            </ul>
+            <p className="mb-4">
+              Please keep in mind that cookies are necessary for the functioning of our website. We only use first party, third party and session cookies. We do not use any type of marketing cookie.
+            </p>
+            <p className="mb-4">
+              You can change your browser settings to not accept any cookies. Your browser will allow you to:
+            </p>
+            <ul className="list-disc list-inside mb-4">
+              <li className="mb-2">See what cookies are installed on your browser</li>
+              <li className="mb-2">Block any cookie</li>
+              <li className="mb-2">Delete cookies from your browser</li>
+            </ul>
+            <p className="mb-4">
+              However, it may impact your experience on different websites, including our site.
+            </p>
+            <p className="mb-4">
+              For more information on how to manage your cookies on your browser, please browse through:
+            </p>
+            <ul className="list-disc list-inside mb-4">
+              <li className="mb-2"><a href="https://support.google.com/chrome/answer/95647?hl=en" className="text-blue-500">Google Chrome</a></li>
+              <li className="mb-2"><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" className="text-blue-500">Firefox</a></li>
+              <li className="mb-2"><a href="https://support.microsoft.com/en-us/microsoft-edge/view-cookies-in-microsoft-edge-a7d95376-f2cd-8e4a-25dc-1de753474879" className="text-blue-500">Microsoft Edge</a></li>
+              <li className="mb-2"><a href="https://support.apple.com/en-in/105082" className="text-blue-500">Safari</a></li>
+            </ul>
+            <h3 className="font-semibold mb-2">Changes to this Policy</h3>
+            <p className="mb-4">
+              We may change this policy from time to time. As such, you should check this policy each and every time you visit our website. Any changes will be notified on the site.
+            </p>
+            <p className="mb-4">
+              For more information, please check out our privacy policy or email us at [email id].
+            </p>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal showModal={showTermsModal} setShowModal={setShowTermsModal} className="max-w-2xl">
+        <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
+          <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
+            <h2 className="font-display text-2xl font-bold">Aspirants Terms of Service</h2>
+            <p className="text-sm text-gray-500">Effective Date: 24th June 2024</p>
+          </div>
+          <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
+            <h3 className="font-semibold mb-2">Introduction</h3>
+            <p className="mb-4">
+              These Terms and Conditions of Use apply to the Aspirants website located at www.aspirants.tech.
+            </p>
+            <p className="mb-4">
+              BY USING THE SITE, YOU AGREE TO THESE TERMS OF USE; IF YOU DO NOT AGREE, DO NOT USE THE SITE.
+            </p>
+            <p className="mb-4">
+              Aspirants reserves the right, at its sole discretion, to change, modify, add or remove portions of these Terms and Conditions at any time. It is your responsibility to check these Terms and Conditions periodically for changes. Your continued use of the website following the posting of changes will mean that you accept and agree to the changes. As long as you comply with these Terms and Conditions, Aspirants grants you a personal, non-exclusive, non-transferable, limited privilege to enter and use the Site.
+            </p>
+            <h3 className="font-semibold mb-2">Use of the App</h3>
+            <p className="mb-4">
+              You may need to create an Aspirants account to use all or part of our Service. Your username and password are for your personal use only and should be kept confidential. You understand that you are responsible for all use (including any unauthorized use) of your username and password. Notify us immediately if your username or password is lost or stolen, or if you believe there has been unauthorized access to your account. We may reclaim, or require you to change, your username for any reason.
+            </p>
+            <p className="mb-4">
+              You may use our Services only for lawful personal use, and in accordance with these Terms and Conditions. Aspirants may, in its sole discretion, terminate your right to use our Services at any time, and may take all available legal recourse for actual or suspected violations of these Terms and Conditions, including deletion of your account made in violation of these Terms and Condition. Any delay by Aspirants in taking such actions does not constitute a waiver of Aspirants’ rights to enforce these Terms and Conditions. By making the Services available for your use, Aspirants does not consent to act as your agent or fiduciary.
+            </p>
+            <p className="mb-4">
+              We may provide links to other websites or Internet resources for your convenience only, and such links do not signify or imply our endorsement of such other website or resource or its contents over which we have no control and which we do not monitor. You use those links at your own risk and should apply a reasonable level of caution and discretion in doing so. You agree that we shall have no responsibility or liability for any information, software, or materials found at any other web site or internet resource.
+            </p>
+            <p className="mb-4">
+              You agree to use the Site only for lawful purposes and in accordance with these Terms. You are prohibited from:
+            </p>
+            <ul className="list-disc list-inside mb-4">
+              <li className="mb-2">Using the Site in any manner that could disable, overburden, damage, or impair the Site or interfere with any other party's use of the Site.</li>
+              <li className="mb-2">Using any robot, spider, or other automatic device, process, or means to access the Site for any purpose, including monitoring or copying any of the material on the Site.</li>
+              <li className="mb-2">Introducing any viruses, trojan horses, worms, logic bombs, or other material that is malicious or technologically harmful.</li>
+              <li className="mb-2">Attempting to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Site, the server on which the Site is stored, or any server, computer, or database connected to the Site.</li>
+              <li className="mb-2">Engaging in any other conduct that restricts or inhibits anyone's use or enjoyment of the Site, or which, as determined by us, may harm us or users of the Site, or expose them to liability.</li>
+            </ul>
+            <p className="mb-4">
+              Aspirants reserves the right to change, suspend, or discontinue any of the Services for you, any or all users, at any time, for any reason, including those laid out in Aspirants’ policies under these Terms and Conditions. We will not be liable to you for the effect that any changes to the Services may have on you.
+            </p>
+            <h3 className="font-semibold mb-2">Intellectual Property</h3>
+            <p className="mb-4">
+              Unless otherwise stated, copyright and all intellectual property rights in all material presented on the site (including but not limited to text, audio, video or graphical images), trademarks and logos appearing on this site are the property of Aspirants and are protected under applicable Indian laws. You agree not to use any framing techniques to enclose any trademark or logo or other proprietary information of Aspirants; or remove, conceal or obliterate any copyright or other proprietary notice or any credit-line or dateline on other mark or source identifier included on the Site / Service, including without limitation, the size, colour, location or style of all proprietary marks. Any infringement shall be vigorously defended and pursued to the fullest extent permitted by law. You may not copy, reproduce, distribute, publish, enter into a database, display, perform, modify, create derivative works from, transmit or in any way exploit any part of our site or any content thereon. You may not distribute any part of this site or any content thereon over any network, including, without limitation, a local area network, or sell or offer it for sale. In addition, these files may not be used to construct any kind of database.
+            </p>
+            <h3 className="font-semibold mb-2">Applicable Laws</h3>
+            <p className="mb-4">
+              These Terms and Conditions and the relationship between Aspirants and its users shall be governed by the laws of the Republic of India as applied to agreements made, entered, and performed entirely in Republic of India, notwithstanding the users’ place of residence. All lawsuits arising from or relating to these Terms and Conditions, or your use of the Services shall be brought in the courts located in New Delhi, India, and you hereby irrevocably submit to the exclusive personal jurisdiction of such courts for such purpose.
+            </p>
+            <h3 className="font-semibold mb-2">Privacy</h3>
+            <p className="mb-4">
+              Your use of the Site is also governed by our Privacy Policy, which describes how we collect, use, and protect your personal data. By using the Site, you consent to the collection and use of your data as described in our Privacy Policy, along with the Terms and Conditions.
+            </p>
+            <h3 className="font-semibold mb-2">Disclaimers</h3>
+            <p className="mb-4">
+              The Site and all materials provided through the Site are provided on an "as-is" and "as-available" basis, without any warranties of any kind, either express or implied. We do not warrant that the Site will be uninterrupted, error-free, or free from viruses or other harmful components. The content provided on the Site is for educational purposes only. We do not guarantee the accuracy, completeness, or usefulness of any information on the Site.
+            </p>
+            <p className="mb-4">
+              By using Aspirants, you agree to defend, indemnify, and hold harmless Aspirants, its affiliates, and their respective officers, directors, employees, and agents, from and against any and all claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including but not limited to legal fees) arising from:
+            </p>
+            <ul className="list-disc list-inside mb-4">
+              <li className="mb-2">Your Use of the Site: Any use of our Site, its content, or services, other than as expressly authorized in these Terms and Conditions, including any use that is illegal, unauthorized, or not in accordance with the intended purposes of Aspirants.</li>
+              <li className="mb-2">Violation of Terms: Any breach or violation of these Terms and Conditions, the Privacy Policy, or any other policy or guidelines set forth by Aspirants. This includes, but is not limited to, any unauthorized access to our systems or misuse of the information available through our Site.</li>
+              <li className="mb-2">User Content: Any content you post, upload, submit, or otherwise transmit through our Site, including but not limited to, claims regarding the infringement of intellectual property rights, defamation, privacy violations, or any other wrongful act.</li>
+            </ul>
+            <h3 className="font-semibold mb-2">Contact</h3>
+            <p className="mb-4">
+              By using our Site, you acknowledge that you have read, understood, and agreed to these Terms and Conditions. If you have any questions, concerns, or feedback, please contact us at [email id].
+            </p>
+            <p className="mb-4">
+              Thank you for choosing Aspirants.
+            </p>
           </div>
         </div>
       </Modal>

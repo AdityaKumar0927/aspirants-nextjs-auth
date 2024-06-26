@@ -19,12 +19,6 @@ const Sidebar: React.FC<SidebarProps> = ({ onSettingsClick, onUserDashboardClick
             </button>
           </div>
           <li className="mb-4">
-            <button className="flex items-center p-2" onClick={onSettingsClick}>
-              <i className="fas fa-cog text-gray-500 mr-2"></i>
-              <span>Settings</span>
-            </button>
-          </li>
-          <li className="mb-4">
             <button className="flex items-center p-2" onClick={onUserDashboardClick}>
               <i className="fas fa-star text-yellow-500 mr-2"></i>
               <span>Review</span>

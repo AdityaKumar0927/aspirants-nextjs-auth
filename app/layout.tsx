@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={cx(sfPro.variable, inter.variable)}>
-      <div className ="fixed inset-0 h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100 z-[-10]" />
+      <div className ="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100 z-[-10]" />
         <Suspense fallback="...">
           <Nav />
         </Suspense>
