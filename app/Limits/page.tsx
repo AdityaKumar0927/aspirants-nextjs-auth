@@ -231,7 +231,7 @@ x^2 & \\text{if } x \\leq 1 \\\\
                     className="form-radio text-blue-600"
                     onChange={(e) => handleQuizSubmit("question1", e.target.value, "C")}
                   />
-                  <span className="ml-2">D. The limit doesn't exist.</span>
+                  <span className="ml-2">D. The limit doesn&apos;t exist.</span>
                 </label>
               </li>
             </ul>

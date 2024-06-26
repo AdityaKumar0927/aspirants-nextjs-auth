@@ -6,6 +6,7 @@ import Head from 'next/head';
 import { Disclosure } from '@headlessui/react';
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const chapters = [
   {
@@ -85,7 +86,7 @@ const Mathematics: NextPage = () => {
               <p>Get questions from the topics you struggle with instantly.</p>
             </div>
             <div className="flex-shrink-0">
-              <img src="https://placehold.co/50x50" alt="Cartoon character with headband" className="w-12 h-12" />
+              <Image src="/path/to/your/image.jpg" alt="Cartoon character with headband" width={50} height={50} className="w-12 h-12" />
             </div>
           </div>
           <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded">Generate Math Mock Exam</button>
