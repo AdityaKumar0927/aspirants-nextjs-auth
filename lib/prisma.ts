@@ -1,24 +1,10 @@
-import { PrismaClient } from "../node_modules/.prisma/client";
+// src/lib/prisma.ts
+import { PrismaClient } from '@prisma/client';
 
-declare global {
-  // This must be a `var` and not a `let / const`
-  var prisma: PrismaClient | undefined;
-}
+const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
-let prisma: PrismaClient;
+const prisma = globalForPrisma.prisma || new PrismaClient();
 
-if (typeof window === 'undefined') {
-  if (process.env.NODE_ENV === 'production') {
-    prisma = new PrismaClient();
-  } else {
-    if (!global.prisma) {
-      global.prisma = new PrismaClient();
-    }
-    prisma = global.prisma;
-  }
-} else {
-  // Throw an error if prisma is being used on the client side
-  throw new Error('PrismaClient is unable to be run in the browser.');
-}
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 export default prisma;
