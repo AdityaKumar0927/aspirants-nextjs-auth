@@ -121,7 +121,7 @@ export default function Footer() {
             <p className="mb-4">
               We may update this Privacy Policy from time to time to reflect changes in our practices or comply with legal requirements. We will notify you of any changes by posting the new Privacy Policy on the Website. You are also thus advised to review this Privacy Policy periodically for any changes.
             </p>
-            <h3 className="font-semibold mb-2">Children’s Privacy</h3>
+            <h3 className="font-semibold mb-2">Children&apos;s Privacy</h3>
             <p className="mb-4">
               Aspirants is intended for users 18 years of age and older. We do not knowingly collect personal information from children under 18. If you are a parent or guardian and believe your child has provided us with personal information, please contact us at [email id]. We will take steps to remove the information from our systems.
             </p>
@@ -153,7 +153,7 @@ export default function Footer() {
             </p>
             <ul className="list-disc list-inside mb-4">
               <li className="mb-2">Web beacons/pixels: used to count the number of users who have interacted with some content on our website</li>
-              <li className="mb-2">Local storage: storage of data in your device’s (phone, laptop, computer, etc.) local cache (temporary memory)</li>
+              <li className="mb-2">Local storage: storage of data in your device&apos;s (phone, laptop, computer, etc.) local cache (temporary memory)</li>
               <li className="mb-2">Scripts: Computer programs designed to give extra functionality</li>
             </ul>
             <h3 className="font-semibold mb-2">Different Types of Cookies</h3>
@@ -174,7 +174,7 @@ export default function Footer() {
             <ul className="list-disc list-inside mb-4">
               <li className="mb-2">Keeping you logged into our website</li>
               <li className="mb-2">Analyzing your site usage patterns, such as the duration of your visit, and so on.</li>
-              <li className="mb-2">Tracking you navigate and engage with our site's pages to detect and resolve technical problems.</li>
+              <li className="mb-2">Tracking you navigate and engage with our site&apos;s pages to detect and resolve technical problems.</li>
             </ul>
             <p className="mb-4">
               Please keep in mind that cookies are necessary for the functioning of our website. We only use first party, third party and session cookies. We do not use any type of marketing cookie.
@@ -241,11 +241,11 @@ export default function Footer() {
               You agree to use the Site only for lawful purposes and in accordance with these Terms. You are prohibited from:
             </p>
             <ul className="list-disc list-inside mb-4">
-              <li className="mb-2">Using the Site in any manner that could disable, overburden, damage, or impair the Site or interfere with any other party's use of the Site.</li>
+              <li className="mb-2">Using the Site in any manner that could disable, overburden, damage, or impair the Site or interfere with any other party&apos;s use of the Site.</li>
               <li className="mb-2">Using any robot, spider, or other automatic device, process, or means to access the Site for any purpose, including monitoring or copying any of the material on the Site.</li>
               <li className="mb-2">Introducing any viruses, trojan horses, worms, logic bombs, or other material that is malicious or technologically harmful.</li>
               <li className="mb-2">Attempting to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Site, the server on which the Site is stored, or any server, computer, or database connected to the Site.</li>
-              <li className="mb-2">Engaging in any other conduct that restricts or inhibits anyone's use or enjoyment of the Site, or which, as determined by us, may harm us or users of the Site, or expose them to liability.</li>
+              <li className="mb-2">Engaging in any other conduct that restricts or inhibits anyone&apos;s use or enjoyment of the Site, or which, as determined by us, may harm us or users of the Site, or expose them to liability.</li>
             </ul>
             <p className="mb-4">
               Aspirants reserves the right to change, suspend, or discontinue any of the Services for you, any or all users, at any time, for any reason, including those laid out in Aspirants’ policies under these Terms and Conditions. We will not be liable to you for the effect that any changes to the Services may have on you.
