@@ -10,45 +10,48 @@ export default function Footer() {
 
   return (
     <div className="relative w-full py-5 text-center">
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row justify-center space-x-8 text-center md:text-left">
-          <div>
-            <h3 className="font-bold mb-4">Resources</h3>
-            <ul>
-              <li className="mb-2"><a href="#" className="text-gray-600">Examples</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Help Center</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Support</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Events</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold mb-4">About</h3>
-            <ul>
-              <li className="mb-2"><a href="#" className="text-gray-600">Our Story</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Media Kit</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Blog</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Careers</a></li>
-              <li className="mb-2"><a href="#" className="text-gray-600">Email us</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="flex flex-col md:flex-row justify-center items-center mt-10 text-gray-600 space-y-2 md:space-y-0 md:space-x-4">
-          <a href="#" onClick={() => setShowCookieModal(true)}>Cookie Statement</a>
-          <a href="#" onClick={() => setShowTermsModal(true)}>Terms of Service</a>
-          <a href="#" onClick={() => setShowPrivacyModal(true)}>Privacy Policy</a>
-        </div>
-        <div className="flex justify-center space-x-4 mt-4">
-          <a href="#" className="text-gray-600"><i className="fab fa-facebook-f"></i></a>
-          <a href="#" className="text-gray-600"><i className="fab fa-twitter"></i></a>
-          <a href="#" className="text-gray-600"><i className="fab fa-instagram"></i></a>
-          <a href="#" className="text-gray-600"><i className="fab fa-youtube"></i></a>
-          <a href="#" className="text-gray-600"><i className="fab fa-tiktok"></i></a>
-          <a href="#" className="text-gray-600"><i className="fab fa-linkedin-in"></i></a>
-        </div>
-        <div className="text-center text-gray-600 mt-4">
-          &copy; 2024 aspirants.tech. All rights reserved.
-        </div>
+     <div className="bg-white shadow-md py-8 mt-10">
+  <div className="container mx-auto px-4">
+    <div className="flex flex-col md:flex-row justify-center md:space-x-8 text-center md:text-left space-y-4 md:space-y-0">
+      <div>
+        <h3 className="font-bold mb-4">Resources</h3>
+        <ul>
+          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Examples</a></li>
+          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Help Center</a></li>
+          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Support</a></li>
+          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Events</a></li>
+        </ul>
       </div>
+      <div>
+        <h3 className="font-bold mb-4">About</h3>
+        <ul>
+          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Our Story</a></li>
+          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Media Kit</a></li>
+          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Blog</a></li>
+          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Careers</a></li>
+          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Email us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div className="flex flex-col md:flex-row justify-center items-center mt-10 text-gray-600 space-y-2 md:space-y-0 md:space-x-4">
+      <a href="#" className="hover:underline" onClick={() => setShowCookieModal(true)}>Cookie Statement</a>
+      <a href="#" className="hover:underline" onClick={() => setShowTermsModal(true)}>Terms of Service</a>
+      <a href="#" className="hover:underline" onClick={() => setShowPrivacyModal(true)}>Privacy Policy</a>
+    </div>
+    <div className="flex justify-center space-x-4 mt-4">
+      <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-facebook-f"></i></a>
+      <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-twitter"></i></a>
+      <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-instagram"></i></a>
+      <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-youtube"></i></a>
+      <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-tiktok"></i></a>
+      <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-linkedin-in"></i></a>
+    </div>
+    <div className="text-center text-gray-600 mt-4">
+      &copy; 2024 aspirants.tech. All rights reserved.
+    </div>
+  </div>
+</div>
 
       <Modal showModal={showPrivacyModal} setShowModal={setShowPrivacyModal} className="max-w-2xl">
         <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">

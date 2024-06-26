@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
+import NotificationDropdown from "@/components/shared/NotificationDropdown";
 import { Session } from "next-auth";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -43,7 +44,10 @@ export default function NavBar({ session }: { session: Session | null }) {
           <div className="hidden md:flex items-center space-x-4">
             <Link href="/QuestionBank" className="mr-4">Question Bank</Link>
             {session ? (
-              <UserDropdown session={session} />
+              <>
+                <NotificationDropdown />
+                <UserDropdown session={session} />
+              </>
             ) : (
               <button
                 className="rounded-full border border-black bg-white p-1.5 px-4 text-sm text-black transition-all hover:bg-black hover:text-white"
@@ -62,6 +66,11 @@ export default function NavBar({ session }: { session: Session | null }) {
       </div>
       {menuOpen && (
         <div className="md:hidden fixed top-0 left-0 right-0 bottom-0 bg-white flex flex-col items-center justify-center z-40">
+          <div className="absolute top-4 right-4">
+            <button onClick={toggleMenu} className="text-black focus:outline-none">
+              <FontAwesomeIcon icon={faTimes} size="lg" />
+            </button>
+          </div>
           <Link href="/" className="mb-4 text-2xl" onClick={toggleMenu}>Home</Link>
           <Link href="/QuestionBank" className="mb-4 text-2xl" onClick={toggleMenu}>Question Bank</Link>
           {session ? (

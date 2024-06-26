@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
 import React, { useState } from 'react';
 import Sidebar from '@/components/shared/Sidebar';
-import Footer from '@/components/layout/footer';
 import Question from '@/components/shared/Question';
 import sampleQuestions from '@/components/shared/sampleQuestions.json';
 
@@ -68,12 +67,18 @@ const MainContent: React.FC = () => {
       case 'home':
         return (
           <>
-            <section className="flex justify-center py-16">
+            <section className="flex justify-center py-4 md:py-16">
               <div className="bg-white shadow-blue-300 rounded-lg overflow-hidden w-full max-w-4xl border-2">
                 <div className="flex items-center p-4 border-b border-blue-300"></div>
-                <div className="flex">
-                  <Sidebar onSettingsClick={handleUserDashboardClick} onUserDashboardClick={handleUserDashboardClick} />
-                  <main className="w-3/4 p-4">
+                <div className="flex flex-col md:flex-row">
+                  <div className="hidden md:block">
+                    <Sidebar
+                      onSettingsClick={handleUserDashboardClick}
+                      onUserDashboardClick={handleUserDashboardClick}
+                      onCloseSidebar={handleCloseUserDashboard}
+                    />
+                  </div>
+                  <main className="w-full md:w-3/4 p-4">
                     <div className="flex items-center space-x-2 text-gray-500 text-sm mb-4">
                       <span>JEE</span>
                       <i className="fas fa-chevron-right"></i>
@@ -81,7 +86,7 @@ const MainContent: React.FC = () => {
                       <i className="fas fa-chevron-right"></i>
                       <span>Chapter 10 – Coordinate Geometry</span>
                     </div>
-                    <h2 className="text-2xl font-semibold mb-4">Coordinate Geometry</h2>
+                    <h2 className="text-2xl font-semibold mb-4 justify-center">Coordinate Geometry</h2>
                     <div className="p-4 rounded-lg">
                       {sampleQuestions.map((question) => (
                         <Question
