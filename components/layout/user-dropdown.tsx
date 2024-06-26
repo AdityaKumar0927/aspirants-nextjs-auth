@@ -6,10 +6,12 @@ import { LayoutDashboard, LogOut } from "lucide-react";
 import Popover from "@/components/shared/popover";
 import Image from "next/image";
 import { Session } from "next-auth";
+import DashboardModal from "@/components/shared/DashboardModal";
 
 export default function UserDropdown({ session }: { session: Session }) {
   const { email, image } = session?.user || {};
   const [openPopover, setOpenPopover] = useState(false);
+  const [showDashboardModal, setShowDashboardModal] = useState(false);
 
   if (!email) return null;
 
@@ -29,8 +31,8 @@ export default function UserDropdown({ session }: { session: Session }) {
               </p>
             </div>
             <button
-              className="relative flex w-full cursor-not-allowed items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
-              disabled
+              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
+              onClick={() => setShowDashboardModal(true)}
             >
               <LayoutDashboard className="h-4 w-4" />
               <p className="text-sm">Dashboard</p>
@@ -60,6 +62,7 @@ export default function UserDropdown({ session }: { session: Session }) {
           />
         </button>
       </Popover>
+      <DashboardModal showModal={showDashboardModal} setShowModal={setShowDashboardModal} />
     </div>
   );
 }

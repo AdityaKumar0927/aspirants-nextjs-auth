@@ -1,4 +1,3 @@
-// app/layout.tsx
 import "./globals.css";
 import cx from "classnames";
 import { sfPro, inter } from "./fonts";
@@ -16,8 +15,8 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={cx(sfPro.variable, inter.variable)}>
-      <div className ="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100 z-[-10]" />
+      <body className={cx(sfPro.variable, inter.variable, "bg-gradient-to-br from-indigo-50 via-white to-cyan-100")}>
+        <div className="fixed inset-0 z-[-10]"></div>
         <Suspense fallback="...">
           <Nav />
         </Suspense>
