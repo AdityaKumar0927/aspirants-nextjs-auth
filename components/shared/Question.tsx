@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import MathRenderer from '@/components/layout/MathRenderer';
 import Modal from '@/components/shared/modal';
 import { Switch } from '@headlessui/react';
@@ -57,32 +59,20 @@ const Question: React.FC<QuestionProps> = ({
   const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
 
-  useEffect(() => {
-    if (selectedOption) {
-      handleMarkComplete(question.questionId);
-    }
-  }, [selectedOption, handleMarkComplete, question.questionId]);
-
-  const handleAttempt = () => {
-    if (!isMarkedComplete) {
-      handleMarkComplete(question.questionId);
-    }
-  };
-
   const handleOptionClickLocal = (option: string) => {
     if (selectedOption === option) {
       setSelectedOption(null);
       handleOptionClick(question.questionId, '', question.correctOption || '');
     } else {
       setSelectedOption(option);
-      handleAttempt();
+      handleMarkComplete(question.questionId);
       const correctOption = question.correctOption || '';
       handleOptionClick(question.questionId, option, correctOption);
     }
   };
 
   const handleNumericalSubmitLocal = () => {
-    handleAttempt();
+    handleMarkComplete(question.questionId);
     const correctAnswer = question.correctOption || '';
     handleNumericalSubmit(question.questionId, numericalAnswer || '', correctAnswer);
   };
