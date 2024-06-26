@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import MathRenderer from '@/components/layout/MathRenderer';
 import Modal from '@/components/shared/modal';
 import { Switch } from '@headlessui/react';
@@ -63,7 +61,7 @@ const Question: React.FC<QuestionProps> = ({
     if (selectedOption) {
       handleMarkComplete(question.questionId);
     }
-  }, [selectedOption]);
+  }, [selectedOption, handleMarkComplete, question.questionId]);
 
   const handleAttempt = () => {
     if (!isMarkedComplete) {

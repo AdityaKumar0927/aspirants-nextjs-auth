@@ -1,7 +1,5 @@
 "use client";
 
-//empty commit
-
 import { useState } from "react";
 import Modal from "@/components/shared/modal";
 
@@ -9,7 +7,7 @@ export default function Footer() {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   const [showCookieModal, setShowCookieModal] = useState(false);
   const [showTermsModal, setShowTermsModal] = useState(false);
- 
+
   return (
     <div className="relative w-full py-5 text-center">
       <div className="container mx-auto px-4 py-8">
@@ -48,7 +46,7 @@ export default function Footer() {
           <a href="#" className="text-gray-600"><i className="fab fa-linkedin-in"></i></a>
         </div>
         <div className="text-center text-gray-600 mt-4">
-          © 2024 aspirants.tech. All rights reserved.
+          &copy; 2024 aspirants.tech. All rights reserved.
         </div>
       </div>
 
@@ -63,7 +61,7 @@ export default function Footer() {
               In addition to our Terms and Conditions, Aspirants is dedicated to maintaining the privacy of its users and protecting their data.
             </p>
             <p className="mb-4">
-              This privacy policy highlights and explains the policy of Aspirants, (hereinafter referred to as “we”, “us”, or “our”), and its website aspirants.tech (hereinafter referred to as “the website”) with respect to collection, storage and usage of your data during the course of your interaction with the Website.
+              This privacy policy highlights and explains the policy of Aspirants, (hereinafter referred to as &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), and its website aspirants.tech (hereinafter referred to as &quot;the website&quot;) with respect to collection, storage and usage of your data during the course of your interaction with the Website.
             </p>
             <p className="mb-4">
               Please read this Privacy Policy carefully and in conjunction with the Terms of Use. If you do not understand this policy, or do not accept any part of it, then you should not use the Platform, as the case may be. Your use and/or continued use of the Platform, amounts to consent to the terms of this Privacy Policy as well as the Terms and Conditions. For any questions, please contact [email id].
@@ -144,14 +142,14 @@ export default function Footer() {
           </div>
           <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
             <p className="mb-4">
-              This is the cookie policy for Aspirants (“Aspirants”, “we”, “us” or “our”). For more information about how we may use personal data, please read our privacy policy or contact us at [email id].
+              This is the cookie policy for Aspirants (&quot;Aspirants&quot;, &quot;we&quot;, &quot;us&quot; or &quot;our&quot;). For more information about how we may use personal data, please read our privacy policy or contact us at [email id].
             </p>
             <h3 className="font-semibold mb-2">What is a Cookie</h3>
             <p className="mb-4">
               A cookie is a small text file that is downloaded onto your device when you access a website. It is sent through your browser, and it helps us to recognise you and your device.
             </p>
             <p className="mb-4">
-              There are technologies, which, although technically not “cookies”, are like cookies. These include:
+              There are technologies, which, although technically not &quot;cookies&quot;, are like cookies. These include:
             </p>
             <ul className="list-disc list-inside mb-4">
               <li className="mb-2">Web beacons/pixels: used to count the number of users who have interacted with some content on our website</li>
@@ -266,7 +264,7 @@ export default function Footer() {
             </p>
             <h3 className="font-semibold mb-2">Disclaimers</h3>
             <p className="mb-4">
-              The Site and all materials provided through the Site are provided on an "as-is" and "as-available" basis, without any warranties of any kind, either express or implied. We do not warrant that the Site will be uninterrupted, error-free, or free from viruses or other harmful components. The content provided on the Site is for educational purposes only. We do not guarantee the accuracy, completeness, or usefulness of any information on the Site.
+              The Site and all materials provided through the Site are provided on an &quot;as-is&quot; and &quot;as-available&quot; basis, without any warranties of any kind, either express or implied. We do not warrant that the Site will be uninterrupted, error-free, or free from viruses or other harmful components. The content provided on the Site is for educational purposes only. We do not guarantee the accuracy, completeness, or usefulness of any information on the Site.
             </p>
             <p className="mb-4">
               By using Aspirants, you agree to defend, indemnify, and hold harmless Aspirants, its affiliates, and their respective officers, directors, employees, and agents, from and against any and all claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including but not limited to legal fees) arising from:
