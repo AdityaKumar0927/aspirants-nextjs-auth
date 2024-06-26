@@ -1,5 +1,7 @@
 "use client";
 
+//empty commit
+
 import { useState } from "react";
 import Modal from "@/components/shared/modal";
 
@@ -7,7 +9,7 @@ export default function Footer() {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   const [showCookieModal, setShowCookieModal] = useState(false);
   const [showTermsModal, setShowTermsModal] = useState(false);
-
+ 
   return (
     <div className="relative w-full py-5 text-center">
       <div className="container mx-auto px-4 py-8">
