@@ -173,12 +173,15 @@ const Question: React.FC<QuestionProps> = ({
         </div>
       )}
       {selectedOption && markschemeEnabled && (
-        <button
-          className="bg-white border-2 border-blue-300 text-gray-700 px-4 py-2 rounded mt-2"
-          onClick={toggleMarkscheme}
-        >
-          Show Markscheme
-        </button>
+     <button
+     className="relative inline-flex items-center justify-center px-3 py-2 overflow-hidden font-medium text-gray-800 transition duration-200 ease-out border-2 border-gray-900 rounded-lg shadow-md group hover:text-white"
+     onClick={toggleMarkscheme}
+   >
+     <span className="absolute inset-0 w-full h-full bg-gray-50 rounded-lg"></span>
+     <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-out transform translate-x-full translate-y-full bg-gray-900 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+     <span className="relative">Show Markscheme</span>
+   </button>
+        
       )}
       <Modal showModal={showMarkschemeModal} setShowModal={setShowMarkschemeModal} className="max-w-2xl">
         <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">

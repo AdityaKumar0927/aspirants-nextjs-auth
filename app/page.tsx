@@ -53,12 +53,22 @@ export default async function Home() {
         >
           <Link
             className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
-            href="BrowseResources"
+            href="QuestionBank"
           >
             
             <p>Try Now</p>
           </Link>
-         
+          <Link
+            className="flex items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-3 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800 sm:px-5 sm:py-2"
+            href="BrowseResources"
+          >
+
+          <p className="text-center">
+          <span className="sm:hidden">Resources</span>
+          <span className="hidden sm:inline-block">Browse Resources</span>
+          </p>
+          </Link>
+
         </div>
       </div>
       <MainContent />
