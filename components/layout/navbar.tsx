@@ -7,8 +7,8 @@ import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
 import NotificationDropdown from "@/components/shared/NotificationDropdown";
 import { Session } from "next-auth";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import useScroll from "@/lib/hooks/use-scroll";
 
 export default function NavBar({ session }: { session: Session | null }) {
@@ -65,14 +65,16 @@ export default function NavBar({ session }: { session: Session | null }) {
         </div>
       </div>
       {menuOpen && (
-        <div className="md:hidden fixed top-0 left-0 right-0 bottom-0 bg-white flex flex-col items-center justify-center z-40">
-          <div className="absolute top-4 right-4">
-            <button onClick={toggleMenu} className="text-black focus:outline-none">
-              <FontAwesomeIcon icon={faTimes} size="lg" />
-            </button>
-          </div>
-          <Link href="/" className="mb-4 text-2xl" onClick={toggleMenu}>Home</Link>
-          <Link href="/QuestionBank" className="mb-4 text-2xl" onClick={toggleMenu}>Question Bank</Link>
+        <div className="md:hidden fixed top-0 left-0 right-0 bottom-0 bg-white flex flex-col items-center justify-center z-40 px-4">
+          <button onClick={toggleMenu} className="absolute top-4 right-4 text-black focus:outline-none">
+            <FontAwesomeIcon icon={faTimes} size="lg" />
+          </button>
+          <Link href="/" className="mb-4 text-2xl" onClick={toggleMenu}>
+            Home
+          </Link>
+          <Link href="/QuestionBank" className="mb-4 text-2xl" onClick={toggleMenu}>
+            Question Bank
+          </Link>
           {session ? (
             <UserDropdown session={session} />
           ) : (
