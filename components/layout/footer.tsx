@@ -16,7 +16,7 @@ export default function Footer() {
       <div>
         <h3 className="font-bold mb-4">Resources</h3>
         <ul>
-          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Examples</a></li>
+          <li className="mb-2"><a href="feature-requests" className="text-gray-600 hover:text-gray-800">Suggest Features</a></li>
           <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Help Center</a></li>
           <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Support</a></li>
           <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Events</a></li>

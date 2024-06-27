@@ -44,6 +44,7 @@ export default function NavBar({ session }: { session: Session | null }) {
           </Link>
           <div className="hidden md:flex items-center space-x-4">
             <Link href="/QuestionBank" className="mr-4">Question Bank</Link>
+            <Link href="/Planner" className="mr-4">Planner</Link>
             {session ? (
               <>
                 <NotificationDropdown />
