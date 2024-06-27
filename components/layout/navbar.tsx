@@ -32,7 +32,8 @@ export default function NavBar({ session }: { session: Session | null }) {
       >
         <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between w-full">
           <Link href="/" className="flex items-center font-display text-2xl">
-            <p>aspirants</p>
+            <p className="text-left font-display text-2xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]
+">aspirants</p>
             <Image
               src="/bulb.svg"
               alt="aspirants logo"

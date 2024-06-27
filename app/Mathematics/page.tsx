@@ -64,9 +64,9 @@ const Mathematics: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
       </Head>
-      <div className="max-w-7xl mx-auto p-6 text-gray-900">
+      <div className="h-full w-full max-w-7xl mx-auto p-6 text-gray-900">
         <div className="text-sm text-gray-500 mb-2">Browse &gt; Mathematics</div>
-        <h1 className="text-3xl font-bold mb-4">Mathematics</h1>
+        <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">Mathematics</h1>
         <div className="flex space-x-4 mb-4">
           <div className="flex items-center space-x-2 bg-green-100 text-green-700 px-4 py-2 rounded">
             <i className="fas fa-check-circle"></i>

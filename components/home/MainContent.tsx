@@ -91,7 +91,7 @@ const MainContent: React.FC = () => {
                     <i className="fas fa-chevron-right"></i>
                     <span>Chapter 10 – Coordinate Geometry</span>
                   </div>
-                  <h2 className="text-2xl font-semibold mb-4 justify-center">Coordinate Geometry</h2>
+                  <h2 className="mb-2 text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">Coordinate Geometry</h2>
                   <div className="p-4 rounded-lg">
                     {sampleQuestions.map((question) => (
                       <Question

@@ -210,18 +210,18 @@ const QuestionBank: React.FC = () => {
   };
 
   return (
-    <div className="p-8 min-h-screen flex justify-center">
+    <div className="bg-white w-full h-full p-8 min-h-screen flex justify-center">
       <div className="max-w-6xl w-full">
         <nav className="text-sm text-gray-500 mb-4">
-          <a href="#" className="hover:underline text-left">
-            Collections
+          <a href="BrowseResources" className="hover:underline text-left">
+            Browse Resources
           </a>{" "}
           &gt;{" "}
           <a href="#" className="hover:underline text-left">
             Question Bank
           </a>
         </nav>
-        <h1 className="text-3xl font-bold mb-2 text-left">Question Bank</h1>
+        <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">Question Bank</h1>
         <div className="flex space-x-4 mb-6">
           <button
             className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md flex items-center space-x-2"
@@ -271,67 +271,66 @@ const QuestionBank: React.FC = () => {
           </button>
         </div>
         <div className="flex flex-wrap items-start mb-4 space-x-2">
-  {["subject", "difficulty", "year", "type"].map((filterType) => (
-    <Popover
-      key={filterType}
-      content={
-        <div className="w-full bg-white rounded-md p-2 sm:w-40">
-          {(filterType === "subject"
-            ? subjects
-            : filterType === "difficulty"
-            ? difficulties
-            : filterType === "year"
-            ? years
-            : types
-          ).map((value) => (
-            <button
-              key={value}
-              onClick={() => {
-                handleFilterChange(filterType, value);
-                setDropdowns({ ...dropdowns, [filterType]: false });
+          {["subject", "difficulty", "year", "type"].map((filterType) => (
+            <Popover
+              key={filterType}
+              content={
+                <div className="w-full bg-white rounded-md p-2 sm:w-40">
+                  {(filterType === "subject"
+                    ? subjects
+                    : filterType === "difficulty"
+                    ? difficulties
+                    : filterType === "year"
+                    ? years
+                    : types
+                  ).map((value) => (
+                    <button
+                      key={value}
+                      onClick={() => {
+                        handleFilterChange(filterType, value);
+                        setDropdowns({ ...dropdowns, [filterType]: false });
+                      }}
+                      className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
+                    >
+                      {value}
+                    </button>
+                  ))}
+                </div>
+              }
+              align="start"
+              openPopover={dropdowns[filterType as keyof typeof dropdowns]}
+              setOpenPopover={(open) => {
+                setDropdowns((prev) => ({
+                  ...prev,
+                  [filterType]: open,
+                }));
               }}
-              className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
             >
-              {value}
-            </button>
+              <button
+                onClick={() =>
+                  setDropdowns((prev) => ({
+                    ...prev,
+                    [filterType]: !prev[filterType as keyof typeof dropdowns],
+                  }))
+                }
+                className="flex w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
+              >
+                <p className="text-gray-600">
+                  {filters[filterType as keyof typeof filters] ||
+                    filterType.charAt(0).toUpperCase() +
+                      filterType.slice(1)}
+                </p>
+                <ChevronDown
+                  className={`h-4 w-4 text-gray-600 transition-all ${
+                    dropdowns[filterType as keyof typeof dropdowns]
+                      ? "rotate-180"
+                      : ""
+                  }`}
+                />
+              </button>
+            </Popover>
           ))}
         </div>
-      }
-      align="start"
-      openPopover={dropdowns[filterType as keyof typeof dropdowns]}
-      setOpenPopover={(open) => {
-        setDropdowns((prev) => ({
-          ...prev,
-          [filterType]: open,
-        }));
-      }}
-    >
-      <button
-        onClick={() =>
-          setDropdowns((prev) => ({
-            ...prev,
-            [filterType]: !prev[filterType as keyof typeof dropdowns],
-          }))
-        }
-        className="flex w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
-      >
-        <p className="text-gray-600">
-          {filters[filterType as keyof typeof filters] ||
-            filterType.charAt(0).toUpperCase() +
-              filterType.slice(1)}
-        </p>
-        <ChevronDown
-          className={`h-4 w-4 text-gray-600 transition-all ${
-            dropdowns[filterType as keyof typeof dropdowns]
-              ? "rotate-180"
-              : ""
-          }`}
-        />
-      </button>
-    </Popover>
-  ))}
-</div>
-
         {filteredQuestions.length > 0 ? (
           filteredQuestions.map((question) => (
             <Question
