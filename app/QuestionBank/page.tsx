@@ -210,7 +210,7 @@ const QuestionBank: React.FC = () => {
   };
 
   return (
-    <div className="bg-white w-full h-full p-8 min-h-screen flex justify-center">
+    <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
       <div className="max-w-6xl w-full">
         <nav className="text-sm text-gray-500 mb-4">
           <a href="BrowseResources" className="hover:underline text-left">
@@ -238,39 +238,7 @@ const QuestionBank: React.FC = () => {
             <span>Download markscheme</span>
           </button>
         </div>
-        <div className="flex space-x-4 mb-6">
-          <button
-            className={`border border-gray-300 text-black px-4 py-2 rounded-md ${
-              filters.status === "all"
-                ? "border-2 border-gray-400 text-black"
-                : ""
-            }`}
-            onClick={() => handleFilterChange("status", "all")}
-          >
-            All Questions
-          </button>
-          <button
-            className={`border border-gray-300 text-black px-4 py-2 rounded-md ${
-              filters.status === "review"
-                ? "border-2 border-gray-400 text-black"
-                : ""
-            }`}
-            onClick={() => handleFilterChange("status", "review")}
-          >
-            Marked for Review
-          </button>
-          <button
-            className={`border border-gray-300 text-black px-4 py-2 rounded-md ${
-              filters.status === "complete"
-                ? "border-2 border-gray-400 text-black"
-                : ""
-            }`}
-            onClick={() => handleFilterChange("status", "complete")}
-          >
-            Completed
-          </button>
-        </div>
-        <div className="flex flex-wrap items-start mb-4 space-x-2">
+        <div className="flex flex-wrap items-start mb-4 space-y-2 sm:space-y-0 sm:space-x-2">
           {["subject", "difficulty", "year", "type"].map((filterType) => (
             <Popover
               key={filterType}
@@ -313,7 +281,7 @@ const QuestionBank: React.FC = () => {
                     [filterType]: !prev[filterType as keyof typeof dropdowns],
                   }))
                 }
-                className="flex w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
+                className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
               >
                 <p className="text-gray-600">
                   {filters[filterType as keyof typeof filters] ||
@@ -331,6 +299,7 @@ const QuestionBank: React.FC = () => {
             </Popover>
           ))}
         </div>
+
         {filteredQuestions.length > 0 ? (
           filteredQuestions.map((question) => (
             <Question
