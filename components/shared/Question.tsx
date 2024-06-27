@@ -199,7 +199,7 @@ const Question: React.FC<QuestionProps> = ({
           </div>
           <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-gray-700">Enable Markscheme</span>
+              <span className="text-gray-400">Enable Markscheme</span>
               <Switch
                 checked={markschemeEnabled}
                 onChange={handleMarkschemeSwitch}
