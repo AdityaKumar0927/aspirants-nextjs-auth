@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import Sidebar from '@/components/shared/Sidebar';
 import Question from '@/components/shared/Question';
 import sampleQuestions from '@/components/shared/sampleQuestions.json';
 
@@ -54,14 +53,6 @@ const MainContent: React.FC = () => {
     );
   };
 
-  const handleUserDashboardClick = () => {
-    setShowUserDashboard(true);
-  };
-
-  const handleCloseUserDashboard = () => {
-    setShowUserDashboard(false);
-  };
-
   const renderView = () => {
     switch (currentView) {
       case 'home':
@@ -69,24 +60,16 @@ const MainContent: React.FC = () => {
           <>
             <section className="flex justify-center py-4 md:py-16">
               <div className="bg-white shadow-blue-300 rounded-lg overflow-hidden w-full max-w-4xl border-2">
-                <div className="flex items-center p-4 border-b border-blue-300"></div>
                 <div className="flex flex-col md:flex-row">
-                  <div className="hidden md:block">
-                    <Sidebar
-                      onSettingsClick={handleUserDashboardClick}
-                      onUserDashboardClick={handleUserDashboardClick}
-                      onCloseSidebar={handleCloseUserDashboard}
-                    />
-                  </div>
-                  <main className="w-full md:w-3/4 p-4">
+                  <main className="w-full p-4">
                     <div className="flex items-center space-x-2 text-gray-500 text-sm mb-4">
                       <span>JEE</span>
-                      <i className="fas fa-chevron-right"></i>
+                      <span>&gt;</span>
                       <span>Mathematics</span>
-                      <i className="fas fa-chevron-right"></i>
+                      <span>&gt;</span>
                       <span>Chapter 10 – Coordinate Geometry</span>
                     </div>
-                    <h2 className="text-2xl font-semibold mb-4 justify-center">Coordinate Geometry</h2>
+                    <h2 className="text-2xl font-semibold mb-4 text-center">Coordinate Geometry</h2>
                     <div className="p-4 rounded-lg">
                       {sampleQuestions.map((question) => (
                         <Question

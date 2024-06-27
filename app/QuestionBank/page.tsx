@@ -126,7 +126,6 @@ const QuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
-    markQuestionAsCompleted(questionId);
   };
 
   const handleNumericalSubmit = (
@@ -139,7 +138,6 @@ const QuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
-    markQuestionAsCompleted(questionId);
   };
 
   const handleNumericalChange = (questionId: string, value: string) => {
@@ -166,10 +164,10 @@ const QuestionBank: React.FC = () => {
     );
   };
 
-  const markQuestionAsCompleted = (questionId: string) => {
+  const handleMarkComplete = (questionId: string) => {
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) =>
-        q.questionId === questionId ? { ...q, completed: !q.completed } : q
+        q.questionId === questionId ? { ...q, completed: true } : q
       )
     );
   };
@@ -293,7 +291,7 @@ const QuestionBank: React.FC = () => {
     <Popover
       key={filterType}
       content={
-        <div className="w-full rounded-md bg-white p-2 sm:w-40">
+        <div className="w-full bg-white rounded-md p-2 sm:w-40">
           {(filterType === "subject"
             ? subjects
             : filterType === "difficulty"
@@ -331,7 +329,7 @@ const QuestionBank: React.FC = () => {
             [filterType]: !prev[filterType as keyof typeof dropdowns],
           }))
         }
-        className="flex w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100 bg-white"
+        className="flex w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
       >
         <p className="text-gray-600">
           {filters[filterType as keyof typeof filters] ||
@@ -349,6 +347,7 @@ const QuestionBank: React.FC = () => {
     </Popover>
   ))}
 </div>
+
         {filteredQuestions.length > 0 ? (
           filteredQuestions.map((question) => (
             <Question
@@ -362,7 +361,7 @@ const QuestionBank: React.FC = () => {
               handleNumericalChange={handleNumericalChange}
               handleMarkschemeToggle={handleMarkschemeToggle}
               handleMarkForReview={handleMarkForReview}
-              handleMarkComplete={markQuestionAsCompleted}
+              handleMarkComplete={handleMarkComplete}
               isMarkedForReview={question.reviewed}
               isMarkedComplete={question.completed}
               markschemesDisabled={markschemesDisabled}
