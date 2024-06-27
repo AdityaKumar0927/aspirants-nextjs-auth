@@ -65,7 +65,7 @@ export default function NavBar({ session }: { session: Session | null }) {
         </div>
       </div>
       {menuOpen && (
-        <div className="md:hidden fixed top-0 left-0 right-0 bottom-0 bg-white flex flex-col items-center justify-center z-40">
+        <div className="md:hidden fixed top-16 left-0 right-0 bottom-0 bg-white flex flex-col items-center justify-center z-40">
           <button
             onClick={toggleMenu}
             className="absolute top-4 right-4 text-black focus:outline-none"
@@ -86,7 +86,7 @@ export default function NavBar({ session }: { session: Session | null }) {
               </div>
             ) : (
               <button
-                className="rounded-full border border-black bg-white p-1.5 px-4 text-sm text-black transition-all hover:bg-black hover:text-white"
+                className="rounded-full border border-black bg-white p-1.5 px-4 text-sm text-black transition-all hover:bg-black hover:text-white mb-4"
                 onClick={() => {
                   setShowSignInModal(true);
                   toggleMenu();
