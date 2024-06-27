@@ -27,7 +27,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="relative z-10 w-full max-w-xl px-5 xl:px-0">
+      <div className="z-10 w-full max-w-xl px-5 xl:px-0">
         <a
           href=""
           target="_blank"
@@ -74,24 +74,8 @@ export default async function Home() {
             </svg>
             <p>Try Now</p>
           </Link>
+         
         </div>
-      </div>
-      <div className="relative z-10 my-10 grid w-full max-w-screen-xl animate-fade-up grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
-        {features.map(({ title, description, demo, large }) => (
-          <Card
-            key={title}
-            title={title}
-            description={description}
-            demo={
-              title === "Beautiful, reusable components" ? (
-                <ComponentGrid />
-              ) : (
-                demo
-              )
-            }
-            large={large}
-          />
-        ))}
       </div>
       <MainContent />
     </>
