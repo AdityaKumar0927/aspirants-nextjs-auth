@@ -128,9 +128,9 @@ const BrowseResources: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
       </Head>
-      <div className="text-gray-900">
+      <div className="text-gray-900 bg-white w-full h-full border-gray-50">
         <div className="max-w-7xl mx-auto p-6">
-          <h1 className="text-4xl font-bold mb-6">Browse Resources</h1>
+          <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">Browse Resources</h1>
           <div className="flex flex-wrap gap-2 mb-6">
             {tags.map((tag) => (
               <Link key={tag.name} href={tag.link ?? generateLink(tag.name)} legacyBehavior>
