@@ -1,14 +1,10 @@
 "use client";
 
-//question bank
-
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import jsPDF from "jspdf";
-import { Switch } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload, faCog } from "@fortawesome/free-solid-svg-icons";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Question from "@/components/shared/Question";
-import Sidebar from "@/components/shared/Sidebar";
 import rawQuestionsData from "public/questions.json";
 import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
@@ -81,11 +77,7 @@ const QuestionBank: React.FC = () => {
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(
     false
   );
-  const [markschemesDisabled, setMarkschemesDisabled] = useState<boolean>(
-    false
-  ); // State for disabling markschemes
   const [notes, setNotes] = useState<Record<string, string>>({}); // State for notes
-  const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
 
   const dropdownTimeout = useRef<Record<string, NodeJS.Timeout>>({});
 
@@ -147,13 +139,9 @@ const QuestionBank: React.FC = () => {
     });
   };
 
-  const handleMarkschemeToggle = (questionId: string) => {
-    if (markschemesDisabled) return; // Prevent showing markscheme if disabled
-    const question = questions.find((q) => q.questionId === questionId);
-    if (question) {
-      setMarkschemeContent(question.markscheme || "No markscheme available.");
-      setShowMarkschemeModal(true);
-    }
+  const handleMarkschemeToggle = (questionId: string, markscheme: string) => {
+    setMarkschemeContent(markscheme);
+    setShowMarkschemeModal(true);
   };
 
   const handleMarkForReview = (questionId: string) => {
@@ -219,10 +207,6 @@ const QuestionBank: React.FC = () => {
       ...notes,
       [questionId]: note,
     });
-  };
-
-  const toggleMarkscheme = () => {
-    setMarkschemesDisabled(!markschemesDisabled);
   };
 
   return (
@@ -359,12 +343,12 @@ const QuestionBank: React.FC = () => {
               handleOptionClick={handleOptionClick}
               handleNumericalSubmit={handleNumericalSubmit}
               handleNumericalChange={handleNumericalChange}
-              handleMarkschemeToggle={handleMarkschemeToggle}
+              handleMarkschemeToggle={() => handleMarkschemeToggle(question.questionId, question.markscheme || "No markscheme available")}
               handleMarkForReview={handleMarkForReview}
               handleMarkComplete={handleMarkComplete}
               isMarkedForReview={question.reviewed}
               isMarkedComplete={question.completed}
-              markschemesDisabled={markschemesDisabled}
+              markschemesDisabled={false}
               note={notes[question.questionId] || ""}
               handleNoteChange={handleNoteChange}
             />
@@ -386,38 +370,6 @@ const QuestionBank: React.FC = () => {
               <p className="mb-4">
                 <MathRenderer text={markschemeContent} />
               </p>
-            </div>
-          </div>
-        </Modal>
-
-        <Modal
-          showModal={showSettingsModal}
-          setShowModal={setShowSettingsModal}
-          className="max-w-sm"
-        >
-          <div className="w-full overflow-hidden md:max-w-sm md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
-            <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
-              <h2 className="font-display text-2xl font-bold">Settings</h2>
-            </div>
-            <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-gray-700">Enable Markscheme</span>
-                <Switch
-                  checked={!markschemesDisabled}
-                  onChange={toggleMarkscheme}
-                  className={`${
-                    !markschemesDisabled ? "bg-blue-600" : "bg-gray-200"
-                  } relative inline-flex h-6 w-11 items-center rounded-full`}
-                >
-                  <span
-                    className={`${
-                      !markschemesDisabled
-                        ? "translate-x-6"
-                        : "translate-x-1"
-                    } inline-block h-4 w-4 transform bg-white rounded-full transition`}
-                  />
-                </Switch>
-              </div>
             </div>
           </div>
         </Modal>
