@@ -76,7 +76,10 @@ export default function NavBar({ session }: { session: Session | null }) {
             Question Bank
           </Link>
           {session ? (
-            <UserDropdown session={session} />
+            <div className="w-full">
+              <NotificationDropdown />
+              <UserDropdown session={session} />
+            </div>
           ) : (
             <button
               className="rounded-full border border-black bg-white p-1.5 px-4 text-sm text-black transition-all hover:bg-black hover:text-white mb-4"
