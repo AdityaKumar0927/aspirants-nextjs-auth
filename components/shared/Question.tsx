@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import MathRenderer from '@/components/layout/MathRenderer';
 import Modal from '@/components/shared/modal';
 import { Switch } from '@headlessui/react';
@@ -57,12 +57,6 @@ const Question: React.FC<QuestionProps> = ({
   const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
 
-  useEffect(() => {
-    if (selectedOption) {
-      handleMarkComplete(question.questionId);
-    }
-  }, [selectedOption, handleMarkComplete, question.questionId]);
-
   const handleOptionClickLocal = (option: string) => {
     if (selectedOption === option) {
       setSelectedOption(null);
@@ -94,14 +88,14 @@ const Question: React.FC<QuestionProps> = ({
 
   return (
     <div className="border-2 rounded-lg p-4 bg-white mb-6">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center space-x-2">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
+        <div className="flex flex-col md:flex-row items-start md:items-center space-x-2">
           <span className="text-lg font-semibold">Question {question.questionId}</span>
           <span className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">{question.subject}</span>
           <span className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">{question.difficulty}</span>
           <span className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">{question.type}</span>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 mt-2 md:mt-0">
           <button
             className={`bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs ${isMarkedComplete ? 'bg-green-500 text-white' : ''}`}
             onClick={() => handleMarkComplete(question.questionId)}
@@ -116,7 +110,7 @@ const Question: React.FC<QuestionProps> = ({
             className={`bg-yellow-100 text-yellow-700 px-2 py-1 rounded-md text-xs ${isMarkedForReview ? 'bg-yellow-300 text-white' : ''}`}
             onClick={() => handleMarkForReview(question.questionId)}
           >
-            <FontAwesomeIcon icon={faTag} className={`${isMarkedForReview ? 'text-green-700' : 'text-yellow-700'}`} />
+            <FontAwesomeIcon icon={faTag} className={`${isMarkedForReview ? 'text-white' : 'text-yellow-700'}`} />
           </button>
           <button
             className="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-xs"
