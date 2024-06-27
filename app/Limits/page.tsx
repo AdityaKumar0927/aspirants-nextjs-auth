@@ -379,7 +379,7 @@ x^2 & \\text{if } x \\leq 1 \\\\
                 placeholder="Ask your doubts here..."
                 className="w-full p-2 border border-gray-300 rounded mb-2"
               />
-              <button onClick={handleChatSubmit} className="px-4 py-2 bg-blue-600 text-white rounded">Send</button>
+              <button onClick={handleChatSubmit} className="px-4 py-2 bg-black text-white rounded">Send</button>
             </div>
           </div>
         </div>

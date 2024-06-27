@@ -1,7 +1,12 @@
+"use client"
+
 import React from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import Tooltip from '@/components/shared/tooltip';
 
 type Tag = {
   name: string;
@@ -121,6 +126,11 @@ const generateLink = (tagName: string): string => {
 };
 
 const BrowseResources: NextPage = () => {
+  const addCourseToPlanner = (course: Resource) => {
+    // Logic to add the course to the planner
+    alert(`Course "${course.title}" added to planner!`);
+  };
+
   return (
     <>
       <Head>
@@ -140,14 +150,17 @@ const BrowseResources: NextPage = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {resources.map((resource, index) => (
-              <div key={index} className={`relative inline-block font-medium group p-6 rounded-lg ${resource.bgColor}`}>
+              <div
+                key={index}
+                className={`relative inline-block font-medium group p-6 rounded-lg ${resource.bgColor}`}
+              >
                 <span className="absolute inset-0 w-full h-full transition duration-400 ease-out transform translate-x-1 translate-y-1 bg-indigo-600 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                 <span className="absolute inset-0 w-full h-full bg-white border border-indigo-600 group-hover:bg-indigo-50"></span>
                 <span className="relative">
                   <p className="text-sm text-gray-600 mb-2">{resource.date} · {resource.readTime}</p>
                   <h2 className="text-xl font-semibold mb-2">{resource.title}</h2>
                   <p className="text-gray-700 mb-4">{resource.description}</p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {resource.tags.map((tag) => (
                       <Link key={tag} href={generateLink(tag)} legacyBehavior>
                         <a className="px-3 py-1 bg-white text-gray-700 rounded-full text-sm border">{tag}</a>
@@ -155,6 +168,14 @@ const BrowseResources: NextPage = () => {
                     ))}
                   </div>
                 </span>
+                <Tooltip content="Add to Planner">
+                  <button
+                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                    onClick={() => addCourseToPlanner(resource)}
+                  >
+                    <FontAwesomeIcon icon={faPlus} className="mr-2" /> Add to Planner
+                  </button>
+                </Tooltip>
               </div>
             ))}
           </div>

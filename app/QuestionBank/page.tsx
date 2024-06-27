@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import "katex/dist/katex.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Question from "@/components/shared/Question";
@@ -160,24 +162,50 @@ const QuestionBank: React.FC = () => {
     );
   };
 
-  const generatePDF = (type: string) => {
+  const generatePDF = async () => {
     const doc = new jsPDF();
-    if (type === "questionPaper") {
-      doc.text("Question Paper", 10, 10);
-      filteredQuestions.forEach((question, index) => {
-        doc.text(`${index + 1}. ${question.text}`, 10, 20 + index * 10);
-      });
-    } else if (type === "markscheme") {
-      doc.text("Markscheme", 10, 10);
-      filteredQuestions.forEach((question, index) => {
-        doc.text(
-          `${index + 1}. ${question.markscheme || "No answer available"}`,
-          10,
-           20 + index * 10
-        );
-      });
-    }
-    doc.save(`${type}.pdf`);
+
+    // Generate Question Paper
+    const questionPaperElement = document.createElement("div");
+    questionPaperElement.style.padding = "10px";
+    questionPaperElement.style.fontSize = "12px";
+    questionPaperElement.innerHTML = "<h1>Question Paper</h1>";
+    filteredQuestions.forEach((question, index) => {
+      const questionElement = document.createElement("div");
+      questionElement.innerHTML = `<p>${index + 1}. ${question.text}</p>`;
+      if (question.options) {
+        const optionsList = document.createElement("ul");
+        question.options.forEach((option, optionIndex) => {
+          const optionItem = document.createElement("li");
+          optionItem.innerHTML = `${String.fromCharCode(65 + optionIndex)}. ${option}`;
+          optionsList.appendChild(optionItem);
+        });
+        questionElement.appendChild(optionsList);
+      }
+      questionPaperElement.appendChild(questionElement);
+    });
+
+    const questionPaperCanvas = await html2canvas(questionPaperElement);
+    const questionPaperImage = questionPaperCanvas.toDataURL("image/png");
+    doc.addImage(questionPaperImage, "PNG", 10, 10, 180, 160);
+
+    // Add a new page for the markscheme
+    doc.addPage();
+    const markschemeElement = document.createElement("div");
+    markschemeElement.style.padding = "10px";
+    markschemeElement.style.fontSize = "12px";
+    markschemeElement.innerHTML = "<h1>Markscheme</h1>";
+    filteredQuestions.forEach((question, index) => {
+      const markschemeQuestionElement = document.createElement("div");
+      markschemeQuestionElement.innerHTML = `<p>${index + 1}. ${question.markscheme || "No answer available"}</p>`;
+      markschemeElement.appendChild(markschemeQuestionElement);
+    });
+
+    const markschemeCanvas = await html2canvas(markschemeElement);
+    const markschemeImage = markschemeCanvas.toDataURL("image/png");
+    doc.addImage(markschemeImage, "PNG", 10, 10, 180, 160);
+
+    doc.save(`Combined.pdf`);
   };
 
   const handleMouseEnter = (menu: string) => {
@@ -221,24 +249,12 @@ const QuestionBank: React.FC = () => {
             Question Bank
           </a>
         </nav>
-        <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">Question Bank</h1>
+        <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
+          Question Bank
+        </h1>
         <div className="flex space-x-4 mb-6">
-          <button
-            className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md flex items-center space-x-2"
-            onClick={() => generatePDF("questionPaper")}
-          >
-            <FontAwesomeIcon icon={faDownload} />
-            <span>Download question paper</span>
-          </button>
-          <button
-            className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md flex items-center space-x-2"
-            onClick={() => generatePDF("markscheme")}
-          >
-            <FontAwesomeIcon icon={faDownload} />
-            <span>Download markscheme</span>
-          </button>
         </div>
-        <div className="flex flex-wrap items-start mb-4 space-y-2 sm:space-y-0 sm:space-x-2">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
           {["subject", "difficulty", "year", "type"].map((filterType) => (
             <Popover
               key={filterType}
@@ -285,8 +301,7 @@ const QuestionBank: React.FC = () => {
               >
                 <p className="text-gray-600">
                   {filters[filterType as keyof typeof filters] ||
-                    filterType.charAt(0).toUpperCase() +
-                      filterType.slice(1)}
+                    filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                 </p>
                 <ChevronDown
                   className={`h-4 w-4 text-gray-600 transition-all ${
@@ -311,7 +326,12 @@ const QuestionBank: React.FC = () => {
               handleOptionClick={handleOptionClick}
               handleNumericalSubmit={handleNumericalSubmit}
               handleNumericalChange={handleNumericalChange}
-              handleMarkschemeToggle={() => handleMarkschemeToggle(question.questionId, question.markscheme || "No markscheme available")}
+              handleMarkschemeToggle={() =>
+                handleMarkschemeToggle(
+                  question.questionId,
+                  question.markscheme || "No markscheme available"
+                )
+              }
               handleMarkForReview={handleMarkForReview}
               handleMarkComplete={handleMarkComplete}
               isMarkedForReview={question.reviewed}

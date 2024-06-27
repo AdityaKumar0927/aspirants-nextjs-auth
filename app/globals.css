@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.group:hover .group-hover\:text-white {
+    color: white;
+  }
+  
+  .group:hover .group-hover\:-rotate-180 {
+    transform: rotate(-180deg);
+  }
+  
+  .group:hover .group-hover\:mb-0 {
+    margin-bottom: 0;
+  }
+  
+  .group:hover .group-hover\:mr-0 {
+    margin-right: 0;
+  }
+  

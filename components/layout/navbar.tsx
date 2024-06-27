@@ -32,8 +32,9 @@ export default function NavBar({ session }: { session: Session | null }) {
       >
         <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between w-full">
           <Link href="/" className="flex items-center font-display text-2xl">
-            <p className="text-left font-display text-2xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]
-">aspirants</p>
+            <p className="text-left font-display text-2xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+              aspirants
+            </p>
             <Image
               src="/bulb.svg"
               alt="aspirants logo"
@@ -43,8 +44,12 @@ export default function NavBar({ session }: { session: Session | null }) {
             />
           </Link>
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/QuestionBank" className="mr-4">Question Bank</Link>
-            <Link href="/Planner" className="mr-4">Planner</Link>
+            <Link href="/QuestionBank" className="mr-4">
+              Question Bank
+            </Link>
+            <Link href="/Planner" className="mr-4">
+              Planner
+            </Link>
             {session ? (
               <>
                 <NotificationDropdown />
@@ -67,30 +72,45 @@ export default function NavBar({ session }: { session: Session | null }) {
         </div>
       </div>
       {menuOpen && (
-        <div className="md:hidden fixed top-0 left-0 right-0 bottom-0 bg-white flex flex-col items-center justify-center z-40 px-4">
-          <button onClick={toggleMenu} className="absolute top-4 right-4 text-black focus:outline-none">
-            <FontAwesomeIcon icon={faTimes} size="lg" />
-          </button>
-          <Link href="/" className="mb-4 text-2xl" onClick={toggleMenu}>
-            Home
-          </Link>
-          <Link href="/QuestionBank" className="mb-4 text-2xl" onClick={toggleMenu}>
-            Question Bank
-          </Link>
-          {session ? (
-            <UserDropdown session={session} />
-          ) : (
+        <>
+          <div className="fixed inset-0 z-40 bg-black bg-opacity-50 backdrop-blur-md"></div>
+          <div className="fixed inset-0 z-50 bg-white flex flex-col items-center justify-center p-4">
             <button
-              className="rounded-full border border-black bg-white p-1.5 px-4 text-sm text-black transition-all hover:bg-black hover:text-white mb-4"
-              onClick={() => {
-                setShowSignInModal(true);
-                toggleMenu();
-              }}
+              onClick={toggleMenu}
+              className="absolute top-4 right-4 text-black focus:outline-none"
             >
-              Sign In
+              <FontAwesomeIcon icon={faTimes} size="lg" />
             </button>
-          )}
-        </div>
+            <Link href="/" onClick={toggleMenu}>
+              <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm mb-4">
+                Home
+              </p>
+            </Link>
+            <Link href="/QuestionBank" onClick={toggleMenu}>
+              <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm mb-4">
+                Question Bank
+              </p>
+            </Link>
+            <Link href="/Planner" onClick={toggleMenu}>
+              <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm mb-4">
+                Planner
+              </p>
+            </Link>
+            {session ? (
+              <UserDropdown session={session} />
+            ) : (
+              <button
+                className="rounded-full border border-black bg-white p-1.5 px-4 text-lg text-black transition-all hover:bg-black hover:text-white mb-4"
+                onClick={() => {
+                  setShowSignInModal(true);
+                  toggleMenu();
+                }}
+              >
+                Sign In
+              </button>
+            )}
+          </div>
+        </>
       )}
     </>
   );
