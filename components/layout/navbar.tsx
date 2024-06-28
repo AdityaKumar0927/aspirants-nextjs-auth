@@ -10,6 +10,7 @@ import { Session } from "next-auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import useScroll from "@/lib/hooks/use-scroll";
+import ExamDropdown from "@/components/layout/ExamDropdown";
 
 export default function NavBar({ session }: { session: Session | null }) {
   const { SignInModal, setShowSignInModal } = useSignInModal();
@@ -44,8 +45,9 @@ export default function NavBar({ session }: { session: Session | null }) {
             />
           </Link>
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/QuestionBank" className="mr-4">
-              Question Bank
+          <ExamDropdown />
+            <Link href="/BrowseResources" className="mr-4">
+              Browse Resources
             </Link>
             <Link href="/Planner" className="mr-4">
               Planner
@@ -81,14 +83,10 @@ export default function NavBar({ session }: { session: Session | null }) {
             >
               <FontAwesomeIcon icon={faTimes} size="lg" />
             </button>
-            <Link href="/" onClick={toggleMenu}>
+            <ExamDropdown />
+            <Link href="/BrowseResources" onClick={toggleMenu}>
               <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm mb-4">
-                Home
-              </p>
-            </Link>
-            <Link href="/QuestionBank" onClick={toggleMenu}>
-              <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm mb-4">
-                Question Bank
+                Browse Resources
               </p>
             </Link>
             <Link href="/Planner" onClick={toggleMenu}>

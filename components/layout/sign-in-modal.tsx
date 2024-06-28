@@ -1,14 +1,9 @@
 import Modal from "@/components/shared/modal";
 import { signIn } from "next-auth/react";
-import {
-  useState,
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useMemo,
-} from "react";
+import { useState, Dispatch, SetStateAction, useCallback, useMemo } from "react";
 import { LoadingDots, Google } from "@/components/shared/icons";
 import Image from "next/image";
+import Link from "next/link";
 
 const SignInModal = ({
   showSignInModal,
@@ -18,6 +13,11 @@ const SignInModal = ({
   setShowSignInModal: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [signInClicked, setSignInClicked] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
+  const [acceptedCookies, setAcceptedCookies] = useState(false);
+
+  const canSignIn = acceptedTerms && acceptedPrivacy && acceptedCookies;
 
   return (
     <Modal showModal={showSignInModal} setShowModal={setShowSignInModal}>
@@ -40,10 +40,53 @@ const SignInModal = ({
         </div>
 
         <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16">
+          <label className="flex items-center space-x-3">
+            <input
+              type="checkbox"
+              className="h-4 w-4"
+              checked={acceptedTerms}
+              onChange={() => setAcceptedTerms(!acceptedTerms)}
+            />
+            <span className="text-sm text-gray-600">
+              I have read and accept the{" "}
+              <Link href="#" onClick={() => { /* open terms modal */ }} className="text-blue-600 underline">
+                Terms of Service
+              </Link>
+            </span>
+          </label>
+          <label className="flex items-center space-x-3">
+            <input
+              type="checkbox"
+              className="h-4 w-4"
+              checked={acceptedPrivacy}
+              onChange={() => setAcceptedPrivacy(!acceptedPrivacy)}
+            />
+            <span className="text-sm text-gray-600">
+              I have read and accept the{" "}
+              <Link href="#" onClick={() => { /* open privacy modal */ }} className="text-blue-600 underline">
+                Privacy Policy
+              </Link>
+            </span>
+          </label>
+          <label className="flex items-center space-x-3">
+            <input
+              type="checkbox"
+              className="h-4 w-4"
+              checked={acceptedCookies}
+              onChange={() => setAcceptedCookies(!acceptedCookies)}
+            />
+            <span className="text-sm text-gray-600">
+              I have read and accept the{" "}
+              <Link href="#" onClick={() => { /* open cookies modal */ }} className="text-blue-600 underline">
+                Cookie Policy
+              </Link>
+            </span>
+          </label>
+
           <button
-            disabled={signInClicked}
+            disabled={signInClicked || !canSignIn}
             className={`${
-              signInClicked
+              signInClicked || !canSignIn
                 ? "cursor-not-allowed border-gray-200 bg-gray-100"
                 : "border border-gray-200 bg-white text-black hover:bg-gray-50"
             } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
