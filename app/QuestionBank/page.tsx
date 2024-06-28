@@ -143,7 +143,7 @@ const QuestionBank: React.FC = () => {
 
   const handleMarkschemeToggle = (questionId: string, markscheme: string) => {
     setMarkschemeContent(markscheme);
-    setShowMarkschemeModal(true);
+    
   };
 
   const handleMarkForReview = (questionId: string) => {
