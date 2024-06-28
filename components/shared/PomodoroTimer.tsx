@@ -2,11 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlayCircle,
-  faPauseCircle,
-  faStopCircle
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlayCircle, faPauseCircle, faStopCircle } from "@fortawesome/free-solid-svg-icons";
 import interact from "interactjs";
 
 interface PomodoroTimerProps {
@@ -25,6 +21,13 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ show, hide }) => {
       interact(timerRef.current)
         .draggable({
           inertia: true,
+          modifiers: [
+            interact.modifiers.restrictRect({
+              restriction: 'parent',
+              endOnly: true
+            })
+          ],
+          autoScroll: true,
           onmove: (event) => {
             const target = event.target;
             const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
@@ -93,7 +96,7 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ show, hide }) => {
   if (!show || hide) return null; // Hide the timer if `show` is false or `hide` is true
 
   return (
-    <div ref={timerRef} className="pomodoro-timer" style={{ display: show && !hide ? 'block' : 'none' }}>
+    <div ref={timerRef} className="pomodoro-timer fixed z-50">
       <div>
         <h2>Pomodoro Timer</h2>
         <p className="text-4xl font-mono">{formatTime(pomodoroTime)}</p>
