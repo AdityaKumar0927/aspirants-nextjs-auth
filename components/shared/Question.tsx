@@ -187,7 +187,10 @@ const Question: React.FC<QuestionProps> = ({
             <h2 className="font-display text-2xl font-bold">Markscheme</h2>
           </div>
           <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
-            <p className="mb-4">
+          <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
+            AI Generated Solutions
+            </span>
+            <p className="mb-2">
               {question.markscheme ? <MathRenderer text={question.markscheme} /> : 'No answer available'}
             </p>
           </div>

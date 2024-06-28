@@ -11,9 +11,10 @@ import interact from "interactjs";
 
 interface PomodoroTimerProps {
   show: boolean;
+  hide: boolean;
 }
 
-const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ show }) => {
+const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ show, hide }) => {
   const [pomodoroTime, setPomodoroTime] = useState(25 * 60);
   const [isPomodoroRunning, setIsPomodoroRunning] = useState(false);
   const pomodoroRef = useRef<NodeJS.Timeout | null>(null);
@@ -24,13 +25,6 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ show }) => {
       interact(timerRef.current)
         .draggable({
           inertia: true,
-          modifiers: [
-            interact.modifiers.restrictRect({
-              restriction: 'parent',
-              endOnly: true
-            })
-          ],
-          autoScroll: true,
           onmove: (event) => {
             const target = event.target;
             const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
@@ -96,8 +90,10 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ show }) => {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
+  if (!show || hide) return null; // Hide the timer if `show` is false or `hide` is true
+
   return (
-    <div ref={timerRef} className="pomodoro-timer" style={{ display: show ? 'block' : 'none' }}>
+    <div ref={timerRef} className="pomodoro-timer" style={{ display: show && !hide ? 'block' : 'none' }}>
       <div>
         <h2>Pomodoro Timer</h2>
         <p className="text-4xl font-mono">{formatTime(pomodoroTime)}</p>

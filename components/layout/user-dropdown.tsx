@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { signOut } from "next-auth/react";
-import { LayoutDashboard, LogOut, Clock } from "lucide-react"; 
+import { LayoutDashboard, LogOut, Clock } from "lucide-react";
 import Popover from "@/components/shared/popover";
 import Image from "next/image";
 import { Session } from "next-auth";
-import PomodoroTimer from "../shared/PomodoroTimer";
+import PomodoroTimer from "@/components/shared/PomodoroTimer";
 import DashboardModal from "@/components/shared/DashboardModal";
 
 export default function UserDropdown({ session }: { session: Session }) {
@@ -72,7 +72,7 @@ export default function UserDropdown({ session }: { session: Session }) {
         </button>
       </Popover>
       <DashboardModal showModal={showDashboardModal} setShowModal={setShowDashboardModal} />
-      <PomodoroTimer show={showPomodoro} /> {/* Render the Pomodoro timer */}
+      <PomodoroTimer show={showPomodoro} hide={showDashboardModal || openPopover} /> {/* Render the Pomodoro timer and hide it based on modal state */}
     </div>
   );
 }
