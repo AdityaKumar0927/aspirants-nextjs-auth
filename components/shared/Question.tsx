@@ -174,11 +174,9 @@ const Question: React.FC<QuestionProps> = ({
       )}
       {selectedOption && markschemeEnabled && (
      <button
-     className="relative inline-flex items-center justify-center px-3 py-2 overflow-hidden font-medium text-gray-800 transition duration-200 ease-out border-2 border-gray-900 rounded-lg shadow-md group hover:text-white"
+     className="relative inline-flex items-center justify-center px-2 py-2 overflow-hidden text-gray-600 border border-gray-400 rounded"
      onClick={toggleMarkscheme}
-   >
-     <span className="absolute inset-0 w-full h-full bg-gray-50 rounded-lg"></span>
-     <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-out transform translate-x-full translate-y-full bg-gray-900 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+   > 
      <span className="relative">Show Markscheme</span>
    </button>
         
