@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSignInModal } from "./sign-in-modal";
@@ -17,6 +17,10 @@ export default function NavBar({ session }: { session: Session | null }) {
   const scrolled = useScroll(50);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "auto";
+  }, [menuOpen]);
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -27,7 +31,7 @@ export default function NavBar({ session }: { session: Session | null }) {
       <div
         className={`fixed top-0 w-full flex justify-center ${
           scrolled
-            ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
+            ? "border-b border-gray-200 bg-white/50 backdrop-blur-sm"
             : "bg-white/0"
         } z-30 transition-all`}
       >
@@ -45,7 +49,7 @@ export default function NavBar({ session }: { session: Session | null }) {
             />
           </Link>
           <div className="hidden md:flex items-center space-x-4">
-          <ExamDropdown />
+            <ExamDropdown />
             <Link href="/BrowseResources" className="mr-4">
               Browse Resources
             </Link>
@@ -75,22 +79,22 @@ export default function NavBar({ session }: { session: Session | null }) {
       </div>
       {menuOpen && (
         <>
-          <div className="fixed inset-0 z-40 bg-black bg-opacity-50 backdrop-blur-md"></div>
-          <div className="fixed inset-0 z-50 bg-white flex flex-col items-center justify-center p-4">
+          <div className="fixed inset-0 z-40 bg-black bg-opacity-20 backdrop-blur-sm"></div>
+          <div className="fixed inset-0 z-50 bg-white bg-opacity-80 backdrop-blur-sm flex flex-col items-center justify-center p-4 space-y-4 shadow-lg rounded-lg">
             <button
               onClick={toggleMenu}
               className="absolute top-4 right-4 text-black focus:outline-none"
             >
               <FontAwesomeIcon icon={faTimes} size="lg" />
             </button>
-            <ExamDropdown />
+            <ExamDropdown className="font-display text-2xl font-bold tracking-tight drop-shadow-sm" />
             <Link href="/BrowseResources" onClick={toggleMenu}>
-              <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm mb-4">
+              <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
                 Browse Resources
               </p>
             </Link>
             <Link href="/Planner" onClick={toggleMenu}>
-              <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm mb-4">
+              <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
                 Planner
               </p>
             </Link>
@@ -98,7 +102,7 @@ export default function NavBar({ session }: { session: Session | null }) {
               <UserDropdown session={session} />
             ) : (
               <button
-                className="rounded-full border border-black bg-white p-1.5 px-4 text-lg text-black transition-all hover:bg-black hover:text-white mb-4"
+                className="rounded-full border border-black bg-white p-1.5 px-4 text-lg text-black transition-all hover:bg-black hover:text-white"
                 onClick={() => {
                   setShowSignInModal(true);
                   toggleMenu();
