@@ -9,7 +9,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import interact from "interactjs";
 
-const PomodoroTimer = () => {
+interface PomodoroTimerProps {
+  show: boolean;
+}
+
+const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ show }) => {
   const [pomodoroTime, setPomodoroTime] = useState(25 * 60);
   const [isPomodoroRunning, setIsPomodoroRunning] = useState(false);
   const pomodoroRef = useRef<NodeJS.Timeout | null>(null);
@@ -93,7 +97,7 @@ const PomodoroTimer = () => {
   };
 
   return (
-    <div ref={timerRef} className="pomodoro-timer">
+    <div ref={timerRef} className="pomodoro-timer" style={{ display: show ? 'block' : 'none' }}>
       <div>
         <h2>Pomodoro Timer</h2>
         <p className="text-4xl font-mono">{formatTime(pomodoroTime)}</p>
