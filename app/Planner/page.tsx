@@ -313,9 +313,6 @@ const Planner = () => {
               </ul>
             )}
           </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow hover-glow">
-            <PomodoroTimer show={true} /> {/* Ensure that 'show' prop is passed */}
-          </div>
         </div>
       </main>
       <Modal showModal={showNewGoalModal} setShowModal={setShowNewGoalModal}>
