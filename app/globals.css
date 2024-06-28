@@ -25,11 +25,10 @@
     padding: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    position: fixed;
-    z-index: 1000;
     width: 200px;
     height: 100px;
     display: none; /* Hide by default */
+    display: block;
   }
   
   .pomodoro-controls {

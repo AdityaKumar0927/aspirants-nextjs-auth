@@ -12,6 +12,7 @@ export const metadata = {
   metadataBase: new URL("https://aspirants.tech/"),
 };
 
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
