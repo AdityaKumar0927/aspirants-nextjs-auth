@@ -144,11 +144,11 @@ const Planner = () => {
 
   return (
     <div className="w-full h-full bg-white p-4 sm:p-8 flex flex-col items-center">
-      <header className="w-full max-w-6xl mx-auto flex justify-between items-center py-6 border-b border-gray-200">
+      <header className="w-full max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center py-6 border-b border-gray-200">
         <h1 className="text-gray-900 font-display text-4xl font-bold tracking-tight drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
           Academic Planner
         </h1>
-        <div className="flex space-x-4">
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4 sm:mt-0">
           <button
             className="flex items-center bg-black text-white px-5 py-3 rounded-lg hover:bg-gray-800 transition duration-300 transform hover:scale-105"
             onClick={handleNewGoal}
