@@ -2,16 +2,18 @@
 
 import { useState } from "react";
 import { signOut } from "next-auth/react";
-import { LayoutDashboard, LogOut } from "lucide-react";
+import { LayoutDashboard, LogOut, Clock } from "lucide-react"; // Added Clock icon
 import Popover from "@/components/shared/popover";
 import Image from "next/image";
 import { Session } from "next-auth";
+import PomodoroTimer from "../shared/PomodoroTimer";
 import DashboardModal from "@/components/shared/DashboardModal";
 
 export default function UserDropdown({ session }: { session: Session }) {
   const { email, image } = session?.user || {};
   const [openPopover, setOpenPopover] = useState(false);
   const [showDashboardModal, setShowDashboardModal] = useState(false);
+  const [showPomodoro, setShowPomodoro] = useState(false); // State for Pomodoro timer
 
   if (!email) return null;
 
@@ -39,6 +41,13 @@ export default function UserDropdown({ session }: { session: Session }) {
             </button>
             <button
               className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
+              onClick={() => setShowPomodoro(!showPomodoro)} // Toggle Pomodoro timer
+            >
+              <Clock className="h-4 w-4" />
+              <p className="text-sm">Pomodoro Timer</p>
+            </button>
+            <button
+              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
               onClick={() => signOut()}
             >
               <LogOut className="h-4 w-4" />
@@ -63,6 +72,7 @@ export default function UserDropdown({ session }: { session: Session }) {
         </button>
       </Popover>
       <DashboardModal showModal={showDashboardModal} setShowModal={setShowDashboardModal} />
+      <PomodoroTimer show={showPomodoro} /> {/* Render the Pomodoro timer */}
     </div>
   );
 }
