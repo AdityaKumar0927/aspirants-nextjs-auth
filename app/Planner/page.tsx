@@ -1,17 +1,19 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faCalendar, faTasks, faPlus, faEdit, faTrash, faBell, faSave,
-  faBook, faClock, faUser, faStickyNote, faExclamationCircle,
-  faFlag, faFileUpload, faUsers, faCommentDots, faChartBar,
-  faHeart, faPaintBrush, faMobileAlt, faLink
+  faCalendar, faTasks, faPlus, faEdit, faTrash, faBell,
+  faUser, faStickyNote, faExclamationCircle, faFlag, faFileUpload,
+  faUsers, faCommentDots, faChartBar, faHeart, faPaintBrush, faMobileAlt, 
+  faLink, faCheck, faTimesCircle, faStopCircle, faPlayCircle, faPauseCircle
 } from '@fortawesome/free-solid-svg-icons';
-import Modal from '@/components/shared/modal';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import PomodoroTimer from '@/components/shared/PomodoroTimer';
+import Modal from '@/components/shared/modal';  // Adjust this import path based on your project structure
 
+// Interfaces
 interface Goal {
   id: number;
   title: string;
@@ -44,6 +46,7 @@ const parseDate = (date: string | Date) => {
 };
 
 const Planner = () => {
+  // State hooks
   const [showNewGoalModal, setShowNewGoalModal] = useState(false);
   const [showEditGoalModal, setShowEditGoalModal] = useState(false);
   const [goals, setGoals] = useState<Goal[]>([]);
@@ -60,7 +63,9 @@ const Planner = () => {
     id: 0, title: '', description: '', dueDate: new Date(), priority: 'medium', progress: 'not started'
   });
   const [showNewAssignmentModal, setShowNewAssignmentModal] = useState(false);
+  const [filter, setFilter] = useState<'all' | 'completed' | 'incomplete'>('all');
 
+  // Load data from localStorage
   useEffect(() => {
     const savedGoals = localStorage.getItem('goals');
     const savedEvents = localStorage.getItem('events');
@@ -80,12 +85,14 @@ const Planner = () => {
     })));
   }, []);
 
+  // Save data to localStorage
   useEffect(() => {
     localStorage.setItem('goals', JSON.stringify(goals));
     localStorage.setItem('events', JSON.stringify(events));
     localStorage.setItem('assignments', JSON.stringify(assignments));
   }, [goals, events, assignments]);
 
+  // Goal handlers
   const handleNewGoal = () => setShowNewGoalModal(true);
   const handleCreateGoal = (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,6 +132,11 @@ const Planner = () => {
     setEditingGoalId(null);
   };
   const handleDeleteGoal = (goalId: number) => setGoals(goals.filter(goal => goal.id !== goalId));
+  const toggleGoalCompletion = (goalId: number) => setGoals(goals.map(goal => goal.id === goalId ? {
+    ...goal, completed: !goal.completed
+  } : goal));
+
+  // Event handlers
   const handleNewEvent = () => setShowNewEventModal(true);
   const handleCreateEvent = (e: React.FormEvent) => {
     e.preventDefault();
@@ -132,6 +144,8 @@ const Planner = () => {
     setNewEvent({ id: 0, title: '', description: '', date: new Date(), type: 'class' });
     setShowNewEventModal(false);
   };
+
+  // Assignment handlers
   const handleNewAssignment = () => setShowNewAssignmentModal(true);
   const handleCreateAssignment = (e: React.FormEvent) => {
     e.preventDefault();
@@ -141,6 +155,13 @@ const Planner = () => {
     });
     setShowNewAssignmentModal(false);
   };
+
+  // Utility functions
+  const filteredGoals = goals.filter(goal => {
+    if (filter === 'completed') return goal.completed;
+    if (filter === 'incomplete') return !goal.completed;
+    return true;
+  });
 
   return (
     <div className="w-full h-full bg-white p-4 sm:p-8 flex flex-col items-center">
@@ -196,18 +217,35 @@ const Planner = () => {
             <div className="flex items-center mb-4">
               <FontAwesomeIcon icon={faTasks} className="text-gray-500 mr-2" />
               <h2 className="text-xl font-semibold text-gray-900">To-Do List</h2>
+              <div className="ml-auto">
+                <select
+                  value={filter}
+                  onChange={(e) => setFilter(e.target.value as 'all' | 'completed' | 'incomplete')}
+                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="all">All</option>
+                  <option value="completed">Completed</option>
+                  <option value="incomplete">Incomplete</option>
+                </select>
+              </div>
             </div>
-            {goals.length === 0 ? (
+            {filteredGoals.length === 0 ? (
               <p className="text-gray-600">No tasks assigned</p>
             ) : (
               <ul className="list-disc list-inside">
-                {goals.map((goal) => (
+                {filteredGoals.map((goal) => (
                   <li key={goal.id} className="text-gray-700 flex justify-between items-center">
                     <div>
                       <strong>{goal.title}</strong>: {goal.description}
                       {goal.deadline && <p className="text-sm text-gray-500">Deadline: {goal.deadline.toDateString()}</p>}
                     </div>
                     <div className="flex items-center space-x-2">
+                      <button
+                        className={`text-${goal.completed ? 'green' : 'gray'}-600 hover:text-${goal.completed ? 'green' : 'gray'}-800`}
+                        onClick={() => toggleGoalCompletion(goal.id)}
+                      >
+                        <FontAwesomeIcon icon={goal.completed ? faCheck : faTimesCircle} />
+                      </button>
                       <button
                         className="text-blue-600 hover:text-blue-800"
                         onClick={() => handleEditGoal(goal)}
@@ -261,67 +299,7 @@ const Planner = () => {
             )}
           </div>
           <div className="p-6 bg-gray-100 rounded-lg shadow">
-            <div className="flex items-center mb-4">
-              <FontAwesomeIcon icon={faBook} className="text-gray-500 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">Reading List</h2>
-            </div>
-            <p className="text-gray-600">No reading materials added</p>
-          </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow">
-            <div className="flex items-center mb-4">
-              <FontAwesomeIcon icon={faClock} className="text-gray-500 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">Pomodoro Timer</h2>
-            </div>
-            <p className="text-gray-600">Timer not set</p>
-          </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow">
-            <div className="flex items-center mb-4">
-              <FontAwesomeIcon icon={faUser} className="text-gray-500 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">Group Projects</h2>
-            </div>
-            <p className="text-gray-600">No group projects added</p>
-          </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow">
-            <div className="flex items-center mb-4">
-              <FontAwesomeIcon icon={faStickyNote} className="text-gray-500 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">Study Notes</h2>
-            </div>
-            <p className="text-gray-600">No study notes added</p>
-          </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow">
-            <div className="flex items-center mb-4">
-              <FontAwesomeIcon icon={faExclamationCircle} className="text-gray-500 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">Upcoming Exams</h2>
-            </div>
-            <p className="text-gray-600">No upcoming exams</p>
-          </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow">
-            <div className="flex items-center mb-4">
-              <FontAwesomeIcon icon={faLink} className="text-gray-500 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">Useful Links</h2>
-            </div>
-            <p className="text-gray-600">No links added</p>
-          </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow">
-            <div className="flex items-center mb-4">
-              <FontAwesomeIcon icon={faPaintBrush} className="text-gray-500 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">Customization</h2>
-            </div>
-            <p className="text-gray-600">No customizations set</p>
-          </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow">
-            <div className="flex items-center mb-4">
-              <FontAwesomeIcon icon={faHeart} className="text-gray-500 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">Wellness Tips</h2>
-            </div>
-            <p className="text-gray-600">No wellness tips available</p>
-          </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow">
-            <div className="flex items-center mb-4">
-              <FontAwesomeIcon icon={faChartBar} className="text-gray-500 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">Progress Reports</h2>
-            </div>
-            <p className="text-gray-600">No progress reports available</p>
+            <PomodoroTimer />
           </div>
         </div>
       </main>
