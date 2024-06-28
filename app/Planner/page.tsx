@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCalendar, faTasks, faPlus, faEdit, faTrash, faBell,
@@ -170,33 +170,48 @@ const Planner = () => {
           Academic Planner
         </h1>
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4 sm:mt-0">
-          <button
-            className="flex items-center bg-black text-white px-5 py-3 rounded-lg hover:bg-gray-800 transition duration-300 transform hover:scale-105"
-            onClick={handleNewGoal}
-          >
-            <FontAwesomeIcon icon={faPlus} className="mr-2" />
-            New Goal
-          </button>
-          <button
-            className="flex items-center bg-black text-white px-5 py-3 rounded-lg hover:bg-gray-800 transition duration-300 transform hover:scale-105"
-            onClick={handleNewEvent}
-          >
-            <FontAwesomeIcon icon={faPlus} className="mr-2" />
-            New Event
-          </button>
-          <button
-            className="flex items-center bg-black text-white px-5 py-3 rounded-lg hover:bg-gray-800 transition duration-300 transform hover:scale-105"
-            onClick={handleNewAssignment}
-          >
-            <FontAwesomeIcon icon={faPlus} className="mr-2" />
-            New Assignment
-          </button>
+        <button
+  className="relative font-medium group flex items-center bg-black text-white px-5 py-3 rounded-lg transition duration-300 transform"
+  onClick={handleNewGoal}
+>
+  <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0 rounded-lg"></span>
+  <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black rounded-lg"></span>
+  <span className="relative text-black group-hover:text-white flex items-center">
+    <FontAwesomeIcon icon={faPlus} className="mr-2" />
+    New Goal
+  </span>
+</button>
+
+<button
+  className="relative font-medium group flex items-center bg-black text-white px-5 py-3 rounded-lg transition duration-300 transform"
+  onClick={handleNewEvent}
+>
+  <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0 rounded-lg"></span>
+  <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black rounded-lg"></span>
+  <span className="relative text-black group-hover:text-white flex items-center">
+    <FontAwesomeIcon icon={faPlus} className="mr-2" />
+    New Event
+  </span>
+</button>
+
+<button
+  className="relative font-medium group flex items-center bg-black text-white px-5 py-3 rounded-lg transition duration-300 transform"
+  onClick={handleNewAssignment}
+>
+  <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0 rounded-lg"></span>
+  <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black rounded-lg"></span>
+  <span className="relative text-black group-hover:text-white flex items-center">
+    <FontAwesomeIcon icon={faPlus} className="mr-2" />
+    New Assignment
+  </span>
+</button>
+
         </div>
       </header>
 
       <main className="w-full max-w-6xl mx-auto mt-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="p-6 bg-gray-100 rounded-lg shadow">
+          <div className="p-6 bg-gray-100 rounded-lg shadow hover-glow">
             <div className="flex items-center mb-4">
               <FontAwesomeIcon icon={faCalendar} className="text-gray-500 mr-2" />
               <h2 className="text-xl font-semibold text-gray-900">Upcoming Events</h2>
@@ -213,7 +228,7 @@ const Planner = () => {
               </ul>
             )}
           </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow">
+          <div className="p-6 bg-gray-100 rounded-lg shadow hover-glow">
             <div className="flex items-center mb-4">
               <FontAwesomeIcon icon={faTasks} className="text-gray-500 mr-2" />
               <h2 className="text-xl font-semibold text-gray-900">To-Do List</h2>
@@ -264,7 +279,7 @@ const Planner = () => {
               </ul>
             )}
           </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow">
+          <div className="p-6 bg-gray-100 rounded-lg shadow hover-glow">
             <div className="flex items-center mb-4">
               <FontAwesomeIcon icon={faBell} className="text-gray-500 mr-2" />
               <h2 className="text-xl font-semibold text-gray-900">Reminders</h2>
@@ -281,7 +296,7 @@ const Planner = () => {
               </ul>
             )}
           </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow">
+          <div className="p-6 bg-gray-100 rounded-lg shadow hover-glow">
             <div className="flex items-center mb-4">
               <FontAwesomeIcon icon={faFlag} className="text-gray-500 mr-2" />
               <h2 className="text-xl font-semibold text-gray-900">Assignments</h2>
@@ -298,8 +313,8 @@ const Planner = () => {
               </ul>
             )}
           </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow">
-            <PomodoroTimer />
+          <div className="p-6 bg-gray-100 rounded-lg shadow hover-glow">
+            <PomodoroTimer show={true} /> {/* Ensure that 'show' prop is passed */}
           </div>
         </div>
       </main>

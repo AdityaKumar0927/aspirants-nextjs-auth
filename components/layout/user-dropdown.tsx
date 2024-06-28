@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { signOut } from "next-auth/react";
-import { LayoutDashboard, LogOut, Clock } from "lucide-react"; // Added Clock icon
+import { LayoutDashboard, LogOut, Clock } from "lucide-react"; 
 import Popover from "@/components/shared/popover";
 import Image from "next/image";
 import { Session } from "next-auth";
