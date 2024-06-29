@@ -7,23 +7,10 @@ import "katex/dist/katex.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Question from "@/components/shared/Question";
-import rawQuestionsData from "public/questions.json";
 import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
-
-interface RawQuestionType {
-  questionId: string;
-  text: string;
-  subject: string;
-  difficulty: string;
-  type: string;
-  year: string;
-  options?: string[];
-  correctOption?: string;
-  markscheme?: string;
-}
 
 interface QuestionType {
   questionId: string;
@@ -40,19 +27,9 @@ interface QuestionType {
   notes?: string;
 }
 
-const questionsData: QuestionType[] = (rawQuestionsData as RawQuestionType[]).map(
-  (q) => ({
-    ...q,
-    type: q.type as "Multiple Choice" | "Numerical",
-    reviewed: false,
-    completed: false,
-    notes: "",
-  })
-);
-
 const QuestionBank: React.FC = () => {
-  const [questions, setQuestions] = useState<QuestionType[]>(questionsData);
-  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>(questionsData);
+  const [questions, setQuestions] = useState<QuestionType[]>([]);
+  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
   const [filters, setFilters] = useState({
     subject: "",
     difficulty: "",
@@ -72,9 +49,31 @@ const QuestionBank: React.FC = () => {
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const userId = "your-user-id"; // Replace with actual user ID from session
 
   const dropdownTimeout = useRef<Record<string, NodeJS.Timeout>>({});
+
+  // Replace this with actual user ID retrieval logic
+  const userId = "sample-user-id";
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const response = await fetch("/api/questions");
+        if (!response.ok) throw new Error("Failed to fetch questions");
+        const data = await response.json();
+        setQuestions(data);
+        setFilteredQuestions(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchQuestions();
+  }, []);
+
+  const subjects = Array.from(new Set(questions.map((q) => q.subject)));
+  const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
+  const years = Array.from(new Set(questions.map((q) => q.year)));
+  const types = Array.from(new Set(questions.map((q) => q.type)));
 
   const filterQuestions = useCallback(() => {
     let filtered = questions.filter((question) => {
@@ -146,11 +145,6 @@ const QuestionBank: React.FC = () => {
         body: JSON.stringify({ questionId, reviewed: true, userId }),
       });
       if (!response.ok) throw new Error("Failed to mark for review");
-      setQuestions((prevQuestions) =>
-        prevQuestions.map((q) =>
-          q.questionId === questionId ? { ...q, reviewed: !q.reviewed } : q
-        )
-      );
     } catch (error) {
       console.error(error);
     }
@@ -164,81 +158,10 @@ const QuestionBank: React.FC = () => {
         body: JSON.stringify({ questionId, completed: true, userId }),
       });
       if (!response.ok) throw new Error("Failed to mark complete");
-      setQuestions((prevQuestions) =>
-        prevQuestions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: true } : q
-        )
-      );
     } catch (error) {
       console.error(error);
     }
   };
-
-  const generatePDF = async () => {
-    const doc = new jsPDF();
-
-    const questionPaperElement = document.createElement("div");
-    questionPaperElement.style.padding = "10px";
-    questionPaperElement.style.fontSize = "12px";
-    questionPaperElement.innerHTML = "<h1>Question Paper</h1>";
-    filteredQuestions.forEach((question, index) => {
-      const questionElement = document.createElement("div");
-      questionElement.innerHTML = `<p>${index + 1}. ${question.text}</p>`;
-      if (question.options) {
-        const optionsList = document.createElement("ul");
-        question.options.forEach((option, optionIndex) => {
-          const optionItem = document.createElement("li");
-          optionItem.innerHTML = `${String.fromCharCode(65 + optionIndex)}. ${option}`;
-          optionsList.appendChild(optionItem);
-        });
-        questionElement.appendChild(optionsList);
-      }
-      questionPaperElement.appendChild(questionElement);
-    });
-
-    const questionPaperCanvas = await html2canvas(questionPaperElement);
-    const questionPaperImage = questionPaperCanvas.toDataURL("image/png");
-    doc.addImage(questionPaperImage, "PNG", 10, 10, 180, 160);
-
-    doc.addPage();
-    const markschemeElement = document.createElement("div");
-    markschemeElement.style.padding = "10px";
-    markschemeElement.style.fontSize = "12px";
-    markschemeElement.innerHTML = "<h1>Markscheme</h1>";
-    filteredQuestions.forEach((question, index) => {
-      const markschemeQuestionElement = document.createElement("div");
-      markschemeQuestionElement.innerHTML = `<p>${index + 1}. ${question.markscheme || "No answer available"}</p>`;
-      markschemeElement.appendChild(markschemeQuestionElement);
-    });
-
-    const markschemeCanvas = await html2canvas(markschemeElement);
-    const markschemeImage = markschemeCanvas.toDataURL("image/png");
-    doc.addImage(markschemeImage, "PNG", 10, 10, 180, 160);
-
-    doc.save(`Combined.pdf`);
-  };
-
-  const handleMouseEnter = (menu: string) => {
-    clearTimeout(dropdownTimeout.current[menu]);
-    setDropdowns((prevState) => ({
-      ...prevState,
-      [menu]: true,
-    }));
-  };
-
-  const handleMouseLeave = (menu: string) => {
-    dropdownTimeout.current[menu] = setTimeout(() => {
-      setDropdowns((prevState) => ({
-        ...prevState,
-        [menu]: false,
-      }));
-    }, 100);
-  };
-
-  const subjects = Array.from(new Set(questions.map((q) => q.subject)));
-  const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
-  const years = Array.from(new Set(questions.map((q) => q.year)));
-  const types = Array.from(new Set(questions.map((q) => q.type)));
 
   const handleNoteChange = (questionId: string, note: string) => {
     setNotes({
@@ -250,27 +173,13 @@ const QuestionBank: React.FC = () => {
   return (
     <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
       <div className="max-w-6xl w-full">
-        <nav className="text-sm text-gray-500 mb-4">
-          <a href="BrowseResources" className="hover:underline text-left">
-            Browse Resources
-          </a>{" "}
-          &gt;{" "}
-          <a href="#" className="hover:underline text-left">
-            Question Bank
-          </a>
-        </nav>
         <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
-          Question Bank
+          CUET Question Bank
         </h1>
-        <div className="flex space-x-4 mb-6">
-          <button
-            className="bg-blue-600 text-white px-4 py-2 rounded"
-            onClick={generatePDF}
-          >
-            <FontAwesomeIcon icon={faDownload} className="mr-2" />
-            Download PDF
-          </button>
-        </div>
+        <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
+          AI Generated Solutions
+        </span>
+        <div className="flex space-x-4 mb-6"></div>
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
           {["subject", "difficulty", "year", "type"].map((filterType) => (
             <Popover
@@ -284,7 +193,7 @@ const QuestionBank: React.FC = () => {
                     : filterType === "year"
                     ? years
                     : types
-                  ).map((value) => (
+                  ).map((value: string) => (
                     <button
                       key={value}
                       onClick={() => {
@@ -330,6 +239,17 @@ const QuestionBank: React.FC = () => {
               </button>
             </Popover>
           ))}
+          {["all", "complete", "review"].map((status) => (
+            <button
+              key={status}
+              onClick={() => handleFilterChange("status", status)}
+              className={`px-4 py-2 rounded-md ${
+                filters.status === status ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"
+              }`}
+            >
+              {status.charAt(0).toUpperCase() + status.slice(1)}
+            </button>
+          ))}
         </div>
 
         {filteredQuestions.length > 0 ? (
@@ -349,14 +269,14 @@ const QuestionBank: React.FC = () => {
                   question.markscheme || "No markscheme available"
                 )
               }
-              handleMarkForReview={() => handleMarkForReview(question.questionId)}
-              handleMarkComplete={() => handleMarkComplete(question.questionId)}
+              handleMarkForReview={handleMarkForReview}
+              handleMarkComplete={handleMarkComplete}
               isMarkedForReview={question.reviewed}
               isMarkedComplete={question.completed}
               markschemesDisabled={false}
               note={notes[question.questionId] || ""}
               handleNoteChange={handleNoteChange}
-              userId={userId} // Pass userId to Question component
+              userId={userId} // Pass userId here
             />
           ))
         ) : (
@@ -370,6 +290,9 @@ const QuestionBank: React.FC = () => {
         >
           <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
             <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
+              <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
+                AI Generated Solution
+              </span>
               <h2 className="font-display text-2xl font-bold">Markscheme</h2>
             </div>
             <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
