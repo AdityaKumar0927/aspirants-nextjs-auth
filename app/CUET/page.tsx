@@ -186,8 +186,27 @@ const QuestionBank: React.FC = () => {
         <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
           AI Generated Solutions
         </span>
+        
         <div className="flex space-x-4 mb-6"></div>
+
+        <div className="flex space-x-4 mb-5">
+  {["all", "complete", "review"].map((status) => (
+    <button
+      key={status}
+      onClick={() => handleFilterChange("status", status)}
+      className={`px-4 py-2 rounded-md ${
+        filters.status === status
+          ? "bg-white border hover:border-black border-gray-600 text-gray-500"
+          : "bg-white hover:border-black border border-gray-300 text-gray-500"
+      }`}
+    >
+      {status.charAt(0).toUpperCase() + status.slice(1)}
+    </button>
+  ))}
+</div>
+        
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
+          
           {["subject", "difficulty", "year", "type"].map((filterType) => (
             <Popover
               key={filterType}
@@ -245,17 +264,6 @@ const QuestionBank: React.FC = () => {
                 />
               </button>
             </Popover>
-          ))}
-          {["all", "complete", "review"].map((status) => (
-            <button
-              key={status}
-              onClick={() => handleFilterChange("status", status)}
-              className={`px-4 py-2 rounded-md ${
-                filters.status === status ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"
-              }`}
-            >
-              {status.charAt(0).toUpperCase() + status.slice(1)}
-            </button>
           ))}
         </div>
 
