@@ -125,20 +125,31 @@ const QuestionBank: React.FC = () => {
   };
 
   const handleMarkForReview = async (questionId: string) => {
-    await fetch("/api/markForReview", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ questionId, reviewed: true }),
-    });
+    try {
+      const response = await fetch("/api/questions/markForReview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, reviewed: true }),
+      });
+      if (!response.ok) throw new Error("Failed to mark for review");
+    } catch (error) {
+      console.error(error);
+    }
   };
-
+  
   const handleMarkComplete = async (questionId: string) => {
-    await fetch("/api/markComplete", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ questionId, completed: true }),
-    });
+    try {
+      const response = await fetch("/api/questions/markComplete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, completed: true }),
+      });
+      if (!response.ok) throw new Error("Failed to mark complete");
+    } catch (error) {
+      console.error(error);
+    }
   };
+  
 
   const generatePDF = async () => {
     const doc = new jsPDF();

@@ -3,6 +3,11 @@ import { getSession } from "next-auth/react";
 import prisma from "@/lib/prisma";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== "POST") {
+    res.setHeader("Allow", ["POST"]);
+    return res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
+
   const session = await getSession({ req });
   if (!session || !session.user?.id) {
     return res.status(401).json({ error: "Unauthorized" });
