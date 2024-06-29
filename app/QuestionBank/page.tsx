@@ -52,9 +52,7 @@ const questionsData: QuestionType[] = (rawQuestionsData as RawQuestionType[]).ma
 
 const QuestionBank: React.FC = () => {
   const [questions, setQuestions] = useState<QuestionType[]>(questionsData);
-  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>(
-    questionsData
-  );
+  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>(questionsData);
   const [filters, setFilters] = useState({
     subject: "",
     difficulty: "",
@@ -69,17 +67,12 @@ const QuestionBank: React.FC = () => {
     type: false,
   });
   const [feedback, setFeedback] = useState<Record<string, string>>({});
-  const [numericalAnswers, setNumericalAnswers] = useState<
-    Record<string, string>
-  >({});
-  const [showMarkscheme, setShowMarkscheme] = useState<
-    Record<string, boolean>
-  >({});
+  const [numericalAnswers, setNumericalAnswers] = useState<Record<string, string>>({});
+  const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
-  const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(
-    false
-  );
-  const [notes, setNotes] = useState<Record<string, string>>({}); // State for notes
+  const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
+  const [notes, setNotes] = useState<Record<string, string>>({});
+  const userId = "your-user-id"; // Replace with actual user ID from session
 
   const dropdownTimeout = useRef<Record<string, NodeJS.Timeout>>({});
 
@@ -143,29 +136,47 @@ const QuestionBank: React.FC = () => {
 
   const handleMarkschemeToggle = (questionId: string, markscheme: string) => {
     setMarkschemeContent(markscheme);
-    
   };
 
-  const handleMarkForReview = (questionId: string) => {
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.questionId === questionId ? { ...q, reviewed: !q.reviewed } : q
-      )
-    );
+  const handleMarkForReview = async (questionId: string) => {
+    try {
+      const response = await fetch("/api/markForReview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, reviewed: true, userId }),
+      });
+      if (!response.ok) throw new Error("Failed to mark for review");
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, reviewed: !q.reviewed } : q
+        )
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleMarkComplete = (questionId: string) => {
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.questionId === questionId ? { ...q, completed: true } : q
-      )
-    );
+  const handleMarkComplete = async (questionId: string) => {
+    try {
+      const response = await fetch("/api/markComplete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, completed: true, userId }),
+      });
+      if (!response.ok) throw new Error("Failed to mark complete");
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: true } : q
+        )
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const generatePDF = async () => {
     const doc = new jsPDF();
 
-    // Generate Question Paper
     const questionPaperElement = document.createElement("div");
     questionPaperElement.style.padding = "10px";
     questionPaperElement.style.fontSize = "12px";
@@ -189,7 +200,6 @@ const QuestionBank: React.FC = () => {
     const questionPaperImage = questionPaperCanvas.toDataURL("image/png");
     doc.addImage(questionPaperImage, "PNG", 10, 10, 180, 160);
 
-    // Add a new page for the markscheme
     doc.addPage();
     const markschemeElement = document.createElement("div");
     markschemeElement.style.padding = "10px";
@@ -253,6 +263,13 @@ const QuestionBank: React.FC = () => {
           Question Bank
         </h1>
         <div className="flex space-x-4 mb-6">
+          <button
+            className="bg-blue-600 text-white px-4 py-2 rounded"
+            onClick={generatePDF}
+          >
+            <FontAwesomeIcon icon={faDownload} className="mr-2" />
+            Download PDF
+          </button>
         </div>
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
           {["subject", "difficulty", "year", "type"].map((filterType) => (
@@ -332,13 +349,14 @@ const QuestionBank: React.FC = () => {
                   question.markscheme || "No markscheme available"
                 )
               }
-              handleMarkForReview={handleMarkForReview}
-              handleMarkComplete={handleMarkComplete}
+              handleMarkForReview={() => handleMarkForReview(question.questionId)}
+              handleMarkComplete={() => handleMarkComplete(question.questionId)}
               isMarkedForReview={question.reviewed}
               isMarkedComplete={question.completed}
               markschemesDisabled={false}
               note={notes[question.questionId] || ""}
               handleNoteChange={handleNoteChange}
+              userId={userId} // Pass userId to Question component
             />
           ))
         ) : (

@@ -27,13 +27,14 @@ interface QuestionProps {
   handleNumericalSubmit: (questionId: string, userAnswer: string, correctAnswer: string) => void;
   handleNumericalChange: (questionId: string, value: string) => void;
   handleMarkschemeToggle: (questionId: string) => void;
-  handleMarkForReview: (questionId: string) => void;
-  handleMarkComplete: (questionId: string) => void;
+  handleMarkForReview: () => void;
+  handleMarkComplete: () => void;
   isMarkedForReview: boolean;
   isMarkedComplete: boolean;
   markschemesDisabled: boolean;
   note: string;
   handleNoteChange: (questionId: string, note: string) => void;
+  userId: string;
 }
 
 const Question: React.FC<QuestionProps> = ({
@@ -64,13 +65,13 @@ const Question: React.FC<QuestionProps> = ({
     if (selectedOption !== option) {
       setSelectedOption(option);
       handleOptionClick(question.questionId, option, question.correctOption || '');
-      handleMarkComplete(question.questionId);
+      handleMarkComplete();
     }
   };
 
   const handleNumericalSubmitLocal = () => {
     handleNumericalSubmit(question.questionId, numericalAnswer || '', question.correctOption || '');
-    handleMarkComplete(question.questionId);
+    handleMarkComplete();
   };
 
   const toggleMarkscheme = () => {
@@ -99,7 +100,7 @@ const Question: React.FC<QuestionProps> = ({
         <div className="flex items-center space-x-2">
           <button
             className={`bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs ${isMarkedComplete ? 'bg-green-500 text-white' : ''}`}
-            onClick={() => handleMarkComplete(question.questionId)}
+            onClick={handleMarkComplete}
           >
             {isMarkedComplete ? (
               <FontAwesomeIcon icon={faCheckCircle} className="text-white" />
@@ -109,7 +110,7 @@ const Question: React.FC<QuestionProps> = ({
           </button>
           <button
             className={`bg-yellow-100 text-yellow-700 px-2 py-1 rounded-md text-xs ${isMarkedForReview ? 'bg-yellow-300 text-white' : ''}`}
-            onClick={() => handleMarkForReview(question.questionId)}
+            onClick={handleMarkForReview}
           >
             <FontAwesomeIcon icon={faTag} className={`${isMarkedForReview ? 'text-green-700' : 'text-yellow-700'}`} />
           </button>
@@ -172,13 +173,12 @@ const Question: React.FC<QuestionProps> = ({
         </div>
       )}
       {selectedOption && markschemeEnabled && (
-     <button
-     className="relative inline-flex items-center justify-center px-2 py-2 overflow-hidden text-gray-600 border border-gray-400 rounded"
-     onClick={toggleMarkscheme}
-   > 
-     <span className="relative">Show Markscheme</span>
-   </button>
-        
+        <button
+          className="relative inline-flex items-center justify-center px-2 py-2 overflow-hidden text-gray-600 border border-gray-400 rounded"
+          onClick={toggleMarkscheme}
+        >
+          <span className="relative">Show Markscheme</span>
+        </button>
       )}
       <Modal showModal={showMarkschemeModal} setShowModal={setShowMarkschemeModal} className="max-w-2xl">
         <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
@@ -186,8 +186,8 @@ const Question: React.FC<QuestionProps> = ({
             <h2 className="font-display text-2xl font-bold">Markscheme</h2>
           </div>
           <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
-          <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
-            AI Generated Solutions
+            <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
+              AI Generated Solutions
             </span>
             <p className="mb-2">
               {question.markscheme ? <MathRenderer text={question.markscheme} /> : 'No answer available'}
