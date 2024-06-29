@@ -13,7 +13,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { questionId, completed } = await request.json();
+    const { questionId, reviewed } = await request.json();
 
     await prisma.userProgress.upsert({
       where: {
@@ -22,12 +22,13 @@ export async function POST(request: Request) {
           questionId,
         },
       },
-      update: { completed },
-      create: { userId: session.user.id, questionId, reviewed: false, completed },
+      update: { reviewed },
+      create: { userId: session.user.id, questionId, reviewed, completed: false },
     });
+    
     return NextResponse.json({ message: 'Success' });
   } catch (error) {
-    console.error('Error in markComplete API:', error);
+    console.error('Error in markForReview API:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
