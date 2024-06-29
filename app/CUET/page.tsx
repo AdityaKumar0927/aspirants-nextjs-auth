@@ -4,8 +4,6 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import "katex/dist/katex.min.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Question from "@/components/shared/Question";
 import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
@@ -52,8 +50,7 @@ const QuestionBank: React.FC = () => {
 
   const dropdownTimeout = useRef<Record<string, NodeJS.Timeout>>({});
 
-  // Replace this with actual user ID retrieval logic
-  const userId = "sample-user-id";
+  const userId = "sample-user-id"; // Replace with actual user ID retrieval logic
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -102,37 +99,6 @@ const QuestionBank: React.FC = () => {
     setFilters((prevFilters) => ({ ...prevFilters, [tag]: value }));
   };
 
-  const handleOptionClick = (
-    questionId: string,
-    option: string,
-    correctOption: string
-  ) => {
-    const isCorrect = option === correctOption;
-    setFeedback({
-      ...feedback,
-      [questionId]: isCorrect ? "correct" : "incorrect",
-    });
-  };
-
-  const handleNumericalSubmit = (
-    questionId: string,
-    userAnswer: string,
-    correctAnswer: string
-  ) => {
-    const isCorrect = userAnswer === correctAnswer;
-    setFeedback({
-      ...feedback,
-      [questionId]: isCorrect ? "correct" : "incorrect",
-    });
-  };
-
-  const handleNumericalChange = (questionId: string, value: string) => {
-    setNumericalAnswers({
-      ...numericalAnswers,
-      [questionId]: value,
-    });
-  };
-
   const handleMarkschemeToggle = (questionId: string, markscheme: string) => {
     setMarkschemeContent(markscheme);
   };
@@ -145,6 +111,10 @@ const QuestionBank: React.FC = () => {
         body: JSON.stringify({ questionId, reviewed: true, userId }),
       });
       if (!response.ok) throw new Error("Failed to mark for review");
+
+      setQuestions((prev) =>
+        prev.map((q) => (q.questionId === questionId ? { ...q, reviewed: true } : q))
+      );
     } catch (error) {
       console.error(error);
     }
@@ -158,6 +128,10 @@ const QuestionBank: React.FC = () => {
         body: JSON.stringify({ questionId, completed: true, userId }),
       });
       if (!response.ok) throw new Error("Failed to mark complete");
+
+      setQuestions((prev) =>
+        prev.map((q) => (q.questionId === questionId ? { ...q, completed: true } : q))
+      );
     } catch (error) {
       console.error(error);
     }
@@ -260,23 +234,23 @@ const QuestionBank: React.FC = () => {
               feedback={feedback[question.questionId]}
               numericalAnswer={numericalAnswers[question.questionId]}
               showMarkscheme={showMarkscheme[question.questionId]}
-              handleOptionClick={handleOptionClick}
-              handleNumericalSubmit={handleNumericalSubmit}
-              handleNumericalChange={handleNumericalChange}
+              handleOptionClick={() => {}}
+              handleNumericalSubmit={() => {}}
+              handleNumericalChange={() => {}}
               handleMarkschemeToggle={() =>
                 handleMarkschemeToggle(
                   question.questionId,
                   question.markscheme || "No markscheme available"
                 )
               }
-              handleMarkForReview={handleMarkForReview}
-              handleMarkComplete={handleMarkComplete}
+              handleMarkForReview={() => handleMarkForReview(question.questionId)}
+              handleMarkComplete={() => handleMarkComplete(question.questionId)}
               isMarkedForReview={question.reviewed}
               isMarkedComplete={question.completed}
               markschemesDisabled={false}
               note={notes[question.questionId] || ""}
               handleNoteChange={handleNoteChange}
-              userId={userId} // Pass userId here
+              userId={userId}
             />
           ))
         ) : (
