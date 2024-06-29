@@ -55,43 +55,19 @@ const QuestionBank: React.FC = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const [questionsResponse, progressResponse] = await Promise.all([
-          fetch("/api/questions"),
-          fetch("/api/user-progress"),
-        ]);
-  
-        if (!questionsResponse.ok || !progressResponse.ok) throw new Error("Failed to fetch data");
-  
-        const questions = await questionsResponse.json();
-        const userProgress = await progressResponse.json();
-  
-        // Define types for question and progress
-        interface Question {
-          questionId: string;
-          // Add other properties as needed
-        }
-  
-        interface Progress {
-          questionId: string;
-          // Add other properties as needed
-        }
-  
-        // Merge progress with questions
-        const mergedQuestions = questions.map((question: Question) => {
-          const progress = userProgress.find((p: Progress) => p.questionId === question.questionId);
-          return { ...question, ...progress };
-        });
-  
-        setQuestions(mergedQuestions);
-        setFilteredQuestions(mergedQuestions);
+        const response = await fetch("/api/questions");
+        if (!response.ok) throw new Error("Failed to fetch questions");
+
+        const data = await response.json();
+        setQuestions(data);
+        setFilteredQuestions(data);
       } catch (error) {
         console.error(error);
       }
     };
-  
+
     fetchQuestions();
   }, []);
-  
 
   const subjects = Array.from(new Set(questions.map((q) => q.subject)));
   const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
@@ -129,32 +105,43 @@ const QuestionBank: React.FC = () => {
     setMarkschemeContent(markscheme);
   };
 
-  const handleMarkForReview = async (questionId: string) => {
-    try {
-      const response = await fetch("/api/markForReview", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId, reviewed: true }),
-      });
-      if (!response.ok) throw new Error("Failed to mark for review");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  
-  const handleMarkComplete = async (questionId: string) => {
+  const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
     try {
       const response = await fetch("/api/markComplete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId, completed: true }),
+        body: JSON.stringify({ questionId, completed: isComplete }),
       });
-      if (!response.ok) throw new Error("Failed to mark complete");
+      if (!response.ok) throw new Error("Failed to update completion status");
+
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: isComplete } : q
+        )
+      );
     } catch (error) {
       console.error(error);
     }
   };
-  
+
+  const handleMarkForReview = async (questionId: string, isReviewed: boolean) => {
+    try {
+      const response = await fetch("/api/markForReview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, reviewed: isReviewed }),
+      });
+      if (!response.ok) throw new Error("Failed to update review status");
+
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
+        )
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleNoteChange = (questionId: string, note: string) => {
     setNotes({
@@ -262,8 +249,8 @@ const QuestionBank: React.FC = () => {
                   question.markscheme || "No markscheme available"
                 )
               }
-              handleMarkForReview={() => handleMarkForReview(question.questionId)}
-              handleMarkComplete={() => handleMarkComplete(question.questionId)}
+              handleMarkForReview={() => handleMarkForReview(question.questionId, !question.reviewed)}
+              handleMarkComplete={() => handleMarkComplete(question.questionId, !question.completed)}
               isMarkedForReview={question.reviewed}
               isMarkedComplete={question.completed}
               markschemesDisabled={false}
