@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import jsPDF from "jspdf";
@@ -7,10 +7,23 @@ import "katex/dist/katex.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Question from "@/components/shared/Question";
+import rawQuestionsData from "public/questions.json";
 import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
+
+interface RawQuestionType {
+  questionId: string;
+  text: string;
+  subject: string;
+  difficulty: string;
+  type: string;
+  year: string;
+  options?: string[];
+  correctOption?: string;
+  markscheme?: string;
+}
 
 interface QuestionType {
   questionId: string;
@@ -27,9 +40,19 @@ interface QuestionType {
   notes?: string;
 }
 
+const questionsData: QuestionType[] = (rawQuestionsData as RawQuestionType[]).map(
+  (q) => ({
+    ...q,
+    type: q.type as "Multiple Choice" | "Numerical",
+    reviewed: false,
+    completed: false,
+    notes: "",
+  })
+);
+
 const QuestionBank: React.FC = () => {
-  const [questions, setQuestions] = useState<QuestionType[]>([]);
-  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
+  const [questions, setQuestions] = useState<QuestionType[]>(questionsData);
+  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>(questionsData);
   const [filters, setFilters] = useState({
     subject: "",
     difficulty: "",
@@ -48,24 +71,10 @@ const QuestionBank: React.FC = () => {
   const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
-  const [notes, setNotes] = useState<Record<string, string>>({}); 
+  const [notes, setNotes] = useState<Record<string, string>>({});
+  const userId = "your-user-id"; // Replace with actual user ID from session
 
   const dropdownTimeout = useRef<Record<string, NodeJS.Timeout>>({});
-
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const response = await fetch('/api/questions');
-        if (!response.ok) throw new Error("Failed to fetch questions");
-        const data = await response.json();
-        setQuestions(data);
-        setFilteredQuestions(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchQuestions();
-  }, []);
 
   const filterQuestions = useCallback(() => {
     let filtered = questions.filter((question) => {
@@ -134,22 +143,32 @@ const QuestionBank: React.FC = () => {
       const response = await fetch("/api/markForReview", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId, reviewed: true }),
+        body: JSON.stringify({ questionId, reviewed: true, userId }),
       });
       if (!response.ok) throw new Error("Failed to mark for review");
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, reviewed: !q.reviewed } : q
+        )
+      );
     } catch (error) {
       console.error(error);
     }
   };
-  
+
   const handleMarkComplete = async (questionId: string) => {
     try {
       const response = await fetch("/api/markComplete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId, completed: true }),
+        body: JSON.stringify({ questionId, completed: true, userId }),
       });
       if (!response.ok) throw new Error("Failed to mark complete");
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: true } : q
+        )
+      );
     } catch (error) {
       console.error(error);
     }
@@ -231,13 +250,27 @@ const QuestionBank: React.FC = () => {
   return (
     <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
       <div className="max-w-6xl w-full">
+        <nav className="text-sm text-gray-500 mb-4">
+          <a href="BrowseResources" className="hover:underline text-left">
+            Browse Resources
+          </a>{" "}
+          &gt;{" "}
+          <a href="#" className="hover:underline text-left">
+            Question Bank
+          </a>
+        </nav>
         <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
-         CUET Question Bank
+          Question Bank
         </h1>
-        <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
-            AI Generated Solutions
-        </span>
-        <div className="flex space-x-4 mb-6"></div>
+        <div className="flex space-x-4 mb-6">
+          <button
+            className="bg-blue-600 text-white px-4 py-2 rounded"
+            onClick={generatePDF}
+          >
+            <FontAwesomeIcon icon={faDownload} className="mr-2" />
+            Download PDF
+          </button>
+        </div>
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
           {["subject", "difficulty", "year", "type"].map((filterType) => (
             <Popover
@@ -297,17 +330,6 @@ const QuestionBank: React.FC = () => {
               </button>
             </Popover>
           ))}
-          {["all", "complete", "review"].map((status) => (
-            <button
-              key={status}
-              onClick={() => handleFilterChange("status", status)}
-              className={`px-4 py-2 rounded-md ${
-                filters.status === status ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"
-              }`}
-            >
-              {status.charAt(0).toUpperCase() + status.slice(1)}
-            </button>
-          ))}
         </div>
 
         {filteredQuestions.length > 0 ? (
@@ -327,13 +349,14 @@ const QuestionBank: React.FC = () => {
                   question.markscheme || "No markscheme available"
                 )
               }
-              handleMarkForReview={handleMarkForReview}
-              handleMarkComplete={handleMarkComplete}
+              handleMarkForReview={() => handleMarkForReview(question.questionId)}
+              handleMarkComplete={() => handleMarkComplete(question.questionId)}
               isMarkedForReview={question.reviewed}
               isMarkedComplete={question.completed}
               markschemesDisabled={false}
               note={notes[question.questionId] || ""}
               handleNoteChange={handleNoteChange}
+              userId={userId} // Pass userId to Question component
             />
           ))
         ) : (
@@ -347,9 +370,6 @@ const QuestionBank: React.FC = () => {
         >
           <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
             <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
-              <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
-                AI Generated Solution
-              </span>
               <h2 className="font-display text-2xl font-bold">Markscheme</h2>
             </div>
             <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
