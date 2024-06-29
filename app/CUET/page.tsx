@@ -189,7 +189,7 @@ const QuestionBank: React.FC = () => {
         
         <div className="flex space-x-4 mb-6"></div>
 
-        <div className="flex space-x-4 mb-5">
+        <div className="flex space-x-4 mb-2">
   {["all", "complete", "review"].map((status) => (
     <button
       key={status}

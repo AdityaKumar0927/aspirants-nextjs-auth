@@ -49,6 +49,9 @@ export default function NavBar({ session }: { session: Session | null }) {
             />
           </Link>
           <div className="hidden md:flex items-center space-x-4">
+          <Link href="/MockExam" className="mr-4">
+              Mock Exam
+            </Link>
             <ExamDropdown />
             <Link href="/BrowseResources" className="mr-4">
               Browse Resources
