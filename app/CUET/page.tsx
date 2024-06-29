@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
@@ -296,6 +294,17 @@ const QuestionBank: React.FC = () => {
                 />
               </button>
             </Popover>
+          ))}
+          {["all", "complete", "review"].map((status) => (
+            <button
+              key={status}
+              onClick={() => handleFilterChange("status", status)}
+              className={`px-4 py-2 rounded-md ${
+                filters.status === status ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"
+              }`}
+            >
+              {status.charAt(0).toUpperCase() + status.slice(1)}
+            </button>
           ))}
         </div>
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Modal from "@/components/shared/modal";
 import { Switch } from "@headlessui/react";
@@ -91,8 +91,7 @@ const Question: React.FC<QuestionProps> = ({
     <div className="border-2 rounded-lg p-4 bg-white mb-6">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
         <div className="mb-3 flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
-          <span className="text-left font-display font-bold tracking-[-0.02em] drop-shadow-sm sm:text-2xl sm:leading-[4rem]
-">Question {question.questionId}</span>
+          <span className="text-left font-display font-bold tracking-[-0.02em] drop-shadow-sm sm:text-2xl sm:leading-[4rem]">Question {question.questionId}</span>
           <span className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">{question.subject}</span>
           <span className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">{question.difficulty}</span>
           <span className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">{question.type}</span>
