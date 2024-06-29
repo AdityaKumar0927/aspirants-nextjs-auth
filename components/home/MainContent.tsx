@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState } from 'react';
 import Question from '@/components/shared/Question';
@@ -71,10 +71,6 @@ const MainContent: React.FC = () => {
     }
   };
 
-  const handleUserDashboardClick = () => {
-    // handle showing user dashboard logic
-  };
-
   const renderView = () => {
     switch (currentView) {
       case 'home':
@@ -109,13 +105,14 @@ const MainContent: React.FC = () => {
                         handleNumericalSubmit={handleNumericalSubmit}
                         handleNumericalChange={handleNumericalChange}
                         handleMarkschemeToggle={handleMarkschemeToggle}
-                        handleMarkForReview={handleMarkForReview}
-                        handleMarkComplete={handleMarkComplete}
+                        handleMarkForReview={() => handleMarkForReview(question.questionId)}
+                        handleMarkComplete={() => handleMarkComplete(question.questionId)}
                         isMarkedForReview={markedForReview.has(question.questionId)}
                         isMarkedComplete={markedComplete.has(question.questionId)}
-                        markschemesDisabled={false} // Add appropriate value
-                        note="" // Add appropriate value
-                        handleNoteChange={() => {}} // Add appropriate function
+                        markschemesDisabled={false}
+                        note=""
+                        handleNoteChange={() => {}}
+                        userId="user-id-placeholder" // Replace with actual user ID
                       />
                     ))}
                   </div>
