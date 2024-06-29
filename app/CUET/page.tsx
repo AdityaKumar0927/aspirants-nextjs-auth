@@ -54,10 +54,15 @@ const QuestionBank: React.FC = () => {
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const response = await fetch('/api/questions');
-      const data = await response.json();
-      setQuestions(data);
-      setFilteredQuestions(data);
+      try {
+        const response = await fetch('/api/questions');
+        if (!response.ok) throw new Error("Failed to fetch questions");
+        const data = await response.json();
+        setQuestions(data);
+        setFilteredQuestions(data);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchQuestions();
   }, []);
@@ -149,7 +154,6 @@ const QuestionBank: React.FC = () => {
       console.error(error);
     }
   };
-  
 
   const generatePDF = async () => {
     const doc = new jsPDF();
