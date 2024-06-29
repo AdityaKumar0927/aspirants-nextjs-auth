@@ -31,7 +31,7 @@ export default function NavBar({ session }: { session: Session | null }) {
       <div
         className={`fixed top-0 w-full flex justify-center ${
           scrolled
-            ? "border-b border-gray-200 bg-white/50 backdrop-blur-sm"
+            ? "border-b border-gray-200 bg-white/50 backdrop-blur-md"
             : "bg-white/0"
         } z-30 transition-all`}
       >
@@ -80,7 +80,7 @@ export default function NavBar({ session }: { session: Session | null }) {
       {menuOpen && (
         <>
           <div className="fixed inset-0 z-40 bg-black bg-opacity-20 backdrop-blur-sm"></div>
-          <div className="fixed inset-0 z-50 bg-white bg-opacity-80 backdrop-blur-sm flex flex-col items-center justify-center p-4 space-y-4 shadow-lg rounded-lg">
+          <div className="fixed inset-0 z-50 bg-white bg-opacity-80 backdrop-blur-md flex flex-col items-center justify-center p-4 space-y-4 shadow-lg rounded-lg">
             <button
               onClick={toggleMenu}
               className="absolute top-4 right-4 text-black focus:outline-none"

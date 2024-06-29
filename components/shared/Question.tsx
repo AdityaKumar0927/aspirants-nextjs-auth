@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Modal from "@/components/shared/modal";
-import { Switch } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faTag, faCog } from "@fortawesome/free-solid-svg-icons";
-import useSound from "@/components/shared/useSound";
 
 interface QuestionType {
   questionId: string;
@@ -27,15 +25,16 @@ interface QuestionProps {
   handleNumericalSubmit: (questionId: string, userAnswer: string, correctAnswer: string) => void;
   handleNumericalChange: (questionId: string, value: string) => void;
   handleMarkschemeToggle: (questionId: string) => void;
-  handleMarkForReview: () => void;
-  handleMarkComplete: () => void;
+  handleMarkForReview: (questionId: string) => void;
+  handleMarkComplete: (questionId: string) => void;
   isMarkedForReview: boolean;
   isMarkedComplete: boolean;
   markschemesDisabled: boolean;
   note: string;
   handleNoteChange: (questionId: string, note: string) => void;
-  userId: string;
+  userId: string; // Add this line
 }
+
 
 const Question: React.FC<QuestionProps> = ({
   question,
@@ -59,19 +58,17 @@ const Question: React.FC<QuestionProps> = ({
   const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
 
-  const { play: playSwitch, SoundComponent: SwitchSound } = useSound("/sounds/switch.mp3");
-
   const handleOptionClickLocal = (option: string) => {
     if (selectedOption !== option) {
       setSelectedOption(option);
       handleOptionClick(question.questionId, option, question.correctOption || '');
-      handleMarkComplete();
+      handleMarkComplete(question.questionId);
     }
   };
 
   const handleNumericalSubmitLocal = () => {
     handleNumericalSubmit(question.questionId, numericalAnswer || '', question.correctOption || '');
-    handleMarkComplete();
+    handleMarkComplete(question.questionId);
   };
 
   const toggleMarkscheme = () => {
@@ -83,16 +80,13 @@ const Question: React.FC<QuestionProps> = ({
     setShowSettingsModal(!showSettingsModal);
   };
 
-  const handleMarkschemeSwitch = () => {
-    playSwitch();
-    setMarkschemeEnabled(!markschemeEnabled);
-  };
-
   return (
     <div className="border-2 rounded-lg p-4 bg-white mb-6">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
         <div className="mb-3 flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
-          <span className="text-left font-display font-bold tracking-[-0.02em] drop-shadow-sm sm:text-2xl sm:leading-[4rem]">Question {question.questionId}</span>
+          <span className="text-left font-display font-bold tracking-[-0.02em] drop-shadow-sm sm:text-2xl sm:leading-[4rem]">
+            Question {question.questionId}
+          </span>
           <span className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">{question.subject}</span>
           <span className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">{question.difficulty}</span>
           <span className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">{question.type}</span>
@@ -100,7 +94,7 @@ const Question: React.FC<QuestionProps> = ({
         <div className="flex items-center space-x-2">
           <button
             className={`bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs ${isMarkedComplete ? 'bg-green-500 text-white' : ''}`}
-            onClick={handleMarkComplete}
+            onClick={() => handleMarkComplete(question.questionId)}
           >
             {isMarkedComplete ? (
               <FontAwesomeIcon icon={faCheckCircle} className="text-white" />
@@ -110,7 +104,7 @@ const Question: React.FC<QuestionProps> = ({
           </button>
           <button
             className={`bg-yellow-100 text-yellow-700 px-2 py-1 rounded-md text-xs ${isMarkedForReview ? 'bg-yellow-300 text-white' : ''}`}
-            onClick={handleMarkForReview}
+            onClick={() => handleMarkForReview(question.questionId)}
           >
             <FontAwesomeIcon icon={faTag} className={`${isMarkedForReview ? 'text-green-700' : 'text-yellow-700'}`} />
           </button>
@@ -186,9 +180,6 @@ const Question: React.FC<QuestionProps> = ({
             <h2 className="font-display text-2xl font-bold">Markscheme</h2>
           </div>
           <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
-            <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
-              AI Generated Solutions
-            </span>
             <p className="mb-2">
               {question.markscheme ? <MathRenderer text={question.markscheme} /> : 'No answer available'}
             </p>
@@ -203,19 +194,6 @@ const Question: React.FC<QuestionProps> = ({
           <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
             <div className="flex items-center justify-between mb-4">
               <span className="text-gray-400">Enable Markscheme</span>
-              <Switch
-                checked={markschemeEnabled}
-                onChange={handleMarkschemeSwitch}
-                className={`${
-                  markschemeEnabled ? 'bg-blue-600' : 'bg-gray-200'
-                } relative inline-flex h-6 w-11 items-center rounded-full`}
-              >
-                <span
-                  className={`${
-                    markschemeEnabled ? 'translate-x-6' : 'translate-x-1'
-                  } inline-block h-4 w-4 transform bg-white rounded-full transition`}
-                />
-              </Switch>
             </div>
           </div>
         </div>
@@ -228,7 +206,6 @@ const Question: React.FC<QuestionProps> = ({
           onChange={(e) => handleNoteChange(question.questionId, e.target.value)}
         />
       </div>
-      <SwitchSound />
     </div>
   );
 };
