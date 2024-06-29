@@ -1,3 +1,4 @@
+// app/api/markForReview/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
@@ -8,7 +9,7 @@ const prisma = new PrismaClient();
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
-    
+
     if (!session || !session.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
       update: { reviewed },
       create: { userId: session.user.id, questionId, reviewed, completed: false },
     });
-    
+
     return NextResponse.json({ message: 'Success' });
   } catch (error) {
     console.error('Error in markForReview API:', error);
