@@ -52,9 +52,9 @@ export default function ExamDropdown({ mobile = false, className = "" }: ExamDro
         openPopover={openPopover}
         setOpenPopover={setOpenPopover}
       >
-        <button className="inline-flex justify-center w-full text-sm font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 p-2 rounded-full">
+        <button className="inline-flex justify-center w-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 p-2 rounded-full">
           Exam
-          <ChevronDown className="ml-2 -mr-1 h-5 w-5" />
+          <ChevronDown className="ml-0.75 -mr-1 h-6 w-5" />
         </button>
       </Popover>
     </div>
