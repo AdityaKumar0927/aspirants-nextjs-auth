@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,7 +7,6 @@ datasource db {
   url = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
-
 
 model Account {
   id                 String  @id @default(cuid())
@@ -49,6 +45,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  progresses    UserProgress[]  // Add this line
 }
 
 model VerificationToken {
@@ -57,4 +54,30 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model UserProgress {
+  id         String @id @default(cuid())
+  userId     String
+  questionId String
+  completed  Boolean @default(false)
+  reviewed   Boolean @default(false)
+  user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questionId]) // Add this line
+}
+
+model Question {
+  id           String   @id @default(cuid())
+  questionId   String   @unique
+  text         String
+  subject      String
+  difficulty   String
+  type         String
+  year         Int
+  reviewed     Boolean  @default(false)
+  completed    Boolean  @default(false)
+  options      String[]
+  correctOption String
+  markscheme   String
 }
