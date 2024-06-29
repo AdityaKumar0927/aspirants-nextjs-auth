@@ -55,12 +55,23 @@ const QuestionBank: React.FC = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await fetch("/api/questions");
-        if (!response.ok) throw new Error("Failed to fetch questions");
+        const [questionsResponse, progressResponse] = await Promise.all([
+          fetch("/api/questions"),
+          fetch("/api/user-progress"),
+        ]);
 
-        const data = await response.json();
-        setQuestions(data);
-        setFilteredQuestions(data);
+        if (!questionsResponse.ok || !progressResponse.ok) throw new Error("Failed to fetch data");
+
+        const questionsData = await questionsResponse.json();
+        const userProgressData = await progressResponse.json();
+
+        const mergedQuestions = questionsData.map((question: QuestionType) => {
+          const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
+          return { ...question, ...progress };
+        });
+
+        setQuestions(mergedQuestions);
+        setFilteredQuestions(mergedQuestions);
       } catch (error) {
         console.error(error);
       }
