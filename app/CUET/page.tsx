@@ -54,7 +54,7 @@ const QuestionBank: React.FC = () => {
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const response = await fetch('/api/auth/questions');
+      const response = await fetch('/api/questions');
       const data = await response.json();
       setQuestions(data);
       setFilteredQuestions(data);
@@ -126,7 +126,7 @@ const QuestionBank: React.FC = () => {
 
   const handleMarkForReview = async (questionId: string) => {
     try {
-      const response = await fetch("/api/auth/questions/markForReview", {
+      const response = await fetch("/api/markForReview", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ questionId, reviewed: true }),
@@ -139,7 +139,7 @@ const QuestionBank: React.FC = () => {
   
   const handleMarkComplete = async (questionId: string) => {
     try {
-      const response = await fetch("/api/auth/markComplete", {
+      const response = await fetch("/api/markComplete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ questionId, completed: true }),
