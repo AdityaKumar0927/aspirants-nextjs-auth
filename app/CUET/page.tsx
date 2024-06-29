@@ -154,6 +154,22 @@ const QuestionBank: React.FC = () => {
     }
   };
 
+  const handleOptionClick = (questionId: string, option: string, correctOption: string) => {
+    const isCorrect = option === correctOption;
+    setFeedback({
+      ...feedback,
+      [questionId]: isCorrect ? "correct" : "incorrect",
+    });
+  };
+
+  const handleNumericalSubmit = (questionId: string, userAnswer: string, correctAnswer: string) => {
+    const isCorrect = userAnswer === correctAnswer;
+    setFeedback({
+      ...feedback,
+      [questionId]: isCorrect ? "correct" : "incorrect",
+    });
+  };
+
   const handleNoteChange = (questionId: string, note: string) => {
     setNotes({
       ...notes,
@@ -251,9 +267,13 @@ const QuestionBank: React.FC = () => {
               feedback={feedback[question.questionId]}
               numericalAnswer={numericalAnswers[question.questionId]}
               showMarkscheme={showMarkscheme[question.questionId]}
-              handleOptionClick={() => {}}
-              handleNumericalSubmit={() => {}}
-              handleNumericalChange={() => {}}
+              handleOptionClick={(questionId, option, correctOption) =>
+                handleOptionClick(questionId, option, correctOption)
+              }
+              handleNumericalSubmit={handleNumericalSubmit}
+              handleNumericalChange={(questionId, value) => {
+                setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
+              }}
               handleMarkschemeToggle={() =>
                 handleMarkschemeToggle(
                   question.questionId,

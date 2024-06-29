@@ -128,7 +128,7 @@ const Question: React.FC<QuestionProps> = ({
             value={numericalAnswer}
             onChange={(e) => handleNumericalChange(question.questionId, e.target.value)}
           />
-          <button className="bg-blue-600 text-white px-4 py-2 rounded mt-2" onClick={handleNumericalSubmitLocal}>
+          <button className="bg-white border-gray-400 text-gray-400 px-4 py-2 rounded mt-2" onClick={handleNumericalSubmitLocal}>
             Submit
           </button>
           {feedback && (
