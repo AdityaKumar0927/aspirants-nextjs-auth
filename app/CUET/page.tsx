@@ -55,17 +55,43 @@ const QuestionBank: React.FC = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await fetch("/api/questions");
-        if (!response.ok) throw new Error("Failed to fetch questions");
-        const data = await response.json();
-        setQuestions(data);
-        setFilteredQuestions(data);
+        const [questionsResponse, progressResponse] = await Promise.all([
+          fetch("/api/questions"),
+          fetch("/api/user-progress"),
+        ]);
+  
+        if (!questionsResponse.ok || !progressResponse.ok) throw new Error("Failed to fetch data");
+  
+        const questions = await questionsResponse.json();
+        const userProgress = await progressResponse.json();
+  
+        // Define types for question and progress
+        interface Question {
+          questionId: string;
+          // Add other properties as needed
+        }
+  
+        interface Progress {
+          questionId: string;
+          // Add other properties as needed
+        }
+  
+        // Merge progress with questions
+        const mergedQuestions = questions.map((question: Question) => {
+          const progress = userProgress.find((p: Progress) => p.questionId === question.questionId);
+          return { ...question, ...progress };
+        });
+  
+        setQuestions(mergedQuestions);
+        setFilteredQuestions(mergedQuestions);
       } catch (error) {
         console.error(error);
       }
     };
+  
     fetchQuestions();
   }, []);
+  
 
   const subjects = Array.from(new Set(questions.map((q) => q.subject)));
   const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
@@ -108,34 +134,27 @@ const QuestionBank: React.FC = () => {
       const response = await fetch("/api/markForReview", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId, reviewed: true, userId }),
+        body: JSON.stringify({ questionId, reviewed: true }),
       });
       if (!response.ok) throw new Error("Failed to mark for review");
-
-      setQuestions((prev) =>
-        prev.map((q) => (q.questionId === questionId ? { ...q, reviewed: true } : q))
-      );
     } catch (error) {
       console.error(error);
     }
   };
-
+  
   const handleMarkComplete = async (questionId: string) => {
     try {
       const response = await fetch("/api/markComplete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId, completed: true, userId }),
+        body: JSON.stringify({ questionId, completed: true }),
       });
       if (!response.ok) throw new Error("Failed to mark complete");
-
-      setQuestions((prev) =>
-        prev.map((q) => (q.questionId === questionId ? { ...q, completed: true } : q))
-      );
     } catch (error) {
       console.error(error);
     }
   };
+  
 
   const handleNoteChange = (questionId: string, note: string) => {
     setNotes({
