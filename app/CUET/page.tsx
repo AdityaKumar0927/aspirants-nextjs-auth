@@ -7,23 +7,10 @@ import "katex/dist/katex.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Question from "@/components/shared/Question";
-import rawQuestionsData from "public/CUET.json";
 import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
-
-interface RawQuestionType {
-  questionId: string;
-  text: string;
-  subject: string;
-  difficulty: string;
-  type: string;
-  year: string;
-  options?: string[];
-  correctOption?: string;
-  markscheme?: string;
-}
 
 interface QuestionType {
   questionId: string;
@@ -40,21 +27,9 @@ interface QuestionType {
   notes?: string;
 }
 
-const questionsData: QuestionType[] = (rawQuestionsData as RawQuestionType[]).map(
-  (q) => ({
-    ...q,
-    type: q.type as "Multiple Choice" | "Numerical",
-    reviewed: false,
-    completed: false,
-    notes: "",
-  })
-);
-
 const QuestionBank: React.FC = () => {
-  const [questions, setQuestions] = useState<QuestionType[]>(questionsData);
-  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>(
-    questionsData
-  );
+  const [questions, setQuestions] = useState<QuestionType[]>([]);
+  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
   const [filters, setFilters] = useState({
     subject: "",
     difficulty: "",
@@ -69,19 +44,23 @@ const QuestionBank: React.FC = () => {
     type: false,
   });
   const [feedback, setFeedback] = useState<Record<string, string>>({});
-  const [numericalAnswers, setNumericalAnswers] = useState<
-    Record<string, string>
-  >({});
-  const [showMarkscheme, setShowMarkscheme] = useState<
-    Record<string, boolean>
-  >({});
+  const [numericalAnswers, setNumericalAnswers] = useState<Record<string, string>>({});
+  const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
-  const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(
-    false
-  );
-  const [notes, setNotes] = useState<Record<string, string>>({}); // State for notes
+  const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
+  const [notes, setNotes] = useState<Record<string, string>>({}); 
 
   const dropdownTimeout = useRef<Record<string, NodeJS.Timeout>>({});
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      const response = await fetch('/api/questions');
+      const data = await response.json();
+      setQuestions(data);
+      setFilteredQuestions(data);
+    };
+    fetchQuestions();
+  }, []);
 
   const filterQuestions = useCallback(() => {
     let filtered = questions.filter((question) => {
@@ -143,29 +122,27 @@ const QuestionBank: React.FC = () => {
 
   const handleMarkschemeToggle = (questionId: string, markscheme: string) => {
     setMarkschemeContent(markscheme);
-    
   };
 
-  const handleMarkForReview = (questionId: string) => {
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.questionId === questionId ? { ...q, reviewed: !q.reviewed } : q
-      )
-    );
+  const handleMarkForReview = async (questionId: string) => {
+    await fetch("/api/markForReview", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ questionId, reviewed: true }),
+    });
   };
 
-  const handleMarkComplete = (questionId: string) => {
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.questionId === questionId ? { ...q, completed: true } : q
-      )
-    );
+  const handleMarkComplete = async (questionId: string) => {
+    await fetch("/api/markComplete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ questionId, completed: true }),
+    });
   };
 
   const generatePDF = async () => {
     const doc = new jsPDF();
 
-    // Generate Question Paper
     const questionPaperElement = document.createElement("div");
     questionPaperElement.style.padding = "10px";
     questionPaperElement.style.fontSize = "12px";
@@ -189,7 +166,6 @@ const QuestionBank: React.FC = () => {
     const questionPaperImage = questionPaperCanvas.toDataURL("image/png");
     doc.addImage(questionPaperImage, "PNG", 10, 10, 180, 160);
 
-    // Add a new page for the markscheme
     doc.addPage();
     const markschemeElement = document.createElement("div");
     markschemeElement.style.padding = "10px";
@@ -245,9 +221,8 @@ const QuestionBank: React.FC = () => {
         </h1>
         <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
             AI Generated Solutions
-            </span>
-        <div className="flex space-x-4 mb-6">
-        </div>
+        </span>
+        <div className="flex space-x-4 mb-6"></div>
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
           {["subject", "difficulty", "year", "type"].map((filterType) => (
             <Popover
@@ -346,9 +321,9 @@ const QuestionBank: React.FC = () => {
         >
           <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
             <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
-            <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
-            AI Generated Solution
-            </span>
+              <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
+                AI Generated Solution
+              </span>
               <h2 className="font-display text-2xl font-bold">Markscheme</h2>
             </div>
             <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">

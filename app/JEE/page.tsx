@@ -152,20 +152,22 @@ const QuestionBank: React.FC = () => {
     
   };
 
-  const handleMarkForReview = (questionId: string) => {
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.questionId === questionId ? { ...q, reviewed: !q.reviewed } : q
-      )
-    );
+  const handleMarkForReview = async (questionId: string) => {
+    await fetch("/api/markForReview", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ questionId, reviewed: true }),
+    });
+    // Update local state as needed
   };
 
-  const handleMarkComplete = (questionId: string) => {
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.questionId === questionId ? { ...q, completed: true } : q
-      )
-    );
+  const handleMarkComplete = async (questionId: string) => {
+    await fetch("/api/markComplete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ questionId, completed: true }),
+    });
+    // Update local state as needed
   };
 
   const generatePDF = async () => {
