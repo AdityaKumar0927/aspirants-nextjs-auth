@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+:root {
+  --theme-bg-color: rgba(16, 18, 27, 0.4);
+  --border-color: rgba(113, 119, 144, 0.25);
+  --theme-color: #f9fafb;
+  --inactive-color: rgba(113, 119, 144, 0.78);
+  --body-font: "Poppins", sans-serif;
+  --hover-menu-bg: rgba(12, 15, 25, 0.3);
+  --content-title-color: #999ba5;
+  --content-bg: rgba(146, 151, 179, 0.13);
+  --button-inactive: rgba(249, 250, 251, 0.55);
+  --dropdown-bg: #21242d;
+  --dropdown-hover: rgb(42, 46, 60);
+  --popup-bg: rgb(22, 25, 37);
+  --search-bg: #14162b;
+  --overlay-bg: rgba(36, 39, 59, 0.3);
+  --scrollbar-bg: rgba(1, 2, 3, 0.4);
+}
+
+.light-mode {
+  --theme-bg-color: rgba(255, 255, 255, 0.31);
+  --theme-color: #3c3a3a;
+  --inactive-color: #333333;
+  --button-inactive: #3c3a3a;
+  --search-bg: rgba(255, 255, 255, 0.31);
+  --dropdown-bg: #f7f7f7;
+  --overlay-bg: rgba(255, 255, 255, 0.3);
+  --dropdown-hover: rgb(236, 236, 236);
+  --border-color: rgba(255, 255, 255, 0.35);
+  --popup-bg: rgb(255, 255, 255);
+  --hover-menu-bg: rgba(255, 255, 255, 0.35);
+  --scrollbar-bg: rgba(255, 253, 253, 0.57);
+  --content-title-color: var(--theme-color);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-bg);
+  border-radius: 10px;
+}

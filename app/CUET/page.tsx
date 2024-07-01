@@ -47,38 +47,40 @@ const QuestionBank: React.FC = () => {
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
+  const userId = ""; // Add logic to retrieve user ID if signed in
 
   const dropdownTimeout = useRef<Record<string, NodeJS.Timeout>>({});
-
-  const userId = "sample-user-id"; // Replace with actual user ID retrieval logic
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const [questionsResponse, progressResponse] = await Promise.all([
-          fetch("/api/questions"),
-          fetch("/api/user-progress"),
-        ]);
-
-        if (!questionsResponse.ok || !progressResponse.ok) throw new Error("Failed to fetch data");
+        const questionsResponse = await fetch("/api/questions");
+        if (!questionsResponse.ok) throw new Error("Failed to fetch questions");
 
         const questionsData = await questionsResponse.json();
-        const userProgressData = await progressResponse.json();
 
-        const mergedQuestions = questionsData.map((question: QuestionType) => {
-          const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
-          return { ...question, ...progress };
-        });
+        if (userId) {
+          const progressResponse = await fetch("/api/user-progress");
+          if (!progressResponse.ok) throw new Error("Failed to fetch user progress");
 
-        setQuestions(mergedQuestions);
-        setFilteredQuestions(mergedQuestions);
+          const userProgressData = await progressResponse.json();
+          const mergedQuestions = questionsData.map((question: QuestionType) => {
+            const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
+            return { ...question, ...progress };
+          });
+          setQuestions(mergedQuestions);
+          setFilteredQuestions(mergedQuestions);
+        } else {
+          setQuestions(questionsData);
+          setFilteredQuestions(questionsData);
+        }
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchQuestions();
-  }, []);
+  }, [userId]);
 
   const subjects = Array.from(new Set(questions.map((q) => q.subject)));
   const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
@@ -117,41 +119,45 @@ const QuestionBank: React.FC = () => {
   };
 
   const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
-    try {
-      const response = await fetch("/api/markComplete", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId, completed: isComplete }),
-      });
-      if (!response.ok) throw new Error("Failed to update completion status");
-
-      setQuestions((prevQuestions) =>
-        prevQuestions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: isComplete } : q
-        )
-      );
-    } catch (error) {
-      console.error(error);
+    if (userId) {
+      try {
+        const response = await fetch("/api/markComplete", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ questionId, completed: isComplete }),
+        });
+        if (!response.ok) throw new Error("Failed to update completion status");
+      } catch (error) {
+        console.error(error);
+      }
     }
+
+    setQuestions((prevQuestions) =>
+      prevQuestions.map((q) =>
+        q.questionId === questionId ? { ...q, completed: isComplete } : q
+      )
+    );
   };
 
   const handleMarkForReview = async (questionId: string, isReviewed: boolean) => {
-    try {
-      const response = await fetch("/api/markForReview", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId, reviewed: isReviewed }),
-      });
-      if (!response.ok) throw new Error("Failed to update review status");
-
-      setQuestions((prevQuestions) =>
-        prevQuestions.map((q) =>
-          q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
-        )
-      );
-    } catch (error) {
-      console.error(error);
+    if (userId) {
+      try {
+        const response = await fetch("/api/markForReview", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ questionId, reviewed: isReviewed }),
+        });
+        if (!response.ok) throw new Error("Failed to update review status");
+      } catch (error) {
+        console.error(error);
+      }
     }
+
+    setQuestions((prevQuestions) =>
+      prevQuestions.map((q) =>
+        q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
+      )
+    );
   };
 
   const handleOptionClick = (questionId: string, option: string, correctOption: string) => {
@@ -186,27 +192,26 @@ const QuestionBank: React.FC = () => {
         <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
           AI Generated Solutions
         </span>
-        
+
         <div className="flex space-x-4 mb-6"></div>
 
         <div className="flex space-x-4 mb-2">
-  {["all", "complete", "review"].map((status) => (
-    <button
-      key={status}
-      onClick={() => handleFilterChange("status", status)}
-      className={`px-4 py-2 rounded-md ${
-        filters.status === status
-          ? "bg-white border hover:border-black border-gray-600 text-gray-500"
-          : "bg-white hover:border-black border border-gray-300 text-gray-500"
-      }`}
-    >
-      {status.charAt(0).toUpperCase() + status.slice(1)}
-    </button>
-  ))}
-</div>
-        
+          {["all", "complete", "review"].map((status) => (
+            <button
+              key={status}
+              onClick={() => handleFilterChange("status", status)}
+              className={`px-4 py-2 rounded-md ${
+                filters.status === status
+                  ? "bg-white border hover:border-black border-gray-600 text-gray-500"
+                  : "bg-white hover:border-black border border-gray-300 text-gray-500"
+              }`}
+            >
+              {status.charAt(0).toUpperCase() + status.slice(1)}
+            </button>
+          ))}
+        </div>
+
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-          
           {["subject", "difficulty", "year", "type"].map((filterType) => (
             <Popover
               key={filterType}
