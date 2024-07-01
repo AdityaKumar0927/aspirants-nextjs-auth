@@ -11,12 +11,19 @@ interface DashboardModalProps {
 const DashboardModal: React.FC<DashboardModalProps> = ({ showModal, setShowModal }) => {
   return (
     <Modal showModal={showModal} setShowModal={setShowModal}>
+  
+      <div className="video-bg fixed inset-0">
+        <video className="h-8/12 w-8/12" autoPlay loop muted>
+          <source src="https://assets.codepen.io/3364143/7btrrd.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
       <div className="dark-light fixed bottom-12 right-12 p-2 bg-gray-800 shadow-md rounded-full cursor-pointer z-20">
         <svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-yellow-400">
           <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
         </svg>
       </div>
-      <div className="app bg-opacity-40 backdrop-filter backdrop-blur-lg max-w-7xl w-full rounded-lg p-8 shadow-lg text-white"> {/* Updated width class */}
+      <div className="app bg-opacity-40 backdrop-filter backdrop-blur-lg h-8/12 w-8/12 rounded-lg p-8 shadow-lg text-white">
         <div className="header flex items-center border-b border-opacity-25 pb-4 mb-6">
           <div className="menu-circle w-4 h-4 bg-red-500 rounded-full mr-8"></div>
           <div className="header-menu flex space-x-6">
@@ -284,7 +291,7 @@ const DashboardModal: React.FC<DashboardModalProps> = ({ showModal, setShowModal
             </div>
           </div>
         </div>
-        <div className="overlay-app fixed inset-0 bg-opacity-85 bg-blue-300 z-10"></div>
+        <div className="overlay-app fixed inset-0 bg-opacity-75 bg-black z-10"></div>
       </div>
     
     </Modal>
