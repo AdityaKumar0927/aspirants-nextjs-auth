@@ -2,6 +2,15 @@
 
 import { useState } from "react";
 import Modal from "@/components/shared/modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookF,
+  faTwitter,
+  faInstagram,
+  faYoutube,
+  faTiktok,
+  faLinkedinIn,
+} from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
@@ -9,49 +18,91 @@ export default function Footer() {
   const [showTermsModal, setShowTermsModal] = useState(false);
 
   return (
-    <div className="relative w-full py-5 text-center">
-     <div className="bg-white shadow-md py-8 mt-10">
-  <div className="container mx-auto px-4">
-    <div className="flex flex-col md:flex-row justify-center md:space-x-8 text-center md:text-left space-y-4 md:space-y-0">
-      <div>
-        <h3 className="font-bold mb-4">Resources</h3>
-        <ul>
-          <li className="mb-2"><a href="feature-requests" className="text-gray-600 hover:text-gray-800">Suggest Features</a></li>
-          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Help Center</a></li>
-          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Support</a></li>
-          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Events</a></li>
-        </ul>
+    <div className="bg-white shadow-md py-8 mt-10">
+      <div className="container mx-auto px-4">
+      <header className="mb-12">
+                        <h1 className="font-display text-2xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">aspirants</h1>
+                        <p className="text-gray-600 mb-2">Providing quality resources for<br />a better education</p>
+                        <p className="text-gray-400 text-sm">© 2024 aspirants.tech</p>
+                        <div className="flex space-x-4 mt-4">
+                            <a href="#" className="text-gray-400 hover:text-gray-600"><i className="fab fa-twitter"></i></a>
+                            <a href="#" className="text-gray-400 hover:text-gray-600"><i className="fab fa-github"></i></a>
+                            <a href="#" className="text-gray-400 hover:text-gray-600"><i className="fab fa-linkedin"></i></a>
+                            <a href="#" className="text-gray-400 hover:text-gray-600"><i className="fab fa-youtube"></i></a>
+                        </div>
+                    </header>
+        <div className="flex flex-wrap -mx-4">
+          <div className="w-full md:w-1/4 px-4 mb-8">
+            <h2 className="font-semibold text-lg mb-4">Resources</h2>
+            <ul className="space-y-2 text-gray-600">
+              <li><a href="feature-requests" className="text-gray-600 hover:text-gray-800">Suggest Features</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Help Center</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Support</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Events</a></li>
+            </ul>
+          </div>
+          <div className="w-full md:w-1/4 px-4 mb-8">
+            <h2 className="font-semibold text-lg mb-4">About</h2>
+            <ul className="space-y-2 text-gray-600">
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Our Story</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Media Kit</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Blog</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Careers</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Email us</a></li>
+            </ul>
+          </div>
+          <div className="w-full md:w-1/4 px-4 mb-8">
+            <h2 className="font-semibold text-lg mb-4">Legal</h2>
+            <ul className="space-y-2 text-gray-600">
+              <li><a href="#" className="text-gray-600 hover:text-gray-800" onClick={() => setShowPrivacyModal(true)}>Privacy</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800" onClick={() => setShowTermsModal(true)}>Terms</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800" onClick={() => setShowCookieModal(true)}>Cookies</a></li>
+            </ul>
+          </div>
+          <div className="w-full md:w-1/4 px-4 mb-8">
+            <h2 className="font-semibold text-lg mb-4">Tools</h2>
+            <ul className="space-y-2 text-gray-600">
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Question Bank</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Mock Exam</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">PDF to Exam/Assignments/Question Banks</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Academic Planner</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Summer Courses</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Productivity Extensions</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Monthly Meet Ups</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-800">Teacher's Guide</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-8">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+            <span className="w-2 h-2 mr-2 bg-green-400 rounded-full"></span>
+            All systems operational
+          </span>
+        </div>
+        <div className="flex justify-center space-x-4 mt-4">
+          <a href="#" className="text-gray-600 hover:text-gray-800">
+            <FontAwesomeIcon icon={faFacebookF} />
+          </a>
+          <a href="#" className="text-gray-600 hover:text-gray-800">
+            <FontAwesomeIcon icon={faTwitter} />
+          </a>
+          <a href="#" className="text-gray-600 hover:text-gray-800">
+            <FontAwesomeIcon icon={faInstagram} />
+          </a>
+          <a href="#" className="text-gray-600 hover:text-gray-800">
+            <FontAwesomeIcon icon={faYoutube} />
+          </a>
+          <a href="#" className="text-gray-600 hover:text-gray-800">
+            <FontAwesomeIcon icon={faTiktok} />
+          </a>
+          <a href="#" className="text-gray-600 hover:text-gray-800">
+            <FontAwesomeIcon icon={faLinkedinIn} />
+          </a>
+        </div>
+        <div className="text-center text-gray-600 mt-4">
+          &copy; 2024 aspirants.tech. All rights reserved.
+        </div>
       </div>
-      <div>
-        <h3 className="font-bold mb-4">About</h3>
-        <ul>
-          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Our Story</a></li>
-          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Media Kit</a></li>
-          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Blog</a></li>
-          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Careers</a></li>
-          <li className="mb-2"><a href="#" className="text-gray-600 hover:text-gray-800">Email us</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div className="flex flex-col md:flex-row justify-center items-center mt-10 text-gray-600 space-y-2 md:space-y-0 md:space-x-4">
-      <a href="#" className="hover:underline" onClick={() => setShowCookieModal(true)}>Cookie Statement</a>
-      <a href="#" className="hover:underline" onClick={() => setShowTermsModal(true)}>Terms of Service</a>
-      <a href="#" className="hover:underline" onClick={() => setShowPrivacyModal(true)}>Privacy Policy</a>
-    </div>
-    <div className="flex justify-center space-x-4 mt-4">
-      <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-facebook-f"></i></a>
-      <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-twitter"></i></a>
-      <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-instagram"></i></a>
-      <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-youtube"></i></a>
-      <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-tiktok"></i></a>
-      <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-linkedin-in"></i></a>
-    </div>
-    <div className="text-center text-gray-600 mt-4">
-      &copy; 2024 aspirants.tech. All rights reserved.
-    </div>
-  </div>
-</div>
 
       <Modal showModal={showPrivacyModal} setShowModal={setShowPrivacyModal} className="max-w-2xl">
         <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">

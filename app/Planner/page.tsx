@@ -9,27 +9,23 @@ import {
   faEdit,
   faTrash,
   faBell,
+  faStar,
   faUser,
-  faStickyNote,
-  faExclamationCircle,
+  faHome,
   faFlag,
-  faFileUpload,
-  faUsers,
-  faCommentDots,
-  faChartBar,
-  faHeart,
-  faPaintBrush,
-  faMobileAlt,
-  faLink,
+  faShoppingCart,
+  faList,
+  faSearch,
+  faLightbulb,
+  faEllipsisH,
   faCheck,
   faTimesCircle,
-  faStopCircle,
-  faPlayCircle,
-  faPauseCircle,
+  faClock,
+  faBook,
+  faSun,
 } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import PomodoroTimer from "@/components/shared/PomodoroTimer";
 import Modal from "@/components/shared/modal";
 
 // Interfaces
@@ -59,10 +55,15 @@ interface Assignment {
   progress: "not started" | "in progress" | "completed";
 }
 
-// Utility function to parse dates correctly
-const parseDate = (date: string | Date) => {
-  return typeof date === "string" ? new Date(date) : date;
-};
+interface TimeBlock {
+  id: number;
+  title: string;
+  startTime: Date;
+  endTime: Date;
+  day: string;
+  type: "class" | "study" | "break" | "other";
+  color: string;
+}
 
 const Planner = () => {
   // State hooks
@@ -93,37 +94,60 @@ const Planner = () => {
     progress: "not started",
   });
   const [showNewAssignmentModal, setShowNewAssignmentModal] = useState(false);
-  const [filter, setFilter] = useState<"all" | "completed" | "incomplete">(
-    "all"
-  );
+  const [filter, setFilter] = useState<"all" | "completed" | "incomplete">("all");
+  const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [timeBlocks, setTimeBlocks] = useState<TimeBlock[]>([]);
+  const [newTimeBlock, setNewTimeBlock] = useState<TimeBlock>({
+    id: 0,
+    title: "",
+    startTime: new Date(),
+    endTime: new Date(),
+    day: "Monday",
+    type: "class",
+    color: "#000000",
+  });
 
   // Load data from localStorage
   useEffect(() => {
     const savedGoals = localStorage.getItem("goals");
     const savedEvents = localStorage.getItem("events");
     const savedAssignments = localStorage.getItem("assignments");
-    if (savedGoals)
+    const savedTimeBlocks = localStorage.getItem("timeBlocks");
+
+    if (savedGoals) {
       setGoals(
         JSON.parse(savedGoals).map((goal: Goal) => ({
           ...goal,
-          deadline: goal.deadline ? parseDate(goal.deadline) : null,
-          reminders: goal.reminders.map(parseDate),
+          deadline: goal.deadline ? new Date(goal.deadline) : null,
+          reminders: goal.reminders.map((date) => new Date(date)),
         }))
       );
-    if (savedEvents)
+    }
+    if (savedEvents) {
       setEvents(
         JSON.parse(savedEvents).map((event: Event) => ({
           ...event,
-          date: parseDate(event.date),
+          date: new Date(event.date),
         }))
       );
-    if (savedAssignments)
+    }
+    if (savedAssignments) {
       setAssignments(
         JSON.parse(savedAssignments).map((assignment: Assignment) => ({
           ...assignment,
-          dueDate: parseDate(assignment.dueDate),
+          dueDate: new Date(assignment.dueDate),
         }))
       );
+    }
+    if (savedTimeBlocks) {
+      setTimeBlocks(
+        JSON.parse(savedTimeBlocks).map((block: TimeBlock) => ({
+          ...block,
+          startTime: new Date(block.startTime),
+          endTime: new Date(block.endTime),
+        }))
+      );
+    }
   }, []);
 
   // Save data to localStorage
@@ -131,7 +155,8 @@ const Planner = () => {
     localStorage.setItem("goals", JSON.stringify(goals));
     localStorage.setItem("events", JSON.stringify(events));
     localStorage.setItem("assignments", JSON.stringify(assignments));
-  }, [goals, events, assignments]);
+    localStorage.setItem("timeBlocks", JSON.stringify(timeBlocks));
+  }, [goals, events, assignments, timeBlocks]);
 
   // Goal handlers
   const handleNewGoal = () => setShowNewGoalModal(true);
@@ -227,7 +252,29 @@ const Planner = () => {
     setShowNewAssignmentModal(false);
   };
 
-  // Utility functions
+  // Time block handlers
+  const handleNewTimeBlock = (e: React.FormEvent) => {
+    e.preventDefault();
+    setTimeBlocks([...timeBlocks, { ...newTimeBlock, id: timeBlocks.length + 1 }]);
+    setNewTimeBlock({
+      id: 0,
+      title: "",
+      startTime: new Date(),
+      endTime: new Date(),
+      day: "Monday",
+      type: "class",
+      color: "#000000",
+    });
+    setShowScheduleModal(false);
+  };
+
+  const handleDeleteTimeBlock = (id: number) => {
+    setTimeBlocks(timeBlocks.filter((block) => block.id !== id));
+  };
+
+  const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+  // Filtered goals
   const filteredGoals = goals.filter((goal) => {
     if (filter === "completed") return goal.completed;
     if (filter === "incomplete") return !goal.completed;
@@ -235,158 +282,175 @@ const Planner = () => {
   });
 
   return (
-    <div className="w-full h-full bg-white p-4 sm:p-8 flex flex-col items-center">
-      <header className="w-full max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center py-6 border-b border-gray-200">
-        <h1 className="text-gray-900 font-display text-4xl font-bold tracking-tight drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
-          Academic Planner
-        </h1>
-        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4 sm:mt-0">
-          <button
-            className="relative font-medium group flex items-center bg-black text-white px-5 py-3 rounded-lg transition duration-300 transform"
-            onClick={handleNewGoal}
-          >
-            <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0 rounded-lg"></span>
-            <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black rounded-lg"></span>
-            <span className="relative text-black group-hover:text-white flex items-center">
-              <FontAwesomeIcon icon={faPlus} className="mr-2" />
-              New Goal
-            </span>
-          </button>
-
-          <button
-            className="relative font-medium group flex items-center bg-black text-white px-5 py-3 rounded-lg transition duration-300 transform"
-            onClick={handleNewEvent}
-          >
-            <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0 rounded-lg"></span>
-            <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black rounded-lg"></span>
-            <span className="relative text-black group-hover:text-white flex items-center">
-              <FontAwesomeIcon icon={faPlus} className="mr-2" />
-              New Event
-            </span>
-          </button>
-
-          <button
-            className="relative font-medium group flex items-center bg-black text-white px-5 py-3 rounded-lg transition duration-300 transform"
-            onClick={handleNewAssignment}
-          >
-            <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0 rounded-lg"></span>
-            <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black rounded-lg"></span>
-            <span className="relative text-black group-hover:text-white flex items-center">
-              <FontAwesomeIcon icon={faPlus} className="mr-2" />
-              New Assignment
-            </span>
-          </button>
-        </div>
-      </header>
-
-      <main className="w-full max-w-6xl mx-auto mt-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="p-6 bg-gray-100 rounded-lg shadow hover-glow">
-            <div className="flex items-center mb-4">
-              <FontAwesomeIcon icon={faCalendar} className="text-gray-500 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">Upcoming Events</h2>
-            </div>
-            {events.length === 0 ? (
-              <p className="text-gray-600">No upcoming events</p>
-            ) : (
-              <ul className="list-disc list-inside">
-                {events.map((event) => (
-                  <li key={event.id} className="text-gray-700">
-                    <strong>{event.title}</strong>: {event.description} on {event.date.toDateString()}
-                  </li>
-                ))}
-              </ul>
-            )}
+    <div className="flex h-screen bg-black text-white">
+      {/* Left Sidebar */}
+      <div className="w-64 bg-gray-900 p-4">
+        <div className="flex items-center mb-6">
+          <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-xl font-bold mr-3">AK</div>
+          <div>
+            <div className="font-semibold">Aditya Kumar</div>
+            <div className="text-xs text-gray-400">artistaadityakumar@gmail.com</div>
           </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow hover-glow">
-            <div className="flex items-center mb-4">
-              <FontAwesomeIcon icon={faTasks} className="text-gray-500 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">To-Do List</h2>
-              <div className="ml-auto">
-                <select
-                  value={filter}
-                  onChange={(e) => setFilter(e.target.value as "all" | "completed" | "incomplete")}
-                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500"
-                >
-                  <option value="all">All</option>
-                  <option value="completed">Completed</option>
-                  <option value="incomplete">Incomplete</option>
-                </select>
-              </div>
+        </div>
+        <div className="mb-4">
+          <input type="text" placeholder="Search" className="w-full bg-gray-800 rounded px-3 py-2 text-sm" />
+        </div>
+        <nav>
+          <ul className="space-y-2">
+            <li className="flex items-center text-white"><FontAwesomeIcon icon={faSun} className="mr-3" /> My Day <span className="ml-auto">{goals.filter(g => !g.completed).length}</span></li>
+            <li className="flex items-center"><FontAwesomeIcon icon={faStar} className="mr-3" /> Important</li>
+            <li className="flex items-center"><FontAwesomeIcon icon={faCalendar} className="mr-3" /> Planned <span className="ml-auto">{events.length}</span></li>
+            <li className="flex items-center"><FontAwesomeIcon icon={faUser} className="mr-3" /> Assigned to me</li>
+            <li className="flex items-center"><FontAwesomeIcon icon={faHome} className="mr-3" /> Tasks <span className="ml-auto">{goals.length}</span></li>
+            <li className="flex items-center"><FontAwesomeIcon icon={faFlag} className="mr-3" /> Getting started <span className="ml-auto">{assignments.length}</span></li>
+            <li className="flex items-center"><FontAwesomeIcon icon={faShoppingCart} className="mr-3" /> Groceries</li>
+            <li className="flex items-center"><FontAwesomeIcon icon={faList} className="mr-3" /> Untitled list</li>
+          </ul>
+        </nav>
+        <div className="absolute bottom-4 left-4">
+          <button className="flex items-center text-sm" onClick={handleNewGoal}><FontAwesomeIcon icon={faPlus} className="mr-2" /> New list</button>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        <div className="flex-1 bg-gray-800 p-8 relative overflow-y-auto">
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-3xl font-bold">My Schedule</h1>
+            <div className="flex space-x-2">
+              <button className="p-2 bg-gray-700 rounded" onClick={() => setShowScheduleModal(true)}>
+                <FontAwesomeIcon icon={faPlus} /> Add Time Block
+              </button>
+              <button className="p-2 bg-gray-700 rounded" onClick={handleNewEvent}>
+                <FontAwesomeIcon icon={faPlus} /> Add Event
+              </button>
+              <button className="p-2 bg-gray-700 rounded" onClick={handleNewAssignment}>
+                <FontAwesomeIcon icon={faPlus} /> Add Assignment
+              </button>
             </div>
-            {filteredGoals.length === 0 ? (
-              <p className="text-gray-600">No tasks assigned</p>
-            ) : (
-              <ul className="list-disc list-inside">
-                {filteredGoals.map((goal) => (
-                  <li key={goal.id} className="text-gray-700 flex justify-between items-center">
-                    <div>
-                      <strong>{goal.title}</strong>: {goal.description}
-                      {goal.deadline && (
-                        <p className="text-sm text-gray-500">Deadline: {goal.deadline.toDateString()}</p>
-                      )}
-                    </div>
-                    <div className="flex items-center space-x-2">
+          </div>
+
+          <div className="grid grid-cols-7 gap-4 mb-8">
+            {weekDays.map((day) => (
+              <div key={day} className="bg-gray-700 p-4 rounded-lg">
+                <h3 className="text-lg font-semibold mb-2">{day}</h3>
+                {timeBlocks
+                  .filter((block) => block.day === day)
+                  .sort((a, b) => a.startTime.getTime() - b.startTime.getTime())
+                  .map((block) => (
+                    <div
+                      key={block.id}
+                      className="mb-2 p-2 rounded-md"
+                      style={{ backgroundColor: block.color }}
+                    >
+                      <p className="font-medium">{block.title}</p>
+                      <p className="text-sm">
+                        {block.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - 
+                        {block.endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </p>
+                      <p className="text-xs">{block.type}</p>
                       <button
-                        className={`text-${goal.completed ? "green" : "gray"}-600 hover:text-${goal.completed ? "green" : "gray"}-800`}
-                        onClick={() => toggleGoalCompletion(goal.id)}
-                      >
-                        <FontAwesomeIcon icon={goal.completed ? faCheck : faTimesCircle} />
-                      </button>
-                      <button
-                        className="text-blue-600 hover:text-blue-800"
-                        onClick={() => handleEditGoal(goal)}
-                      >
-                        <FontAwesomeIcon icon={faEdit} />
-                      </button>
-                      <button
-                        className="text-red-600 hover:text-red-800"
-                        onClick={() => handleDeleteGoal(goal.id)}
+                        className="text-red-600 hover:text-red-800 mt-1"
+                        onClick={() => handleDeleteTimeBlock(block.id)}
                       >
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
                     </div>
-                  </li>
-                ))}
-              </ul>
-            )}
+                  ))}
+              </div>
+            ))}
           </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow hover-glow">
-            <div className="flex items-center mb-4">
-              <FontAwesomeIcon icon={faBell} className="text-gray-500 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">Reminders</h2>
-            </div>
-            {goalReminders.length === 0 ? (
-              <p className="text-gray-600">No reminders set</p>
-            ) : (
-              <ul className="list-disc list-inside">
-                {goalReminders.map((reminder, index) => (
-                  <li key={index} className="text-gray-700">
-                    Reminder set for {reminder.toDateString()}
-                  </li>
-                ))}
-              </ul>
-            )}
+
+          <h2 className="text-2xl font-bold mb-4">Goals</h2>
+          <div className="mb-4">
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value as "all" | "completed" | "incomplete")}
+              className="bg-gray-700 text-white rounded px-3 py-2"
+            >
+              <option value="all">All</option>
+              <option value="completed">Completed</option>
+              <option value="incomplete">Incomplete</option>
+            </select>
           </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow hover-glow">
-            <div className="flex items-center mb-4">
-              <FontAwesomeIcon icon={faFlag} className="text-gray-500 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">Assignments</h2>
-            </div>
-            {assignments.length === 0 ? (
-              <p className="text-gray-600">No assignments added</p>
-            ) : (
-              <ul className="list-disc list-inside">
-                {assignments.map((assignment) => (
-                  <li key={assignment.id} className="text-gray-700">
-                    <strong>{assignment.title}</strong>: {assignment.description} due on {assignment.dueDate.toDateString()}
-                  </li>
-                ))}
-              </ul>
-            )}
+          <div className="space-y-3">
+            {filteredGoals.map((goal) => (
+              <div key={goal.id} className="bg-gray-700 p-3 rounded-lg flex items-center">
+                <button
+                  className={`mr-3 text-${goal.completed ? "green" : "gray"}-600 hover:text-${goal.completed ? "green" : "gray"}-800`}
+                  onClick={() => toggleGoalCompletion(goal.id)}
+                >
+                  <FontAwesomeIcon icon={goal.completed ? faCheck : faTimesCircle} />
+                </button>
+                <div>
+                  <p className="font-medium">{goal.title}</p>
+                  <p className="text-sm text-gray-400">{goal.description}</p>
+                  {goal.deadline && (
+                    <p className="text-sm text-gray-400">Deadline: {goal.deadline.toDateString()}</p>
+                  )}
+                </div>
+                <div className="ml-auto flex space-x-2">
+                  <button
+                    className="text-blue-600 hover:text-blue-800"
+                    onClick={() => handleEditGoal(goal)}
+                  >
+                    <FontAwesomeIcon icon={faEdit} />
+                  </button>
+                  <button
+                    className="text-red-600 hover:text-red-800"
+                    onClick={() => handleDeleteGoal(goal.id)}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </main>
+      </div>
+
+      {/* Right Sidebar */}
+      <div className="w-80 bg-gray-900 p-4">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold">Upcoming Events</h2>
+          <button><FontAwesomeIcon icon={faEllipsisH} /></button>
+        </div>
+        <div className="mb-4">
+          {events.map((event) => (
+            <div key={event.id} className="mb-2">
+              <div className="flex justify-between items-center mb-1">
+                <p>{event.date.toDateString()}</p>
+                <button><FontAwesomeIcon icon={faEllipsisH} /></button>
+              </div>
+              <div className="flex items-center">
+                <FontAwesomeIcon icon={faCalendar} className="mr-3" />
+                <div>
+                  <p className="font-medium">{event.title}</p>
+                  <p className="text-sm text-gray-400">{event.type} • {event.date.toDateString()}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div>
+          <h2 className="text-xl font-bold mb-2">Assignments</h2>
+          <div className="space-y-3">
+            {assignments.map((assignment) => (
+              <div key={assignment.id} className="flex items-center">
+                <FontAwesomeIcon icon={faFlag} className="mr-3" />
+                <div>
+                  <p className="font-medium">{assignment.title}</p>
+                  <p className="text-sm text-gray-400">Due: {assignment.dueDate.toDateString()}</p>
+                  <p className="text-xs text-gray-400">Priority: {assignment.priority}</p>
+                  <p className="text-xs text-gray-400">Progress: {assignment.progress}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Modals */}
       <Modal showModal={showNewGoalModal} setShowModal={setShowNewGoalModal}>
         <div className="w-full overflow-hidden shadow-xl md:max-w-md md:rounded-2xl md:border md:border-gray-200">
           <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
@@ -474,10 +538,11 @@ const Planner = () => {
           </div>
         </div>
       </Modal>
+
       <Modal showModal={showEditGoalModal} setShowModal={setShowEditGoalModal}>
         <div className="w-full overflow-hidden shadow-xl md:max-w-md md:rounded-2xl md:border md:border-gray-200">
           <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
-            <h3 className="font-display text-2xl font-bold">Edit Academic Goal</h3>
+            <h3 className="font-display text-2xl font-bold">Edit Goal</h3>
           </div>
           <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16">
             <form onSubmit={handleUpdateGoal}>
@@ -561,6 +626,7 @@ const Planner = () => {
           </div>
         </div>
       </Modal>
+
       <Modal showModal={showNewEventModal} setShowModal={setShowNewEventModal}>
         <div className="w-full overflow-hidden shadow-xl md:max-w-md md:rounded-2xl md:border md:border-gray-200">
           <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
@@ -632,6 +698,7 @@ const Planner = () => {
           </div>
         </div>
       </Modal>
+
       <Modal showModal={showNewAssignmentModal} setShowModal={setShowNewAssignmentModal}>
         <div className="w-full overflow-hidden shadow-xl md:max-w-md md:rounded-2xl md:border md:border-gray-200">
           <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
@@ -696,6 +763,112 @@ const Planner = () => {
                   className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
                 >
                   Create Assignment
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal showModal={showScheduleModal} setShowModal={setShowScheduleModal}>
+        <div className="w-full overflow-hidden shadow-xl md:max-w-md md:rounded-2xl md:border md:border-gray-200">
+          <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
+            <h3 className="font-display text-2xl font-bold">Add Time Block</h3>
+          </div>
+          <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16">
+            <form onSubmit={handleNewTimeBlock}>
+              <div className="mb-4">
+                <label htmlFor="blockTitle" className="block text-gray-700 font-semibold mb-2">
+                  Title
+                </label>
+                <input
+                  type="text"
+                  id="blockTitle"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter block title"
+                  value={newTimeBlock.title}
+                  onChange={(e) => setNewTimeBlock({ ...newTimeBlock, title: e.target.value })}
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="blockDay" className="block text-gray-700 font-semibold mb-2">
+                  Day
+                </label>
+                <select
+                  id="blockDay"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={newTimeBlock.day}
+                  onChange={(e) => setNewTimeBlock({ ...newTimeBlock, day: e.target.value })}
+                >
+                  {weekDays.map((day) => (
+                    <option key={day} value={day}>{day}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="mb-4">
+                <label htmlFor="blockStartTime" className="block text-gray-700 font-semibold mb-2">
+                  Start Time
+                </label>
+                <DatePicker
+                  selected={newTimeBlock.startTime}
+                  onChange={(date) => setNewTimeBlock({ ...newTimeBlock, startTime: date as Date })}
+                  showTimeSelect
+                  showTimeSelectOnly
+                  timeIntervals={15}
+                  timeCaption="Time"
+                  dateFormat="h:mm aa"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="blockEndTime" className="block text-gray-700 font-semibold mb-2">
+                  End Time
+                </label>
+                <DatePicker
+                  selected={newTimeBlock.endTime}
+                  onChange={(date) => setNewTimeBlock({ ...newTimeBlock, endTime: date as Date })}
+                  showTimeSelect
+                  showTimeSelectOnly
+                  timeIntervals={15}
+                  timeCaption="Time"
+                  dateFormat="h:mm aa"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="blockType" className="block text-gray-700 font-semibold mb-2">
+                  Type
+                </label>
+                <select
+                  id="blockType"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={newTimeBlock.type}
+                  onChange={(e) => setNewTimeBlock({ ...newTimeBlock, type: e.target.value as "class" | "study" | "break" | "other" })}
+                >
+                  <option value="class">Class</option>
+                  <option value="study">Study</option>
+                  <option value="break">Break</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <label htmlFor="blockColor" className="block text-gray-700 font-semibold mb-2">
+                  Color
+                </label>
+                <input
+                  type="color"
+                  id="blockColor"
+                  className="w-full h-10 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={newTimeBlock.color}
+                  onChange={(e) => setNewTimeBlock({ ...newTimeBlock, color: e.target.value })}
+                />
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                >
+                  Add Time Block
                 </button>
               </div>
             </form>

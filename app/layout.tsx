@@ -15,38 +15,39 @@ export const metadata = {
   metadataBase: new URL("https://aspirants.tech/"),
 };
 
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head> <script
-            async
-            id="MathJax-script"
-            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-          ></script>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.MathJax = {
-                  tex: {
-                    inlineMath: [['$', '$'], ['\\(', '\\)']],
-                    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      <head>
+        <script
+          async
+          id="MathJax-script"
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.MathJax = {
+                tex: {
+                  inlineMath: [['$', '$'], ['\\(', '\\)']],
+                  displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                },
+                options: {
+                  skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+                },
+                startup: {
+                  ready: () => {
+                    window.MathJax.startup.defaultReady();
+                    window.MathJax.startup.promise.then(() => {
+                      console.log('MathJax is loaded, configured, and ready');
+                    });
                   },
-                  options: {
-                    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-                  },
-                  startup: {
-                    ready: () => {
-                      window.MathJax.startup.defaultReady();
-                      window.MathJax.startup.promise.then(() => {
-                        console.log('MathJax is loaded, configured, and ready');
-                      });
-                    },
-                  },
-                };
-              `,
-            }}
-          /><link
+                },
+              };
+            `,
+          }}
+        />
+        <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
           integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMGd8V0ER0VgLRW3UppZWW1tBgFO7VVHAb7FZk5"
@@ -65,7 +66,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               })();
             `,
           }}
-        /></head>
+        />
+      </head>
       <body className={cx(sfPro.variable, inter.variable, "bg-gradient-to-br from-indigo-50 via-white to-cyan-100")}>
         <div className="fixed inset-0 z-[-10]"></div>
         <Suspense fallback="...">

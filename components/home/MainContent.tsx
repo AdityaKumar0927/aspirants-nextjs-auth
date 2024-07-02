@@ -76,8 +76,8 @@ const MainContent: React.FC = () => {
       case 'home':
         return (
           <section className="flex justify-center py-4 md:py-16">
-            <div className="bg-white shadow-blue-300 rounded-lg overflow-hidden w-full max-w-4xl border-2">
-              <div className="flex items-center p-4 border-b border-blue-300"></div>
+            <div className="bg-white shadow-gray-300 shadow-2xl rounded-2xl overflow-hidden w-full max-w-4xl border-2">
+              <div className="flex items-center p-4 border-b"></div>
               <div className="flex flex-col md:flex-row">
                 <main className="w-full p-4">
                   <div className="flex items-center space-x-2 text-gray-500 text-sm mb-4">

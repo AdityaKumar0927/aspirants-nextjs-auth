@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
 import NotificationDropdown from "@/components/shared/NotificationDropdown";
+import Sidebar from "@/components/layout/Sidebar";
 import { Session } from "next-auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -28,6 +29,7 @@ export default function NavBar({ session }: { session: Session | null }) {
   return (
     <>
       <SignInModal />
+      {session && <Sidebar />}
       <div
         className={`fixed top-0 w-full flex justify-center ${
           scrolled
@@ -52,9 +54,6 @@ export default function NavBar({ session }: { session: Session | null }) {
             <ExamDropdown />
             <Link href="/BrowseResources" className="mr-4">
               Browse Resources
-            </Link>
-            <Link href="/Planner" className="mr-4">
-              Planner
             </Link>
             {session ? (
               <>
@@ -91,11 +90,6 @@ export default function NavBar({ session }: { session: Session | null }) {
             <Link href="/BrowseResources" onClick={toggleMenu}>
               <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
                 Browse Resources
-              </p>
-            </Link>
-            <Link href="/Planner" onClick={toggleMenu}>
-              <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
-                Planner
               </p>
             </Link>
             {session ? (

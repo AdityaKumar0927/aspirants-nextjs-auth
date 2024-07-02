@@ -71,84 +71,12 @@ export default async function Home() {
           </Link>
         </div>
       </div>
-      <MainContent />
-      <div className="my-10 grid w-full max-w-screen-xl animate-fade-up grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
-        {features.map(({ title, description, demo, large, icon }) => (
-          <Card
-            key={title}
-            title={title}
-            description={description}
-            demo={demo}
-            large={large}
-            icon={icon}
-          />
-        ))}
+      <div className="flex justify-between items-center">
+        <MainContent />
       </div>
+      
     </>
   );
 }
 
-const features = [
-  {
-    title: "Extensive Question Bank",
-    description:
-      "Access thousands of practice questions across various subjects and difficulty levels to help you prepare effectively.",
-    icon: faBookOpen,
-    large: true,
-  },
-  {
-    title: "Performance Analytics",
-    description:
-      "Track your performance with detailed analytics to understand your strengths and areas for improvement.",
-    demo: <WebVitals />,
-    icon: faChartLine,
-  },
-  {
-    title: "Useful Study Tools",
-    description:
-      "Utilize a range of study tools including flashcards, notes, and reminders to optimize your learning experience.",
-    demo: (
-      <div className="grid grid-flow-col grid-rows-3 gap-10 p-10">
-        <span className="font-mono font-semibold">Flashcards</span>
-        <span className="font-mono font-semibold">Study Notes</span>
-        <span className="font-mono font-semibold">Reminders</span>
-      </div>
-    ),
-    icon: faTools,
-  },
-  {
-    title: "Personalized Study Plans",
-    description:
-      "Get customized study plans based on your goals and progress to ensure you're on the right track.",
-    icon: faUserCog,
-    demo: <div className="flex items-center justify-center"><FontAwesomeIcon icon={faUserCog} size="3x" /></div>,
-  },
-  {
-    title: "Interactive Quizzes",
-    description:
-      "Engage in interactive quizzes to test your knowledge and prepare for exams in a fun way.",
-    icon: faClipboardList,
-    demo: <div className="flex items-center justify-center"><FontAwesomeIcon icon={faClipboardList} size="3x" /></div>,
-  },
-  {
-    title: "Community Support",
-    description:
-      "Join a community of learners, participate in discussions, and get support from peers and experts.",
-    icon: faUsers,
-    demo: <div className="flex items-center justify-center"><FontAwesomeIcon icon={faUsers} size="3x" /></div>,
-  },
-  {
-    title: "Daily Study Goals",
-    description:
-      "Set daily study goals to stay motivated and ensure consistent progress.",
-    icon: faBullseye,
-    demo: <div className="flex items-center justify-center"><FontAwesomeIcon icon={faBullseye} size="3x" /></div>,
-  },
-  {
-    title: "Resource Recommendations",
-    description:
-      "Get personalized recommendations for study resources based on your performance and interests.",
-    icon: faLightbulb,
-    demo: <div className="flex items-center justify-center"><FontAwesomeIcon icon={faLightbulb} size="3x" /></div>,
-  },
-];
+

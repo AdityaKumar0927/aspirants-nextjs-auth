@@ -3,6 +3,7 @@ import MathRenderer from "@/components/layout/MathRenderer";
 import Modal from "@/components/shared/modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faTag, faCog } from "@fortawesome/free-solid-svg-icons";
+import { Switch } from "@headlessui/react";
 
 interface QuestionType {
   questionId: string;
@@ -34,7 +35,6 @@ interface QuestionProps {
   handleNoteChange: (questionId: string, note: string) => void;
   userId: string; // Add this line
 }
-
 
 const Question: React.FC<QuestionProps> = ({
   question,
@@ -78,6 +78,10 @@ const Question: React.FC<QuestionProps> = ({
 
   const toggleSettingsModal = () => {
     setShowSettingsModal(!showSettingsModal);
+  };
+
+  const handleMarkschemeSwitch = () => {
+    setMarkschemeEnabled(!markschemeEnabled);
   };
 
   return (
@@ -143,14 +147,14 @@ const Question: React.FC<QuestionProps> = ({
           {question.options?.map((option: string, index: number) => (
             <div key={index} className="flex items-center space-x-2">
               <button
-                className={`px-4 py-2 rounded-md ${
+                className={`px-4 py-2 border-gray-500 border rounded ${
                   selectedOption === String.fromCharCode(65 + index)
                     ? feedback === 'correct'
                       ? 'bg-green-100 text-green-700'
                       : feedback === 'incorrect'
                       ? 'bg-red-100 text-red-700'
                       : 'bg-gray-100 text-gray-700'
-                    : 'bg-gray-200 text-gray-700'
+                    : 'bg-white text-gray-700'
                 }`}
                 onClick={() => handleOptionClickLocal(String.fromCharCode(65 + index))}
               >
@@ -186,6 +190,7 @@ const Question: React.FC<QuestionProps> = ({
           </div>
         </div>
       </Modal>
+
       <Modal showModal={showSettingsModal} setShowModal={setShowSettingsModal} className="max-w-sm">
         <div className="w-full overflow-hidden md:max-w-sm md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
           <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
@@ -194,10 +199,20 @@ const Question: React.FC<QuestionProps> = ({
           <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
             <div className="flex items-center justify-between mb-4">
               <span className="text-gray-400">Enable Markscheme</span>
+              <Switch
+                checked={markschemeEnabled}
+                onChange={handleMarkschemeSwitch}
+                className={`${markschemeEnabled ? 'bg-blue-600' : 'bg-gray-200'} relative inline-flex h-6 w-11 items-center rounded-full`}
+              >
+                <span
+                  className={`${markschemeEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block h-4 w-4 transform bg-white rounded-full transition`}
+                />
+              </Switch>
             </div>
           </div>
         </div>
       </Modal>
+
       <div className="mt-4">
         <textarea
           className="w-full p-2 border rounded"
