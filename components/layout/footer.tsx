@@ -162,7 +162,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="#" className="text-gray-600 hover:text-gray-800">
-                  Teacher's Guide
+                  Teacher&apos;s Guide
                 </a>
               </li>
             </ul>
