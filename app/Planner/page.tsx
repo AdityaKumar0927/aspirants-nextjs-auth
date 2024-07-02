@@ -1,3 +1,5 @@
+"use client"
+
 // pages/planner.tsx
 import { useState } from "react";
 import MonthlyView from "@/components/planner/MonthlyView";
