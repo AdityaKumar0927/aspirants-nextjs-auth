@@ -1,5 +1,3 @@
-"use client"
-
 import React, { useEffect, useState } from "react";
 
 interface UserData {
@@ -47,7 +45,7 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-white">
       {/* Main content */}
       <div className="flex-1 ml-24 p-6">
         <div className="py-7 px-5 rounded-3xl bg-neutral-800">

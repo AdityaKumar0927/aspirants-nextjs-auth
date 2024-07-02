@@ -19,7 +19,7 @@ export default function Footer() {
   const [showTermsModal, setShowTermsModal] = useState(false);
 
   return (
-    <div className="bg-white shadow-md py-8 mt-10">
+    <div className="bg-white shadow-md py-8 mt-10 z[100]">
       <div className="container mx-auto px-4">
         <header className="mb-12">
           <h1 className="font-display text-2xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
