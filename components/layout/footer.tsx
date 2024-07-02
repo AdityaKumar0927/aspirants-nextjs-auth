@@ -10,6 +10,7 @@ import {
   faYoutube,
   faTiktok,
   faLinkedinIn,
+  faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
@@ -20,56 +21,150 @@ export default function Footer() {
   return (
     <div className="bg-white shadow-md py-8 mt-10">
       <div className="container mx-auto px-4">
-      <header className="mb-12">
-                        <h1 className="font-display text-2xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">aspirants</h1>
-                        <p className="text-gray-600 mb-2">Providing quality resources for<br />a better education</p>
-                        <p className="text-gray-400 text-sm">© 2024 aspirants.tech</p>
-                        <div className="flex space-x-4 mt-4">
-                            <a href="#" className="text-gray-400 hover:text-gray-600"><i className="fab fa-twitter"></i></a>
-                            <a href="#" className="text-gray-400 hover:text-gray-600"><i className="fab fa-github"></i></a>
-                            <a href="#" className="text-gray-400 hover:text-gray-600"><i className="fab fa-linkedin"></i></a>
-                            <a href="#" className="text-gray-400 hover:text-gray-600"><i className="fab fa-youtube"></i></a>
-                        </div>
-                    </header>
+        <header className="mb-12">
+          <h1 className="font-display text-2xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+            aspirants
+          </h1>
+          <p className="text-gray-600 mb-2">
+            Providing quality resources for
+            <br />
+            a better education
+          </p>
+          <p className="text-gray-400 text-sm">© 2024 aspirants.tech</p>
+          <div className="flex space-x-4 mt-4">
+            <a href="#" className="text-gray-400 hover:text-gray-600">
+              <FontAwesomeIcon icon={faTwitter} />
+            </a>
+            <a href="#" className="text-gray-400 hover:text-gray-600">
+              <FontAwesomeIcon icon={faGithub} />
+            </a>
+            <a href="#" className="text-gray-400 hover:text-gray-600">
+              <FontAwesomeIcon icon={faLinkedinIn} />
+            </a>
+            <a href="#" className="text-gray-400 hover:text-gray-600">
+              <FontAwesomeIcon icon={faYoutube} />
+            </a>
+          </div>
+        </header>
         <div className="flex flex-wrap -mx-4">
           <div className="w-full md:w-1/4 px-4 mb-8">
             <h2 className="font-semibold text-lg mb-4">Resources</h2>
             <ul className="space-y-2 text-gray-600">
-              <li><a href="feature-requests" className="text-gray-600 hover:text-gray-800">Suggest Features</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Help Center</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Support</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Events</a></li>
+              <li>
+                <a href="feature-requests" className="text-gray-600 hover:text-gray-800">
+                  Suggest Features
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Help Center
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Support
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Events
+                </a>
+              </li>
             </ul>
           </div>
           <div className="w-full md:w-1/4 px-4 mb-8">
             <h2 className="font-semibold text-lg mb-4">About</h2>
             <ul className="space-y-2 text-gray-600">
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Our Story</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Media Kit</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Blog</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Careers</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Email us</a></li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Our Story
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Media Kit
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Careers
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Email us
+                </a>
+              </li>
             </ul>
           </div>
           <div className="w-full md:w-1/4 px-4 mb-8">
             <h2 className="font-semibold text-lg mb-4">Legal</h2>
             <ul className="space-y-2 text-gray-600">
-              <li><a href="#" className="text-gray-600 hover:text-gray-800" onClick={() => setShowPrivacyModal(true)}>Privacy</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800" onClick={() => setShowTermsModal(true)}>Terms</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800" onClick={() => setShowCookieModal(true)}>Cookies</a></li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800" onClick={() => setShowPrivacyModal(true)}>
+                  Privacy
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800" onClick={() => setShowTermsModal(true)}>
+                  Terms
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800" onClick={() => setShowCookieModal(true)}>
+                  Cookies
+                </a>
+              </li>
             </ul>
           </div>
           <div className="w-full md:w-1/4 px-4 mb-8">
             <h2 className="font-semibold text-lg mb-4">Tools</h2>
             <ul className="space-y-2 text-gray-600">
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Question Bank</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Mock Exam</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">PDF to Exam/Assignments/Question Banks</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Academic Planner</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Summer Courses</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Productivity Extensions</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Monthly Meet Ups</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-800">Teacher's Guide</a></li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Question Bank
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Mock Exam
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  PDF to Exam/Assignments/Question Banks
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Academic Planner
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Summer Courses
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Productivity Extensions
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Monthly Meet Ups
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-800">
+                  Teacher's Guide
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -183,8 +278,7 @@ export default function Footer() {
             <p className="mb-4">
               If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at [mail id].
             </p>
-            <div className="text-center">
-            </div>
+            <div className="text-center"></div>
           </div>
         </div>
       </Modal>
@@ -248,10 +342,26 @@ export default function Footer() {
               For more information on how to manage your cookies on your browser, please browse through:
             </p>
             <ul className="list-disc list-inside mb-4">
-              <li className="mb-2"><a href="https://support.google.com/chrome/answer/95647?hl=en" className="text-blue-500">Google Chrome</a></li>
-              <li className="mb-2"><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" className="text-blue-500">Firefox</a></li>
-              <li className="mb-2"><a href="https://support.microsoft.com/en-us/microsoft-edge/view-cookies-in-microsoft-edge-a7d95376-f2cd-8e4a-25dc-1de753474879" className="text-blue-500">Microsoft Edge</a></li>
-              <li className="mb-2"><a href="https://support.apple.com/en-in/105082" className="text-blue-500">Safari</a></li>
+              <li className="mb-2">
+                <a href="https://support.google.com/chrome/answer/95647?hl=en" className="text-blue-500">
+                  Google Chrome
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" className="text-blue-500">
+                  Firefox
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="https://support.microsoft.com/en-us/microsoft-edge/view-cookies-in-microsoft-edge-a7d95376-f2cd-8e4a-25dc-1de753474879" className="text-blue-500">
+                  Microsoft Edge
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="https://support.apple.com/en-in/105082" className="text-blue-500">
+                  Safari
+                </a>
+              </li>
             </ul>
             <h3 className="font-semibold mb-2">Changes to this Policy</h3>
             <p className="mb-4">
