@@ -12,6 +12,7 @@ import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
+import Sidebar from "@/components/layout/Sidebar";
 
 interface RawQuestionType {
   questionId: string;
@@ -249,6 +250,7 @@ const QuestionBank: React.FC = () => {
 
   return (
     <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+      <Sidebar />
       <div className="max-w-6xl w-full">
         <nav className="text-sm text-gray-500 mb-4">
           <a href="BrowseResources" className="hover:underline text-left">

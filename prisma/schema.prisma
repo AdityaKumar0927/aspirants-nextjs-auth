@@ -43,10 +43,13 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  subscribed    Boolean   @default(false)
   accounts      Account[]
   sessions      Session[]
-  progresses    UserProgress[]  // Add this line
+  progresses    UserProgress[]
+  notes         Note[]
 }
+
 
 model VerificationToken {
   identifier String
@@ -80,4 +83,14 @@ model Question {
   options      String[]
   correctOption String
   markscheme   String
+  notes        Note[]   // Add this line
+}
+
+model Note {
+  id         String @id @default(cuid())
+  content    String
+  userId     String
+  questionId String
+  user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question   Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 }

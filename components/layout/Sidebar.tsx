@@ -10,7 +10,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="w-24 h-screen fixed top-16 left-0 flex flex-col items-center py-8 space-y-12 bg-white border-r border-gray-200">
+    <div className="fixed top-16 left-4 w-20 h-8/12 my-56 flex flex-col items-center py-8 space-y-12 bg-white bg-opacity-20 backdrop-blur-lg rounded-xl border border-white border-opacity-30 shadow-lg">
       <div className="flex flex-col space-y-12">
         {icons.map((icon, index) => (
           <Link key={index} href={icon.href || "#"} passHref>

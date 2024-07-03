@@ -1,16 +1,30 @@
-import React, { useState } from "react";
-import MathRenderer from "@/components/layout/MathRenderer";
-import Modal from "@/components/shared/modal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faTag, faCog } from "@fortawesome/free-solid-svg-icons";
-import { Switch } from "@headlessui/react";
+import React, { useState } from 'react';
+import MathRenderer from '@/components/layout/MathRenderer';
+import Modal from '@/components/shared/modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCheckCircle,
+  faTag,
+  faCog,
+  faPause,
+  faPlay,
+  faRandom,
+  faShuffle,
+  faStepBackward,
+  faStepForward,
+  faVolumeUp,
+  faMusic,
+} from '@fortawesome/free-solid-svg-icons';
+import { Switch } from '@headlessui/react';
+import Image from 'next/image';
+import Tiptap from '@/components/layout/Tiptap';
 
 interface QuestionType {
   questionId: string;
   text: string;
   subject: string;
   difficulty: string;
-  type: "Multiple Choice" | "Numerical";
+  type: 'Multiple Choice' | 'Numerical';
   options?: string[];
   correctOption?: string;
   markscheme?: string;
@@ -33,7 +47,7 @@ interface QuestionProps {
   markschemesDisabled: boolean;
   note: string;
   handleNoteChange: (questionId: string, note: string) => void;
-  userId: string; // Add this line
+  userId: string;
 }
 
 const Question: React.FC<QuestionProps> = ({
@@ -57,6 +71,9 @@ const Question: React.FC<QuestionProps> = ({
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(100);
+  const [showVolumeControl, setShowVolumeControl] = useState(false);
 
   const handleOptionClickLocal = (option: string) => {
     if (selectedOption !== option) {
@@ -84,8 +101,51 @@ const Question: React.FC<QuestionProps> = ({
     setMarkschemeEnabled(!markschemeEnabled);
   };
 
+  const handlePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const toggleVolumeControl = () => {
+    setShowVolumeControl(!showVolumeControl);
+  };
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setVolume(Number(e.target.value));
+  };
+
+  const saveNote = async () => {
+    try {
+      const response = await fetch('/api/notes/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId: question.questionId, content: note }),
+      });
+      if (!response.ok) throw new Error('Failed to save note');
+      alert('Note saved successfully!');
+    } catch (error) {
+      console.error('Error saving note:', error);
+      alert('Failed to save note');
+    }
+  };
+
+  const deleteNote = async () => {
+    try {
+      const response = await fetch('/api/notes/delete', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId: question.questionId }),
+      });
+      if (!response.ok) throw new Error('Failed to delete note');
+      alert('Note deleted successfully!');
+      handleNoteChange(question.questionId, '');
+    } catch (error) {
+      console.error('Error deleting note:', error);
+      alert('Failed to delete note');
+    }
+  };
+
   return (
-    <div className="border-2 rounded-lg p-4 bg-white mb-6">
+    <div className="border-2 rounded-lg p-4 mb-6 bg-white">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
         <div className="mb-3 flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
           <span className="text-left font-display font-bold tracking-[-0.02em] drop-shadow-sm sm:text-2xl sm:leading-[4rem]">
@@ -191,35 +251,87 @@ const Question: React.FC<QuestionProps> = ({
         </div>
       </Modal>
 
-      <Modal showModal={showSettingsModal} setShowModal={setShowSettingsModal} className="max-w-sm">
-        <div className="w-full overflow-hidden md:max-w-sm md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
-          <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
-            <h2 className="font-display text-2xl font-bold">Settings</h2>
-          </div>
-          <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-gray-400">Enable Markscheme</span>
-              <Switch
-                checked={markschemeEnabled}
-                onChange={handleMarkschemeSwitch}
-                className={`${markschemeEnabled ? 'bg-blue-600' : 'bg-gray-200'} relative inline-flex h-6 w-11 items-center rounded-full`}
-              >
-                <span
-                  className={`${markschemeEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block h-4 w-4 transform bg-white rounded-full transition`}
-                />
-              </Switch>
+      <Modal showModal={showSettingsModal} setShowModal={setShowSettingsModal} className="w-full">
+        <div className="flex flex-col justify-center mx-auto w-full max-w-[480px] bg-white">
+          <Image
+            src="/background.png"
+            alt="Background"
+            layout="fill"
+            objectFit="cover"
+            className="rounded-2xl"
+          />
+          <div className="flex flex-col pt-7 pr-2.5 pb-2 pl-10 w-full backdrop-blur-[22.5px]">
+          <div className="flex flex-col text-white text-2xl text-left">
+              <div className="text-bas" /> Settings
             </div>
+            <div className="flex gap-2">
+              <div className="flex flex-col grow shrink-0 basis-0 w-fit">
+                <div className="flex gap-5 justify-between text-base text-center text-black whitespace-nowrap font-[590]">
+                </div>
+                <div className="flex gap-4 mt-6 tracking-normal whitespace-nowrap">
+                 
+        
+                </div>
+                <div className="flex gap-4 mt-4">
+                  <div className="flex flex-col flex-1 whitespace-nowrap">
+                    <div className="flex gap-4 text-xl font-bold tracking-normal text-center">
+                      <button onClick={toggleVolumeControl} className="justify-center items-center px-5 text-black h-[68px] rounded-[100px] w-[68px] glassmorphism focus:outline-none">
+                        <FontAwesomeIcon icon={faVolumeUp} />
+                      </button>
+                    </div>
+                    {showVolumeControl && (
+                      <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        value={volume}
+                        onChange={handleVolumeChange}
+                        className="mt-4"
+                      />
+                    )}
+                    <button onClick={handleMarkschemeSwitch} className="flex gap-2 p-3.5 mt-4 rounded-3xl w-8/12 glassmorphism focus:outline-none">
+                      <div className="justify-center items-center px-3 w-5 h-10 text-base font-bold tracking-normal text-center text-black rounded-[100px]">
+                      <div className="font-[510] leading-[129%] text-ellipsis text-black text-opacity-50">Markscheme</div>
+                      </div>
+                      <div className="flex flex-col justify-center mt-11 text-sm tracking-normal">
+                        
+                        <Switch
+                          checked={markschemeEnabled}
+                          onChange={handleMarkschemeSwitch}
+                          className={`${markschemeEnabled ? 'bg-red-200' : 'bg-gray-200'} relative inline-flex h-6 w-11 items-center rounded-full`}
+                        >
+                          <span
+                            className={`${markschemeEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block h-4 w-4 transform bg-white rounded-full transition`}
+                          />
+                        </Switch>
+                      </div>
+                    </button>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+            
           </div>
         </div>
       </Modal>
 
       <div className="mt-4">
-        <textarea
-          className="w-full p-2 border rounded"
-          placeholder="Write your notes here..."
-          value={note}
-          onChange={(e) => handleNoteChange(question.questionId, e.target.value)}
-        />
+        <Tiptap content={note} onUpdate={(content) => handleNoteChange(question.questionId, content)} />
+        <div className="flex justify-end mt-2 space-x-2">
+          <button
+            className="bg-[#F5F4F3] text-[#0D0D0D] px-4 py-2 rounded"
+            onClick={saveNote}
+          >
+            Save Note
+          </button>
+          <button
+            className="bg-[#F5F4F3] text-[#0D0D0D] px-4 py-2 rounded"
+            onClick={deleteNote}
+          >
+            Delete Note
+          </button>
+        </div>
       </div>
     </div>
   );
