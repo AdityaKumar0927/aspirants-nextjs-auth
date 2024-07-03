@@ -2,19 +2,7 @@ import React, { useState } from 'react';
 import MathRenderer from '@/components/layout/MathRenderer';
 import Modal from '@/components/shared/modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCheckCircle,
-  faTag,
-  faCog,
-  faPause,
-  faPlay,
-  faRandom,
-  faShuffle,
-  faStepBackward,
-  faStepForward,
-  faVolumeUp,
-  faMusic,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTag, faCog, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { Switch } from '@headlessui/react';
 import Image from 'next/image';
 import Tiptap from '@/components/layout/Tiptap';
@@ -74,18 +62,20 @@ const Question: React.FC<QuestionProps> = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(100);
   const [showVolumeControl, setShowVolumeControl] = useState(false);
+  const [userQuestion, setUserQuestion] = useState('');
+  const [aiResponse, setAiResponse] = useState('');
 
   const handleOptionClickLocal = (option: string) => {
     if (selectedOption !== option) {
       setSelectedOption(option);
       handleOptionClick(question.questionId, option, question.correctOption || '');
-      handleMarkComplete(question.questionId);
+      saveProgress(question.questionId, 'completed', true);
     }
   };
 
   const handleNumericalSubmitLocal = () => {
     handleNumericalSubmit(question.questionId, numericalAnswer || '', question.correctOption || '');
-    handleMarkComplete(question.questionId);
+    saveProgress(question.questionId, 'completed', true);
   };
 
   const toggleMarkscheme = () => {
@@ -144,6 +134,35 @@ const Question: React.FC<QuestionProps> = ({
     }
   };
 
+  const askAi = async () => {
+    try {
+      const response = await fetch('/api/openai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: userQuestion, context: question.text }),
+      });
+      if (!response.ok) throw new Error('Failed to get AI response');
+      const data = await response.json();
+      setAiResponse(data.response);
+    } catch (error) {
+      console.error('Error fetching AI response:', error);
+      alert('Failed to get AI response');
+    }
+  };
+
+  const saveProgress = async (questionId: string, field: string, value: boolean) => {
+    try {
+      const response = await fetch(`/api/user-progress`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId, [field]: value }),
+      });
+      if (!response.ok) throw new Error('Failed to save progress');
+    } catch (error) {
+      console.error('Error saving progress:', error);
+    }
+  };
+
   return (
     <div className="border-2 rounded-lg p-4 mb-6 bg-white">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
@@ -158,7 +177,10 @@ const Question: React.FC<QuestionProps> = ({
         <div className="flex items-center space-x-2">
           <button
             className={`bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs ${isMarkedComplete ? 'bg-green-500 text-white' : ''}`}
-            onClick={() => handleMarkComplete(question.questionId)}
+            onClick={() => {
+              handleMarkComplete(question.questionId);
+              saveProgress(question.questionId, 'completed', !isMarkedComplete);
+            }}
           >
             {isMarkedComplete ? (
               <FontAwesomeIcon icon={faCheckCircle} className="text-white" />
@@ -168,7 +190,10 @@ const Question: React.FC<QuestionProps> = ({
           </button>
           <button
             className={`bg-yellow-100 text-yellow-700 px-2 py-1 rounded-md text-xs ${isMarkedForReview ? 'bg-yellow-300 text-white' : ''}`}
-            onClick={() => handleMarkForReview(question.questionId)}
+            onClick={() => {
+              handleMarkForReview(question.questionId);
+              saveProgress(question.questionId, 'reviewed', !isMarkedForReview);
+            }}
           >
             <FontAwesomeIcon icon={faTag} className={`${isMarkedForReview ? 'text-green-700' : 'text-yellow-700'}`} />
           </button>
@@ -261,17 +286,13 @@ const Question: React.FC<QuestionProps> = ({
             className="rounded-2xl"
           />
           <div className="flex flex-col pt-7 pr-2.5 pb-2 pl-10 w-full backdrop-blur-[22.5px]">
-          <div className="flex flex-col text-white text-2xl text-left">
+            <div className="flex flex-col text-white text-2xl text-left">
               <div className="text-bas" /> Settings
             </div>
             <div className="flex gap-2">
               <div className="flex flex-col grow shrink-0 basis-0 w-fit">
-                <div className="flex gap-5 justify-between text-base text-center text-black whitespace-nowrap font-[590]">
-                </div>
-                <div className="flex gap-4 mt-6 tracking-normal whitespace-nowrap">
-                 
-        
-                </div>
+                <div className="flex gap-5 justify-between text-base text-center text-black whitespace-nowrap font-[590]"></div>
+                <div className="flex gap-4 mt-6 tracking-normal whitespace-nowrap"></div>
                 <div className="flex gap-4 mt-4">
                   <div className="flex flex-col flex-1 whitespace-nowrap">
                     <div className="flex gap-4 text-xl font-bold tracking-normal text-center">
@@ -291,27 +312,22 @@ const Question: React.FC<QuestionProps> = ({
                     )}
                     <button onClick={handleMarkschemeSwitch} className="flex gap-2 p-3.5 mt-4 rounded-3xl w-8/12 glassmorphism focus:outline-none">
                       <div className="justify-center items-center px-3 w-5 h-10 text-base font-bold tracking-normal text-center text-black rounded-[100px]">
-                      <div className="font-[510] leading-[129%] text-ellipsis text-black text-opacity-50">Markscheme</div>
+                        <div className="font-[510] leading-[129%] text-ellipsis text-black text-opacity-50">Markscheme</div>
                       </div>
                       <div className="flex flex-col justify-center mt-11 text-sm tracking-normal">
-                        
                         <Switch
                           checked={markschemeEnabled}
                           onChange={handleMarkschemeSwitch}
                           className={`${markschemeEnabled ? 'bg-red-200' : 'bg-gray-200'} relative inline-flex h-6 w-11 items-center rounded-full`}
                         >
-                          <span
-                            className={`${markschemeEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block h-4 w-4 transform bg-white rounded-full transition`}
-                          />
+                          <span className={`${markschemeEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block h-4 w-4 transform bg-white rounded-full transition`} />
                         </Switch>
                       </div>
                     </button>
-                  
                   </div>
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
       </Modal>
@@ -332,6 +348,26 @@ const Question: React.FC<QuestionProps> = ({
             Delete Note
           </button>
         </div>
+      </div>
+
+      <div className="mt-4">
+        <textarea
+          className="w-full p-2 border rounded"
+          placeholder="Ask a question about this problem..."
+          value={userQuestion}
+          onChange={(e) => setUserQuestion(e.target.value)}
+        />
+        <button
+          className="mt-2 bg-blue-500 text-white px-4 py-2 rounded"
+          onClick={askAi}
+        >
+          Ask AI
+        </button>
+        {aiResponse && (
+          <div className="mt-4 p-4 border rounded bg-gray-100">
+            <p><strong>AI Response:</strong> {aiResponse}</p>
+          </div>
+        )}
       </div>
     </div>
   );
