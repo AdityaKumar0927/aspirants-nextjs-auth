@@ -59,12 +59,4 @@ html {
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
   
-  // global.d.ts
-declare module 'openai' {
-  export default class OpenAI {
-    constructor(apiKey: string);
-    completions: {
-      create: (params: { model: string, prompt: string, max_tokens: number }) => Promise<{ choices: { text: string }[] }>
-    };
-  }
-}
+ 
