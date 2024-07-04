@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import "katex/dist/katex.min.css";
 import Question from "@/components/shared/Question";
 import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
@@ -56,21 +59,28 @@ const QuestionBank: React.FC = () => {
 
         const questionsData = await questionsResponse.json();
 
-        if (userId) {
-          const progressResponse = await fetch("/api/user-progress");
-          if (!progressResponse.ok) throw new Error("Failed to fetch user progress");
+        const progressResponse = await fetch("/api/user-progress");
+        if (!progressResponse.ok) throw new Error("Failed to fetch user progress");
 
-          const userProgressData = await progressResponse.json();
-          const mergedQuestions = questionsData.map((question: QuestionType) => {
-            const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
-            return { ...question, ...progress };
-          });
-          setQuestions(mergedQuestions);
-          setFilteredQuestions(mergedQuestions);
-        } else {
-          setQuestions(questionsData);
-          setFilteredQuestions(questionsData);
-        }
+        const userProgressData = await progressResponse.json();
+
+        const notesResponse = await fetch("/api/notes");
+        if (!notesResponse.ok) throw new Error("Failed to fetch notes");
+
+        const notesData = await notesResponse.json();
+
+        const mergedQuestions = questionsData.map((question: QuestionType) => {
+          const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
+          const note = notesData.find((n: any) => n.questionId === question.questionId);
+          return {
+            ...question,
+            reviewed: progress ? progress.reviewed : false,
+            completed: progress ? progress.completed : false,
+            notes: note ? note.content : "",
+          };
+        });
+        setQuestions(mergedQuestions);
+        setFilteredQuestions(mergedQuestions);
       } catch (error) {
         console.error(error);
       }
@@ -116,17 +126,15 @@ const QuestionBank: React.FC = () => {
   };
 
   const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
-    if (userId) {
-      try {
-        const response = await fetch("/api/markComplete", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, completed: isComplete }),
-        });
-        if (!response.ok) throw new Error("Failed to update completion status");
-      } catch (error) {
-        console.error(error);
-      }
+    try {
+      const response = await fetch("/api/markComplete", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId, completed: isComplete }),
+      });
+      if (!response.ok) throw new Error('Failed to update completion status');
+    } catch (error) {
+      console.error(error);
     }
 
     setQuestions((prevQuestions) =>
@@ -137,17 +145,15 @@ const QuestionBank: React.FC = () => {
   };
 
   const handleMarkForReview = async (questionId: string, isReviewed: boolean) => {
-    if (userId) {
-      try {
-        const response = await fetch("/api/markForReview", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, reviewed: isReviewed }),
-        });
-        if (!response.ok) throw new Error("Failed to update review status");
-      } catch (error) {
-        console.error(error);
-      }
+    try {
+      const response = await fetch("/api/markForReview", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId, reviewed: isReviewed }),
+      });
+      if (!response.ok) throw new Error('Failed to update review status');
+    } catch (error) {
+      console.error(error);
     }
 
     setQuestions((prevQuestions) =>
@@ -173,10 +179,40 @@ const QuestionBank: React.FC = () => {
     });
   };
 
-  const handleNoteChange = (questionId: string, note: string) => {
+  const handleNoteChange = async (questionId: string, note: string) => {
     setNotes({
       ...notes,
       [questionId]: note,
+    });
+
+    try {
+      const response = await fetch('/api/notes/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId, content: note }),
+      });
+      if (!response.ok) throw new Error('Failed to save note');
+    } catch (error) {
+      console.error('Error saving note:', error);
+    }
+  };
+
+  const handleDeleteNote = async (questionId: string) => {
+    try {
+      const response = await fetch('/api/notes/delete', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId }),
+      });
+      if (!response.ok) throw new Error('Failed to delete note');
+    } catch (error) {
+      console.error('Error deleting note:', error);
+    }
+
+    setNotes((prevNotes) => {
+      const updatedNotes = { ...prevNotes };
+      delete updatedNotes[questionId];
+      return updatedNotes;
     });
   };
 
@@ -298,6 +334,7 @@ const QuestionBank: React.FC = () => {
               note={notes[question.questionId] || ""}
               handleNoteChange={handleNoteChange}
               userId={userId}
+              handleDeleteNote={handleDeleteNote}
             />
           ))
         ) : (

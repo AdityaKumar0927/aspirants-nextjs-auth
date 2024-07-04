@@ -1,8 +1,8 @@
-// app/api/user-progress/route.ts
+// app/api/notes/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../auth/[...nextauth]/options';
+import { authOptions } from '@/app/api/auth/[...nextauth]/options';
 
 const prisma = new PrismaClient();
 
@@ -14,13 +14,13 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const userProgress = await prisma.userProgress.findMany({
+    const notes = await prisma.note.findMany({
       where: { userId: session.user.id },
     });
 
-    return NextResponse.json(userProgress);
+    return NextResponse.json(notes);
   } catch (error) {
-    console.error('Error fetching user progress:', error);
+    console.error('Error fetching notes:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

@@ -36,6 +36,7 @@ interface QuestionProps {
   note: string;
   handleNoteChange: (questionId: string, note: string) => void;
   userId: string;
+  handleDeleteNote: (questionId: string) => Promise<void>;  // Add this line
 }
 
 const Question: React.FC<QuestionProps> = ({
@@ -54,6 +55,8 @@ const Question: React.FC<QuestionProps> = ({
   markschemesDisabled,
   note,
   handleNoteChange,
+  userId,
+  handleDeleteNote,  // Add this line
 }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
@@ -105,7 +108,7 @@ const Question: React.FC<QuestionProps> = ({
 
   const saveNote = async () => {
     try {
-      const response = await fetch('/api/saveNote', {
+      const response = await fetch('/api/notes/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ questionId: question.questionId, content: note }),
@@ -120,12 +123,7 @@ const Question: React.FC<QuestionProps> = ({
 
   const deleteNote = async () => {
     try {
-      const response = await fetch('/api/deleteNote', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId: question.questionId }),
-      });
-      if (!response.ok) throw new Error('Failed to delete note');
+      await handleDeleteNote(question.questionId);
       alert('Note deleted successfully!');
       handleNoteChange(question.questionId, '');
     } catch (error) {
