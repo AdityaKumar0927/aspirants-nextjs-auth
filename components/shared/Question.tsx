@@ -105,7 +105,7 @@ const Question: React.FC<QuestionProps> = ({
 
   const saveNote = async () => {
     try {
-      const response = await fetch('/api/notes/save', {
+      const response = await fetch('/api/saveNote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ questionId: question.questionId, content: note }),
@@ -120,7 +120,7 @@ const Question: React.FC<QuestionProps> = ({
 
   const deleteNote = async () => {
     try {
-      const response = await fetch('/api/notes/delete', {
+      const response = await fetch('/api/deleteNote', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ questionId: question.questionId }),

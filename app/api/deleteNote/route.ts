@@ -5,9 +5,12 @@ import { authOptions } from '../auth/[...nextauth]/options';
 
 const prisma = new PrismaClient();
 
+export const runtime = 'edge';
+
 export async function DELETE(request: Request) {
   try {
     const session = await getServerSession(authOptions);
+
     if (!session || !session.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -21,7 +24,7 @@ export async function DELETE(request: Request) {
       },
     });
 
-    return NextResponse.json({ message: 'Note deleted successfully!' });
+    return NextResponse.json({ message: 'Note deleted successfully' });
   } catch (error) {
     console.error('Error deleting note:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

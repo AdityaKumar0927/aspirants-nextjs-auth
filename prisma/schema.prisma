@@ -93,4 +93,7 @@ model Note {
   questionId String
   user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   question   Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+
+  @@unique([userId, questionId]) // Add this line
 }
+
