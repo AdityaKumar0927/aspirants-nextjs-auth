@@ -71,6 +71,19 @@ const MainContent: React.FC = () => {
     }
   };
 
+  const handleDeleteNote = async (questionId: string) => {
+    try {
+      const response = await fetch('/api/notes/delete', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId }),
+      });
+      if (!response.ok) throw new Error('Failed to delete note');
+    } catch (error) {
+      console.error('Error deleting note:', error);
+    }
+  };
+
   const renderView = () => {
     switch (currentView) {
       case 'home':
@@ -112,6 +125,7 @@ const MainContent: React.FC = () => {
                         markschemesDisabled={false}
                         note=""
                         handleNoteChange={() => {}}
+                        handleDeleteNote={handleDeleteNote} // Add this line
                         userId="user-id-placeholder" // Replace with actual user ID
                       />
                     ))}
