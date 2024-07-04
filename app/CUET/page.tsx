@@ -1,9 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import "katex/dist/katex.min.css";
 import Question from "@/components/shared/Question";
 import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
