@@ -1,4 +1,4 @@
-export const config = { runtime: 'edge' }; // Ensure Edge Runtime
+export const runtime = 'edge'; // Updated for Edge Runtime
 
 export async function POST(request: Request) {
   try {
