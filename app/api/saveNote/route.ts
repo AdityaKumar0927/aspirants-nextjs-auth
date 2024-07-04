@@ -1,12 +1,10 @@
-// app/api/notes/save.ts
+// app/api/saveNote/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../auth/[...nextauth]/options';
+import { authOptions } from '@/app/api/auth/[...nextauth]/options';
 
 const prisma = new PrismaClient();
-
-export const runtime = 'edge';
 
 export async function POST(request: Request) {
   try {

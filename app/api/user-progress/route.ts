@@ -6,8 +6,6 @@ import { authOptions } from '../auth/[...nextauth]/options';
 
 const prisma = new PrismaClient();
 
-export const runtime = 'edge';
-
 export async function GET(request: Request) {
   try {
     const session = await getServerSession(authOptions);

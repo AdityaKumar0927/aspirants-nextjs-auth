@@ -1,11 +1,10 @@
+// app/api/notes/delete/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../auth/[...nextauth]/options';
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 
 const prisma = new PrismaClient();
-
-export const runtime = 'edge';
 
 export async function DELETE(request: Request) {
   try {
@@ -17,10 +16,12 @@ export async function DELETE(request: Request) {
 
     const { questionId } = await request.json();
 
-    await prisma.note.deleteMany({
+    await prisma.note.delete({
       where: {
-        userId: session.user.id,
-        questionId,
+        userId_questionId: {
+          userId: session.user.id,
+          questionId,
+        },
       },
     });
 
