@@ -1,29 +1,25 @@
-// app/api/openai/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
-import { subscriptionMiddleware } from '@/app/api/middleware/subscription';
-import { rateLimitMiddleware } from '@/app/api/middleware/rateLimit';
+export const config = { runtime: 'edge' }; // Ensure Edge Runtime
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+export async function POST(request: Request) {
+  try {
+    const { question, context } = await request.json();
+    const response = await fetch('https://api.openai.com/v1/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'text-davinci-003',
+        prompt: `${context}\n\nQuestion: ${question}\nAnswer:`,
+        max_tokens: 150,
+      }),
+    });
 
-export async function POST(req: NextRequest) {
-  // Middleware checks
-  await subscriptionMiddleware(req);
-  await rateLimitMiddleware(req);
-
-  const { question, context } = await req.json();
-
-  if (!question || !context) {
-    return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
+    const data = await response.json();
+    return new Response(JSON.stringify({ response: data.choices[0].text.trim() }), { status: 200 });
+  } catch (error) {
+    console.error('Error in OpenAI API route:', error);
+    return new Response(JSON.stringify({ error: 'Internal Server Error' }), { status: 500 });
   }
-
-  const response = await openai.completions.create({
-    model: 'text-davinci-003',
-    prompt: `Context: ${context}\nQuestion: ${question}`,
-    max_tokens: 150,
-  });
-
-  return NextResponse.json({ response: response.choices[0].text });
 }
