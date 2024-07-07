@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { signOut } from "next-auth/react";
-import { LayoutDashboard, LogOut, Clock } from "lucide-react";
+import { LayoutDashboard, LogOut, User } from "lucide-react";
 import Popover from "@/components/shared/popover";
 import Image from "next/image";
 import { Session } from "next-auth";
@@ -12,6 +12,7 @@ export default function UserDropdown({ session }: { session: Session }) {
   const { email, image } = session?.user || {};
   const [openPopover, setOpenPopover] = useState(false);
   const [showDashboardModal, setShowDashboardModal] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   if (!email) return null;
 
@@ -51,26 +52,25 @@ export default function UserDropdown({ session }: { session: Session }) {
         openPopover={openPopover}
         setOpenPopover={setOpenPopover}
       >
-       <button
-  onClick={() => setOpenPopover(!openPopover)}
-  className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-gray-300 transition-all duration-75 focus:outline-none active:scale-95 sm:h-9 sm:w-9"
->
-  <Image
-    alt={email}
-    src={image || `https://avatars.dicebear.com/api/micah/${encodeURIComponent(email)}.svg`}
-    width={40}
-    height={40}
-    className="rounded-full object-cover"
-    onError={(e) => {
-      e.currentTarget.onerror = null; // prevents looping
-      e.currentTarget.src = '/path/to/default-image.png';
-    }}
-  />
-</button>
-
+        <button
+          onClick={() => setOpenPopover(!openPopover)}
+          className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-gray-300 transition-all duration-75 focus:outline-none active:scale-95 sm:h-9 sm:w-9"
+        >
+          {imageError ? (
+            <User className="h-6 w-6 text-gray-500" />
+          ) : (
+            <Image
+              alt={email}
+              src={image || `https://avatars.dicebear.com/api/micah/${encodeURIComponent(email)}.svg`}
+              width={40}
+              height={40}
+              className="rounded-full object-cover"
+              onError={() => setImageError(true)}
+            />
+          )}
+        </button>
       </Popover>
       <DashboardModal showModal={showDashboardModal} setShowModal={setShowDashboardModal} />
-      
     </div>
   );
 }
