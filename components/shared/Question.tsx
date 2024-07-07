@@ -420,17 +420,20 @@ const Question: React.FC<QuestionProps> = ({
     type="text"
     placeholder="Enter a prompt here"
     className="bg-transparent flex-grow outline-none border-none focus:border-transparent focus:ring-0"
+    value={userQuestion}
+    onChange={(e) => setUserQuestion(e.target.value)}
   />
-  <button className="mx-2">
-    <i className="fas fa-image text-gray-500"></i>
-  </button>
-  <button>
-    <i className="fas fa-microphone text-gray-500"></i>
+  <button className="mx-2" onClick={handleAiSubmit}>
+    <i className="fas fa-paper-plane text-gray-500"></i>
   </button>
 </div>
 
+           {aiResponse && (
+             <div className="mt-4 p-4 bg-white rounded-lg shadow-md">
+               <p className="text-gray-700">{aiResponse}</p>
+             </div>
+           )}
 
-           
            <p className="text-xs text-gray-500 mt-4">
                ChatGPT may display inaccurate info, including about people, so double-check its responses. <a href="#" className="text-blue-600">Your privacy and Gemini Apps</a>
            </p>
