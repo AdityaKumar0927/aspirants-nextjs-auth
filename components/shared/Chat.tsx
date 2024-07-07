@@ -45,7 +45,7 @@ const Chat: React.FC = () => {
     e.preventDefault();
     if (!userInput.trim()) return;
 
-    const newMessage = { role: "user" as const, text: userInput };
+    const newMessage: MessageProps = { role: "user", text: userInput };
     setMessages((prevMessages) => [...prevMessages, newMessage]);
     setUserInput("");
     setInputDisabled(true);
@@ -66,11 +66,7 @@ const Chat: React.FC = () => {
       }
     } catch (error) {
       console.error('Error:', error);
-      if (error instanceof Error) {
-        setMessages((prevMessages) => [...prevMessages, { role: "assistant", text: "Error: " + error.message }]);
-      } else {
-        setMessages((prevMessages) => [...prevMessages, { role: "assistant", text: "An unknown error occurred" }]);
-      }
+      setMessages((prevMessages) => [...prevMessages, { role: "assistant", text: "An unknown error occurred" }]);
     }
 
     setInputDisabled(false);
