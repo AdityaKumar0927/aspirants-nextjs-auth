@@ -63,7 +63,7 @@ const FAQ: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-16 max-w-3xl">
       <h1 className="text-6xl font-bold text-center mb-2">Got Questions?</h1>
-      <h2 className="text-4xl font-normal text-center mb-8">We've got Answers!</h2>
+      <h2 className="text-4xl font-normal text-center mb-8">We&apos;ve got Answers!</h2>
       <div className="space-y-6">
         {faqs.map((faq, index) => (
           <FAQItem
