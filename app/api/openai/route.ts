@@ -1,35 +1,42 @@
-// route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
 export const runtime = 'edge';
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const { question, context } = await request.json();
     if (!process.env.OPENAI_API_KEY) {
-      throw new Error("Missing OpenAI API key");
+      throw new Error('OPENAI_API_KEY is not set');
     }
-    
-    const response = await fetch('https://api.openai.com/v1/completions', {
+
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'text-davinci-003',
-        prompt: `${context}\n\nQuestion: ${question}\nAnswer:`,
+        model: 'gpt-3.5-turbo',
+        messages: [
+          { role: 'system', content: 'You are a helpful assistant.' },
+          { role: 'user', content: question }
+        ],
         max_tokens: 150,
       }),
     });
 
     if (!response.ok) {
-      const errorDetails = await response.json();
-      throw new Error(`OpenAI API error: ${errorDetails.error.message}`);
+      const errorData = await response.json();
+      console.error('OpenAI API Error:', errorData);
+      return NextResponse.json({ error: 'OpenAI API Error', details: errorData }, { status: response.status });
     }
 
     const data = await response.json();
-    return new Response(JSON.stringify({ response: data.choices[0].text.trim() }), { status: 200 });
+    return NextResponse.json({ response: data.choices[0].message.content.trim() }, { status: 200 });
   } catch (error) {
-    console.error('Error in OpenAI API route:', error);
-    return new Response(JSON.stringify({ error: 'Internal Server Error' }), { status: 500 });
+    // Assert the error type to `Error`
+    const typedError = error as Error;
+    console.error('Server Error:', typedError);
+    return NextResponse.json({ error: 'Internal Server Error', details: typedError.message }, { status: 500 });
   }
 }

@@ -1,11 +1,10 @@
-// Question.tsx
 import React, { useState } from 'react';
 import MathRenderer from '@/components/layout/MathRenderer';
 import Modal from '@/components/shared/modal';
 import { CheckSquare, LucideBookmark, Settings, BookOpen, LucideBot } from "lucide-react";
 import { Switch } from '@headlessui/react';
 import Tiptap from '@/components/layout/Tiptap';
-import Chat from '@/components/shared/Chat';  // Make sure the path is correct
+import Chat from '@/components/shared/Chat';
 
 interface QuestionType {
   questionId: string;
