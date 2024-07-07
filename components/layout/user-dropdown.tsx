@@ -56,18 +56,9 @@ export default function UserDropdown({ session }: { session: Session }) {
           onClick={() => setOpenPopover(!openPopover)}
           className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-gray-300 transition-all duration-75 focus:outline-none active:scale-95 sm:h-9 sm:w-9"
         >
-          {imageError ? (
+         
             <User className="h-6 w-6 text-gray-500" />
-          ) : (
-            <Image
-              alt={email}
-              src={image || `https://avatars.dicebear.com/api/micah/${encodeURIComponent(email)}.svg`}
-              width={40}
-              height={40}
-              className="rounded-full object-cover"
-              onError={() => setImageError(true)}
-            />
-          )}
+          
         </button>
       </Popover>
       <DashboardModal showModal={showDashboardModal} setShowModal={setShowDashboardModal} />

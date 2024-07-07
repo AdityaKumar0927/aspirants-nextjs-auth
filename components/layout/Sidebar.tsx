@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import SidebarModal from "@/components/shared/SidebarModal"; // Import the new modal component
+import SidebarModal from "@/components/shared/SidebarModal";
 import NotesApp from "@/components/shared/NoteApp";
 import RemindersApp from "@/components/shared/RemindersApp";
-import Image from "next/image";
+import { StickyNote, CalendarCheck, LayoutDashboard, Settings } from "lucide-react"; // Import the relevant icons
 
 const Sidebar = () => {
   const [activeModal, setActiveModal] = useState<number | null>(null);
 
   const icons = [
-    { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/7f618aee4a0f48868cf79f1cdc13fcbddfd5882dd3c76502182c302e2eed825b?", alt: "Menu icon 1", id: 1 },
-    { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/d6ddfcf39c9f0b5b441436529edaa6f54369abf45443bddbdc05d5cae8a94705?", alt: "Menu icon 2", id: 2 },
-    { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/95d65959906c87d0b1ee8ae5425b584ab3b9ef0f7adb87aa79d375b61fca8ff5?", alt: "Menu icon 3", id: 3 },
-    { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/102b043dfdffc24be87c2eea3ca0a2ee0ba2ae333f3c8a86661eed0123779bab?", alt: "Menu icon 4", id: 4 },
+    { component: StickyNote, alt: "Notes", id: 1 },
+    { component: CalendarCheck, alt: "Reminders", id: 2 },
+    { component: LayoutDashboard, alt: "Dashboard", id: 3 },
+    { component: Settings, alt: "Settings", id: 4 },
   ];
 
   const handleModalOpen = (id: number) => {
@@ -28,14 +28,10 @@ const Sidebar = () => {
         <div className="flex flex-col space-y-12">
           {icons.map((icon) => (
             <button key={icon.id} onClick={() => handleModalOpen(icon.id)}>
-              <Image
-  src={icon.src}
-  alt={icon.alt}
-  width={40} // Provide appropriate width
-  height={40} // Provide appropriate height
-  className="w-10 h-10 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
-  loading="lazy"
-/>
+              <icon.component
+                className="w-10 h-10 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+                aria-label={icon.alt}
+              />
             </button>
           ))}
         </div>
