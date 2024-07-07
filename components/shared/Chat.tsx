@@ -64,7 +64,7 @@ const Chat: React.FC = () => {
         console.error('Error:', data);
         setMessages((prevMessages) => [...prevMessages, { role: "assistant", text: "Error: " + data.error }]);
       }
-    } catch (error: unknown) {
+    } catch (error) {
       console.error('Error:', error);
       if (error instanceof Error) {
         setMessages((prevMessages) => [...prevMessages, { role: "assistant", text: "Error: " + error.message }]);
