@@ -35,7 +35,7 @@ export default function NavBar({ session }: { session: Session | null }) {
           scrolled
             ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl shadow-md rounded-3xl"
             : "bg-white/90 border rounded-3xl"
-        } flex justify-center items-center z-30 transition-all duration-300 ease-in-out`}
+        } flex justify-between items-center z-30 transition-all duration-300 ease-in-out`}
       >
         <div className="mx-5 flex h-16 items-center justify-between w-full">
           <Link href="/" className="flex items-center font-display text-2xl">
@@ -45,9 +45,9 @@ export default function NavBar({ session }: { session: Session | null }) {
             <Image
               src="/bulb.svg"
               alt="aspirants logo"
-              width="30"
-              height="30"
-              className="mr-2 mx-3 rounded-sm"
+              width={30}
+              height={30}
+              className="ml-2"
             />
           </Link>
           <div className="hidden md:flex items-center justify-center space-x-4 flex-1">
@@ -56,7 +56,7 @@ export default function NavBar({ session }: { session: Session | null }) {
               Browse Resources
             </Link>
           </div>
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center space-x-4">
             {session ? (
               <>
                 <NotificationDropdown />
