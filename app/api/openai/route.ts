@@ -3,7 +3,7 @@ export const runtime = 'edge';
 export async function POST(request: Request) {
   try {
     const { question, context } = await request.json();
-    console.log('Received request:', { question, context });  // Log the received request
+    console.log('Received request:', { question, context });
 
     const response = await fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     }
 
     const data = await response.json();
-    console.log('Received response from OpenAI:', data);  // Log the response from OpenAI
+    console.log('Received response from OpenAI:', data);
     return new Response(JSON.stringify({ response: data.choices[0].text.trim() }), { status: 200 });
   } catch (err) {
     const error = err as Error;
