@@ -31,7 +31,7 @@ const texts = [
   {
     id: 1,
     header: "New Feature Release.",
-    subheader: "Experience our app's latest features now.",
+    subheader: "Experience our latest features now.",
     icon: <Star />,
   },
   {
@@ -52,7 +52,7 @@ const texts = [
     id: 4,
     header: "Feedback Appreciated.",
     subheader:
-      "We'd love to hear your thoughts on our app. Share your feedback!",
+      "We would love to hear your thoughts on our app. Share your feedback!",
     icon: <MessageCircle />,
   },
 ];
@@ -295,7 +295,7 @@ const FeatureCard1 = () => {
         <p className="text-center text-gray-600 max-w-3xl mx-auto mb-16">
           Essentially a headless open source editor, Aspirants has a wide range
           of paid features that give developers exactly the kind of experience
-          they're looking for - fully customizable to build their product needs.
+          they&apos;re looking for - fully customizable to build their product needs.
         </p>
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-200 via-purple-100 to-blue-100 opacity-50 rounded-3xl transform scale-110 z-[-10]"></div>
