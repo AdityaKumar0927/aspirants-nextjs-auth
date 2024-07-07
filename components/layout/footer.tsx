@@ -21,31 +21,6 @@ export default function Footer() {
   return (
     <div className="bg-white shadow-md py-8 mt-10 z[100]">
       <div className="container mx-auto px-4">
-        <header className="mb-12">
-          <h1 className="font-display text-2xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-            aspirants
-          </h1>
-          <p className="text-gray-600 mb-2">
-            Providing quality resources for
-            <br />
-            a better education
-          </p>
-          <p className="text-gray-400 text-sm">© 2024 aspirants.tech</p>
-          <div className="flex space-x-4 mt-4">
-            <a href="#" className="text-gray-400 hover:text-gray-600">
-              <FontAwesomeIcon icon={faTwitter} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-gray-600">
-              <FontAwesomeIcon icon={faGithub} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-gray-600">
-              <FontAwesomeIcon icon={faLinkedinIn} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-gray-600">
-              <FontAwesomeIcon icon={faYoutube} />
-            </a>
-          </div>
-        </header>
         <div className="flex flex-wrap -mx-4">
           <div className="w-full md:w-1/4 px-4 mb-8">
             <h2 className="font-semibold text-lg mb-4">Resources</h2>

@@ -9,6 +9,7 @@ import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
+import Sidebar from "@/components/layout/Sidebar";
 
 interface QuestionType {
   questionId: string;
@@ -203,6 +204,7 @@ const QuestionBank: React.FC = () => {
 
   return (
     <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+      <Sidebar />
       <div className="max-w-6xl w-full">
         <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
           CUET Question Bank

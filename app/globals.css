@@ -59,4 +59,50 @@ html {
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
   
- 
+  @layer base {
+    .tiptap {
+      ul, ol {
+        @apply pl-4 my-5;
+        li p {
+          @apply my-1;
+        }
+      }
+      h1, h2, h3, h4, h5, h6 {
+        @apply leading-tight mt-10 break-words;
+      }
+      h1, h2 {
+        @apply mt-14 mb-6;
+      }
+      h1 { 
+        @apply text-xl; 
+      }
+      h2 { 
+        @apply text-lg; 
+      }
+      h3 { 
+        @apply text-base; 
+      }
+      h4, h5, h6 { 
+        @apply text-sm; 
+      }
+      code {
+        @apply bg-purple-100 rounded text-black text-xs px-1.5 py-0.5;
+      }
+      pre {
+        @apply bg-black text-white rounded p-3 text-xs my-6;
+        code {
+          @apply bg-none text-white text-xs p-0;
+        }
+      }
+      blockquote {
+        @apply border-l-4 border-gray-300 pl-4 my-6;
+      }
+      hr {
+        @apply border-none border-t border-gray-200 my-8;
+      }
+    }
+  }
+
+  
+
+  
