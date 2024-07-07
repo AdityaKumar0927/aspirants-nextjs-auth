@@ -409,35 +409,36 @@ const Question: React.FC<QuestionProps> = ({
         </div>
 
         {showAiChat && aiEnabled && (
-           <div className="container mx-auto px-4 py-8 max-w-4xl">
-           <h1 className="text-6xl mb-2">
-               <span className="text-blue-500">Hello,</span>
-           </h1>
-           <h2 className="text-4xl text-gray-400 mb-8">How can I help you today?</h2>
-           
-           <div className="bg-gray-100 p-4 rounded-full flex items-center">
-  <input
-    type="text"
-    placeholder="Enter a prompt here"
-    className="bg-transparent flex-grow outline-none border-none focus:border-transparent focus:ring-0"
-    value={userQuestion}
-    onChange={(e) => setUserQuestion(e.target.value)}
-  />
-  <button className="mx-2" onClick={handleAiSubmit}>
-    <i className="fas fa-paper-plane text-gray-500"></i>
-  </button>
-</div>
+          <div className="container mx-auto px-4 py-8 max-w-4xl">
+            <h1 className="text-6xl mb-2">
+              <span className="text-blue-500">Hello,</span>
+            </h1>
+            <h2 className="text-4xl text-gray-400 mb-8">How can I help you today?</h2>
+            
+            <div className="bg-gray-100 p-4 rounded-full flex items-center">
+              <input
+                type="text"
+                placeholder="Enter a prompt here"
+                className="bg-transparent flex-grow outline-none border-none focus:border-transparent focus:ring-0"
+                value={userQuestion}
+                onChange={(e) => setUserQuestion(e.target.value)}
+              />
+              <button className="ml-2 bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center" onClick={handleAiSubmit}>
+                <i className="fas fa-arrow-right"></i>
+              </button>
+            </div>
 
-           {aiResponse && (
-             <div className="mt-4 p-4 bg-white rounded-lg shadow-md">
-               <p className="text-gray-700">{aiResponse}</p>
-             </div>
-           )}
+            {aiResponse && (
+              <div className="bg-white p-4 rounded-lg mt-4 shadow">
+                <h3 className="text-2xl font-semibold mb-2">AI Response:</h3>
+                <p className="text-gray-700">{aiResponse}</p>
+              </div>
+            )}
 
-           <p className="text-xs text-gray-500 mt-4">
-               ChatGPT may display inaccurate info, including about people, so double-check its responses. <a href="#" className="text-blue-600">Your privacy and Gemini Apps</a>
-           </p>
-       </div>
+            <p className="text-xs text-gray-500 mt-4">
+              ChatGPT may display inaccurate info, including about people, so double-check its responses. <a href="#" className="text-blue-600">Your privacy and Gemini Apps</a>
+            </p>
+          </div>
         )}
       </div>
     </div>
