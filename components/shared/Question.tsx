@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import MathRenderer from '@/components/layout/MathRenderer';
 import Modal from '@/components/shared/modal';
 import { CheckSquare, LucideBookmark, Settings, BookOpen, LucideBot } from "lucide-react";
 import { Switch } from '@headlessui/react';
 import Image from 'next/image';
 import Tiptap from '@/components/layout/Tiptap';
-import Markdown from 'react-markdown';
+import Chat from '@/components/shared/Chat';  // Make sure the path is correct
 
 interface QuestionType {
   questionId: string;
@@ -39,24 +39,6 @@ interface QuestionProps {
   handleDeleteNote: (questionId: string) => Promise<void>;
 }
 
-const UserMessage = ({ text }: { text: string }) => {
-  return <div className="user-message">{text}</div>;
-};
-
-const AssistantMessage = ({ text }: { text: string }) => {
-  return (
-    <div className="assistant-message">
-      <Markdown>{text}</Markdown>
-    </div>
-  );
-};
-
-const Message = ({ role, text }: { role: "user" | "assistant"; text: string }) => {
-  if (role === "user") return <UserMessage text={text} />;
-  if (role === "assistant") return <AssistantMessage text={text} />;
-  return null;
-};
-
 const Question: React.FC<QuestionProps> = ({
   question,
   feedback,
@@ -89,17 +71,6 @@ const Question: React.FC<QuestionProps> = ({
   const [aiEnabled, setAiEnabled] = useState(true);
   const [notesEnabled, setNotesEnabled] = useState(true);
   const [showAiChat, setShowAiChat] = useState(false);
-  const [messages, setMessages] = useState<{ role: "user" | "assistant"; text: string }[]>([]);
-  const [inputDisabled, setInputDisabled] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement | null>(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
 
   const handleOptionClickLocal = (option: string) => {
     if (selectedOption !== option) {
@@ -175,32 +146,6 @@ const Question: React.FC<QuestionProps> = ({
       if (!response.ok) throw new Error('Failed to save progress');
     } catch (error) {
       console.error('Error saving progress:', error);
-    }
-  };
-
-  const handleAiSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!userQuestion.trim()) return;
-    setMessages([...messages, { role: "user", text: userQuestion }]);
-    setUserQuestion("");
-    setInputDisabled(true);
-    try {
-      const response = await fetch("/api/openai", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ question: userQuestion, context: "" }),
-      });
-      const data = await response.json();
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { role: "assistant", text: data.response },
-      ]);
-    } catch (error) {
-      console.error("Error fetching AI response:", error);
-    } finally {
-      setInputDisabled(false);
     }
   };
 
@@ -450,41 +395,7 @@ const Question: React.FC<QuestionProps> = ({
           </div>
         </div>
 
-        {showAiChat && aiEnabled && (
-           <div className="container mx-auto px-4 py-8 max-w-4xl">
-           <h1 className="text-6xl mb-2">
-               <span className="text-blue-500">Hello,</span>
-           </h1>
-           <h2 className="text-4xl text-gray-400 mb-8">How can I help you today?</h2>
-           
-           <form onSubmit={handleAiSubmit} className="bg-gray-100 p-4 rounded-full flex items-center">
-  <input
-    type="text"
-    value={userQuestion}
-    onChange={(e) => setUserQuestion(e.target.value)}
-    placeholder="Enter a prompt here"
-    className="bg-transparent flex-grow outline-none border-none focus:border-transparent focus:ring-0"
-    disabled={inputDisabled}
-  />
-  <button type="submit" className="mx-2" disabled={inputDisabled}>
-    <i className="fas fa-arrow-right text-gray-500"></i>
-  </button>
-</form>
-
-
-           
-           <div className="mt-4 space-y-4">
-             {messages.map((msg, index) => (
-               <Message key={index} role={msg.role} text={msg.text} />
-             ))}
-             <div ref={messagesEndRef} />
-           </div>
-
-           <p className="text-xs text-gray-500 mt-4">
-               ChatGPT may display inaccurate info, including about people, so double-check its responses. <a href="#" className="text-blue-600">Your privacy and Gemini Apps</a>
-           </p>
-       </div>
-        )}
+        {showAiChat && aiEnabled && <Chat />}
       </div>
     </div>
   );

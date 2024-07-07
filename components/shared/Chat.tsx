@@ -1,3 +1,4 @@
+// Chat.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { LucideBot } from "lucide-react";
 import Markdown from "react-markdown";
