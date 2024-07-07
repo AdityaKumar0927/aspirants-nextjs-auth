@@ -1,21 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import Markdown from "react-markdown";
 
+// Define the type for the messages
 type MessageProps = {
   role: "user" | "assistant";
   text: string;
 };
 
+// Define the user message component
 const UserMessage: React.FC<{ text: string }> = ({ text }) => (
   <div className="bg-blue-200 p-2 rounded mb-2">{text}</div>
 );
 
+// Define the assistant message component
 const AssistantMessage: React.FC<{ text: string }> = ({ text }) => (
   <div className="bg-gray-200 p-2 rounded mb-2">
     <Markdown>{text}</Markdown>
   </div>
 );
 
+// Define the main message component
 const Message: React.FC<MessageProps> = ({ role, text }) => {
   if (role === "user") {
     return <UserMessage text={text} />;
@@ -26,13 +30,14 @@ const Message: React.FC<MessageProps> = ({ role, text }) => {
   }
 };
 
+// Define the Chat component
 const Chat: React.FC = () => {
   const [userInput, setUserInput] = useState<string>("");
   const [messages, setMessages] = useState<MessageProps[]>([]);
   const [inputDisabled, setInputDisabled] = useState<boolean>(false);
-
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
+  // Scroll to the bottom of the chat
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -41,6 +46,7 @@ const Chat: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!userInput.trim()) return;

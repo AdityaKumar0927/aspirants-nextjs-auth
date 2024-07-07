@@ -354,7 +354,7 @@ const Question: React.FC<QuestionProps> = ({
               <div className="flex items-center mx-auto space-x-2">
                 {notesEnabled && (
                   <button
-                    className="text-gray-700 px-2 py-1 border border-gray-300 hover:bg-gray-200  rounded-md text-xs"
+                    className="text-gray-700 px-2 py-1 border border-gray-300 hover:bg-gray-200 rounded-md text-xs"
                     onClick={() => setShowEditor(!showEditor)}
                   >
                     <BookOpen className="h-5 w-5" />
