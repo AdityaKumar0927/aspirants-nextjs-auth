@@ -124,7 +124,6 @@ const Chat: React.FC<{ questionText: string }> = ({ questionText }) => {
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <h1 className="text-6xl mb-2">
         <span className="text-blue-500">Hello,</span>
-        <span className="text-pink-500"> Aditya</span>
       </h1>
       <h2 className="text-4xl text-gray-400 mb-8">How can I help you today?</h2>
 
