@@ -3,6 +3,7 @@ import MathRenderer from '@/components/layout/MathRenderer';
 import Modal from '@/components/shared/modal';
 import { CheckSquare, LucideBookmark, Settings, BookOpen, LucideBot } from "lucide-react";
 import { Switch } from '@headlessui/react';
+import Image from 'next/image';
 import Tiptap from '@/components/layout/Tiptap';
 import Chat from '@/components/shared/Chat';
 
@@ -64,6 +65,8 @@ const Question: React.FC<QuestionProps> = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(100);
   const [showVolumeControl, setShowVolumeControl] = useState(false);
+  const [userQuestion, setUserQuestion] = useState('');
+  const [aiResponse, setAiResponse] = useState('');
   const [showEditor, setShowEditor] = useState(false);
   const [aiEnabled, setAiEnabled] = useState(true);
   const [notesEnabled, setNotesEnabled] = useState(true);
@@ -354,7 +357,7 @@ const Question: React.FC<QuestionProps> = ({
               <div className="flex items-center mx-auto space-x-2">
                 {notesEnabled && (
                   <button
-                    className="text-gray-700 px-2 py-1 border border-gray-300 hover:bg-gray-200 rounded-md text-xs"
+                    className="text-gray-700 px-2 py-1 border border-gray-300 hover:bg-gray-200  rounded-md text-xs"
                     onClick={() => setShowEditor(!showEditor)}
                   >
                     <BookOpen className="h-5 w-5" />
@@ -392,7 +395,7 @@ const Question: React.FC<QuestionProps> = ({
           </div>
         </div>
 
-        {showAiChat && aiEnabled && <Chat />}
+        {showAiChat && aiEnabled && <Chat questionText={question.text} />}
       </div>
     </div>
   );
