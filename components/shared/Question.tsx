@@ -1,9 +1,9 @@
+// Question.tsx
 import React, { useState } from 'react';
 import MathRenderer from '@/components/layout/MathRenderer';
 import Modal from '@/components/shared/modal';
 import { CheckSquare, LucideBookmark, Settings, BookOpen, LucideBot } from "lucide-react";
 import { Switch } from '@headlessui/react';
-import Image from 'next/image';
 import Tiptap from '@/components/layout/Tiptap';
 import Chat from '@/components/shared/Chat';  // Make sure the path is correct
 
@@ -65,8 +65,6 @@ const Question: React.FC<QuestionProps> = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(100);
   const [showVolumeControl, setShowVolumeControl] = useState(false);
-  const [userQuestion, setUserQuestion] = useState('');
-  const [aiResponse, setAiResponse] = useState('');
   const [showEditor, setShowEditor] = useState(false);
   const [aiEnabled, setAiEnabled] = useState(true);
   const [notesEnabled, setNotesEnabled] = useState(true);

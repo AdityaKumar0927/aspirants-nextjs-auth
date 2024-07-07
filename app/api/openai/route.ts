@@ -4,6 +4,10 @@ export const runtime = 'edge';
 export async function POST(request: Request) {
   try {
     const { question, context } = await request.json();
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error("Missing OpenAI API key");
+    }
+    
     const response = await fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
@@ -18,7 +22,8 @@ export async function POST(request: Request) {
     });
 
     if (!response.ok) {
-      throw new Error(`OpenAI API responded with status ${response.status}`);
+      const errorDetails = await response.json();
+      throw new Error(`OpenAI API error: ${errorDetails.error.message}`);
     }
 
     const data = await response.json();
