@@ -2,6 +2,7 @@
 
 import React from "react";
 import Modal from "@/components/shared/modal";
+import Image from "next/image";
 
 interface DashboardModalProps {
   showModal: boolean;
@@ -46,10 +47,12 @@ const DashboardModal: React.FC<DashboardModalProps> = ({ showModal, setShowModal
                       </div>
                       <div className="flex flex-col items-center">
                         <div className="relative mb-2">
-                          <img
+                          <Image
                             src="https://placehold.co/100x100"
                             alt="Profile picture of a woman with straight dark hair and bangs against a coral background"
                             className="rounded-full w-24 h-24 object-cover"
+                            width={100}
+                            height={100}
                           />
                           <div className="absolute bottom-0 right-0 bg-white rounded-full p-1">
                             <i className="fas fa-plus text-xs"></i>
@@ -99,20 +102,26 @@ const DashboardModal: React.FC<DashboardModalProps> = ({ showModal, setShowModal
                         <p className="text-sm text-gray-500">3 active connections</p>
                       </div>
                       <div className="flex items-center">
-                        <img
+                        <Image
                           src="https://placehold.co/30x30"
                           alt="Figma logo"
                           className="w-8 h-8 rounded mr-2"
+                          width={30}
+                          height={30}
                         />
-                        <img
+                        <Image
                           src="https://placehold.co/30x30"
                           alt="Trello logo"
                           className="w-8 h-8 rounded mr-2"
+                          width={30}
+                          height={30}
                         />
-                        <img
+                        <Image
                           src="https://placehold.co/30x30"
                           alt="Google Meet logo"
                           className="w-8 h-8 rounded mr-2"
+                          width={30}
+                          height={30}
                         />
                         <i className="fas fa-ellipsis-h text-gray-400"></i>
                       </div>

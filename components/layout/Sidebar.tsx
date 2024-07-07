@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SidebarModal from "@/components/shared/SidebarModal"; // Import the new modal component
 import NotesApp from "@/components/shared/NoteApp";
 import RemindersApp from "@/components/shared/RemindersApp";
+import Image from "next/image";
 
 const Sidebar = () => {
   const [activeModal, setActiveModal] = useState<number | null>(null);
@@ -27,12 +28,14 @@ const Sidebar = () => {
         <div className="flex flex-col space-y-12">
           {icons.map((icon) => (
             <button key={icon.id} onClick={() => handleModalOpen(icon.id)}>
-              <img
-                loading="lazy"
-                src={icon.src}
-                className="w-10 h-10 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
-                alt={icon.alt}
-              />
+              <Image
+  src={icon.src}
+  alt={icon.alt}
+  width={40} // Provide appropriate width
+  height={40} // Provide appropriate height
+  className="w-10 h-10 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+  loading="lazy"
+/>
             </button>
           ))}
         </div>
