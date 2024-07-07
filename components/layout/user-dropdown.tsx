@@ -6,14 +6,12 @@ import { LayoutDashboard, LogOut, Clock } from "lucide-react";
 import Popover from "@/components/shared/popover";
 import Image from "next/image";
 import { Session } from "next-auth";
-import PomodoroTimer from "@/components/shared/PomodoroTimer";
 import DashboardModal from "@/components/shared/DashboardModal";
 
 export default function UserDropdown({ session }: { session: Session }) {
   const { email, image } = session?.user || {};
   const [openPopover, setOpenPopover] = useState(false);
   const [showDashboardModal, setShowDashboardModal] = useState(false);
-  const [showPomodoro, setShowPomodoro] = useState(false); // State for Pomodoro timer
 
   if (!email) return null;
 
@@ -39,13 +37,7 @@ export default function UserDropdown({ session }: { session: Session }) {
               <LayoutDashboard className="h-4 w-4" />
               <p className="text-sm">Dashboard</p>
             </button>
-            <button
-              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
-              onClick={() => setShowPomodoro(!showPomodoro)} // Toggle Pomodoro timer
-            >
-              <Clock className="h-4 w-4" />
-              <p className="text-sm">Pomodoro Timer</p>
-            </button>
+          
             <button
               className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
               onClick={() => signOut()}
@@ -68,11 +60,12 @@ export default function UserDropdown({ session }: { session: Session }) {
             src={image || `https://avatars.dicebear.com/api/micah/${email}.svg`}
             width={40}
             height={40}
+            className="rounded-full object-cover"
           />
         </button>
       </Popover>
       <DashboardModal showModal={showDashboardModal} setShowModal={setShowDashboardModal} />
-      <PomodoroTimer show={showPomodoro} hide={showDashboardModal || openPopover} /> {/* Render the Pomodoro timer and hide it based on modal state */}
+      
     </div>
   );
 }
