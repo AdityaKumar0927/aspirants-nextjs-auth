@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MathRenderer from '@/components/layout/MathRenderer';
 import Modal from '@/components/shared/modal';
-import { CheckSquare, LucideBookmark, Settings, BookOpen, LucideBot } from "lucide-react";
+import { CheckSquare, BookmarkPlus, LucideBookmark, Settings2, BookOpen, LucideBot } from "lucide-react";
 import { Switch } from '@headlessui/react';
 import Image from 'next/image';
 import Tiptap from '@/components/layout/Tiptap';
@@ -164,7 +164,7 @@ const Question: React.FC<QuestionProps> = ({
             </div>
             <div className="flex items-center space-x-2">
               <button
-                className={`bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs ${isMarkedComplete ? 'bg-green-500 text-white' : ''}`}
+                className={`bg-green-100 text-green-700 px-2 py-1 rounded text-xs ${isMarkedComplete ? 'bg-green-500 text-white' : ''}`}
                 onClick={() => {
                   handleMarkComplete(question.questionId);
                   saveProgress(question.questionId, 'completed', !isMarkedComplete);
@@ -177,19 +177,19 @@ const Question: React.FC<QuestionProps> = ({
                 )}
               </button>
               <button
-                className={`bg-yellow-100 text-yellow-700 px-2 py-1 rounded-md text-xs ${isMarkedForReview ? 'bg-yellow-300 text-white' : ''}`}
+                className={`bg-yellow-100 text-yellow-300 px-2 py-1 rounded-md text-xs ${isMarkedForReview ? ' text-white' : ''}`}
                 onClick={() => {
                   handleMarkForReview(question.questionId);
                   saveProgress(question.questionId, 'reviewed', !isMarkedForReview);
                 }}
               >
-                <LucideBookmark className={`${isMarkedForReview ? 'text-green-700' : 'text-yellow-700'}`} />
+                <LucideBookmark className={`${isMarkedForReview ? ' fill-yellow-300' : 'text-yellow-700'}`} />
               </button>
               <button
                 className="text-gray-700 px-2 py-1 rounded-md text-xs"
                 onClick={toggleSettingsModal}
               >
-                <Settings className="" />
+                <Settings2 className="" />
               </button>
             </div>
           </div>

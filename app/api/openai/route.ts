@@ -2,28 +2,33 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export const runtime = 'edge';
 
+// In-memory storage for chat history (use a database for persistence)
+const chatHistory: { [sessionId: string]: { role: string; content: string }[] } = {};
+
 export async function POST(request: NextRequest) {
   try {
-    // Parse the JSON body of the request
     const body = await request.json();
+    const { question, context, sessionId } = body;
 
-    // Destructure question and context from the request body
-    const { question, context } = body;
-
-    // Check if the required environment variable is set
     if (!process.env.OPENAI_API_KEY) {
       throw new Error('OPENAI_API_KEY is not set');
     }
 
-    // Validate that question and context are provided
-    if (!question || !context) {
+    if (!question || !context || !sessionId) {
       return NextResponse.json(
-        { error: 'Bad Request', details: 'Question and context are required.' },
+        { error: 'Bad Request', details: 'Question, context, and sessionId are required.' },
         { status: 400 }
       );
     }
 
-    // Make the API call to OpenAI
+    // Initialize chat history if not present
+    if (!chatHistory[sessionId]) {
+      chatHistory[sessionId] = [{ role: 'system', content: 'You are a helpful assistant.' }];
+    }
+
+    // Add user question to chat history
+    chatHistory[sessionId].push({ role: 'user', content: question });
+
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -32,15 +37,11 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
-        messages: [
-          { role: 'system', content: 'You are a helpful assistant.' },
-          { role: 'user', content: question }
-        ],
+        messages: chatHistory[sessionId],
         max_tokens: 150,
       }),
     });
 
-    // Handle non-OK responses from the OpenAI API
     if (!response.ok) {
       const errorData = await response.json();
       console.error('OpenAI API Error:', errorData);
@@ -50,14 +51,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse the JSON response from the OpenAI API
     const data = await response.json();
+    const assistantResponse = data.choices[0].message.content.trim();
+
+    // Add assistant response to chat history
+    chatHistory[sessionId].push({ role: 'assistant', content: assistantResponse });
+
     return NextResponse.json(
-      { response: data.choices[0].message.content.trim() },
+      { response: assistantResponse },
       { status: 200 }
     );
   } catch (error) {
-    // Type-cast the error to `Error`
     const typedError = error as Error;
     console.error('Server Error:', typedError);
     return NextResponse.json(

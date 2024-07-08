@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Markdown from "react-markdown";
+import Latex from 'react-latex-next';
 import { ArrowBigRight, Pencil, Trash, XCircle } from 'lucide-react';
 
 type MessageProps = {
@@ -10,7 +11,7 @@ type MessageProps = {
 const UserMessage: React.FC<{ text: string; onEdit: () => void; onDelete: () => void; }> = ({ text, onEdit, onDelete }) => (
   <div className="bg-[#fad7b4] text-black p-2 rounded relative self-end max-w-xl">
     <div className="flex items-center justify-between">
-      <div className="flex-grow mr-2">{text}</div>
+      <div className="flex-grow mr-2"><Latex>{text}</Latex></div>
       <div className="flex space-x-1">
         <button onClick={onEdit} className="text-gray-600 hover:text-gray-900">
           <Pencil size={16} />
@@ -25,7 +26,7 @@ const UserMessage: React.FC<{ text: string; onEdit: () => void; onDelete: () => 
 
 const AssistantMessage: React.FC<{ text: string }> = ({ text }) => (
   <div className="bg-[#F5F4F3] text-black p-2 rounded mb-2 self-start max-w-xl">
-    <Markdown>{text}</Markdown>
+    <Latex>{text}</Latex>
   </div>
 );
 
@@ -51,6 +52,7 @@ const Chat: React.FC<{ questionText: string }> = ({ questionText }) => {
   const [inputDisabled, setInputDisabled] = useState<boolean>(false);
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [isTyping, setIsTyping] = useState<boolean>(false);
+  const [sessionId] = useState<string>(() => `session-${Date.now()}`);
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -86,7 +88,7 @@ const Chat: React.FC<{ questionText: string }> = ({ questionText }) => {
       const response = await fetch('/api/openai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: prompt, context: questionText }),
+        body: JSON.stringify({ question: prompt, context: questionText, sessionId }),
       });
 
       const data = await response.json();
