@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import Markdown from "react-markdown";
 import Latex from 'react-latex-next';
 import { ArrowBigRight, Pencil, Trash, XCircle } from 'lucide-react';
 
