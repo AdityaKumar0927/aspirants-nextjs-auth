@@ -45,7 +45,7 @@ const Message: React.FC<MessageProps & { onEdit: () => void; onDelete: () => voi
   }
 };
 
-const Chat: React.FC<{ questionText: string }> = ({ questionText }) => {
+const Chat: React.FC<{ questionText: string, options?: string[], markscheme?: string }> = ({ questionText, options, markscheme }) => {
   const [userInput, setUserInput] = useState<string>("");
   const [messages, setMessages] = useState<MessageProps[]>([]);
   const [inputDisabled, setInputDisabled] = useState<boolean>(false);
@@ -83,11 +83,17 @@ const Chat: React.FC<{ questionText: string }> = ({ questionText }) => {
     setInputDisabled(true);
     setIsTyping(true);
 
+    const context = {
+      question: questionText,
+      options: options || [],
+      markscheme: markscheme || ''
+    };
+
     try {
       const response = await fetch('/api/openai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: prompt, context: questionText, sessionId }),
+        body: JSON.stringify({ question: prompt, context, sessionId }),
       });
 
       const data = await response.json();
