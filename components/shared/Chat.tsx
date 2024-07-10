@@ -23,11 +23,59 @@ const UserMessage: React.FC<{ text: string; onEdit: () => void; onDelete: () => 
   </div>
 );
 
-const AssistantMessage: React.FC<{ text: string }> = ({ text }) => (
-  <div className="bg-[#F5F4F3] text-black p-2 rounded mb-2 self-start max-w-xl">
-    <Latex>{text}</Latex>
-  </div>
-);
+const AssistantMessage: React.FC<{ text: string }> = ({ text }) => {
+  const renderSection = (section: string) => {
+    if (section.startsWith("Example:")) {
+      return (
+        <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 mb-4">
+          <div className="flex items-center mb-2">
+            <i className="fas fa-info-circle text-blue-500 mr-2"></i>
+            <span className="font-semibold text-blue-700">Example</span>
+          </div>
+          <p className="text-gray-700"><Latex>{section.replace("Example:", "").trim()}</Latex></p>
+        </div>
+      );
+    } else if (section.startsWith("Hint:")) {
+      return (
+        <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-4 mb-4">
+          <div className="flex items-center mb-2">
+            <i className="fas fa-lightbulb text-purple-500 mr-2"></i>
+            <span className="font-semibold text-purple-700">Hint</span>
+          </div>
+          <p className="text-gray-700"><Latex>{section.replace("Hint:", "").trim()}</Latex></p>
+        </div>
+      );
+    } else if (section.startsWith("Note:")) {
+      return (
+        <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4 mb-4">
+          <div className="flex items-center mb-2">
+            <i className="fas fa-sticky-note text-green-500 mr-2"></i>
+            <span className="font-semibold text-green-700">Note</span>
+          </div>
+          <p className="text-gray-700"><Latex>{section.replace("Note:", "").trim()}</Latex></p>
+        </div>
+      );
+    } else {
+      return (
+        <div className="bg-white rounded-lg p-4 shadow mb-4">
+          <p className="text-gray-700"><Latex>{section}</Latex></p>
+        </div>
+      );
+    }
+  };
+
+  const sections = text.split("\n\n").map((section, index) => (
+    <div key={index}>
+      {renderSection(section)}
+    </div>
+  ));
+
+  return (
+    <div className="max-w-2xl bg-white mx-auto space-y-4">
+      {sections}
+    </div>
+  );
+};
 
 const TypingIndicator: React.FC = () => (
   <div className="bg-gray-200 text-black p-2 rounded mb-2 animate-pulse self-start max-w-xl">

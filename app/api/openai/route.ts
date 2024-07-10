@@ -37,6 +37,19 @@ Examples of questions you might receive include but are not limited to:
 - Offering step-by-step hints for coding and programming challenges.
 
 By following these guidelines, you will ensure that your guidance is valuable, educational, and helps students to actively engage in problem-solving.
+
+Please structure your responses with sections like "Example:", "Hint:", "Note:", and normal text. For instance:
+
+Example:
+Provide an example relevant to the problem.
+
+Hint:
+Give a hint that can help the student progress.
+
+Note:
+Include any additional important information.
+
+For normal text, provide it directly without any specific heading.
 `;
 
 export async function POST(request: NextRequest) {
@@ -57,7 +70,7 @@ export async function POST(request: NextRequest) {
 
     // Initialize chat history if not present
     if (!chatHistory[sessionId]) {
-      chatHistory[sessionId] = [{ role: 'system', content: systemPrompt }];
+      chatHistory[sessionId] = [{ role: 'system', content: `${systemPrompt}\nContext: ${JSON.stringify(context)}` }];
     }
 
     // Add user question to chat history

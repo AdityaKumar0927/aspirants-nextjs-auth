@@ -19,13 +19,20 @@ import {
 import Link from "next/link";
 import MainContent from "@/components/home/MainContent";
 import ModalWrapper from "@/components/layout/ModalWrapper";
-import FAQ from "@/components/shared/FAQ";
+import { FAQ } from "@/components/shared/FAQ";
 import { cubicBezier, motion, useInView } from "framer-motion";
 import { Clock, Download, MessageCircle, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { useRef } from "react";
 import { BorderBeam } from "@/components/magicui/border-beam";
+import { FeatureCard1 } from "@/components/magicui/AnimatedFeatureCard1";
+import { FeatureCard2 } from "@/components/magicui/AnimatedFeatureCard2";
+import { FeatureCard3 } from "@/components/magicui/AnimatedFeatureCard3";
+import { FeatureCard4 } from "@/components/magicui/AnimatedFeatureCard4";
+import { FeatureCard6 } from "@/components/magicui/AnimatedFeatureCard6";
+import { FeatureCard8 } from "@/components/magicui/AnimatedFeatureCard8";
+import { FeatureCard9 } from "@/components/magicui/AnimatedFeatureCard9";
 
 const texts = [
   {
@@ -230,7 +237,7 @@ const containerVariants = {
 };
 
 
-const FeatureCard1 = () => {
+const page = () => {
   return (
     <>
       <ModalWrapper />
@@ -334,6 +341,13 @@ const FeatureCard1 = () => {
         </div>
       </div>
    
+      <FeatureCard1 />
+      <FeatureCard2 />
+      <FeatureCard3 />
+      <FeatureCard4 />
+      <FeatureCard6 />
+      <FeatureCard8 />
+      <FeatureCard9 />
     
     
       <FAQ />
@@ -341,4 +355,4 @@ const FeatureCard1 = () => {
   );
 }
 
-export default FeatureCard1;
+export default page;

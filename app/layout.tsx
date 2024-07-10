@@ -8,6 +8,8 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false; /* eslint-disable import/first */
+import { TooltipProvider } from '@radix-ui/react-tooltip';  // Add this import
+import Sidebar from '@/components/layout/Sidebar';
 
 export const metadata = {
   title: "aspirants",
@@ -69,6 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={cx(sfPro.variable, inter.variable, "bg-gradient-to-br from-indigo-50 via-white to-cyan-100")}>
+      <TooltipProvider>
         <div className="fixed inset-0 z-[-10]"></div>
         <Suspense fallback="...">
           <Nav />
@@ -76,8 +79,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
           {children}
         </main>
+        <Sidebar />
         <Footer />
         <VercelAnalytics />
+        </TooltipProvider>
       </body>
     </html>
   );
