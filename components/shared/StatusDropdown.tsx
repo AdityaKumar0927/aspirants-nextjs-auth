@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faCircle, faChevronDown, faCheck, faTimesCircle, faStream } from '@fortawesome/free-solid-svg-icons';

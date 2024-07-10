@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { User, Menu, Package2, Search } from "lucide-react"
 

@@ -1,3 +1,5 @@
+"use client"
+
 import { Icons } from "@/components/layout/icons";
 import { CodeIcon, HomeIcon, BookIcon, LucidePencil} from "lucide-react";
 

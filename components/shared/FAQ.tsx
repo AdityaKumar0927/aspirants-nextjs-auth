@@ -12,22 +12,18 @@ const faqs = [
     section: "General",
     qa: [
       {
-        question: "What is Magic UI?",
+        question: "What is Aspirants?",
         answer: (
           <span>
-            Magic UI is a React-based UI library designed to help developers
-            build beautiful and interactive user interfaces with ease. It offers
-            a wide range of customizable components.
+            Aspirants is an online platform designed to help students and professionals prepare for competitive exams with comprehensive resources, practice tests, and interactive features.
           </span>
         ),
       },
       {
-        question: "How can I get started with Magic UI?",
+        question: "How can I get started with Aspirants?",
         answer: (
           <span>
-            To get started, install the Magic UI package in your React project
-            using your package manager. Explore our documentation for guides on
-            using components and customizing your UI.
+            To get started, simply create an account on our website, explore our available resources, and start practicing with our tailored study materials and tests.
           </span>
         ),
       },
@@ -37,12 +33,10 @@ const faqs = [
     section: "Support",
     qa: [
       {
-        question: "Does Magic UI offer technical support?",
+        question: "Does Aspirants offer technical support?",
         answer: (
           <span>
-            While Magic UI is primarily a self-serve library, we provide
-            extensive documentation and a community forum where you can ask
-            questions and share insights with other developers.
+            Yes, Aspirants provides technical support through our help center and customer support email. You can also find answers to common issues in our FAQ section.
           </span>
         ),
       },
@@ -52,12 +46,10 @@ const faqs = [
     section: "Customization",
     qa: [
       {
-        question: "Can I customize Magic UI components?",
+        question: "Can I customize my study plan on Aspirants?",
         answer: (
           <span>
-            Absolutely! Magic UI is built with customization in mind. You can
-            easily override styles and behaviors of components to match your
-            design requirements.
+            Absolutely! Aspirants allows you to customize your study plan based on your specific goals and timelines. You can track your progress and adjust your plan as needed.
           </span>
         ),
       },
@@ -67,13 +59,10 @@ const faqs = [
     section: "Integration",
     qa: [
       {
-        question: "How do I integrate Magic UI with my existing project?",
+        question: "Can I integrate Aspirants with other tools?",
         answer: (
           <span>
-            Magic UI can be integrated into any React project. Simply install
-            the library, import the components you need, and start using them in
-            your project. Our documentation provides detailed instructions for
-            integration.
+            Currently, Aspirants is a standalone platform, but we are working on integrating with other popular tools and apps to enhance your study experience. Stay tuned for updates!
           </span>
         ),
       },

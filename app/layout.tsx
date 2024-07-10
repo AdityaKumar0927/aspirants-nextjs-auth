@@ -1,3 +1,5 @@
+"use client"
+
 import "./globals.css";
 import cx from "classnames";
 import { sfPro, inter } from "./fonts";

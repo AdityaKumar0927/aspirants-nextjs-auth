@@ -1,3 +1,5 @@
+"use client"
+
 // components/shared/WorkInProgressModal.tsx
 import Modal from "@/components/shared/modal";
 import { useState, Dispatch, SetStateAction } from "react";
