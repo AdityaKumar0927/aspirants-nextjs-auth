@@ -1,4 +1,4 @@
-import { Icons } from "@/components/shared/icons";
+import { Icons } from "@/components/layout/icons";
 import { CodeIcon, HomeIcon, BookIcon, LucidePencil} from "lucide-react";
 
 export const DATA = {
