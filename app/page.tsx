@@ -2,7 +2,6 @@
 
 import Card from "@/components/home/card";
 import { DEPLOY_URL } from "@/lib/constants";
-import { Github, Twitter } from "@/components/shared/icons";
 import WebVitals from "@/components/home/web-vitals";
 import ComponentGrid from "@/components/home/component-grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
