@@ -24,7 +24,7 @@ export default function AnimatedModal({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.1 }} // Quick transition for the overlay
-              className="fixed inset-0 z-40 bg-gray-100 bg-opacity-50"
+              className="fixed inset-0 z-30 bg-gray-100 bg-opacity-50"
             />
             <Dialog.Content asChild>
               <motion.div
@@ -33,7 +33,7 @@ export default function AnimatedModal({
                 exit={{ scale: 0.95, opacity: 0 }}
                 transition={{ duration: 0.15 }} // Quick transition for the modal
                 className={cn(
-                  "fixed inset-0 z-50 m-auto max-h-[90%] w-8/12 overflow-hidden border border-gray-200 bg-white p-0 shadow-xl rounded-3xl"
+                  "fixed inset-0 z-40 m-auto max-h-[90%] w-8/12 overflow-hidden border border-gray-200 bg-white p-0 shadow-xl rounded-3xl"
                 )}
               >
                 {children}

@@ -16,9 +16,11 @@ import { useState } from "react";
 import { LucidePencil } from "lucide-react";
 import AnimatedModal from "@/components/shared/AnimatedModal";
 import { NoteApp } from "@/components/shared/NoteApp";
+import { useMotionValue } from "framer-motion";
 
 export default function Sidebar() {
   const [showModal, setShowModal] = useState(false);
+  const mouseX = useMotionValue(Infinity);
 
   return (
     <>
@@ -26,7 +28,7 @@ export default function Sidebar() {
         <div className="fixed bottom-0 inset-x-0 h-16 w-full bg-background to-transparent backdrop-blur-lg [-webkit-mask-image:linear-gradient(to_top,black,transparent)] dark:bg-background"></div>
         <Dock className="z-50 border-2 pointer-events-auto relative mx-auto flex min-h-full h-full items-center px-1 bg-background shadow-lg [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] transform-gpu dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]">
           {DATA.navbar.map((item) => (
-            <DockIcon key={item.href}>
+            <DockIcon key={item.href} mouseX={mouseX}>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link
@@ -49,7 +51,7 @@ export default function Sidebar() {
           {Object.entries(DATA.contact.social)
             .filter(([_, social]) => social.navbar)
             .map(([name, social]) => (
-              <DockIcon key={name}>
+              <DockIcon key={name} mouseX={mouseX}>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Link
@@ -69,7 +71,7 @@ export default function Sidebar() {
               </DockIcon>
             ))}
           <Separator orientation="vertical" className="h-full py-2" />
-          <DockIcon>
+          <DockIcon mouseX={mouseX}>
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
@@ -87,7 +89,7 @@ export default function Sidebar() {
               </TooltipContent>
             </Tooltip>
           </DockIcon>
-          <DockIcon>
+          <DockIcon mouseX={mouseX}>
             <Tooltip>
               <TooltipTrigger asChild>
                 <ModeToggle />
