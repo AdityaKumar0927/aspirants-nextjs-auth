@@ -83,20 +83,18 @@ const DockIcon = ({
   const ref = useRef<HTMLDivElement>(null);
 
   // Ensure mouseX is defined and of type MotionValue<number>
-  const distanceCalc = mouseX
-    ? useTransform(mouseX, (val: number) => {
-        const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-        return val - bounds.x - bounds.width / 2;
-      })
-    : useMotionValue(0);
+  const distanceCalc = useTransform(mouseX || useMotionValue(0), (val: number) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+    return val - bounds.x - bounds.width / 2;
+  });
 
-  let widthSync = useTransform(
+  const widthSync = useTransform(
     distanceCalc,
     [-distance, 0, distance],
     [40, magnification, 40]
   );
 
-  let width = useSpring(widthSync, {
+  const width = useSpring(widthSync, {
     mass: 0.1,
     stiffness: 150,
     damping: 12,
