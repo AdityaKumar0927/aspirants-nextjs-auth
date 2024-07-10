@@ -91,7 +91,7 @@ export function FAQ() {
               Still Got Questions? 
             </h2>
             <p className="mt-6 text-xl leading-8 text-black/80">
-              we've got answers
+              we&apos;ve got answers
             </p>
           </div>
           <div className="container mx-auto my-12 max-w-[600px] space-y-12">

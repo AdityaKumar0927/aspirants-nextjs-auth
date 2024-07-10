@@ -1,91 +1,230 @@
-import React from "react";
+"use client";
 
-const NotesApp: React.FC = () => {
-  return (
-    <div className="flex h-screen bg-white">
-    {/* Left Sidebar */}
-    <div className="w-64 bg-gray-50 border-r border-gray-200 overflow-y-auto">
-        <div className="p-4">
-            <div className="relative">
-                <input type="text" placeholder="Search anything..." className="w-full pl-8 pr-4 py-2 rounded-md bg-white border border-gray-300 text-sm" />
-                <span className="absolute left-2 top-2.5 text-gray-400">
-                    <i className="fas fa-search"></i>
-                </span>
-                <span className="absolute right-2 top-2.5 text-gray-400 text-xs">CTRL K</span>
-            </div>
-        </div>
-        <nav className="mt-2">
-            <a href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"><i className="fas fa-pencil-alt mr-3"></i>Daily notes</a>
-            <a href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"><i className="far fa-sticky-note mr-3"></i>All notes</a>
-            <a href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"><i className="fas fa-tasks mr-3"></i>Tasks</a>
-            <a href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"><i className="fas fa-map-marker-alt mr-3"></i>Map</a>
-        </nav>
-        <div className="mt-6 px-4">
-            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Pinned notes</h3>
-            <div className="mt-2 space-y-2">
-                <a href="#" className="block text-sm text-gray-600 hover:bg-gray-100 py-1">adwu jeanjgeal awdwalmk a</a>
-                <a href="#" className="block text-sm text-gray-600 hover:bg-gray-100 py-1">How to use Reflect</a>
-                <a href="#" className="block text-sm text-gray-600 hover:bg-gray-100 py-1">The power of Backlinks</a>
-                <a href="#" className="block text-sm text-gray-600 hover:bg-gray-100 py-1">Saving websites</a>
-                <a href="#" className="block text-sm text-gray-600 hover:bg-gray-100 py-1">Tips and tricks</a>
-            </div>
-        </div>
-        <div className="mt-6 px-4">
-            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Account setup</h3>
-            <div className="mt-2 space-y-2">
-                <a href="#" className="flex items-center text-sm text-indigo-600 hover:bg-gray-100 py-1">
-                    <span className="w-5 h-5 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mr-2">1</span>
-                    Create a backlink
-                    <span className="text-xs text-gray-500 ml-2">See the power of your connected thoughts.</span>
-                </a>
-                <a href="#" className="flex items-center text-sm text-indigo-600 hover:bg-gray-100 py-1">
-                    <span className="w-5 h-5 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mr-2">2</span>
-                    Save a link
-                    <span className="text-xs text-gray-500 ml-2">Quickly bookmark websites and capture text.</span>
-                </a>
-                <a href="#" className="flex items-center text-sm text-indigo-600 hover:bg-gray-100 py-1">
-                    <span className="w-5 h-5 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mr-2">3</span>
-                    Add a meeting
-                    <span className="text-xs text-gray-500 ml-2">Retain notes from all your meetings.</span>
-                </a>
-            </div>
-        </div>
-    </div>
+import { useState } from "react";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { useForm, Controller } from "react-hook-form";
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@/components/ui/toggle-group";
+import { Bold, Italic, Underline, RocketIcon } from "lucide-react";
+import { toast } from "sonner";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import {
+  Command,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandSeparator,
+  CommandShortcut,
+} from "@/components/ui/command";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { Toaster } from "@/components/ui/sonner";
 
-    {/* Main Content */}
-    <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Bar */}
-        <div className="flex-shrink-0 border-b border-gray-200">
-            <div className="flex items-center justify-between p-4">
-                <div className="flex items-center">
-                    <input type="text" placeholder="Search..." className="w-64 px-3 py-1 text-sm border border-gray-300 rounded-md mr-4" />
-                </div>
-                <div className="flex items-center space-x-4">
-                    <button className="text-gray-600 hover:text-gray-800"><i className="far fa-calendar-alt"></i> Schedule</button>
-                    <button className="text-gray-600 hover:text-gray-800"><i className="far fa-check-square"></i> Convert to checklist (1)</button>
-                    <button className="text-gray-600 hover:text-gray-800"><i className="fas fa-filter"></i> Task filters</button>
-                </div>
-            </div>
-        </div>
-
-        {/* Content Area */}
-        <div className="flex-1 overflow-auto bg-gray-50 p-6">
-            <div className="max-w-3xl mx-auto">
-                <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-lg font-semibold text-gray-700">⭐ Current</h2>
-                    <button className="text-sm text-gray-600 hover:text-gray-800">+ Add</button>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4">
-                    <div className="flex items-center justify-between text-sm text-gray-500">
-                        <span>📅</span>
-                        <span>Sat, July 6th, 2024 →</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-  );
+type Note = {
+  id: number;
+  note: string;
+  date: Date;
 };
 
-export default NotesApp;
+export function NoteApp() {
+  const [notes, setNotes] = useState<Note[]>([]);
+  const { control, handleSubmit, reset } = useForm<{ note: string }>({
+    defaultValues: { note: "" },
+  });
+
+  const onSubmit = (data: { note: string }) => {
+    setNotes([...notes, { ...data, id: Date.now(), date: new Date() }]);
+    toast("Note added", {
+      description: `Your note "${data.note}" has been added.`,
+    });
+    reset();
+  };
+
+  const deleteNote = (id: number) => {
+    const noteToDelete = notes.find(note => note.id === id);
+    if (noteToDelete) {
+      setNotes(notes.filter(note => note.id !== id));
+      toast("Note deleted", {
+        description: "Your note has been deleted.",
+        action: {
+          label: "Undo",
+          onClick: () => setNotes(prevNotes => [...prevNotes, noteToDelete]),
+        },
+      });
+    }
+  };
+
+  return (
+    <>
+      <Toaster />
+      <div className="flex min-h-screen w-full flex-col">
+        <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+          <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline">Menu</Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <Command>
+                  <CommandInput placeholder="Type a command or search..." />
+                  <CommandList>
+                    <CommandEmpty>No results found.</CommandEmpty>
+                    <CommandGroup heading="Suggestions">
+                      <CommandItem>
+                        <RocketIcon className="mr-2 h-4 w-4" />
+                        <span>Launch</span>
+                      </CommandItem>
+                    </CommandGroup>
+                    <CommandSeparator />
+                    <CommandGroup heading="Settings">
+                      <CommandItem>
+                        <MagnifyingGlassIcon className="mr-2 h-4 w-4" />
+                        <span>Search</span>
+                        <CommandShortcut>⌘K</CommandShortcut>
+                      </CommandItem>
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
+              </PopoverContent>
+            </Popover>
+          </nav>
+        </header>
+        <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
+          <h1 className="text-2xl font-bold">Notes</h1>
+          <Alert>
+            <RocketIcon className="h-4 w-4" />
+            <AlertTitle>Heads up!</AlertTitle>
+            <AlertDescription>
+              Ideally, you should use an external digital tablet and pen for note-taking.
+            </AlertDescription>
+          </Alert>
+
+          <Card className="w-[350px]">
+            <CardHeader>
+              <CardTitle>Create Note</CardTitle>
+              <CardDescription>Type your note below.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="grid w-full items-center gap-4">
+                  <Controller
+                    name="note"
+                    control={control}
+                    render={({ field }) => (
+                      <Input {...field} placeholder="Write your note here..." />
+                    )}
+                  />
+                </div>
+                <div className="mt-4 flex justify-between">
+                  <ToggleGroup type="multiple">
+                    <ToggleGroupItem value="bold" aria-label="Toggle bold">
+                      <Bold className="h-4 w-4" />
+                    </ToggleGroupItem>
+                    <ToggleGroupItem value="italic" aria-label="Toggle italic">
+                      <Italic className="h-4 w-4" />
+                    </ToggleGroupItem>
+                    <ToggleGroupItem value="underline" aria-label="Toggle underline">
+                      <Underline className="h-4 w-4" />
+                    </ToggleGroupItem>
+                  </ToggleGroup>
+                  <Button type="submit">Add Note</Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+
+          <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+            {notes.map(note => (
+              <Card key={note.id}>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Note</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-md">{note.note}</p>
+                  <p className="text-xs text-muted-foreground">{note.date.toLocaleString()}</p>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="outline" size="sm">Options</Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-48">
+                      <Button variant="ghost" className="w-full text-left text-gray-500">Edit</Button>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button variant="ghost" className="w-full text-left text-gray-500">Delete</Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              This action cannot be undone. This will permanently delete your note.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction onClick={() => deleteNote(note.id)}>
+                              Delete
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </PopoverContent>
+                  </Popover>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </main>
+        <style jsx>{`
+          main {
+            max-height: calc(100vh - 64px);
+            overflow-y: auto;
+          }
+
+          main::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+          }
+
+          main::-webkit-scrollbar-track {
+            background: #ffffff;
+            border: 1px solid #e5e7eb; /* Tailwind gray-200 */
+            border-radius: 0.25rem; /* Tailwind rounded */
+          }
+
+          main::-webkit-scrollbar-thumb {
+            background-color: #d1d5db; /* Tailwind gray-300 */
+            border-radius: 0.25rem; /* Tailwind rounded */
+          }
+        `}</style>
+      </div>
+    </>
+  );
+}

@@ -70,7 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={cx(sfPro.variable, inter.variable, "bg-gradient-to-br from-indigo-50 via-white to-cyan-100")}>
+      <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
       <TooltipProvider>
         <div className="fixed inset-0 z-[-10]"></div>
         <Suspense fallback="...">
