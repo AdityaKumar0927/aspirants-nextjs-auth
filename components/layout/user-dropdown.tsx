@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { LayoutDashboard, LogOut, Settings } from "lucide-react";
@@ -11,9 +11,14 @@ import { Session } from "next-auth";
 export default function UserDropdown({ session }: { session: Session }) {
   const { email, image } = session?.user || {};
   const [openPopover, setOpenPopover] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const router = useRouter();
 
-  if (!email) return null;
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!email || !isClient) return null;
 
   return (
     <div className="relative inline-block text-left">
