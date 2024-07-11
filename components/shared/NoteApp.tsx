@@ -32,8 +32,8 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/ui/toggle-group";
-import { Bold, Italic, Underline, RocketIcon } from "lucide-react";
-import { toast } from "sonner";
+import { RocketIcon, Pencil, X } from "lucide-react";
+import { toast, Toaster } from "sonner";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import {
   Command,
@@ -46,12 +46,14 @@ import {
   CommandShortcut,
 } from "@/components/ui/command";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import { Toaster } from "@/components/ui/sonner";
+import CanvasDraw from "react-canvas-draw";
 
 type Note = {
   id: number;
   note: string;
   date: Date;
+  type: "text" | "scribbled";
+  drawingData?: string;
 };
 
 export function NoteApp() {
@@ -59,27 +61,58 @@ export function NoteApp() {
   const { control, handleSubmit, reset } = useForm<{ note: string }>({
     defaultValues: { note: "" },
   });
+  const [noteType, setNoteType] = useState<"text" | "scribbled">("text");
+  const [drawingData, setDrawingData] = useState("");
+  const [isDrawing, setIsDrawing] = useState(false);
+  const [editingNote, setEditingNote] = useState<Note | null>(null);
 
   const onSubmit = (data: { note: string }) => {
-    setNotes([...notes, { ...data, id: Date.now(), date: new Date() }]);
+    const newNote = {
+      ...data,
+      id: editingNote ? editingNote.id : Date.now(),
+      date: new Date(),
+      type: noteType,
+      drawingData: noteType === "scribbled" ? drawingData : undefined,
+    };
+
+    if (editingNote) {
+      setNotes(notes.map((note) => (note.id === editingNote.id ? newNote : note)));
+      setEditingNote(null);
+    } else {
+      setNotes([...notes, newNote]);
+    }
+
     toast("Note added", {
-      description: `Your note "${data.note}" has been added.`,
+      description: `Your ${noteType} note has been added.`,
     });
     reset();
+    setDrawingData("");
+    setIsDrawing(false);
   };
 
   const deleteNote = (id: number) => {
-    const noteToDelete = notes.find(note => note.id === id);
+    const noteToDelete = notes.find((note) => note.id === id);
     if (noteToDelete) {
-      setNotes(notes.filter(note => note.id !== id));
+      setNotes(notes.filter((note) => note.id !== id));
       toast("Note deleted", {
         description: "Your note has been deleted.",
         action: {
           label: "Undo",
-          onClick: () => setNotes(prevNotes => [...prevNotes, noteToDelete]),
+          onClick: () => setNotes((prevNotes) => [...prevNotes, noteToDelete]),
         },
       });
     }
+  };
+
+  const handleEdit = (note: Note) => {
+    setEditingNote(note);
+    setNoteType(note.type);
+    if (note.type === "scribbled" && note.drawingData) {
+      setDrawingData(note.drawingData);
+    } else {
+      reset({ note: note.note });
+    }
+    setIsDrawing(note.type === "scribbled");
   };
 
   return (
@@ -117,7 +150,7 @@ export function NoteApp() {
             </Popover>
           </nav>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
+        <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 overflow-auto">
           <h1 className="text-2xl font-bold">Notes</h1>
           <Alert>
             <RocketIcon className="h-4 w-4" />
@@ -127,55 +160,107 @@ export function NoteApp() {
             </AlertDescription>
           </Alert>
 
-          <Card className="w-[350px]">
+          <Card className="w-[700px]">
             <CardHeader>
               <CardTitle>Create Note</CardTitle>
-              <CardDescription>Type your note below.</CardDescription>
+              <CardDescription>Type your note below or draw your note.</CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="grid w-full items-center gap-4">
-                  <Controller
-                    name="note"
-                    control={control}
-                    render={({ field }) => (
-                      <Input {...field} placeholder="Write your note here..." />
-                    )}
-                  />
-                </div>
-                <div className="mt-4 flex justify-between">
-                  <ToggleGroup type="multiple">
-                    <ToggleGroupItem value="bold" aria-label="Toggle bold">
-                      <Bold className="h-4 w-4" />
-                    </ToggleGroupItem>
-                    <ToggleGroupItem value="italic" aria-label="Toggle italic">
-                      <Italic className="h-4 w-4" />
-                    </ToggleGroupItem>
-                    <ToggleGroupItem value="underline" aria-label="Toggle underline">
-                      <Underline className="h-4 w-4" />
-                    </ToggleGroupItem>
-                  </ToggleGroup>
-                  <Button type="submit">Add Note</Button>
-                </div>
-              </form>
+              <div className="mb-4">
+                <ToggleGroup
+                  type="single"
+                  value={noteType}
+                  onValueChange={(value) => setNoteType(value as "text" | "scribbled")}
+                  className="mb-4"
+                >
+                  <ToggleGroupItem value="text" aria-label="Text">
+                    Text
+                  </ToggleGroupItem>
+                  <ToggleGroupItem value="scribbled" aria-label="Drawing">
+                    Scribble
+                  </ToggleGroupItem>
+                </ToggleGroup>
+              </div>
+              {noteType === "text" ? (
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className="grid w-full items-center gap-4">
+                    <Controller
+                      name="note"
+                      control={control}
+                      render={({ field }) => (
+                        <Input {...field} placeholder="Write your note here..." />
+                      )}
+                    />
+                  </div>
+                  <div className="mt-4 flex justify-between">
+                    <Button type="submit">{editingNote ? "Update Note" : "Add Note"}</Button>
+                  </div>
+                </form>
+              ) : (
+                <>
+                  {isDrawing && (
+                    <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                      <Card className="relative w-[90%] h-[90%] p-4 bg-white rounded-3xl">
+                        <Button className="absolute top-4 right-4" onClick={() => setIsDrawing(false)}>
+                          <X className="h-4 w-4" />
+                        </Button>
+                        <CanvasDraw
+                          canvasWidth={700}
+                          canvasHeight={500}
+                          brushRadius={2}
+                          lazyRadius={12}
+                          saveData={drawingData}
+                          onChange={(canvas) => setDrawingData(canvas.getSaveData())}
+                        />
+                        <div className="mt-4 flex justify-between">
+                          <Button onClick={handleSubmit(onSubmit)}>Save Drawing</Button>
+                        </div>
+                      </Card>
+                    </div>
+                  )}
+                  <Button onClick={() => setIsDrawing(true)} className="mt-4">
+                    {editingNote ? "Edit Drawing" : "Start Drawing"}
+                  </Button>
+                </>
+              )}
             </CardContent>
           </Card>
 
           <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
-            {notes.map(note => (
+            {notes.map((note) => (
               <Card key={note.id}>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Note</CardTitle>
+                  <CardTitle className="text-sm font-medium">
+                    {note.type === "scribbled" ? "Scribbled Note" : "Text Note"}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-md">{note.note}</p>
+                  {note.type === "text" ? (
+                    <p className="text-md">{note.note}</p>
+                  ) : (
+                    <div className="overflow-hidden">
+                      <CanvasDraw
+                        disabled
+                        hideGrid
+                        saveData={note.drawingData}
+                        canvasWidth={300}
+                        canvasHeight={200}
+                      />
+                    </div>
+                  )}
                   <p className="text-xs text-muted-foreground">{note.date.toLocaleString()}</p>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button variant="outline" size="sm">Options</Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-48">
-                      <Button variant="ghost" className="w-full text-left text-gray-500">Edit</Button>
+                      <Button
+                        variant="ghost"
+                        className="w-full text-left text-gray-500"
+                        onClick={() => handleEdit(note)}
+                      >
+                        Edit
+                      </Button>
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
                           <Button variant="ghost" className="w-full text-left text-gray-500">Delete</Button>
