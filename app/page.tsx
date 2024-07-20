@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
 import Card from "@/components/home/card";
 import { DEPLOY_URL } from "@/lib/constants";
 import WebVitals from "@/components/home/web-vitals";
 import ComponentGrid from "@/components/home/component-grid";
+import { OrbitingCirclesDemo } from "@/components/magicui/orbiting";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Dashboard from "@/components/shared/Dashboard";
+import { NoteApp } from "@/components/shared/NoteApp";
 import {
   faBookOpen,
   faChartLine,
   faTools,
-  faUserCog,
   faClipboardList,
-  faUsers,
-  faBullseye,
-  faLightbulb
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import MainContent from "@/components/home/MainContent";
@@ -24,14 +24,10 @@ import { Clock, Download, MessageCircle, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { useRef } from "react";
-import { BorderBeam } from "@/components/magicui/border-beam";
-import { FeatureCard1 } from "@/components/magicui/AnimatedFeatureCard1";
-import { FeatureCard2 } from "@/components/magicui/AnimatedFeatureCard2";
-import { FeatureCard3 } from "@/components/magicui/AnimatedFeatureCard3";
-import { FeatureCard4 } from "@/components/magicui/AnimatedFeatureCard4";
-import { FeatureCard6 } from "@/components/magicui/AnimatedFeatureCard6";
-import { FeatureCard8 } from "@/components/magicui/AnimatedFeatureCard8";
-import { FeatureCard9 } from "@/components/magicui/AnimatedFeatureCard9";
+import Meteors from "@/components/magicui/meteors";  // Import the Meteors component
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";  // Import the 3D card components
+import Image from "next/image";  // Ensure the correct import of the Image component
+import { TabsDemo } from "@/components/home/TabsComponent";
 
 const texts = [
   {
@@ -76,19 +72,36 @@ interface UserCardProps {
   color: string;
 }
 
-const FeatureCard = ({ icon, title, tags, description, learnMoreText }: FeatureCardProps) => (
+const FeatureCard = ({
+  icon,
+  title,
+  tags,
+  description,
+  learnMoreText,
+}: FeatureCardProps) => (
   <div className="bg-white rounded-3xl p-6 flex flex-col h-full shadow-lg">
     <div className="text-3xl mb-4">{icon}</div>
     <h2 className="text-xl font-semibold mb-2">{title}</h2>
     <div className="flex gap-2 mb-4">
       {tags.map((tag, index) => (
-        <span key={index} className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">{tag}</span>
+        <span
+          key={index}
+          className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs"
+        >
+          {tag}
+        </span>
       ))}
     </div>
     <p className="text-gray-600 mb-6 flex-grow">{description}</p>
     <a href="#" className="text-black font-medium flex items-center">
       {learnMoreText}
-      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className="w-4 h-4 ml-1"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
       </svg>
     </a>
@@ -235,11 +248,11 @@ const containerVariants = {
   },
 };
 
-
 const page = () => {
   return (
     <>
       <ModalWrapper />
+      <Meteors number={30} />  {/* Add the Meteors component */}
       <div className="z-10 w-full max-w-xl px-5 xl:px-0 bg-[linear-gradient(to_right,#60606012_1px,transparent_1px),linear-gradient(to_bottom,#60606012_1px,transparent_1px)] bg-[size:48px_48px]">
         <div className="text-center px-4">
           <div className="relative">
@@ -251,7 +264,7 @@ const page = () => {
                   className="animate-fade-up bg-gradient-to-br from-black to-black bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm sm:text-5xl sm:leading-[5rem]"
                   style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
                 >
-                  Study for your exams with <div className="text-white text-gradient-to-br from-cyan-300 to-white">Aspirants</div>
+                  Study for your exams with <div className="text-white text-gradient-to-br from-cyan-300 to-white">chaze</div>
                 </h1>
               </div>
             </div>
@@ -285,73 +298,103 @@ const page = () => {
         </div>
       </div>
       <div className="flex justify-between items-center">
-      <BorderBeam
-            size={200}
-            duration={12}
-            delay={11}
-            colorFrom="var(--color-one)"
-            colorTo="var(--color-two)"
-          />
+      
+      <ContainerScroll
+        titleComponent={
+          <>
+           
+          </>
+        }
+      >
         <MainContent />
+      </ContainerScroll>
       </div>
       <div className="container mx-auto px-4 py-12 max-w-6xl">
-        <h1 className="text-center text-gray-600 text-sm mb-4">aspirants X ChatGPT 4o</h1>
+        <h1 className="text-center text-gray-600 text-sm mb-4">chaze X ChatGPT 4o</h1>
         <h2 className="text-center text-6xl font-bold mb-2">Supercharge your</h2>
         <h2 className="text-center text-6xl font-normal mb-6">learning experience</h2>
         <p className="text-center text-gray-600 max-w-3xl mx-auto mb-16">
-          Essentially a headless open source editor, Aspirants has a wide range
+          Essentially a headless open source editor, chaze has a wide range
           of paid features that give developers exactly the kind of experience
           they&apos;re looking for - fully customizable to build their product needs.
         </p>
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-200 via-purple-100 to-blue-100 opacity-50 rounded-3xl transform scale-110 z-[-10]"></div>
-          <div className="container mx-auto px-4 py-16 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <FeatureCard
-                icon={<FontAwesomeIcon icon={faBookOpen} />}
-                title="Question Banks"
-                tags={["Open source core"]}
-                description="Access and create comprehensive question banks for various exams, tailored to enhance your study sessions."
-                learnMoreText="Learn more"
-              />
-              <FeatureCard
-                icon={<FontAwesomeIcon icon={faChartLine} />}
-                title="Mock Exams"
-                tags={["Cloud", "Try for free"]}
-                description="Simulate real exam conditions with our mock exams. Get instant feedback and improve your performance."
-                learnMoreText="Learn more"
-              />
-              <FeatureCard
-                icon={<FontAwesomeIcon icon={faTools} />}
-                title="Productivity Extensions"
-                tags={["Cloud", "Paid feature"]}
-                description="Boost your productivity with our custom extensions designed to streamline your study process."
-                learnMoreText="Learn more"
-              />
-              <FeatureCard
-                icon={<FontAwesomeIcon icon={faClipboardList} />}
-                title="Note Taking"
-                tags={["Cloud", "Try for free"]}
-                description="Organize your notes efficiently with our advanced note-taking features, integrated with AI for smarter suggestions."
-                learnMoreText="Learn more"
-              />
+        
+        {/* 3D Card Effect */}
+        <CardContainer className="relative">
+          <CardBody className="w-full">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-200 via-purple-100 to-blue-100 opacity-50 rounded-3xl transform scale-110 z-[-10]"></div>
+            <div className="container mx-auto px-4 py-16 relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <FeatureCard
+                  icon={<FontAwesomeIcon icon={faBookOpen} />}
+                  title="Question Banks"
+                  tags={["Open source core"]}
+                  description="Access and create comprehensive question banks for various exams, tailored to enhance your study sessions."
+                  learnMoreText="Learn more"
+                />
+                <FeatureCard
+                  icon={<FontAwesomeIcon icon={faChartLine} />}
+                  title="Mock Exams"
+                  tags={["Cloud", "Try for free"]}
+                  description="Simulate real exam conditions with our mock exams. Get instant feedback and improve your performance."
+                  learnMoreText="Learn more"
+                />
+                <FeatureCard
+                  icon={<FontAwesomeIcon icon={faTools} />}
+                  title="Productivity Extensions"
+                  tags={["Cloud", "Paid feature"]}
+                  description="Boost your productivity with our custom extensions designed to streamline your study process."
+                  learnMoreText="Learn more"
+                />
+                <FeatureCard
+                  icon={<FontAwesomeIcon icon={faClipboardList} />}
+                  title="Note Taking"
+                  tags={["Cloud", "Try for free"]}
+                  description="Organize your notes efficiently with our advanced note-taking features, integrated with AI for smarter suggestions."
+                  learnMoreText="Learn more"
+                />
+              </div>
             </div>
-          </div>
-        </div>
+          </CardBody>
+        </CardContainer>
+        {/* End of 3D Card Effect */}
+        
       </div>
-   
-      <FeatureCard1 />
-      <FeatureCard2 />
-      <FeatureCard3 />
-      <FeatureCard4 />
-      <FeatureCard6 />
-      <FeatureCard8 />
-      <FeatureCard9 />
-    
-    
+      <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-blac">
+          Instant Performance Analytics
+        </h4>
+ 
+        <p className="text-sm lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal">
+          Receive insights about your strengths, weaknesses, areas of improvements, and topics to look out for!
+        </p>
+      <Dashboard />
+
+      <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
+          Never Forget Anything
+        </h4>
+ 
+        <p className="text-sm lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-norma">
+          View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill. 
+        </p>
+        <div className="w-8/12 h-1/6 mb-4 border-2">
+  <NoteApp />
+</div>
+
+<h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black mb-2">
+  And more.....
+</h4>
+
+<p className="text-sm lg:text-base max-w-2xl mx-auto text-neutral-500 text-center font-normal">
+  
+</p>
+
+<div className="w-8/12 h-1/3 mt-24">
+  <TabsDemo />
+</div>
+
       <FAQ />
     </>
   );
-}
+};
 
 export default page;

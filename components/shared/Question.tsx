@@ -1,13 +1,16 @@
-"use client"
+"use client";
 
 import React, { useState } from 'react';
 import MathRenderer from '@/components/layout/MathRenderer';
 import Modal from '@/components/shared/modal';
-import { CheckSquare, BookmarkPlus, LucideBookmark, Settings2, BookOpen, LucideBot } from "lucide-react";
+import { LucideBookmark, Settings2, BookOpen, LucideBot } from "lucide-react";
 import { Switch } from '@headlessui/react';
 import Image from 'next/image';
 import Tiptap from '@/components/layout/Tiptap';
 import Chat from '@/components/shared/Chat';
+import { Checkbox } from "@/components/ui/checkbox";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 interface QuestionType {
   questionId: string;
@@ -73,6 +76,8 @@ const Question: React.FC<QuestionProps> = ({
   const [aiEnabled, setAiEnabled] = useState(true);
   const [notesEnabled, setNotesEnabled] = useState(true);
   const [showAiChat, setShowAiChat] = useState(false);
+
+  const { toast, dismiss } = useToast();
 
   const handleOptionClickLocal = (option: string) => {
     if (selectedOption !== option) {
@@ -151,6 +156,40 @@ const Question: React.FC<QuestionProps> = ({
     }
   };
 
+  const handleMarkCompleteLocal = (questionId: string) => {
+    handleMarkComplete(questionId);
+    saveProgress(questionId, 'completed', !isMarkedComplete);
+    toast({
+      title: "Question Completed",
+      description: `You have completed question ${questionId}.`,
+      duration: 5000,
+      action: <ToastAction onClick={() => undoMarkComplete(questionId)} altText="Undo">Undo</ToastAction>,
+    });
+  };
+
+  const handleMarkForReviewLocal = (questionId: string) => {
+    handleMarkForReview(questionId);
+    saveProgress(questionId, 'reviewed', !isMarkedForReview);
+    toast({
+      title: "Question Bookmarked",
+      description: `You have bookmarked question ${questionId}.`,
+      duration: 5000,
+      action: <ToastAction onClick={() => undoMarkForReview(questionId)} altText="Undo">Undo</ToastAction>,
+    });
+  };
+
+  const undoMarkComplete = (questionId: string) => {
+    handleMarkComplete(questionId);
+    saveProgress(questionId, 'completed', false);
+    dismiss();
+  };
+
+  const undoMarkForReview = (questionId: string) => {
+    handleMarkForReview(questionId);
+    saveProgress(questionId, 'reviewed', false);
+    dismiss();
+  };
+
   return (
     <div className="flex flex-col mb-6">
       <div className="border-2 rounded-lg p-4 bg-white relative w-full">
@@ -165,27 +204,18 @@ const Question: React.FC<QuestionProps> = ({
               <span className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">{question.type}</span>
             </div>
             <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id={`complete-${question.questionId}`}
+                  checked={isMarkedComplete}
+                  onChange={() => handleMarkCompleteLocal(question.questionId)}
+                />
+              </div>
               <button
-                className={`bg-green-100 text-green-700 px-2 py-1 rounded text-xs ${isMarkedComplete ? 'bg-green-500 text-white' : ''}`}
-                onClick={() => {
-                  handleMarkComplete(question.questionId);
-                  saveProgress(question.questionId, 'completed', !isMarkedComplete);
-                }}
+                className={`relative text-xs ${isMarkedForReview ? ' text-white' : ''}`}
+                onClick={() => handleMarkForReviewLocal(question.questionId)}
               >
-                {isMarkedComplete ? (
-                  <CheckSquare className="text-white" />
-                ) : (
-                  <CheckSquare className="text-green-700" />
-                )}
-              </button>
-              <button
-                className={`bg-yellow-100 text-yellow-300 px-2 py-1 rounded-md text-xs ${isMarkedForReview ? ' text-white' : ''}`}
-                onClick={() => {
-                  handleMarkForReview(question.questionId);
-                  saveProgress(question.questionId, 'reviewed', !isMarkedForReview);
-                }}
-              >
-                <LucideBookmark className={`${isMarkedForReview ? ' fill-yellow-300' : 'text-yellow-700'}`} />
+                <LucideBookmark className={`bookmark-icon ${isMarkedForReview ? 'fill-yellow-700' : 'text-yellow-700'}`} />
               </button>
               <button
                 className="text-gray-700 px-2 py-1 rounded-md text-xs"

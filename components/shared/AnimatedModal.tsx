@@ -36,7 +36,9 @@ export default function AnimatedModal({
                   "fixed inset-0 z-40 m-auto max-h-[90%] w-8/12 overflow-hidden border border-gray-200 bg-white p-0 shadow-xl rounded-3xl"
                 )}
               >
-                {children}
+                <div className="h-full overflow-y-auto p-4">
+                  {children}
+                </div>
               </motion.div>
             </Dialog.Content>
           </Dialog.Portal>

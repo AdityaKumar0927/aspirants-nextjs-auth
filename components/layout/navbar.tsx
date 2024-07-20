@@ -31,10 +31,10 @@ export default function NavBar({ session }: { session: Session | null }) {
       <SignInModal />
       {session && <Sidebar />}
       <div
-        className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-8/12 max-w-screen-md bg-white ${
+        className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-8/12 max-w-screen-md border-2 bg-white ${
           scrolled
-            ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl shadow-md rounded-3xl"
-            : "bg-white/90 border rounded-3xl"
+            ? "bg-white/50 backdrop-blur-xl shadow-md rounded-3xl border-2"
+            : "bg-white/90 border- rounded-3xl"
         } flex justify-between items-center z-30 transition-all duration-300 ease-in-out`}
       >
         <div className="mx-5 flex h-16 items-center justify-between w-full">
@@ -51,9 +51,9 @@ export default function NavBar({ session }: { session: Session | null }) {
             />
           </Link>
           <div className="hidden md:flex items-center justify-center space-x-4 flex-1">
-            <ExamDropdown />
-            <Link href="/BrowseResources" className="mr-4">
-              Browse Resources
+           
+            <Link href="/QuestionBank" className="mr-4">
+              Question Bank
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-4">

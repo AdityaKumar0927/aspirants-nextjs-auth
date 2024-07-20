@@ -10,6 +10,7 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false; /* eslint-disable import/first */
 import { TooltipProvider } from '@radix-ui/react-tooltip';  // Add this import
 import Sidebar from '@/components/layout/Sidebar';
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
   title: "aspirants",
@@ -83,6 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <VercelAnalytics />
         </TooltipProvider>
+        <Toaster />
       </body>
     </html>
   );

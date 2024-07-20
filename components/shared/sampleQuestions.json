@@ -1,9 +1,11 @@
 [
     {
+        "Exam": "JEE",
         "questionId": "1",
         "text": "If \\((\\alpha, \\beta)\\) is the orthocenter of the triangle \\(ABC\\) with vertices \\(A(3,-7)\\), \\(B(-1,2)\\), and \\(C(4,5)\\), then \\(9 \\alpha-6 \\beta+60\\) is equal to",
         "subject": "Mathematics",
-        "topic": "algebra",
+        "topic": "Coordinate Geometry",
+        "sub-topic": "Properties of Triangle - Orthocenter",
         "difficulty": "Medium",
         "type": "Multiple Choice",
         "year": "2016",
@@ -11,7 +13,13 @@
         "completed": false,
         "options": ["30", "35", "40", "25"],
         "correctOption": "A",
-        "markscheme": "Finding the orthocenter coordinates and substituting into the given expression, we get \\(9\\alpha - 6\\beta + 60 = 30\\)."
+        "markscheme": "Finding the orthocenter coordinates and substituting into the given expression, we get \\(9\\alpha - 6\\beta + 60 = 30\\).",
+        "marks": "4",
+        "correctAttempts": "",
+        "wrongAttempts": "",
+        "averageTimeTaken": "",
+        "lastAttempted": ""
+      
       }, 
       {
         "questionId": "2",

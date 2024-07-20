@@ -12,15 +12,15 @@ const faqs = [
     section: "General",
     qa: [
       {
-        question: "What is Aspirants?",
+        question: "What is aspirants?",
         answer: (
           <span>
-            Aspirants is an online platform designed to help students and professionals prepare for competitive exams with comprehensive resources, practice tests, and interactive features.
+            aspirants is an online platform designed to help students and professionals prepare for competitive exams with comprehensive resources, practice tests, and interactive features.
           </span>
         ),
       },
       {
-        question: "How can I get started with Aspirants?",
+        question: "How can I get started with aspirants?",
         answer: (
           <span>
             To get started, simply create an account on our website, explore our available resources, and start practicing with our tailored study materials and tests.
@@ -33,10 +33,10 @@ const faqs = [
     section: "Support",
     qa: [
       {
-        question: "Does Aspirants offer technical support?",
+        question: "Does aspirants offer technical support?",
         answer: (
           <span>
-            Yes, Aspirants provides technical support through our help center and customer support email. You can also find answers to common issues in our FAQ section.
+            Yes, aspirants provides technical support through our help center and customer support email. You can also find answers to common issues in our FAQ section.
           </span>
         ),
       },
@@ -46,10 +46,10 @@ const faqs = [
     section: "Customization",
     qa: [
       {
-        question: "Can I customize my study plan on Aspirants?",
+        question: "Can I customize my study plan on aspirants?",
         answer: (
           <span>
-            Absolutely! Aspirants allows you to customize your study plan based on your specific goals and timelines. You can track your progress and adjust your plan as needed.
+            Absolutely! aspirants allows you to customize your study plan based on your specific goals and timelines. You can track your progress and adjust your plan as needed.
           </span>
         ),
       },
@@ -59,10 +59,10 @@ const faqs = [
     section: "Integration",
     qa: [
       {
-        question: "Can I integrate Aspirants with other tools?",
+        question: "Can I integrate aspirants with other tools?",
         answer: (
           <span>
-            Currently, Aspirants is a standalone platform, but we are working on integrating with other popular tools and apps to enhance your study experience. Stay tuned for updates!
+            Currently, aspirants is a standalone platform, but we are working on integrating with other popular tools and apps to enhance your study experience. Stay tuned for updates!
           </span>
         ),
       },

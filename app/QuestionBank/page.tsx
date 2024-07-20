@@ -9,12 +9,14 @@ import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
-import Sidebar from "@/components/layout/Sidebar";
 
 interface QuestionType {
+  exam: string;
   questionId: string;
   text: string;
   subject: string;
+  topic: string;
+  subtopic: string;
   difficulty: string;
   type: "Multiple Choice" | "Numerical";
   year: string;
@@ -26,18 +28,41 @@ interface QuestionType {
   notes?: string;
 }
 
+type FiltersType = {
+  exams: string[];
+  subjects: string[];
+  topics: string[];
+  subtopics: string[];
+  difficulties: string[];
+  types: string[];
+  years: string[];
+  status: string;
+};
+
+const initialFilters: FiltersType = {
+  exams: [],
+  subjects: [],
+  topics: [],
+  subtopics: [],
+  difficulties: [],
+  types: [],
+  years: [],
+  status: "all",
+};
+
+const isStringArray = (value: string | string[]): value is string[] => {
+  return Array.isArray(value);
+};
+
 const QuestionBank: React.FC = () => {
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
-  const [filters, setFilters] = useState({
-    subject: "",
-    difficulty: "",
-    type: "",
-    year: "",
-    status: "all",
-  });
+  const [filters, setFilters] = useState<FiltersType>(initialFilters);
   const [dropdowns, setDropdowns] = useState({
+    exam: false,
     subject: false,
+    topic: false,
+    subtopic: false,
     difficulty: false,
     year: false,
     type: false,
@@ -60,21 +85,28 @@ const QuestionBank: React.FC = () => {
 
         const questionsData = await questionsResponse.json();
 
-        if (userId) {
-          const progressResponse = await fetch("/api/user-progress");
-          if (!progressResponse.ok) throw new Error("Failed to fetch user progress");
+        const progressResponse = await fetch("/api/user-progress");
+        if (!progressResponse.ok) throw new Error("Failed to fetch user progress");
 
-          const userProgressData = await progressResponse.json();
-          const mergedQuestions = questionsData.map((question: QuestionType) => {
-            const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
-            return { ...question, ...progress };
-          });
-          setQuestions(mergedQuestions);
-          setFilteredQuestions(mergedQuestions);
-        } else {
-          setQuestions(questionsData);
-          setFilteredQuestions(questionsData);
-        }
+        const userProgressData = await progressResponse.json();
+
+        const notesResponse = await fetch("/api/notes");
+        if (!notesResponse.ok) throw new Error("Failed to fetch notes");
+
+        const notesData = await notesResponse.json();
+
+        const mergedQuestions = questionsData.map((question: QuestionType) => {
+          const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
+          const note = notesData.find((n: any) => n.questionId === question.questionId);
+          return {
+            ...question,
+            reviewed: progress ? progress.reviewed : false,
+            completed: progress ? progress.completed : false,
+            notes: note ? note.content : "",
+          };
+        });
+        setQuestions(mergedQuestions);
+        setFilteredQuestions(mergedQuestions);
       } catch (error) {
         console.error(error);
       }
@@ -83,7 +115,10 @@ const QuestionBank: React.FC = () => {
     fetchQuestions();
   }, [userId]);
 
+  const exams = Array.from(new Set(questions.map((q) => q.exam)));
   const subjects = Array.from(new Set(questions.map((q) => q.subject)));
+  const topics = Array.from(new Set(questions.map((q) => q.topic)));
+  const subtopics = Array.from(new Set(questions.map((q) => q.subtopic)));
   const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
   const years = Array.from(new Set(questions.map((q) => q.year)));
   const types = Array.from(new Set(questions.map((q) => q.type)));
@@ -91,10 +126,13 @@ const QuestionBank: React.FC = () => {
   const filterQuestions = useCallback(() => {
     let filtered = questions.filter((question) => {
       return (
-        (!filters.subject || question.subject === filters.subject) &&
-        (!filters.difficulty || question.difficulty === filters.difficulty) &&
-        (!filters.year || question.year === filters.year) &&
-        (!filters.type || question.type === filters.type)
+        (!filters.exams.length || filters.exams.includes(question.exam)) &&
+        (!filters.subjects.length || filters.subjects.includes(question.subject)) &&
+        (!filters.topics.length || filters.topics.includes(question.topic)) &&
+        (!filters.subtopics.length || filters.subtopics.includes(question.subtopic)) &&
+        (!filters.difficulties.length || filters.difficulties.includes(question.difficulty)) &&
+        (!filters.years.length || filters.years.includes(question.year)) &&
+        (!filters.types.length || filters.types.includes(question.type))
       );
     });
 
@@ -111,8 +149,18 @@ const QuestionBank: React.FC = () => {
     filterQuestions();
   }, [filterQuestions]);
 
-  const handleFilterChange = (tag: string, value: string) => {
-    setFilters((prevFilters) => ({ ...prevFilters, [tag]: value }));
+  const handleFilterChange = (tag: keyof FiltersType, value: string) => {
+    setFilters((prevFilters) => {
+      const filterValues = prevFilters[tag];
+      if (isStringArray(filterValues)) {
+        const isSelected = filterValues.includes(value);
+        const updatedFilter = isSelected
+          ? filterValues.filter((v: string) => v !== value)
+          : [...filterValues, value];
+        return { ...prevFilters, [tag]: updatedFilter };
+      }
+      return prevFilters;
+    });
   };
 
   const handleMarkschemeToggle = (questionId: string, markscheme: string) => {
@@ -120,17 +168,15 @@ const QuestionBank: React.FC = () => {
   };
 
   const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
-    if (userId) {
-      try {
-        const response = await fetch("/api/markComplete", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, completed: isComplete }),
-        });
-        if (!response.ok) throw new Error("Failed to update completion status");
-      } catch (error) {
-        console.error(error);
-      }
+    try {
+      const response = await fetch("/api/markComplete", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId, completed: isComplete }),
+      });
+      if (!response.ok) throw new Error('Failed to update completion status');
+    } catch (error) {
+      console.error(error);
     }
 
     setQuestions((prevQuestions) =>
@@ -141,17 +187,15 @@ const QuestionBank: React.FC = () => {
   };
 
   const handleMarkForReview = async (questionId: string, isReviewed: boolean) => {
-    if (userId) {
-      try {
-        const response = await fetch("/api/markForReview", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, reviewed: isReviewed }),
-        });
-        if (!response.ok) throw new Error("Failed to update review status");
-      } catch (error) {
-        console.error(error);
-      }
+    try {
+      const response = await fetch("/api/markForReview", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId, reviewed: isReviewed }),
+      });
+      if (!response.ok) throw new Error('Failed to update review status');
+    } catch (error) {
+      console.error(error);
     }
 
     setQuestions((prevQuestions) =>
@@ -177,11 +221,22 @@ const QuestionBank: React.FC = () => {
     });
   };
 
-  const handleNoteChange = (questionId: string, note: string) => {
+  const handleNoteChange = async (questionId: string, note: string) => {
     setNotes({
       ...notes,
       [questionId]: note,
     });
+
+    try {
+      const response = await fetch('/api/notes/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId, content: note }),
+      });
+      if (!response.ok) throw new Error('Failed to save note');
+    } catch (error) {
+      console.error('Error saving note:', error);
+    }
   };
 
   const handleDeleteNote = async (questionId: string) => {
@@ -192,26 +247,23 @@ const QuestionBank: React.FC = () => {
         body: JSON.stringify({ questionId }),
       });
       if (!response.ok) throw new Error('Failed to delete note');
-      setNotes((prevNotes) => {
-        const updatedNotes = { ...prevNotes };
-        delete updatedNotes[questionId];
-        return updatedNotes;
-      });
     } catch (error) {
       console.error('Error deleting note:', error);
     }
+
+    setNotes((prevNotes) => {
+      const updatedNotes = { ...prevNotes };
+      delete updatedNotes[questionId];
+      return updatedNotes;
+    });
   };
 
   return (
     <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-      <Sidebar />
       <div className="max-w-6xl w-full">
         <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
-          CUET Question Bank
+          Question Bank
         </h1>
-        <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
-          AI Generated Solutions
-        </span>
 
         <div className="flex space-x-4 mb-6"></div>
 
@@ -219,7 +271,7 @@ const QuestionBank: React.FC = () => {
           {["all", "complete", "review"].map((status) => (
             <button
               key={status}
-              onClick={() => handleFilterChange("status", status)}
+              onClick={() => setFilters({ ...filters, status })}
               className={`px-4 py-2 rounded-md ${
                 filters.status === status
                   ? "bg-white border hover:border-black border-gray-600 text-gray-500"
@@ -232,29 +284,40 @@ const QuestionBank: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-          {["subject", "difficulty", "year", "type"].map((filterType) => (
+          {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map((filterType) => (
             <Popover
               key={filterType}
               content={
                 <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                  {(filterType === "subject"
+                  {(filterType === "exam"
+                    ? exams
+                    : filterType === "subject"
                     ? subjects
+                    : filterType === "topic"
+                    ? topics
+                    : filterType === "subtopic"
+                    ? subtopics
                     : filterType === "difficulty"
                     ? difficulties
                     : filterType === "year"
                     ? years
                     : types
                   ).map((value: string) => (
-                    <button
-                      key={value}
-                      onClick={() => {
-                        handleFilterChange(filterType, value);
-                        setDropdowns({ ...dropdowns, [filterType]: false });
-                      }}
-                      className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
-                    >
-                      {value}
-                    </button>
+                    <div key={value} className="flex items-center">
+                      <input
+                        type="checkbox"
+                        id={`${filterType}-${value}`}
+                        className="mr-2"
+                        checked={(filters[filterType as keyof FiltersType] as string[]).includes(value)}
+                        onChange={() => handleFilterChange(filterType as keyof FiltersType, value)}
+                      />
+                      <label
+                        htmlFor={`${filterType}-${value}`}
+                        className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
+                      >
+                        {value}
+                      </label>
+                    </div>
                   ))}
                 </div>
               }
@@ -277,8 +340,11 @@ const QuestionBank: React.FC = () => {
                 className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
               >
                 <p className="text-gray-600">
-                  {filters[filterType as keyof typeof filters] ||
-                    filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                  {isStringArray(filters[filterType as keyof FiltersType])
+                    ? (filters[filterType as keyof FiltersType] as string[]).length
+                      ? `${(filters[filterType as keyof FiltersType] as string[]).length} selected`
+                      : filterType.charAt(0).toUpperCase() + filterType.slice(1)
+                    : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                 </p>
                 <ChevronDown
                   className={`h-4 w-4 text-gray-600 transition-all ${
@@ -320,8 +386,8 @@ const QuestionBank: React.FC = () => {
               markschemesDisabled={false}
               note={notes[question.questionId] || ""}
               handleNoteChange={handleNoteChange}
-              handleDeleteNote={handleDeleteNote} // Add this line
               userId={userId}
+              handleDeleteNote={handleDeleteNote}
             />
           ))
         ) : (

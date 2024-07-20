@@ -38,7 +38,7 @@ export default function ExamDropdown({ mobile = false, className = "" }: ExamDro
           <div className="w-full rounded-md bg-white p-2 sm:w-56">
             <button className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100">
               <Link href="/CUET" className="block w-full text-gray-700" role="menuitem">
-                CUET
+                
               </Link>
             </button>
             <button className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100">

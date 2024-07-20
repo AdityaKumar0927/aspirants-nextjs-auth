@@ -48,8 +48,8 @@ model User {
   sessions      Session[]
   progresses    UserProgress[]
   notes         Note[]
+  performances  UserPerformance? // Add this line
 }
-
 
 model VerificationToken {
   identifier String
@@ -97,3 +97,25 @@ model Note {
   @@unique([userId, questionId]) // Add this line
 }
 
+model UserPerformance {
+  id                 String   @id @default(cuid())
+  userId             String
+  correctAnswers     Int      @default(0)
+  incorrectAnswers   Int      @default(0)
+  uniqueQuestions    Int      @default(0)
+  questionsAttempted Int      @default(0)
+  timeSpent          Int      @default(0) // time in seconds
+  accuracy           Float    @default(0.0)
+  weaknessBySubtopic Json     @default("{}")
+  timePerQuestion    Float    @default(0.0)
+  improvementOverTime Json    @default("{}")
+  attemptRate        Float    @default(0.0)
+  firstAttemptSuccessRate Float @default(0.0)
+  reattemptAccuracy  Float    @default(0.0)
+  topicPerformance   Json     @default("{}")
+  consistency        Float    @default(0.0)
+  engagementLevel    Int      @default(0)
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+}
