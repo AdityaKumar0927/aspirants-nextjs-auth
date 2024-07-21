@@ -210,6 +210,7 @@ const Question: React.FC<QuestionProps> = ({
                   checked={isMarkedComplete}
                   onChange={() => handleMarkCompleteLocal(question.questionId)}
                 />
+                <label htmlFor={`complete-${question.questionId}`}>Mark Complete</label>
               </div>
               <button
                 className={`relative text-xs ${isMarkedForReview ? ' text-white' : ''}`}

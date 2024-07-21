@@ -26,8 +26,8 @@ export default async function OG() {
         }}
       >
         <img
-          src={`https://${process.env.VERCEL_URL || "precedent.dev"}/logo.png`}
-          alt="Precedent Logo"
+          src={`/bulb.svg`}
+          alt="Aspirants Logo"
           tw="w-20 h-20 mb-4 opacity-95"
         />
         <h1

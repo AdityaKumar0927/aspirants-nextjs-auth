@@ -204,7 +204,7 @@ const Chat: React.FC<{ questionText: string; options?: string[]; markscheme?: st
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-     <Card className="mb-8">
+     <Card className="mb-8 bg-amber-100">
         <CardHeader>
           <CardTitle>Hello,</CardTitle>
           <CardDescription>How can I help you today?</CardDescription>
@@ -252,8 +252,8 @@ const Chat: React.FC<{ questionText: string; options?: string[]; markscheme?: st
               Your privacy and ChatGPT Apps
             </a>
           </p>
-          <button className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600" onClick={() => setMessages([])}>
-            Clear Conversation
+          <button className="p-2 bg-red-500 text-white rounded-3xl hover:bg-red-600" onClick={() => setMessages([])}>
+            clear
           </button>
         </div>
       </div>
