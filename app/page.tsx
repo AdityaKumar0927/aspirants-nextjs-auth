@@ -17,7 +17,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import MainContent from "@/components/home/MainContent";
-import ModalWrapper from "@/components/layout/ModalWrapper";
 import { FAQ } from "@/components/shared/FAQ";
 import { cubicBezier, motion, useInView } from "framer-motion";
 import { Clock, Download, MessageCircle, Star } from "lucide-react";
@@ -33,6 +32,40 @@ import ShimmerButton from "@/components/magicui/shimmer-button";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import Chat from "@/components/shared/Chat";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+
+const testimonials = [
+  {
+    quote:
+      "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.",
+    name: "Charles Dickens",
+    title: "A Tale of Two Cities",
+  },
+  {
+    quote:
+      "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
+    name: "William Shakespeare",
+    title: "Hamlet",
+  },
+  {
+    quote: "All that we see or seem is but a dream within a dream.",
+    name: "Edgar Allan Poe",
+    title: "A Dream Within a Dream",
+  },
+  {
+    quote:
+      "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
+    name: "Jane Austen",
+    title: "Pride and Prejudice",
+  },
+  {
+    quote:
+      "Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.",
+    name: "Herman Melville",
+    title: "Moby-Dick",
+  },
+];
+
 
 const projects = [
   {
@@ -311,12 +344,12 @@ const Page = () => {
 
   return (
     <>
-      <ModalWrapper />
+      
       <div className="">
         <Meteors number={30} />
       </div>
       
-      <div className="z-10 w-full max-w-xl px-5 xl:px-0 bg-[linear-gradient(to_right,#60606012_1px,transparent_1px),linear-gradient(to_bottom,#60606012_1px,transparent_1px)] bg-[size:48px_48px]">
+      <div className="z-10 w-full max-w-xl px-5 xl:px-0">
         <div className="text-center px-4">
         <div className="flex flex-col items-center gap-6 pb-8 text-center">
         <HoverBorderGradient
@@ -355,6 +388,7 @@ const Page = () => {
         >
           Thousands of practice questions, study notes, and flashcards, all in one place.
         </p>
+        
         <div
           className="mx-auto mt-6 flex flex-col sm:flex-row animate-fade-up items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5 opacity-0"
           style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
@@ -401,13 +435,13 @@ const Page = () => {
       </h4>
 
       <p className="text-sm mb-8 lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal">
-        Receive insights about your strengths, weaknesses, areas of improvements, and topics to look out for!
+        Filter questions by exam, topic, sub-topic, year, difficulty, completed, or marked for review to save time.
       </p>
 
-      <div className="relative w-11/12 h-[1000px] border-4 rounded-2xl overflow-hidden">
+      <div className="relative w-11/12 h-[1300px] border-4 rounded-2xl overflow-hidden">
   <Image src="/imac.jpg" alt="Background" layout="fill" objectFit="cover" className="absolute inset-0 blur-md" />
   <div className="absolute inset-0 flex items-center justify-center p-4">
-    <div className="w-10/12 h-11/12 bg-white bg-opacity-60 rounded-2xl overflow-auto p-4">
+    <div className="w-10/12 h-[1300px] bg-white bg-opacity-60 rounded-2xl overflow-auto p-4">
       <MainContent />
     </div>
   </div>
@@ -421,7 +455,7 @@ const Page = () => {
       <p className="text-sm lg:text-base mb-12 max-w-2xl my-4 mx-auto text-neutral-500 text-center font-norma">
         View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill.
       </p>
-      <div className="w-10/12 mb-4 border-4 rounded-2xl p-2">
+      <div className="w-6/12 mb-4 border-4 rounded-2xl p-2">
         <NoteApp />
       </div>
 
@@ -434,13 +468,6 @@ const Page = () => {
         <HoverEffect items={projects} />
       </div>
 
-      <h4 className="text-3xl mt-24 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black mb-2">
-        And more.....
-      </h4>
-
-      <div className="w-8/12 h-1/3">
-        <TabsDemo />
-      </div>
 
       <motion.div
           animate={fadeInInView ? "animate" : "initial"}
@@ -471,48 +498,7 @@ const Page = () => {
             <ChevronRight className="size-4 translate-x-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
           </a>
         </motion.div>
-
-      {/* 3D Card Effect */}
-      <CardContainer className="relative">
-        <CardBody className="w-10/12">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-200 via-purple-100 to-blue-100 opacity-50 rounded-3xl transform scale-110 z-[-10]"></div>
-          <div className="container mx-auto px-4 py-16 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <FeatureCard
-                icon={<FontAwesomeIcon icon={faBookOpen} />}
-                title="Question Banks"
-                tags={["Open source core"]}
-                description="Access and create comprehensive question banks for various exams, tailored to enhance your study sessions."
-                learnMoreText="Learn more"
-              />
-              <FeatureCard
-                icon={<FontAwesomeIcon icon={faChartLine} />}
-                title="Mock Exams"
-                tags={["Cloud", "Try for free"]}
-                description="Simulate real exam conditions with our mock exams. Get instant feedback and improve your performance."
-                learnMoreText="Learn more"
-              />
-              <FeatureCard
-                icon={<FontAwesomeIcon icon={faTools} />}
-                title="Productivity Extensions"
-                tags={["Cloud", "Paid feature"]}
-                description="Boost your productivity with our custom extensions designed to streamline your study process."
-                learnMoreText="Learn more"
-              />
-              <FeatureCard
-                icon={<FontAwesomeIcon icon={faClipboardList} />}
-                title="Note Taking"
-                tags={["Cloud", "Try for free"]}
-                description="Organize your notes efficiently with our advanced note-taking features, integrated with AI for smarter suggestions."
-                learnMoreText="Learn more"
-              />
-            </div>
-          </div>
-        </CardBody>
-      </CardContainer>
-      {/* End of 3D Card Effect */}
-      
-
+  
 
       <FAQ />
     </>

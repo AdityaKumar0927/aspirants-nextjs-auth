@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import useScroll from "@/lib/hooks/use-scroll";
 import ExamDropdown from "@/components/layout/ExamDropdown";
+import GradualSpacing from "@/components/magicui/gradual-spacing";
 
 export default function NavBar({ session }: { session: Session | null }) {
   const { SignInModal, setShowSignInModal } = useSignInModal();
@@ -53,7 +54,10 @@ export default function NavBar({ session }: { session: Session | null }) {
           <div className="hidden md:flex items-center justify-center space-x-4 flex-1">
            
             <Link href="/QuestionBank" className="mr-4">
-              Question Bank
+            <GradualSpacing
+      className="font-display text-center tracking-[-0.2em] text-black md:text-2xl md:leading-[5rem]"
+      text="Question Bank"
+    />
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-4">

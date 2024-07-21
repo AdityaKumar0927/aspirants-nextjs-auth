@@ -1,353 +1,185 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import "katex/dist/katex.min.css";
-import Question from "@/components/shared/Question";
-import Modal from "@/components/shared/modal";
-import MathRenderer from "@/components/layout/MathRenderer";
-import Popover from "@/components/shared/popover";
-import { ChevronDown } from "lucide-react";
+import React from 'react';
+import { NextPage } from 'next';
+import Head from 'next/head';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import Tooltip from '@/components/shared/tooltip';
+import BlurFade from "@/components/magicui/blur-fade";
+import BlurFadeText from "@/components/magicui/blur-fade-text";
+import { ProjectCard } from "@/components/magicui/project-card";
+import { DATA } from "@/components/data/resume";
+import Link from "next/link";
+import Markdown from "react-markdown";
 
-interface QuestionType {
-  questionId: string;
-  text: string;
-  subject: string;
-  difficulty: string;
-  type: "Multiple Choice" | "Numerical";
-  year: string;
-  reviewed: boolean;
-  completed: boolean;
-  options?: string[];
-  correctOption?: string;
-  markscheme?: string;
-  notes?: string;
-}
+type Tag = {
+  name: string;
+  link?: string;
+};
 
-const QuestionBank: React.FC = () => {
-  const [questions, setQuestions] = useState<QuestionType[]>([]);
-  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
-  const [filters, setFilters] = useState({
-    subject: "",
-    difficulty: "",
-    type: "",
-    year: "",
-    status: "all",
-  });
-  const [dropdowns, setDropdowns] = useState({
-    subject: false,
-    difficulty: false,
-    year: false,
-    type: false,
-  });
-  const [feedback, setFeedback] = useState<Record<string, string>>({});
-  const [numericalAnswers, setNumericalAnswers] = useState<Record<string, string>>({});
-  const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
-  const [markschemeContent, setMarkschemeContent] = useState<string>("");
-  const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
-  const [notes, setNotes] = useState<Record<string, string>>({});
-  const userId = ""; // Add logic to retrieve user ID if signed in
+type Resource = {
+  date: string;
+  readTime: string;
+  title: string;
+  description: string;
+  tags: string[];
+  bgColor: string;
+};
 
-  const dropdownTimeout = useRef<Record<string, NodeJS.Timeout>>({});
+const tags: Tag[] = [
+  { name: 'Mathematics', link: '/Mathematics' },
+  { name: 'Physics', link: '/physics' },
+  { name: 'Chemistry', link: '/chemistry' },
+  { name: 'Biology', link: '/biology' },
+  { name: 'Computer Science', link: '/computer-science' },
+  { name: 'Engineering', link: '/engineering' },
+  { name: 'Astronomy', link: '/astronomy' },
+  { name: 'Geology', link: '/geology' },
+  { name: 'Statistics', link: '/statistics' },
+  { name: 'Environmental Science', link: '/environmental-science' },
+];
 
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const questionsResponse = await fetch("/api/questions");
-        if (!questionsResponse.ok) throw new Error("Failed to fetch questions");
+const resources: Resource[] = [
+  {
+    date: '6/11/2024',
+    readTime: '4 min read',
+    title: 'Mastering Calculus: A Comprehensive Guide',
+    description: 'Dive into the fundamentals of Calculus with our comprehensive guide. Learn concepts, solve problems...',
+    tags: ['Mathematics'],
+    bgColor: 'bg-blue-100',
+  },
+  {
+    date: '6/11/2024',
+    readTime: '6 min read',
+    title: 'Understanding Quantum Mechanics',
+    description: 'Explore the fascinating world of Quantum Mechanics. Understand the principles and theories that...',
+    tags: ['Physics'],
+    bgColor: 'bg-green-100',
+  },
+  {
+    date: '6/11/2024',
+    readTime: '8 min read',
+    title: 'Organic Chemistry: Reactions and Mechanisms',
+    description: 'Learn about the various reactions and mechanisms in Organic Chemistry. This guide covers...',
+    tags: ['Chemistry'],
+    bgColor: 'bg-purple-100',
+  },
+  {
+    date: '6/11/2024',
+    readTime: '4 min read',
+    title: 'Genetics: The Blueprint of Life',
+    description: 'Understand the basics of Genetics, including DNA structure, gene expression, and inheritance...',
+    tags: ['Biology'],
+    bgColor: 'bg-pink-100',
+  },
+  {
+    date: '6/11/2024',
+    readTime: '2 min read',
+    title: 'Introduction to Programming with Python',
+    description: 'Start your programming journey with Python. Learn syntax, control structures, and basic algorithms...',
+    tags: ['Computer Science'],
+    bgColor: 'bg-yellow-100',
+  },
+  {
+    date: '6/1/2024',
+    readTime: '8 min read',
+    title: 'Engineering Principles: From Theory to Practice',
+    description: 'Explore the core principles of engineering and see how they are applied in real-world scenarios...',
+    tags: ['Engineering'],
+    bgColor: 'bg-orange-100',
+  },
+  {
+    date: '6/1/2024',
+    readTime: '5 min read',
+    title: 'Astronomy 101: Exploring the Universe',
+    description: 'Take a journey through the cosmos with our introductory guide to Astronomy. Learn about stars, planets...',
+    tags: ['Astronomy'],
+    bgColor: 'bg-teal-100',
+  },
+  {
+    date: '6/1/2024',
+    readTime: '7 min read',
+    title: 'Geology: The Science of Earth',
+    description: 'Discover the science behind Earth\'s formation, structure, and the processes that shape our planet...',
+    tags: ['Geology'],
+    bgColor: 'bg-red-100',
+  },
+  {
+    date: '6/1/2024',
+    readTime: '3 min read',
+    title: 'Statistics for Data Science',
+    description: 'Learn the essential statistical methods used in data science. This guide covers probability, distributions...',
+    tags: ['Statistics'],
+    bgColor: 'bg-indigo-100',
+  },
+  {
+    date: '6/1/2024',
+    readTime: '6 min read',
+    title: 'Environmental Science: Understanding Our Planet',
+    description: 'Explore the key concepts of Environmental Science and understand the impact of human activities on...',
+    tags: ['Environmental Science'],
+    bgColor: 'bg-lime-100',
+  },
+];
 
-        const questionsData = await questionsResponse.json();
+const generateLink = (tagName: string): string => {
+  if (tagName === 'Mathematics') {
+    return '/Mathematics';
+  }
+  return `/${tagName.toLowerCase().replace(/\s+/g, '-')}`;
+};
 
-        if (userId) {
-          const progressResponse = await fetch("/api/user-progress");
-          if (!progressResponse.ok) throw new Error("Failed to fetch user progress");
-
-          const userProgressData = await progressResponse.json();
-          const mergedQuestions = questionsData.map((question: QuestionType) => {
-            const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
-            return { ...question, ...progress };
-          });
-          setQuestions(mergedQuestions);
-          setFilteredQuestions(mergedQuestions);
-        } else {
-          setQuestions(questionsData);
-          setFilteredQuestions(questionsData);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchQuestions();
-  }, [userId]);
-
-  const subjects = Array.from(new Set(questions.map((q) => q.subject)));
-  const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
-  const years = Array.from(new Set(questions.map((q) => q.year)));
-  const types = Array.from(new Set(questions.map((q) => q.type)));
-
-  const filterQuestions = useCallback(() => {
-    let filtered = questions.filter((question) => {
-      return (
-        (!filters.subject || question.subject === filters.subject) &&
-        (!filters.difficulty || question.difficulty === filters.difficulty) &&
-        (!filters.year || question.year === filters.year) &&
-        (!filters.type || question.type === filters.type)
-      );
-    });
-
-    if (filters.status === "review") {
-      filtered = filtered.filter((question) => question.reviewed);
-    } else if (filters.status === "complete") {
-      filtered = filtered.filter((question) => question.completed);
-    }
-
-    setFilteredQuestions(filtered);
-  }, [questions, filters]);
-
-  useEffect(() => {
-    filterQuestions();
-  }, [filterQuestions]);
-
-  const handleFilterChange = (tag: string, value: string) => {
-    setFilters((prevFilters) => ({ ...prevFilters, [tag]: value }));
-  };
-
-  const handleMarkschemeToggle = (questionId: string, markscheme: string) => {
-    setMarkschemeContent(markscheme);
-  };
-
-  const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
-    if (userId) {
-      try {
-        const response = await fetch("/api/markComplete", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, completed: isComplete }),
-        });
-        if (!response.ok) throw new Error("Failed to update completion status");
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.questionId === questionId ? { ...q, completed: isComplete } : q
-      )
-    );
-  };
-
-  const handleMarkForReview = async (questionId: string, isReviewed: boolean) => {
-    if (userId) {
-      try {
-        const response = await fetch("/api/markForReview", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, reviewed: isReviewed }),
-        });
-        if (!response.ok) throw new Error("Failed to update review status");
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
-      )
-    );
-  };
-
-  const handleOptionClick = (questionId: string, option: string, correctOption: string) => {
-    const isCorrect = option === correctOption;
-    setFeedback({
-      ...feedback,
-      [questionId]: isCorrect ? "correct" : "incorrect",
-    });
-  };
-
-  const handleNumericalSubmit = (questionId: string, userAnswer: string, correctAnswer: string) => {
-    const isCorrect = userAnswer === correctAnswer;
-    setFeedback({
-      ...feedback,
-      [questionId]: isCorrect ? "correct" : "incorrect",
-    });
-  };
-
-  const handleNoteChange = (questionId: string, note: string) => {
-    setNotes({
-      ...notes,
-      [questionId]: note,
-    });
-  };
-
-  const handleDeleteNote = async (questionId: string) => {
-    try {
-      const response = await fetch('/api/notes/delete', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId }),
-      });
-      if (!response.ok) throw new Error('Failed to delete note');
-      setNotes((prevNotes) => {
-        const updatedNotes = { ...prevNotes };
-        delete updatedNotes[questionId];
-        return updatedNotes;
-      });
-    } catch (error) {
-      console.error('Error deleting note:', error);
-    }
+const BrowseResources: NextPage = () => {
+  const addCourseToPlanner = (course: Resource) => {
+    // Logic to add the course to the planner
+    alert(`Course "${course.title}" added to planner!`);
   };
 
   return (
-    <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-      <div className="max-w-6xl w-full">
-        <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
-          CUET Question Bank
-        </h1>
-        <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
-          AI Generated Solutions
-        </span>
-
-        <div className="flex space-x-4 mb-6"></div>
-
-        <div className="flex space-x-4 mb-2">
-          {["all", "complete", "review"].map((status) => (
-            <button
-              key={status}
-              onClick={() => handleFilterChange("status", status)}
-              className={`px-4 py-2 rounded-md ${
-                filters.status === status
-                  ? "bg-white border hover:border-black border-gray-600 text-gray-500"
-                  : "bg-white hover:border-black border border-gray-300 text-gray-500"
-              }`}
-            >
-              {status.charAt(0).toUpperCase() + status.slice(1)}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-          {["subject", "difficulty", "year", "type"].map((filterType) => (
-            <Popover
-              key={filterType}
-              content={
-                <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                  {(filterType === "subject"
-                    ? subjects
-                    : filterType === "difficulty"
-                    ? difficulties
-                    : filterType === "year"
-                    ? years
-                    : types
-                  ).map((value: string) => (
-                    <button
-                      key={value}
-                      onClick={() => {
-                        handleFilterChange(filterType, value);
-                        setDropdowns({ ...dropdowns, [filterType]: false });
-                      }}
-                      className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
-                    >
-                      {value}
-                    </button>
-                  ))}
+    <>
+          <section id="projects">
+        <div className="space-y-12 w-full py-12">
+          <BlurFade>
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                  My Projects
                 </div>
-              }
-              align="start"
-              openPopover={dropdowns[filterType as keyof typeof dropdowns]}
-              setOpenPopover={(open) => {
-                setDropdowns((prev) => ({
-                  ...prev,
-                  [filterType]: open,
-                }));
-              }}
-            >
-              <button
-                onClick={() =>
-                  setDropdowns((prev) => ({
-                    ...prev,
-                    [filterType]: !prev[filterType as keyof typeof dropdowns],
-                  }))
-                }
-                className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
-              >
-                <p className="text-gray-600">
-                  {filters[filterType as keyof typeof filters] ||
-                    filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  Check out my latest work
+                </h2>
+                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  I&apos;ve worked on a variety of projects, from simple
+                  websites to complex web applications. Here are a few of my
+                  favorites.
                 </p>
-                <ChevronDown
-                  className={`h-4 w-4 text-gray-600 transition-all ${
-                    dropdowns[filterType as keyof typeof dropdowns]
-                      ? "rotate-180"
-                      : ""
-                  }`}
+              </div>
+            </div>
+          </BlurFade>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
+            {DATA.projects.map((project, id) => (
+              <BlurFade
+                key={project.title}
+              >
+                <ProjectCard
+                  href={project.href}
+                  key={project.title}
+                  title={project.title}
+                  description={project.description}
+                  dates={project.dates}
+                  tags={project.technologies}
+                  image={project.image}
+                  video={project.video}
+                  links={project.links}
                 />
-              </button>
-            </Popover>
-          ))}
-        </div>
-
-        {filteredQuestions.length > 0 ? (
-          filteredQuestions.map((question) => (
-            <Question
-              key={question.questionId}
-              question={question}
-              feedback={feedback[question.questionId]}
-              numericalAnswer={numericalAnswers[question.questionId]}
-              showMarkscheme={showMarkscheme[question.questionId]}
-              handleOptionClick={(questionId, option, correctOption) =>
-                handleOptionClick(questionId, option, correctOption)
-              }
-              handleNumericalSubmit={handleNumericalSubmit}
-              handleNumericalChange={(questionId, value) => {
-                setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
-              }}
-              handleMarkschemeToggle={() =>
-                handleMarkschemeToggle(
-                  question.questionId,
-                  question.markscheme || "No markscheme available"
-                )
-              }
-              handleMarkForReview={() => handleMarkForReview(question.questionId, !question.reviewed)}
-              handleMarkComplete={() => handleMarkComplete(question.questionId, !question.completed)}
-              isMarkedForReview={question.reviewed}
-              isMarkedComplete={question.completed}
-              markschemesDisabled={false}
-              note={notes[question.questionId] || ""}
-              handleNoteChange={handleNoteChange}
-              handleDeleteNote={handleDeleteNote} // Add this line
-              userId={userId}
-            />
-          ))
-        ) : (
-          <p>No questions found with the selected filters.</p>
-        )}
-
-        <Modal
-          showModal={showMarkschemeModal}
-          setShowModal={setShowMarkschemeModal}
-          className="max-w-2xl"
-        >
-          <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
-            <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
-              <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
-                AI Generated Solution
-              </span>
-              <h2 className="font-display text-2xl font-bold">Markscheme</h2>
-            </div>
-            <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
-              <p className="mb-4">
-                <MathRenderer text={markschemeContent} />
-              </p>
-            </div>
+              </BlurFade>
+            ))}
           </div>
-        </Modal>
-      </div>
-    </div>
+        </div>
+      </section>
+    </>
   );
 };
 
-export default QuestionBank;
+export default BrowseResources;

@@ -73,9 +73,8 @@ const MainContent: React.FC = () => {
       if (isStringArray(filterValues)) {
         const isSelected = filterValues.includes(value);
         const updatedFilter = isSelected
-          ? filterValues.filter((v: string) => v !== value)
+          ? filterValues.filter((v) => v !== value)
           : [...filterValues, value];
-        console.log(`Filter Change - ${tag}:`, updatedFilter);
         return { ...prevFilters, [tag]: updatedFilter };
       }
       return prevFilters;
@@ -83,6 +82,7 @@ const MainContent: React.FC = () => {
   };
 
   const filterQuestions = useCallback(() => {
+    console.log("Applying Filters:", filters);
     let filtered = questions.filter((question) => {
       return (
         (!filters.exams.length || filters.exams.includes(question.exam)) &&
@@ -101,9 +101,8 @@ const MainContent: React.FC = () => {
       filtered = filtered.filter((question) => question.completed);
     }
 
-    setFilteredQuestions(filtered);
-    console.log("Applied Filters:", filters);
     console.log("Filtered Questions:", filtered);
+    setFilteredQuestions(filtered);
   }, [questions, filters]);
 
   useEffect(() => {
@@ -206,22 +205,22 @@ const MainContent: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-          {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map((filterType) => (
+          {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map((filterType) => (
             <Popover
               key={filterType}
               content={
                 <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                  {(filterType === "exam"
+                  {(filterType === "exams"
                     ? [...new Set(questions.map((q) => q.exam))]
-                    : filterType === "subject"
+                    : filterType === "subjects"
                     ? [...new Set(questions.map((q) => q.subject))]
-                    : filterType === "topic"
+                    : filterType === "topics"
                     ? [...new Set(questions.map((q) => q.topic))]
-                    : filterType === "subtopic"
+                    : filterType === "subtopics"
                     ? [...new Set(questions.map((q) => q.subtopic))]
-                    : filterType === "difficulty"
+                    : filterType === "difficulties"
                     ? [...new Set(questions.map((q) => q.difficulty))]
-                    : filterType === "year"
+                    : filterType === "years"
                     ? [...new Set(questions.map((q) => q.year))]
                     : [...new Set(questions.map((q) => q.type))]
                   ).map((value: string) => (
@@ -262,10 +261,8 @@ const MainContent: React.FC = () => {
                 className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
               >
                 <p className="text-gray-600">
-                  {isStringArray(filters[filterType as keyof FiltersType])
-                    ? (filters[filterType as keyof FiltersType] as string[]).length
-                      ? `${(filters[filterType as keyof FiltersType] as string[]).length} selected`
-                      : filterType.charAt(0).toUpperCase() + filterType.slice(1)
+                  {filters[filterType as keyof FiltersType].length
+                    ? `${filters[filterType as keyof FiltersType].length} selected`
                     : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                 </p>
                 <ChevronDown

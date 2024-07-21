@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import "katex/dist/katex.min.css";
@@ -74,8 +74,6 @@ const QuestionBank: React.FC = () => {
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
   const userId = ""; // Add logic to retrieve user ID if signed in
-
-  const dropdownTimeout = useRef<Record<string, NodeJS.Timeout>>({});
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -308,7 +306,7 @@ const QuestionBank: React.FC = () => {
                         type="checkbox"
                         id={`${filterType}-${value}`}
                         className="mr-2"
-                        checked={(filters[filterType as keyof FiltersType] as string[]).includes(value)}
+                        checked={(filters[filterType as keyof FiltersType] as string[] || []).includes(value)}
                         onChange={() => handleFilterChange(filterType as keyof FiltersType, value)}
                       />
                       <label

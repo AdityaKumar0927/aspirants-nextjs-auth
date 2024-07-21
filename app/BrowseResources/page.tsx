@@ -1,452 +1,226 @@
 "use client";
 
-import Card from "@/components/home/card";
-import { DEPLOY_URL } from "@/lib/constants";
-import WebVitals from "@/components/home/web-vitals";
-import ComponentGrid from "@/components/home/component-grid";
-import { OrbitingCirclesDemo } from "@/components/magicui/orbiting";
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Dashboard from "@/components/home/DashboardContent";
-import { NoteApp } from "@/components/shared/NoteApp";
+import React from 'react';
+import { NextPage } from 'next';
+import Head from 'next/head';
 import {
-  faBookOpen,
-  faChartLine,
-  faTools,
-  faClipboardList,
-} from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
-import MainContent from "@/components/home/MainContent";
-import ModalWrapper from "@/components/layout/ModalWrapper";
-import { FAQ } from "@/components/shared/FAQ";
-import { cubicBezier, motion, useInView } from "framer-motion";
-import { Clock, Download, MessageCircle, Star } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { ChevronRight } from "lucide-react";
-import { useRef } from "react";
-import Meteors from "@/components/magicui/meteors";
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
-import Image from "next/image";
-import { TabsDemo } from "@/components/home/TabsComponent";
-import ShinyButton from "@/components/magicui/shiny-button";
-import ShimmerButton from "@/components/magicui/shimmer-button";
-import { HoverEffect } from "@/components/ui/card-hover-effect";
-import Chat from "@/components/shared/Chat";
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import BlurFade from "@/components/magicui/blur-fade";
+import ReactMarkdown from 'react-markdown';
 
-const projects = [
-  {
-    title: "JEE",
-    description:
-      "A technology company that builds economic infrastructure for the internet.",
-    link: "https://stripe.com",
-  },
-  {
-    title: "CUET",
-    description:
-      "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
-    link: "https://netflix.com",
-  },
-  {
-    title: "CBSE",
-    description:
-      "A multinational technology company that specializes in Internet-related services and products.",
-    link: "https://google.com",
-  },
-  {
-    title: "A levels",
-    description:
-      "A technology company that focuses on building products that advance Facebook's mission of bringing the world closer together.",
-    link: "https://meta.com",
-  },
-  {
-    title: "CLAT",
-    description:
-      "A multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence.",
-    link: "https://amazon.com",
-  },
-  {
-    title: "CAT",
-    description:
-      "A multinational technology company that develops, manufactures, licenses, supports, and sells computer software, consumer electronics, personal computers, and related services.",
-    link: "https://microsoft.com",
-  },
-];
 
-const texts = [
-  {
-    id: 1,
-    header: "New Feature Release.",
-    subheader: "Experience our latest features now.",
-    icon: <Star />,
-  },
-  {
-    id: 2,
-    header: "App Update Available.",
-    subheader:
-      "A new update is available for download. Get the latest version!",
-    icon: <Download />,
-  },
-  {
-    id: 3,
-    header: "Scheduled Maintenance.",
-    subheader:
-      "Our app will be temporarily unavailable due to scheduled maintenance.",
-    icon: <Clock />,
-  },
-  {
-    id: 4,
-    header: "Feedback Appreciated.",
-    subheader:
-      "We would love to hear your thoughts on our app. Share your feedback!",
-    icon: <MessageCircle />,
-  },
-];
-
-interface FeatureCardProps {
-  icon: JSX.Element;
+type Resource = {
+  date: string;
+  readTime: string;
   title: string;
-  tags: string[];
   description: string;
-  learnMoreText: string;
-}
-
-interface UserCardProps {
-  user: string;
-  color: string;
-}
-
-const FeatureCard = ({
-  icon,
-  title,
-  tags,
-  description,
-  learnMoreText,
-}: FeatureCardProps) => (
-  <div className="bg-white rounded-3xl p-6 flex flex-col h-full shadow-lg">
-    <div className="text-3xl mb-4">{icon}</div>
-    <h2 className="text-xl font-semibold mb-2">{title}</h2>
-    <div className="flex gap-2 mb-4">
-      {tags.map((tag, index) => (
-        <span
-          key={index}
-          className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs"
-        >
-          {tag}
-        </span>
-      ))}
-    </div>
-    <p className="text-gray-600 mb-6 flex-grow">{description}</p>
-    <a href="#" className="text-black font-medium flex items-center">
-      {learnMoreText}
-      <svg
-        className="w-4 h-4 ml-1"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-      </svg>
-    </a>
-  </div>
-);
-
-const UserCard = ({ user, color }: UserCardProps) => (
-  <div className={`bg-gray-800 rounded-lg p-6 w-80 mx-4 border-2 border-${color}-500`}>
-    <div className="flex items-center justify-between mb-4">
-      <div className="w-8 h-8 bg-gray-700 rounded-full"></div>
-      <span className="text-white font-semibold">{user}</span>
-    </div>
-    <div className="space-y-3 mb-4">
-      <div className="h-2 bg-gray-700 rounded"></div>
-      <div className="h-2 bg-gray-700 rounded w-5/6"></div>
-    </div>
-    <div className={`h-2 bg-${color}-500 rounded w-3/4 mb-6`}></div>
-    <div className="bg-gray-900 rounded-lg p-4 mb-4">
-      <div className="relative">
-        <svg viewBox="0 0 100 20" className="w-full">
-          <path d="M0,10 Q25,20 50,10 T100,10" fill="none" stroke={color === 'green' ? '#4ade80' : '#9ca3af'} strokeWidth="2" />
-        </svg>
-        {color !== 'green' && (
-          <div className="absolute top-0 left-0 w-6 h-6 rounded-full bg-green-500 border-2 border-gray-800 -mt-2 -ml-2"></div>
-        )}
-        {color === 'green' && (
-          <div className="absolute top-0 right-0 w-6 h-6 bg-white rounded-full flex items-center justify-center -mt-2 -mr-2">
-            <i className="fas fa-pen text-xs text-gray-800"></i>
-          </div>
-        )}
-      </div>
-    </div>
-    <div className="space-y-2">
-      <div className="h-2 bg-gray-700 rounded"></div>
-      <div className="h-2 bg-gray-700 rounded w-5/6"></div>
-    </div>
-    <div className="mt-4 relative">
-      <div className={`h-2 ${color === 'blue' ? 'bg-blue-500' : 'bg-gray-700'} rounded`}></div>
-      <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
-        <div className="w-4 h-4 bg-blue-500 rotate-45 transform origin-center"></div>
-      </div>
-    </div>
-  </div>
-);
-
-
-const variant1 = {
-  initial: {
-    scale: 0.87,
-    transition: {
-      delay: 0.05,
-      duration: 0.2,
-      ease: "linear",
-    },
-  },
-  whileHover: {
-    scale: 0.8,
-    boxShadow:
-      "rgba(245,40,145,0.35) 0px 20px 70px -10px, rgba(36,42,66,0.04) 0px 10px 24px -8px, rgba(36,42,66,0.06) 0px 1px 4px -1px",
-    transition: {
-      delay: 0.05,
-      duration: 0.2,
-      ease: "linear",
-    },
-  },
+  tags: string[];
+  bgColor: string;
+  syllabus: string;
 };
 
-const variant2 = {
-  initial: {
-    y: -27,
-    scale: 0.95,
-    transition: {
-      delay: 0,
-      duration: 0.2,
-      ease: "linear",
-    },
+const resources: Resource[] = [
+  {
+    date: '6/11/2024',
+    readTime: '4 min read',
+    title: 'JEE Mains Syllabus',
+    description: 'Complete syllabus for JEE Mains including Physics, Chemistry, and Mathematics...',
+    tags: ['JEE Mains'],
+    bgColor: 'bg-blue-100',
+    syllabus: `
+      ## Physics
+      - Units and Measurement
+      - Kinematics
+      - Laws of Motion
+      - Work, Energy and Power
+      - ... (more topics)
+      
+      ## Chemistry
+      - Some Basic Concepts in Chemistry
+      - States of Matter
+      - Atomic Structure
+      - Chemical Bonding and Molecular Structure
+      - ... (more topics)
+      
+      ## Mathematics
+      - Sets, Relations and Functions
+      - Complex Numbers and Quadratic Equations
+      - Matrices and Determinants
+      - Mathematical Induction
+      - ... (more topics)
+    `,
   },
-  whileHover: {
-    y: -55,
-    scale: 0.87,
-    boxShadow:
-      "rgba(39,127,245,0.15) 0px 20px 70px -10px, rgba(36,42,66,0.04) 0px 10px 24px -8px, rgba(36,42,66,0.06) 0px 1px 4px -1px",
-    transition: {
-      delay: 0,
-      duration: 0.2,
-      ease: "linear",
-    },
+  {
+    date: '6/11/2024',
+    readTime: '6 min read',
+    title: 'JEE Advanced Syllabus',
+    description: 'Detailed syllabus for JEE Advanced with tips on important topics...',
+    tags: ['JEE Advanced'],
+    bgColor: 'bg-green-100',
+    syllabus: `
+      ## Physics
+      - General Physics
+      - Mechanics
+      - Thermal Physics
+      - Electricity and Magnetism
+      - ... (more topics)
+      
+      ## Chemistry
+      - Physical Chemistry
+      - Inorganic Chemistry
+      - Organic Chemistry
+      - ... (more topics)
+      
+      ## Mathematics
+      - Algebra
+      - Trigonometry
+      - Analytical Geometry
+      - Differential Calculus
+      - ... (more topics)
+    `,
   },
-};
+  {
+    date: '6/11/2024',
+    readTime: '8 min read',
+    title: 'CLAT Syllabus',
+    description: 'Comprehensive syllabus for CLAT covering English, Logical Reasoning, Legal Aptitude...',
+    tags: ['CLAT'],
+    bgColor: 'bg-purple-100',
+    syllabus: `
+      ## English
+      - Comprehension Passages
+      - Grammar
+      - Vocabulary
+      - ... (more topics)
+      
+      ## Logical Reasoning
+      - Series
+      - Analogies
+      - Logical Sequences
+      - ... (more topics)
+      
+      ## Legal Aptitude
+      - Indian Constitution
+      - Legal Terms and Maxims
+      - Important Legal Principles
+      - ... (more topics)
+    `,
+  },
+  {
+    date: '6/11/2024',
+    readTime: '4 min read',
+    title: 'CAT Syllabus',
+    description: 'Overview of CAT syllabus including Quantitative Aptitude, Data Interpretation, Logical Reasoning...',
+    tags: ['CAT'],
+    bgColor: 'bg-pink-100',
+    syllabus: `
+      ## Quantitative Aptitude
+      - Number Systems
+      - Arithmetic
+      - Algebra
+      - Geometry and Mensuration
+      - ... (more topics)
+      
+      ## Data Interpretation
+      - Data Tables
+      - Charts and Graphs
+      - Data Analysis
+      - ... (more topics)
+      
+      ## Logical Reasoning
+      - Puzzles
+      - Arrangements
+      - Logical Sequences
+      - ... (more topics)
+    `,
+  },
+  {
+    date: '6/11/2024',
+    readTime: '2 min read',
+    title: 'UPSC Syllabus',
+    description: 'Detailed UPSC syllabus for both Prelims and Mains examination...',
+    tags: ['UPSC'],
+    bgColor: 'bg-yellow-100',
+    syllabus: `
+      ## Prelims
+      - General Studies Paper I
+      - General Studies Paper II (CSAT)
+      
+      ## Mains
+      - Essay
+      - General Studies I
+      - General Studies II
+      - General Studies III
+      - General Studies IV
+      - Optional Subject
+      - ... (more topics)
+    `,
+  },
+];
 
-const variant3 = {
-  initial: {
-    y: -25,
-    opacity: 0,
-    scale: 1,
-    transition: {
-      delay: 0.05,
-      duration: 0.2,
-      ease: "linear",
-    },
-  },
-  whileHover: {
-    y: -45,
-    opacity: 1,
-    scale: 1,
-    boxShadow:
-      "rgba(39,245,76,0.15) 10px 20px 70px -20px, rgba(36,42,66,0.04) 0px 10px 24px -8px, rgba(36,42,66,0.06) 0px 1px 4px -1px",
-    transition: {
-      delay: 0.05,
-      duration: 0.2,
-      ease: "easeInOut",
-    },
-  },
-};
-
-const itemVariants = {
-  initial: (index: number) => ({
-    y: 0,
-    scale: index === 3 ? 0.85 : 1,
-    transition: {
-      delay: 0.05,
-      duration: 0.3,
-      ease: cubicBezier(0.22, 1, 0.36, 1),
-    },
-  }),
-  whileHover: (index: number) => ({
-    y: -110,
-    opacity: 1,
-    scale: index === 0 ? 0.85 : index === 3 ? 1 : 1,
-    transition: {
-      delay: 0.05,
-      duration: 0.3,
-      ease: cubicBezier(0.22, 1, 0.36, 1),
-    },
-  }),
-};
-
-const containerVariants = {
-  initial: {},
-  whileHover: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const Page = () => {
+const BrowseResources: NextPage = () => {
   return (
     <>
-      <ModalWrapper />
-      <div className="">
-      <Meteors number={30} />
-      </div>
-      <div className="z-10 w-full max-w-xl px-5 xl:px-0 bg-[linear-gradient(to_right,#60606012_1px,transparent_1px),linear-gradient(to_bottom,#60606012_1px,transparent_1px)] bg-[size:48px_48px]">
-        <div className="text-center px-4">
-          <div className="relative">
-            <div className="absolute top-0 right-20 h-full w-full bg-gradient-to-br from-green-300 via-violet-300 to-red-500 blur-3xl transform translate-x-1/2"></div>
-            <div className="relative rounded-lg p-6 max-w-md mx-auto">
-              <div className="flex items-center mb-4">
-                <div className="w-6 h-6"></div>
-                <h1
-                  className="animate-fade-up bg-gradient-to-br from-black to-black bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm sm:text-5xl sm:leading-[5rem]"
-                  style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
-                >
-                  Study for your exams with <div className="text-white text-gradient-to-br from-cyan-300 to-white">aspirants</div>
-                </h1>
+      <Head>
+        <title>Browse Resources</title>
+      </Head>
+      <section id="resources">
+        <div className="space-y-12 w-full py-12">
+          <BlurFade>
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                  Exam Resources
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  Explore Various Exams and Their Syllabi
+                </h2>
+                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Find the detailed syllabus and resources for exams like JEE Mains, JEE Advanced, CLAT, CAT, and UPSC.
+                </p>
               </div>
             </div>
+          </BlurFade>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-[1200px] mx-auto">
+            {resources.map((resource, index) => (
+              <BlurFade key={index}>
+                <Card className={`lg:max-w-md ${resource.bgColor}`}>
+                  <CardHeader className="space-y-0 pb-2">
+                    <CardDescription>{resource.date} • {resource.readTime}</CardDescription>
+                    <CardTitle className="text-2xl font-bold">{resource.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="mb-4">{resource.description}</p>
+                    <Separator />
+                    <div className="my-4">
+                      <ReactMarkdown>{resource.syllabus}</ReactMarkdown>
+                    </div>
+                    <Separator />
+                    <div className="flex space-x-2 mt-4">
+                      {resource.tags.map((tag, idx) => (
+                        <span
+                          key={idx}
+                          className="inline-block bg-foreground text-background px-3 py-1 rounded-lg text-sm"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </BlurFade>
+            ))}
           </div>
         </div>
-        <p
-          className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 sm:text-xl"
-          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-        >
-          Thousands of practice questions, study notes, and flashcards, all in one place.
-        </p>
-        <div
-          className="mx-auto mt-6 flex flex-col sm:flex-row animate-fade-up items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5 opacity-0"
-          style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
-        >
-          <Link
-            className="group flex max-w-fit items-center"
-            href="CUET"
-          >
-           <ShimmerButton className="shadow-2xl">
-        <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-          Try Now
-        </span>
-      </ShimmerButton>
-          </Link>
-          <Link
-            className="flex items-center justify-center space-x-2"
-            href="BrowseResources"
-          >
-           <ShinyButton text="Browse Resources" />
-          </Link>
-        </div>
-      </div>
-      <div className="flex justify-between items-center">
-      
-      <ContainerScroll
-        titleComponent={
-          <>
-           
-          </>
-        }
-      >
-        <Dashboard />
-      </ContainerScroll>
-      </div>
-      <div className="container mx-auto px-4 py-12 max-w-6xl">
-        <h1 className="text-center text-gray-600 text-sm mb-4">chaze X ChatGPT 4o</h1>
-        <h2 className="text-center text-6xl font-bold mb-2">Supercharge your</h2>
-        <h2 className="text-center text-6xl font-normal mb-6">learning experience</h2>
-        <p className="text-center text-gray-600 max-w-3xl mx-auto mb-16">
-          Essentially a headless open source editor, chaze has a wide range
-          of paid features that give developers exactly the kind of experience
-          they&apos;re looking for - fully customizable to build their product needs.
-        </p>
-
-        <div className="relative border-4 rounded-2xl p-4 bg-cover bg-center" style={{ backgroundImage: "url('/ventura.jpg')" }}>
-          <div className="bg-white bg-opacity-80 p-6 rounded-2xl">
-            <Chat questionText="" />
-          </div>
-        </div>
-        
-      </div>
-      <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-blac">
-          Quality Question Banks
-        </h4>
- 
-        <p className="text-sm mb-8 lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal">
-          Receive insights about your strengths, weaknesses, areas of improvements, and topics to look out for!
-        </p>
-      <MainContent />
-
-      <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
-          Never Forget Anything
-        </h4>
- 
-        <p className="text-sm lg:text-base mb-12 max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-norma">
-          View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill. 
-        </p>
-        <div className="w-10/12 mb-4 border-4 rounded-2xl p-2">
-  <NoteApp />
-</div>
-
-<div className="max-w-5xl mx-auto px-8">
-      <HoverEffect items={projects} />
-    </div>
-
-<h4 className="text-3xl mt-24 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black mb-2">
-  And more.....
-</h4>
-
-<div className="w-8/12 h-1/3">
-  <TabsDemo />
-</div>
-
- {/* 3D Card Effect */}
- <CardContainer className="relative">
-          <CardBody className="w-10/12">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-200 via-purple-100 to-blue-100 opacity-50 rounded-3xl transform scale-110 z-[-10]"></div>
-            <div className="container mx-auto px-4 py-16 relative z-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <FeatureCard
-                  icon={<FontAwesomeIcon icon={faBookOpen} />}
-                  title="Question Banks"
-                  tags={["Open source core"]}
-                  description="Access and create comprehensive question banks for various exams, tailored to enhance your study sessions."
-                  learnMoreText="Learn more"
-                />
-                <FeatureCard
-                  icon={<FontAwesomeIcon icon={faChartLine} />}
-                  title="Mock Exams"
-                  tags={["Cloud", "Try for free"]}
-                  description="Simulate real exam conditions with our mock exams. Get instant feedback and improve your performance."
-                  learnMoreText="Learn more"
-                />
-                <FeatureCard
-                  icon={<FontAwesomeIcon icon={faTools} />}
-                  title="Productivity Extensions"
-                  tags={["Cloud", "Paid feature"]}
-                  description="Boost your productivity with our custom extensions designed to streamline your study process."
-                  learnMoreText="Learn more"
-                />
-                <FeatureCard
-                  icon={<FontAwesomeIcon icon={faClipboardList} />}
-                  title="Note Taking"
-                  tags={["Cloud", "Try for free"]}
-                  description="Organize your notes efficiently with our advanced note-taking features, integrated with AI for smarter suggestions."
-                  learnMoreText="Learn more"
-                />
-              </div>
-            </div>
-          </CardBody>
-        </CardContainer>
-        {/* End of 3D Card Effect */}
-
-      <FAQ />
+      </section>
     </>
   );
 };
 
-export default Page;
+export default BrowseResources;
