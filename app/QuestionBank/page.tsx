@@ -26,6 +26,7 @@ interface QuestionType {
   correctOption?: string;
   markscheme?: string;
   notes?: string;
+  lastAttempted?: string; // Add this line
 }
 
 type FiltersType = {
@@ -101,6 +102,7 @@ const QuestionBank: React.FC = () => {
             reviewed: progress ? progress.reviewed : false,
             completed: progress ? progress.completed : false,
             notes: note ? note.content : "",
+            lastAttempted: progress ? progress.lastAttempted : "",
           };
         });
         setQuestions(mergedQuestions);
@@ -161,21 +163,25 @@ const QuestionBank: React.FC = () => {
     });
   };
 
+  const updateUserPerformance = async (questionId: string, updatedFields: Partial<QuestionType>) => {
+    try {
+      const response = await fetch(`/api/user-performance/${questionId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedFields),
+      });
+      if (!response.ok) throw new Error('Failed to update user performance');
+    } catch (error) {
+      console.error('Error updating user performance:', error);
+    }
+  };
+
   const handleMarkschemeToggle = (questionId: string, markscheme: string) => {
     setMarkschemeContent(markscheme);
   };
 
   const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
-    try {
-      const response = await fetch("/api/markComplete", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId, completed: isComplete }),
-      });
-      if (!response.ok) throw new Error('Failed to update completion status');
-    } catch (error) {
-      console.error(error);
-    }
+    await updateUserPerformance(questionId, { completed: isComplete });
 
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) =>
@@ -185,16 +191,7 @@ const QuestionBank: React.FC = () => {
   };
 
   const handleMarkForReview = async (questionId: string, isReviewed: boolean) => {
-    try {
-      const response = await fetch("/api/markForReview", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId, reviewed: isReviewed }),
-      });
-      if (!response.ok) throw new Error('Failed to update review status');
-    } catch (error) {
-      console.error(error);
-    }
+    await updateUserPerformance(questionId, { reviewed: isReviewed });
 
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) =>
@@ -203,20 +200,22 @@ const QuestionBank: React.FC = () => {
     );
   };
 
-  const handleOptionClick = (questionId: string, option: string, correctOption: string) => {
+  const handleOptionClick = async (questionId: string, option: string, correctOption: string) => {
     const isCorrect = option === correctOption;
     setFeedback({
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
+    await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString() });
   };
 
-  const handleNumericalSubmit = (questionId: string, userAnswer: string, correctAnswer: string) => {
+  const handleNumericalSubmit = async (questionId: string, userAnswer: string, correctAnswer: string) => {
     const isCorrect = userAnswer === correctAnswer;
     setFeedback({
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
+    await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString() });
   };
 
   const handleNoteChange = async (questionId: string, note: string) => {

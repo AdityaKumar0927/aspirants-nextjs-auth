@@ -50,9 +50,9 @@ type UserPerformance = {
   dailyStudyTime: { date: string; time: number }[];
 };
 
-const fetchUserPerformance = async (): Promise<UserPerformance> => {
+const fetchUserPerformance = async (): Promise<UserPerformance | null> => {
   const response = await fetch('/api/user-performance/get');
-  if (!response.ok) throw new Error('Failed to fetch user performance');
+  if (!response.ok) return null;
   return response.json();
 };
 
@@ -77,7 +77,13 @@ export default function Dashboard() {
   }, [setLoading]);
 
   if (!userPerformance) {
-    return null; // or you can return a skeleton or placeholder
+    return (
+      <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
+        <div className="text-center text-gray-500">
+          No user performance data available. Please try again later.
+        </div>
+      </div>
+    );
   }
 
   return (
