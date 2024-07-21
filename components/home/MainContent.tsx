@@ -50,8 +50,8 @@ const isStringArray = (value: any): value is string[] => {
 };
 
 const MainContent: React.FC = () => {
-  const [questions, setQuestions] = useState<QuestionType[]>(sampleQuestions as QuestionType[]);
-  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>(sampleQuestions as QuestionType[]);
+  const [questions] = useState<QuestionType[]>(sampleQuestions as QuestionType[]);
+  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>(questions);
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
   const [dropdowns, setDropdowns] = useState({
     exam: false,
@@ -103,11 +103,13 @@ const MainContent: React.FC = () => {
     }
 
     setFilteredQuestions(filtered);
+    console.log("Applied Filters:", filters);
+    console.log("Filtered Questions:", filtered);
   }, [questions, filters]);
 
   useEffect(() => {
     filterQuestions();
-  }, [filterQuestions]);
+  }, [filters, filterQuestions]);
 
   const handleOptionClick = (questionId: string, option: string, correctOption: string) => {
     setFeedback({
@@ -167,17 +169,8 @@ const MainContent: React.FC = () => {
     }
   };
 
-  const handleDeleteNote = async (questionId: string) => {
-    try {
-      const response = await fetch('/api/notes/delete', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId }),
-      });
-      if (!response.ok) throw new Error('Failed to delete note');
-    } catch (error) {
-      console.error('Error deleting note:', error);
-    }
+  const handleDeleteNote = async (questionId: string): Promise<void> => {
+    return new Promise((resolve) => resolve());
   };
 
   return (

@@ -210,3 +210,11 @@ html {
   background: rgba(255, 255, 255, 0.5);
   z-index: 50;
 }
+
+.bg-background-image {
+  background-image: url('/ventura.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 2rem; /* Adjust the value as needed */
+  overflow: hidden;
+}

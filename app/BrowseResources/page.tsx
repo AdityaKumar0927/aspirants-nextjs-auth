@@ -1,185 +1,452 @@
-"use client"
+"use client";
 
-import React from 'react';
-import { NextPage } from 'next';
-import Head from 'next/head';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import Tooltip from '@/components/shared/tooltip';
-import BlurFade from "@/components/magicui/blur-fade";
-import BlurFadeText from "@/components/magicui/blur-fade-text";
-import { ProjectCard } from "@/components/magicui/project-card";
-import { DATA } from "@/components/data/resume";
+import Card from "@/components/home/card";
+import { DEPLOY_URL } from "@/lib/constants";
+import WebVitals from "@/components/home/web-vitals";
+import ComponentGrid from "@/components/home/component-grid";
+import { OrbitingCirclesDemo } from "@/components/magicui/orbiting";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Dashboard from "@/components/home/DashboardContent";
+import { NoteApp } from "@/components/shared/NoteApp";
+import {
+  faBookOpen,
+  faChartLine,
+  faTools,
+  faClipboardList,
+} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import Markdown from "react-markdown";
+import MainContent from "@/components/home/MainContent";
+import ModalWrapper from "@/components/layout/ModalWrapper";
+import { FAQ } from "@/components/shared/FAQ";
+import { cubicBezier, motion, useInView } from "framer-motion";
+import { Clock, Download, MessageCircle, Star } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { ChevronRight } from "lucide-react";
+import { useRef } from "react";
+import Meteors from "@/components/magicui/meteors";
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import Image from "next/image";
+import { TabsDemo } from "@/components/home/TabsComponent";
+import ShinyButton from "@/components/magicui/shiny-button";
+import ShimmerButton from "@/components/magicui/shimmer-button";
+import { HoverEffect } from "@/components/ui/card-hover-effect";
+import Chat from "@/components/shared/Chat";
 
-type Tag = {
-  name: string;
-  link?: string;
-};
+const projects = [
+  {
+    title: "JEE",
+    description:
+      "A technology company that builds economic infrastructure for the internet.",
+    link: "https://stripe.com",
+  },
+  {
+    title: "CUET",
+    description:
+      "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
+    link: "https://netflix.com",
+  },
+  {
+    title: "CBSE",
+    description:
+      "A multinational technology company that specializes in Internet-related services and products.",
+    link: "https://google.com",
+  },
+  {
+    title: "A levels",
+    description:
+      "A technology company that focuses on building products that advance Facebook's mission of bringing the world closer together.",
+    link: "https://meta.com",
+  },
+  {
+    title: "CLAT",
+    description:
+      "A multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence.",
+    link: "https://amazon.com",
+  },
+  {
+    title: "CAT",
+    description:
+      "A multinational technology company that develops, manufactures, licenses, supports, and sells computer software, consumer electronics, personal computers, and related services.",
+    link: "https://microsoft.com",
+  },
+];
 
-type Resource = {
-  date: string;
-  readTime: string;
+const texts = [
+  {
+    id: 1,
+    header: "New Feature Release.",
+    subheader: "Experience our latest features now.",
+    icon: <Star />,
+  },
+  {
+    id: 2,
+    header: "App Update Available.",
+    subheader:
+      "A new update is available for download. Get the latest version!",
+    icon: <Download />,
+  },
+  {
+    id: 3,
+    header: "Scheduled Maintenance.",
+    subheader:
+      "Our app will be temporarily unavailable due to scheduled maintenance.",
+    icon: <Clock />,
+  },
+  {
+    id: 4,
+    header: "Feedback Appreciated.",
+    subheader:
+      "We would love to hear your thoughts on our app. Share your feedback!",
+    icon: <MessageCircle />,
+  },
+];
+
+interface FeatureCardProps {
+  icon: JSX.Element;
   title: string;
-  description: string;
   tags: string[];
-  bgColor: string;
+  description: string;
+  learnMoreText: string;
+}
+
+interface UserCardProps {
+  user: string;
+  color: string;
+}
+
+const FeatureCard = ({
+  icon,
+  title,
+  tags,
+  description,
+  learnMoreText,
+}: FeatureCardProps) => (
+  <div className="bg-white rounded-3xl p-6 flex flex-col h-full shadow-lg">
+    <div className="text-3xl mb-4">{icon}</div>
+    <h2 className="text-xl font-semibold mb-2">{title}</h2>
+    <div className="flex gap-2 mb-4">
+      {tags.map((tag, index) => (
+        <span
+          key={index}
+          className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+    <p className="text-gray-600 mb-6 flex-grow">{description}</p>
+    <a href="#" className="text-black font-medium flex items-center">
+      {learnMoreText}
+      <svg
+        className="w-4 h-4 ml-1"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </a>
+  </div>
+);
+
+const UserCard = ({ user, color }: UserCardProps) => (
+  <div className={`bg-gray-800 rounded-lg p-6 w-80 mx-4 border-2 border-${color}-500`}>
+    <div className="flex items-center justify-between mb-4">
+      <div className="w-8 h-8 bg-gray-700 rounded-full"></div>
+      <span className="text-white font-semibold">{user}</span>
+    </div>
+    <div className="space-y-3 mb-4">
+      <div className="h-2 bg-gray-700 rounded"></div>
+      <div className="h-2 bg-gray-700 rounded w-5/6"></div>
+    </div>
+    <div className={`h-2 bg-${color}-500 rounded w-3/4 mb-6`}></div>
+    <div className="bg-gray-900 rounded-lg p-4 mb-4">
+      <div className="relative">
+        <svg viewBox="0 0 100 20" className="w-full">
+          <path d="M0,10 Q25,20 50,10 T100,10" fill="none" stroke={color === 'green' ? '#4ade80' : '#9ca3af'} strokeWidth="2" />
+        </svg>
+        {color !== 'green' && (
+          <div className="absolute top-0 left-0 w-6 h-6 rounded-full bg-green-500 border-2 border-gray-800 -mt-2 -ml-2"></div>
+        )}
+        {color === 'green' && (
+          <div className="absolute top-0 right-0 w-6 h-6 bg-white rounded-full flex items-center justify-center -mt-2 -mr-2">
+            <i className="fas fa-pen text-xs text-gray-800"></i>
+          </div>
+        )}
+      </div>
+    </div>
+    <div className="space-y-2">
+      <div className="h-2 bg-gray-700 rounded"></div>
+      <div className="h-2 bg-gray-700 rounded w-5/6"></div>
+    </div>
+    <div className="mt-4 relative">
+      <div className={`h-2 ${color === 'blue' ? 'bg-blue-500' : 'bg-gray-700'} rounded`}></div>
+      <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+        <div className="w-4 h-4 bg-blue-500 rotate-45 transform origin-center"></div>
+      </div>
+    </div>
+  </div>
+);
+
+
+const variant1 = {
+  initial: {
+    scale: 0.87,
+    transition: {
+      delay: 0.05,
+      duration: 0.2,
+      ease: "linear",
+    },
+  },
+  whileHover: {
+    scale: 0.8,
+    boxShadow:
+      "rgba(245,40,145,0.35) 0px 20px 70px -10px, rgba(36,42,66,0.04) 0px 10px 24px -8px, rgba(36,42,66,0.06) 0px 1px 4px -1px",
+    transition: {
+      delay: 0.05,
+      duration: 0.2,
+      ease: "linear",
+    },
+  },
 };
 
-const tags: Tag[] = [
-  { name: 'Mathematics', link: '/Mathematics' },
-  { name: 'Physics', link: '/physics' },
-  { name: 'Chemistry', link: '/chemistry' },
-  { name: 'Biology', link: '/biology' },
-  { name: 'Computer Science', link: '/computer-science' },
-  { name: 'Engineering', link: '/engineering' },
-  { name: 'Astronomy', link: '/astronomy' },
-  { name: 'Geology', link: '/geology' },
-  { name: 'Statistics', link: '/statistics' },
-  { name: 'Environmental Science', link: '/environmental-science' },
-];
-
-const resources: Resource[] = [
-  {
-    date: '6/11/2024',
-    readTime: '4 min read',
-    title: 'Mastering Calculus: A Comprehensive Guide',
-    description: 'Dive into the fundamentals of Calculus with our comprehensive guide. Learn concepts, solve problems...',
-    tags: ['Mathematics'],
-    bgColor: 'bg-blue-100',
+const variant2 = {
+  initial: {
+    y: -27,
+    scale: 0.95,
+    transition: {
+      delay: 0,
+      duration: 0.2,
+      ease: "linear",
+    },
   },
-  {
-    date: '6/11/2024',
-    readTime: '6 min read',
-    title: 'Understanding Quantum Mechanics',
-    description: 'Explore the fascinating world of Quantum Mechanics. Understand the principles and theories that...',
-    tags: ['Physics'],
-    bgColor: 'bg-green-100',
+  whileHover: {
+    y: -55,
+    scale: 0.87,
+    boxShadow:
+      "rgba(39,127,245,0.15) 0px 20px 70px -10px, rgba(36,42,66,0.04) 0px 10px 24px -8px, rgba(36,42,66,0.06) 0px 1px 4px -1px",
+    transition: {
+      delay: 0,
+      duration: 0.2,
+      ease: "linear",
+    },
   },
-  {
-    date: '6/11/2024',
-    readTime: '8 min read',
-    title: 'Organic Chemistry: Reactions and Mechanisms',
-    description: 'Learn about the various reactions and mechanisms in Organic Chemistry. This guide covers...',
-    tags: ['Chemistry'],
-    bgColor: 'bg-purple-100',
-  },
-  {
-    date: '6/11/2024',
-    readTime: '4 min read',
-    title: 'Genetics: The Blueprint of Life',
-    description: 'Understand the basics of Genetics, including DNA structure, gene expression, and inheritance...',
-    tags: ['Biology'],
-    bgColor: 'bg-pink-100',
-  },
-  {
-    date: '6/11/2024',
-    readTime: '2 min read',
-    title: 'Introduction to Programming with Python',
-    description: 'Start your programming journey with Python. Learn syntax, control structures, and basic algorithms...',
-    tags: ['Computer Science'],
-    bgColor: 'bg-yellow-100',
-  },
-  {
-    date: '6/1/2024',
-    readTime: '8 min read',
-    title: 'Engineering Principles: From Theory to Practice',
-    description: 'Explore the core principles of engineering and see how they are applied in real-world scenarios...',
-    tags: ['Engineering'],
-    bgColor: 'bg-orange-100',
-  },
-  {
-    date: '6/1/2024',
-    readTime: '5 min read',
-    title: 'Astronomy 101: Exploring the Universe',
-    description: 'Take a journey through the cosmos with our introductory guide to Astronomy. Learn about stars, planets...',
-    tags: ['Astronomy'],
-    bgColor: 'bg-teal-100',
-  },
-  {
-    date: '6/1/2024',
-    readTime: '7 min read',
-    title: 'Geology: The Science of Earth',
-    description: 'Discover the science behind Earth\'s formation, structure, and the processes that shape our planet...',
-    tags: ['Geology'],
-    bgColor: 'bg-red-100',
-  },
-  {
-    date: '6/1/2024',
-    readTime: '3 min read',
-    title: 'Statistics for Data Science',
-    description: 'Learn the essential statistical methods used in data science. This guide covers probability, distributions...',
-    tags: ['Statistics'],
-    bgColor: 'bg-indigo-100',
-  },
-  {
-    date: '6/1/2024',
-    readTime: '6 min read',
-    title: 'Environmental Science: Understanding Our Planet',
-    description: 'Explore the key concepts of Environmental Science and understand the impact of human activities on...',
-    tags: ['Environmental Science'],
-    bgColor: 'bg-lime-100',
-  },
-];
-
-const generateLink = (tagName: string): string => {
-  if (tagName === 'Mathematics') {
-    return '/Mathematics';
-  }
-  return `/${tagName.toLowerCase().replace(/\s+/g, '-')}`;
 };
 
-const BrowseResources: NextPage = () => {
-  const addCourseToPlanner = (course: Resource) => {
-    // Logic to add the course to the planner
-    alert(`Course "${course.title}" added to planner!`);
-  };
+const variant3 = {
+  initial: {
+    y: -25,
+    opacity: 0,
+    scale: 1,
+    transition: {
+      delay: 0.05,
+      duration: 0.2,
+      ease: "linear",
+    },
+  },
+  whileHover: {
+    y: -45,
+    opacity: 1,
+    scale: 1,
+    boxShadow:
+      "rgba(39,245,76,0.15) 10px 20px 70px -20px, rgba(36,42,66,0.04) 0px 10px 24px -8px, rgba(36,42,66,0.06) 0px 1px 4px -1px",
+    transition: {
+      delay: 0.05,
+      duration: 0.2,
+      ease: "easeInOut",
+    },
+  },
+};
 
+const itemVariants = {
+  initial: (index: number) => ({
+    y: 0,
+    scale: index === 3 ? 0.85 : 1,
+    transition: {
+      delay: 0.05,
+      duration: 0.3,
+      ease: cubicBezier(0.22, 1, 0.36, 1),
+    },
+  }),
+  whileHover: (index: number) => ({
+    y: -110,
+    opacity: 1,
+    scale: index === 0 ? 0.85 : index === 3 ? 1 : 1,
+    transition: {
+      delay: 0.05,
+      duration: 0.3,
+      ease: cubicBezier(0.22, 1, 0.36, 1),
+    },
+  }),
+};
+
+const containerVariants = {
+  initial: {},
+  whileHover: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const Page = () => {
   return (
     <>
-          <section id="projects">
-        <div className="space-y-12 w-full py-12">
-          <BlurFade>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  My Projects
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Check out my latest work
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve worked on a variety of projects, from simple
-                  websites to complex web applications. Here are a few of my
-                  favorites.
-                </p>
+      <ModalWrapper />
+      <div className="">
+      <Meteors number={30} />
+      </div>
+      <div className="z-10 w-full max-w-xl px-5 xl:px-0 bg-[linear-gradient(to_right,#60606012_1px,transparent_1px),linear-gradient(to_bottom,#60606012_1px,transparent_1px)] bg-[size:48px_48px]">
+        <div className="text-center px-4">
+          <div className="relative">
+            <div className="absolute top-0 right-20 h-full w-full bg-gradient-to-br from-green-300 via-violet-300 to-red-500 blur-3xl transform translate-x-1/2"></div>
+            <div className="relative rounded-lg p-6 max-w-md mx-auto">
+              <div className="flex items-center mb-4">
+                <div className="w-6 h-6"></div>
+                <h1
+                  className="animate-fade-up bg-gradient-to-br from-black to-black bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm sm:text-5xl sm:leading-[5rem]"
+                  style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
+                >
+                  Study for your exams with <div className="text-white text-gradient-to-br from-cyan-300 to-white">aspirants</div>
+                </h1>
               </div>
             </div>
-          </BlurFade>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-            {DATA.projects.map((project, id) => (
-              <BlurFade
-                key={project.title}
-              >
-                <ProjectCard
-                  href={project.href}
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  dates={project.dates}
-                  tags={project.technologies}
-                  image={project.image}
-                  video={project.video}
-                  links={project.links}
-                />
-              </BlurFade>
-            ))}
           </div>
         </div>
-      </section>
+        <p
+          className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 sm:text-xl"
+          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+        >
+          Thousands of practice questions, study notes, and flashcards, all in one place.
+        </p>
+        <div
+          className="mx-auto mt-6 flex flex-col sm:flex-row animate-fade-up items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5 opacity-0"
+          style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
+        >
+          <Link
+            className="group flex max-w-fit items-center"
+            href="CUET"
+          >
+           <ShimmerButton className="shadow-2xl">
+        <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+          Try Now
+        </span>
+      </ShimmerButton>
+          </Link>
+          <Link
+            className="flex items-center justify-center space-x-2"
+            href="BrowseResources"
+          >
+           <ShinyButton text="Browse Resources" />
+          </Link>
+        </div>
+      </div>
+      <div className="flex justify-between items-center">
+      
+      <ContainerScroll
+        titleComponent={
+          <>
+           
+          </>
+        }
+      >
+        <Dashboard />
+      </ContainerScroll>
+      </div>
+      <div className="container mx-auto px-4 py-12 max-w-6xl">
+        <h1 className="text-center text-gray-600 text-sm mb-4">chaze X ChatGPT 4o</h1>
+        <h2 className="text-center text-6xl font-bold mb-2">Supercharge your</h2>
+        <h2 className="text-center text-6xl font-normal mb-6">learning experience</h2>
+        <p className="text-center text-gray-600 max-w-3xl mx-auto mb-16">
+          Essentially a headless open source editor, chaze has a wide range
+          of paid features that give developers exactly the kind of experience
+          they&apos;re looking for - fully customizable to build their product needs.
+        </p>
+
+        <div className="relative border-4 rounded-2xl p-4 bg-cover bg-center" style={{ backgroundImage: "url('/ventura.jpg')" }}>
+          <div className="bg-white bg-opacity-80 p-6 rounded-2xl">
+            <Chat questionText="" />
+          </div>
+        </div>
+        
+      </div>
+      <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-blac">
+          Quality Question Banks
+        </h4>
+ 
+        <p className="text-sm mb-8 lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal">
+          Receive insights about your strengths, weaknesses, areas of improvements, and topics to look out for!
+        </p>
+      <MainContent />
+
+      <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
+          Never Forget Anything
+        </h4>
+ 
+        <p className="text-sm lg:text-base mb-12 max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-norma">
+          View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill. 
+        </p>
+        <div className="w-10/12 mb-4 border-4 rounded-2xl p-2">
+  <NoteApp />
+</div>
+
+<div className="max-w-5xl mx-auto px-8">
+      <HoverEffect items={projects} />
+    </div>
+
+<h4 className="text-3xl mt-24 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black mb-2">
+  And more.....
+</h4>
+
+<div className="w-8/12 h-1/3">
+  <TabsDemo />
+</div>
+
+ {/* 3D Card Effect */}
+ <CardContainer className="relative">
+          <CardBody className="w-10/12">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-200 via-purple-100 to-blue-100 opacity-50 rounded-3xl transform scale-110 z-[-10]"></div>
+            <div className="container mx-auto px-4 py-16 relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <FeatureCard
+                  icon={<FontAwesomeIcon icon={faBookOpen} />}
+                  title="Question Banks"
+                  tags={["Open source core"]}
+                  description="Access and create comprehensive question banks for various exams, tailored to enhance your study sessions."
+                  learnMoreText="Learn more"
+                />
+                <FeatureCard
+                  icon={<FontAwesomeIcon icon={faChartLine} />}
+                  title="Mock Exams"
+                  tags={["Cloud", "Try for free"]}
+                  description="Simulate real exam conditions with our mock exams. Get instant feedback and improve your performance."
+                  learnMoreText="Learn more"
+                />
+                <FeatureCard
+                  icon={<FontAwesomeIcon icon={faTools} />}
+                  title="Productivity Extensions"
+                  tags={["Cloud", "Paid feature"]}
+                  description="Boost your productivity with our custom extensions designed to streamline your study process."
+                  learnMoreText="Learn more"
+                />
+                <FeatureCard
+                  icon={<FontAwesomeIcon icon={faClipboardList} />}
+                  title="Note Taking"
+                  tags={["Cloud", "Try for free"]}
+                  description="Organize your notes efficiently with our advanced note-taking features, integrated with AI for smarter suggestions."
+                  learnMoreText="Learn more"
+                />
+              </div>
+            </div>
+          </CardBody>
+        </CardContainer>
+        {/* End of 3D Card Effect */}
+
+      <FAQ />
     </>
   );
 };
 
-export default BrowseResources;
+export default Page;

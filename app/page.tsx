@@ -24,48 +24,48 @@ import { Clock, Download, MessageCircle, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { useRef } from "react";
-import Meteors from "@/components/magicui/meteors";  // Import the Meteors component
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";  // Import the 3D card components
-import Image from "next/image";  // Ensure the correct import of the Image component
+import Meteors from "@/components/magicui/meteors";
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import Image from "next/image";
 import { TabsDemo } from "@/components/home/TabsComponent";
 import ShinyButton from "@/components/magicui/shiny-button";
 import ShimmerButton from "@/components/magicui/shimmer-button";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import Chat from "@/components/shared/Chat";
 
-export const projects = [
+const projects = [
   {
-    title: "Stripe",
+    title: "JEE",
     description:
       "A technology company that builds economic infrastructure for the internet.",
     link: "https://stripe.com",
   },
   {
-    title: "Netflix",
+    title: "CUET",
     description:
       "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
     link: "https://netflix.com",
   },
   {
-    title: "Google",
+    title: "CBSE",
     description:
       "A multinational technology company that specializes in Internet-related services and products.",
     link: "https://google.com",
   },
   {
-    title: "Meta",
+    title: "A levels",
     description:
       "A technology company that focuses on building products that advance Facebook's mission of bringing the world closer together.",
     link: "https://meta.com",
   },
   {
-    title: "Amazon",
+    title: "CLAT",
     description:
       "A multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence.",
     link: "https://amazon.com",
   },
   {
-    title: "Microsoft",
+    title: "CAT",
     description:
       "A multinational technology company that develops, manufactures, licenses, supports, and sells computer software, consumer electronics, personal computers, and related services.",
     link: "https://microsoft.com",
@@ -291,11 +291,13 @@ const containerVariants = {
   },
 };
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <ModalWrapper />
-      <Meteors number={30} />  {/* Add the Meteors component */}
+      <div className="">
+        <Meteors number={30} />
+      </div>
       <div className="z-10 w-full max-w-xl px-5 xl:px-0 bg-[linear-gradient(to_right,#60606012_1px,transparent_1px),linear-gradient(to_bottom,#60606012_1px,transparent_1px)] bg-[size:48px_48px]">
         <div className="text-center px-4">
           <div className="relative">
@@ -307,7 +309,8 @@ const page = () => {
                   className="animate-fade-up bg-gradient-to-br from-black to-black bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm sm:text-5xl sm:leading-[5rem]"
                   style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
                 >
-                  Study for your exams with <div className="text-white text-gradient-to-br from-cyan-300 to-white">aspirants</div>
+                  Study for your exams with{" "}
+                  <div className="text-white text-gradient-to-br from-cyan-300 to-white">aspirants</div>
                 </h1>
               </div>
             </div>
@@ -323,127 +326,119 @@ const page = () => {
           className="mx-auto mt-6 flex flex-col sm:flex-row animate-fade-up items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5 opacity-0"
           style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
         >
-          <Link
-            className="group flex max-w-fit items-center"
-            href="CUET"
-          >
-           <ShimmerButton className="shadow-2xl">
-        <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-          Try Now
-        </span>
-      </ShimmerButton>
+          <Link className="group flex max-w-fit items-center" href="CUET">
+            <ShimmerButton className="shadow-2xl">
+              <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+                Try Now
+              </span>
+            </ShimmerButton>
           </Link>
-          <Link
-            className="flex items-center justify-center space-x-2"
-            href="BrowseResources"
-          >
-           <ShinyButton text="Browse Resources" />
+          <Link className="flex items-center justify-center space-x-2" href="BrowseResources">
+            <ShinyButton text="Browse Resources" />
           </Link>
         </div>
       </div>
-      <div className="flex justify-between items-center">
-      
-      <ContainerScroll
-        titleComponent={
-          <>
-           
-          </>
-        }
-      >
-        <Dashboard />
-      </ContainerScroll>
+      <div className="flex justify-between items-center bg-background-image bg-border mt-10 bg-cover bg-center">
+        <ContainerScroll titleComponent={<></>}>
+        <div className="">
+          <Dashboard />
+          </div>
+        </ContainerScroll>
       </div>
       <div className="container mx-auto px-4 py-12 max-w-6xl">
         <h1 className="text-center text-gray-600 text-sm mb-4">chaze X ChatGPT 4o</h1>
         <h2 className="text-center text-6xl font-bold mb-2">Supercharge your</h2>
         <h2 className="text-center text-6xl font-normal mb-6">learning experience</h2>
         <p className="text-center text-gray-600 max-w-3xl mx-auto mb-16">
-          Essentially a headless open source editor, chaze has a wide range
-          of paid features that give developers exactly the kind of experience
-          they&apos;re looking for - fully customizable to build their product needs.
+          Essentially a headless open source editor, chaze has a wide range of paid features that give developers
+          exactly the kind of experience they&apos;re looking for - fully customizable to build their product needs.
         </p>
 
-        <div className="border-4 rounded-2xl">
-        <Chat questionText=""/>
+        
+        <div className="relative w-full h-96 border-4 rounded-2xl overflow-hidden">
+          <Image src="/ventura.jpg" alt="Background" layout="fill" objectFit="cover" />
+          <div className="absolute inset-0 bg-opacity-100 p-6 rounded-2xl flex items-center justify-center overflow-auto">
+            <div className="w-full h-full overflow-auto p-4 bg-white bg-opacity-80 rounded-2xl">
+              <Chat questionText="" />
+            </div>
+          </div>
         </div>
-        
-        
       </div>
       <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-blac">
-          Quality Question Banks
-        </h4>
- 
-        <p className="text-sm mb-8 lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal">
-          Receive insights about your strengths, weaknesses, areas of improvements, and topics to look out for!
-        </p>
+        Quality Question Banks
+      </h4>
+
+      <p className="text-sm mb-8 lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal">
+        Receive insights about your strengths, weaknesses, areas of improvements, and topics to look out for!
+      </p>
       <MainContent />
 
       <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
-          Never Forget Anything
-        </h4>
- 
-        <p className="text-sm lg:text-base mb-12 max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-norma">
-          View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill. 
-        </p>
-        <div className="w-10/12 mb-4 border-4 rounded-2xl p-2">
-  <NoteApp />
-</div>
+        Never Forget Anything
+      </h4>
 
-<div className="max-w-5xl mx-auto px-8">
-      <HoverEffect items={projects} />
-    </div>
+      <p className="text-sm lg:text-base mb-12 max-w-2xl my-4 mx-auto text-neutral-500 text-center font-norma">
+        View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill.
+      </p>
+      <div className="w-10/12 mb-4 border-4 rounded-2xl p-2">
+        <NoteApp />
+      </div>
 
-<h4 className="text-3xl mt-24 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black mb-2">
-  And more.....
-</h4>
+      <div className="max-w-5xl mx-auto px-8">
+        <HoverEffect items={projects} />
+      </div>
 
-<div className="w-8/12 h-1/3">
-  <TabsDemo />
-</div>
+      <h4 className="text-3xl mt-24 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black mb-2">
+        And more.....
+      </h4>
 
- {/* 3D Card Effect */}
- <CardContainer className="relative">
-          <CardBody className="w-10/12">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-200 via-purple-100 to-blue-100 opacity-50 rounded-3xl transform scale-110 z-[-10]"></div>
-            <div className="container mx-auto px-4 py-16 relative z-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <FeatureCard
-                  icon={<FontAwesomeIcon icon={faBookOpen} />}
-                  title="Question Banks"
-                  tags={["Open source core"]}
-                  description="Access and create comprehensive question banks for various exams, tailored to enhance your study sessions."
-                  learnMoreText="Learn more"
-                />
-                <FeatureCard
-                  icon={<FontAwesomeIcon icon={faChartLine} />}
-                  title="Mock Exams"
-                  tags={["Cloud", "Try for free"]}
-                  description="Simulate real exam conditions with our mock exams. Get instant feedback and improve your performance."
-                  learnMoreText="Learn more"
-                />
-                <FeatureCard
-                  icon={<FontAwesomeIcon icon={faTools} />}
-                  title="Productivity Extensions"
-                  tags={["Cloud", "Paid feature"]}
-                  description="Boost your productivity with our custom extensions designed to streamline your study process."
-                  learnMoreText="Learn more"
-                />
-                <FeatureCard
-                  icon={<FontAwesomeIcon icon={faClipboardList} />}
-                  title="Note Taking"
-                  tags={["Cloud", "Try for free"]}
-                  description="Organize your notes efficiently with our advanced note-taking features, integrated with AI for smarter suggestions."
-                  learnMoreText="Learn more"
-                />
-              </div>
+      <div className="w-8/12 h-1/3">
+        <TabsDemo />
+      </div>
+
+      {/* 3D Card Effect */}
+      <CardContainer className="relative">
+        <CardBody className="w-10/12">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-200 via-purple-100 to-blue-100 opacity-50 rounded-3xl transform scale-110 z-[-10]"></div>
+          <div className="container mx-auto px-4 py-16 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <FeatureCard
+                icon={<FontAwesomeIcon icon={faBookOpen} />}
+                title="Question Banks"
+                tags={["Open source core"]}
+                description="Access and create comprehensive question banks for various exams, tailored to enhance your study sessions."
+                learnMoreText="Learn more"
+              />
+              <FeatureCard
+                icon={<FontAwesomeIcon icon={faChartLine} />}
+                title="Mock Exams"
+                tags={["Cloud", "Try for free"]}
+                description="Simulate real exam conditions with our mock exams. Get instant feedback and improve your performance."
+                learnMoreText="Learn more"
+              />
+              <FeatureCard
+                icon={<FontAwesomeIcon icon={faTools} />}
+                title="Productivity Extensions"
+                tags={["Cloud", "Paid feature"]}
+                description="Boost your productivity with our custom extensions designed to streamline your study process."
+                learnMoreText="Learn more"
+              />
+              <FeatureCard
+                icon={<FontAwesomeIcon icon={faClipboardList} />}
+                title="Note Taking"
+                tags={["Cloud", "Try for free"]}
+                description="Organize your notes efficiently with our advanced note-taking features, integrated with AI for smarter suggestions."
+                learnMoreText="Learn more"
+              />
             </div>
-          </CardBody>
-        </CardContainer>
-        {/* End of 3D Card Effect */}
+          </div>
+        </CardBody>
+      </CardContainer>
+      {/* End of 3D Card Effect */}
 
       <FAQ />
     </>
   );
 };
 
-export default page;
+export default Page;
