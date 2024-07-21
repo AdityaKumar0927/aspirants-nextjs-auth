@@ -345,9 +345,7 @@ const Page = () => {
   return (
     <>
       
-      <div className="">
-        <Meteors number={30} />
-      </div>
+     
       
       <div className="z-10 w-full max-w-xl px-5 xl:px-0">
         <div className="text-center px-4">
@@ -363,7 +361,7 @@ const Page = () => {
       <div className="z-10 w-full max-w-xl px-5 xl:px-0 bg-[linear-gradient(to_right,#60606012_1px,transparent_1px),linear-gradient(to_bottom,#60606012_1px,transparent_1px)] bg-[size:48px_48px]">
         <div className="text-center px-4">
           <div className="relative">
-            <div className="absolute top-0 right-20 h-full w-full bg-gradient-to-br from-green-300 via-violet-300 to-red-500 blur-3xl transform translate-x-1/2"></div>
+            <div className="absolute top-0 right-20 h-full w-full bg-gradient-to-br from-green-300 via-yellow-200 to-red-500 blur-3xl transform translate-x-1/2"></div>
             <div className="relative rounded-lg p-6 max-w-md mx-auto">
               <div className="flex items-center mb-4">
                 <div className="w-6 h-6"></div>
