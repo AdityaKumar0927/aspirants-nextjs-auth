@@ -1,4 +1,3 @@
-// app/api/markForReview/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';

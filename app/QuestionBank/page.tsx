@@ -26,7 +26,7 @@ interface QuestionType {
   correctOption?: string;
   markscheme?: string;
   notes?: string;
-  lastAttempted?: string; // Add this line
+  lastAttempted?: string;
 }
 
 type FiltersType = {
@@ -55,6 +55,24 @@ const isStringArray = (value: any): value is string[] => {
   return Array.isArray(value) && value.every(item => typeof item === 'string');
 };
 
+const fetchQuestions = async () => {
+  const response = await fetch("/api/questions");
+  if (!response.ok) throw new Error("Failed to fetch questions");
+  return response.json();
+};
+
+const fetchUserProgress = async () => {
+  const response = await fetch("/api/user-progress");
+  if (!response.ok) throw new Error("Failed to fetch user progress");
+  return response.json();
+};
+
+const fetchNotes = async () => {
+  const response = await fetch("/api/notes");
+  if (!response.ok) throw new Error("Failed to fetch notes");
+  return response.json();
+};
+
 const QuestionBank: React.FC = () => {
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
@@ -77,22 +95,11 @@ const QuestionBank: React.FC = () => {
   const userId = ""; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
-    const fetchQuestions = async () => {
+    const fetchData = async () => {
       try {
-        const questionsResponse = await fetch("/api/questions");
-        if (!questionsResponse.ok) throw new Error("Failed to fetch questions");
-
-        const questionsData = await questionsResponse.json();
-
-        const progressResponse = await fetch("/api/user-progress");
-        if (!progressResponse.ok) throw new Error("Failed to fetch user progress");
-
-        const userProgressData = await progressResponse.json();
-
-        const notesResponse = await fetch("/api/notes");
-        if (!notesResponse.ok) throw new Error("Failed to fetch notes");
-
-        const notesData = await notesResponse.json();
+        const questionsData = await fetchQuestions();
+        const userProgressData = await fetchUserProgress();
+        const notesData = await fetchNotes();
 
         const mergedQuestions = questionsData.map((question: QuestionType) => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
@@ -108,11 +115,11 @@ const QuestionBank: React.FC = () => {
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching data:', error);
       }
     };
 
-    fetchQuestions();
+    fetchData();
   }, [userId]);
 
   const exams = Array.from(new Set(questions.map((q) => q.exam)));
@@ -163,38 +170,12 @@ const QuestionBank: React.FC = () => {
     });
   };
 
-  const markComplete = async (questionId: string, completed: boolean) => {
-    try {
-      const response = await fetch(`/api/markComplete`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId, completed }),
-      });
-      if (!response.ok) throw new Error('Failed to mark question as complete');
-    } catch (error) {
-      console.error('Error marking question as complete:', error);
-    }
-  };
-
-  const markForReview = async (questionId: string, reviewed: boolean) => {
-    try {
-      const response = await fetch(`/api/markForReview`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId, reviewed }),
-      });
-      if (!response.ok) throw new Error('Failed to mark question for review');
-    } catch (error) {
-      console.error('Error marking question for review:', error);
-    }
-  };
-
   const updateUserPerformance = async (questionId: string, updatedFields: Partial<QuestionType>) => {
     try {
       const response = await fetch(`/api/user-performance/update`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId, ...updatedFields }),
+        body: JSON.stringify(updatedFields),
       });
       if (!response.ok) throw new Error('Failed to update user performance');
     } catch (error) {
@@ -202,8 +183,14 @@ const QuestionBank: React.FC = () => {
     }
   };
 
+  const handleMarkschemeToggle = (questionId: string, markscheme: string) => {
+    setMarkschemeContent(markscheme);
+    setShowMarkschemeModal(true);
+  };
+
   const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
-    await markComplete(questionId, isComplete);
+    await updateUserPerformance(questionId, { completed: isComplete });
+
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) =>
         q.questionId === questionId ? { ...q, completed: isComplete } : q
@@ -212,7 +199,8 @@ const QuestionBank: React.FC = () => {
   };
 
   const handleMarkForReview = async (questionId: string, isReviewed: boolean) => {
-    await markForReview(questionId, isReviewed);
+    await updateUserPerformance(questionId, { reviewed: isReviewed });
+
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) =>
         q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
@@ -273,11 +261,6 @@ const QuestionBank: React.FC = () => {
       delete updatedNotes[questionId];
       return updatedNotes;
     });
-  };
-
-  const handleMarkschemeToggle = (questionId: string, markscheme: string) => {
-    setMarkschemeContent(markscheme);
-    setShowMarkschemeModal(true);
   };
 
   return (
@@ -396,10 +379,7 @@ const QuestionBank: React.FC = () => {
                 setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
               }}
               handleMarkschemeToggle={() =>
-                handleMarkschemeToggle(
-                  question.questionId,
-                  question.markscheme || "No markscheme available"
-                )
+                setShowMarkschemeModal(true)
               }
               handleMarkForReview={() => handleMarkForReview(question.questionId, !question.reviewed)}
               handleMarkComplete={() => handleMarkComplete(question.questionId, !question.completed)}

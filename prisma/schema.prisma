@@ -116,6 +116,8 @@ model UserPerformance {
   consistency        Float    @default(0.0)
   engagementLevel    Int      @default(0)
   user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  completed          Boolean
+  reviewed           Boolean
 
   @@unique([userId])
 }

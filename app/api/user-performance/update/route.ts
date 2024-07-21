@@ -1,4 +1,3 @@
-// app/api/user-performance/update/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
@@ -6,7 +5,7 @@ import { authOptions } from '../../auth/[...nextauth]/options';
 
 const prisma = new PrismaClient();
 
-export async function PATCH(request: Request) {
+export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
 
