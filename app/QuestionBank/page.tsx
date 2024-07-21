@@ -178,6 +178,7 @@ const QuestionBank: React.FC = () => {
 
   const handleMarkschemeToggle = (questionId: string, markscheme: string) => {
     setMarkschemeContent(markscheme);
+    setShowMarkschemeModal(true);
   };
 
   const handleMarkComplete = async (questionId: string, isComplete: boolean) => {

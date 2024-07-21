@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState } from 'react';
-import MathRenderer from '@/components/layout/MathRenderer';
-import Modal from '@/components/shared/modal';
+import React, { useState } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
+import MathRenderer from "@/components/layout/MathRenderer";
+import Modal from "@/components/shared/modal";
 import { LucideBookmark, Settings2, BookOpen, LucideBot } from "lucide-react";
 import { Switch } from '@headlessui/react';
 import Image from 'next/image';
 import Tiptap from '@/components/layout/Tiptap';
 import Chat from '@/components/shared/Chat';
-import { Checkbox } from "@/components/ui/checkbox";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -208,7 +208,7 @@ const Question: React.FC<QuestionProps> = ({
                 <Checkbox
                   id={`complete-${question.questionId}`}
                   checked={isMarkedComplete}
-                  onChange={() => handleMarkCompleteLocal(question.questionId)}
+                  onCheckedChange={(checked) => handleMarkCompleteLocal(question.questionId)}
                 />
                 <label htmlFor={`complete-${question.questionId}`}>Mark Complete</label>
               </div>
