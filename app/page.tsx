@@ -30,6 +30,47 @@ import Image from "next/image";  // Ensure the correct import of the Image compo
 import { TabsDemo } from "@/components/home/TabsComponent";
 import ShinyButton from "@/components/magicui/shiny-button";
 import ShimmerButton from "@/components/magicui/shimmer-button";
+import { HoverEffect } from "@/components/ui/card-hover-effect";
+import Chat from "@/components/shared/Chat";
+
+export const projects = [
+  {
+    title: "Stripe",
+    description:
+      "A technology company that builds economic infrastructure for the internet.",
+    link: "https://stripe.com",
+  },
+  {
+    title: "Netflix",
+    description:
+      "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
+    link: "https://netflix.com",
+  },
+  {
+    title: "Google",
+    description:
+      "A multinational technology company that specializes in Internet-related services and products.",
+    link: "https://google.com",
+  },
+  {
+    title: "Meta",
+    description:
+      "A technology company that focuses on building products that advance Facebook's mission of bringing the world closer together.",
+    link: "https://meta.com",
+  },
+  {
+    title: "Amazon",
+    description:
+      "A multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence.",
+    link: "https://amazon.com",
+  },
+  {
+    title: "Microsoft",
+    description:
+      "A multinational technology company that develops, manufactures, licenses, supports, and sells computer software, consumer electronics, personal computers, and related services.",
+    link: "https://microsoft.com",
+  },
+];
 
 const texts = [
   {
@@ -309,7 +350,7 @@ const page = () => {
           </>
         }
       >
-        <MainContent />
+        <Dashboard />
       </ContainerScroll>
       </div>
       <div className="container mx-auto px-4 py-12 max-w-6xl">
@@ -321,10 +362,48 @@ const page = () => {
           of paid features that give developers exactly the kind of experience
           they&apos;re looking for - fully customizable to build their product needs.
         </p>
+
+        <div className="border-4 rounded-2xl">
+        <Chat questionText=""/>
+        </div>
         
-        {/* 3D Card Effect */}
-        <CardContainer className="relative">
-          <CardBody className="w-full">
+        
+      </div>
+      <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-blac">
+          Quality Question Banks
+        </h4>
+ 
+        <p className="text-sm mb-8 lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal">
+          Receive insights about your strengths, weaknesses, areas of improvements, and topics to look out for!
+        </p>
+      <MainContent />
+
+      <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
+          Never Forget Anything
+        </h4>
+ 
+        <p className="text-sm lg:text-base mb-12 max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-norma">
+          View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill. 
+        </p>
+        <div className="w-10/12 mb-4 border-4 rounded-2xl p-2">
+  <NoteApp />
+</div>
+
+<div className="max-w-5xl mx-auto px-8">
+      <HoverEffect items={projects} />
+    </div>
+
+<h4 className="text-3xl mt-24 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black mb-2">
+  And more.....
+</h4>
+
+<div className="w-8/12 h-1/3">
+  <TabsDemo />
+</div>
+
+ {/* 3D Card Effect */}
+ <CardContainer className="relative">
+          <CardBody className="w-10/12">
             <div className="absolute inset-0 bg-gradient-to-br from-purple-200 via-purple-100 to-blue-100 opacity-50 rounded-3xl transform scale-110 z-[-10]"></div>
             <div className="container mx-auto px-4 py-16 relative z-10">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -361,35 +440,6 @@ const page = () => {
           </CardBody>
         </CardContainer>
         {/* End of 3D Card Effect */}
-        
-      </div>
-      <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-blac">
-          Instant Performance Analytics
-        </h4>
- 
-        <p className="text-sm mb-8 lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal">
-          Receive insights about your strengths, weaknesses, areas of improvements, and topics to look out for!
-        </p>
-      <Dashboard />
-
-      <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
-          Never Forget Anything
-        </h4>
- 
-        <p className="text-sm lg:text-base mb-12 max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-norma">
-          View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill. 
-        </p>
-        <div className="w-8/12 h-1/6 mb-4 border-2">
-  <NoteApp />
-</div>
-
-<h4 className="text-3xl mt-24 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black mb-2">
-  And more.....
-</h4>
-
-<div className="w-8/12 h-1/3">
-  <TabsDemo />
-</div>
 
       <FAQ />
     </>

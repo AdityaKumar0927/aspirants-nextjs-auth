@@ -3,10 +3,15 @@
 import React from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Tooltip from '@/components/shared/tooltip';
+import BlurFade from "@/components/magicui/blur-fade";
+import BlurFadeText from "@/components/magicui/blur-fade-text";
+import { ProjectCard } from "@/components/magicui/project-card";
+import { DATA } from "@/components/data/resume";
+import Link from "next/link";
+import Markdown from "react-markdown";
 
 type Tag = {
   name: string;
@@ -133,55 +138,46 @@ const BrowseResources: NextPage = () => {
 
   return (
     <>
-    
-      <Head>
-        <title>Browse Resources</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-      </Head>
-      <div className="text-gray-900 bg-white w-full h-full border-gray-50">
-        <div className="max-w-7xl mx-auto p-6">
-          <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">Browse Resources</h1>
-          <div className="flex flex-wrap gap-2 mb-6">
-            {tags.map((tag) => (
-              <Link key={tag.name} href={tag.link ?? generateLink(tag.name)} legacyBehavior>
-                <a className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm">{tag.name}</a>
-              </Link>
-            ))}
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {resources.map((resource, index) => (
-              <div
-                key={index}
-                className={`relative inline-block font-medium group p-6 rounded-lg ${resource.bgColor}`}
-              >
-                <span className="absolute inset-0 w-full h-full transition duration-400 ease-out transform translate-x-1 translate-y-1 bg-indigo-600 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                <span className="absolute inset-0 w-full h-full bg-white border border-indigo-600 group-hover:bg-indigo-50"></span>
-                <span className="relative">
-                  <p className="text-sm text-gray-600 mb-2">{resource.date} · {resource.readTime}</p>
-                  <h2 className="text-xl font-semibold mb-2">{resource.title}</h2>
-                  <p className="text-gray-700 mb-4">{resource.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {resource.tags.map((tag) => (
-                      <Link key={tag} href={generateLink(tag)} legacyBehavior>
-                        <a className="px-3 py-1 bg-white text-gray-700 rounded-full text-sm border">{tag}</a>
-                      </Link>
-                    ))}
-                  </div>
-                </span>
-                <Tooltip content="Add to Planner">
-                  <button
-                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-                    onClick={() => addCourseToPlanner(resource)}
-                  >
-                    <FontAwesomeIcon icon={faPlus} className="mr-2" /> Add to Planner
-                  </button>
-                </Tooltip>
+          <section id="projects">
+        <div className="space-y-12 w-full py-12">
+          <BlurFade>
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                  My Projects
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  Check out my latest work
+                </h2>
+                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  I&apos;ve worked on a variety of projects, from simple
+                  websites to complex web applications. Here are a few of my
+                  favorites.
+                </p>
               </div>
+            </div>
+          </BlurFade>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
+            {DATA.projects.map((project, id) => (
+              <BlurFade
+                key={project.title}
+              >
+                <ProjectCard
+                  href={project.href}
+                  key={project.title}
+                  title={project.title}
+                  description={project.description}
+                  dates={project.dates}
+                  tags={project.technologies}
+                  image={project.image}
+                  video={project.video}
+                  links={project.links}
+                />
+              </BlurFade>
             ))}
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

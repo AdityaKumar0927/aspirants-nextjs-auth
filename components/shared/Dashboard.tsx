@@ -36,14 +36,28 @@ import {
 } from "@/components/ui/chart";
 import { Separator } from "@/components/ui/separator";
 
-const fetchUserPerformance = async () => {
+type UserPerformance = {
+  accuracy: number;
+  dailyAccuracy: { date: string; accuracy: number }[];
+  timePerQuestion: number;
+  consistency: number;
+  dailyTimePerQuestion: { date: string; time: number }[];
+  currentYearAccuracy: number;
+  previousYearAccuracy: number;
+  timePerSubtopic: number;
+  dailyTimePerSubtopic: { date: string; time: number }[];
+  studyTime: number;
+  dailyStudyTime: { date: string; time: number }[];
+};
+
+const fetchUserPerformance = async (): Promise<UserPerformance> => {
   const response = await fetch('/api/user-performance/get');
   if (!response.ok) throw new Error('Failed to fetch user performance');
   return response.json();
 };
 
 export default function Dashboard() {
-  const [userPerformance, setUserPerformance] = useState(null);
+  const [userPerformance, setUserPerformance] = useState<UserPerformance | null>(null);
   const { setLoading } = useLoading();
 
   useEffect(() => {
