@@ -7,7 +7,7 @@ import ComponentGrid from "@/components/home/component-grid";
 import { OrbitingCirclesDemo } from "@/components/magicui/orbiting";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Dashboard from "@/components/shared/Dashboard";
+import Dashboard from "@/components/home/DashboardContent";
 import { NoteApp } from "@/components/shared/NoteApp";
 import {
   faBookOpen,
@@ -360,33 +360,29 @@ const page = () => {
         {/* End of 3D Card Effect */}
         
       </div>
-      <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-blac">
+      <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-blac">
           Instant Performance Analytics
         </h4>
  
-        <p className="text-sm lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal">
+        <p className="text-sm mb-8 lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal">
           Receive insights about your strengths, weaknesses, areas of improvements, and topics to look out for!
         </p>
       <Dashboard />
 
-      <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
+      <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
           Never Forget Anything
         </h4>
  
-        <p className="text-sm lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-norma">
+        <p className="text-sm lg:text-base mb-12 max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-norma">
           View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill. 
         </p>
         <div className="w-8/12 h-1/6 mb-4 border-2">
   <NoteApp />
 </div>
 
-<h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black mb-2">
+<h4 className="text-3xl mt-24 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black mb-2">
   And more.....
 </h4>
-
-<p className="text-sm lg:text-base max-w-2xl mx-auto text-neutral-500 text-center font-normal">
-  
-</p>
 
 <div className="w-8/12 h-1/3">
   <TabsDemo />

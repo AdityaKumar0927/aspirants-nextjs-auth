@@ -7,10 +7,12 @@ import { Suspense } from "react";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
-config.autoAddCss = false; /* eslint-disable import/first */
-import { TooltipProvider } from '@radix-ui/react-tooltip';  // Add this import
+import { TooltipProvider } from '@radix-ui/react-tooltip';
 import Sidebar from '@/components/layout/Sidebar';
 import { Toaster } from "@/components/ui/toaster";
+import { LoadingProvider } from "@/components/layout/LoadingContext";  // Import the LoadingProvider
+
+config.autoAddCss = false;
 
 export const metadata = {
   title: "aspirants",
@@ -72,19 +74,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
-      <TooltipProvider>
-        <div className="fixed inset-0 z-[-10]"></div>
-        <Suspense fallback="...">
-          <Nav />
-        </Suspense>
-        <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-          {children}
-        </main>
-        <Sidebar />
-        <Footer />
-        <VercelAnalytics />
-        </TooltipProvider>
-        <Toaster />
+        <LoadingProvider> {/* Wrap with LoadingProvider */}
+          <TooltipProvider>
+            <div className="fixed inset-0 z-[-10]"></div>
+            <Suspense fallback="...">
+              <Nav />
+            </Suspense>
+            <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+              {children}
+            </main>
+            <Sidebar />
+            <Footer />
+            <VercelAnalytics />
+          </TooltipProvider>
+          <Toaster />
+        </LoadingProvider> {/* Close LoadingProvider */}
       </body>
     </html>
   );
