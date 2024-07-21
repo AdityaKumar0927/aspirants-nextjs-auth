@@ -6,7 +6,7 @@ import { authOptions } from '../../auth/[...nextauth]/options';
 
 const prisma = new PrismaClient();
 
-export async function POST(request: Request) {
+export async function PATCH(request: Request) {
   try {
     const session = await getServerSession(authOptions);
 
@@ -15,6 +15,7 @@ export async function POST(request: Request) {
     }
 
     const {
+      questionId,
       correctAnswers,
       incorrectAnswers,
       uniqueQuestions,

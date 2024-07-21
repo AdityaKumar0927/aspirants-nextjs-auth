@@ -156,8 +156,8 @@ const Question: React.FC<QuestionProps> = ({
     }
   };
 
-  const handleMarkCompleteLocal = (questionId: string) => {
-    handleMarkComplete(questionId);
+  const handleMarkCompleteLocal = async (questionId: string) => {
+    await handleMarkComplete(questionId);
     saveProgress(questionId, 'completed', !isMarkedComplete);
     toast({
       title: "Question Completed",
@@ -167,8 +167,8 @@ const Question: React.FC<QuestionProps> = ({
     });
   };
 
-  const handleMarkForReviewLocal = (questionId: string) => {
-    handleMarkForReview(questionId);
+  const handleMarkForReviewLocal = async (questionId: string) => {
+    await handleMarkForReview(questionId);
     saveProgress(questionId, 'reviewed', !isMarkedForReview);
     toast({
       title: "Question Bookmarked",
@@ -178,14 +178,14 @@ const Question: React.FC<QuestionProps> = ({
     });
   };
 
-  const undoMarkComplete = (questionId: string) => {
-    handleMarkComplete(questionId);
+  const undoMarkComplete = async (questionId: string) => {
+    await handleMarkComplete(questionId);
     saveProgress(questionId, 'completed', false);
     dismiss();
   };
 
-  const undoMarkForReview = (questionId: string) => {
-    handleMarkForReview(questionId);
+  const undoMarkForReview = async (questionId: string) => {
+    await handleMarkForReview(questionId);
     saveProgress(questionId, 'reviewed', false);
     dismiss();
   };
@@ -208,9 +208,9 @@ const Question: React.FC<QuestionProps> = ({
                 <Checkbox
                   id={`complete-${question.questionId}`}
                   checked={isMarkedComplete}
-                  onCheckedChange={(checked) => handleMarkCompleteLocal(question.questionId)}
+                  onCheckedChange={() => handleMarkCompleteLocal(question.questionId)}
                 />
-                <label htmlFor={`complete-${question.questionId}`}>Mark Complete</label>
+                <label htmlFor={`complete-${question.questionId}`}></label>
               </div>
               <button
                 className={`relative text-xs ${isMarkedForReview ? ' text-white' : ''}`}

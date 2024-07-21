@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -19,7 +20,19 @@ export default function AnimatedCircularProgressBar({
 }: Props) {
   const circumference = 2 * Math.PI * 45;
   const percentPx = circumference / 100;
-  const currentPercent = ((value - min) / (max - min)) * 100;
+  const [currentPercent, setCurrentPercent] = useState(0);
+
+  useEffect(() => {
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 1;
+      setCurrentPercent(progress);
+      if (progress >= value) {
+        clearInterval(interval);
+      }
+    }, 10);
+    return () => clearInterval(interval);
+  }, [value]);
 
   return (
     <div

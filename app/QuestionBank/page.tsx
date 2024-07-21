@@ -163,12 +163,38 @@ const QuestionBank: React.FC = () => {
     });
   };
 
+  const markComplete = async (questionId: string, completed: boolean) => {
+    try {
+      const response = await fetch(`/api/markComplete`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId, completed }),
+      });
+      if (!response.ok) throw new Error('Failed to mark question as complete');
+    } catch (error) {
+      console.error('Error marking question as complete:', error);
+    }
+  };
+
+  const markForReview = async (questionId: string, reviewed: boolean) => {
+    try {
+      const response = await fetch(`/api/markForReview`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId, reviewed }),
+      });
+      if (!response.ok) throw new Error('Failed to mark question for review');
+    } catch (error) {
+      console.error('Error marking question for review:', error);
+    }
+  };
+
   const updateUserPerformance = async (questionId: string, updatedFields: Partial<QuestionType>) => {
     try {
-      const response = await fetch(`/api/user-performance/${questionId}`, {
-        method: 'PATCH',
+      const response = await fetch(`/api/user-performance/update`, {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedFields),
+        body: JSON.stringify({ questionId, ...updatedFields }),
       });
       if (!response.ok) throw new Error('Failed to update user performance');
     } catch (error) {
@@ -176,14 +202,8 @@ const QuestionBank: React.FC = () => {
     }
   };
 
-  const handleMarkschemeToggle = (questionId: string, markscheme: string) => {
-    setMarkschemeContent(markscheme);
-    setShowMarkschemeModal(true);
-  };
-
   const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
-    await updateUserPerformance(questionId, { completed: isComplete });
-
+    await markComplete(questionId, isComplete);
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) =>
         q.questionId === questionId ? { ...q, completed: isComplete } : q
@@ -192,8 +212,7 @@ const QuestionBank: React.FC = () => {
   };
 
   const handleMarkForReview = async (questionId: string, isReviewed: boolean) => {
-    await updateUserPerformance(questionId, { reviewed: isReviewed });
-
+    await markForReview(questionId, isReviewed);
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) =>
         q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
@@ -254,6 +273,11 @@ const QuestionBank: React.FC = () => {
       delete updatedNotes[questionId];
       return updatedNotes;
     });
+  };
+
+  const handleMarkschemeToggle = (questionId: string, markscheme: string) => {
+    setMarkschemeContent(markscheme);
+    setShowMarkschemeModal(true);
   };
 
   return (
