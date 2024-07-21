@@ -226,7 +226,7 @@ export default function Dashboard() {
           <CardHeader>
             <CardTitle>Progress</CardTitle>
             <CardDescription>
-              You're averaging better accuracy this year compared to last year.
+              You&apos;re averaging better accuracy this year compared to last year.
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
@@ -318,7 +318,7 @@ export default function Dashboard() {
           <CardHeader className="p-4 pb-0">
             <CardTitle>Time per Subtopic</CardTitle>
             <CardDescription>
-              Over the last 7 days, you've spent an average of 1.5 hours per subtopic per day.
+              Over the last 7 days, you&apos;ve spent an average of 1.5 hours per subtopic per day.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-0">
@@ -538,7 +538,7 @@ export default function Dashboard() {
           <CardHeader className="p-4 pb-0">
             <CardTitle>Active Learning</CardTitle>
             <CardDescription>
-              You're maintaining an average accuracy of {userPerformance.accuracy}%. Good job!
+              You&apos;re maintaining an average accuracy of {userPerformance.accuracy}%. Good job!
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-2">

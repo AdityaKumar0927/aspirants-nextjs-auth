@@ -28,6 +28,8 @@ import Meteors from "@/components/magicui/meteors";  // Import the Meteors compo
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";  // Import the 3D card components
 import Image from "next/image";  // Ensure the correct import of the Image component
 import { TabsDemo } from "@/components/home/TabsComponent";
+import ShinyButton from "@/components/magicui/shiny-button";
+import ShimmerButton from "@/components/magicui/shimmer-button";
 
 const texts = [
   {
@@ -281,19 +283,20 @@ const page = () => {
           style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
         >
           <Link
-            className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
+            className="group flex max-w-fit items-center"
             href="CUET"
           >
-            <p>Try Now</p>
+           <ShimmerButton className="shadow-2xl">
+        <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+          Try Now
+        </span>
+      </ShimmerButton>
           </Link>
           <Link
-            className="flex items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-3 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800 sm:px-5 sm:py-2"
+            className="flex items-center justify-center space-x-2"
             href="BrowseResources"
           >
-            <p className="text-center">
-              <span className="sm:hidden">Resources</span>
-              <span className="hidden sm:inline-block">Browse Resources</span>
-            </p>
+           <ShinyButton text="Browse Resources" />
           </Link>
         </div>
       </div>
