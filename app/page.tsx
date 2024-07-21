@@ -32,45 +32,57 @@ import ShinyButton from "@/components/magicui/shiny-button";
 import ShimmerButton from "@/components/magicui/shimmer-button";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import Chat from "@/components/shared/Chat";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 const projects = [
   {
     title: "JEE",
     description:
-      "A technology company that builds economic infrastructure for the internet.",
-    link: "https://stripe.com",
+      "The Joint Entrance Examination is an engineering entrance assessment conducted for admission to various engineering colleges in India.",
+    link: "https://jeemain.nta.nic.in/",
   },
   {
     title: "CUET",
     description:
-      "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
-    link: "https://netflix.com",
+      "The Common University Entrance Test is conducted for admission to various undergraduate programs in central universities across India.",
+    link: "https://cuet.samarth.ac.in/",
   },
   {
     title: "CBSE",
     description:
-      "A multinational technology company that specializes in Internet-related services and products.",
-    link: "https://google.com",
+      "The Central Board of Secondary Education is a national level board of education in India for public and private schools, controlled and managed by the Government of India.",
+    link: "https://cbse.nic.in/",
   },
   {
     title: "A levels",
     description:
-      "A technology company that focuses on building products that advance Facebook's mission of bringing the world closer together.",
-    link: "https://meta.com",
+      "Advanced Level qualifications are subject-based school leaving qualifications offered by educational bodies in the United Kingdom and the educational authorities in many Commonwealth countries.",
+    link: "https://www.cambridgeinternational.org/",
   },
   {
     title: "CLAT",
     description:
-      "A multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence.",
-    link: "https://amazon.com",
+      "The Common Law Admission Test is a centralized national level entrance test for admissions to National Law Universities in India.",
+    link: "https://consortiumofnlus.ac.in/clat-2024/",
   },
   {
     title: "CAT",
     description:
-      "A multinational technology company that develops, manufactures, licenses, supports, and sells computer software, consumer electronics, personal computers, and related services.",
-    link: "https://microsoft.com",
+      "The Common Admission Test is a computer-based test for admission in a graduate management program in various colleges across India.",
+    link: "https://iimcat.ac.in/",
   },
 ];
+
+const fadeUpVariants = {
+  initial: {
+    opacity: 0,
+    y: 24,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+  },
+};
 
 const texts = [
   {
@@ -292,12 +304,29 @@ const containerVariants = {
 };
 
 const Page = () => {
+  const fadeInRef = useRef(null);
+  const fadeInInView = useInView(fadeInRef, {
+    once: true,
+  });
+
   return (
     <>
       <ModalWrapper />
       <div className="">
         <Meteors number={30} />
       </div>
+      
+      <div className="z-10 w-full max-w-xl px-5 xl:px-0 bg-[linear-gradient(to_right,#60606012_1px,transparent_1px),linear-gradient(to_bottom,#60606012_1px,transparent_1px)] bg-[size:48px_48px]">
+        <div className="text-center px-4">
+        <div className="flex flex-col items-center gap-6 pb-8 text-center">
+        <HoverBorderGradient
+        containerClassName="rounded-full"
+        as="button"
+        className="bg-white text-black flex items-center space-x-2"
+      >
+        <span>Now enhanced by ChatGPT 4o</span>
+      </HoverBorderGradient>
+
       <div className="z-10 w-full max-w-xl px-5 xl:px-0 bg-[linear-gradient(to_right,#60606012_1px,transparent_1px),linear-gradient(to_bottom,#60606012_1px,transparent_1px)] bg-[size:48px_48px]">
         <div className="text-center px-4">
           <div className="relative">
@@ -315,6 +344,10 @@ const Page = () => {
               </div>
             </div>
           </div>
+          </div>
+          </div>
+
+      </div>
         </div>
         <p
           className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 sm:text-xl"
@@ -326,7 +359,7 @@ const Page = () => {
           className="mx-auto mt-6 flex flex-col sm:flex-row animate-fade-up items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5 opacity-0"
           style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
         >
-          <Link className="group flex max-w-fit items-center" href="CUET">
+          <Link className="group flex max-w-fit items-center" href="QuestionBank">
             <ShimmerButton className="shadow-2xl">
               <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
                 Try Now
@@ -338,11 +371,10 @@ const Page = () => {
           </Link>
         </div>
       </div>
+      
       <div className="flex justify-between items-center bg-background-image bg-border mt-10 bg-cover bg-center">
         <ContainerScroll titleComponent={<></>}>
-        <div className="">
           <Dashboard />
-          </div>
         </ContainerScroll>
       </div>
       <div className="container mx-auto px-4 py-12 max-w-6xl">
@@ -371,7 +403,16 @@ const Page = () => {
       <p className="text-sm mb-8 lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal">
         Receive insights about your strengths, weaknesses, areas of improvements, and topics to look out for!
       </p>
+
+      <div className="relative w-11/12 h-[1000px] border-4 rounded-2xl overflow-hidden">
+  <Image src="/imac.jpg" alt="Background" layout="fill" objectFit="cover" className="absolute inset-0 blur-md" />
+  <div className="absolute inset-0 flex items-center justify-center p-4">
+    <div className="w-10/12 h-11/12 bg-white bg-opacity-60 rounded-2xl overflow-auto p-4">
       <MainContent />
+    </div>
+  </div>
+</div>
+
 
       <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
         Never Forget Anything
@@ -384,6 +425,11 @@ const Page = () => {
         <NoteApp />
       </div>
 
+      
+      <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
+        A Plethora of Exams
+      </h4>
+
       <div className="max-w-5xl mx-auto px-8">
         <HoverEffect items={projects} />
       </div>
@@ -395,6 +441,36 @@ const Page = () => {
       <div className="w-8/12 h-1/3">
         <TabsDemo />
       </div>
+
+      <motion.div
+          animate={fadeInInView ? "animate" : "initial"}
+          variants={fadeUpVariants}
+          className="flex flex-col gap-4 lg:flex-row"
+          initial={false}
+          transition={{
+            duration: 0.6,
+            delay: 0.3,
+            ease: [0.21, 0.47, 0.32, 0.98],
+            type: "spring",
+          }}
+        >
+          <a
+            href="#"
+            className={cn(
+              // colors
+              "bg-black  text-white shadow hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90",
+
+              // layout
+              "group relative inline-flex h-9 w-full items-center justify-center gap-2 overflow-hidden whitespace-pre rounded-md px-4 py-2 text-base font-semibold tracking-tighter focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 md:flex",
+
+              // animation
+              "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-2",
+            )}
+          >
+            Get Started
+            <ChevronRight className="size-4 translate-x-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
+          </a>
+        </motion.div>
 
       {/* 3D Card Effect */}
       <CardContainer className="relative">
@@ -435,6 +511,8 @@ const Page = () => {
         </CardBody>
       </CardContainer>
       {/* End of 3D Card Effect */}
+      
+
 
       <FAQ />
     </>

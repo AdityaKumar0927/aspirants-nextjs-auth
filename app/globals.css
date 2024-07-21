@@ -218,3 +218,11 @@ html {
   border-radius: 2rem; /* Adjust the value as needed */
   overflow: hidden;
 }
+
+.bg-background-image2 {
+  background-image: url('/imac.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 2rem; /* Adjust the value as needed */
+  overflow: hidden;
+}

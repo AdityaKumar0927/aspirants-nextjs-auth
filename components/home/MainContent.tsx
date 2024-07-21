@@ -50,7 +50,7 @@ const isStringArray = (value: any): value is string[] => {
 };
 
 const MainContent: React.FC = () => {
-  const [questions] = useState<QuestionType[]>(sampleQuestions as QuestionType[]);
+  const [questions, setQuestions] = useState<QuestionType[]>(sampleQuestions as QuestionType[]);
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>(questions);
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
   const [dropdowns, setDropdowns] = useState({
@@ -65,8 +65,6 @@ const MainContent: React.FC = () => {
   const [feedback, setFeedback] = useState<Record<string, string>>({});
   const [numericalAnswers, setNumericalAnswers] = useState<Record<string, string>>({});
   const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
-  const [markedForReview, setMarkedForReview] = useState<Set<string>>(new Set());
-  const [markedComplete, setMarkedComplete] = useState<Set<string>>(new Set());
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
 
   const handleFilterChange = (tag: keyof FiltersType, value: string) => {
@@ -77,6 +75,7 @@ const MainContent: React.FC = () => {
         const updatedFilter = isSelected
           ? filterValues.filter((v: string) => v !== value)
           : [...filterValues, value];
+        console.log(`Filter Change - ${tag}:`, updatedFilter);
         return { ...prevFilters, [tag]: updatedFilter };
       }
       return prevFilters;
@@ -140,14 +139,18 @@ const MainContent: React.FC = () => {
   };
 
   const handleMarkForReview = (questionId: string) => {
-    setMarkedForReview((prev) =>
-      prev.has(questionId) ? new Set([...prev].filter((id) => id !== questionId)) : new Set(prev).add(questionId)
+    setQuestions((prevQuestions) =>
+      prevQuestions.map((q) =>
+        q.questionId === questionId ? { ...q, reviewed: !q.reviewed } : q
+      )
     );
   };
 
   const handleMarkComplete = (questionId: string) => {
-    setMarkedComplete((prev) =>
-      prev.has(questionId) ? new Set([...prev].filter((id) => id !== questionId)) : new Set(prev).add(questionId)
+    setQuestions((prevQuestions) =>
+      prevQuestions.map((q) =>
+        q.questionId === questionId ? { ...q, completed: !q.completed } : q
+      )
     );
   };
 
@@ -158,14 +161,22 @@ const MainContent: React.FC = () => {
         [questionId]: ''
       });
       handleOptionClick(questionId, '', correctOption);
-      setMarkedComplete((prev) => new Set([...prev].filter((id) => id !== questionId)));
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: false } : q
+        )
+      );
     } else {
       setSelectedOptions({
         ...selectedOptions,
         [questionId]: option
       });
       handleOptionClick(questionId, option, correctOption);
-      setMarkedComplete((prev) => new Set(prev).add(questionId));
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: true } : q
+        )
+      );
     }
   };
 
@@ -285,8 +296,8 @@ const MainContent: React.FC = () => {
               handleMarkschemeToggle={handleMarkschemeToggle}
               handleMarkForReview={() => handleMarkForReview(question.questionId)}
               handleMarkComplete={() => handleMarkComplete(question.questionId)}
-              isMarkedForReview={markedForReview.has(question.questionId)}
-              isMarkedComplete={markedComplete.has(question.questionId)}
+              isMarkedForReview={questions.find(q => q.questionId === question.questionId)?.reviewed || false}
+              isMarkedComplete={questions.find(q => q.questionId === question.questionId)?.completed || false}
               markschemesDisabled={false}
               note=""
               handleNoteChange={() => {}}
