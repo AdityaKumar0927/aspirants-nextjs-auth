@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/shared/mode-toggle";
