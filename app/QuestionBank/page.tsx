@@ -53,7 +53,7 @@ const initialFilters: FiltersType = {
 };
 
 const isStringArray = (value: any): value is string[] => {
-  return Array.isArray(value) && value.every(item => typeof item === 'string');
+  return Array.isArray(value) && value.every((item) => typeof item === "string");
 };
 
 const fetchQuestions = async () => {
@@ -94,7 +94,6 @@ const QuestionBank: React.FC = () => {
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const userId = session?.user?.id || ""; // Retrieve user ID if signed in
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -118,7 +117,7 @@ const QuestionBank: React.FC = () => {
           setQuestions(mergedQuestions);
           setFilteredQuestions(mergedQuestions);
         } catch (error) {
-          console.error('Error fetching data:', error);
+          console.error("Error fetching data:", error);
         }
       };
 
@@ -126,7 +125,7 @@ const QuestionBank: React.FC = () => {
     } else {
       signIn();
     }
-  }, [status, userId]);
+  }, [status]);
 
   const exams = Array.from(new Set(questions.map((q) => q.exam)));
   const subjects = Array.from(new Set(questions.map((q) => q.subject)));
@@ -179,13 +178,13 @@ const QuestionBank: React.FC = () => {
   const updateUserPerformance = async (questionId: string, updatedFields: Partial<QuestionType>) => {
     try {
       const response = await fetch(`/api/user-performance/update`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ questionId, ...updatedFields }),
       });
-      if (!response.ok) throw new Error('Failed to update user performance');
+      if (!response.ok) throw new Error("Failed to update user performance");
     } catch (error) {
-      console.error('Error updating user performance:', error);
+      console.error("Error updating user performance:", error);
     }
   };
 
@@ -234,27 +233,27 @@ const QuestionBank: React.FC = () => {
     });
 
     try {
-      const response = await fetch('/api/notes/save', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/notes/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ questionId, content: note }),
       });
-      if (!response.ok) throw new Error('Failed to save note');
+      if (!response.ok) throw new Error("Failed to save note");
     } catch (error) {
-      console.error('Error saving note:', error);
+      console.error("Error saving note:", error);
     }
   };
 
   const handleDeleteNote = async (questionId: string) => {
     try {
-      const response = await fetch('/api/notes/delete', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/notes/delete", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ questionId }),
       });
-      if (!response.ok) throw new Error('Failed to delete note');
+      if (!response.ok) throw new Error("Failed to delete note");
     } catch (error) {
-      console.error('Error deleting note:', error);
+      console.error("Error deleting note:", error);
     }
 
     setNotes((prevNotes) => {
@@ -379,9 +378,7 @@ const QuestionBank: React.FC = () => {
               handleNumericalChange={(questionId, value) => {
                 setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
               }}
-              handleMarkschemeToggle={() =>
-                setShowMarkschemeModal(true)
-              }
+              handleMarkschemeToggle={() => setShowMarkschemeModal(true)}
               handleMarkForReview={() => handleMarkForReview(question.questionId, !question.reviewed)}
               handleMarkComplete={() => handleMarkComplete(question.questionId, !question.completed)}
               isMarkedForReview={question.reviewed}
@@ -389,7 +386,7 @@ const QuestionBank: React.FC = () => {
               markschemesDisabled={false}
               note={notes[question.questionId] || ""}
               handleNoteChange={handleNoteChange}
-              userId={userId}
+              userId={session?.user?.id}
               handleDeleteNote={handleDeleteNote}
             />
           ))
