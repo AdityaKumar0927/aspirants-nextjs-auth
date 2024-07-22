@@ -10,6 +10,7 @@ import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
+import dynamic from "next/dynamic";
 
 interface QuestionType {
   exam: string;
@@ -431,4 +432,4 @@ const QuestionBank: React.FC = () => {
   );
 };
 
-export default QuestionBank;
+export default dynamic(() => Promise.resolve(QuestionBank), { ssr: false });
