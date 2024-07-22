@@ -1,28 +1,39 @@
-"use client";
-
+import { useState } from "react";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/shared/mode-toggle";
 import { buttonVariants } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { DATA } from "@/components/data/resume";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { useState } from "react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { LucidePencil, HomeIcon } from "lucide-react";
 import AnimatedModal from "@/components/shared/AnimatedModal";
 import { NoteApp } from "@/components/shared/NoteApp";
 import Dashboard from "@/components/shared/Dashboard";
 import { useMotionValue } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export default function Sidebar() {
   const [showNoteModal, setShowNoteModal] = useState(false);
   const [showDashboardModal, setShowDashboardModal] = useState(false);
   const mouseX = useMotionValue(Infinity);
+
+  const initialUserPerformance = {
+    accuracy: 90,
+    dailyAccuracy: [{ date: '2023-07-18', accuracy: 85 }],
+    timePerQuestion: 30,
+    consistency: 80,
+    weeklyConsistency: [78, 82, 85],
+    progress: 70,
+    rank: 5,
+    badges: ["Beginner", "Intermediate"],
+    streak: 7,
+    lastActive: "2023-07-18T00:00:00Z",
+    dailyTimePerQuestion: [{ date: '2023-07-18', time: 25 }],
+    currentYearAccuracy: 88,
+    previousYearAccuracy: 85,
+    timePerSubtopic: 20,
+    dailyTimePerSubtopic: [{ date: '2023-07-18', time: 20 }],
+    studyTime: 120,
+    dailyStudyTime: [{ date: '2023-07-18', time: 60 }],
+  };
 
   return (
     <>
@@ -83,7 +94,7 @@ export default function Sidebar() {
       </AnimatedModal>
 
       <AnimatedModal showModal={showDashboardModal} setShowModal={setShowDashboardModal}>
-        <Dashboard />
+        <Dashboard initialUserPerformance={initialUserPerformance} />
       </AnimatedModal>
     </>
   );

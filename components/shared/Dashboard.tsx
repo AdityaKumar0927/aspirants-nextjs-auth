@@ -69,6 +69,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 };
 
+
+
 export default function Dashboard({ initialUserPerformance }: { initialUserPerformance: UserPerformance | null }) {
   const [userPerformance, setUserPerformance] = useState<UserPerformance | null>(initialUserPerformance);
   const { setLoading } = useLoading();
