@@ -1,16 +1,13 @@
-"use client";
-
-import React, { useState, useEffect, useCallback } from "react";
-import { useSession } from "next-auth/react";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import "katex/dist/katex.min.css";
-import Question from "@/components/shared/Question";
-import Modal from "@/components/shared/modal";
-import MathRenderer from "@/components/layout/MathRenderer";
-import Popover from "@/components/shared/popover";
-import { ChevronDown } from "lucide-react";
-import dynamic from "next/dynamic";
+import { GetServerSideProps } from 'next';
+import React, { useState } from 'react';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import 'katex/dist/katex.min.css';
+import Question from '@/components/shared/Question';
+import Modal from '@/components/shared/modal';
+import MathRenderer from '@/components/layout/MathRenderer';
+import Popover from '@/components/shared/popover';
+import { ChevronDown } from 'lucide-react';
 
 interface QuestionType {
   exam: string;
@@ -20,7 +17,7 @@ interface QuestionType {
   topic: string;
   subtopic: string;
   difficulty: string;
-  type: "Multiple Choice" | "Numerical";
+  type: 'Multiple Choice' | 'Numerical';
   year: string;
   reviewed: boolean;
   completed: boolean;
@@ -50,35 +47,59 @@ const initialFilters: FiltersType = {
   difficulties: [],
   types: [],
   years: [],
-  status: "all",
-};
-
-const isStringArray = (value: any): value is string[] => {
-  return Array.isArray(value) && value.every(item => typeof item === 'string');
+  status: 'all',
 };
 
 const fetchQuestions = async () => {
-  const response = await fetch("/api/questions");
-  if (!response.ok) throw new Error("Failed to fetch questions");
+  const response = await fetch('/api/questions');
+  if (!response.ok) throw new Error('Failed to fetch questions');
   return response.json();
 };
 
 const fetchUserProgress = async () => {
-  const response = await fetch("/api/user-progress");
-  if (!response.ok) throw new Error("Failed to fetch user progress");
+  const response = await fetch('/api/user-progress');
+  if (!response.ok) throw new Error('Failed to fetch user progress');
   return response.json();
 };
 
 const fetchNotes = async () => {
-  const response = await fetch("/api/notes");
-  if (!response.ok) throw new Error("Failed to fetch notes");
+  const response = await fetch('/api/notes');
+  if (!response.ok) throw new Error('Failed to fetch notes');
   return response.json();
 };
 
-const QuestionBank: React.FC = () => {
-  const { data: session, status } = useSession();
-  const [questions, setQuestions] = useState<QuestionType[]>([]);
-  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    const questionsData = await fetchQuestions();
+    const userProgressData = await fetchUserProgress();
+    const notesData = await fetchNotes();
+
+    const mergedQuestions = questionsData.map((question: QuestionType) => {
+      const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
+      const note = notesData.find((n: any) => n.questionId === question.questionId);
+      return {
+        ...question,
+        reviewed: progress ? progress.reviewed : false,
+        completed: progress ? progress.completed : false,
+        notes: note ? note.content : '',
+        lastAttempted: progress ? progress.lastAttempted : '',
+      };
+    });
+
+    return {
+      props: {
+        initialQuestions: mergedQuestions,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return { props: { initialQuestions: [] } };
+  }
+};
+
+const QuestionBank = ({ initialQuestions }: { initialQuestions: QuestionType[] }) => {
+  const [questions, setQuestions] = useState<QuestionType[]>(initialQuestions);
+  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>(initialQuestions);
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
   const [dropdowns, setDropdowns] = useState({
     exam: false,
@@ -92,39 +113,10 @@ const QuestionBank: React.FC = () => {
   const [feedback, setFeedback] = useState<Record<string, string>>({});
   const [numericalAnswers, setNumericalAnswers] = useState<Record<string, string>>({});
   const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
-  const [markschemeContent, setMarkschemeContent] = useState<string>("");
+  const [markschemeContent, setMarkschemeContent] = useState<string>('');
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    if (status === "authenticated" && session) {
-      const fetchData = async () => {
-        try {
-          const questionsData = await fetchQuestions();
-          const userProgressData = await fetchUserProgress();
-          const notesData = await fetchNotes();
-
-          const mergedQuestions = questionsData.map((question: QuestionType) => {
-            const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
-            const note = notesData.find((n: any) => n.questionId === question.questionId);
-            return {
-              ...question,
-              reviewed: progress ? progress.reviewed : false,
-              completed: progress ? progress.completed : false,
-              notes: note ? note.content : "",
-              lastAttempted: progress ? progress.lastAttempted : "",
-            };
-          });
-          setQuestions(mergedQuestions);
-          setFilteredQuestions(mergedQuestions);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-
-      fetchData();
-    }
-  }, [status, session]);
+  const userId = ''; // Add logic to retrieve user ID if signed in
 
   const exams = Array.from(new Set(questions.map((q) => q.exam)));
   const subjects = Array.from(new Set(questions.map((q) => q.subject)));
@@ -134,7 +126,7 @@ const QuestionBank: React.FC = () => {
   const years = Array.from(new Set(questions.map((q) => q.year)));
   const types = Array.from(new Set(questions.map((q) => q.type)));
 
-  const filterQuestions = useCallback(() => {
+  const filterQuestions = () => {
     let filtered = questions.filter((question) => {
       return (
         (!filters.exams.length || filters.exams.includes(question.exam)) &&
@@ -147,23 +139,19 @@ const QuestionBank: React.FC = () => {
       );
     });
 
-    if (filters.status === "review") {
+    if (filters.status === 'review') {
       filtered = filtered.filter((question) => question.reviewed);
-    } else if (filters.status === "complete") {
+    } else if (filters.status === 'complete') {
       filtered = filtered.filter((question) => question.completed);
     }
 
     setFilteredQuestions(filtered);
-  }, [questions, filters]);
-
-  useEffect(() => {
-    filterQuestions();
-  }, [filterQuestions]);
+  };
 
   const handleFilterChange = (tag: keyof FiltersType, value: string) => {
     setFilters((prevFilters) => {
       const filterValues = prevFilters[tag];
-      if (isStringArray(filterValues)) {
+      if (Array.isArray(filterValues) && filterValues.every((item) => typeof item === 'string')) {
         const isSelected = filterValues.includes(value);
         const updatedFilter = isSelected
           ? filterValues.filter((v: string) => v !== value)
@@ -216,7 +204,7 @@ const QuestionBank: React.FC = () => {
     const isCorrect = option === correctOption;
     setFeedback({
       ...feedback,
-      [questionId]: isCorrect ? "correct" : "incorrect",
+      [questionId]: isCorrect ? 'correct' : 'incorrect',
     });
     await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString() });
   };
@@ -225,7 +213,7 @@ const QuestionBank: React.FC = () => {
     const isCorrect = userAnswer === correctAnswer;
     setFeedback({
       ...feedback,
-      [questionId]: isCorrect ? "correct" : "incorrect",
+      [questionId]: isCorrect ? 'correct' : 'incorrect',
     });
     await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString() });
   };
@@ -267,14 +255,6 @@ const QuestionBank: React.FC = () => {
     });
   };
 
-  if (status === "loading") {
-    return <p>Loading...</p>;
-  }
-
-  if (status === "unauthenticated") {
-    return <p>You need to be authenticated to access this page.</p>;
-  }
-
   return (
     <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
       <div className="max-w-6xl w-full">
@@ -285,14 +265,14 @@ const QuestionBank: React.FC = () => {
         <div className="flex space-x-4 mb-6"></div>
 
         <div className="flex space-x-4 mb-2">
-          {["all", "complete", "review"].map((status) => (
+          {['all', 'complete', 'review'].map((status) => (
             <button
               key={status}
               onClick={() => setFilters({ ...filters, status })}
               className={`px-4 py-2 rounded-md ${
                 filters.status === status
-                  ? "bg-white border hover:border-black border-gray-600 text-gray-500"
-                  : "bg-white hover:border-black border border-gray-300 text-gray-500"
+                  ? 'bg-white border hover:border-black border-gray-600 text-gray-500'
+                  : 'bg-white hover:border-black border border-gray-300 text-gray-500'
               }`}
             >
               {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -301,22 +281,22 @@ const QuestionBank: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-          {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map((filterType) => (
+          {['exam', 'subject', 'topic', 'subtopic', 'difficulty', 'year', 'type'].map((filterType) => (
             <Popover
               key={filterType}
               content={
                 <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                  {(filterType === "exam"
+                  {(filterType === 'exam'
                     ? exams
-                    : filterType === "subject"
+                    : filterType === 'subject'
                     ? subjects
-                    : filterType === "topic"
+                    : filterType === 'topic'
                     ? topics
-                    : filterType === "subtopic"
+                    : filterType === 'subtopic'
                     ? subtopics
-                    : filterType === "difficulty"
+                    : filterType === 'difficulty'
                     ? difficulties
-                    : filterType === "year"
+                    : filterType === 'year'
                     ? years
                     : types
                   ).map((value: string) => (
@@ -357,17 +337,13 @@ const QuestionBank: React.FC = () => {
                 className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
               >
                 <p className="text-gray-600">
-                  {isStringArray(filters[filterType as keyof FiltersType])
-                    ? (filters[filterType as keyof FiltersType] as string[]).length
-                      ? `${(filters[filterType as keyof FiltersType] as string[]).length} selected`
-                      : filterType.charAt(0).toUpperCase() + filterType.slice(1)
+                  {Array.isArray(filters[filterType as keyof FiltersType]) && filters[filterType as keyof FiltersType].length
+                    ? `${filters[filterType as keyof FiltersType].length} selected`
                     : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                 </p>
                 <ChevronDown
                   className={`h-4 w-4 text-gray-600 transition-all ${
-                    dropdowns[filterType as keyof typeof dropdowns]
-                      ? "rotate-180"
-                      : ""
+                    dropdowns[filterType as keyof typeof dropdowns] ? 'rotate-180' : ''
                   }`}
                 />
               </button>
@@ -390,17 +366,15 @@ const QuestionBank: React.FC = () => {
               handleNumericalChange={(questionId, value) => {
                 setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
               }}
-              handleMarkschemeToggle={() =>
-                setShowMarkschemeModal(true)
-              }
+              handleMarkschemeToggle={() => setShowMarkschemeModal(true)}
               handleMarkForReview={() => handleMarkForReview(question.questionId, !question.reviewed)}
               handleMarkComplete={() => handleMarkComplete(question.questionId, !question.completed)}
               isMarkedForReview={question.reviewed}
               isMarkedComplete={question.completed}
               markschemesDisabled={false}
-              note={notes[question.questionId] || ""}
+              note={notes[question.questionId] || ''}
               handleNoteChange={handleNoteChange}
-              userId={session?.user?.id || ''}
+              userId={userId}
               handleDeleteNote={handleDeleteNote}
             />
           ))
@@ -432,4 +406,4 @@ const QuestionBank: React.FC = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(QuestionBank), { ssr: false });
+export default QuestionBank;

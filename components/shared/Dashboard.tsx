@@ -1,5 +1,4 @@
-"use client";
-
+import { GetServerSideProps } from 'next';
 import { useEffect, useState } from 'react';
 import { useLoading } from '@/components/layout/LoadingContext';
 import {
@@ -20,7 +19,7 @@ import {
   RadialBarChart,
   Rectangle,
   Tooltip,
-} from "recharts";
+} from 'recharts';
 import {
   Card,
   CardContent,
@@ -28,13 +27,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
-import { Separator } from "@/components/ui/separator";
+} from '@/components/ui/chart';
+import { Separator } from '@/components/ui/separator';
 
 type UserPerformance = {
   accuracy: number;
@@ -56,8 +55,22 @@ const fetchUserPerformance = async (): Promise<UserPerformance | null> => {
   return response.json();
 };
 
-export default function Dashboard() {
-  const [userPerformance, setUserPerformance] = useState<UserPerformance | null>(null);
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    const data = await fetchUserPerformance();
+    return {
+      props: {
+        initialUserPerformance: data,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching user performance:', error);
+    return { props: { initialUserPerformance: null } };
+  }
+};
+
+export default function Dashboard({ initialUserPerformance }: { initialUserPerformance: UserPerformance | null }) {
+  const [userPerformance, setUserPerformance] = useState<UserPerformance | null>(initialUserPerformance);
   const { setLoading } = useLoading();
 
   useEffect(() => {
@@ -73,8 +86,10 @@ export default function Dashboard() {
       }
     };
 
-    getUserPerformance();
-  }, [setLoading]);
+    if (!userPerformance) {
+      getUserPerformance();
+    }
+  }, [setLoading, userPerformance]);
 
   if (!userPerformance) {
     return (
@@ -93,7 +108,7 @@ export default function Dashboard() {
           <CardHeader className="space-y-0 pb-2">
             <CardDescription>Today</CardDescription>
             <CardTitle className="text-4xl tabular-nums">
-              {userPerformance.accuracy}{" "}
+              {userPerformance.accuracy}{' '}
               <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
                 accuracy
               </span>
@@ -103,8 +118,8 @@ export default function Dashboard() {
             <ChartContainer
               config={{
                 accuracy: {
-                  label: "Accuracy",
-                  color: "hsl(var(--chart-1))",
+                  label: 'Accuracy',
+                  color: 'hsl(var(--chart-1))',
                 },
               }}
             >
@@ -126,8 +141,8 @@ export default function Dashboard() {
                   axisLine={false}
                   tickMargin={4}
                   tickFormatter={(value) =>
-                    new Date(value).toLocaleDateString("en-US", {
-                      weekday: "short",
+                    new Date(value).toLocaleDateString('en-US', {
+                      weekday: 'short',
                     })
                   }
                 />
@@ -158,11 +173,11 @@ export default function Dashboard() {
           </CardContent>
           <CardFooter className="flex-col items-start gap-1">
             <CardDescription>
-              Over the past 7 days, your accuracy has been{" "}
+              Over the past 7 days, your accuracy has been{' '}
               <span className="font-medium text-foreground">75%</span>.
             </CardDescription>
             <CardDescription>
-              You need{" "}
+              You need{' '}
               <span className="font-medium text-foreground">80%</span> accuracy
               to reach your goal.
             </CardDescription>
@@ -193,8 +208,8 @@ export default function Dashboard() {
             <ChartContainer
               config={{
                 time: {
-                  label: "Time",
-                  color: "hsl(var(--chart-1))",
+                  label: 'Time',
+                  color: 'hsl(var(--chart-1))',
                 },
               }}
               className="w-full"
@@ -210,15 +225,15 @@ export default function Dashboard() {
                   stroke="hsl(var(--muted-foreground))"
                   strokeOpacity={0.5}
                 />
-                <YAxis hide domain={["dataMin - 1", "dataMax + 1"]} />
+                <YAxis hide domain={['dataMin - 1', 'dataMax + 1']} />
                 <XAxis
                   dataKey="date"
                   tickLine={false}
                   axisLine={false}
                   tickMargin={8}
                   tickFormatter={(value) =>
-                    new Date(value).toLocaleDateString("en-US", {
-                      weekday: "short",
+                    new Date(value).toLocaleDateString('en-US', {
+                      weekday: 'short',
                     })
                   }
                 />
@@ -230,8 +245,8 @@ export default function Dashboard() {
                   strokeWidth={2}
                   dot={false}
                   activeDot={{
-                    fill: "var(--color-time)",
-                    stroke: "var(--color-time)",
+                    fill: 'var(--color-time)',
+                    stroke: 'var(--color-time)',
                     r: 4,
                   }}
                 />
@@ -260,8 +275,8 @@ export default function Dashboard() {
               <ChartContainer
                 config={{
                   accuracy: {
-                    label: "Accuracy",
-                    color: "hsl(var(--chart-1))",
+                    label: 'Accuracy',
+                    color: 'hsl(var(--chart-1))',
                   },
                 }}
                 className="aspect-auto h-[32px] w-full"
@@ -270,7 +285,7 @@ export default function Dashboard() {
                   accessibilityLayer
                   layout="vertical"
                   margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
-                  data={[{ date: "2024", accuracy: userPerformance.currentYearAccuracy }]}
+                  data={[{ date: '2024', accuracy: userPerformance.currentYearAccuracy }]}
                 >
                   <Bar
                     dataKey="accuracy"
@@ -301,8 +316,8 @@ export default function Dashboard() {
               <ChartContainer
                 config={{
                   accuracy: {
-                    label: "Accuracy",
-                    color: "hsl(var(--muted))",
+                    label: 'Accuracy',
+                    color: 'hsl(var(--muted))',
                   },
                 }}
                 className="aspect-auto h-[32px] w-full"
@@ -311,7 +326,7 @@ export default function Dashboard() {
                   accessibilityLayer
                   layout="vertical"
                   margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
-                  data={[{ date: "2023", accuracy: userPerformance.previousYearAccuracy }]}
+                  data={[{ date: '2023', accuracy: userPerformance.previousYearAccuracy }]}
                 >
                   <Bar
                     dataKey="accuracy"
@@ -351,8 +366,8 @@ export default function Dashboard() {
             <ChartContainer
               config={{
                 time: {
-                  label: "Time",
-                  color: "hsl(var(--chart-1))",
+                  label: 'Time',
+                  color: 'hsl(var(--chart-1))',
                 },
               }}
               className="ml-auto w-[72px]"
@@ -386,16 +401,16 @@ export default function Dashboard() {
             <ChartContainer
               config={{
                 speed: {
-                  label: "Speed",
-                  color: "hsl(var(--chart-1))",
+                  label: 'Speed',
+                  color: 'hsl(var(--chart-1))',
                 },
                 accuracy: {
-                  label: "Accuracy",
-                  color: "hsl(var(--chart-2))",
+                  label: 'Accuracy',
+                  color: 'hsl(var(--chart-2))',
                 },
                 consistency: {
-                  label: "Consistency",
-                  color: "hsl(var(--chart-3))",
+                  label: 'Consistency',
+                  color: 'hsl(var(--chart-3))',
                 },
               }}
               className="h-[140px] w-full"
@@ -404,22 +419,22 @@ export default function Dashboard() {
                 margin={{ left: 0, right: 0, top: 0, bottom: 10 }}
                 data={[
                   {
-                    activity: "speed",
+                    activity: 'speed',
                     value: (userPerformance.timePerQuestion / 5) * 100,
                     label: `${userPerformance.timePerQuestion} min/q`,
-                    fill: "var(--color-speed)",
+                    fill: 'var(--color-speed)',
                   },
                   {
-                    activity: "accuracy",
+                    activity: 'accuracy',
                     value: userPerformance.accuracy,
                     label: `${userPerformance.accuracy}%`,
-                    fill: "var(--color-accuracy)",
+                    fill: 'var(--color-accuracy)',
                   },
                   {
-                    activity: "consistency",
+                    activity: 'consistency',
                     value: userPerformance.consistency,
                     label: `${userPerformance.consistency}%`,
-                    fill: "var(--color-consistency)",
+                    fill: 'var(--color-consistency)',
                   },
                 ]}
                 layout="vertical"
@@ -517,16 +532,16 @@ export default function Dashboard() {
             <ChartContainer
               config={{
                 speed: {
-                  label: "Speed",
-                  color: "hsl(var(--chart-1))",
+                  label: 'Speed',
+                  color: 'hsl(var(--chart-1))',
                 },
                 accuracy: {
-                  label: "Accuracy",
-                  color: "hsl(var(--chart-2))",
+                  label: 'Accuracy',
+                  color: 'hsl(var(--chart-2))',
                 },
                 consistency: {
-                  label: "Consistency",
-                  color: "hsl(var(--chart-3))",
+                  label: 'Consistency',
+                  color: 'hsl(var(--chart-3))',
                 },
               }}
               className="mx-auto aspect-square w-full max-w-[80%]"
@@ -534,9 +549,9 @@ export default function Dashboard() {
               <RadialBarChart
                 margin={{ left: -10, right: -10, top: -10, bottom: -10 }}
                 data={[
-                  { activity: "speed", value: (userPerformance.timePerQuestion / 5) * 100, fill: "var(--color-speed)" },
-                  { activity: "accuracy", value: userPerformance.accuracy, fill: "var(--color-accuracy)" },
-                  { activity: "consistency", value: userPerformance.consistency, fill: "var(--color-consistency)" },
+                  { activity: 'speed', value: (userPerformance.timePerQuestion / 5) * 100, fill: 'var(--color-speed)' },
+                  { activity: 'accuracy', value: userPerformance.accuracy, fill: 'var(--color-accuracy)' },
+                  { activity: 'consistency', value: userPerformance.consistency, fill: 'var(--color-consistency)' },
                 ]}
                 innerRadius="20%"
                 barSize={24}
@@ -571,25 +586,75 @@ export default function Dashboard() {
             <ChartContainer
               config={{
                 accuracy: {
-                  label: "Accuracy",
-                  color: "hsl(var(--chart-1))",
+                  label: 'Accuracy',
+                  color: 'hsl(var(--chart-1))',
                 },
               }}
-              className="ml-auto w-[64px]"
+              className="ml-auto w-[72px]"
             >
               <BarChart
-                accessibilityLayer
                 margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={userPerformance.dailyAccuracy}
+                data={[{ date: '2024', accuracy: userPerformance.accuracy }]}
               >
                 <Bar
                   dataKey="accuracy"
                   fill="var(--color-accuracy)"
-                  radius={2}
-                  fillOpacity={0.2}
+                  radius={4}
+                  barSize={32}
+                  fillOpacity={0.6}
                   activeIndex={6}
                   activeBar={<Rectangle fillOpacity={0.8} />}
+                >
+                  <LabelList
+                    position="insideLeft"
+                    dataKey="date"
+                    fill="white"
+                    offset={8}
+                    fontSize={12}
+                  />
+                </Bar>
+                <YAxis dataKey="date" type="category" tickCount={1} hide />
+                <XAxis dataKey="accuracy" type="number" hide />
+              </BarChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+        <Card className="max-w-xs">
+          <CardContent className="p-4">
+            <div className="flex flex-row items-baseline gap-2 text-3xl font-bold tabular-nums leading-none">
+              {userPerformance.studyTime}
+              <span className="text-sm font-normal text-muted-foreground">
+                hrs/day
+              </span>
+            </div>
+            <ChartContainer
+              config={{
+                time: {
+                  label: 'Time',
+                  color: 'hsl(var(--chart-1))',
+                },
+              }}
+              className="ml-auto w-[72px]"
+            >
+              <AreaChart
+                margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                data={userPerformance.dailyStudyTime}
+              >
+                <Area
+                  dataKey="time"
+                  type="monotone"
+                  fill="var(--color-time)"
+                  fillOpacity={0.4}
+                  stroke="var(--color-time)"
+                  strokeWidth={2}
+                  dot={false}
+                  activeDot={{
+                    fill: 'var(--color-time)',
+                    stroke: 'var(--color-time)',
+                    r: 4,
+                  }}
                 />
+                <YAxis hide domain={['dataMin - 1', 'dataMax + 1']} />
                 <XAxis
                   dataKey="date"
                   tickLine={false}
@@ -597,62 +662,6 @@ export default function Dashboard() {
                   tickMargin={4}
                   hide
                 />
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
-        <Card className="max-w-xs">
-          <CardHeader className="space-y-0 pb-0">
-            <CardDescription>Study Time</CardDescription>
-            <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-              {Math.floor(userPerformance.studyTime / 60)}
-              <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
-                hr
-              </span>
-              {userPerformance.studyTime % 60}
-              <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
-                min
-              </span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-0">
-            <ChartContainer
-              config={{
-                time: {
-                  label: "Time",
-                  color: "hsl(var(--chart-2))",
-                },
-              }}
-            >
-              <AreaChart
-                accessibilityLayer
-                data={userPerformance.dailyStudyTime}
-                margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-              >
-                <XAxis dataKey="date" hide />
-                <YAxis domain={["dataMin - 5", "dataMax + 2"]} hide />
-                <defs>
-                  <linearGradient id="fillTime" x1="0" y1="0" x2="0" y2="1">
-                    <stop
-                      offset="5%"
-                      stopColor="var(--color-time)"
-                      stopOpacity={0.8}
-                    />
-                    <stop
-                      offset="95%"
-                      stopColor="var(--color-time)"
-                      stopOpacity={0.1}
-                    />
-                  </linearGradient>
-                </defs>
-                <Area
-                  dataKey="time"
-                  type="natural"
-                  fill="url(#fillTime)"
-                  fillOpacity={0.4}
-                  stroke="var(--color-time)"
-                />
-                <Tooltip />
               </AreaChart>
             </ChartContainer>
           </CardContent>
