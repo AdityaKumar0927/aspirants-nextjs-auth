@@ -1,14 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
-import 'katex/dist/katex.min.css';
-import Question from '@/components/shared/Question';
-import Modal from '@/components/shared/modal';
-import MathRenderer from '@/components/layout/MathRenderer';
-import Popover from '@/components/shared/popover';
-import { ChevronDown } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from "react";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import "katex/dist/katex.min.css";
+import Question from "@/components/shared/Question";
+import Modal from "@/components/shared/modal";
+import MathRenderer from "@/components/layout/MathRenderer";
+import Popover from "@/components/shared/popover";
+import { ChevronDown } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 interface QuestionType {
   exam: string;
@@ -18,7 +19,7 @@ interface QuestionType {
   topic: string;
   subtopic: string;
   difficulty: string;
-  type: 'Multiple Choice' | 'Numerical';
+  type: "Multiple Choice" | "Numerical";
   year: string;
   reviewed: boolean;
   completed: boolean;
@@ -48,28 +49,35 @@ const initialFilters: FiltersType = {
   difficulties: [],
   types: [],
   years: [],
-  status: 'all',
+  status: "all",
+};
+
+const isStringArray = (value: any): value is string[] => {
+  return Array.isArray(value) && value.every(item => typeof item === 'string');
 };
 
 const fetchQuestions = async () => {
-  const response = await fetch('/api/questions');
-  if (!response.ok) throw new Error('Failed to fetch questions');
+  const response = await fetch("/api/questions");
+  if (!response.ok) throw new Error("Failed to fetch questions");
   return response.json();
 };
 
 const fetchUserProgress = async () => {
-  const response = await fetch('/api/user-progress');
-  if (!response.ok) throw new Error('Failed to fetch user progress');
+  const response = await fetch("/api/user-progress");
+  if (!response.ok) throw new Error("Failed to fetch user progress");
   return response.json();
 };
 
 const fetchNotes = async () => {
-  const response = await fetch('/api/notes');
-  if (!response.ok) throw new Error('Failed to fetch notes');
+  const response = await fetch("/api/notes");
+  if (!response.ok) throw new Error("Failed to fetch notes");
   return response.json();
 };
 
-const QuestionBank = () => {
+const QuestionBank: React.FC = () => {
+  const { data: session } = useSession();
+  const userId = session?.user?.id || "";
+
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
@@ -85,10 +93,9 @@ const QuestionBank = () => {
   const [feedback, setFeedback] = useState<Record<string, string>>({});
   const [numericalAnswers, setNumericalAnswers] = useState<Record<string, string>>({});
   const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
-  const [markschemeContent, setMarkschemeContent] = useState<string>('');
+  const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const userId = ''; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
     const fetchData = async () => {
@@ -104,11 +111,10 @@ const QuestionBank = () => {
             ...question,
             reviewed: progress ? progress.reviewed : false,
             completed: progress ? progress.completed : false,
-            notes: note ? note.content : '',
-            lastAttempted: progress ? progress.lastAttempted : '',
+            notes: note ? note.content : "",
+            lastAttempted: progress ? progress.lastAttempted : "",
           };
         });
-
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
       } catch (error) {
@@ -117,9 +123,17 @@ const QuestionBank = () => {
     };
 
     fetchData();
-  }, []);
+  }, [userId]);
 
-  const filterQuestions = () => {
+  const exams = Array.from(new Set(questions.map((q) => q.exam)));
+  const subjects = Array.from(new Set(questions.map((q) => q.subject)));
+  const topics = Array.from(new Set(questions.map((q) => q.topic)));
+  const subtopics = Array.from(new Set(questions.map((q) => q.subtopic)));
+  const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
+  const years = Array.from(new Set(questions.map((q) => q.year)));
+  const types = Array.from(new Set(questions.map((q) => q.type)));
+
+  const filterQuestions = useCallback(() => {
     let filtered = questions.filter((question) => {
       return (
         (!filters.exams.length || filters.exams.includes(question.exam)) &&
@@ -132,19 +146,23 @@ const QuestionBank = () => {
       );
     });
 
-    if (filters.status === 'review') {
+    if (filters.status === "review") {
       filtered = filtered.filter((question) => question.reviewed);
-    } else if (filters.status === 'complete') {
+    } else if (filters.status === "complete") {
       filtered = filtered.filter((question) => question.completed);
     }
 
     setFilteredQuestions(filtered);
-  };
+  }, [questions, filters]);
+
+  useEffect(() => {
+    filterQuestions();
+  }, [filterQuestions]);
 
   const handleFilterChange = (tag: keyof FiltersType, value: string) => {
     setFilters((prevFilters) => {
       const filterValues = prevFilters[tag];
-      if (Array.isArray(filterValues) && filterValues.every((item) => typeof item === 'string')) {
+      if (isStringArray(filterValues)) {
         const isSelected = filterValues.includes(value);
         const updatedFilter = isSelected
           ? filterValues.filter((v: string) => v !== value)
@@ -160,7 +178,7 @@ const QuestionBank = () => {
       const response = await fetch(`/api/user-performance/update`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedFields),
+        body: JSON.stringify({ userId, questionId, ...updatedFields }),
       });
       if (!response.ok) throw new Error('Failed to update user performance');
     } catch (error) {
@@ -197,7 +215,7 @@ const QuestionBank = () => {
     const isCorrect = option === correctOption;
     setFeedback({
       ...feedback,
-      [questionId]: isCorrect ? 'correct' : 'incorrect',
+      [questionId]: isCorrect ? "correct" : "incorrect",
     });
     await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString() });
   };
@@ -206,7 +224,7 @@ const QuestionBank = () => {
     const isCorrect = userAnswer === correctAnswer;
     setFeedback({
       ...feedback,
-      [questionId]: isCorrect ? 'correct' : 'incorrect',
+      [questionId]: isCorrect ? "correct" : "incorrect",
     });
     await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString() });
   };
@@ -248,15 +266,6 @@ const QuestionBank = () => {
     });
   };
 
-  // Extract unique values for filters
-  const exams = Array.from(new Set(questions.map((q) => q.exam)));
-  const subjects = Array.from(new Set(questions.map((q) => q.subject)));
-  const topics = Array.from(new Set(questions.map((q) => q.topic)));
-  const subtopics = Array.from(new Set(questions.map((q) => q.subtopic)));
-  const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
-  const years = Array.from(new Set(questions.map((q) => q.year)));
-  const types = Array.from(new Set(questions.map((q) => q.type)));
-
   return (
     <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
       <div className="max-w-6xl w-full">
@@ -267,14 +276,14 @@ const QuestionBank = () => {
         <div className="flex space-x-4 mb-6"></div>
 
         <div className="flex space-x-4 mb-2">
-          {['all', 'complete', 'review'].map((status) => (
+          {["all", "complete", "review"].map((status) => (
             <button
               key={status}
               onClick={() => setFilters({ ...filters, status })}
               className={`px-4 py-2 rounded-md ${
                 filters.status === status
-                  ? 'bg-white border hover:border-black border-gray-600 text-gray-500'
-                  : 'bg-white hover:border-black border border-gray-300 text-gray-500'
+                  ? "bg-white border hover:border-black border-gray-600 text-gray-500"
+                  : "bg-white hover:border-black border border-gray-300 text-gray-500"
               }`}
             >
               {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -283,22 +292,22 @@ const QuestionBank = () => {
         </div>
 
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-          {['exam', 'subject', 'topic', 'subtopic', 'difficulty', 'year', 'type'].map((filterType) => (
+          {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map((filterType) => (
             <Popover
               key={filterType}
               content={
                 <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                  {(filterType === 'exam'
+                  {(filterType === "exam"
                     ? exams
-                    : filterType === 'subject'
+                    : filterType === "subject"
                     ? subjects
-                    : filterType === 'topic'
+                    : filterType === "topic"
                     ? topics
-                    : filterType === 'subtopic'
+                    : filterType === "subtopic"
                     ? subtopics
-                    : filterType === 'difficulty'
+                    : filterType === "difficulty"
                     ? difficulties
-                    : filterType === 'year'
+                    : filterType === "year"
                     ? years
                     : types
                   ).map((value: string) => (
@@ -339,13 +348,17 @@ const QuestionBank = () => {
                 className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
               >
                 <p className="text-gray-600">
-                  {Array.isArray(filters[filterType as keyof FiltersType]) && filters[filterType as keyof FiltersType].length
-                    ? `${filters[filterType as keyof FiltersType].length} selected`
+                  {isStringArray(filters[filterType as keyof FiltersType])
+                    ? (filters[filterType as keyof FiltersType] as string[]).length
+                      ? `${(filters[filterType as keyof FiltersType] as string[]).length} selected`
+                      : filterType.charAt(0).toUpperCase() + filterType.slice(1)
                     : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                 </p>
                 <ChevronDown
                   className={`h-4 w-4 text-gray-600 transition-all ${
-                    dropdowns[filterType as keyof typeof dropdowns] ? 'rotate-180' : ''
+                    dropdowns[filterType as keyof typeof dropdowns]
+                      ? "rotate-180"
+                      : ""
                   }`}
                 />
               </button>
@@ -368,13 +381,15 @@ const QuestionBank = () => {
               handleNumericalChange={(questionId, value) => {
                 setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
               }}
-              handleMarkschemeToggle={() => setShowMarkschemeModal(true)}
+              handleMarkschemeToggle={() =>
+                setShowMarkschemeModal(true)
+              }
               handleMarkForReview={() => handleMarkForReview(question.questionId, !question.reviewed)}
               handleMarkComplete={() => handleMarkComplete(question.questionId, !question.completed)}
               isMarkedForReview={question.reviewed}
               isMarkedComplete={question.completed}
               markschemesDisabled={false}
-              note={notes[question.questionId] || ''}
+              note={notes[question.questionId] || ""}
               handleNoteChange={handleNoteChange}
               userId={userId}
               handleDeleteNote={handleDeleteNote}
