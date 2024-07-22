@@ -1,7 +1,6 @@
 "use client";
 
-import { GetServerSideProps } from 'next';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import 'katex/dist/katex.min.css';
@@ -70,38 +69,9 @@ const fetchNotes = async () => {
   return response.json();
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const questionsData = await fetchQuestions();
-    const userProgressData = await fetchUserProgress();
-    const notesData = await fetchNotes();
-
-    const mergedQuestions = questionsData.map((question: QuestionType) => {
-      const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
-      const note = notesData.find((n: any) => n.questionId === question.questionId);
-      return {
-        ...question,
-        reviewed: progress ? progress.reviewed : false,
-        completed: progress ? progress.completed : false,
-        notes: note ? note.content : '',
-        lastAttempted: progress ? progress.lastAttempted : '',
-      };
-    });
-
-    return {
-      props: {
-        initialQuestions: mergedQuestions,
-      },
-    };
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return { props: { initialQuestions: [] } };
-  }
-};
-
-const QuestionBank = ({ initialQuestions }: { initialQuestions: QuestionType[] }) => {
-  const [questions, setQuestions] = useState<QuestionType[]>(initialQuestions);
-  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>(initialQuestions);
+const QuestionBank = () => {
+  const [questions, setQuestions] = useState<QuestionType[]>([]);
+  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
   const [dropdowns, setDropdowns] = useState({
     exam: false,
@@ -120,13 +90,34 @@ const QuestionBank = ({ initialQuestions }: { initialQuestions: QuestionType[] }
   const [notes, setNotes] = useState<Record<string, string>>({});
   const userId = ''; // Add logic to retrieve user ID if signed in
 
-  const exams = Array.from(new Set(questions.map((q) => q.exam)));
-  const subjects = Array.from(new Set(questions.map((q) => q.subject)));
-  const topics = Array.from(new Set(questions.map((q) => q.topic)));
-  const subtopics = Array.from(new Set(questions.map((q) => q.subtopic)));
-  const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
-  const years = Array.from(new Set(questions.map((q) => q.year)));
-  const types = Array.from(new Set(questions.map((q) => q.type)));
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const questionsData = await fetchQuestions();
+        const userProgressData = await fetchUserProgress();
+        const notesData = await fetchNotes();
+
+        const mergedQuestions = questionsData.map((question: QuestionType) => {
+          const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
+          const note = notesData.find((n: any) => n.questionId === question.questionId);
+          return {
+            ...question,
+            reviewed: progress ? progress.reviewed : false,
+            completed: progress ? progress.completed : false,
+            notes: note ? note.content : '',
+            lastAttempted: progress ? progress.lastAttempted : '',
+          };
+        });
+
+        setQuestions(mergedQuestions);
+        setFilteredQuestions(mergedQuestions);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const filterQuestions = () => {
     let filtered = questions.filter((question) => {
@@ -256,6 +247,15 @@ const QuestionBank = ({ initialQuestions }: { initialQuestions: QuestionType[] }
       return updatedNotes;
     });
   };
+
+  // Extract unique values for filters
+  const exams = Array.from(new Set(questions.map((q) => q.exam)));
+  const subjects = Array.from(new Set(questions.map((q) => q.subject)));
+  const topics = Array.from(new Set(questions.map((q) => q.topic)));
+  const subtopics = Array.from(new Set(questions.map((q) => q.subtopic)));
+  const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
+  const years = Array.from(new Set(questions.map((q) => q.year)));
+  const types = Array.from(new Set(questions.map((q) => q.type)));
 
   return (
     <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
