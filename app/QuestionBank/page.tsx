@@ -9,6 +9,7 @@ import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 interface QuestionType {
   exam: string;
@@ -74,6 +75,9 @@ const fetchNotes = async () => {
 };
 
 const QuestionBank: React.FC = () => {
+  const { data: session } = useSession();
+  const userId = session?.user?.id || "";
+
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
@@ -92,7 +96,6 @@ const QuestionBank: React.FC = () => {
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const userId = ""; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
     const fetchData = async () => {
@@ -175,7 +178,7 @@ const QuestionBank: React.FC = () => {
       const response = await fetch(`/api/user-performance/update`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedFields),
+        body: JSON.stringify({ userId, questionId, ...updatedFields }),
       });
       if (!response.ok) throw new Error('Failed to update user performance');
     } catch (error) {
