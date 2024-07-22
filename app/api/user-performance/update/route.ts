@@ -14,7 +14,6 @@ export async function POST(request: Request) {
     }
 
     const {
-      questionId,
       correctAnswers,
       incorrectAnswers,
       uniqueQuestions,
@@ -30,6 +29,8 @@ export async function POST(request: Request) {
       topicPerformance,
       consistency,
       engagementLevel,
+      completed,
+      reviewed,
     } = await request.json();
 
     const userPerformance = await prisma.userPerformance.upsert({
@@ -50,9 +51,11 @@ export async function POST(request: Request) {
         topicPerformance,
         consistency,
         engagementLevel,
+        completed,
+        reviewed,
       },
       create: {
-        userId: session.user.id,
+        user: { connect: { id: session.user.id } }, // Connect the user by ID
         correctAnswers,
         incorrectAnswers,
         uniqueQuestions,
@@ -68,6 +71,8 @@ export async function POST(request: Request) {
         topicPerformance,
         consistency,
         engagementLevel,
+        completed,
+        reviewed,
       },
     });
 

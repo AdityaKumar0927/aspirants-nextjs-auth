@@ -35,9 +35,14 @@ export async function POST(request: Request) {
     const { questionId, completed, reviewed, lastAttempted } = await request.json();
 
     const userProgress = await prisma.userProgress.upsert({
-      where: { userId_questionId: { userId: session.user.id, questionId } },
-      update: { completed, reviewed, lastAttempted },
-      create: { userId: session.user.id, questionId, completed, reviewed, lastAttempted },
+      where: {
+        userId_questionId: {
+          userId: session.user.id,
+          questionId,
+        },
+      },
+      update: { completed, reviewed, lastAttempted: lastAttempted ? new Date(lastAttempted) : null },
+      create: { userId: session.user.id, questionId, completed, reviewed, lastAttempted: lastAttempted ? new Date(lastAttempted) : null },
     });
 
     return NextResponse.json(userProgress);

@@ -9,18 +9,18 @@ datasource db {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -60,64 +60,63 @@ model VerificationToken {
 }
 
 model UserProgress {
-  id         String @id @default(cuid())
-  userId     String
-  questionId String
-  completed  Boolean @default(false)
-  reviewed   Boolean @default(false)
-  user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  questionId    String
+  completed     Boolean  @default(false)
+  reviewed      Boolean  @default(false)
+  lastAttempted DateTime?
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, questionId]) // Add this line
+  @@unique([userId, questionId])
 }
 
 model Question {
-  id           String   @id @default(cuid())
-  questionId   String   @unique
-  text         String
-  subject      String
-  difficulty   String
-  type         String
-  year         Int
-  reviewed     Boolean  @default(false)
-  completed    Boolean  @default(false)
-  options      String[]
+  id            String   @id @default(cuid())
+  questionId    String   @unique
+  text          String
+  subject       String
+  difficulty    String
+  type          String
+  year          Int
+  reviewed      Boolean  @default(false)
+  completed     Boolean  @default(false)
+  options       String[]
   correctOption String
-  markscheme   String
-  notes        Note[]   // Add this line
+  markscheme    String
+  notes         Note[]   // Add this line
 }
 
 model Note {
-  id         String @id @default(cuid())
+  id         String   @id @default(cuid())
   content    String
   userId     String
   questionId String
-  user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   question   Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId]) // Add this line
 }
 
 model UserPerformance {
-  id                 String   @id @default(cuid())
-  userId             String
-  correctAnswers     Int      @default(0)
-  incorrectAnswers   Int      @default(0)
-  uniqueQuestions    Int      @default(0)
-  questionsAttempted Int      @default(0)
-  timeSpent          Int      @default(0) // time in seconds
-  accuracy           Float    @default(0.0)
-  weaknessBySubtopic Json     @default("{}")
-  timePerQuestion    Float    @default(0.0)
-  improvementOverTime Json    @default("{}")
-  attemptRate        Float    @default(0.0)
-  firstAttemptSuccessRate Float @default(0.0)
-  reattemptAccuracy  Float    @default(0.0)
-  topicPerformance   Json     @default("{}")
-  consistency        Float    @default(0.0)
-  engagementLevel    Int      @default(0)
-  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  completed          Boolean
-  reviewed           Boolean
-
-  @@unique([userId])
+  id                     String  @id @default(cuid())
+  userId                 String  @unique
+  correctAnswers         Int
+  incorrectAnswers       Int
+  uniqueQuestions        Int
+  questionsAttempted     Int
+  timeSpent              Int
+  accuracy               Float
+  weaknessBySubtopic     Json
+  timePerQuestion        Float
+  improvementOverTime    Json
+  attemptRate            Float
+  firstAttemptSuccessRate Float
+  reattemptAccuracy      Float
+  topicPerformance       Json
+  consistency            Float
+  engagementLevel        Float
+  completed              Boolean @default(false)
+  reviewed               Boolean @default(false)
+  user                   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
