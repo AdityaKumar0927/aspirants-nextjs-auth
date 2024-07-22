@@ -94,6 +94,7 @@ const QuestionBank: React.FC = () => {
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
+  const userId = session?.user?.id || ""; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -125,7 +126,7 @@ const QuestionBank: React.FC = () => {
     } else {
       signIn();
     }
-  }, [status]);
+  }, [status, userId]);
 
   const exams = Array.from(new Set(questions.map((q) => q.exam)));
   const subjects = Array.from(new Set(questions.map((q) => q.subject)));
@@ -394,11 +395,7 @@ const QuestionBank: React.FC = () => {
           <p>No questions found with the selected filters.</p>
         )}
 
-        <Modal
-          showModal={showMarkschemeModal}
-          setShowModal={setShowMarkschemeModal}
-          className="max-w-2xl"
-        >
+        <Modal showModal={showMarkschemeModal} setShowModal={setShowMarkschemeModal} className="max-w-2xl">
           <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
             <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
               <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
