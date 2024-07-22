@@ -1,3 +1,5 @@
+"use client";
+
 import { GetServerSideProps } from 'next';
 import React, { useState } from 'react';
 import jsPDF from 'jspdf';
