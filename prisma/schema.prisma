@@ -61,7 +61,7 @@ model VerificationToken {
 
 model UserProgress {
   id            String   @id @default(cuid())
-  userId        String   @unique
+  userId        String
   questionId    String
   completed     Boolean  @default(false)
   reviewed      Boolean  @default(false)
@@ -100,7 +100,7 @@ model Note {
 
 model UserPerformance {
   id                     String  @id @default(cuid())
-  userId                 String  @unique
+  userId                 String
   correctAnswers         Int
   incorrectAnswers       Int
   uniqueQuestions        Int
@@ -119,4 +119,6 @@ model UserPerformance {
   completed              Boolean @default(false)
   reviewed               Boolean @default(false)
   user                   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId]) // Ensure userId is unique
 }
