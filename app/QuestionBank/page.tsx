@@ -9,6 +9,7 @@ import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
+import { useSession, signIn } from "next-auth/react";
 
 interface QuestionType {
   exam: string;
@@ -74,6 +75,7 @@ const fetchNotes = async () => {
 };
 
 const QuestionBank: React.FC = () => {
+  const { data: session, status } = useSession();
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
@@ -92,35 +94,39 @@ const QuestionBank: React.FC = () => {
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const userId = ""; // Add logic to retrieve user ID if signed in
+  const userId = session?.user?.id || ""; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const questionsData = await fetchQuestions();
-        const userProgressData = await fetchUserProgress();
-        const notesData = await fetchNotes();
+    if (status === "authenticated") {
+      const fetchData = async () => {
+        try {
+          const questionsData = await fetchQuestions();
+          const userProgressData = await fetchUserProgress();
+          const notesData = await fetchNotes();
 
-        const mergedQuestions = questionsData.map((question: QuestionType) => {
-          const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
-          const note = notesData.find((n: any) => n.questionId === question.questionId);
-          return {
-            ...question,
-            reviewed: progress ? progress.reviewed : false,
-            completed: progress ? progress.completed : false,
-            notes: note ? note.content : "",
-            lastAttempted: progress ? progress.lastAttempted : "",
-          };
-        });
-        setQuestions(mergedQuestions);
-        setFilteredQuestions(mergedQuestions);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+          const mergedQuestions = questionsData.map((question: QuestionType) => {
+            const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
+            const note = notesData.find((n: any) => n.questionId === question.questionId);
+            return {
+              ...question,
+              reviewed: progress ? progress.reviewed : false,
+              completed: progress ? progress.completed : false,
+              notes: note ? note.content : "",
+              lastAttempted: progress ? progress.lastAttempted : "",
+            };
+          });
+          setQuestions(mergedQuestions);
+          setFilteredQuestions(mergedQuestions);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
 
-    fetchData();
-  }, [userId]);
+      fetchData();
+    } else {
+      signIn();
+    }
+  }, [status, userId]);
 
   const exams = Array.from(new Set(questions.map((q) => q.exam)));
   const subjects = Array.from(new Set(questions.map((q) => q.subject)));
