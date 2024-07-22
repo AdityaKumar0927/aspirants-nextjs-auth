@@ -94,7 +94,7 @@ const QuestionBank: React.FC = () => {
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const userId = session?.user?.id || ""; // Add logic to retrieve user ID if signed in
+  const userId = session?.user?.id || ""; // Retrieve user ID if signed in
 
   useEffect(() => {
     if (status === "authenticated") {
