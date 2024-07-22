@@ -94,9 +94,9 @@ const QuestionBank: React.FC = () => {
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
-  
+
   useEffect(() => {
-    if (status === "authenticated") {
+    if (status === "authenticated" && session) {
       const fetchData = async () => {
         try {
           const questionsData = await fetchQuestions();
@@ -123,7 +123,7 @@ const QuestionBank: React.FC = () => {
 
       fetchData();
     }
-  }, [status]);
+  }, [status, session]);
 
   const exams = Array.from(new Set(questions.map((q) => q.exam)));
   const subjects = Array.from(new Set(questions.map((q) => q.subject)));
