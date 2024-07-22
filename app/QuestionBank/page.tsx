@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
+import { useSession } from "next-auth/react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import "katex/dist/katex.min.css";
@@ -9,7 +10,6 @@ import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
-import { useSession } from "next-auth/react";
 
 interface QuestionType {
   exam: string;
@@ -75,9 +75,7 @@ const fetchNotes = async () => {
 };
 
 const QuestionBank: React.FC = () => {
-  const { data: session } = useSession();
-  const userId = session?.user?.id || "";
-
+  const { data: session, status } = useSession();
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
@@ -96,34 +94,36 @@ const QuestionBank: React.FC = () => {
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
-
+  
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const questionsData = await fetchQuestions();
-        const userProgressData = await fetchUserProgress();
-        const notesData = await fetchNotes();
+    if (status === "authenticated") {
+      const fetchData = async () => {
+        try {
+          const questionsData = await fetchQuestions();
+          const userProgressData = await fetchUserProgress();
+          const notesData = await fetchNotes();
 
-        const mergedQuestions = questionsData.map((question: QuestionType) => {
-          const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
-          const note = notesData.find((n: any) => n.questionId === question.questionId);
-          return {
-            ...question,
-            reviewed: progress ? progress.reviewed : false,
-            completed: progress ? progress.completed : false,
-            notes: note ? note.content : "",
-            lastAttempted: progress ? progress.lastAttempted : "",
-          };
-        });
-        setQuestions(mergedQuestions);
-        setFilteredQuestions(mergedQuestions);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+          const mergedQuestions = questionsData.map((question: QuestionType) => {
+            const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
+            const note = notesData.find((n: any) => n.questionId === question.questionId);
+            return {
+              ...question,
+              reviewed: progress ? progress.reviewed : false,
+              completed: progress ? progress.completed : false,
+              notes: note ? note.content : "",
+              lastAttempted: progress ? progress.lastAttempted : "",
+            };
+          });
+          setQuestions(mergedQuestions);
+          setFilteredQuestions(mergedQuestions);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
 
-    fetchData();
-  }, [userId]);
+      fetchData();
+    }
+  }, [status]);
 
   const exams = Array.from(new Set(questions.map((q) => q.exam)));
   const subjects = Array.from(new Set(questions.map((q) => q.subject)));
@@ -178,7 +178,7 @@ const QuestionBank: React.FC = () => {
       const response = await fetch(`/api/user-performance/update`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId, questionId, ...updatedFields }),
+        body: JSON.stringify(updatedFields),
       });
       if (!response.ok) throw new Error('Failed to update user performance');
     } catch (error) {
@@ -265,6 +265,14 @@ const QuestionBank: React.FC = () => {
       return updatedNotes;
     });
   };
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  if (status === "unauthenticated") {
+    return <p>You need to be authenticated to access this page.</p>;
+  }
 
   return (
     <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -391,7 +399,7 @@ const QuestionBank: React.FC = () => {
               markschemesDisabled={false}
               note={notes[question.questionId] || ""}
               handleNoteChange={handleNoteChange}
-              userId={userId}
+              userId={session?.user?.id || ''}
               handleDeleteNote={handleDeleteNote}
             />
           ))
