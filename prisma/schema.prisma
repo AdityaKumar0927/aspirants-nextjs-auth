@@ -67,24 +67,34 @@ model UserProgress {
   reviewed      Boolean  @default(false)
   lastAttempted DateTime?
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question      Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
 
 model Question {
-  id            String   @id @default(cuid())
-  questionId    String   @unique
-  text          String
-  subject       String
-  difficulty    String
-  type          String
-  year          Int
-  reviewed      Boolean  @default(false)
-  completed     Boolean  @default(false)
-  options       String[]
-  correctOption String
-  markscheme    String
-  notes         Note[]   // Add this line
+  id               Int       @id @default(autoincrement())
+  exam             String
+  questionId       String    @unique
+  text             String
+  subject          String
+  topic            String
+  subtopic         String
+  difficulty       String
+  type             String
+  year             Int
+  reviewed         Boolean
+  completed        Boolean
+  options          String[]
+  correctOption    String
+  markscheme       String
+  marks            String?
+  correctAttempts  String?
+  wrongAttempts    String?
+  averageTimeTaken String?
+  lastAttempted    DateTime?
+  notes            Note[]    @relation("QuestionNotes")
+  progresses       UserProgress[]
 }
 
 model Note {
@@ -93,7 +103,7 @@ model Note {
   userId     String
   questionId String
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question   Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  question   Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade, name: "QuestionNotes")
 
   @@unique([userId, questionId]) // Add this line
 }
