@@ -34,6 +34,32 @@
     "completed": false,
     "options": ["2130", "2210", "2290", "2370"],
     "correctOption": "D",
-    "markscheme": "The correct answer is calculated based on the equation of coplanarity and the given constraint \\(\\lambda - \\mu = 5\\)."
-  }
+    "markscheme": "The correct answer is calculated based on the equation of coplanarity and the given constraint \\(\\lambda - \\mu = 5\\).",
+    "marks": "4",
+    "correctAttempts": "",
+    "wrongAttempts": "",
+    "averageTimeTaken": "",
+    "lastAttempted": ""
+  }, 
+  {
+    "exam": "CUET",
+    "questionId": "4",
+    "text": "The area of the region bounded by the y-axis, \\(y = \\cos x\\), and \\(y = \\sin x\\) from \\(0 \\leq x \\leq \\frac{\\pi}{2}\\) is",
+    "subject": "Mathematics",
+    "topic": "Calculus",
+    "subtopic": "Definite Integrals",
+    "difficulty": "Medium",
+    "type": "Multiple Choice",
+    "year": "2023",
+    "reviewed": false,
+    "completed": false,
+    "options": ["2 sq. units", "\\(2 + 1\\) sq. units", "\\(2 - 1\\) sq. units", "\\(2\\sqrt{2} - 1\\) sq. units"],
+    "correctOption": "C",
+    "markscheme": "Integrating the area between the curves \\(y = \\cos x\\) and \\(y = \\sin x\\) from 0 to \\(\\frac{\\pi}{2}\\) gives \\(\\int_{0}^{\\pi/2} (\\cos x - \\sin x) dx = 1 - (-1) = 2\\).",
+    "marks": "5",
+    "correctAttempts": "",
+    "wrongAttempts": "",
+    "averageTimeTaken": "",
+    "lastAttempted": ""
+}
 ]

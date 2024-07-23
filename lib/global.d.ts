@@ -47,3 +47,51 @@ export type FiltersType = {
 export const isStringArray = (value: any): value is string[] => {
   return Array.isArray(value) && value.every(item => typeof item === 'string');
 };
+
+
+declare global {
+  interface QuestionType {
+    exam: string;
+    questionId: string;
+    text: string;
+    subject: string;
+    topic: string;
+    subtopic: string;
+    difficulty: string;
+    type: "Multiple Choice" | "Numerical";
+    year: string;
+    reviewed: boolean;
+    completed: boolean;
+    options?: string[];
+    correctOption?: string;
+    markscheme?: string;
+    notes?: string;
+    lastAttempted?: string;
+    marks?: string;
+    correctAttempts?: string;
+    wrongAttempts?: string;
+    averageTimeTaken?: string;
+  }
+
+  interface UserPerformance {
+    correctAnswers: number;
+    incorrectAnswers: number;
+    uniqueQuestions: number;
+    questionsAttempted: number;
+    timeSpent: number;
+    accuracy: number;
+    weaknessBySubtopic: Record<string, any>;
+    timePerQuestion: number;
+    improvementOverTime: Record<string, any>;
+    attemptRate: number;
+    firstAttemptSuccessRate: number;
+    reattemptAccuracy: number;
+    topicPerformance: Record<string, any>;
+    consistency: number;
+    engagementLevel: number;
+    completed: boolean;
+    reviewed: boolean;
+  }
+}
+
+export {};

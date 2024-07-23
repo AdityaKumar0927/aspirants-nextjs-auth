@@ -10,10 +10,12 @@ export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.id) {
+      console.error('Unauthorized access attempt');
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const {
+      questionId,
       correctAnswers,
       incorrectAnswers,
       uniqueQuestions,
@@ -32,6 +34,11 @@ export async function POST(request: Request) {
       completed,
       reviewed,
     } = await request.json();
+
+    if (!questionId) {
+      console.error('Question ID is missing in the request body');
+      return NextResponse.json({ error: 'Question ID is required' }, { status: 400 });
+    }
 
     const userPerformance = await prisma.userPerformance.upsert({
       where: { userId: session.user.id },
@@ -55,7 +62,7 @@ export async function POST(request: Request) {
         reviewed,
       },
       create: {
-        user: { connect: { id: session.user.id } }, // Connect the user by ID
+        userId: session.user.id,
         correctAnswers,
         incorrectAnswers,
         uniqueQuestions,

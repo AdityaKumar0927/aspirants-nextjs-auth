@@ -48,7 +48,7 @@ model User {
   sessions      Session[]
   progresses    UserProgress[]
   notes         Note[]
-  performances  UserPerformance? // Add this line
+  performances  UserPerformance?
 }
 
 model VerificationToken {
@@ -105,7 +105,7 @@ model Note {
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   question   Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade, name: "QuestionNotes")
 
-  @@unique([userId, questionId]) // Add this line
+  @@unique([userId, questionId])
 }
 
 model UserPerformance {
