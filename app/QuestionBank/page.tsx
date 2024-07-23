@@ -29,6 +29,26 @@ interface QuestionType {
   lastAttempted?: string;
 }
 
+interface UserPerformance {
+  correctAnswers: number;
+  incorrectAnswers: number;
+  uniqueQuestions: number;
+  questionsAttempted: number;
+  timeSpent: number;
+  accuracy: number;
+  weaknessBySubtopic: any;
+  timePerQuestion: number;
+  improvementOverTime: any;
+  attemptRate: number;
+  firstAttemptSuccessRate: number;
+  reattemptAccuracy: number;
+  topicPerformance: any;
+  consistency: number;
+  engagementLevel: number;
+  completed: boolean;
+  reviewed: boolean;
+}
+
 type FiltersType = {
   exams: string[];
   subjects: string[];
@@ -182,8 +202,6 @@ const QuestionBank: React.FC = () => {
       console.error('Error updating user performance:', error);
     }
   };
-  
-  
 
   const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
     await updateUserPerformance(questionId, { completed: isComplete });
@@ -211,7 +229,17 @@ const QuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
-    await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString() });
+
+    const updatedFields = {
+      correctAnswers: isCorrect ? 1 : 0,
+      incorrectAnswers: !isCorrect ? 1 : 0,
+      uniqueQuestions: 1,
+      questionsAttempted: 1,
+      lastAttempted: new Date().toISOString(),
+      // Add other fields as necessary
+    };
+
+    await updateUserPerformance(questionId, updatedFields);
   };
 
   const handleNumericalSubmit = async (questionId: string, userAnswer: string, correctAnswer: string) => {
