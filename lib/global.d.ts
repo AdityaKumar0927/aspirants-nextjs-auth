@@ -1,4 +1,10 @@
 // global.d.ts
+import { UserPerformance as PrismaUserPerformance } from '@prisma/client';
+
+declare global {
+  interface UserPerformance extends PrismaUserPerformance {}
+}
+
 interface MathJax {
   typesetPromise?: () => Promise<void>;
   typeset?: () => void;

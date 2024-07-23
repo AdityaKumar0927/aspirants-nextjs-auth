@@ -29,6 +29,26 @@ interface QuestionType {
   lastAttempted?: string;
 }
 
+interface UserPerformance {
+  correctAnswers: number;
+  incorrectAnswers: number;
+  uniqueQuestions: number;
+  questionsAttempted: number;
+  timeSpent: number;
+  accuracy: number;
+  weaknessBySubtopic: any;
+  timePerQuestion: number;
+  improvementOverTime: any;
+  attemptRate: number;
+  firstAttemptSuccessRate: number;
+  reattemptAccuracy: number;
+  topicPerformance: any;
+  consistency: number;
+  engagementLevel: number;
+  completed: boolean;
+  reviewed: boolean;
+}
+
 type FiltersType = {
   exams: string[];
   subjects: string[];
@@ -38,25 +58,6 @@ type FiltersType = {
   types: string[];
   years: string[];
   status: string;
-};
-
-type UserPerformance = {
-  accuracy: number;
-  weaknessBySubtopic: { subtopic: string; weakness: number }[];
-  improvementOverTime: { date: string; improvement: number }[];
-  attemptRate: number;
-  firstAttemptSuccessRate: number;
-  reattemptAccuracy: number;
-  topicPerformance: { topic: string; performance: number }[];
-  consistency: number;
-  engagementLevel: number;
-  correctAnswers: number;
-  incorrectAnswers: number;
-  uniqueQuestions: number;
-  questionsAttempted: number;
-  timeSpent: number;
-  completed: number;
-  reviewed: number;
 };
 
 const initialFilters: FiltersType = {
@@ -90,32 +91,6 @@ const fetchNotes = async () => {
   const response = await fetch("/api/notes");
   if (!response.ok) throw new Error("Failed to fetch notes");
   return response.json();
-};
-
-const updateUserPerformance = async (userId: string, questionId: string, updatedFields: Partial<UserPerformance>) => {
-  try {
-    const response = await fetch(`/api/user-performance/update`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId, questionId, ...updatedFields }),
-    });
-    if (!response.ok) throw new Error('Failed to update user performance');
-  } catch (error) {
-    console.error('Error updating user performance:', error);
-  }
-};
-
-const updateUserProgress = async (userId: string, questionId: string, updatedFields: Partial<QuestionType>) => {
-  try {
-    const response = await fetch(`/api/user-progress/update`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId, questionId, ...updatedFields }),
-    });
-    if (!response.ok) throw new Error('Failed to update user progress');
-  } catch (error) {
-    console.error('Error updating user progress:', error);
-  }
 };
 
 const QuestionBank: React.FC = () => {
@@ -215,15 +190,22 @@ const QuestionBank: React.FC = () => {
     });
   };
 
-  const handleDropdownToggle = (filterType: keyof typeof dropdowns) => {
-    setDropdowns((prev) => ({
-      ...prev,
-      [filterType]: !prev[filterType],
-    }));
+  const updateUserPerformance = async (questionId: string, updatedFields: Partial<QuestionType & UserPerformance>) => {
+    try {
+      const response = await fetch(`/api/user-performance/update`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId, ...updatedFields }),
+      });
+      if (!response.ok) throw new Error('Failed to update user performance');
+    } catch (error) {
+      console.error('Error updating user performance:', error);
+    }
   };
+  
 
   const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
-    await updateUserPerformance(userId, questionId, { completed: isComplete ? 1 : -1 });
+    await updateUserPerformance(questionId, { completed: isComplete });
 
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) =>
@@ -233,7 +215,7 @@ const QuestionBank: React.FC = () => {
   };
 
   const handleMarkForReview = async (questionId: string, isReviewed: boolean) => {
-    await updateUserPerformance(userId, questionId, { reviewed: isReviewed ? 1 : -1 });
+    await updateUserPerformance(questionId, { reviewed: isReviewed });
 
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) =>
@@ -248,7 +230,17 @@ const QuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
-    await updateUserProgress(userId, questionId, { lastAttempted: new Date().toISOString() });
+
+    const updatedFields = {
+      correctAnswers: isCorrect ? 1 : 0,
+      incorrectAnswers: !isCorrect ? 1 : 0,
+      uniqueQuestions: 1,
+      questionsAttempted: 1,
+      lastAttempted: new Date().toISOString(),
+      // Add other fields as necessary
+    };
+
+    await updateUserPerformance(questionId, updatedFields);
   };
 
   const handleNumericalSubmit = async (questionId: string, userAnswer: string, correctAnswer: string) => {
@@ -257,7 +249,7 @@ const QuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
-    await updateUserProgress(userId, questionId, { lastAttempted: new Date().toISOString() });
+    await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString() });
   };
 
   const handleNoteChange = async (questionId: string, note: string) => {
@@ -362,10 +354,20 @@ const QuestionBank: React.FC = () => {
               }
               align="start"
               openPopover={dropdowns[filterType as keyof typeof dropdowns]}
-              setOpenPopover={(open) => handleDropdownToggle(filterType as keyof typeof dropdowns)}
+              setOpenPopover={(open) => {
+                setDropdowns((prev) => ({
+                  ...prev,
+                  [filterType]: open,
+                }));
+              }}
             >
               <button
-                onClick={() => handleDropdownToggle(filterType as keyof typeof dropdowns)}
+                onClick={() =>
+                  setDropdowns((prev) => ({
+                    ...prev,
+                    [filterType]: !prev[filterType as keyof typeof dropdowns],
+                  }))
+                }
                 className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
               >
                 <p className="text-gray-600">
@@ -419,6 +421,8 @@ const QuestionBank: React.FC = () => {
         ) : (
           <p>No questions found with the selected filters.</p>
         )}
+
+       
       </div>
     </div>
   );
