@@ -12,37 +12,39 @@ import Dashboard from "@/components/shared/Dashboard";
 import { useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 
+// You can replace this with actual userId fetching logic
+const getUserId = () => "user-id-placeholder";
+
 export default function Sidebar() {
   const [showNoteModal, setShowNoteModal] = useState(false);
   const [showDashboardModal, setShowDashboardModal] = useState(false);
   const mouseX = useMotionValue(Infinity);
+  const userId = getUserId(); // Fetch or define the userId
 
   const initialUserPerformance = {
-    accuracy: 90,
-    dailyAccuracy: [{ date: '2023-07-18', accuracy: 85 }],
-    timePerQuestion: 30,
-    consistency: 80,
-    currentYearAccuracy: 88,
-    previousYearAccuracy: 85,
-    timePerSubtopic: 20,
-    dailyTimePerSubtopic: [{ date: '2023-07-18', time: 20 }],
-    studyTime: 120,
-    dailyStudyTime: [{ date: '2023-07-18', time: 60 }],
-    correctAnswers: 50,
-    incorrectAnswers: 10,
-    uniqueQuestions: 60,
-    questionsAttempted: 70,
-    timeSpent: 120,
-    weaknessBySubtopic: [{ subtopic: "Subtopic 1", weakness: 50 }],
-    improvementOverTime: [{ date: '2023-07-18', improvement: 5 }],
-    attemptRate: 0.8,
-    firstAttemptSuccessRate: 0.75,
-    reattemptAccuracy: 0.7,
-    topicPerformance: [{ topic: "Topic 1", performance: 90 }],
-    engagementLevel: 0.9,
-    completed: false,
-    reviewed: false,
-    dailyTimePerQuestion: [{ date: '2023-07-18', time: 25 }],
+    accuracy: 0,
+    dailyAccuracy: [],
+    timePerQuestion: 0,
+    consistency: 0,
+    dailyTimePerQuestion: [],
+    currentYearAccuracy: 0,
+    previousYearAccuracy: 0,
+    timePerSubtopic: 0,
+    dailyTimePerSubtopic: [],
+    studyTime: 0,
+    dailyStudyTime: [],
+    correctAnswers: 0,
+    incorrectAnswers: 0,
+    uniqueQuestions: 0,
+    questionsAttempted: 0,
+    timeSpent: 0,
+    weaknessBySubtopic: [],
+    improvementOverTime: [],
+    attemptRate: 0,
+    firstAttemptSuccessRate: 0,
+    reattemptAccuracy: 0,
+    topicPerformance: [],
+    engagementLevel: 0,
   };
 
   return (
@@ -104,7 +106,7 @@ export default function Sidebar() {
       </AnimatedModal>
 
       <AnimatedModal showModal={showDashboardModal} setShowModal={setShowDashboardModal}>
-        <Dashboard initialUserPerformance={initialUserPerformance} />
+        <Dashboard initialUserPerformance={initialUserPerformance} userId={userId} />
       </AnimatedModal>
     </>
   );

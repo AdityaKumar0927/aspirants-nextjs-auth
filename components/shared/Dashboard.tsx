@@ -34,6 +34,7 @@ import {
   ChartTooltipContent,
 } from '@/components/ui/chart';
 import { Separator } from '@/components/ui/separator';
+import { getSession } from 'next-auth/react';
 
 type UserPerformance = {
   accuracy: number;
@@ -61,18 +62,23 @@ type UserPerformance = {
   engagementLevel: number;
 };
 
-const fetchUserPerformance = async (): Promise<UserPerformance | null> => {
-  const response = await fetch('/api/user-performance/get');
+const fetchUserPerformance = async (userId: string): Promise<UserPerformance | null> => {
+  const response = await fetch(`/api/user-performance/get?userId=${userId}`);
   if (!response.ok) return null;
   return response.json();
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const data = await fetchUserPerformance();
+    const session = await getSession(context);
+    if (!session || !session.user?.id) {
+      return { props: { initialUserPerformance: null } };
+    }
+    const data = await fetchUserPerformance(session.user.id);
     return {
       props: {
         initialUserPerformance: data,
+        userId: session.user.id,
       },
     };
   } catch (error) {
@@ -81,7 +87,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 };
 
-export default function Dashboard({ initialUserPerformance }: { initialUserPerformance: UserPerformance | null }) {
+export default function Dashboard({ initialUserPerformance, userId }: { initialUserPerformance: UserPerformance | null, userId: string }) {
   const [userPerformance, setUserPerformance] = useState<UserPerformance | null>(initialUserPerformance);
   const { setLoading } = useLoading();
 
@@ -89,7 +95,7 @@ export default function Dashboard({ initialUserPerformance }: { initialUserPerfo
     const getUserPerformance = async () => {
       setLoading(true);
       try {
-        const data = await fetchUserPerformance();
+        const data = await fetchUserPerformance(userId);
         setUserPerformance(data);
       } catch (error) {
         console.error('Error fetching user performance:', error);
@@ -101,7 +107,7 @@ export default function Dashboard({ initialUserPerformance }: { initialUserPerfo
     if (!userPerformance) {
       getUserPerformance();
     }
-  }, [setLoading, userPerformance]);
+  }, [setLoading, userPerformance, userId]);
 
   if (!userPerformance) {
     return (
