@@ -47,6 +47,18 @@ type UserPerformance = {
   dailyTimePerSubtopic: { date: string; time: number }[];
   studyTime: number;
   dailyStudyTime: { date: string; time: number }[];
+  correctAnswers: number;
+  incorrectAnswers: number;
+  uniqueQuestions: number;
+  questionsAttempted: number;
+  timeSpent: number;
+  weaknessBySubtopic: { subtopic: string; weakness: number }[];
+  improvementOverTime: { date: string; improvement: number }[];
+  attemptRate: number;
+  firstAttemptSuccessRate: number;
+  reattemptAccuracy: number;
+  topicPerformance: { topic: string; performance: number }[];
+  engagementLevel: number;
 };
 
 const fetchUserPerformance = async (): Promise<UserPerformance | null> => {
@@ -68,8 +80,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     return { props: { initialUserPerformance: null } };
   }
 };
-
-
 
 export default function Dashboard({ initialUserPerformance }: { initialUserPerformance: UserPerformance | null }) {
   const [userPerformance, setUserPerformance] = useState<UserPerformance | null>(initialUserPerformance);
