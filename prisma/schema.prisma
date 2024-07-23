@@ -93,9 +93,12 @@ model Question {
   wrongAttempts    String?
   averageTimeTaken String?
   lastAttempted    DateTime?
+  diagramUrl       String?   // Add this line
   notes            Note[]    @relation("QuestionNotes")
   progresses       UserProgress[]
 }
+
+
 
 model Note {
   id         String   @id @default(cuid())

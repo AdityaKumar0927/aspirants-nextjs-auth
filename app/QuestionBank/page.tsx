@@ -27,6 +27,7 @@ interface QuestionType {
   markscheme?: string;
   notes?: string;
   lastAttempted?: string;
+  diagramUrl?: string; // Add this line
 }
 
 interface UserPerformance {
@@ -37,7 +38,6 @@ interface UserPerformance {
   timeSpent: number;
   accuracy: number;
   weaknessBySubtopic: any;
-  timePerQuestion: number;
   improvementOverTime: any;
   attemptRate: number;
   firstAttemptSuccessRate: number;
@@ -112,11 +112,13 @@ const QuestionBank: React.FC = () => {
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
+  const [loading, setLoading] = useState<boolean>(true); // Add loading state
   const userId = ""; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true); // Set loading to true before fetching data
         const questionsData = await fetchQuestions();
         const userProgressData = await fetchUserProgress();
         const notesData = await fetchNotes();
@@ -136,6 +138,8 @@ const QuestionBank: React.FC = () => {
         setFilteredQuestions(mergedQuestions);
       } catch (error) {
         console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false); // Set loading to false after fetching data
       }
     };
 
@@ -202,7 +206,6 @@ const QuestionBank: React.FC = () => {
       console.error('Error updating user performance:', error);
     }
   };
-  
   
   const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
     await updateUserPerformance(questionId, { completed: isComplete });
@@ -288,6 +291,10 @@ const QuestionBank: React.FC = () => {
       return updatedNotes;
     });
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // Render loading state
+  }
 
   return (
     <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -421,8 +428,6 @@ const QuestionBank: React.FC = () => {
         ) : (
           <p>No questions found with the selected filters.</p>
         )}
-
-       
       </div>
     </div>
   );

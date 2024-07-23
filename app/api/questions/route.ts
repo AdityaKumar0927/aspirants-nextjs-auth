@@ -6,7 +6,26 @@ const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    const questions = await prisma.question.findMany();
+    const questions = await prisma.question.findMany({
+      select: {
+        questionId: true,
+        exam: true,
+        text: true,
+        subject: true,
+        topic: true,
+        subtopic: true,
+        difficulty: true,
+        type: true,
+        year: true,
+        reviewed: true,
+        completed: true,
+        options: true,
+        correctOption: true,
+        markscheme: true,
+        notes: true,
+        lastAttempted: true,
+      },
+    });
     return NextResponse.json(questions);
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch questions' }, { status: 500 });
