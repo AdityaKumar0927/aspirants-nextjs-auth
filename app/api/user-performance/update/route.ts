@@ -10,76 +10,51 @@ export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.id) {
-      console.error('Unauthorized access attempt');
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const {
-      questionId,
-      correctAnswers,
-      incorrectAnswers,
-      uniqueQuestions,
-      questionsAttempted,
-      timeSpent,
-      accuracy,
-      weaknessBySubtopic,
-      timePerQuestion,
-      improvementOverTime,
-      attemptRate,
-      firstAttemptSuccessRate,
-      reattemptAccuracy,
-      topicPerformance,
-      consistency,
-      engagementLevel,
-      completed,
-      reviewed,
-    } = await request.json();
-
-    if (!questionId) {
-      console.error('Question ID is missing in the request body');
-      return NextResponse.json({ error: 'Question ID is required' }, { status: 400 });
-    }
+    const data = await request.json();
 
     const userPerformance = await prisma.userPerformance.upsert({
       where: { userId: session.user.id },
       update: {
-        correctAnswers,
-        incorrectAnswers,
-        uniqueQuestions,
-        questionsAttempted,
-        timeSpent,
-        accuracy,
-        weaknessBySubtopic,
-        timePerQuestion,
-        improvementOverTime,
-        attemptRate,
-        firstAttemptSuccessRate,
-        reattemptAccuracy,
-        topicPerformance,
-        consistency,
-        engagementLevel,
-        completed,
-        reviewed,
+        correctAnswers: data.correctAnswers || undefined,
+        incorrectAnswers: data.incorrectAnswers || undefined,
+        uniqueQuestions: data.uniqueQuestions || undefined,
+        questionsAttempted: data.questionsAttempted || undefined,
+        timeSpent: data.timeSpent || undefined,
+        accuracy: data.accuracy || undefined,
+        weaknessBySubtopic: data.weaknessBySubtopic || undefined,
+        timePerQuestion: data.timePerQuestion || undefined,
+        improvementOverTime: data.improvementOverTime || undefined,
+        attemptRate: data.attemptRate || undefined,
+        firstAttemptSuccessRate: data.firstAttemptSuccessRate || undefined,
+        reattemptAccuracy: data.reattemptAccuracy || undefined,
+        topicPerformance: data.topicPerformance || undefined,
+        consistency: data.consistency || undefined,
+        engagementLevel: data.engagementLevel || undefined,
+        completed: data.completed || undefined,
+        reviewed: data.reviewed || undefined,
       },
       create: {
         userId: session.user.id,
-        correctAnswers,
-        incorrectAnswers,
-        uniqueQuestions,
-        questionsAttempted,
-        timeSpent,
-        accuracy,
-        weaknessBySubtopic,
-        timePerQuestion,
-        improvementOverTime,
-        attemptRate,
-        firstAttemptSuccessRate,
-        reattemptAccuracy,
-        topicPerformance,
-        consistency,
-        engagementLevel,
-        completed,
-        reviewed,
+        correctAnswers: data.correctAnswers || 0,
+        incorrectAnswers: data.incorrectAnswers || 0,
+        uniqueQuestions: data.uniqueQuestions || 0,
+        questionsAttempted: data.questionsAttempted || 0,
+        timeSpent: data.timeSpent || 0,
+        accuracy: data.accuracy || 0,
+        weaknessBySubtopic: data.weaknessBySubtopic || {},
+        timePerQuestion: data.timePerQuestion || 0,
+        improvementOverTime: data.improvementOverTime || {},
+        attemptRate: data.attemptRate || 0,
+        firstAttemptSuccessRate: data.firstAttemptSuccessRate || 0,
+        reattemptAccuracy: data.reattemptAccuracy || 0,
+        topicPerformance: data.topicPerformance || {},
+        consistency: data.consistency || 0,
+        engagementLevel: data.engagementLevel || 0,
+        completed: data.completed || false,
+        reviewed: data.reviewed || false,
       },
     });
 
