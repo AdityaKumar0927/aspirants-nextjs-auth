@@ -110,7 +110,7 @@ model Note {
 
 model UserPerformance {
   id                      String  @id @default(cuid())
-  userId                  String
+  userId                  String  @unique
   correctAnswers          Int
   incorrectAnswers        Int
   uniqueQuestions         Int
@@ -118,7 +118,6 @@ model UserPerformance {
   timeSpent               Int
   accuracy                Float
   weaknessBySubtopic      Json
-  timePerQuestion         Float
   improvementOverTime     Json
   attemptRate             Float
   firstAttemptSuccessRate Float
@@ -129,8 +128,7 @@ model UserPerformance {
   completed               Boolean @default(false)
   reviewed                Boolean @default(false)
   user                    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId])
 }
+
 
 

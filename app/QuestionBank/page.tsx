@@ -190,7 +190,7 @@ const QuestionBank: React.FC = () => {
     });
   };
 
-  const updateUserPerformance = async (questionId: string, updatedFields: Partial<QuestionType & UserPerformance>) => {
+  const updateUserPerformance = async (questionId: string, updatedFields: Partial<QuestionType & Omit<UserPerformance, 'timePerQuestion'>>) => {
     try {
       const response = await fetch(`/api/user-performance/update`, {
         method: 'POST',
@@ -203,7 +203,7 @@ const QuestionBank: React.FC = () => {
     }
   };
   
-
+  
   const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
     await updateUserPerformance(questionId, { completed: isComplete });
 

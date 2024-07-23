@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     } = await request.json();
 
     const userPerformance = await prisma.userPerformance.upsert({
-      where: { id: session.user.id },  // Use the unique identifier here
+      where: { userId: session.user.id },
       update: {
         correctAnswers,
         incorrectAnswers,
