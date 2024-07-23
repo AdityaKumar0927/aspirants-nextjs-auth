@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { Dock, DockIcon } from "@/components/magicui/dock";
@@ -22,19 +22,27 @@ export default function Sidebar() {
     dailyAccuracy: [{ date: '2023-07-18', accuracy: 85 }],
     timePerQuestion: 30,
     consistency: 80,
-    weeklyConsistency: [78, 82, 85],
-    progress: 70,
-    rank: 5,
-    badges: ["Beginner", "Intermediate"],
-    streak: 7,
-    lastActive: "2023-07-18T00:00:00Z",
-    dailyTimePerQuestion: [{ date: '2023-07-18', time: 25 }],
     currentYearAccuracy: 88,
     previousYearAccuracy: 85,
     timePerSubtopic: 20,
     dailyTimePerSubtopic: [{ date: '2023-07-18', time: 20 }],
     studyTime: 120,
     dailyStudyTime: [{ date: '2023-07-18', time: 60 }],
+    correctAnswers: 50,
+    incorrectAnswers: 10,
+    uniqueQuestions: 60,
+    questionsAttempted: 70,
+    timeSpent: 120,
+    weaknessBySubtopic: [{ subtopic: "Subtopic 1", weakness: 50 }],
+    improvementOverTime: [{ date: '2023-07-18', improvement: 5 }],
+    attemptRate: 0.8,
+    firstAttemptSuccessRate: 0.75,
+    reattemptAccuracy: 0.7,
+    topicPerformance: [{ topic: "Topic 1", performance: 90 }],
+    engagementLevel: 0.9,
+    completed: false,
+    reviewed: false,
+    dailyTimePerQuestion: [{ date: '2023-07-18', time: 25 }],
   };
 
   return (
