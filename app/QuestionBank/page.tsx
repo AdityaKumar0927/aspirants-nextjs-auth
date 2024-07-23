@@ -9,7 +9,6 @@ import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
-import { useSession, signIn } from "next-auth/react";
 
 interface QuestionType {
   exam: string;
@@ -53,7 +52,7 @@ const initialFilters: FiltersType = {
 };
 
 const isStringArray = (value: any): value is string[] => {
-  return Array.isArray(value) && value.every((item) => typeof item === "string");
+  return Array.isArray(value) && value.every(item => typeof item === 'string');
 };
 
 const fetchQuestions = async () => {
@@ -75,7 +74,6 @@ const fetchNotes = async () => {
 };
 
 const QuestionBank: React.FC = () => {
-  const { data: session, status } = useSession();
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
@@ -94,39 +92,35 @@ const QuestionBank: React.FC = () => {
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const userId = session?.user?.id || ""; // Add logic to retrieve user ID if signed in
+  const userId = ""; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
-    if (status === "authenticated") {
-      const fetchData = async () => {
-        try {
-          const questionsData = await fetchQuestions();
-          const userProgressData = await fetchUserProgress();
-          const notesData = await fetchNotes();
+    const fetchData = async () => {
+      try {
+        const questionsData = await fetchQuestions();
+        const userProgressData = await fetchUserProgress();
+        const notesData = await fetchNotes();
 
-          const mergedQuestions = questionsData.map((question: QuestionType) => {
-            const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
-            const note = notesData.find((n: any) => n.questionId === question.questionId);
-            return {
-              ...question,
-              reviewed: progress ? progress.reviewed : false,
-              completed: progress ? progress.completed : false,
-              notes: note ? note.content : "",
-              lastAttempted: progress ? progress.lastAttempted : "",
-            };
-          });
-          setQuestions(mergedQuestions);
-          setFilteredQuestions(mergedQuestions);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      };
+        const mergedQuestions = questionsData.map((question: QuestionType) => {
+          const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
+          const note = notesData.find((n: any) => n.questionId === question.questionId);
+          return {
+            ...question,
+            reviewed: progress ? progress.reviewed : false,
+            completed: progress ? progress.completed : false,
+            notes: note ? note.content : "",
+            lastAttempted: progress ? progress.lastAttempted : "",
+          };
+        });
+        setQuestions(mergedQuestions);
+        setFilteredQuestions(mergedQuestions);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-      fetchData();
-    } else {
-      signIn();
-    }
-  }, [status, userId]);
+    fetchData();
+  }, [userId]);
 
   const exams = Array.from(new Set(questions.map((q) => q.exam)));
   const subjects = Array.from(new Set(questions.map((q) => q.subject)));
@@ -179,13 +173,13 @@ const QuestionBank: React.FC = () => {
   const updateUserPerformance = async (questionId: string, updatedFields: Partial<QuestionType>) => {
     try {
       const response = await fetch(`/api/user-performance/update`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ questionId, ...updatedFields }),
       });
-      if (!response.ok) throw new Error("Failed to update user performance");
+      if (!response.ok) throw new Error('Failed to update user performance');
     } catch (error) {
-      console.error("Error updating user performance:", error);
+      console.error('Error updating user performance:', error);
     }
   };
 
@@ -234,27 +228,27 @@ const QuestionBank: React.FC = () => {
     });
 
     try {
-      const response = await fetch("/api/notes/save", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/notes/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ questionId, content: note }),
       });
-      if (!response.ok) throw new Error("Failed to save note");
+      if (!response.ok) throw new Error('Failed to save note');
     } catch (error) {
-      console.error("Error saving note:", error);
+      console.error('Error saving note:', error);
     }
   };
 
   const handleDeleteNote = async (questionId: string) => {
     try {
-      const response = await fetch("/api/notes/delete", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/notes/delete', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ questionId }),
       });
-      if (!response.ok) throw new Error("Failed to delete note");
+      if (!response.ok) throw new Error('Failed to delete note');
     } catch (error) {
-      console.error("Error deleting note:", error);
+      console.error('Error deleting note:', error);
     }
 
     setNotes((prevNotes) => {
@@ -379,7 +373,9 @@ const QuestionBank: React.FC = () => {
               handleNumericalChange={(questionId, value) => {
                 setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
               }}
-              handleMarkschemeToggle={() => setShowMarkschemeModal(true)}
+              handleMarkschemeToggle={() =>
+                setShowMarkschemeModal(true)
+              }
               handleMarkForReview={() => handleMarkForReview(question.questionId, !question.reviewed)}
               handleMarkComplete={() => handleMarkComplete(question.questionId, !question.completed)}
               isMarkedForReview={question.reviewed}
@@ -387,7 +383,7 @@ const QuestionBank: React.FC = () => {
               markschemesDisabled={false}
               note={notes[question.questionId] || ""}
               handleNoteChange={handleNoteChange}
-              userId={session?.user?.id}
+              userId={userId}
               handleDeleteNote={handleDeleteNote}
             />
           ))
@@ -395,21 +391,7 @@ const QuestionBank: React.FC = () => {
           <p>No questions found with the selected filters.</p>
         )}
 
-        <Modal showModal={showMarkschemeModal} setShowModal={setShowMarkschemeModal} className="max-w-2xl">
-          <div className="w-full overflow-hidden md:max-w-2xl md:rounded-2xl md:border md:border-gray-100 md:shadow-xl">
-            <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
-              <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1">
-                AI Generated Solution
-              </span>
-              <h2 className="font-display text-2xl font-bold">Markscheme</h2>
-            </div>
-            <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
-              <p className="mb-4">
-                <MathRenderer text={markschemeContent} />
-              </p>
-            </div>
-          </div>
-        </Modal>
+       
       </div>
     </div>
   );
