@@ -48,7 +48,7 @@ model User {
   sessions      Session[]
   progresses    UserProgress[]
   notes         Note[]
-  performances  UserPerformance?
+  performances  UserPerformance[]
 }
 
 model VerificationToken {
@@ -109,26 +109,26 @@ model Note {
 }
 
 model UserPerformance {
-  id                     String  @id @default(cuid())
-  userId                 String
-  correctAnswers         Int
-  incorrectAnswers       Int
-  uniqueQuestions        Int
-  questionsAttempted     Int
-  timeSpent              Int
-  accuracy               Float
-  weaknessBySubtopic     Json
-  timePerQuestion        Float
-  improvementOverTime    Json
-  attemptRate            Float
-  firstAttemptSuccessRate Float
-  reattemptAccuracy      Float
-  topicPerformance       Json
-  consistency            Float
-  engagementLevel        Float
-  completed              Boolean @default(false)
-  reviewed               Boolean @default(false)
-  user                   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                        String   @id @default(uuid())
+  userId                    String
+  accuracy                  Float
+  correctAnswers            Int
+  incorrectAnswers          Int
+  uniqueQuestions           Int
+  questionsAttempted        Int
+  timeSpent                 Int
+  weaknessBySubtopic        Json
+  improvementOverTime       Json
+  attemptRate               Float
+  firstAttemptSuccessRate   Float
+  reattemptAccuracy         Float
+  topicPerformance          Json
+  consistency               Float
+  engagementLevel           Float
+  completed                 Int      @default(0)
+  reviewed                  Int      @default(0)
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
 
-  @@unique([userId]) // Ensure userId is unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

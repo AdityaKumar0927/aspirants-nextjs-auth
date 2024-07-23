@@ -1,66 +1,74 @@
-import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../../auth/[...nextauth]/options';
+import { PrismaClient, Prisma } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function POST(request: Request) {
+export async function POST(req: Request) {
   try {
-    const session = await getServerSession(authOptions);
+    const { userId, questionId, ...updatedFields } = await req.json();
 
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const data = await request.json();
-
-    const userPerformance = await prisma.userPerformance.upsert({
-      where: { userId: session.user.id },
-      update: {
-        correctAnswers: data.correctAnswers ?? undefined,
-        incorrectAnswers: data.incorrectAnswers ?? undefined,
-        uniqueQuestions: data.uniqueQuestions ?? undefined,
-        questionsAttempted: data.questionsAttempted ?? undefined,
-        timeSpent: data.timeSpent ?? undefined,
-        accuracy: data.accuracy ?? undefined,
-        weaknessBySubtopic: data.weaknessBySubtopic ?? undefined,
-        timePerQuestion: data.timePerQuestion ?? undefined,
-        improvementOverTime: data.improvementOverTime ?? undefined,
-        attemptRate: data.attemptRate ?? undefined,
-        firstAttemptSuccessRate: data.firstAttemptSuccessRate ?? undefined,
-        reattemptAccuracy: data.reattemptAccuracy ?? undefined,
-        topicPerformance: data.topicPerformance ?? undefined,
-        consistency: data.consistency ?? undefined,
-        engagementLevel: data.engagementLevel ?? undefined,
-        completed: data.completed ?? undefined,
-        reviewed: data.reviewed ?? undefined,
-      },
-      create: {
-        userId: session.user.id,
-        correctAnswers: data.correctAnswers ?? 0,
-        incorrectAnswers: data.incorrectAnswers ?? 0,
-        uniqueQuestions: data.uniqueQuestions ?? 0,
-        questionsAttempted: data.questionsAttempted ?? 0,
-        timeSpent: data.timeSpent ?? 0,
-        accuracy: data.accuracy ?? 0,
-        weaknessBySubtopic: data.weaknessBySubtopic ?? {},
-        timePerQuestion: data.timePerQuestion ?? 0,
-        improvementOverTime: data.improvementOverTime ?? {},
-        attemptRate: data.attemptRate ?? 0,
-        firstAttemptSuccessRate: data.firstAttemptSuccessRate ?? 0,
-        reattemptAccuracy: data.reattemptAccuracy ?? 0,
-        topicPerformance: data.topicPerformance ?? {},
-        consistency: data.consistency ?? 0,
-        engagementLevel: data.engagementLevel ?? 0,
-        completed: data.completed ?? false,
-        reviewed: data.reviewed ?? false,
-      },
+    const userPerformance = await prisma.userPerformance.findUnique({
+      where: { userId },
     });
 
-    return NextResponse.json(userPerformance);
+    if (!userPerformance) {
+      return NextResponse.json({ message: 'User performance data not found' }, { status: 404 });
+    }
+
+    const updateData: Prisma.UserPerformanceUpdateInput = { ...updatedFields };
+
+    // Aggregate the fields
+    if (updatedFields.correctAnswers !== undefined) {
+      updateData.correctAnswers = userPerformance.correctAnswers + updatedFields.correctAnswers;
+    }
+    if (updatedFields.incorrectAnswers !== undefined) {
+      updateData.incorrectAnswers = userPerformance.incorrectAnswers + updatedFields.incorrectAnswers;
+    }
+    if (updatedFields.uniqueQuestions !== undefined) {
+      updateData.uniqueQuestions = userPerformance.uniqueQuestions + updatedFields.uniqueQuestions;
+    }
+    if (updatedFields.questionsAttempted !== undefined) {
+      updateData.questionsAttempted = userPerformance.questionsAttempted + updatedFields.questionsAttempted;
+    }
+    if (updatedFields.timeSpent !== undefined) {
+      updateData.timeSpent = userPerformance.timeSpent + updatedFields.timeSpent;
+    }
+    if (updatedFields.completed !== undefined) {
+      updateData.completed = userPerformance.completed + updatedFields.completed;
+    }
+    if (updatedFields.reviewed !== undefined) {
+      updateData.reviewed = userPerformance.reviewed + updatedFields.reviewed;
+    }
+
+    // Handle JSON fields (assuming they are arrays that need merging)
+    if (updatedFields.weaknessBySubtopic !== undefined) {
+      updateData.weaknessBySubtopic = [
+        ...(userPerformance.weaknessBySubtopic as Prisma.JsonArray),
+        ...(updatedFields.weaknessBySubtopic as Prisma.JsonArray),
+      ];
+    }
+    if (updatedFields.improvementOverTime !== undefined) {
+      updateData.improvementOverTime = [
+        ...(userPerformance.improvementOverTime as Prisma.JsonArray),
+        ...(updatedFields.improvementOverTime as Prisma.JsonArray),
+      ];
+    }
+    if (updatedFields.topicPerformance !== undefined) {
+      updateData.topicPerformance = [
+        ...(userPerformance.topicPerformance as Prisma.JsonArray),
+        ...(updatedFields.topicPerformance as Prisma.JsonArray),
+      ];
+    }
+
+    // Update the record
+    await prisma.userPerformance.update({
+      where: { userId },
+      data: updateData,
+    });
+
+    return NextResponse.json({ message: 'User performance updated successfully' });
   } catch (error) {
     console.error('Error updating user performance:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ message: 'Failed to update user performance' }, { status: 500 });
   }
 }
