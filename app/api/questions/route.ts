@@ -24,6 +24,7 @@ export async function GET() {
         markscheme: true,
         notes: true,
         lastAttempted: true,
+        diagramUrl: true, // Add this line
       },
     });
     return NextResponse.json(questions);

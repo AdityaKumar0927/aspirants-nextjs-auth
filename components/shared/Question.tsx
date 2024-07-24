@@ -22,7 +22,7 @@ interface QuestionType {
   correctOption?: string;
   markscheme?: string;
   notes?: string;
-  diagramUrl?: string; // Add this line
+  diagramUrl?: string;
 }
 
 interface QuestionProps {
@@ -237,7 +237,7 @@ const Question: React.FC<QuestionProps> = ({
               </button>
             </div>
           </div>
-          {question.diagramUrl && question.diagramUrl.trim() !== "" && (
+          {question.diagramUrl && question.diagramUrl !== "" && (
             <div className="relative w-64 h-64 mb-4">
               <Image
                 src={question.diagramUrl}
