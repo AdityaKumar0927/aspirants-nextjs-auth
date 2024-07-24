@@ -98,8 +98,6 @@ model Question {
   progresses       UserProgress[]
 }
 
-
-
 model Note {
   id         String   @id @default(cuid())
   content    String
@@ -128,10 +126,7 @@ model UserPerformance {
   topicPerformance        Json
   consistency             Float
   engagementLevel         Float
-  completed               int @default(0)
-  reviewed                int @default(0)
+  completed               Int @default(0)
+  reviewed                Int @default(0)
   user                    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
-
-
-
