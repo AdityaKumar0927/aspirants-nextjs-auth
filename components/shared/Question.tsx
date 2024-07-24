@@ -22,7 +22,7 @@ interface QuestionType {
   correctOption?: string;
   markscheme?: string;
   notes?: string;
-  diagramUrl?: string;
+  diagramUrl?: string; // Add this line
 }
 
 interface QuestionProps {
@@ -201,8 +201,6 @@ const Question: React.FC<QuestionProps> = ({
     dismiss();
   };
 
-  console.log("Diagram URL: ", question.diagramUrl);
-
   return (
     <div className="flex flex-col mb-6">
       <div className="border-2 rounded-lg p-4 bg-white relative w-full">
@@ -239,7 +237,7 @@ const Question: React.FC<QuestionProps> = ({
               </button>
             </div>
           </div>
-          {question.diagramUrl && (
+          {question.diagramUrl && question.diagramUrl.trim() !== "" && (
             <div className="relative w-64 h-64 mb-4">
               <Image
                 src={question.diagramUrl}
