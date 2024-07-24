@@ -172,7 +172,7 @@ const QuestionBank: React.FC = () => {
 
   useEffect(() => {
     filterQuestions();
-  }, [filterQuestions]);
+  }, [filters, filterQuestions]);
 
   const handleFilterChange = (tag: keyof FiltersType, value: string) => {
     setFilters((prevFilters) => {
@@ -402,9 +402,18 @@ const QuestionBank: React.FC = () => {
               handleNumericalChange={(questionId, value) => {
                 setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
               }}
-              handleMarkschemeToggle={() => setShowMarkscheme((prev) => ({ ...prev, [question.questionId]: !prev[question.questionId] }))}
-              handleMarkForReview={() => handleMarkForReview(question.questionId, !question.reviewed)}
-              handleMarkComplete={() => handleMarkComplete(question.questionId, !question.completed)}
+              handleMarkschemeToggle={() =>
+                setShowMarkscheme((prev) => ({
+                  ...prev,
+                  [question.questionId]: !prev[question.questionId],
+                }))
+              }
+              handleMarkForReview={() =>
+                handleMarkForReview(question.questionId, !question.reviewed)
+              }
+              handleMarkComplete={() =>
+                handleMarkComplete(question.questionId, !question.completed)
+              }
               isMarkedForReview={question.reviewed}
               isMarkedComplete={question.completed}
               markschemesDisabled={false}
