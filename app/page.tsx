@@ -344,9 +344,7 @@ const Page = () => {
 
   return (
     <>
-      
-     
-      
+        
       <div className="z-10 w-full max-w-xl px-5 xl:px-0">
         <div className="text-center px-4">
         <div className="flex flex-col items-center gap-6 pb-8 text-center">
@@ -497,7 +495,7 @@ const Page = () => {
           </a>
         </motion.div>
   
-
+       
       <FAQ />
     </>
   );

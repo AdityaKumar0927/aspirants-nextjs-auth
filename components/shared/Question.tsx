@@ -22,7 +22,7 @@ interface QuestionType {
   correctOption?: string;
   markscheme?: string;
   notes?: string;
-  diagramUrl?: string;
+  diagramUrl?: string; // Add this line
 }
 
 interface QuestionProps {
@@ -236,13 +236,13 @@ const Question: React.FC<QuestionProps> = ({
             </div>
           </div>
           {question.diagramUrl && (
-            <div className="w-full mb-4">
+            <div className="relative w-64 h-64">
               <Image
                 src={question.diagramUrl}
                 alt={`Diagram for question ${question.questionId}`}
-                width={460}
-                height={608}
-                className="mx-auto"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-md"
               />
             </div>
           )}
@@ -310,7 +310,9 @@ const Question: React.FC<QuestionProps> = ({
                 <h2 className="font-display text-2xl font-bold">Markscheme</h2>
               </div>
               <div className="overflow-y-auto max-h-[60vh] px-4 py-6 text-left text-gray-700">
-                <p className="mb-2">{question.markscheme ? <MathRenderer text={question.markscheme} /> : "No answer available"}</p>
+                <p className="mb-2">
+                  {question.markscheme ? <MathRenderer text={question.markscheme} /> : 'No answer available'}
+                </p>
               </div>
             </div>
           </Modal>
@@ -329,7 +331,7 @@ const Question: React.FC<QuestionProps> = ({
                     className="flex justify-center items-center p-3 bg-gray-200 rounded-full focus:outline-none"
                   >
                     <span className="sr-only">Toggle Volume Control</span>
-                    <i className={`fas ${isPlaying ? "fa-pause" : "fa-play"} text-xl`}></i>
+                    <i className={`fas ${isPlaying ? 'fa-pause' : 'fa-play'} text-xl`}></i>
                   </button>
                   {showVolumeControl && (
                     <input
@@ -350,12 +352,12 @@ const Question: React.FC<QuestionProps> = ({
                       checked={markschemeEnabled}
                       onChange={handleMarkschemeSwitch}
                       className={`${
-                        markschemeEnabled ? "bg-blue-600" : "bg-gray-200"
+                        markschemeEnabled ? 'bg-blue-600' : 'bg-gray-200'
                       } relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 ease-in-out`}
                     >
                       <span
                         className={`${
-                          markschemeEnabled ? "translate-x-6" : "translate-x-1"
+                          markschemeEnabled ? 'translate-x-6' : 'translate-x-1'
                         } inline-block h-4 w-4 transform bg-white rounded-full transition-transform duration-300 ease-in-out`}
                       />
                     </Switch>
@@ -369,12 +371,12 @@ const Question: React.FC<QuestionProps> = ({
                       checked={aiEnabled}
                       onChange={setAiEnabled}
                       className={`${
-                        aiEnabled ? "bg-blue-600" : "bg-gray-200"
+                        aiEnabled ? 'bg-blue-600' : 'bg-gray-200'
                       } relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 ease-in-out`}
                     >
                       <span
                         className={`${
-                          aiEnabled ? "translate-x-6" : "translate-x-1"
+                          aiEnabled ? 'translate-x-6' : 'translate-x-1'
                         } inline-block h-4 w-4 transform bg-white rounded-full transition-transform duration-300 ease-in-out`}
                       />
                     </Switch>
@@ -388,12 +390,12 @@ const Question: React.FC<QuestionProps> = ({
                       checked={notesEnabled}
                       onChange={setNotesEnabled}
                       className={`${
-                        notesEnabled ? "bg-blue-600" : "bg-gray-200"
+                        notesEnabled ? 'bg-blue-600' : 'bg-gray-200'
                       } relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 ease-in-out`}
                     >
                       <span
                         className={`${
-                          notesEnabled ? "translate-x-6" : "translate-x-1"
+                          notesEnabled ? 'translate-x-6' : 'translate-x-1'
                         } inline-block h-4 w-4 transform bg-white rounded-full transition-transform duration-300 ease-in-out`}
                       />
                     </Switch>
@@ -408,7 +410,7 @@ const Question: React.FC<QuestionProps> = ({
               <div className="flex items-center mx-auto space-x-2">
                 {notesEnabled && (
                   <button
-                    className="text-gray-700 px-2 py-1 border border-gray-300 hover:bg-gray-200 rounded-md text-xs"
+                    className="text-gray-700 px-2 py-1 border border-gray-300 hover:bg-gray-200  rounded-md text-xs"
                     onClick={() => setShowEditor(!showEditor)}
                   >
                     <BookOpen className="h-5 w-5" />
