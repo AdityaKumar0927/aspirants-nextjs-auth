@@ -1,12 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import "katex/dist/katex.min.css";
 import Question from "@/components/shared/Question";
-import Modal from "@/components/shared/modal";
-import MathRenderer from "@/components/layout/MathRenderer";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
 
@@ -27,7 +22,7 @@ interface QuestionType {
   markscheme?: string;
   notes?: string;
   lastAttempted?: string;
-  diagramUrl?: string; // Added this line
+  diagramUrl?: string;
 }
 
 interface UserPerformance {
@@ -109,16 +104,15 @@ const QuestionBank: React.FC = () => {
   const [feedback, setFeedback] = useState<Record<string, string>>({});
   const [numericalAnswers, setNumericalAnswers] = useState<Record<string, string>>({});
   const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
-  const [markschemeContent, setMarkschemeContent] = useState<string>("");
-  const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState<boolean>(true); // Add loading state
+  const [loading, setLoading] = useState<boolean>(true);
   const userId = ""; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true); // Set loading to true before fetching data
+        setLoading(true);
         const questionsData = await fetchQuestions();
         const userProgressData = await fetchUserProgress();
         const notesData = await fetchNotes();
@@ -139,7 +133,7 @@ const QuestionBank: React.FC = () => {
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
-        setLoading(false); // Set loading to false after fetching data
+        setLoading(false);
       }
     };
 
@@ -292,7 +286,7 @@ const QuestionBank: React.FC = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Render loading state
+    return <div>Loading...</div>;
   }
 
   return (
@@ -408,7 +402,7 @@ const QuestionBank: React.FC = () => {
               handleNumericalChange={(questionId, value) => {
                 setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
               }}
-              handleMarkschemeToggle={() => setShowMarkschemeModal(true)}
+              handleMarkschemeToggle={() => setShowMarkscheme((prev) => ({ ...prev, [question.questionId]: true }))}
               handleMarkForReview={() => handleMarkForReview(question.questionId, !question.reviewed)}
               handleMarkComplete={() => handleMarkComplete(question.questionId, !question.completed)}
               isMarkedForReview={question.reviewed}

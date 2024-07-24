@@ -86,18 +86,18 @@ declare global {
     questionsAttempted: number;
     timeSpent: number;
     accuracy: number;
-    weaknessBySubtopic: Record<string, any>;
-    timePerQuestion: number;
-    improvementOverTime: Record<string, any>;
+    weaknessBySubtopic: any;
+    improvementOverTime: any;
     attemptRate: number;
     firstAttemptSuccessRate: number;
     reattemptAccuracy: number;
-    topicPerformance: Record<string, any>;
+    topicPerformance: any;
     consistency: number;
     engagementLevel: number;
-    completed: boolean;
-    reviewed: boolean;
+    completed: number;
+    reviewed: number;
   }
+  
 }
 
 export {};

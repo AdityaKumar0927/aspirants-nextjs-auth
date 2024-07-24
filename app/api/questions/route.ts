@@ -1,4 +1,3 @@
-// app/api/questions/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 
@@ -24,7 +23,7 @@ export async function GET() {
         markscheme: true,
         notes: true,
         lastAttempted: true,
-        diagramUrl: true, // Add this line
+        diagramUrl: true,
       },
     });
     return NextResponse.json(questions);

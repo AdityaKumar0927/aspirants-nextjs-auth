@@ -128,8 +128,8 @@ model UserPerformance {
   topicPerformance        Json
   consistency             Float
   engagementLevel         Float
-  completed               Boolean @default(false)
-  reviewed                Boolean @default(false)
+  completed               int @default(0)
+  reviewed                int @default(0)
   user                    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
