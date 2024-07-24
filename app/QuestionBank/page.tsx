@@ -315,22 +315,22 @@ const QuestionBank: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-          {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map((filterType) => (
+          {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map((filterType) => (
             <Popover
               key={filterType}
               content={
                 <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                  {(filterType === "exam"
+                  {(filterType === "exams"
                     ? exams
-                    : filterType === "subject"
+                    : filterType === "subjects"
                     ? subjects
-                    : filterType === "topic"
+                    : filterType === "topics"
                     ? topics
-                    : filterType === "subtopic"
+                    : filterType === "subtopics"
                     ? subtopics
-                    : filterType === "difficulty"
+                    : filterType === "difficulties"
                     ? difficulties
-                    : filterType === "year"
+                    : filterType === "years"
                     ? years
                     : types
                   ).map((value: string) => (
@@ -402,7 +402,7 @@ const QuestionBank: React.FC = () => {
               handleNumericalChange={(questionId, value) => {
                 setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
               }}
-              handleMarkschemeToggle={() => setShowMarkscheme((prev) => ({ ...prev, [question.questionId]: true }))}
+              handleMarkschemeToggle={() => setShowMarkscheme((prev) => ({ ...prev, [question.questionId]: !prev[question.questionId] }))}
               handleMarkForReview={() => handleMarkForReview(question.questionId, !question.reviewed)}
               handleMarkComplete={() => handleMarkComplete(question.questionId, !question.completed)}
               isMarkedForReview={question.reviewed}
