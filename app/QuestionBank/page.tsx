@@ -106,13 +106,13 @@ const QuestionBank: React.FC = () => {
   const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true); // Add loading state
   const userId = ""; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
+        setLoading(true); // Set loading to true before fetching data
         const questionsData = await fetchQuestions();
         const userProgressData = await fetchUserProgress();
         const notesData = await fetchNotes();
@@ -133,7 +133,7 @@ const QuestionBank: React.FC = () => {
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
-        setLoading(false);
+        setLoading(false); // Set loading to false after fetching data
       }
     };
 
@@ -286,7 +286,7 @@ const QuestionBank: React.FC = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // Render loading state
   }
 
   return (
