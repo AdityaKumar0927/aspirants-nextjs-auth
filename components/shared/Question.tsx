@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Modal from "@/components/shared/modal";
@@ -87,6 +87,8 @@ const Question: React.FC<QuestionProps> = ({
   const [showAiChat, setShowAiChat] = useState(false);
 
   const { toast, dismiss } = useToast();
+
+  console.log("Question data received: ", question);
 
   const handleOptionClickLocal = (option: string) => {
     if (selectedOption !== option) {
@@ -199,6 +201,8 @@ const Question: React.FC<QuestionProps> = ({
     dismiss();
   };
 
+  console.log("Diagram URL: ", question.diagramUrl);
+
   return (
     <div className="flex flex-col mb-6">
       <div className="border-2 rounded-lg p-4 bg-white relative w-full">
@@ -236,7 +240,7 @@ const Question: React.FC<QuestionProps> = ({
             </div>
           </div>
           {question.diagramUrl && (
-            <div className="relative w-64 h-64">
+            <div className="relative w-64 h-64 mb-4">
               <Image
                 src={question.diagramUrl}
                 alt={`Diagram for question ${question.questionId}`}
