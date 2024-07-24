@@ -132,7 +132,6 @@ const QuestionBank: React.FC = () => {
             completed: progress ? progress.completed : false,
             notes: note ? note.content : "",
             lastAttempted: progress ? progress.lastAttempted : "",
-            diagramUrl: question.diagramUrl || "", // Ensure diagramUrl is a string
           };
         });
         setQuestions(mergedQuestions);
