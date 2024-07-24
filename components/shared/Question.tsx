@@ -22,6 +22,7 @@ interface QuestionType {
   correctOption?: string;
   markscheme?: string;
   notes?: string;
+  diagramUrl?: string;  // Add diagramUrl here
 }
 
 interface QuestionProps {
@@ -229,6 +230,11 @@ const Question: React.FC<QuestionProps> = ({
           <p className="text-gray-700 mb-4">
             <MathRenderer text={question.text} />
           </p>
+          {question.diagramUrl && (
+            <div className="mb-4">
+              <Image src={question.diagramUrl} alt={`Diagram for question ${question.questionId}`} width={500} height={300} />
+            </div>
+          )}
           {question.type === 'Numerical' && (
             <div className="mb-4">
               <input
