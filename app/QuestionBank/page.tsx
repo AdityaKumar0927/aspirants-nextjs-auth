@@ -27,7 +27,7 @@ interface QuestionType {
   markscheme?: string;
   notes?: string;
   lastAttempted?: string;
-  diagramUrl?: string; // Add this line
+  diagramUrl?: string; // Added this line
 }
 
 interface UserPerformance {
@@ -72,7 +72,7 @@ const initialFilters: FiltersType = {
 };
 
 const isStringArray = (value: any): value is string[] => {
-  return Array.isArray(value) && value.every(item => typeof item === 'string');
+  return Array.isArray(value) && value.every((item) => typeof item === "string");
 };
 
 const fetchQuestions = async () => {
@@ -137,7 +137,7 @@ const QuestionBank: React.FC = () => {
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       } finally {
         setLoading(false); // Set loading to false after fetching data
       }
@@ -194,26 +194,27 @@ const QuestionBank: React.FC = () => {
     });
   };
 
-  const updateUserPerformance = async (questionId: string, updatedFields: Partial<QuestionType & Omit<UserPerformance, 'timePerQuestion'>>) => {
+  const updateUserPerformance = async (
+    questionId: string,
+    updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>
+  ) => {
     try {
       const response = await fetch(`/api/user-performance/update`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ questionId, ...updatedFields }),
       });
-      if (!response.ok) throw new Error('Failed to update user performance');
+      if (!response.ok) throw new Error("Failed to update user performance");
     } catch (error) {
-      console.error('Error updating user performance:', error);
+      console.error("Error updating user performance:", error);
     }
   };
-  
+
   const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
     await updateUserPerformance(questionId, { completed: isComplete });
 
     setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.questionId === questionId ? { ...q, completed: isComplete } : q
-      )
+      prevQuestions.map((q) => (q.questionId === questionId ? { ...q, completed: isComplete } : q))
     );
   };
 
@@ -221,9 +222,7 @@ const QuestionBank: React.FC = () => {
     await updateUserPerformance(questionId, { reviewed: isReviewed });
 
     setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
-      )
+      prevQuestions.map((q) => (q.questionId === questionId ? { ...q, reviewed: isReviewed } : q))
     );
   };
 
@@ -262,27 +261,27 @@ const QuestionBank: React.FC = () => {
     });
 
     try {
-      const response = await fetch('/api/notes/save', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/notes/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ questionId, content: note }),
       });
-      if (!response.ok) throw new Error('Failed to save note');
+      if (!response.ok) throw new Error("Failed to save note");
     } catch (error) {
-      console.error('Error saving note:', error);
+      console.error("Error saving note:", error);
     }
   };
 
   const handleDeleteNote = async (questionId: string) => {
     try {
-      const response = await fetch('/api/notes/delete', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/notes/delete", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ questionId }),
       });
-      if (!response.ok) throw new Error('Failed to delete note');
+      if (!response.ok) throw new Error("Failed to delete note");
     } catch (error) {
-      console.error('Error deleting note:', error);
+      console.error("Error deleting note:", error);
     }
 
     setNotes((prevNotes) => {
@@ -386,9 +385,7 @@ const QuestionBank: React.FC = () => {
                 </p>
                 <ChevronDown
                   className={`h-4 w-4 text-gray-600 transition-all ${
-                    dropdowns[filterType as keyof typeof dropdowns]
-                      ? "rotate-180"
-                      : ""
+                    dropdowns[filterType as keyof typeof dropdowns] ? "rotate-180" : ""
                   }`}
                 />
               </button>
@@ -411,9 +408,7 @@ const QuestionBank: React.FC = () => {
               handleNumericalChange={(questionId, value) => {
                 setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
               }}
-              handleMarkschemeToggle={() =>
-                setShowMarkschemeModal(true)
-              }
+              handleMarkschemeToggle={() => setShowMarkschemeModal(true)}
               handleMarkForReview={() => handleMarkForReview(question.questionId, !question.reviewed)}
               handleMarkComplete={() => handleMarkComplete(question.questionId, !question.completed)}
               isMarkedForReview={question.reviewed}
