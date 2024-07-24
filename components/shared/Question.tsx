@@ -5,10 +5,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Modal from "@/components/shared/modal";
 import { LucideBookmark, Settings2, BookOpen, LucideBot } from "lucide-react";
-import { Switch } from '@headlessui/react';
-import Image from 'next/image';
-import Tiptap from '@/components/layout/Tiptap';
-import Chat from '@/components/shared/Chat';
+import { Switch } from "@headlessui/react";
+import Image from "next/image";
+import Tiptap from "@/components/layout/Tiptap";
+import Chat from "@/components/shared/Chat";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -17,12 +17,12 @@ interface QuestionType {
   text: string;
   subject: string;
   difficulty: string;
-  type: 'Multiple Choice' | 'Numerical';
+  type: "Multiple Choice" | "Numerical";
   options?: string[];
   correctOption?: string;
   markscheme?: string;
   notes?: string;
-  diagramUrl?: string;  // Add diagramUrl here
+  diagramUrl?: string; // Add this line
 }
 
 interface QuestionProps {
@@ -30,8 +30,16 @@ interface QuestionProps {
   feedback: string | undefined;
   numericalAnswer: string | undefined;
   showMarkscheme: boolean | undefined;
-  handleOptionClick: (questionId: string, option: string, correctOption: string) => void;
-  handleNumericalSubmit: (questionId: string, userAnswer: string, correctAnswer: string) => void;
+  handleOptionClick: (
+    questionId: string,
+    option: string,
+    correctOption: string
+  ) => void;
+  handleNumericalSubmit: (
+    questionId: string,
+    userAnswer: string,
+    correctAnswer: string
+  ) => void;
   handleNumericalChange: (questionId: string, value: string) => void;
   handleMarkschemeToggle: (questionId: string) => void;
   handleMarkForReview: (questionId: string) => void;
@@ -227,14 +235,20 @@ const Question: React.FC<QuestionProps> = ({
               </button>
             </div>
           </div>
+          {question.diagramUrl && (
+            <div className="w-full mb-4">
+              <Image
+                src={question.diagramUrl}
+                alt={`Diagram for question ${question.questionId}`}
+                width={460}
+                height={608}
+                className="mx-auto"
+              />
+            </div>
+          )}
           <p className="text-gray-700 mb-4">
             <MathRenderer text={question.text} />
           </p>
-          {question.diagramUrl && (
-            <div className="mb-4">
-              <Image src={question.diagramUrl} alt={`Diagram for question ${question.questionId}`} width={500} height={300} />
-            </div>
-          )}
           {question.type === 'Numerical' && (
             <div className="mb-4">
               <input
