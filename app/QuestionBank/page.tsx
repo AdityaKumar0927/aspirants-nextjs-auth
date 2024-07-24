@@ -27,7 +27,7 @@ interface QuestionType {
   markscheme?: string;
   notes?: string;
   lastAttempted?: string;
-  diagramUrl?: string; // Added this line
+  diagramUrl?: string;
 }
 
 interface UserPerformance {
@@ -112,13 +112,13 @@ const QuestionBank: React.FC = () => {
   const [markschemeContent, setMarkschemeContent] = useState<string>("");
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState<boolean>(true); // Add loading state
-  const userId = ""; // Add logic to retrieve user ID if signed in
+  const [loading, setLoading] = useState<boolean>(true);
+  const userId = ""; 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true); // Set loading to true before fetching data
+        setLoading(true); 
         const questionsData = await fetchQuestions();
         const userProgressData = await fetchUserProgress();
         const notesData = await fetchNotes();
@@ -139,7 +139,7 @@ const QuestionBank: React.FC = () => {
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
-        setLoading(false); // Set loading to false after fetching data
+        setLoading(false);
       }
     };
 
@@ -239,7 +239,6 @@ const QuestionBank: React.FC = () => {
       uniqueQuestions: 1,
       questionsAttempted: 1,
       lastAttempted: new Date().toISOString(),
-      // Add other fields as necessary
     };
 
     await updateUserPerformance(questionId, updatedFields);
@@ -292,7 +291,7 @@ const QuestionBank: React.FC = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Render loading state
+    return <div>Loading...</div>;
   }
 
   return (

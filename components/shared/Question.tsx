@@ -22,7 +22,7 @@ interface QuestionType {
   correctOption?: string;
   markscheme?: string;
   notes?: string;
-  diagramUrl?: string; // Add this line
+  diagramUrl?: string;
 }
 
 interface QuestionProps {
