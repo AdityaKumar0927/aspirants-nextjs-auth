@@ -111,6 +111,8 @@ const Question: React.FC<QuestionProps> = ({
   const handleOptionClickLocal = (option: string) => {
     if (selectedOption !== option) {
       setSelectedOption(option);
+      const isCorrect = option === question.correctOption;
+      setFeedback(isCorrect ? 'correct' : 'incorrect');
       handleOptionClick(question.questionId, option, question.correctOption || '');
       saveProgress(question.questionId, 'completed', true);
     }
