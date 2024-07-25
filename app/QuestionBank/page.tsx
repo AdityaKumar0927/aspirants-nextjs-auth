@@ -27,7 +27,14 @@ interface QuestionType {
   diagramUrl?: string;
 }
 
+interface UserAnswer {
+  questionId: string;
+  selectedOption: string;
+  isCorrect: boolean;
+}
+
 interface UserPerformance {
+  questionId: string;
   correctAnswers: number;
   incorrectAnswers: number;
   uniqueQuestions: number;
@@ -44,7 +51,7 @@ interface UserPerformance {
   engagementLevel: number;
   completed: boolean;
   reviewed: boolean;
-  lastAttempted?: string; // Add this line
+  lastAttempted?: string;
 }
 
 type FiltersType = {
@@ -85,15 +92,15 @@ const fetchUserProgress = async () => {
   return response.json();
 };
 
-const fetchNotes = async () => {
-  const response = await fetch("/api/notes");
-  if (!response.ok) throw new Error("Failed to fetch notes");
-  return response.json();
-};
-
 const fetchUserAnswers = async () => {
   const response = await fetch("/api/user-answers");
   if (!response.ok) throw new Error("Failed to fetch user answers");
+  return response.json();
+};
+
+const fetchNotes = async () => {
+  const response = await fetch("/api/notes");
+  if (!response.ok) throw new Error("Failed to fetch notes");
   return response.json();
 };
 
@@ -122,26 +129,28 @@ const QuestionBank: React.FC = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const questionsData = await fetchQuestions();
-        const userProgressData = await fetchUserProgress();
-        const notesData = await fetchNotes();
-        const userAnswersData = await fetchUserAnswers();
+        const [questionsData, userProgressData, userAnswersData, notesData] = await Promise.all([
+          fetchQuestions(),
+          fetchUserProgress(),
+          fetchUserAnswers(),
+          fetchNotes(),
+        ]);
 
         const mergedQuestions = questionsData.map((question: QuestionType) => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
+          const answer = userAnswersData.find((a: UserAnswer) => a.questionId === question.questionId);
           const note = notesData.find((n: any) => n.questionId === question.questionId);
-          const answer = userAnswersData.find((a: any) => a.questionId === question.questionId);
+
           return {
             ...question,
             reviewed: progress ? progress.reviewed : false,
             completed: progress ? progress.completed : false,
+            selectedOption: answer ? answer.selectedOption : "",
+            feedback: answer ? (answer.isCorrect ? "correct" : "incorrect") : "",
             notes: note ? note.content : "",
             lastAttempted: progress ? progress.lastAttempted : "",
-            selectedOption: answer ? answer.selectedOption : null,
-            feedback: answer ? answer.feedback : null,
           };
         });
-
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
       } catch (error) {
