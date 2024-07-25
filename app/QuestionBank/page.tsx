@@ -25,6 +25,9 @@ interface QuestionType {
   notes?: string;
   lastAttempted?: string;
   diagramUrl?: string;
+  selectedOption?: string;
+  isCorrect?: boolean;
+  feedback?: string;
 }
 
 interface UserPerformance {
@@ -101,7 +104,7 @@ const QuestionBank: React.FC = () => {
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState<boolean>(true);
-  const userId = "user-id"; // Add logic to retrieve user ID if signed in
+  const userId = "user-id"; // Replace with logic to retrieve user ID if signed in
 
   useEffect(() => {
     const fetchData = async () => {
@@ -125,6 +128,7 @@ const QuestionBank: React.FC = () => {
             feedback: progress ? progress.feedback : "",
           };
         });
+
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
         setFeedback(userProgressData.reduce((acc: any, cur: UserPerformance) => ({ ...acc, [cur.questionId]: cur.feedback }), {}));
@@ -241,15 +245,11 @@ const QuestionBank: React.FC = () => {
     });
 
     const updatedFields = {
-      correctAnswers: isCorrect ? 1 : 0,
-      incorrectAnswers: !isCorrect ? 1 : 0,
-      uniqueQuestions: 1,
-      questionsAttempted: 1,
-      lastAttempted: new Date().toISOString(),
-      completed: true,
       selectedOption: option,
-      isCorrect: isCorrect,
+      isCorrect,
       feedback: isCorrect ? "correct" : "incorrect",
+      completed: true,
+      lastAttempted: new Date().toISOString(),
     };
 
     await updateUserPerformance(questionId, updatedFields);
@@ -266,13 +266,15 @@ const QuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
+
     await updateUserPerformance(questionId, {
-      lastAttempted: new Date().toISOString(),
-      completed: true,
-      userAnswer: userAnswer,
-      isCorrect: isCorrect,
+      userAnswer,
+      isCorrect,
       feedback: isCorrect ? "correct" : "incorrect",
+      completed: true,
+      lastAttempted: new Date().toISOString(),
     });
+
     await saveUserAnswer(questionId, userAnswer, isCorrect);
 
     setQuestions((prevQuestions) =>
