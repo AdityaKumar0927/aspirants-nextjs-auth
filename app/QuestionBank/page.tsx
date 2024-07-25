@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import Question from "@/components/shared/Question";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
@@ -130,6 +130,7 @@ const QuestionBank: React.FC = () => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
           const note = notesData.find((n: any) => n.questionId === question.questionId);
           const userAnswer = userAnswersData.find((ua: any) => ua.questionId === question.questionId);
+
           return {
             ...question,
             reviewed: progress ? progress.reviewed : false,
@@ -202,7 +203,7 @@ const QuestionBank: React.FC = () => {
 
   const updateUserPerformance = async (
     questionId: string,
-    updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>
+    updatedFields: Partial<UserPerformance>
   ) => {
     try {
       const response = await fetch(`/api/user-performance/update`, {
@@ -252,14 +253,13 @@ const QuestionBank: React.FC = () => {
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
 
-    const updatedFields = {
+    const updatedFields: Partial<UserPerformance> = {
       correctAnswers: isCorrect ? 1 : 0,
       incorrectAnswers: !isCorrect ? 1 : 0,
       uniqueQuestions: 1,
       questionsAttempted: 1,
       lastAttempted: new Date().toISOString(),
       completed: true,
-      // Add other fields as necessary
     };
 
     await updateUserPerformance(questionId, updatedFields);
