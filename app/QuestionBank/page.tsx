@@ -107,11 +107,9 @@ const QuestionBank: React.FC = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const [questionsData, userProgressData, notesData] = await Promise.all([
-          fetchQuestions(),
-          fetchUserProgress(userId),
-          fetchNotes(userId)
-        ]);
+        const questionsData = await fetchQuestions();
+        const userProgressData = await fetchUserProgress(userId);
+        const notesData = await fetchNotes(userId);
 
         const mergedQuestions = questionsData.map((question: QuestionType) => {
           const progress = userProgressData.find((p: UserPerformance) => p.questionId === question.questionId);
