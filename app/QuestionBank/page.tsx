@@ -25,8 +25,8 @@ interface QuestionType {
   notes?: string;
   lastAttempted?: string;
   diagramUrl?: string;
-  selectedOption?: string; // Added this line to store selected option
-  isCorrect?: boolean; // Added this line to store if the answer is correct
+  selectedOption?: string;
+  feedback?: string;
 }
 
 interface UserPerformance {
@@ -131,15 +131,16 @@ const QuestionBank: React.FC = () => {
         const mergedQuestions = questionsData.map((question: QuestionType) => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
           const note = notesData.find((n: any) => n.questionId === question.questionId);
-          const answer = userAnswersData.find((a: any) => a.questionId === question.questionId);
+          const userAnswer = userAnswersData.find((ua: any) => ua.questionId === question.questionId);
+
           return {
             ...question,
             reviewed: progress ? progress.reviewed : false,
             completed: progress ? progress.completed : false,
             notes: note ? note.content : "",
             lastAttempted: progress ? progress.lastAttempted : "",
-            selectedOption: answer ? answer.selectedOption : undefined,
-            isCorrect: answer ? answer.isCorrect : undefined,
+            selectedOption: userAnswer ? userAnswer.selectedOption : "",
+            feedback: userAnswer ? (userAnswer.isCorrect ? "correct" : "incorrect") : "",
           };
         });
         setQuestions(mergedQuestions);
