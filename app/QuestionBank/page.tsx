@@ -130,7 +130,6 @@ const QuestionBank: React.FC = () => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
           const note = notesData.find((n: any) => n.questionId === question.questionId);
           const userAnswer = userAnswersData.find((ua: any) => ua.questionId === question.questionId);
-
           return {
             ...question,
             reviewed: progress ? progress.reviewed : false,
