@@ -14,12 +14,6 @@ interface Window {
   MathJax?: MathJax;
 }
 
-declare namespace JSX {
-  interface IntrinsicElements {
-    'math-field': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-  }
-}
-
 // types.ts
 export interface QuestionType {
   exam: string;
@@ -99,5 +93,11 @@ declare global {
   }
   
 }
+
+declare module 'react-mathjax-preview' {
+  const MathJax: React.FC<{ math: string }>;
+  export default MathJax;
+}
+
 
 export {};

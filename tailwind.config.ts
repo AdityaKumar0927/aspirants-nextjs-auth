@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
 const {
@@ -5,9 +6,13 @@ const {
 } = require("tailwindcss/lib/util/flattenColorPalette");
 const plugin = require("tailwindcss/plugin");
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}", "./src/**/*.{ts,tsx}"],
+const config = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   darkMode: "class",
   future: {
     hoverOnlyWhenSupported: true,
@@ -25,6 +30,8 @@ module.exports = {
         grid: "grid 15s linear infinite",
         gradient: "gradient 8s linear infinite",
         meteor: "meteor 5s linear infinite",
+        orbit: "orbit calc(var(--duration)*1s) linear infinite",
+        move: "move 5s linear infinite",
       },
       keyframes: {
         scroll: {
@@ -102,6 +109,18 @@ module.exports = {
             opacity: 0,
           },
         },
+        orbit: {
+          "0%": {
+            transform: "rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg)",
+          },
+        },
+        move: {
+          "0%": { transform: "translateX(-200px)" },
+          "100%": { transform: "translateX(200px)" },
+        },
       },
       colors: {
         border: "hsl(var(--border))",
@@ -152,7 +171,7 @@ module.exports = {
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
-    plugin(({ addVariant }: { addVariant: any }) => {
+    plugin(({ addVariant }: { addVariant: (name: string, definition: string) => void }) => {
       addVariant("radix-side-top", '&[data-side="top"]');
       addVariant("radix-side-bottom", '&[data-side="bottom"]');
     }),
@@ -160,7 +179,7 @@ module.exports = {
   ],
 };
 
-function addVariablesForColors({ addBase, theme }: { addBase: any, theme: any }) {
+function addVariablesForColors({ addBase, theme }: { addBase: (base: object) => void, theme: (path: string) => any }) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
@@ -170,3 +189,5 @@ function addVariablesForColors({ addBase, theme }: { addBase: any, theme: any })
     ":root": newVars,
   });
 }
+
+module.exports = config;

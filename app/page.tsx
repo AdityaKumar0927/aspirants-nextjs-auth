@@ -33,6 +33,10 @@ import { HoverEffect } from "@/components/ui/card-hover-effect";
 import Chat from "@/components/shared/Chat";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { BentoGridThirdDemo } from "@/components/home/features-grid";
+import OrbitingCircles from "@/components/magicui/orbiting-circles";
+import { AnimatedListDemo } from "@/components/magicui/animated-list-demo";
+import { CardDemo } from "@/components/ui/newcard";
 
 const testimonials = [
   {
@@ -494,7 +498,12 @@ const Page = () => {
             <ChevronRight className="size-4 translate-x-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
           </a>
         </motion.div>
-  
+
+        <BentoGridThirdDemo />
+
+        <OrbitingCirclesDemo />     
+        
+        <CardDemo />
        
       <FAQ />
     </>

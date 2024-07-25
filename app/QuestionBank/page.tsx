@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import Question from "@/components/shared/Question";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
@@ -90,7 +92,6 @@ const fetchNotes = async () => {
 
 const QuestionBank: React.FC = () => {
   const [questions, setQuestions] = useState<QuestionType[]>([]);
-  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
   const [dropdowns, setDropdowns] = useState({
     exam: false,
@@ -129,7 +130,6 @@ const QuestionBank: React.FC = () => {
           };
         });
         setQuestions(mergedQuestions);
-        setFilteredQuestions(mergedQuestions);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -140,15 +140,15 @@ const QuestionBank: React.FC = () => {
     fetchData();
   }, [userId]);
 
-  const exams = Array.from(new Set(questions.map((q) => q.exam)));
-  const subjects = Array.from(new Set(questions.map((q) => q.subject)));
-  const topics = Array.from(new Set(questions.map((q) => q.topic)));
-  const subtopics = Array.from(new Set(questions.map((q) => q.subtopic)));
-  const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
-  const years = Array.from(new Set(questions.map((q) => q.year)));
-  const types = Array.from(new Set(questions.map((q) => q.type)));
+  const exams = useMemo(() => Array.from(new Set(questions.map((q) => q.exam))), [questions]);
+  const subjects = useMemo(() => Array.from(new Set(questions.map((q) => q.subject))), [questions]);
+  const topics = useMemo(() => Array.from(new Set(questions.map((q) => q.topic))), [questions]);
+  const subtopics = useMemo(() => Array.from(new Set(questions.map((q) => q.subtopic))), [questions]);
+  const difficulties = useMemo(() => Array.from(new Set(questions.map((q) => q.difficulty))), [questions]);
+  const years = useMemo(() => Array.from(new Set(questions.map((q) => q.year))), [questions]);
+  const types = useMemo(() => Array.from(new Set(questions.map((q) => q.type))), [questions]);
 
-  const filterQuestions = useCallback(() => {
+  const filteredQuestions = useMemo(() => {
     let filtered = questions.filter((question) => {
       return (
         (!filters.exams.length || filters.exams.includes(question.exam)) &&
@@ -167,12 +167,8 @@ const QuestionBank: React.FC = () => {
       filtered = filtered.filter((question) => question.completed);
     }
 
-    setFilteredQuestions(filtered);
+    return filtered;
   }, [questions, filters]);
-
-  useEffect(() => {
-    filterQuestions();
-  }, [filters, filterQuestions]);
 
   const handleFilterChange = (tag: keyof FiltersType, value: string) => {
     setFilters((prevFilters) => {
@@ -233,10 +229,20 @@ const QuestionBank: React.FC = () => {
       uniqueQuestions: 1,
       questionsAttempted: 1,
       lastAttempted: new Date().toISOString(),
+      completed: true,
       // Add other fields as necessary
     };
 
+    setSelectedOptions((prev) => ({
+      ...prev,
+      [questionId]: option,
+    }));
+
     await updateUserPerformance(questionId, updatedFields);
+
+    setQuestions((prevQuestions) =>
+      prevQuestions.map((q) => (q.questionId === questionId ? { ...q, completed: true } : q))
+    );
   };
 
   const handleNumericalSubmit = async (questionId: string, userAnswer: string, correctAnswer: string) => {
@@ -245,7 +251,22 @@ const QuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
-    await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString() });
+
+    const updatedFields = {
+      correctAnswers: isCorrect ? 1 : 0,
+      incorrectAnswers: !isCorrect ? 1 : 0,
+      uniqueQuestions: 1,
+      questionsAttempted: 1,
+      lastAttempted: new Date().toISOString(),
+      completed: true,
+      // Add other fields as necessary
+    };
+
+    await updateUserPerformance(questionId, updatedFields);
+
+    setQuestions((prevQuestions) =>
+      prevQuestions.map((q) => (q.questionId === questionId ? { ...q, completed: true } : q))
+    );
   };
 
   const handleNoteChange = async (questionId: string, note: string) => {
@@ -286,7 +307,39 @@ const QuestionBank: React.FC = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+        <div className="max-w-6xl w-full">
+          <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
+            Question Bank
+          </h1>
+
+          <div className="flex space-x-4 mb-6">
+            <Skeleton height={40} width={120} />
+            <Skeleton height={40} width={120} />
+            <Skeleton height={40} width={120} />
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
+            {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map((filterType) => (
+              <div key={filterType} className="flex items-center space-x-2">
+                <Skeleton height={40} width={120} />
+              </div>
+            ))}
+          </div>
+
+          <div>
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className="mb-4 p-4 border rounded-md">
+                <Skeleton height={20} width={`80%`} />
+                <Skeleton height={20} width={`90%`} />
+                <Skeleton height={20} width={`60%`} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -315,22 +368,22 @@ const QuestionBank: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-          {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map((filterType) => (
+          {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map((filterType) => (
             <Popover
               key={filterType}
               content={
                 <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                  {(filterType === "exams"
+                  {(filterType === "exam"
                     ? exams
-                    : filterType === "subjects"
+                    : filterType === "subject"
                     ? subjects
-                    : filterType === "topics"
+                    : filterType === "topic"
                     ? topics
-                    : filterType === "subtopics"
+                    : filterType === "subtopic"
                     ? subtopics
-                    : filterType === "difficulties"
+                    : filterType === "difficulty"
                     ? difficulties
-                    : filterType === "years"
+                    : filterType === "year"
                     ? years
                     : types
                   ).map((value: string) => (
