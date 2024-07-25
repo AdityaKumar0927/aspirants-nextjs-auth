@@ -1,3 +1,4 @@
+// app/api/user-performance/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
@@ -54,22 +55,22 @@ export async function POST(request: Request) {
       },
       create: {
         userId: session.user.id,
-        correctAnswers,
-        incorrectAnswers,
-        uniqueQuestions,
-        questionsAttempted,
-        timeSpent,
-        accuracy,
-        weaknessBySubtopic,
-        improvementOverTime,
-        attemptRate,
-        firstAttemptSuccessRate,
-        reattemptAccuracy,
-        topicPerformance,
-        consistency,
-        engagementLevel,
-        completed,
-        reviewed,
+        correctAnswers: correctAnswers || 0,
+        incorrectAnswers: incorrectAnswers || 0,
+        uniqueQuestions: uniqueQuestions || 0,
+        questionsAttempted: questionsAttempted || 0,
+        timeSpent: timeSpent || 0,
+        accuracy: accuracy || 0,
+        weaknessBySubtopic: weaknessBySubtopic || {},
+        improvementOverTime: improvementOverTime || {},
+        attemptRate: attemptRate || 0,
+        firstAttemptSuccessRate: firstAttemptSuccessRate || 0,
+        reattemptAccuracy: reattemptAccuracy || 0,
+        topicPerformance: topicPerformance || {},
+        consistency: consistency || 0,
+        engagementLevel: engagementLevel || 0,
+        completed: completed || 0,
+        reviewed: reviewed || 0,
       },
     });
 
