@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import MathRenderer from "@/components/layout/MathRenderer";
@@ -94,19 +92,17 @@ const Question: React.FC<QuestionProps> = ({
     }
   }, [feedback]);
 
-  console.log("Question data received: ", question);
-
   const handleOptionClickLocal = (option: string) => {
     if (selectedOption !== option) {
       setSelectedOption(option);
       handleOptionClick(question.questionId, option, question.correctOption || '');
-      saveProgress(question.questionId, 'completed', true);
+      handleMarkComplete(question.questionId);
     }
   };
 
   const handleNumericalSubmitLocal = () => {
     handleNumericalSubmit(question.questionId, numericalAnswer || '', question.correctOption || '');
-    saveProgress(question.questionId, 'completed', true);
+    handleMarkComplete(question.questionId);
   };
 
   const toggleMarkscheme = () => {

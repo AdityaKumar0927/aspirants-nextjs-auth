@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect, useCallback } from "react";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -84,6 +82,12 @@ const fetchUserProgress = async () => {
   return response.json();
 };
 
+const fetchUserAnswers = async () => {
+  const response = await fetch("/api/user-answers");
+  if (!response.ok) throw new Error("Failed to fetch user answers");
+  return response.json();
+};
+
 const fetchNotes = async () => {
   const response = await fetch("/api/notes");
   if (!response.ok) throw new Error("Failed to fetch notes");
@@ -117,21 +121,33 @@ const QuestionBank: React.FC = () => {
         setLoading(true);
         const questionsData = await fetchQuestions();
         const userProgressData = await fetchUserProgress();
+        const userAnswersData = await fetchUserAnswers();
         const notesData = await fetchNotes();
 
         const mergedQuestions = questionsData.map((question: QuestionType) => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
           const note = notesData.find((n: any) => n.questionId === question.questionId);
+          const answer = userAnswersData.find((a: any) => a.questionId === question.questionId);
           return {
             ...question,
             reviewed: progress ? progress.reviewed : false,
             completed: progress ? progress.completed : false,
             notes: note ? note.content : "",
             lastAttempted: progress ? progress.lastAttempted : "",
+            feedback: answer ? answer.feedback : "",
+            selectedOption: answer ? answer.selectedOption : ""
           };
         });
+
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
+
+        // Set feedback and selected options state
+        userAnswersData.forEach((answer: any) => {
+          setFeedback((prev) => ({ ...prev, [answer.questionId]: answer.feedback }));
+          setSelectedOptions((prev) => ({ ...prev, [answer.questionId]: answer.selectedOption }));
+        });
+
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -211,7 +227,7 @@ const QuestionBank: React.FC = () => {
       const response = await fetch(`/api/user-answers`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId, selectedOption, isCorrect }),
+        body: JSON.stringify({ questionId, selectedOption, feedback: isCorrect ? "correct" : "incorrect" }),
       });
       if (!response.ok) throw new Error("Failed to save user answer");
     } catch (error) {
