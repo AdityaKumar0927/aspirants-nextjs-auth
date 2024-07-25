@@ -55,8 +55,8 @@ interface QuestionProps {
 
 const Question: React.FC<QuestionProps> = ({
   question,
-  feedback: initialFeedback,
-  numericalAnswer: initialNumericalAnswer,
+  feedback,
+  numericalAnswer,
   showMarkscheme,
   handleOptionClick,
   handleNumericalSubmit,
@@ -73,8 +73,6 @@ const Question: React.FC<QuestionProps> = ({
   handleDeleteNote,
 }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [feedback, setFeedback] = useState<string | undefined>(initialFeedback);
-  const [numericalAnswer, setNumericalAnswer] = useState<string | undefined>(initialNumericalAnswer);
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
@@ -91,22 +89,12 @@ const Question: React.FC<QuestionProps> = ({
   const { toast, dismiss } = useToast();
 
   useEffect(() => {
-    const fetchUserAnswers = async () => {
-      try {
-        const response = await fetch(`/api/user-answers/${question.questionId}`);
-        if (!response.ok) throw new Error('Failed to fetch user answers');
-        const data = await response.json();
-        if (data.selectedOption) {
-          setSelectedOption(data.selectedOption);
-          setFeedback(data.feedback);
-        }
-      } catch (error) {
-        console.error('Error fetching user answers:', error);
-      }
-    };
+    if (feedback) {
+      setSelectedOption(feedback);
+    }
+  }, [feedback]);
 
-    fetchUserAnswers();
-  }, [question.questionId]);
+  console.log("Question data received: ", question);
 
   const handleOptionClickLocal = (option: string) => {
     if (selectedOption !== option) {
@@ -276,7 +264,7 @@ const Question: React.FC<QuestionProps> = ({
                 className="w-full p-2 border rounded"
                 placeholder="Write your answer here..."
                 value={numericalAnswer}
-                onChange={(e) => setNumericalAnswer(e.target.value)}
+                onChange={(e) => handleNumericalChange(question.questionId, e.target.value)}
               />
               <button className="bg-white border-gray-400 text-gray-400 px-4 py-2 rounded mt-2" onClick={handleNumericalSubmitLocal}>
                 Submit

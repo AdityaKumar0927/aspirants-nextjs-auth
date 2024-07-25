@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import Question from "@/components/shared/Question";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
@@ -44,7 +44,6 @@ interface UserPerformance {
   engagementLevel: number;
   completed: boolean;
   reviewed: boolean;
-  lastAttempted?: string; // Add this line
 }
 
 type FiltersType = {
@@ -193,7 +192,7 @@ const QuestionBank: React.FC = () => {
 
   const updateUserPerformance = async (
     questionId: string,
-    updatedFields: Partial<UserPerformance>
+    updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>
   ) => {
     try {
       const response = await fetch(`/api/user-performance/update`, {
@@ -243,23 +242,14 @@ const QuestionBank: React.FC = () => {
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
 
-    const updatedFields: Partial<UserPerformance> = {
+    const updatedFields = {
       correctAnswers: isCorrect ? 1 : 0,
       incorrectAnswers: !isCorrect ? 1 : 0,
       uniqueQuestions: 1,
       questionsAttempted: 1,
-      completed: true,
-      timeSpent: 0, // Calculate actual time spent
-      accuracy: isCorrect ? 1 : 0,
-      weaknessBySubtopic: {}, // Add actual weakness data
-      improvementOverTime: {}, // Add actual improvement data
-      attemptRate: 1,
-      firstAttemptSuccessRate: isCorrect ? 1 : 0,
-      reattemptAccuracy: isCorrect ? 1 : 0,
-      topicPerformance: {}, // Add actual topic performance data
-      consistency: 1,
-      engagementLevel: 1,
       lastAttempted: new Date().toISOString(),
+      completed: true,
+      // Add other fields as necessary
     };
 
     await updateUserPerformance(questionId, updatedFields);
@@ -276,27 +266,7 @@ const QuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
-
-    const updatedFields: Partial<UserPerformance> = {
-      completed: true,
-      correctAnswers: isCorrect ? 1 : 0,
-      incorrectAnswers: !isCorrect ? 1 : 0,
-      uniqueQuestions: 1,
-      questionsAttempted: 1,
-      timeSpent: 0, // Calculate actual time spent
-      accuracy: isCorrect ? 1 : 0,
-      weaknessBySubtopic: {}, // Add actual weakness data
-      improvementOverTime: {}, // Add actual improvement data
-      attemptRate: 1,
-      firstAttemptSuccessRate: isCorrect ? 1 : 0,
-      reattemptAccuracy: isCorrect ? 1 : 0,
-      topicPerformance: {}, // Add actual topic performance data
-      consistency: 1,
-      engagementLevel: 1,
-      lastAttempted: new Date().toISOString(),
-    };
-
-    await updateUserPerformance(questionId, updatedFields);
+    await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString(), completed: true });
     await saveUserAnswer(questionId, userAnswer, isCorrect);
 
     setQuestions((prevQuestions) =>
