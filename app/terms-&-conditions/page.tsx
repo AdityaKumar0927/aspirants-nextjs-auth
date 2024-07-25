@@ -26,7 +26,7 @@ const TermsAndConditions = () => {
           You may need to create an Aspirants account to use all or part of our Service. Your username and password are for your personal use only and should be kept confidential. You understand that you are responsible for all use (including any unauthorized use) of your username and password. Notify us immediately if your username or password is lost or stolen, or if you believe there has been unauthorized access to your account. We may reclaim, or require you to change, your username for any reason.
         </p>
         <p className="text-lg text-gray-700 mb-4 font-sans">
-          You may use our Services only for lawful personal use, and in accordance with these Terms and Conditions. Aspirants may, in its sole discretion, terminate your right to use our Services at any time, and may take all available legal recourse for actual or suspected violations of these Terms and Conditions, including deletion of your account made in violation of these Terms and Conditions. Any delay by Aspirants in taking such actions does not constitute a waiver of Aspirants’ rights to enforce these Terms and Conditions. By making the Services available for your use, Aspirants does not consent to act as your agent or fiduciary.
+          You may use our Services only for lawful personal use, and in accordance with these Terms and Conditions. Aspirants may, in its sole discretion, terminate your right to use our Services at any time, and may take all available legal recourse for actual or suspected violations of these Terms and Conditions, including deletion of your account made in violation of these Terms and Conditions. Any delay by Aspirants in taking such actions does not constitute a waiver of Aspirants&rsquo; rights to enforce these Terms and Conditions. By making the Services available for your use, Aspirants does not consent to act as your agent or fiduciary.
         </p>
         <p className="text-lg text-gray-700 mb-4 font-sans">
           We may provide links to other websites or Internet resources for your convenience only, and such links do not signify or imply our endorsement of such other website or resource or its contents over which we have no control and which we do not monitor. You use those links at your own risk and should apply a reasonable level of caution and discretion in doing so. You agree that we shall have no responsibility or liability for any information, software, or materials found at any other web site or internet resource.
@@ -35,14 +35,14 @@ const TermsAndConditions = () => {
           You agree to use the Site only for lawful purposes and in accordance with these Terms. You are prohibited from:
         </p>
         <ul className="list-disc list-inside text-lg text-gray-700 mb-4 font-sans">
-          <li>Using the Site in any manner that could disable, overburden, damage, or impair the Site or interfere with any other party's use of the Site.</li>
+          <li>Using the Site in any manner that could disable, overburden, damage, or impair the Site or interfere with any other party&apos;s use of the Site.</li>
           <li>Using any robot, spider, or other automatic device, process, or means to access the Site for any purpose, including monitoring or copying any of the material on the Site.</li>
           <li>Introducing any viruses, trojan horses, worms, logic bombs, or other material that is malicious or technologically harmful.</li>
           <li>Attempting to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Site, the server on which the Site is stored, or any server, computer, or database connected to the Site.</li>
-          <li>Engaging in any other conduct that restricts or inhibits anyone's use or enjoyment of the Site, or which, as determined by us, may harm us or users of the Site, or expose them to liability.</li>
+          <li>Engaging in any other conduct that restricts or inhibits anyone&apos;s use or enjoyment of the Site, or which, as determined by us, may harm us or users of the Site, or expose them to liability.</li>
         </ul>
         <p className="text-lg text-gray-700 mb-4 font-sans">
-          Aspirants reserves the right to change, suspend, or discontinue any of the Services for you, any or all users, at any time, for any reason, including those laid out in Aspirants’ policies under these Terms and Conditions. We will not be liable to you for the effect that any changes to the Services may have on you.
+          Aspirants reserves the right to change, suspend, or discontinue any of the Services for you, any or all users, at any time, for any reason, including those laid out in Aspirants&rsquo; policies under these Terms and Conditions. We will not be liable to you for the effect that any changes to the Services may have on you.
         </p>
 
         <h2 className="text-3xl font-semibold mb-4 font-sans">Intellectual Property</h2>
@@ -52,7 +52,7 @@ const TermsAndConditions = () => {
 
         <h2 className="text-3xl font-semibold mb-4 font-sans">Applicable Laws</h2>
         <p className="text-lg text-gray-700 mb-4 font-sans">
-          These Terms and Conditions and the relationship between Aspirants and its users shall be governed by the laws of the Republic of India as applied to agreements made, entered, and performed entirely in Republic of India, notwithstanding the users’ place of residence. All lawsuits arising from or relating to these Terms and Conditions, or your use of the Services shall be brought in the courts located in New Delhi, India, and you hereby irrevocably submit to the exclusive personal jurisdiction of such courts for such purpose.
+          These Terms and Conditions and the relationship between Aspirants and its users shall be governed by the laws of the Republic of India as applied to agreements made, entered, and performed entirely in Republic of India, notwithstanding the users&rsquo; place of residence. All lawsuits arising from or relating to these Terms and Conditions, or your use of the Services shall be brought in the courts located in New Delhi, India, and you hereby irrevocably submit to the exclusive personal jurisdiction of such courts for such purpose.
         </p>
 
         <h2 className="text-3xl font-semibold mb-4 font-sans">Privacy</h2>
@@ -62,7 +62,7 @@ const TermsAndConditions = () => {
 
         <h2 className="text-3xl font-semibold mb-4 font-sans">Disclaimers</h2>
         <p className="text-lg text-gray-700 mb-4 font-sans">
-          The Site and all materials provided through the Site are provided on an "as-is" and "as-available" basis, without any warranties of any kind, either express or implied. We do not warrant that the Site will be uninterrupted, error-free, or free from viruses or other harmful components. The content provided on the Site is for educational purposes only. We do not guarantee the accuracy, completeness, or usefulness of any information on the Site.
+          The Site and all materials provided through the Site are provided on an &quot;as-is&quot; and &quot;as-available&quot; basis, without any warranties of any kind, either express or implied. We do not warrant that the Site will be uninterrupted, error-free, or free from viruses or other harmful components. The content provided on the Site is for educational purposes only. We do not guarantee the accuracy, completeness, or usefulness of any information on the Site.
         </p>
 
         <h2 className="text-3xl font-semibold mb-4 font-sans">Indemnification</h2>
