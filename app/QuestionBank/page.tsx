@@ -1,3 +1,5 @@
+"use client"
+
 // Import necessary hooks and components
 import React, { useState, useEffect, useCallback } from "react";
 import Skeleton from 'react-loading-skeleton';
