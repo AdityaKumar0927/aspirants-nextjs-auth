@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Question from "@/components/shared/Question";
@@ -92,6 +92,7 @@ const fetchNotes = async () => {
 
 const QuestionBank: React.FC = () => {
   const [questions, setQuestions] = useState<QuestionType[]>([]);
+  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
   const [dropdowns, setDropdowns] = useState({
     exam: false,
@@ -130,6 +131,7 @@ const QuestionBank: React.FC = () => {
           };
         });
         setQuestions(mergedQuestions);
+        setFilteredQuestions(mergedQuestions);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -140,15 +142,15 @@ const QuestionBank: React.FC = () => {
     fetchData();
   }, [userId]);
 
-  const exams = useMemo(() => Array.from(new Set(questions.map((q) => q.exam))), [questions]);
-  const subjects = useMemo(() => Array.from(new Set(questions.map((q) => q.subject))), [questions]);
-  const topics = useMemo(() => Array.from(new Set(questions.map((q) => q.topic))), [questions]);
-  const subtopics = useMemo(() => Array.from(new Set(questions.map((q) => q.subtopic))), [questions]);
-  const difficulties = useMemo(() => Array.from(new Set(questions.map((q) => q.difficulty))), [questions]);
-  const years = useMemo(() => Array.from(new Set(questions.map((q) => q.year))), [questions]);
-  const types = useMemo(() => Array.from(new Set(questions.map((q) => q.type))), [questions]);
+  const exams = Array.from(new Set(questions.map((q) => q.exam)));
+  const subjects = Array.from(new Set(questions.map((q) => q.subject)));
+  const topics = Array.from(new Set(questions.map((q) => q.topic)));
+  const subtopics = Array.from(new Set(questions.map((q) => q.subtopic)));
+  const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
+  const years = Array.from(new Set(questions.map((q) => q.year)));
+  const types = Array.from(new Set(questions.map((q) => q.type)));
 
-  const filteredQuestions = useMemo(() => {
+  const filterQuestions = useCallback(() => {
     let filtered = questions.filter((question) => {
       return (
         (!filters.exams.length || filters.exams.includes(question.exam)) &&
@@ -167,8 +169,12 @@ const QuestionBank: React.FC = () => {
       filtered = filtered.filter((question) => question.completed);
     }
 
-    return filtered;
+    setFilteredQuestions(filtered);
   }, [questions, filters]);
+
+  useEffect(() => {
+    filterQuestions();
+  }, [filters, filterQuestions]);
 
   const handleFilterChange = (tag: keyof FiltersType, value: string) => {
     setFilters((prevFilters) => {
@@ -197,6 +203,19 @@ const QuestionBank: React.FC = () => {
       if (!response.ok) throw new Error("Failed to update user performance");
     } catch (error) {
       console.error("Error updating user performance:", error);
+    }
+  };
+
+  const saveUserAnswer = async (questionId: string, selectedOption: string, isCorrect: boolean) => {
+    try {
+      const response = await fetch(`/api/user-answers`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, selectedOption, isCorrect }),
+      });
+      if (!response.ok) throw new Error("Failed to save user answer");
+    } catch (error) {
+      console.error("Error saving user answer:", error);
     }
   };
 
@@ -233,12 +252,8 @@ const QuestionBank: React.FC = () => {
       // Add other fields as necessary
     };
 
-    setSelectedOptions((prev) => ({
-      ...prev,
-      [questionId]: option,
-    }));
-
     await updateUserPerformance(questionId, updatedFields);
+    await saveUserAnswer(questionId, option, isCorrect);
 
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) => (q.questionId === questionId ? { ...q, completed: true } : q))
@@ -251,18 +266,8 @@ const QuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
-
-    const updatedFields = {
-      correctAnswers: isCorrect ? 1 : 0,
-      incorrectAnswers: !isCorrect ? 1 : 0,
-      uniqueQuestions: 1,
-      questionsAttempted: 1,
-      lastAttempted: new Date().toISOString(),
-      completed: true,
-      // Add other fields as necessary
-    };
-
-    await updateUserPerformance(questionId, updatedFields);
+    await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString(), completed: true });
+    await saveUserAnswer(questionId, userAnswer, isCorrect);
 
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) => (q.questionId === questionId ? { ...q, completed: true } : q))
@@ -368,22 +373,22 @@ const QuestionBank: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-          {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map((filterType) => (
+          {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map((filterType) => (
             <Popover
               key={filterType}
               content={
                 <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                  {(filterType === "exam"
+                  {(filterType === "exams"
                     ? exams
-                    : filterType === "subject"
+                    : filterType === "subjects"
                     ? subjects
-                    : filterType === "topic"
+                    : filterType === "topics"
                     ? topics
-                    : filterType === "subtopic"
+                    : filterType === "subtopics"
                     ? subtopics
-                    : filterType === "difficulty"
+                    : filterType === "difficulties"
                     ? difficulties
-                    : filterType === "year"
+                    : filterType === "years"
                     ? years
                     : types
                   ).map((value: string) => (
