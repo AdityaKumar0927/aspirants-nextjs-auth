@@ -1,9 +1,8 @@
 "use client";
 
-// Import necessary hooks and components
 import React, { useState, useEffect, useCallback } from "react";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import Question from "@/components/shared/Question";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
@@ -43,8 +42,8 @@ interface UserPerformance {
   topicPerformance: any;
   consistency: number;
   engagementLevel: number;
-  completed: number; // Change this to number
-  reviewed: number; // Change this to number
+  completed: number;
+  reviewed: number;
   lastAttempted?: string;
 }
 
@@ -132,7 +131,6 @@ const QuestionBank: React.FC = () => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
           const note = notesData.find((n: any) => n.questionId === question.questionId);
           const userAnswer = userAnswersData.find((a: any) => a.questionId === question.questionId);
-
           return {
             ...question,
             reviewed: progress ? progress.reviewed : false,
@@ -146,18 +144,6 @@ const QuestionBank: React.FC = () => {
 
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
-        setFeedback(
-          userAnswersData.reduce((acc: any, answer: any) => {
-            acc[answer.questionId] = answer.isCorrect ? "correct" : "incorrect";
-            return acc;
-          }, {})
-        );
-        setSelectedOptions(
-          userAnswersData.reduce((acc: any, answer: any) => {
-            acc[answer.questionId] = answer.selectedOption;
-            return acc;
-          }, {})
-        );
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -375,7 +361,7 @@ const QuestionBank: React.FC = () => {
           <div className="flex space-x-4 mb-6">
             <Skeleton height={40} width={120} />
             <Skeleton height={40} width={120} />
-            < Skeleton height={40} width={120} />
+            <Skeleton height={40} width={120} />
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
