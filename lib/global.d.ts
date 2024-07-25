@@ -90,6 +90,7 @@ declare global {
     engagementLevel: number;
     completed: number;
     reviewed: number;
+    lastAttempted?: string; // Add this line
   }
   
 }

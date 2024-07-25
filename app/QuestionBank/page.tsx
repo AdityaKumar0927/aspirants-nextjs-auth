@@ -1,5 +1,4 @@
-"use client";
-
+// Import necessary hooks and components
 import React, { useState, useEffect, useCallback } from "react";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -44,6 +43,7 @@ interface UserPerformance {
   engagementLevel: number;
   completed: boolean;
   reviewed: boolean;
+  lastAttempted?: string; // Add this line
 }
 
 type FiltersType = {
@@ -90,12 +90,6 @@ const fetchNotes = async () => {
   return response.json();
 };
 
-const fetchUserAnswers = async () => {
-  const response = await fetch("/api/user-answers");
-  if (!response.ok) throw new Error("Failed to fetch user answers");
-  return response.json();
-};
-
 const QuestionBank: React.FC = () => {
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
@@ -121,29 +115,21 @@ const QuestionBank: React.FC = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const [questionsData, userProgressData, notesData, userAnswersData] = await Promise.all([
-          fetchQuestions(),
-          fetchUserProgress(),
-          fetchNotes(),
-          fetchUserAnswers(),
-        ]);
+        const questionsData = await fetchQuestions();
+        const userProgressData = await fetchUserProgress();
+        const notesData = await fetchNotes();
 
         const mergedQuestions = questionsData.map((question: QuestionType) => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
           const note = notesData.find((n: any) => n.questionId === question.questionId);
-          const answer = userAnswersData.find((a: any) => a.questionId === question.questionId);
-
           return {
             ...question,
             reviewed: progress ? progress.reviewed : false,
             completed: progress ? progress.completed : false,
             notes: note ? note.content : "",
             lastAttempted: progress ? progress.lastAttempted : "",
-            selectedOption: answer ? answer.selectedOption : "",
-            feedback: answer ? (answer.isCorrect ? "correct" : "incorrect") : "",
           };
         });
-
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
       } catch (error) {
@@ -206,7 +192,7 @@ const QuestionBank: React.FC = () => {
 
   const updateUserPerformance = async (
     questionId: string,
-    updatedFields: Partial<Omit<UserPerformance, "userId">>
+    updatedFields: Partial<UserPerformance>
   ) => {
     try {
       const response = await fetch(`/api/user-performance/update`, {
@@ -261,6 +247,7 @@ const QuestionBank: React.FC = () => {
       incorrectAnswers: !isCorrect ? 1 : 0,
       uniqueQuestions: 1,
       questionsAttempted: 1,
+      completed: true,
       timeSpent: 0, // Calculate actual time spent
       accuracy: isCorrect ? 1 : 0,
       weaknessBySubtopic: {}, // Add actual weakness data
@@ -271,7 +258,6 @@ const QuestionBank: React.FC = () => {
       topicPerformance: {}, // Add actual topic performance data
       consistency: 1,
       engagementLevel: 1,
-      completed: true,
     };
 
     await updateUserPerformance(questionId, updatedFields);
@@ -290,12 +276,21 @@ const QuestionBank: React.FC = () => {
     });
 
     const updatedFields: Partial<UserPerformance> = {
-      lastAttempted: new Date().toISOString(),
       completed: true,
       correctAnswers: isCorrect ? 1 : 0,
       incorrectAnswers: !isCorrect ? 1 : 0,
       uniqueQuestions: 1,
       questionsAttempted: 1,
+      timeSpent: 0, // Calculate actual time spent
+      accuracy: isCorrect ? 1 : 0,
+      weaknessBySubtopic: {}, // Add actual weakness data
+      improvementOverTime: {}, // Add actual improvement data
+      attemptRate: 1,
+      firstAttemptSuccessRate: isCorrect ? 1 : 0,
+      reattemptAccuracy: isCorrect ? 1 : 0,
+      topicPerformance: {}, // Add actual topic performance data
+      consistency: 1,
+      engagementLevel: 1,
     };
 
     await updateUserPerformance(questionId, updatedFields);
