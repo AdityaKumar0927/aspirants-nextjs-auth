@@ -91,6 +91,12 @@ const fetchNotes = async () => {
   return response.json();
 };
 
+const fetchUserAnswers = async () => {
+  const response = await fetch("/api/user-answers");
+  if (!response.ok) throw new Error("Failed to fetch user answers");
+  return response.json();
+};
+
 const QuestionBank: React.FC = () => {
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
@@ -119,20 +125,32 @@ const QuestionBank: React.FC = () => {
         const questionsData = await fetchQuestions();
         const userProgressData = await fetchUserProgress();
         const notesData = await fetchNotes();
+        const userAnswersData = await fetchUserAnswers();
 
         const mergedQuestions = questionsData.map((question: QuestionType) => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
           const note = notesData.find((n: any) => n.questionId === question.questionId);
+          const userAnswer = userAnswersData.find((a: any) => a.questionId === question.questionId);
           return {
             ...question,
             reviewed: progress ? progress.reviewed : false,
             completed: progress ? progress.completed : false,
             notes: note ? note.content : "",
             lastAttempted: progress ? progress.lastAttempted : "",
+            selectedOption: userAnswer ? userAnswer.selectedOption : "",
+            feedback: userAnswer ? userAnswer.feedback : "",
           };
         });
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
+        setSelectedOptions(userAnswersData.reduce((acc: any, answer: any) => {
+          acc[answer.questionId] = answer.selectedOption;
+          return acc;
+        }, {}));
+        setFeedback(userAnswersData.reduce((acc: any, answer: any) => {
+          acc[answer.questionId] = answer.feedback;
+          return acc;
+        }, {}));
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
