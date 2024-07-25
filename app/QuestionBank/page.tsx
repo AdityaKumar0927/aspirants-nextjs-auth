@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect, useCallback } from "react";
 import Skeleton from 'react-loading-skeleton';
@@ -28,22 +28,14 @@ interface QuestionType {
 }
 
 interface UserPerformance {
-  correctAnswers: number;
-  incorrectAnswers: number;
-  uniqueQuestions: number;
-  questionsAttempted: number;
-  timeSpent: number;
-  accuracy: number;
-  weaknessBySubtopic: any;
-  improvementOverTime: any;
-  attemptRate: number;
-  firstAttemptSuccessRate: number;
-  reattemptAccuracy: number;
-  topicPerformance: any;
-  consistency: number;
-  engagementLevel: number;
+  questionId: string;
+  selectedOption?: string;
+  isCorrect?: boolean;
+  userAnswer?: string;
+  feedback?: string;
   completed: boolean;
   reviewed: boolean;
+  note?: string;
 }
 
 type FiltersType = {
@@ -78,20 +70,14 @@ const fetchQuestions = async () => {
   return response.json();
 };
 
-const fetchUserProgress = async () => {
-  const response = await fetch("/api/user-progress");
+const fetchUserProgress = async (userId: string) => {
+  const response = await fetch(`/api/user-progress/${userId}`);
   if (!response.ok) throw new Error("Failed to fetch user progress");
   return response.json();
 };
 
-const fetchUserAnswers = async () => {
-  const response = await fetch("/api/user-answers");
-  if (!response.ok) throw new Error("Failed to fetch user answers");
-  return response.json();
-};
-
-const fetchNotes = async () => {
-  const response = await fetch("/api/notes");
+const fetchNotes = async (userId: string) => {
+  const response = await fetch(`/api/notes/${userId}`);
   if (!response.ok) throw new Error("Failed to fetch notes");
   return response.json();
 };
@@ -115,41 +101,35 @@ const QuestionBank: React.FC = () => {
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState<boolean>(true);
-  const userId = ""; // Add logic to retrieve user ID if signed in
+  const userId = "user-id"; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         const questionsData = await fetchQuestions();
-        const userProgressData = await fetchUserProgress();
-        const userAnswersData = await fetchUserAnswers();
-        const notesData = await fetchNotes();
+        const userProgressData = await fetchUserProgress(userId);
+        const notesData = await fetchNotes(userId);
 
         const mergedQuestions = questionsData.map((question: QuestionType) => {
-          const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
-          const note = notesData.find((n: any) => n.questionId === question.questionId);
-          const answer = userAnswersData.find((a: any) => a.questionId === question.questionId);
+          const progress = userProgressData.find((p: UserPerformance) => p.questionId === question.questionId);
+          const note = notesData.find((n: UserPerformance) => n.questionId === question.questionId);
           return {
             ...question,
             reviewed: progress ? progress.reviewed : false,
             completed: progress ? progress.completed : false,
-            notes: note ? note.content : "",
+            notes: note ? note.note : "",
             lastAttempted: progress ? progress.lastAttempted : "",
-            feedback: answer ? answer.feedback : "",
-            selectedOption: answer ? answer.selectedOption : ""
+            selectedOption: progress ? progress.selectedOption : "",
+            isCorrect: progress ? progress.isCorrect : false,
+            feedback: progress ? progress.feedback : "",
           };
         });
-
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
-
-        // Set feedback and selected options state
-        userAnswersData.forEach((answer: any) => {
-          setFeedback((prev) => ({ ...prev, [answer.questionId]: answer.feedback }));
-          setSelectedOptions((prev) => ({ ...prev, [answer.questionId]: answer.selectedOption }));
-        });
-
+        setFeedback(userProgressData.reduce((acc: any, cur: UserPerformance) => ({ ...acc, [cur.questionId]: cur.feedback }), {}));
+        setNumericalAnswers(userProgressData.reduce((acc: any, cur: UserPerformance) => ({ ...acc, [cur.questionId]: cur.userAnswer }), {}));
+        setSelectedOptions(userProgressData.reduce((acc: any, cur: UserPerformance) => ({ ...acc, [cur.questionId]: cur.selectedOption }), {}));
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -216,7 +196,7 @@ const QuestionBank: React.FC = () => {
       const response = await fetch(`/api/user-performance/update`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId, ...updatedFields }),
+        body: JSON.stringify({ userId, questionId, ...updatedFields }),
       });
       if (!response.ok) throw new Error("Failed to update user performance");
     } catch (error) {
@@ -229,7 +209,7 @@ const QuestionBank: React.FC = () => {
       const response = await fetch(`/api/user-answers`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId, selectedOption, feedback: isCorrect ? "correct" : "incorrect" }),
+        body: JSON.stringify({ userId, questionId, selectedOption, isCorrect }),
       });
       if (!response.ok) throw new Error("Failed to save user answer");
     } catch (error) {
@@ -267,7 +247,9 @@ const QuestionBank: React.FC = () => {
       questionsAttempted: 1,
       lastAttempted: new Date().toISOString(),
       completed: true,
-      // Add other fields as necessary
+      selectedOption: option,
+      isCorrect: isCorrect,
+      feedback: isCorrect ? "correct" : "incorrect",
     };
 
     await updateUserPerformance(questionId, updatedFields);
@@ -284,7 +266,13 @@ const QuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
-    await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString(), completed: true });
+    await updateUserPerformance(questionId, {
+      lastAttempted: new Date().toISOString(),
+      completed: true,
+      userAnswer: userAnswer,
+      isCorrect: isCorrect,
+      feedback: isCorrect ? "correct" : "incorrect",
+    });
     await saveUserAnswer(questionId, userAnswer, isCorrect);
 
     setQuestions((prevQuestions) =>
@@ -299,10 +287,10 @@ const QuestionBank: React.FC = () => {
     });
 
     try {
-      const response = await fetch("/api/notes/save", {
+      const response = await fetch(`/api/notes/save`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId, content: note }),
+        body: JSON.stringify({ userId, questionId, content: note }),
       });
       if (!response.ok) throw new Error("Failed to save note");
     } catch (error) {
@@ -312,10 +300,10 @@ const QuestionBank: React.FC = () => {
 
   const handleDeleteNote = async (questionId: string) => {
     try {
-      const response = await fetch("/api/notes/delete", {
+      const response = await fetch(`/api/notes/delete`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId }),
+        body: JSON.stringify({ userId, questionId }),
       });
       if (!response.ok) throw new Error("Failed to delete note");
     } catch (error) {
@@ -354,9 +342,9 @@ const QuestionBank: React.FC = () => {
           <div>
             {[...Array(10)].map((_, i) => (
               <div key={i} className="mb-4 p-4 border rounded-md">
-                <Skeleton height={20} width={`80%`} />
-                <Skeleton height={20} width={`90%`} />
-                <Skeleton height={20} width={`60%`} />
+                <Skeleton height={20} width="80%" />
+                <Skeleton height={20} width="90%" />
+                <Skeleton height={20} width="60%" />
               </div>
             ))}
           </div>

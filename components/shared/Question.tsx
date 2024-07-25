@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import MathRenderer from "@/components/layout/MathRenderer";
@@ -21,6 +23,9 @@ interface QuestionType {
   markscheme?: string;
   notes?: string;
   diagramUrl?: string;
+  selectedOption?: string;
+  isCorrect?: boolean;
+  feedback?: string;
 }
 
 interface QuestionProps {
@@ -70,7 +75,7 @@ const Question: React.FC<QuestionProps> = ({
   userId,
   handleDeleteNote,
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<string | null>(question.selectedOption || null);
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
@@ -87,22 +92,22 @@ const Question: React.FC<QuestionProps> = ({
   const { toast, dismiss } = useToast();
 
   useEffect(() => {
-    if (feedback) {
-      setSelectedOption(feedback);
-    }
-  }, [feedback]);
+    setSelectedOption(question.selectedOption || null);
+  }, [question.selectedOption]);
+
+  console.log("Question data received: ", question);
 
   const handleOptionClickLocal = (option: string) => {
     if (selectedOption !== option) {
       setSelectedOption(option);
       handleOptionClick(question.questionId, option, question.correctOption || '');
-      handleMarkComplete(question.questionId);
+      saveProgress(question.questionId, 'completed', true);
     }
   };
 
   const handleNumericalSubmitLocal = () => {
     handleNumericalSubmit(question.questionId, numericalAnswer || '', question.correctOption || '');
-    handleMarkComplete(question.questionId);
+    saveProgress(question.questionId, 'completed', true);
   };
 
   const toggleMarkscheme = () => {
