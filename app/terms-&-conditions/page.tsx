@@ -42,11 +42,11 @@ const TermsAndConditions = () => {
           You agree to use the Site only for lawful purposes and in accordance with these Terms. You are prohibited from:
         </p>
         <ul className="list-disc list-inside text-lg text-gray-700 mb-4 font-sans">
-          <li>Using the Site in any manner that could disable, overburden, damage, or impair the Site or interfere with any other party's use of the Site.</li>
+          <li>Using the Site in any manner that could disable, overburden, damage, or impair the Site or interfere with any other party&apos;s use of the Site.</li>
           <li>Using any robot, spider, or other automatic device, process, or means to access the Site for any purpose, including monitoring or copying any of the material on the Site.</li>
           <li>Introducing any viruses, trojan horses, worms, logic bombs, or other material that is malicious or technologically harmful.</li>
           <li>Attempting to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Site, the server on which the Site is stored, or any server, computer, or database connected to the Site.</li>
-          <li>Engaging in any other conduct that restricts or inhibits anyone's use or enjoyment of the Site, or which, as determined by us, may harm us or users of the Site, or expose them to liability.</li>
+          <li>Engaging in any other conduct that restricts or inhibits anyone&apos;s use or enjoyment of the Site, or which, as determined by us, may harm us or users of the Site, or expose them to liability.</li>
         </ul>
         <p className="text-lg text-gray-700 mb-4 font-sans">
           Aspirants reserves the right to change, suspend, or discontinue any of the Services for you, any or all users, at any time, for any reason, including those laid out in Aspirants’ policies under these Terms and Conditions.

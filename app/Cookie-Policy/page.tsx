@@ -42,7 +42,7 @@ const CookiePolicy = () => {
         <ul className="list-disc list-inside text-lg text-gray-700 mb-4 font-sans">
           <li>Keeping you logged into our website</li>
           <li>Analyzing your site usage patterns, such as the duration of your visit, and so on.</li>
-          <li>Tracking you navigate and engage with our site's pages to detect and resolve technical problems.</li>
+          <li>Tracking you navigate and engage with our site&apos;s pages to detect and resolve technical problems.</li>
         </ul>
         <p className="text-lg text-gray-700 mb-4 font-sans">
           Please keep in mind that cookies are necessary for the functioning of our website. We only use first party, third party and session cookies. We do not use any type of marketing cookie.
