@@ -70,12 +70,16 @@ const footerNavs = [
     label: "Legal",
     items: [
       {
-        href: "#",
+        href: "/privacy-policy",
         name: "Privacy Policy",
       },
       {
-        href: "#",
+        href: "/terms-of-service",
         name: "Terms of Service",
+      },
+      {
+        href: "/Cookie-Policy",
+        name: "Cookie Policy",
       },
     ],
   },
@@ -98,7 +102,7 @@ export function Footer() {
   return (
     <footer className="border-t">
       <div className="mx-auto w-full max-w-screen-xl px-4">
-      <main className="flex-grow flex flex-col items-center justify-center px-4 py-16 mb-12">
+      <main className="flex-grow flex flex-col items-center justify-center px-4 py-16">
                         <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 max-w-3xl">
                             It&apos;s free.
                         </h1>
