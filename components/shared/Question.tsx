@@ -55,8 +55,8 @@ interface QuestionProps {
 
 const Question: React.FC<QuestionProps> = ({
   question,
-  feedback,
-  numericalAnswer,
+  feedback: initialFeedback,
+  numericalAnswer: initialNumericalAnswer,
   showMarkscheme,
   handleOptionClick,
   handleNumericalSubmit,
@@ -73,6 +73,8 @@ const Question: React.FC<QuestionProps> = ({
   handleDeleteNote,
 }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState<string | undefined>(initialFeedback);
+  const [numericalAnswer, setNumericalAnswer] = useState<string | undefined>(initialNumericalAnswer);
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
@@ -85,7 +87,6 @@ const Question: React.FC<QuestionProps> = ({
   const [aiEnabled, setAiEnabled] = useState(true);
   const [notesEnabled, setNotesEnabled] = useState(true);
   const [showAiChat, setShowAiChat] = useState(false);
-  const [feedbackMessage, setFeedbackMessage] = useState<string | undefined>(feedback);
 
   const { toast, dismiss } = useToast();
 
@@ -97,7 +98,7 @@ const Question: React.FC<QuestionProps> = ({
         const data = await response.json();
         if (data.selectedOption) {
           setSelectedOption(data.selectedOption);
-          setFeedbackMessage(data.isCorrect ? 'correct' : 'incorrect');
+          setFeedback(data.feedback);
         }
       } catch (error) {
         console.error('Error fetching user answers:', error);
@@ -275,14 +276,14 @@ const Question: React.FC<QuestionProps> = ({
                 className="w-full p-2 border rounded"
                 placeholder="Write your answer here..."
                 value={numericalAnswer}
-                onChange={(e) => handleNumericalChange(question.questionId, e.target.value)}
+                onChange={(e) => setNumericalAnswer(e.target.value)}
               />
               <button className="bg-white border-gray-400 text-gray-400 px-4 py-2 rounded mt-2" onClick={handleNumericalSubmitLocal}>
                 Submit
               </button>
-              {feedbackMessage && (
-                <div className={`mt-4 p-2 rounded ${feedbackMessage === 'correct' ? 'bg-green-100 text-green-700' : feedbackMessage === 'incorrect' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}`}>
-                  {feedbackMessage === 'correct' ? 'Correct!' : feedbackMessage === 'incorrect' ? 'Incorrect, try again.' : 'No answer available'}
+              {feedback && (
+                <div className={`mt-4 p-2 rounded ${feedback === 'correct' ? 'bg-green-100 text-green-700' : feedback === 'incorrect' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}`}>
+                  {feedback === 'correct' ? 'Correct!' : feedback === 'incorrect' ? 'Incorrect, try again.' : 'No answer available'}
                 </div>
               )}
             </div>
@@ -294,9 +295,9 @@ const Question: React.FC<QuestionProps> = ({
                   <button
                     className={`px-4 py-2 border-gray-500 border rounded ${
                       selectedOption === String.fromCharCode(65 + index)
-                        ? feedbackMessage === 'correct'
+                        ? feedback === 'correct'
                           ? 'bg-green-100 text-green-700'
-                          : feedbackMessage === 'incorrect'
+                          : feedback === 'incorrect'
                           ? 'bg-red-100 text-red-700'
                           : 'bg-gray-100 text-gray-700'
                         : 'bg-white text-gray-700'
@@ -308,9 +309,9 @@ const Question: React.FC<QuestionProps> = ({
                   <span className="text-gray-700"><MathRenderer text={option} /></span>
                 </div>
               ))}
-              {feedbackMessage && (
-                <div className={`mt-4 p-2 rounded ${feedbackMessage === 'correct' ? 'bg-green-100 text-green-700' : feedbackMessage === 'incorrect' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}`}>
-                  {feedbackMessage === 'correct' ? 'Correct!' : feedbackMessage === 'incorrect' ? 'Incorrect, try again.' : 'No answer available'}
+              {feedback && (
+                <div className={`mt-4 p-2 rounded ${feedback === 'correct' ? 'bg-green-100 text-green-700' : feedback === 'incorrect' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}`}>
+                  {feedback === 'correct' ? 'Correct!' : feedback === 'incorrect' ? 'Incorrect, try again.' : 'No answer available'}
                 </div>
               )}
             </div>

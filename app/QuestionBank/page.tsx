@@ -131,6 +131,7 @@ const QuestionBank: React.FC = () => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
           const note = notesData.find((n: any) => n.questionId === question.questionId);
           const userAnswer = userAnswersData.find((a: any) => a.questionId === question.questionId);
+
           return {
             ...question,
             reviewed: progress ? progress.reviewed : false,
@@ -143,14 +144,6 @@ const QuestionBank: React.FC = () => {
         });
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
-        setSelectedOptions(userAnswersData.reduce((acc: any, answer: any) => {
-          acc[answer.questionId] = answer.selectedOption;
-          return acc;
-        }, {}));
-        setFeedback(userAnswersData.reduce((acc: any, answer: any) => {
-          acc[answer.questionId] = answer.feedback;
-          return acc;
-        }, {}));
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
