@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import Question from "@/components/shared/Question";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
@@ -121,15 +121,17 @@ const QuestionBank: React.FC = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const questionsData = await fetchQuestions();
-        const userProgressData = await fetchUserProgress();
-        const notesData = await fetchNotes();
-        const userAnswersData = await fetchUserAnswers();
+        const [questionsData, userProgressData, notesData, userAnswersData] = await Promise.all([
+          fetchQuestions(),
+          fetchUserProgress(),
+          fetchNotes(),
+          fetchUserAnswers(),
+        ]);
 
         const mergedQuestions = questionsData.map((question: QuestionType) => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
           const note = notesData.find((n: any) => n.questionId === question.questionId);
-          const userAnswer = userAnswersData.find((ua: any) => ua.questionId === question.questionId);
+          const answer = userAnswersData.find((a: any) => a.questionId === question.questionId);
 
           return {
             ...question,
@@ -137,10 +139,11 @@ const QuestionBank: React.FC = () => {
             completed: progress ? progress.completed : false,
             notes: note ? note.content : "",
             lastAttempted: progress ? progress.lastAttempted : "",
-            selectedOption: userAnswer ? userAnswer.selectedOption : "",
-            feedback: userAnswer ? (userAnswer.isCorrect ? "correct" : "incorrect") : "",
+            selectedOption: answer ? answer.selectedOption : "",
+            feedback: answer ? (answer.isCorrect ? "correct" : "incorrect") : "",
           };
         });
+
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
       } catch (error) {
@@ -203,7 +206,7 @@ const QuestionBank: React.FC = () => {
 
   const updateUserPerformance = async (
     questionId: string,
-    updatedFields: Partial<UserPerformance>
+    updatedFields: Partial<Omit<UserPerformance, "userId">>
   ) => {
     try {
       const response = await fetch(`/api/user-performance/update`, {
@@ -258,7 +261,16 @@ const QuestionBank: React.FC = () => {
       incorrectAnswers: !isCorrect ? 1 : 0,
       uniqueQuestions: 1,
       questionsAttempted: 1,
-      lastAttempted: new Date().toISOString(),
+      timeSpent: 0, // Calculate actual time spent
+      accuracy: isCorrect ? 1 : 0,
+      weaknessBySubtopic: {}, // Add actual weakness data
+      improvementOverTime: {}, // Add actual improvement data
+      attemptRate: 1,
+      firstAttemptSuccessRate: isCorrect ? 1 : 0,
+      reattemptAccuracy: isCorrect ? 1 : 0,
+      topicPerformance: {}, // Add actual topic performance data
+      consistency: 1,
+      engagementLevel: 1,
       completed: true,
     };
 
@@ -276,7 +288,17 @@ const QuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
-    await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString(), completed: true });
+
+    const updatedFields: Partial<UserPerformance> = {
+      lastAttempted: new Date().toISOString(),
+      completed: true,
+      correctAnswers: isCorrect ? 1 : 0,
+      incorrectAnswers: !isCorrect ? 1 : 0,
+      uniqueQuestions: 1,
+      questionsAttempted: 1,
+    };
+
+    await updateUserPerformance(questionId, updatedFields);
     await saveUserAnswer(questionId, userAnswer, isCorrect);
 
     setQuestions((prevQuestions) =>
