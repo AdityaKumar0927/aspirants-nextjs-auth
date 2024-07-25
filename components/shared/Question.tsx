@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Modal from "@/components/shared/modal";
@@ -87,6 +87,12 @@ const Question: React.FC<QuestionProps> = ({
   const [showAiChat, setShowAiChat] = useState(false);
 
   const { toast, dismiss } = useToast();
+
+  useEffect(() => {
+    if (feedback) {
+      setSelectedOption(feedback);
+    }
+  }, [feedback]);
 
   console.log("Question data received: ", question);
 

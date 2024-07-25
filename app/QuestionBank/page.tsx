@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import Question from "@/components/shared/Question";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
@@ -42,8 +42,8 @@ interface UserPerformance {
   topicPerformance: any;
   consistency: number;
   engagementLevel: number;
-  completed: number;
-  reviewed: number;
+  completed: boolean;
+  reviewed: boolean;
   lastAttempted?: string;
 }
 
@@ -130,15 +130,16 @@ const QuestionBank: React.FC = () => {
         const mergedQuestions = questionsData.map((question: QuestionType) => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
           const note = notesData.find((n: any) => n.questionId === question.questionId);
-          const userAnswer = userAnswersData.find((a: any) => a.questionId === question.questionId);
+          const answer = userAnswersData.find((a: any) => a.questionId === question.questionId);
+          
           return {
             ...question,
             reviewed: progress ? progress.reviewed : false,
             completed: progress ? progress.completed : false,
             notes: note ? note.content : "",
             lastAttempted: progress ? progress.lastAttempted : "",
-            selectedOption: userAnswer ? userAnswer.selectedOption : "",
-            feedback: userAnswer ? (userAnswer.isCorrect ? "correct" : "incorrect") : "",
+            selectedOption: answer ? answer.selectedOption : "",
+            feedback: answer ? (answer.isCorrect ? "correct" : "incorrect") : ""
           };
         });
 
@@ -232,7 +233,7 @@ const QuestionBank: React.FC = () => {
   };
 
   const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
-    await updateUserPerformance(questionId, { completed: isComplete ? 1 : 0 });
+    await updateUserPerformance(questionId, { completed: isComplete });
 
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) => (q.questionId === questionId ? { ...q, completed: isComplete } : q))
@@ -240,7 +241,7 @@ const QuestionBank: React.FC = () => {
   };
 
   const handleMarkForReview = async (questionId: string, isReviewed: boolean) => {
-    await updateUserPerformance(questionId, { reviewed: isReviewed ? 1 : 0 });
+    await updateUserPerformance(questionId, { reviewed: isReviewed });
 
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) => (q.questionId === questionId ? { ...q, reviewed: isReviewed } : q))
@@ -259,7 +260,7 @@ const QuestionBank: React.FC = () => {
       incorrectAnswers: !isCorrect ? 1 : 0,
       uniqueQuestions: 1,
       questionsAttempted: 1,
-      completed: 1,
+      completed: true,
       timeSpent: 0, // Calculate actual time spent
       accuracy: isCorrect ? 1 : 0,
       weaknessBySubtopic: {}, // Add actual weakness data
@@ -288,7 +289,7 @@ const QuestionBank: React.FC = () => {
     });
 
     const updatedFields: Partial<UserPerformance> = {
-      completed: 1,
+      completed: true,
       correctAnswers: isCorrect ? 1 : 0,
       incorrectAnswers: !isCorrect ? 1 : 0,
       uniqueQuestions: 1,
