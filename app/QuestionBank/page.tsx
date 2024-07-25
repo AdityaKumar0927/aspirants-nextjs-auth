@@ -25,9 +25,6 @@ interface QuestionType {
   notes?: string;
   lastAttempted?: string;
   diagramUrl?: string;
-  selectedOption?: string;
-  isCorrect?: boolean;
-  feedback?: string;
 }
 
 interface UserPerformance {
@@ -104,15 +101,17 @@ const QuestionBank: React.FC = () => {
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState<boolean>(true);
-  const userId = "user-id"; // Replace with logic to retrieve user ID if signed in
+  const userId = "user-id"; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const questionsData = await fetchQuestions();
-        const userProgressData = await fetchUserProgress(userId);
-        const notesData = await fetchNotes(userId);
+        const [questionsData, userProgressData, notesData] = await Promise.all([
+          fetchQuestions(),
+          fetchUserProgress(userId),
+          fetchNotes(userId)
+        ]);
 
         const mergedQuestions = questionsData.map((question: QuestionType) => {
           const progress = userProgressData.find((p: UserPerformance) => p.questionId === question.questionId);
@@ -246,7 +245,7 @@ const QuestionBank: React.FC = () => {
 
     const updatedFields = {
       selectedOption: option,
-      isCorrect,
+      isCorrect: isCorrect,
       feedback: isCorrect ? "correct" : "incorrect",
       completed: true,
       lastAttempted: new Date().toISOString(),
@@ -267,14 +266,15 @@ const QuestionBank: React.FC = () => {
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
 
-    await updateUserPerformance(questionId, {
-      userAnswer,
-      isCorrect,
+    const updatedFields = {
+      userAnswer: userAnswer,
+      isCorrect: isCorrect,
       feedback: isCorrect ? "correct" : "incorrect",
       completed: true,
       lastAttempted: new Date().toISOString(),
-    });
+    };
 
+    await updateUserPerformance(questionId, updatedFields);
     await saveUserAnswer(questionId, userAnswer, isCorrect);
 
     setQuestions((prevQuestions) =>
@@ -289,7 +289,7 @@ const QuestionBank: React.FC = () => {
     });
 
     try {
-      const response = await fetch(`/api/notes/save`, {
+      const response = await fetch("/api/notes/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, questionId, content: note }),
@@ -302,7 +302,7 @@ const QuestionBank: React.FC = () => {
 
   const handleDeleteNote = async (questionId: string) => {
     try {
-      const response = await fetch(`/api/notes/delete`, {
+      const response = await fetch("/api/notes/delete", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, questionId }),
