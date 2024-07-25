@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
-// Import necessary hooks and components
 import React, { useState, useEffect, useCallback } from "react";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import Question from "@/components/shared/Question";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
@@ -260,6 +259,7 @@ const QuestionBank: React.FC = () => {
       topicPerformance: {}, // Add actual topic performance data
       consistency: 1,
       engagementLevel: 1,
+      lastAttempted: new Date().toISOString(),
     };
 
     await updateUserPerformance(questionId, updatedFields);
@@ -293,6 +293,7 @@ const QuestionBank: React.FC = () => {
       topicPerformance: {}, // Add actual topic performance data
       consistency: 1,
       engagementLevel: 1,
+      lastAttempted: new Date().toISOString(),
     };
 
     await updateUserPerformance(questionId, updatedFields);
