@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import {
   AreaChart,
   Area,
@@ -78,7 +80,65 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
   }, [userId]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
+        <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
+          <Card className="lg:max-w-md">
+            <CardHeader className="space-y-0 pb-2">
+              <Skeleton height={30} width={100} />
+              <Skeleton height={40} width={150} />
+            </CardHeader>
+            <CardContent>
+              <Skeleton height={200} />
+            </CardContent>
+            <CardFooter className="flex-col items-start gap-1">
+              <Skeleton height={20} width={200} />
+              <Skeleton height={20} width={200} />
+            </CardFooter>
+          </Card>
+          <Card className="flex flex-col lg:max-w-md">
+            <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
+              <div>
+                <Skeleton height={30} width={100} />
+                <Skeleton height={40} width={150} />
+              </div>
+              <div>
+                <Skeleton height={30} width={100} />
+                <Skeleton height={40} width={150} />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <Skeleton height={200} />
+            </CardContent>
+          </Card>
+        </div>
+        <div className="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <Card className="lg:max-w-md">
+            <CardHeader>
+              <Skeleton height={30} width={100} />
+              <Skeleton height={20} width={200} />
+            </CardHeader>
+            <CardContent>
+              <Skeleton height={200} />
+            </CardContent>
+          </Card>
+          <Card className="lg:max-w-md">
+            <CardHeader className="p-4 pb-0">
+              <Skeleton height={30} width={150} />
+              <Skeleton height={20} width={200} />
+            </CardHeader>
+            <CardContent>
+              <Skeleton height={200} />
+            </CardContent>
+          </Card>
+          <Card className="lg:max-w-md">
+            <CardContent>
+              <Skeleton height={200} />
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
   }
 
   const latestPerformance = userPerformance.length > 0 ? userPerformance[0] : {
