@@ -12,14 +12,13 @@ import Dashboard from "@/components/shared/Dashboard";
 import { useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-// You can replace this with actual userId fetching logic
 const getUserId = () => "user-id-placeholder";
 
 export default function Sidebar() {
   const [showNoteModal, setShowNoteModal] = useState(false);
   const [showDashboardModal, setShowDashboardModal] = useState(false);
   const mouseX = useMotionValue(Infinity);
-  const userId = getUserId(); // Fetch or define the userId
+  const userId = getUserId();
 
   const initialUserPerformance = [
     {
