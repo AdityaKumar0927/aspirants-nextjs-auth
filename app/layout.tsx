@@ -10,7 +10,8 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
 import Sidebar from '@/components/layout/Sidebar';
 import { Toaster } from "@/components/ui/toaster";
-import { LoadingProvider } from "@/components/layout/LoadingContext";  // Import the LoadingProvider
+import { LoadingProvider } from "@/components/layout/LoadingContext";
+import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"; 
 
 config.autoAddCss = false;
 
@@ -21,6 +22,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Assuming you get the userId from some authentication context or similar.
+  const userId = "user-id-placeholder"; // Replace this with actual user ID fetching logic
+
   return (
     <html lang="en">
       <head>
@@ -74,21 +78,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
-        <LoadingProvider> {/* Wrap with LoadingProvider */}
-          <TooltipProvider>
-            <div className="fixed inset-0 z-[-10]"></div>
-            <Suspense fallback="...">
-              <Nav />
-            </Suspense>
-            <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-              {children}
-            </main>
-            <Sidebar />
-            <Footer />
-            <VercelAnalytics />
-          </TooltipProvider>
-          <Toaster />
-        </LoadingProvider> {/* Close LoadingProvider */}
+        <LoadingProvider> 
+          <UserPerformanceProvider userId={userId}> 
+            <TooltipProvider>
+              <div className="fixed inset-0 z-[-10]"></div>
+              <Suspense fallback="...">
+                <Nav />
+              </Suspense>
+              <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+                {children}
+              </main>
+              <Sidebar />
+              <Footer />
+              <VercelAnalytics />
+            </TooltipProvider>
+            <Toaster />
+          </UserPerformanceProvider> 
+        </LoadingProvider> 
       </body>
     </html>
   );

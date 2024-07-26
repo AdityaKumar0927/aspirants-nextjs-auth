@@ -80,7 +80,7 @@ export default function Sidebar() {
       </AnimatedModal>
 
       <AnimatedModal showModal={showDashboardModal} setShowModal={setShowDashboardModal}>
-        <Dashboard userId={userId} />
+        <Dashboard />
       </AnimatedModal>
     </>
   );
