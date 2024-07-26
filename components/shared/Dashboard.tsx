@@ -1,10 +1,7 @@
-// Dashboard.tsx
 "use client";
 
 import { useState, useEffect } from "react";
 import {
-  AreaChart,
-  Area,
   Bar,
   BarChart,
   CartesianGrid,
@@ -15,6 +12,7 @@ import {
   YAxis,
   Tooltip,
   LabelList,
+  ReferenceLine,
 } from "recharts";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -79,6 +77,8 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
     return (
       <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
         <Skeleton height={300} width="100%" />
+        <Skeleton height={300} width="100%" />
+        <Skeleton height={300} width="100%" />
       </div>
     );
   }
@@ -87,6 +87,9 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
     accuracy: 0,
     questionsAttempted: 0,
     firstAttemptSuccessRate: 0,
+    correctAnswers: 0,
+    incorrectAnswers: 0,
+    reattemptAccuracy: 0,
   };
 
   return (
@@ -231,23 +234,23 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
       <div className="grid w-full flex-1 gap-6 lg:max-w-[20rem]">
         <Card className="max-w-xs">
           <CardHeader>
-            <CardTitle>First Attempt Success Rate</CardTitle>
+            <CardTitle>Correct Answers</CardTitle>
             <CardDescription>
-              How often you get the right answer on the first try.
+              Total number of correct answers.
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
             <div className="grid auto-rows-min gap-2">
               <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                {latestPerformance.firstAttemptSuccessRate}%
+                {latestPerformance.correctAnswers}
                 <span className="text-sm font-normal text-muted-foreground">
-                  success rate
+                  correct answers
                 </span>
               </div>
               <ChartContainer
                 config={{
-                  firstAttemptSuccessRate: {
-                    label: 'First Attempt Success Rate',
+                  correctAnswers: {
+                    label: 'Correct Answers',
                     color: 'hsl(var(--chart-1))',
                   },
                 }}
@@ -257,27 +260,128 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                   accessibilityLayer
                   layout="vertical"
                   margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
-                  data={[{ date: '2024', firstAttemptSuccessRate: latestPerformance.firstAttemptSuccessRate }]}
+                  data={userPerformance.map(up => ({ ...up, label: 'correctAnswers' }))}
                 >
                   <Bar
-                    dataKey="firstAttemptSuccessRate"
-                    fill="var(--color-firstAttemptSuccessRate)"
+                    dataKey="correctAnswers"
+                    fill="var(--color-correctAnswers)"
                     radius={4}
                     barSize={32}
                   >
                     <LabelList
                       position="insideLeft"
-                      dataKey="date"
+                      dataKey="label"
                       offset={8}
                       fontSize={12}
                       fill="white"
                     />
                   </Bar>
-                  <YAxis dataKey="date" type="category" tickCount={1} hide />
-                  <XAxis dataKey="firstAttemptSuccessRate" type="number" hide />
+                  <YAxis dataKey="questionId" type="category" tickCount={1} hide />
+                  <XAxis dataKey="correctAnswers" type="number" hide />
                 </BarChart>
               </ChartContainer>
             </div>
+          </CardContent>
+        </Card>
+        <Card className="max-w-xs">
+          <CardHeader>
+            <CardTitle>Incorrect Answers</CardTitle>
+            <CardDescription>
+              Total number of incorrect answers.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <div className="grid auto-rows-min gap-2">
+              <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
+                {latestPerformance.incorrectAnswers}
+                <span className="text-sm font-normal text-muted-foreground">
+                  incorrect answers
+                </span>
+              </div>
+              <ChartContainer
+                config={{
+                  incorrectAnswers: {
+                    label: 'Incorrect Answers',
+                    color: 'hsl(var(--chart-1))',
+                  },
+                }}
+                className="aspect-auto h-[32px] w-full"
+              >
+                <BarChart
+                  accessibilityLayer
+                  layout="vertical"
+                  margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
+                  data={userPerformance.map(up => ({ ...up, label: 'incorrectAnswers' }))}
+                >
+                  <Bar
+                    dataKey="incorrectAnswers"
+                    fill="var(--color-incorrectAnswers)"
+                    radius={4}
+                    barSize={32}
+                  >
+                    <LabelList
+                      position="insideLeft"
+                      dataKey="label"
+                      offset={8}
+                      fontSize={12}
+                      fill="white"
+                    />
+                  </Bar>
+                  <YAxis dataKey="questionId" type="category" tickCount={1} hide />
+                  <XAxis dataKey="incorrectAnswers" type="number" hide />
+                </BarChart>
+              </ChartContainer>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="max-w-xs">
+          <CardHeader className="space-y-0 pb-0">
+            <CardDescription>Reattempt Accuracy</CardDescription>
+            <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
+              {latestPerformance.reattemptAccuracy}%
+              <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
+                reattempt accuracy
+              </span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-0">
+            <ChartContainer
+              config={{
+                reattemptAccuracy: {
+                  label: 'Reattempt Accuracy',
+                  color: 'hsl(var(--chart-2))',
+                },
+              }}
+            >
+              <LineChart
+                accessibilityLayer
+                data={userPerformance}
+                margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
+              >
+                <XAxis dataKey="questionId" hide />
+                <YAxis domain={["dataMin - 5", "dataMax + 2"]} hide />
+                <Line
+                  dataKey="reattemptAccuracy"
+                  type="monotone"
+                  fill="var(--color-reattemptAccuracy)"
+                  stroke="var(--color-reattemptAccuracy)"
+                  strokeWidth={2}
+                  dot={false}
+                />
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent hideLabel />}
+                  formatter={(value) => (
+                    <div className="flex min-w-[120px] items-center text-xs text-muted-foreground">
+                      Reattempt Accuracy
+                      <div className="ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums text-foreground">
+                        {value}%
+                      </div>
+                    </div>
+                  )}
+                />
+              </LineChart>
+            </ChartContainer>
           </CardContent>
         </Card>
       </div>
