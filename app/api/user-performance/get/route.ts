@@ -13,7 +13,7 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const userPerformance = await prisma.userPerformance.findFirst({
+    const userPerformance = await prisma.userPerformance.findMany({
       where: { userId: session.user.id },
     });
 

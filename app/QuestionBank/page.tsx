@@ -34,6 +34,7 @@ interface UserAnswer {
 }
 
 interface UserPerformance {
+  questionId: string;
   correctAnswers: number;
   incorrectAnswers: number;
   uniqueQuestions: number;
@@ -121,6 +122,7 @@ const QuestionBank: React.FC = () => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
           const userAnswer = userAnswersData.find((a: UserAnswer) => a.questionId === question.questionId);
           const note = notesData.find((n: any) => n.questionId === question.questionId);
+          const performance = userPerformanceData.find((p: UserPerformance) => p.questionId === question.questionId);
 
           if (userAnswer) {
             setSelectedOptions((prev) => ({
@@ -139,6 +141,7 @@ const QuestionBank: React.FC = () => {
             completed: progress ? progress.completed : false,
             notes: note ? note.content : "",
             lastAttempted: progress ? progress.lastAttempted : "",
+            performance: performance || {},
           };
         });
 
@@ -210,7 +213,7 @@ const QuestionBank: React.FC = () => {
       const response = await fetch("/api/user-performance/update", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedFields),
+        body: JSON.stringify({ questionId, ...updatedFields }),
       });
       if (!response.ok) throw new Error("Failed to update user performance");
     } catch (error) {
@@ -348,7 +351,7 @@ const QuestionBank: React.FC = () => {
           <div className="flex space-x-4 mb-6">
             <Skeleton height={40} width={120} />
             <Skeleton height={40} width={120} />
-            < Skeleton height={40} width={120} />
+            <Skeleton height={40} width={120} />
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">

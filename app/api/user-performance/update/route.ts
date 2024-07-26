@@ -14,6 +14,7 @@ export async function POST(request: Request) {
     }
 
     const {
+      questionId,
       correctAnswers,
       incorrectAnswers,
       uniqueQuestions,
@@ -34,7 +35,7 @@ export async function POST(request: Request) {
     } = await request.json();
 
     const existingPerformance = await prisma.userPerformance.findFirst({
-      where: { userId: session.user.id },
+      where: { userId: session.user.id, questionId },
     });
 
     let userPerformance;
@@ -65,6 +66,7 @@ export async function POST(request: Request) {
       userPerformance = await prisma.userPerformance.create({
         data: {
           userId: session.user.id,
+          questionId,
           correctAnswers: correctAnswers || 0,
           incorrectAnswers: incorrectAnswers || 0,
           uniqueQuestions: uniqueQuestions || 0,
