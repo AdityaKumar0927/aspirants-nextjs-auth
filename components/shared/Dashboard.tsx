@@ -62,8 +62,8 @@ type UserPerformance = {
   engagementLevel: number;
 };
 
-const fetchUserPerformance = async (userId: string): Promise<UserPerformance | null> => {
-  const response = await fetch(`/api/user-performance/get`);
+const fetchUserPerformance = async (): Promise<UserPerformance | null> => {
+  const response = await fetch('/api/user-performance/get');
   if (!response.ok) return null;
   return response.json();
 };
@@ -74,7 +74,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     if (!session || !session.user?.id) {
       return { props: { initialUserPerformance: null } };
     }
-    const data = await fetchUserPerformance(session.user.id);
+    const data = await fetchUserPerformance();
     return {
       props: {
         initialUserPerformance: data,
@@ -95,7 +95,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
     const getUserPerformance = async () => {
       setLoading(true);
       try {
-        const data = await fetchUserPerformance(userId);
+        const data = await fetchUserPerformance();
         setUserPerformance(data);
       } catch (error) {
         console.error('Error fetching user performance:', error);
