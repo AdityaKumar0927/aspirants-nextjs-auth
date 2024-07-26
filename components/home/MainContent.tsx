@@ -283,6 +283,7 @@ const MainContent: React.FC = () => {
               key={question.questionId}
               question={question}
               feedback={feedback[question.questionId]}
+              selectedOption={selectedOptions[question.questionId]} // Pass the selected option
               numericalAnswer={numericalAnswers[question.questionId]}
               showMarkscheme={showMarkscheme[question.questionId]}
               handleOptionClick={(questionId, option, correctOption) =>
