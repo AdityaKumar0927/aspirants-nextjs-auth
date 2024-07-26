@@ -45,6 +45,7 @@ interface UserPerformance {
   engagementLevel: number;
   completed: boolean;
   reviewed: boolean;
+  createdAt: string;
 }
 
 const fetchUserPerformance = async (userId: string): Promise<UserPerformance[]> => {
@@ -53,6 +54,11 @@ const fetchUserPerformance = async (userId: string): Promise<UserPerformance[]> 
     throw new Error("Failed to fetch user performance");
   }
   return response.json();
+};
+
+const calculateAverage = (data: UserPerformance[], key: keyof UserPerformance) => {
+  const total = data.reduce((sum, item) => sum + (item[key] as unknown as number), 0);
+  return total / data.length;
 };
 
 const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
@@ -79,27 +85,26 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
         <Skeleton height={300} width="100%" />
         <Skeleton height={300} width="100%" />
         <Skeleton height={300} width="100%" />
+        <Skeleton height={300} width="100%" />
+        <Skeleton height={300} width="100%" />
       </div>
     );
   }
 
-  const latestPerformance = userPerformance.length > 0 ? userPerformance[0] : {
-    accuracy: 0,
-    questionsAttempted: 0,
-    firstAttemptSuccessRate: 0,
-    correctAnswers: 0,
-    incorrectAnswers: 0,
-    reattemptAccuracy: 0,
-  };
+  const averageAccuracy = calculateAverage(userPerformance, 'accuracy');
+  const totalQuestionsAttempted = userPerformance.reduce((sum, item) => sum + item.questionsAttempted, 0);
+  const totalCorrectAnswers = userPerformance.reduce((sum, item) => sum + item.correctAnswers, 0);
+  const totalIncorrectAnswers = userPerformance.reduce((sum, item) => sum + item.incorrectAnswers, 0);
+  const averageReattemptAccuracy = calculateAverage(userPerformance, 'reattemptAccuracy');
 
   return (
     <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
       <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
         <Card className="lg:max-w-md">
           <CardHeader className="space-y-0 pb-2">
-            <CardDescription>Accuracy</CardDescription>
+            <CardDescription>Average Accuracy</CardDescription>
             <CardTitle className="text-4xl tabular-nums">
-              {latestPerformance.accuracy}{' '}
+              {averageAccuracy.toFixed(2)}{' '}
               <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
                 %
               </span>
@@ -127,7 +132,7 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                   activeBar={<Rectangle fillOpacity={0.8} />}
                 />
                 <XAxis
-                  dataKey="questionId"
+                  dataKey="createdAt"
                   tickLine={false}
                   axisLine={false}
                   tickMargin={4}
@@ -157,22 +162,17 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
           </CardContent>
           <CardFooter className="flex-col items-start gap-1">
             <CardDescription>
-              Over the past 7 days, your accuracy has been{' '}
-              <span className="font-medium text-foreground">75%</span>.
-            </CardDescription>
-            <CardDescription>
-              You need{' '}
-              <span className="font-medium text-foreground">80%</span> accuracy
-              to reach your goal.
+              Your average accuracy across all attempts is{' '}
+              <span className="font-medium text-foreground">{averageAccuracy.toFixed(2)}%</span>.
             </CardDescription>
           </CardFooter>
         </Card>
         <Card className="flex flex-col lg:max-w-md">
           <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
             <div>
-              <CardDescription>Questions Attempted</CardDescription>
+              <CardDescription>Total Questions Attempted</CardDescription>
               <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                {latestPerformance.questionsAttempted}
+                {totalQuestionsAttempted}
                 <span className="text-sm font-normal tracking-normal text-muted-foreground">
                   questions
                 </span>
@@ -202,7 +202,7 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                 />
                 <YAxis hide domain={['dataMin - 1', 'dataMax + 1']} />
                 <XAxis
-                  dataKey="questionId"
+                  dataKey="createdAt"
                   tickLine={false}
                   axisLine={false}
                   tickMargin={8}
@@ -242,7 +242,7 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
           <CardContent className="grid gap-4">
             <div className="grid auto-rows-min gap-2">
               <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                {latestPerformance.correctAnswers}
+                {totalCorrectAnswers}
                 <span className="text-sm font-normal text-muted-foreground">
                   correct answers
                 </span>
@@ -276,7 +276,7 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                       fill="white"
                     />
                   </Bar>
-                  <YAxis dataKey="questionId" type="category" tickCount={1} hide />
+                  <YAxis dataKey="createdAt" type="category" tickCount={1} hide />
                   <XAxis dataKey="correctAnswers" type="number" hide />
                 </BarChart>
               </ChartContainer>
@@ -293,7 +293,7 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
           <CardContent className="grid gap-4">
             <div className="grid auto-rows-min gap-2">
               <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                {latestPerformance.incorrectAnswers}
+                {totalIncorrectAnswers}
                 <span className="text-sm font-normal text-muted-foreground">
                   incorrect answers
                 </span>
@@ -327,7 +327,7 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                       fill="white"
                     />
                   </Bar>
-                  <YAxis dataKey="questionId" type="category" tickCount={1} hide />
+                  <YAxis dataKey="createdAt" type="category" tickCount={1} hide />
                   <XAxis dataKey="incorrectAnswers" type="number" hide />
                 </BarChart>
               </ChartContainer>
@@ -338,7 +338,7 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
           <CardHeader className="space-y-0 pb-0">
             <CardDescription>Reattempt Accuracy</CardDescription>
             <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-              {latestPerformance.reattemptAccuracy}%
+              {averageReattemptAccuracy.toFixed(2)}%
               <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
                 reattempt accuracy
               </span>
@@ -358,7 +358,7 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                 data={userPerformance}
                 margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
               >
-                <XAxis dataKey="questionId" hide />
+                <XAxis dataKey="createdAt" hide />
                 <YAxis domain={["dataMin - 5", "dataMax + 2"]} hide />
                 <Line
                   dataKey="reattemptAccuracy"
