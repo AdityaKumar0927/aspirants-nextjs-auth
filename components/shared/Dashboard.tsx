@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from 'react';
+"use client";
+
+import { useState, useEffect } from "react";
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-  LabelList,
-  ReferenceLine,
-  Label,
-  LineChart,
-  Line,
   AreaChart,
   Area,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Line,
+  LineChart,
+  XAxis,
+  YAxis,
+  ReferenceLine,
+  Label,
+  LabelList,
   PolarAngleAxis,
+  RadialBar,
   RadialBarChart,
   Rectangle,
-  RadialBar,
-} from 'recharts';
+  Tooltip,
+} from "recharts";
 import {
   Card,
   CardContent,
@@ -25,78 +27,65 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { ChartContainer } from '@/components/ui/chart';
-import { Separator } from '@/components/ui/separator';
+} from "@/components/ui/card";
+import { ChartContainer } from "@/components/ui/chart";
+import { Separator } from "@/components/ui/separator";
 
-type UserPerformance = {
+interface UserPerformance {
   questionId: string;
-  accuracy: number;
-  dailyAccuracy: { date: string; accuracy: number }[];
-  timePerQuestion: number;
-  consistency: number;
-  dailyTimePerQuestion: { date: string; time: number }[];
-  currentYearAccuracy: number;
-  previousYearAccuracy: number;
-  timePerSubtopic: number;
-  dailyTimePerSubtopic: { date: string; time: number }[];
-  studyTime: number;
-  dailyStudyTime: { date: string; time: number }[];
   correctAnswers: number;
   incorrectAnswers: number;
   uniqueQuestions: number;
   questionsAttempted: number;
   timeSpent: number;
-  weaknessBySubtopic: { subtopic: string; weakness: number }[];
-  improvementOverTime: { date: string; improvement: number }[];
+  accuracy: number;
+  weaknessBySubtopic: any;
+  improvementOverTime: any;
   attemptRate: number;
   firstAttemptSuccessRate: number;
   reattemptAccuracy: number;
-  topicPerformance: { topic: string; performance: number }[];
+  topicPerformance: any;
+  consistency: number;
   engagementLevel: number;
   completed: boolean;
   reviewed: boolean;
-  lastAttempted: string;
+}
+
+const fetchUserPerformance = async (userId: string): Promise<UserPerformance[]> => {
+  const response = await fetch(`/api/user-performance/get?userId=${userId}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch user performance");
+  }
+  return response.json();
 };
 
-async function fetchUserPerformance(userId: string): Promise<UserPerformance[]> {
-  const response = await fetch(`/api/user-performance/update`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId }),
-  });
-  if (!response.ok) {
-    throw new Error('Failed to fetch user performance');
-  }
-  const data = await response.json();
-  return data;
-}
-
-interface DashboardProps {
-  initialUserPerformance: UserPerformance[];
-  userId: string;
-}
-
-const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId }) => {
-  const [userPerformance, setUserPerformance] = useState<UserPerformance[]>(initialUserPerformance);
+const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
+  const [userPerformance, setUserPerformance] = useState<UserPerformance[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function getUserPerformance() {
+    const fetchData = async () => {
       try {
         const data = await fetchUserPerformance(userId);
         setUserPerformance(data);
       } catch (error) {
-        console.error('Error fetching user performance:', error);
+        console.error("Error fetching user performance:", error);
+      } finally {
+        setLoading(false);
       }
-    }
-    getUserPerformance();
+    };
+    fetchData();
   }, [userId]);
 
-  if (userPerformance.length === 0) {
-    return <div>No data available</div>;
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
-  const latestPerformance = userPerformance[userPerformance.length - 1];
+  const latestPerformance = userPerformance.length > 0 ? userPerformance[0] : {
+    accuracy: 0,
+    timeSpent: 0,
+    consistency: 0,
+  };
 
   return (
     <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
@@ -123,7 +112,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
               <BarChart
                 accessibilityLayer
                 margin={{ left: -4, right: -4 }}
-                data={latestPerformance.dailyAccuracy}
+                data={userPerformance}
               >
                 <Bar
                   dataKey="accuracy"
@@ -133,7 +122,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
                   activeBar={<Rectangle fillOpacity={0.8} />}
                 />
                 <XAxis
-                  dataKey="date"
+                  dataKey="questionId"
                   tickLine={false}
                   axisLine={false}
                   tickMargin={4}
@@ -185,7 +174,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
             <div>
               <CardDescription>Time per Question</CardDescription>
               <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                {latestPerformance.timePerQuestion}
+                {latestPerformance.timeSpent}
                 <span className="text-sm font-normal tracking-normal text-muted-foreground">
                   min/question
                 </span>
@@ -214,7 +203,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
               <LineChart
                 accessibilityLayer
                 margin={{ left: 14, right: 14, top: 10 }}
-                data={latestPerformance.dailyTimePerQuestion}
+                data={userPerformance}
               >
                 <CartesianGrid
                   strokeDasharray="4 4"
@@ -224,7 +213,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
                 />
                 <YAxis hide domain={['dataMin - 1', 'dataMax + 1']} />
                 <XAxis
-                  dataKey="date"
+                  dataKey="questionId"
                   tickLine={false}
                   axisLine={false}
                   tickMargin={8}
@@ -235,7 +224,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
                   }
                 />
                 <Line
-                  dataKey="time"
+                  dataKey="timeSpent"
                   type="natural"
                   fill="var(--color-time)"
                   stroke="var(--color-time)"
@@ -264,7 +253,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
           <CardContent className="grid gap-4">
             <div className="grid auto-rows-min gap-2">
               <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                {latestPerformance.currentYearAccuracy}%
+                {latestPerformance.accuracy}%
                 <span className="text-sm font-normal text-muted-foreground">
                   accuracy/day
                 </span>
@@ -282,7 +271,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
                   accessibilityLayer
                   layout="vertical"
                   margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
-                  data={[{ date: '2024', accuracy: latestPerformance.currentYearAccuracy }]}
+                  data={[{ date: '2024', accuracy: latestPerformance.accuracy }]}
                 >
                   <Bar
                     dataKey="accuracy"
@@ -305,7 +294,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
             </div>
             <div className="grid auto-rows-min gap-2">
               <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                {latestPerformance.previousYearAccuracy}%
+                {latestPerformance.accuracy}%
                 <span className="text-sm font-normal text-muted-foreground">
                   accuracy/day
                 </span>
@@ -323,7 +312,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
                   accessibilityLayer
                   layout="vertical"
                   margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
-                  data={[{ date: '2023', accuracy: latestPerformance.previousYearAccuracy }]}
+                  data={[{ date: '2023', accuracy: latestPerformance.accuracy }]}
                 >
                   <Bar
                     dataKey="accuracy"
@@ -355,7 +344,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
           </CardHeader>
           <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-0">
             <div className="flex items-baseline gap-1 text-3xl font-bold tabular-nums leading-none">
-              {latestPerformance.timePerSubtopic}
+              {latestPerformance.timeSpent}
               <span className="text-sm font-normal text-muted-foreground">
                 hr/day
               </span>
@@ -372,10 +361,10 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
               <BarChart
                 accessibilityLayer
                 margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={latestPerformance.dailyTimePerSubtopic}
+                data={userPerformance}
               >
                 <Bar
-                  dataKey="time"
+                  dataKey="timeSpent"
                   fill="var(--color-time)"
                   radius={2}
                   fillOpacity={0.2}
@@ -383,7 +372,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
                   activeBar={<Rectangle fillOpacity={0.8} />}
                 />
                 <XAxis
-                  dataKey="date"
+                  dataKey="questionId"
                   tickLine={false}
                   axisLine={false}
                   tickMargin={4}
@@ -417,8 +406,8 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
                 data={[
                   {
                     activity: 'speed',
-                    value: (latestPerformance.timePerQuestion / 5) * 100,
-                    label: `${latestPerformance.timePerQuestion} min/q`,
+                    value: (latestPerformance.timeSpent / 5) * 100,
+                    label: `${latestPerformance.timeSpent} min/q`,
                     fill: 'var(--color-speed)',
                   },
                   {
@@ -464,7 +453,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-xs text-muted-foreground">Speed</div>
                 <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  {latestPerformance.timePerQuestion}
+                  {latestPerformance.timeSpent}
                   <span className="text-sm font-normal text-muted-foreground">
                     min/q
                   </span>
@@ -501,7 +490,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-sm text-muted-foreground">Speed</div>
                 <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
-                  {latestPerformance.timePerQuestion} min/q
+                  {latestPerformance.timeSpent} min/q
                   <span className="text-sm font-normal text-muted-foreground">
                     min/q
                   </span>
@@ -546,7 +535,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
               <RadialBarChart
                 margin={{ left: -10, right: -10, top: -10, bottom: -10 }}
                 data={[
-                  { activity: 'speed', value: (latestPerformance.timePerQuestion / 5) * 100, fill: 'var(--color-speed)' },
+                  { activity: 'speed', value: (latestPerformance.timeSpent / 5) * 100, fill: 'var(--color-speed)' },
                   { activity: 'accuracy', value: latestPerformance.accuracy, fill: 'var(--color-accuracy)' },
                   { activity: 'consistency', value: latestPerformance.consistency, fill: 'var(--color-consistency)' },
                 ]}
@@ -619,7 +608,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
         <Card className="max-w-xs">
           <CardContent className="p-4">
             <div className="flex flex-row items-baseline gap-2 text-3xl font-bold tabular-nums leading-none">
-              {latestPerformance.studyTime}
+              {latestPerformance.timeSpent}
               <span className="text-sm font-normal text-muted-foreground">
                 hrs/day
               </span>
@@ -635,10 +624,10 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
             >
               <AreaChart
                 margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={latestPerformance.dailyStudyTime}
+                data={userPerformance}
               >
                 <Area
-                  dataKey="time"
+                  dataKey="timeSpent"
                   type="monotone"
                   fill="var(--color-time)"
                   fillOpacity={0.4}
@@ -653,7 +642,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId })
                 />
                 <YAxis hide domain={['dataMin - 1', 'dataMax + 1']} />
                 <XAxis
-                  dataKey="date"
+                  dataKey="questionId"
                   tickLine={false}
                   axisLine={false}
                   tickMargin={4}
