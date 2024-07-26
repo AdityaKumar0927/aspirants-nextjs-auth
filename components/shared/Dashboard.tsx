@@ -1,24 +1,23 @@
+// Dashboard.tsx
 "use client";
 
 import { useState, useEffect } from "react";
 import {
+  AreaChart,
+  Area,
   Bar,
   BarChart,
+  CartesianGrid,
   Line,
   LineChart,
-  PolarAngleAxis,
-  RadialBar,
-  RadialBarChart,
   Rectangle,
   XAxis,
   YAxis,
   Tooltip,
-  ReferenceLine,
-  Label,
   LabelList,
-  CartesianGrid,
 } from "recharts";
-import { Skeleton } from "@mui/material";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import {
   Card,
   CardContent,
@@ -27,11 +26,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Separator } from "@/components/ui/separator";
 
 interface UserPerformance {
@@ -83,16 +78,15 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
   if (loading) {
     return (
       <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
-        <Skeleton variant="rectangular" width="100%" height={400} />
-        <Skeleton variant="rectangular" width="100%" height={400} />
+        <Skeleton height={300} width="100%" />
       </div>
     );
   }
 
   const latestPerformance = userPerformance.length > 0 ? userPerformance[0] : {
     accuracy: 0,
-    timeSpent: 0,
-    consistency: 0,
+    questionsAttempted: 0,
+    firstAttemptSuccessRate: 0,
   };
 
   return (
@@ -100,11 +94,11 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
       <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
         <Card className="lg:max-w-md">
           <CardHeader className="space-y-0 pb-2">
-            <CardDescription>Today</CardDescription>
+            <CardDescription>Accuracy</CardDescription>
             <CardTitle className="text-4xl tabular-nums">
               {latestPerformance.accuracy}{' '}
               <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
-                accuracy
+                %
               </span>
             </CardTitle>
           </CardHeader>
@@ -140,28 +134,21 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                     })
                   }
                 />
-                <Tooltip />
-                <ReferenceLine
-                  y={75}
-                  stroke="hsl(var(--muted-foreground))"
-                  strokeDasharray="3 3"
-                  strokeWidth={1}
-                >
-                  <Label
-                    position="insideBottomLeft"
-                    value="Average Accuracy"
-                    offset={10}
-                    fill="hsl(var(--foreground))"
-                  />
-                  <Label
-                    position="insideTopLeft"
-                    value="75%"
-                    className="text-lg"
-                    fill="hsl(var(--foreground))"
-                    offset={10}
-                    startOffset={100}
-                  />
-                </ReferenceLine>
+                <ChartTooltip
+                  content={
+                    <ChartTooltipContent
+                      hideIndicator
+                      labelFormatter={(value) => {
+                        return new Date(value).toLocaleDateString("en-US", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        });
+                      }}
+                    />
+                  }
+                  cursor={false}
+                />
               </BarChart>
             </ChartContainer>
           </CardContent>
@@ -180,11 +167,11 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
         <Card className="flex flex-col lg:max-w-md">
           <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
             <div>
-              <CardDescription>Consistency</CardDescription>
+              <CardDescription>Questions Attempted</CardDescription>
               <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                {latestPerformance.consistency}%
+                {latestPerformance.questionsAttempted}
                 <span className="text-sm font-normal tracking-normal text-muted-foreground">
-                  consistent
+                  questions
                 </span>
               </CardTitle>
             </div>
@@ -192,8 +179,8 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
           <CardContent className="flex flex-1 items-center">
             <ChartContainer
               config={{
-                consistency: {
-                  label: 'Consistency',
+                questionsAttempted: {
+                  label: 'Questions Attempted',
                   color: 'hsl(var(--chart-1))',
                 },
               }}
@@ -223,15 +210,15 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                   }
                 />
                 <Line
-                  dataKey="consistency"
+                  dataKey="questionsAttempted"
                   type="natural"
-                  fill="var(--color-consistency)"
-                  stroke="var(--color-consistency)"
+                  fill="var(--color-questionsAttempted)"
+                  stroke="var(--color-questionsAttempted)"
                   strokeWidth={2}
                   dot={false}
                   activeDot={{
-                    fill: 'var(--color-consistency)',
-                    stroke: 'var(--color-consistency)',
+                    fill: 'var(--color-questionsAttempted)',
+                    stroke: 'var(--color-questionsAttempted)',
                     r: 4,
                   }}
                 />
@@ -241,26 +228,26 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
           </CardContent>
         </Card>
       </div>
-      <div className="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <Card className="lg:max-w-md">
+      <div className="grid w-full flex-1 gap-6 lg:max-w-[20rem]">
+        <Card className="max-w-xs">
           <CardHeader>
-            <CardTitle>Progress</CardTitle>
+            <CardTitle>First Attempt Success Rate</CardTitle>
             <CardDescription>
-              You&apos;re averaging better accuracy this year compared to last year.
+              How often you get the right answer on the first try.
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
             <div className="grid auto-rows-min gap-2">
               <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                {latestPerformance.accuracy}%
+                {latestPerformance.firstAttemptSuccessRate}%
                 <span className="text-sm font-normal text-muted-foreground">
-                  accuracy/day
+                  success rate
                 </span>
               </div>
               <ChartContainer
                 config={{
-                  accuracy: {
-                    label: 'Accuracy',
+                  firstAttemptSuccessRate: {
+                    label: 'First Attempt Success Rate',
                     color: 'hsl(var(--chart-1))',
                   },
                 }}
@@ -270,11 +257,11 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                   accessibilityLayer
                   layout="vertical"
                   margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
-                  data={[{ date: '2024', accuracy: latestPerformance.accuracy }]}
+                  data={[{ date: '2024', firstAttemptSuccessRate: latestPerformance.firstAttemptSuccessRate }]}
                 >
                   <Bar
-                    dataKey="accuracy"
-                    fill="var(--color-accuracy)"
+                    dataKey="firstAttemptSuccessRate"
+                    fill="var(--color-firstAttemptSuccessRate)"
                     radius={4}
                     barSize={32}
                   >
@@ -287,100 +274,10 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                     />
                   </Bar>
                   <YAxis dataKey="date" type="category" tickCount={1} hide />
-                  <XAxis dataKey="accuracy" type="number" hide />
+                  <XAxis dataKey="firstAttemptSuccessRate" type="number" hide />
                 </BarChart>
               </ChartContainer>
             </div>
-            <div className="grid auto-rows-min gap-2">
-              <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                {latestPerformance.accuracy}%
-                <span className="text-sm font-normal text-muted-foreground">
-                  accuracy/day
-                </span>
-              </div>
-              <ChartContainer
-                config={{
-                  accuracy: {
-                    label: 'Accuracy',
-                    color: 'hsl(var(--muted))',
-                  },
-                }}
-                className="aspect-auto h-[32px] w-full"
-              >
-                <BarChart
-                  accessibilityLayer
-                  layout="vertical"
-                  margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
-                  data={[{ date: '2023', accuracy: latestPerformance.accuracy }]}
-                >
-                  <Bar
-                    dataKey="accuracy"
-                    fill="var(--color-accuracy)"
-                    radius={4}
-                    barSize={32}
-                  >
-                    <LabelList
-                      position="insideLeft"
-                      dataKey="date"
-                      offset={8}
-                      fontSize={12}
-                      fill="hsl(var(--muted-foreground))"
-                    />
-                  </Bar>
-                  <YAxis dataKey="date" type="category" tickCount={1} hide />
-                  <XAxis dataKey="accuracy" type="number" hide />
-                </BarChart>
-              </ChartContainer>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="lg:max-w-md">
-          <CardHeader className="p-4 pb-0">
-            <CardTitle>Engagement Level</CardTitle>
-            <CardDescription>
-              Over the last 7 days, you&apos;ve maintained a high engagement level.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-0">
-            <div className="flex items-baseline gap-1 text-3xl font-bold tabular-nums leading-none">
-              {latestPerformance.engagementLevel}%
-              <span className="text-sm font-normal text-muted-foreground">
-                engaged
-              </span>
-            </div>
-            <ChartContainer
-              config={{
-                engagement: {
-                  label: 'Engagement',
-                  color: 'hsl(var(--chart-1))',
-                },
-              }}
-              className="ml-auto w-[72px]"
-            >
-              <RadialBarChart
-                margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={userPerformance.map((performance) => ({
-                  ...performance,
-                  engagementLevel: performance.engagementLevel,
-                }))}
-                innerRadius="20%"
-                barSize={24}
-                startAngle={90}
-                endAngle={450}
-              >
-                <PolarAngleAxis
-                  type="number"
-                  domain={[0, 100]}
-                  dataKey="engagementLevel"
-                  tick={false}
-                />
-                <RadialBar
-                  dataKey="engagementLevel"
-                  background
-                  cornerRadius={5}
-                />
-              </RadialBarChart>
-            </ChartContainer>
           </CardContent>
         </Card>
       </div>
