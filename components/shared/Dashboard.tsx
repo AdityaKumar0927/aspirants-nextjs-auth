@@ -37,36 +37,40 @@ import { Separator } from '@/components/ui/separator';
 import { getSession } from 'next-auth/react';
 
 type UserPerformance = {
-  accuracy: number;
-  dailyAccuracy: { date: string; accuracy: number }[];
-  timePerQuestion: number;
-  consistency: number;
-  dailyTimePerQuestion: { date: string; time: number }[];
-  currentYearAccuracy: number;
-  previousYearAccuracy: number;
-  timePerSubtopic: number;
-  dailyTimePerSubtopic: { date: string; time: number }[];
-  studyTime: number;
-  dailyStudyTime: { date: string; time: number }[];
+  questionId: string;
   correctAnswers: number;
   incorrectAnswers: number;
   uniqueQuestions: number;
   questionsAttempted: number;
   timeSpent: number;
+  accuracy: number;
   weaknessBySubtopic: { subtopic: string; weakness: number }[];
   improvementOverTime: { date: string; improvement: number }[];
   attemptRate: number;
   firstAttemptSuccessRate: number;
   reattemptAccuracy: number;
   topicPerformance: { topic: string; performance: number }[];
+  consistency: number;
   engagementLevel: number;
+  completed: boolean;
+  reviewed: boolean;
+  lastAttempted: string;
+  dailyAccuracy: { date: string; accuracy: number }[];
+  dailyTimePerQuestion: { date: string; time: number }[];
+  dailyStudyTime: { date: string; time: number }[];
+  currentYearAccuracy: number;
+  previousYearAccuracy: number;
+  timePerQuestion: number;
+  timePerSubtopic: number;
+  dailyTimePerSubtopic: { date: string; time: number }[];
+  studyTime: number;
 };
 
-const fetchUserPerformance = async (userId: string): Promise<UserPerformance | null> => {
+const fetchUserPerformance = async (userId: string): Promise<UserPerformance[]> => {
   const response = await fetch(`/api/user-performance/get?userId=${userId}`);
   if (!response.ok) {
     console.error('Failed to fetch user performance');
-    return null;
+    return [];
   }
   const data = await response.json();
   console.log('User performance data:', data);
@@ -77,7 +81,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const session = await getSession(context);
     if (!session || !session.user?.id) {
-      return { props: { initialUserPerformance: null } };
+      return { props: { initialUserPerformance: [] } };
     }
     const data = await fetchUserPerformance(session.user.id);
     return {
@@ -88,12 +92,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   } catch (error) {
     console.error('Error fetching user performance:', error);
-    return { props: { initialUserPerformance: null } };
+    return { props: { initialUserPerformance: [] } };
   }
 };
 
-export default function Dashboard({ initialUserPerformance, userId }: { initialUserPerformance: UserPerformance | null, userId: string }) {
-  const [userPerformance, setUserPerformance] = useState<UserPerformance | null>(initialUserPerformance);
+export default function Dashboard({ initialUserPerformance, userId }: { initialUserPerformance: UserPerformance[], userId: string }) {
+  const [userPerformance, setUserPerformance] = useState<UserPerformance[]>(initialUserPerformance);
   const { setLoading } = useLoading();
 
   useEffect(() => {
@@ -110,12 +114,12 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
       }
     };
 
-    if (!userPerformance) {
+    if (!userPerformance.length) {
       getUserPerformance();
     }
   }, [setLoading, userPerformance, userId]);
 
-  if (!userPerformance) {
+  if (!userPerformance.length) {
     return (
       <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
         <div className="text-center text-gray-500">
@@ -128,157 +132,87 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
   return (
     <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
       <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
-        <Card className="lg:max-w-md">
-          <CardHeader className="space-y-0 pb-2">
-            <CardDescription>Today</CardDescription>
-            <CardTitle className="text-4xl tabular-nums">
-              {userPerformance.accuracy}{' '}
-              <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
-                accuracy
-              </span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ChartContainer
-              config={{
-                accuracy: {
-                  label: 'Accuracy',
-                  color: 'hsl(var(--chart-1))',
-                },
-              }}
-            >
-              <BarChart
-                accessibilityLayer
-                margin={{ left: -4, right: -4 }}
-                data={userPerformance.dailyAccuracy}
+        {userPerformance.map((performance) => (
+          <Card key={performance.questionId} className="lg:max-w-md">
+            <CardHeader className="space-y-0 pb-2">
+              <CardDescription>Today</CardDescription>
+              <CardTitle className="text-4xl tabular-nums">
+                {performance.accuracy}{' '}
+                <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
+                  accuracy
+                </span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ChartContainer
+                config={{
+                  accuracy: {
+                    label: 'Accuracy',
+                    color: 'hsl(var(--chart-1))',
+                  },
+                }}
               >
-                <Bar
-                  dataKey="accuracy"
-                  fill="var(--color-accuracy)"
-                  radius={5}
-                  fillOpacity={0.6}
-                  activeBar={<Rectangle fillOpacity={0.8} />}
-                />
-                <XAxis
-                  dataKey="date"
-                  tickLine={false}
-                  axisLine={false}
-                  tickMargin={4}
-                  tickFormatter={(value) =>
-                    new Date(value).toLocaleDateString('en-US', {
-                      weekday: 'short',
-                    })
-                  }
-                />
-                <Tooltip />
-                <ReferenceLine
-                  y={75}
-                  stroke="hsl(var(--muted-foreground))"
-                  strokeDasharray="3 3"
-                  strokeWidth={1}
+                <BarChart
+                  accessibilityLayer
+                  margin={{ left: -4, right: -4 }}
+                  data={performance.dailyAccuracy}
                 >
-                  <Label
-                    position="insideBottomLeft"
-                    value="Average Accuracy"
-                    offset={10}
-                    fill="hsl(var(--foreground))"
+                  <Bar
+                    dataKey="accuracy"
+                    fill="var(--color-accuracy)"
+                    radius={5}
+                    fillOpacity={0.6}
+                    activeBar={<Rectangle fillOpacity={0.8} />}
                   />
-                  <Label
-                    position="insideTopLeft"
-                    value="75%"
-                    className="text-lg"
-                    fill="hsl(var(--foreground))"
-                    offset={10}
-                    startOffset={100}
+                  <XAxis
+                    dataKey="date"
+                    tickLine={false}
+                    axisLine={false}
+                    tickMargin={4}
+                    tickFormatter={(value) =>
+                      new Date(value).toLocaleDateString('en-US', {
+                        weekday: 'short',
+                      })
+                    }
                   />
-                </ReferenceLine>
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-          <CardFooter className="flex-col items-start gap-1">
-            <CardDescription>
-              Over the past 7 days, your accuracy has been{' '}
-              <span className="font-medium text-foreground">75%</span>.
-            </CardDescription>
-            <CardDescription>
-              You need{' '}
-              <span className="font-medium text-foreground">80%</span> accuracy
-              to reach your goal.
-            </CardDescription>
-          </CardFooter>
-        </Card>
-        <Card className="flex flex-col lg:max-w-md">
-          <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
-            <div>
-              <CardDescription>Time per Question</CardDescription>
-              <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                {userPerformance.timePerQuestion}
-                <span className="text-sm font-normal tracking-normal text-muted-foreground">
-                  min/question
-                </span>
-              </CardTitle>
-            </div>
-            <div>
-              <CardDescription>Consistency</CardDescription>
-              <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                {userPerformance.consistency}%
-                <span className="text-sm font-normal tracking-normal text-muted-foreground">
-                  consistent
-                </span>
-              </CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent className="flex flex-1 items-center">
-            <ChartContainer
-              config={{
-                time: {
-                  label: 'Time',
-                  color: 'hsl(var(--chart-1))',
-                },
-              }}
-              className="w-full"
-            >
-              <LineChart
-                accessibilityLayer
-                margin={{ left: 14, right: 14, top: 10 }}
-                data={userPerformance.dailyTimePerQuestion}
-              >
-                <CartesianGrid
-                  strokeDasharray="4 4"
-                  vertical={false}
-                  stroke="hsl(var(--muted-foreground))"
-                  strokeOpacity={0.5}
-                />
-                <YAxis hide domain={['dataMin - 1', 'dataMax + 1']} />
-                <XAxis
-                  dataKey="date"
-                  tickLine={false}
-                  axisLine={false}
-                  tickMargin={8}
-                  tickFormatter={(value) =>
-                    new Date(value).toLocaleDateString('en-US', {
-                      weekday: 'short',
-                    })
-                  }
-                />
-                <Line
-                  dataKey="time"
-                  type="natural"
-                  fill="var(--color-time)"
-                  stroke="var(--color-time)"
-                  strokeWidth={2}
-                  dot={false}
-                  activeDot={{
-                    fill: 'var(--color-time)',
-                    stroke: 'var(--color-time)',
-                    r: 4,
-                  }}
-                />
-                <Tooltip />
-              </LineChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
+                  <Tooltip />
+                  <ReferenceLine
+                    y={75}
+                    stroke="hsl(var(--muted-foreground))"
+                    strokeDasharray="3 3"
+                    strokeWidth={1}
+                  >
+                    <Label
+                      position="insideBottomLeft"
+                      value="Average Accuracy"
+                      offset={10}
+                      fill="hsl(var(--foreground))"
+                    />
+                    <Label
+                      position="insideTopLeft"
+                      value="75%"
+                      className="text-lg"
+                      fill="hsl(var(--foreground))"
+                      offset={10}
+                      startOffset={100}
+                    />
+                  </ReferenceLine>
+                </BarChart>
+              </ChartContainer>
+            </CardContent>
+            <CardFooter className="flex-col items-start gap-1">
+              <CardDescription>
+                Over the past 7 days, your accuracy has been{' '}
+                <span className="font-medium text-foreground">75%</span>.
+              </CardDescription>
+              <CardDescription>
+                You need{' '}
+                <span className="font-medium text-foreground">80%</span> accuracy
+                to reach your goal.
+              </CardDescription>
+            </CardFooter>
+          </Card>
+        ))}
       </div>
       <div className="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <Card className="lg:max-w-md">
@@ -291,7 +225,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
           <CardContent className="grid gap-4">
             <div className="grid auto-rows-min gap-2">
               <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                {userPerformance.currentYearAccuracy}%
+                {userPerformance[0].currentYearAccuracy}%
                 <span className="text-sm font-normal text-muted-foreground">
                   accuracy/day
                 </span>
@@ -309,7 +243,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
                   accessibilityLayer
                   layout="vertical"
                   margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
-                  data={[{ date: '2024', accuracy: userPerformance.currentYearAccuracy }]}
+                  data={[{ date: '2024', accuracy: userPerformance[0].currentYearAccuracy }]}
                 >
                   <Bar
                     dataKey="accuracy"
@@ -332,7 +266,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
             </div>
             <div className="grid auto-rows-min gap-2">
               <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                {userPerformance.previousYearAccuracy}%
+                {userPerformance[0].previousYearAccuracy}%
                 <span className="text-sm font-normal text-muted-foreground">
                   accuracy/day
                 </span>
@@ -350,7 +284,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
                   accessibilityLayer
                   layout="vertical"
                   margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
-                  data={[{ date: '2023', accuracy: userPerformance.previousYearAccuracy }]}
+                  data={[{ date: '2023', accuracy: userPerformance[0].previousYearAccuracy }]}
                 >
                   <Bar
                     dataKey="accuracy"
@@ -382,7 +316,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
           </CardHeader>
           <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-0">
             <div className="flex items-baseline gap-1 text-3xl font-bold tabular-nums leading-none">
-              {userPerformance.timePerSubtopic}
+              {userPerformance[0].timePerSubtopic}
               <span className="text-sm font-normal text-muted-foreground">
                 hr/day
               </span>
@@ -399,7 +333,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <BarChart
                 accessibilityLayer
                 margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={userPerformance.dailyTimePerSubtopic}
+                data={userPerformance[0].dailyTimePerSubtopic}
               >
                 <Bar
                   dataKey="time"
@@ -444,20 +378,20 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
                 data={[
                   {
                     activity: 'speed',
-                    value: (userPerformance.timePerQuestion / 5) * 100,
-                    label: `${userPerformance.timePerQuestion} min/q`,
+                    value: (userPerformance[0].timePerQuestion / 5) * 100,
+                    label: `${userPerformance[0].timePerQuestion} min/q`,
                     fill: 'var(--color-speed)',
                   },
                   {
                     activity: 'accuracy',
-                    value: userPerformance.accuracy,
-                    label: `${userPerformance.accuracy}%`,
+                    value: userPerformance[0].accuracy,
+                    label: `${userPerformance[0].accuracy}%`,
                     fill: 'var(--color-accuracy)',
                   },
                   {
                     activity: 'consistency',
-                    value: userPerformance.consistency,
-                    label: `${userPerformance.consistency}%`,
+                    value: userPerformance[0].consistency,
+                    label: `${userPerformance[0].consistency}%`,
                     fill: 'var(--color-consistency)',
                   },
                 ]}
@@ -491,7 +425,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-xs text-muted-foreground">Speed</div>
                 <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  {userPerformance.timePerQuestion}
+                  {userPerformance[0].timePerQuestion}
                   <span className="text-sm font-normal text-muted-foreground">
                     min/q
                   </span>
@@ -501,7 +435,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-xs text-muted-foreground">Accuracy</div>
                 <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  {userPerformance.accuracy}
+                  {userPerformance[0].accuracy}
                   <span className="text-sm font-normal text-muted-foreground">
                     %
                   </span>
@@ -511,7 +445,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-xs text-muted-foreground">Consistency</div>
                 <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  {userPerformance.consistency}
+                  {userPerformance[0].consistency}
                   <span className="text-sm font-normal text-muted-foreground">
                     %
                   </span>
@@ -528,7 +462,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-sm text-muted-foreground">Speed</div>
                 <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
-                  {userPerformance.timePerQuestion} min/q
+                  {userPerformance[0].timePerQuestion} min/q
                   <span className="text-sm font-normal text-muted-foreground">
                     min/q
                   </span>
@@ -537,7 +471,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-sm text-muted-foreground">Accuracy</div>
                 <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
-                  {userPerformance.accuracy}%
+                  {userPerformance[0].accuracy}%
                   <span className="text-sm font-normal text-muted-foreground">
                     %
                   </span>
@@ -546,7 +480,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-sm text-muted-foreground">Consistency</div>
                 <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
-                  {userPerformance.consistency}%
+                  {userPerformance[0].consistency}%
                   <span className="text-sm font-normal text-muted-foreground">
                     %
                   </span>
@@ -573,9 +507,9 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <RadialBarChart
                 margin={{ left: -10, right: -10, top: -10, bottom: -10 }}
                 data={[
-                  { activity: 'speed', value: (userPerformance.timePerQuestion / 5) * 100, fill: 'var(--color-speed)' },
-                  { activity: 'accuracy', value: userPerformance.accuracy, fill: 'var(--color-accuracy)' },
-                  { activity: 'consistency', value: userPerformance.consistency, fill: 'var(--color-consistency)' },
+                  { activity: 'speed', value: (userPerformance[0].timePerQuestion / 5) * 100, fill: 'var(--color-speed)' },
+                  { activity: 'accuracy', value: userPerformance[0].accuracy, fill: 'var(--color-accuracy)' },
+                  { activity: 'consistency', value: userPerformance[0].consistency, fill: 'var(--color-consistency)' },
                 ]}
                 innerRadius="20%"
                 barSize={24}
@@ -597,12 +531,12 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
           <CardHeader className="p-4 pb-0">
             <CardTitle>Active Learning</CardTitle>
             <CardDescription>
-              You&apos;re maintaining an average accuracy of {userPerformance.accuracy}%. Good job!
+              You&apos;re maintaining an average accuracy of {userPerformance[0].accuracy}%. Good job!
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-2">
             <div className="flex items-baseline gap-2 text-3xl font-bold tabular-nums leading-none">
-              {userPerformance.accuracy}%
+              {userPerformance[0].accuracy}%
               <span className="text-sm font-normal text-muted-foreground">
                 accuracy
               </span>
@@ -618,7 +552,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
             >
               <BarChart
                 margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={[{ date: '2024', accuracy: userPerformance.accuracy }]}
+                data={[{ date: '2024', accuracy: userPerformance[0].accuracy }]}
               >
                 <Bar
                   dataKey="accuracy"
@@ -646,7 +580,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
         <Card className="max-w-xs">
           <CardContent className="p-4">
             <div className="flex flex-row items-baseline gap-2 text-3xl font-bold tabular-nums leading-none">
-              {userPerformance.studyTime}
+              {userPerformance[0].studyTime}
               <span className="text-sm font-normal text-muted-foreground">
                 hrs/day
               </span>
@@ -662,7 +596,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
             >
               <AreaChart
                 margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={userPerformance.dailyStudyTime}
+                data={userPerformance[0].dailyStudyTime}
               >
                 <Area
                   dataKey="time"

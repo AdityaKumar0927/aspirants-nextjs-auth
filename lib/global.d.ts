@@ -73,25 +73,36 @@ declare global {
     averageTimeTaken?: string;
   }
 
-  interface UserPerformance {
+  type UserPerformance = {
+    questionId: string;
     correctAnswers: number;
     incorrectAnswers: number;
     uniqueQuestions: number;
     questionsAttempted: number;
     timeSpent: number;
     accuracy: number;
-    weaknessBySubtopic: any;
-    improvementOverTime: any;
+    weaknessBySubtopic: { subtopic: string; weakness: number }[];
+    improvementOverTime: { date: string; improvement: number }[];
     attemptRate: number;
     firstAttemptSuccessRate: number;
     reattemptAccuracy: number;
-    topicPerformance: any;
+    topicPerformance: { topic: string; performance: number }[];
     consistency: number;
     engagementLevel: number;
-    completed: number;
-    reviewed: number;
-    lastAttempted?: string; // Add this line
-  }
+    completed: boolean;
+    reviewed: boolean;
+    lastAttempted: string;
+    dailyAccuracy: { date: string; accuracy: number }[];
+    dailyTimePerQuestion: { date: string; time: number }[];
+    dailyStudyTime: { date: string; time: number }[];
+    currentYearAccuracy: number;
+    previousYearAccuracy: number;
+    timePerQuestion: number;
+    timePerSubtopic: number;
+    dailyTimePerSubtopic: { date: string; time: number }[]; // Add this line if it's missing
+    studyTime: number;
+  };
+  
   
 }
 
