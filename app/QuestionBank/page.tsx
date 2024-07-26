@@ -78,27 +78,9 @@ const isStringArray = (value: any): value is string[] => {
   return Array.isArray(value) && value.every((item) => typeof item === "string");
 };
 
-const fetchQuestions = async () => {
-  const response = await fetch("/api/questions");
-  if (!response.ok) throw new Error("Failed to fetch questions");
-  return response.json();
-};
-
-const fetchUserProgress = async () => {
-  const response = await fetch("/api/user-progress");
-  if (!response.ok) throw new Error("Failed to fetch user progress");
-  return response.json();
-};
-
-const fetchUserAnswers = async () => {
-  const response = await fetch("/api/user-answers");
-  if (!response.ok) throw new Error("Failed to fetch user answers");
-  return response.json();
-};
-
-const fetchNotes = async () => {
-  const response = await fetch("/api/notes");
-  if (!response.ok) throw new Error("Failed to fetch notes");
+const fetchData = async (url: string) => {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Failed to fetch data from ${url}`);
   return response.json();
 };
 
@@ -124,13 +106,15 @@ const QuestionBank: React.FC = () => {
   const userId = ""; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchAllData = async () => {
       try {
         setLoading(true);
-        const questionsData = await fetchQuestions();
-        const userProgressData = await fetchUserProgress();
-        const userAnswersData = await fetchUserAnswers();
-        const notesData = await fetchNotes();
+        const [questionsData, userProgressData, userAnswersData, notesData] = await Promise.all([
+          fetchData("/api/questions"),
+          fetchData("/api/user-progress"),
+          fetchData("/api/user-answers"),
+          fetchData("/api/notes")
+        ]);
 
         const mergedQuestions = questionsData.map((question: QuestionType) => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
@@ -156,6 +140,7 @@ const QuestionBank: React.FC = () => {
             lastAttempted: progress ? progress.lastAttempted : "",
           };
         });
+
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
       } catch (error) {
@@ -165,7 +150,7 @@ const QuestionBank: React.FC = () => {
       }
     };
 
-    fetchData();
+    fetchAllData();
   }, [userId]);
 
   const exams = Array.from(new Set(questions.map((q) => q.exam)));
