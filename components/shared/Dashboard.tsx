@@ -63,7 +63,7 @@ type UserPerformance = {
 };
 
 const fetchUserPerformance = async (userId: string): Promise<UserPerformance | null> => {
-  const response = await fetch(`/api/user-performance/get?userId=${userId}`);
+  const response = await fetch(`/api/user-performance/get`);
   if (!response.ok) return null;
   return response.json();
 };
