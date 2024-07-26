@@ -512,7 +512,7 @@ const QuestionBank: React.FC = () => {
             />
           ))
         ) : (
-          <p>No questions found with the selected filters.</p>
+          <p className="text-red-400">No questions found with the selected filters.</p>
         )}
       </div>
     </div>
