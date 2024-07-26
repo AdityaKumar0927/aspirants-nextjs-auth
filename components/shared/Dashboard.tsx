@@ -85,8 +85,6 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
         <Skeleton height={300} width="100%" />
         <Skeleton height={300} width="100%" />
         <Skeleton height={300} width="100%" />
-        <Skeleton height={300} width="100%" />
-        <Skeleton height={300} width="100%" />
       </div>
     );
   }
