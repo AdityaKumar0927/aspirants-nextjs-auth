@@ -129,90 +129,162 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
     );
   }
 
+  const latestPerformance = userPerformance[0];
+
   return (
     <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
       <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
-        {userPerformance.map((performance) => (
-          <Card key={performance.questionId} className="lg:max-w-md">
-            <CardHeader className="space-y-0 pb-2">
-              <CardDescription>Today</CardDescription>
-              <CardTitle className="text-4xl tabular-nums">
-                {performance.accuracy}{' '}
-                <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
-                  accuracy
+        <Card className="lg:max-w-md">
+          <CardHeader className="space-y-0 pb-2">
+            <CardDescription>Today</CardDescription>
+            <CardTitle className="text-4xl tabular-nums">
+              {latestPerformance.accuracy}{' '}
+              <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
+                accuracy
+              </span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ChartContainer
+              config={{
+                accuracy: {
+                  label: 'Accuracy',
+                  color: 'hsl(var(--chart-1))',
+                },
+              }}
+            >
+              <BarChart
+                accessibilityLayer
+                margin={{ left: -4, right: -4 }}
+                data={latestPerformance.dailyAccuracy}
+              >
+                <Bar
+                  dataKey="accuracy"
+                  fill="var(--color-accuracy)"
+                  radius={5}
+                  fillOpacity={0.6}
+                  activeBar={<Rectangle fillOpacity={0.8} />}
+                />
+                <XAxis
+                  dataKey="date"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={4}
+                  tickFormatter={(value) =>
+                    new Date(value).toLocaleDateString('en-US', {
+                      weekday: 'short',
+                    })
+                  }
+                />
+                <Tooltip />
+                <ReferenceLine
+                  y={75}
+                  stroke="hsl(var(--muted-foreground))"
+                  strokeDasharray="3 3"
+                  strokeWidth={1}
+                >
+                  <Label
+                    position="insideBottomLeft"
+                    value="Average Accuracy"
+                    offset={10}
+                    fill="hsl(var(--foreground))"
+                  />
+                  <Label
+                    position="insideTopLeft"
+                    value="75%"
+                    className="text-lg"
+                    fill="hsl(var(--foreground))"
+                    offset={10}
+                    startOffset={100}
+                  />
+                </ReferenceLine>
+              </BarChart>
+            </ChartContainer>
+          </CardContent>
+          <CardFooter className="flex-col items-start gap-1">
+            <CardDescription>
+              Over the past 7 days, your accuracy has been{' '}
+              <span className="font-medium text-foreground">75%</span>.
+            </CardDescription>
+            <CardDescription>
+              You need{' '}
+              <span className="font-medium text-foreground">80%</span> accuracy
+              to reach your goal.
+            </CardDescription>
+          </CardFooter>
+        </Card>
+        <Card className="flex flex-col lg:max-w-md">
+          <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
+            <div>
+              <CardDescription>Time per Question</CardDescription>
+              <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
+                {latestPerformance.timePerQuestion}
+                <span className="text-sm font-normal tracking-normal text-muted-foreground">
+                  min/question
                 </span>
               </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ChartContainer
-                config={{
-                  accuracy: {
-                    label: 'Accuracy',
-                    color: 'hsl(var(--chart-1))',
-                  },
-                }}
+            </div>
+            <div>
+              <CardDescription>Consistency</CardDescription>
+              <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
+                {latestPerformance.consistency}%
+                <span className="text-sm font-normal tracking-normal text-muted-foreground">
+                  consistent
+                </span>
+              </CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="flex flex-1 items-center">
+            <ChartContainer
+              config={{
+                time: {
+                  label: 'Time',
+                  color: 'hsl(var(--chart-1))',
+                },
+              }}
+              className="w-full"
+            >
+              <LineChart
+                accessibilityLayer
+                margin={{ left: 14, right: 14, top: 10 }}
+                data={latestPerformance.dailyTimePerQuestion}
               >
-                <BarChart
-                  accessibilityLayer
-                  margin={{ left: -4, right: -4 }}
-                  data={performance.dailyAccuracy}
-                >
-                  <Bar
-                    dataKey="accuracy"
-                    fill="var(--color-accuracy)"
-                    radius={5}
-                    fillOpacity={0.6}
-                    activeBar={<Rectangle fillOpacity={0.8} />}
-                  />
-                  <XAxis
-                    dataKey="date"
-                    tickLine={false}
-                    axisLine={false}
-                    tickMargin={4}
-                    tickFormatter={(value) =>
-                      new Date(value).toLocaleDateString('en-US', {
-                        weekday: 'short',
-                      })
-                    }
-                  />
-                  <Tooltip />
-                  <ReferenceLine
-                    y={75}
-                    stroke="hsl(var(--muted-foreground))"
-                    strokeDasharray="3 3"
-                    strokeWidth={1}
-                  >
-                    <Label
-                      position="insideBottomLeft"
-                      value="Average Accuracy"
-                      offset={10}
-                      fill="hsl(var(--foreground))"
-                    />
-                    <Label
-                      position="insideTopLeft"
-                      value="75%"
-                      className="text-lg"
-                      fill="hsl(var(--foreground))"
-                      offset={10}
-                      startOffset={100}
-                    />
-                  </ReferenceLine>
-                </BarChart>
-              </ChartContainer>
-            </CardContent>
-            <CardFooter className="flex-col items-start gap-1">
-              <CardDescription>
-                Over the past 7 days, your accuracy has been{' '}
-                <span className="font-medium text-foreground">75%</span>.
-              </CardDescription>
-              <CardDescription>
-                You need{' '}
-                <span className="font-medium text-foreground">80%</span> accuracy
-                to reach your goal.
-              </CardDescription>
-            </CardFooter>
-          </Card>
-        ))}
+                <CartesianGrid
+                  strokeDasharray="4 4"
+                  vertical={false}
+                  stroke="hsl(var(--muted-foreground))"
+                  strokeOpacity={0.5}
+                />
+                <YAxis hide domain={['dataMin - 1', 'dataMax + 1']} />
+                <XAxis
+                  dataKey="date"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  tickFormatter={(value) =>
+                    new Date(value).toLocaleDateString('en-US', {
+                      weekday: 'short',
+                    })
+                  }
+                />
+                <Line
+                  dataKey="time"
+                  type="natural"
+                  fill="var(--color-time)"
+                  stroke="var(--color-time)"
+                  strokeWidth={2}
+                  dot={false}
+                  activeDot={{
+                    fill: 'var(--color-time)',
+                    stroke: 'var(--color-time)',
+                    r: 4,
+                  }}
+                />
+                <Tooltip />
+              </LineChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
       </div>
       <div className="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <Card className="lg:max-w-md">
@@ -225,7 +297,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
           <CardContent className="grid gap-4">
             <div className="grid auto-rows-min gap-2">
               <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                {userPerformance[0].currentYearAccuracy}%
+                {latestPerformance.currentYearAccuracy}%
                 <span className="text-sm font-normal text-muted-foreground">
                   accuracy/day
                 </span>
@@ -243,7 +315,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
                   accessibilityLayer
                   layout="vertical"
                   margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
-                  data={[{ date: '2024', accuracy: userPerformance[0].currentYearAccuracy }]}
+                  data={[{ date: '2024', accuracy: latestPerformance.currentYearAccuracy }]}
                 >
                   <Bar
                     dataKey="accuracy"
@@ -266,7 +338,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
             </div>
             <div className="grid auto-rows-min gap-2">
               <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                {userPerformance[0].previousYearAccuracy}%
+                {latestPerformance.previousYearAccuracy}%
                 <span className="text-sm font-normal text-muted-foreground">
                   accuracy/day
                 </span>
@@ -284,7 +356,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
                   accessibilityLayer
                   layout="vertical"
                   margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
-                  data={[{ date: '2023', accuracy: userPerformance[0].previousYearAccuracy }]}
+                  data={[{ date: '2023', accuracy: latestPerformance.previousYearAccuracy }]}
                 >
                   <Bar
                     dataKey="accuracy"
@@ -316,7 +388,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
           </CardHeader>
           <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-0">
             <div className="flex items-baseline gap-1 text-3xl font-bold tabular-nums leading-none">
-              {userPerformance[0].timePerSubtopic}
+              {latestPerformance.timePerSubtopic}
               <span className="text-sm font-normal text-muted-foreground">
                 hr/day
               </span>
@@ -333,7 +405,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <BarChart
                 accessibilityLayer
                 margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={userPerformance[0].dailyTimePerSubtopic}
+                data={latestPerformance.dailyTimePerSubtopic}
               >
                 <Bar
                   dataKey="time"
@@ -378,20 +450,20 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
                 data={[
                   {
                     activity: 'speed',
-                    value: (userPerformance[0].timePerQuestion / 5) * 100,
-                    label: `${userPerformance[0].timePerQuestion} min/q`,
+                    value: (latestPerformance.timePerQuestion / 5) * 100,
+                    label: `${latestPerformance.timePerQuestion} min/q`,
                     fill: 'var(--color-speed)',
                   },
                   {
                     activity: 'accuracy',
-                    value: userPerformance[0].accuracy,
-                    label: `${userPerformance[0].accuracy}%`,
+                    value: latestPerformance.accuracy,
+                    label: `${latestPerformance.accuracy}%`,
                     fill: 'var(--color-accuracy)',
                   },
                   {
                     activity: 'consistency',
-                    value: userPerformance[0].consistency,
-                    label: `${userPerformance[0].consistency}%`,
+                    value: latestPerformance.consistency,
+                    label: `${latestPerformance.consistency}%`,
                     fill: 'var(--color-consistency)',
                   },
                 ]}
@@ -425,7 +497,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-xs text-muted-foreground">Speed</div>
                 <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  {userPerformance[0].timePerQuestion}
+                  {latestPerformance.timePerQuestion}
                   <span className="text-sm font-normal text-muted-foreground">
                     min/q
                   </span>
@@ -435,7 +507,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-xs text-muted-foreground">Accuracy</div>
                 <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  {userPerformance[0].accuracy}
+                  {latestPerformance.accuracy}
                   <span className="text-sm font-normal text-muted-foreground">
                     %
                   </span>
@@ -445,7 +517,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-xs text-muted-foreground">Consistency</div>
                 <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  {userPerformance[0].consistency}
+                  {latestPerformance.consistency}
                   <span className="text-sm font-normal text-muted-foreground">
                     %
                   </span>
@@ -462,7 +534,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-sm text-muted-foreground">Speed</div>
                 <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
-                  {userPerformance[0].timePerQuestion} min/q
+                  {latestPerformance.timePerQuestion} min/q
                   <span className="text-sm font-normal text-muted-foreground">
                     min/q
                   </span>
@@ -471,7 +543,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-sm text-muted-foreground">Accuracy</div>
                 <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
-                  {userPerformance[0].accuracy}%
+                  {latestPerformance.accuracy}%
                   <span className="text-sm font-normal text-muted-foreground">
                     %
                   </span>
@@ -480,7 +552,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-sm text-muted-foreground">Consistency</div>
                 <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
-                  {userPerformance[0].consistency}%
+                  {latestPerformance.consistency}%
                   <span className="text-sm font-normal text-muted-foreground">
                     %
                   </span>
@@ -507,9 +579,9 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <RadialBarChart
                 margin={{ left: -10, right: -10, top: -10, bottom: -10 }}
                 data={[
-                  { activity: 'speed', value: (userPerformance[0].timePerQuestion / 5) * 100, fill: 'var(--color-speed)' },
-                  { activity: 'accuracy', value: userPerformance[0].accuracy, fill: 'var(--color-accuracy)' },
-                  { activity: 'consistency', value: userPerformance[0].consistency, fill: 'var(--color-consistency)' },
+                  { activity: 'speed', value: (latestPerformance.timePerQuestion / 5) * 100, fill: 'var(--color-speed)' },
+                  { activity: 'accuracy', value: latestPerformance.accuracy, fill: 'var(--color-accuracy)' },
+                  { activity: 'consistency', value: latestPerformance.consistency, fill: 'var(--color-consistency)' },
                 ]}
                 innerRadius="20%"
                 barSize={24}
@@ -531,12 +603,12 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
           <CardHeader className="p-4 pb-0">
             <CardTitle>Active Learning</CardTitle>
             <CardDescription>
-              You&apos;re maintaining an average accuracy of {userPerformance[0].accuracy}%. Good job!
+              You&apos;re maintaining an average accuracy of {latestPerformance.accuracy}%. Good job!
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-2">
             <div className="flex items-baseline gap-2 text-3xl font-bold tabular-nums leading-none">
-              {userPerformance[0].accuracy}%
+              {latestPerformance.accuracy}%
               <span className="text-sm font-normal text-muted-foreground">
                 accuracy
               </span>
@@ -552,7 +624,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
             >
               <BarChart
                 margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={[{ date: '2024', accuracy: userPerformance[0].accuracy }]}
+                data={[{ date: '2024', accuracy: latestPerformance.accuracy }]}
               >
                 <Bar
                   dataKey="accuracy"
@@ -580,7 +652,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
         <Card className="max-w-xs">
           <CardContent className="p-4">
             <div className="flex flex-row items-baseline gap-2 text-3xl font-bold tabular-nums leading-none">
-              {userPerformance[0].studyTime}
+              {latestPerformance.studyTime}
               <span className="text-sm font-normal text-muted-foreground">
                 hrs/day
               </span>
@@ -596,7 +668,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
             >
               <AreaChart
                 margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={userPerformance[0].dailyStudyTime}
+                data={latestPerformance.dailyStudyTime}
               >
                 <Area
                   dataKey="time"
