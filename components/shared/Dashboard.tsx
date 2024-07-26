@@ -4,18 +4,21 @@ import { useState, useEffect } from "react";
 import {
   Bar,
   BarChart,
-  CartesianGrid,
   Line,
   LineChart,
-  Rectangle,
   XAxis,
   YAxis,
   Tooltip,
   LabelList,
   ReferenceLine,
+  CartesianGrid,
+  Rectangle
 } from "recharts";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   Card,
   CardContent,
@@ -64,6 +67,8 @@ const calculateAverage = (data: UserPerformance[], key: keyof UserPerformance) =
 const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
   const [userPerformance, setUserPerformance] = useState<UserPerformance[]>([]);
   const [loading, setLoading] = useState(true);
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,6 +83,10 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
     };
     fetchData();
   }, [userId]);
+
+  const handleFilter = () => {
+    // Implement filter logic based on startDate and endDate
+  };
 
   if (loading) {
     return (
@@ -97,8 +106,44 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
   const totalIncorrectAnswers = userPerformance.reduce((sum, item) => sum + item.incorrectAnswers, 0);
   const averageReattemptAccuracy = calculateAverage(userPerformance, 'reattemptAccuracy');
 
+  const dataByDate = userPerformance.map((item) => ({
+    ...item,
+    createdAt: new Date(item.createdAt).toLocaleDateString("en-US", { weekday: "short" }),
+  }));
+
   return (
     <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:justify-between">
+        <div>
+          <DatePicker
+            selected={startDate}
+            onChange={(date: Date | null) => setStartDate(date)}
+            selectsStart
+            startDate={startDate ?? undefined}
+            endDate={endDate ?? undefined}
+            placeholderText="Start Date"
+            className="input"
+          />
+          <DatePicker
+            selected={endDate}
+            onChange={(date: Date | null) => setEndDate(date)}
+            selectsEnd
+            startDate={startDate ?? undefined}
+            endDate={endDate ?? undefined}
+            placeholderText="End Date"
+            className="input"
+          />
+          <button onClick={handleFilter} className="btn">
+            Filter
+          </button>
+        </div>
+        <div className="flex items-center gap-2">
+          <span data-tip="Here you can filter the performance data by date range.">
+            <i className="info-icon">i</i>
+          </span>
+          <ReactTooltip />
+        </div>
+      </div>
       <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
         <Card className="lg:max-w-md">
           <CardHeader className="space-y-0 pb-2">
@@ -122,7 +167,7 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
               <BarChart
                 accessibilityLayer
                 margin={{ left: -4, right: -4 }}
-                data={userPerformance}
+                data={dataByDate}
               >
                 <Bar
                   dataKey="accuracy"
@@ -137,8 +182,8 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                   axisLine={false}
                   tickMargin={4}
                   tickFormatter={(value) =>
-                    new Date(value).toLocaleDateString('en-US', {
-                      weekday: 'short',
+                    new Date(value).toLocaleDateString("en-US", {
+                      weekday: "short",
                     })
                   }
                 />
@@ -192,7 +237,7 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
               <LineChart
                 accessibilityLayer
                 margin={{ left: 14, right: 14, top: 10 }}
-                data={userPerformance}
+                data={dataByDate}
               >
                 <CartesianGrid
                   strokeDasharray="4 4"
@@ -207,8 +252,8 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                   axisLine={false}
                   tickMargin={8}
                   tickFormatter={(value) =>
-                    new Date(value).toLocaleDateString('en-US', {
-                      weekday: 'short',
+                    new Date(value).toLocaleDateString("en-US", {
+                      weekday: "short",
                     })
                   }
                 />
@@ -225,7 +270,21 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                     r: 4,
                   }}
                 />
-                <Tooltip />
+                <ChartTooltip
+                  content={
+                    <ChartTooltipContent
+                      hideIndicator
+                      labelFormatter={(value) => {
+                        return new Date(value).toLocaleDateString("en-US", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        });
+                      }}
+                    />
+                  }
+                  cursor={false}
+                />
               </LineChart>
             </ChartContainer>
           </CardContent>
@@ -260,7 +319,7 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                   accessibilityLayer
                   layout="vertical"
                   margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
-                  data={userPerformance.map(up => ({ ...up, label: 'correctAnswers' }))}
+                  data={dataByDate.map(up => ({ ...up, label: 'correctAnswers' }))}
                 >
                   <Bar
                     dataKey="correctAnswers"
@@ -311,7 +370,7 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                   accessibilityLayer
                   layout="vertical"
                   margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
-                  data={userPerformance.map(up => ({ ...up, label: 'incorrectAnswers' }))}
+                  data={dataByDate.map(up => ({ ...up, label: 'incorrectAnswers' }))}
                 >
                   <Bar
                     dataKey="incorrectAnswers"
@@ -355,7 +414,7 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
             >
               <LineChart
                 accessibilityLayer
-                data={userPerformance}
+                data={dataByDate}
                 margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
               >
                 <XAxis dataKey="createdAt" hide />
