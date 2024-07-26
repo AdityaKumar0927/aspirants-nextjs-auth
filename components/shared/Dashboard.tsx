@@ -1,27 +1,24 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 import {
-  AreaChart,
-  Area,
   Bar,
   BarChart,
-  CartesianGrid,
   Line,
   LineChart,
-  XAxis,
-  YAxis,
-  ReferenceLine,
-  Label,
-  LabelList,
   PolarAngleAxis,
   RadialBar,
   RadialBarChart,
   Rectangle,
+  XAxis,
+  YAxis,
   Tooltip,
+  ReferenceLine,
+  Label,
+  LabelList,
+  CartesianGrid,
 } from "recharts";
+import { Skeleton } from "@mui/material";
 import {
   Card,
   CardContent,
@@ -30,7 +27,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ChartContainer } from "@/components/ui/chart";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import { Separator } from "@/components/ui/separator";
 
 interface UserPerformance {
@@ -82,61 +83,8 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
   if (loading) {
     return (
       <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
-        <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
-          <Card className="lg:max-w-md">
-            <CardHeader className="space-y-0 pb-2">
-              <Skeleton height={30} width={100} />
-              <Skeleton height={40} width={150} />
-            </CardHeader>
-            <CardContent>
-              <Skeleton height={200} />
-            </CardContent>
-            <CardFooter className="flex-col items-start gap-1">
-              <Skeleton height={20} width={200} />
-              <Skeleton height={20} width={200} />
-            </CardFooter>
-          </Card>
-          <Card className="flex flex-col lg:max-w-md">
-            <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
-              <div>
-                <Skeleton height={30} width={100} />
-                <Skeleton height={40} width={150} />
-              </div>
-              <div>
-                <Skeleton height={30} width={100} />
-                <Skeleton height={40} width={150} />
-              </div>
-            </CardHeader>
-            <CardContent>
-              <Skeleton height={200} />
-            </CardContent>
-          </Card>
-        </div>
-        <div className="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <Card className="lg:max-w-md">
-            <CardHeader>
-              <Skeleton height={30} width={100} />
-              <Skeleton height={20} width={200} />
-            </CardHeader>
-            <CardContent>
-              <Skeleton height={200} />
-            </CardContent>
-          </Card>
-          <Card className="lg:max-w-md">
-            <CardHeader className="p-4 pb-0">
-              <Skeleton height={30} width={150} />
-              <Skeleton height={20} width={200} />
-            </CardHeader>
-            <CardContent>
-              <Skeleton height={200} />
-            </CardContent>
-          </Card>
-          <Card className="lg:max-w-md">
-            <CardContent>
-              <Skeleton height={200} />
-            </CardContent>
-          </Card>
-        </div>
+        <Skeleton variant="rectangular" width="100%" height={400} />
+        <Skeleton variant="rectangular" width="100%" height={400} />
       </div>
     );
   }
@@ -232,15 +180,6 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
         <Card className="flex flex-col lg:max-w-md">
           <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
             <div>
-              <CardDescription>Time per Question</CardDescription>
-              <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                {latestPerformance.timeSpent}
-                <span className="text-sm font-normal tracking-normal text-muted-foreground">
-                  min/question
-                </span>
-              </CardTitle>
-            </div>
-            <div>
               <CardDescription>Consistency</CardDescription>
               <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
                 {latestPerformance.consistency}%
@@ -253,8 +192,8 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
           <CardContent className="flex flex-1 items-center">
             <ChartContainer
               config={{
-                time: {
-                  label: 'Time',
+                consistency: {
+                  label: 'Consistency',
                   color: 'hsl(var(--chart-1))',
                 },
               }}
@@ -284,15 +223,15 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                   }
                 />
                 <Line
-                  dataKey="timeSpent"
+                  dataKey="consistency"
                   type="natural"
-                  fill="var(--color-time)"
-                  stroke="var(--color-time)"
+                  fill="var(--color-consistency)"
+                  stroke="var(--color-consistency)"
                   strokeWidth={2}
                   dot={false}
                   activeDot={{
-                    fill: 'var(--color-time)',
-                    stroke: 'var(--color-time)',
+                    fill: 'var(--color-consistency)',
+                    stroke: 'var(--color-consistency)',
                     r: 4,
                   }}
                 />
@@ -397,208 +336,33 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
         </Card>
         <Card className="lg:max-w-md">
           <CardHeader className="p-4 pb-0">
-            <CardTitle>Time per Subtopic</CardTitle>
+            <CardTitle>Engagement Level</CardTitle>
             <CardDescription>
-              Over the last 7 days, you&apos;ve spent an average of 1.5 hours per subtopic per day.
+              Over the last 7 days, you&apos;ve maintained a high engagement level.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-0">
             <div className="flex items-baseline gap-1 text-3xl font-bold tabular-nums leading-none">
-              {latestPerformance.timeSpent}
+              {latestPerformance.engagementLevel}%
               <span className="text-sm font-normal text-muted-foreground">
-                hr/day
+                engaged
               </span>
             </div>
             <ChartContainer
               config={{
-                time: {
-                  label: 'Time',
+                engagement: {
+                  label: 'Engagement',
                   color: 'hsl(var(--chart-1))',
                 },
               }}
               className="ml-auto w-[72px]"
             >
-              <BarChart
-                accessibilityLayer
-                margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={userPerformance}
-              >
-                <Bar
-                  dataKey="timeSpent"
-                  fill="var(--color-time)"
-                  radius={2}
-                  fillOpacity={0.2}
-                  activeIndex={6}
-                  activeBar={<Rectangle fillOpacity={0.8} />}
-                />
-                <XAxis
-                  dataKey="questionId"
-                  tickLine={false}
-                  axisLine={false}
-                  tickMargin={4}
-                  hide
-                />
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
-        <Card className="lg:max-w-md">
-          <CardContent className="flex gap-4 p-4 pb-2">
-            <ChartContainer
-              config={{
-                speed: {
-                  label: 'Speed',
-                  color: 'hsl(var(--chart-1))',
-                },
-                accuracy: {
-                  label: 'Accuracy',
-                  color: 'hsl(var(--chart-2))',
-                },
-                consistency: {
-                  label: 'Consistency',
-                  color: 'hsl(var(--chart-3))',
-                },
-              }}
-              className="h-[140px] w-full"
-            >
-              <BarChart
-                margin={{ left: 0, right: 0, top: 0, bottom: 10 }}
-                data={[
-                  {
-                    activity: 'speed',
-                    value: (latestPerformance.timeSpent / 5) * 100,
-                    label: `${latestPerformance.timeSpent} min/q`,
-                    fill: 'var(--color-speed)',
-                  },
-                  {
-                    activity: 'accuracy',
-                    value: latestPerformance.accuracy,
-                    label: `${latestPerformance.accuracy}%`,
-                    fill: 'var(--color-accuracy)',
-                  },
-                  {
-                    activity: 'consistency',
-                    value: latestPerformance.consistency,
-                    label: `${latestPerformance.consistency}%`,
-                    fill: 'var(--color-consistency)',
-                  },
-                ]}
-                layout="vertical"
-                barSize={32}
-                barGap={2}
-              >
-                <XAxis type="number" dataKey="value" hide />
-                <YAxis
-                  dataKey="activity"
-                  type="category"
-                  tickLine={false}
-                  tickMargin={4}
-                  axisLine={false}
-                  className="capitalize"
-                />
-                <Bar dataKey="value" radius={5}>
-                  <LabelList
-                    position="insideLeft"
-                    dataKey="label"
-                    fill="white"
-                    offset={8}
-                    fontSize={12}
-                  />
-                </Bar>
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-          <CardFooter className="flex flex-row border-t p-4">
-            <div className="flex w-full items-center gap-2">
-              <div className="grid flex-1 auto-rows-min gap-0.5">
-                <div className="text-xs text-muted-foreground">Speed</div>
-                <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  {latestPerformance.timeSpent}
-                  <span className="text-sm font-normal text-muted-foreground">
-                    min/q
-                  </span>
-                </div>
-              </div>
-              <Separator orientation="vertical" className="mx-2 h-10 w-px" />
-              <div className="grid flex-1 auto-rows-min gap-0.5">
-                <div className="text-xs text-muted-foreground">Accuracy</div>
-                <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  {latestPerformance.accuracy}
-                  <span className="text-sm font-normal text-muted-foreground">
-                    %
-                  </span>
-                </div>
-              </div>
-              <Separator orientation="vertical" className="mx-2 h-10 w-px" />
-              <div className="grid flex-1 auto-rows-min gap-0.5">
-                <div className="text-xs text-muted-foreground">Consistency</div>
-                <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  {latestPerformance.consistency}
-                  <span className="text-sm font-normal text-muted-foreground">
-                    %
-                  </span>
-                </div>
-              </div>
-            </div>
-          </CardFooter>
-        </Card>
-      </div>
-      <div className="grid w-full flex-1 gap-6">
-        <Card className="max-w-xs">
-          <CardContent className="flex gap-4 p-4">
-            <div className="grid items-center gap-2">
-              <div className="grid flex-1 auto-rows-min gap-0.5">
-                <div className="text-sm text-muted-foreground">Speed</div>
-                <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
-                  {latestPerformance.timeSpent} min/q
-                  <span className="text-sm font-normal text-muted-foreground">
-                    min/q
-                  </span>
-                </div>
-              </div>
-              <div className="grid flex-1 auto-rows-min gap-0.5">
-                <div className="text-sm text-muted-foreground">Accuracy</div>
-                <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
-                  {latestPerformance.accuracy}%
-                  <span className="text-sm font-normal text-muted-foreground">
-                    %
-                  </span>
-                </div>
-              </div>
-              <div className="grid flex-1 auto-rows-min gap-0.5">
-                <div className="text-sm text-muted-foreground">Consistency</div>
-                <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
-                  {latestPerformance.consistency}%
-                  <span className="text-sm font-normal text-muted-foreground">
-                    %
-                  </span>
-                </div>
-              </div>
-            </div>
-            <ChartContainer
-              config={{
-                speed: {
-                  label: 'Speed',
-                  color: 'hsl(var(--chart-1))',
-                },
-                accuracy: {
-                  label: 'Accuracy',
-                  color: 'hsl(var(--chart-2))',
-                },
-                consistency: {
-                  label: 'Consistency',
-                  color: 'hsl(var(--chart-3))',
-                },
-              }}
-              className="mx-auto aspect-square w-full max-w-[80%]"
-            >
               <RadialBarChart
-                margin={{ left: -10, right: -10, top: -10, bottom: -10 }}
-                data={[
-                  { activity: 'speed', value: (latestPerformance.timeSpent / 5) * 100, fill: 'var(--color-speed)' },
-                  { activity: 'accuracy', value: latestPerformance.accuracy, fill: 'var(--color-accuracy)' },
-                  { activity: 'consistency', value: latestPerformance.consistency, fill: 'var(--color-consistency)' },
-                ]}
+                margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                data={userPerformance.map((performance) => ({
+                  ...performance,
+                  engagementLevel: performance.engagementLevel,
+                }))}
                 innerRadius="20%"
                 barSize={24}
                 startAngle={90}
@@ -607,108 +371,15 @@ const Dashboard: React.FC<{ userId: string }> = ({ userId }) => {
                 <PolarAngleAxis
                   type="number"
                   domain={[0, 100]}
-                  dataKey="value"
+                  dataKey="engagementLevel"
                   tick={false}
                 />
-                <RadialBar dataKey="value" background cornerRadius={5} />
+                <RadialBar
+                  dataKey="engagementLevel"
+                  background
+                  cornerRadius={5}
+                />
               </RadialBarChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
-        <Card className="max-w-xs">
-          <CardHeader className="p-4 pb-0">
-            <CardTitle>Active Learning</CardTitle>
-            <CardDescription>
-              You&apos;re maintaining an average accuracy of {latestPerformance.accuracy}%. Good job!
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-2">
-            <div className="flex items-baseline gap-2 text-3xl font-bold tabular-nums leading-none">
-              {latestPerformance.accuracy}%
-              <span className="text-sm font-normal text-muted-foreground">
-                accuracy
-              </span>
-            </div>
-            <ChartContainer
-              config={{
-                accuracy: {
-                  label: 'Accuracy',
-                  color: 'hsl(var(--chart-1))',
-                },
-              }}
-              className="ml-auto w-[72px]"
-            >
-              <BarChart
-                margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={[{ date: '2024', accuracy: latestPerformance.accuracy }]}
-              >
-                <Bar
-                  dataKey="accuracy"
-                  fill="var(--color-accuracy)"
-                  radius={4}
-                  barSize={32}
-                  fillOpacity={0.6}
-                  activeIndex={6}
-                  activeBar={<Rectangle fillOpacity={0.8} />}
-                >
-                  <LabelList
-                    position="insideLeft"
-                    dataKey="date"
-                    fill="white"
-                    offset={8}
-                    fontSize={12}
-                  />
-                </Bar>
-                <YAxis dataKey="date" type="category" tickCount={1} hide />
-                <XAxis dataKey="accuracy" type="number" hide />
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
-        <Card className="max-w-xs">
-          <CardContent className="p-4">
-            <div className="flex flex-row items-baseline gap-2 text-3xl font-bold tabular-nums leading-none">
-              {latestPerformance.timeSpent}
-              <span className="text-sm font-normal text-muted-foreground">
-                hrs/day
-              </span>
-            </div>
-            <ChartContainer
-              config={{
-                time: {
-                  label: 'Time',
-                  color: 'hsl(var(--chart-1))',
-                },
-              }}
-              className="ml-auto w-[72px]"
-            >
-              <AreaChart
-                margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={userPerformance}
-              >
-                <Area
-                  dataKey="timeSpent"
-                  type="monotone"
-                  fill="var(--color-time)"
-                  fillOpacity={0.4}
-                  stroke="var(--color-time)"
-                  strokeWidth={2}
-                  dot={false}
-                  activeDot={{
-                    fill: 'var(--color-time)',
-                    stroke: 'var(--color-time)',
-                    r: 4,
-                  }}
-                />
-                <YAxis hide domain={['dataMin - 1', 'dataMax + 1']} />
-                <XAxis
-                  dataKey="questionId"
-                  tickLine={false}
-                  axisLine={false}
-                  tickMargin={4}
-                  hide
-                />
-              </AreaChart>
             </ChartContainer>
           </CardContent>
         </Card>
