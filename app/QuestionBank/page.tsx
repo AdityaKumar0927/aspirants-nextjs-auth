@@ -109,11 +109,12 @@ const QuestionBank: React.FC = () => {
     const fetchAllData = async () => {
       try {
         setLoading(true);
-        const [questionsData, userProgressData, userAnswersData, notesData] = await Promise.all([
+        const [questionsData, userProgressData, userAnswersData, notesData, userPerformanceData] = await Promise.all([
           fetchData("/api/questions"),
           fetchData("/api/user-progress"),
           fetchData("/api/user-answers"),
-          fetchData("/api/notes")
+          fetchData("/api/notes"),
+          fetchData("/api/user-performance/get")
         ]);
 
         const mergedQuestions = questionsData.map((question: QuestionType) => {
