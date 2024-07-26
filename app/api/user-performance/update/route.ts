@@ -14,7 +14,6 @@ export async function POST(request: Request) {
     }
 
     const {
-      questionId,
       correctAnswers,
       incorrectAnswers,
       uniqueQuestions,
@@ -71,8 +70,8 @@ export async function POST(request: Request) {
         topicPerformance: topicPerformance || {},
         consistency: consistency || 0,
         engagementLevel: engagementLevel || 0,
-        completed: completed || 0,
-        reviewed: reviewed || 0,
+        completed: completed || false,
+        reviewed: reviewed || false,
         lastAttempted: lastAttempted || new Date().toISOString(),
       },
     });

@@ -209,7 +209,7 @@ const QuestionBank: React.FC = () => {
       const response = await fetch("/api/user-performance/update", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId, ...updatedFields }),
+        body: JSON.stringify(updatedFields),
       });
       if (!response.ok) throw new Error("Failed to update user performance");
     } catch (error) {

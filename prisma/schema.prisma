@@ -1,11 +1,11 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("POSTGRES_PRISMA_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+generator client {
+  provider = "prisma-client-js"
 }
 
 model Account {
@@ -48,8 +48,8 @@ model User {
   sessions      Session[]
   progresses    UserProgress[]
   notes         Note[]
-  performances  UserPerformance?
-  answers       UserAnswer[] // Added this line
+  performances  UserPerformance[]  // Changed from "?" to "[]"
+  answers       UserAnswer[]
 }
 
 model VerificationToken {
@@ -97,7 +97,7 @@ model Question {
   diagramUrl       String?
   notes            Note[]    @relation("QuestionNotes")
   progresses       UserProgress[]
-  answers          UserAnswer[] // Added this line
+  answers          UserAnswer[]
 }
 
 model Note {
@@ -112,28 +112,29 @@ model Note {
 }
 
 model UserPerformance {
-  id                      String  @id @default(cuid())
-  userId                  String  @unique
-  correctAnswers          Int
-  incorrectAnswers        Int
-  uniqueQuestions         Int
-  questionsAttempted      Int
-  timeSpent               Int
-  accuracy                Float
-  weaknessBySubtopic      Json
-  improvementOverTime     Json
-  attemptRate             Float
+  id                    Int     @id @default(autoincrement())
+  userId                String
+  correctAnswers        Int
+  incorrectAnswers      Int
+  uniqueQuestions       Int
+  questionsAttempted    Int
+  timeSpent             Int
+  accuracy              Float
+  weaknessBySubtopic    Json
+  improvementOverTime   Json
+  attemptRate           Float
   firstAttemptSuccessRate Float
-  reattemptAccuracy       Float
-  topicPerformance        Json
-  consistency             Float
-  engagementLevel         Float
-  completed               Int @default(0)
-  reviewed                Int @default(0)
-  lastAttempted           DateTime? // Add this line
-  user                    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reattemptAccuracy     Float
+  topicPerformance      Json
+  consistency           Float
+  engagementLevel       Float
+  completed             Boolean
+  reviewed              Boolean
+  lastAttempted         DateTime
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
-
 
 model UserAnswer {
   id            String   @id @default(cuid())
@@ -146,4 +147,3 @@ model UserAnswer {
 
   @@unique([userId, questionId])
 }
-
