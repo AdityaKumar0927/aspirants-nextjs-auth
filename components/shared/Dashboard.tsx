@@ -274,8 +274,8 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
           </CardContent>
         </Card>
       </div>
-      <div className="grid w-full flex-1 gap-6 lg:max-w-[20rem]">
-        <Card className="max-w-xs">
+      <div className="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <Card className="lg:max-w-md">
           <CardHeader>
             <CardTitle>Progress</CardTitle>
             <CardDescription>
@@ -367,7 +367,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
             </div>
           </CardContent>
         </Card>
-        <Card className="max-w-xs">
+        <Card className="lg:max-w-md">
           <CardHeader className="p-4 pb-0">
             <CardTitle>Time per Subtopic</CardTitle>
             <CardDescription>
@@ -414,7 +414,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
             </ChartContainer>
           </CardContent>
         </Card>
-        <Card className="max-w-xs">
+        <Card className="lg:max-w-md">
           <CardContent className="flex gap-4 p-4 pb-2">
             <ChartContainer
               config={{
