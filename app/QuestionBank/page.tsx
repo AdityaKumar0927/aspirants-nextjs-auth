@@ -27,15 +27,29 @@ interface QuestionType {
   diagramUrl?: string;
 }
 
-interface UserPerformance {
+interface UserAnswer {
   questionId: string;
-  selectedOption?: string;
-  isCorrect?: boolean;
-  userAnswer?: string;
-  feedback?: string;
+  selectedOption: string;
+  isCorrect: boolean;
+}
+
+interface UserPerformance {
+  correctAnswers: number;
+  incorrectAnswers: number;
+  uniqueQuestions: number;
+  questionsAttempted: number;
+  timeSpent: number;
+  accuracy: number;
+  weaknessBySubtopic: any;
+  improvementOverTime: any;
+  attemptRate: number;
+  firstAttemptSuccessRate: number;
+  reattemptAccuracy: number;
+  topicPerformance: any;
+  consistency: number;
+  engagementLevel: number;
   completed: boolean;
   reviewed: boolean;
-  note?: string;
 }
 
 type FiltersType = {
@@ -70,14 +84,20 @@ const fetchQuestions = async () => {
   return response.json();
 };
 
-const fetchUserProgress = async (userId: string) => {
-  const response = await fetch(`/api/user-progress/${userId}`);
+const fetchUserProgress = async () => {
+  const response = await fetch("/api/user-progress");
   if (!response.ok) throw new Error("Failed to fetch user progress");
   return response.json();
 };
 
-const fetchNotes = async (userId: string) => {
-  const response = await fetch(`/api/notes/${userId}`);
+const fetchUserAnswers = async () => {
+  const response = await fetch("/api/user-answers");
+  if (!response.ok) throw new Error("Failed to fetch user answers");
+  return response.json();
+};
+
+const fetchNotes = async () => {
+  const response = await fetch("/api/notes");
   if (!response.ok) throw new Error("Failed to fetch notes");
   return response.json();
 };
@@ -101,36 +121,43 @@ const QuestionBank: React.FC = () => {
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState<boolean>(true);
-  const userId = "user-id"; // Add logic to retrieve user ID if signed in
+  const userId = ""; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         const questionsData = await fetchQuestions();
-        const userProgressData = await fetchUserProgress(userId);
-        const notesData = await fetchNotes(userId);
+        const userProgressData = await fetchUserProgress();
+        const userAnswersData = await fetchUserAnswers();
+        const notesData = await fetchNotes();
 
         const mergedQuestions = questionsData.map((question: QuestionType) => {
-          const progress = userProgressData.find((p: UserPerformance) => p.questionId === question.questionId);
-          const note = notesData.find((n: UserPerformance) => n.questionId === question.questionId);
+          const progress = userProgressData.find((p: any) => p.questionId === question.questionId);
+          const userAnswer = userAnswersData.find((a: UserAnswer) => a.questionId === question.questionId);
+          const note = notesData.find((n: any) => n.questionId === question.questionId);
+
+          if (userAnswer) {
+            setSelectedOptions((prev) => ({
+              ...prev,
+              [question.questionId]: userAnswer.selectedOption,
+            }));
+            setFeedback((prev) => ({
+              ...prev,
+              [question.questionId]: userAnswer.isCorrect ? "correct" : "incorrect",
+            }));
+          }
+
           return {
             ...question,
             reviewed: progress ? progress.reviewed : false,
             completed: progress ? progress.completed : false,
-            notes: note ? note.note : "",
+            notes: note ? note.content : "",
             lastAttempted: progress ? progress.lastAttempted : "",
-            selectedOption: progress ? progress.selectedOption : "",
-            isCorrect: progress ? progress.isCorrect : false,
-            feedback: progress ? progress.feedback : "",
           };
         });
-
         setQuestions(mergedQuestions);
         setFilteredQuestions(mergedQuestions);
-        setFeedback(userProgressData.reduce((acc: any, cur: UserPerformance) => ({ ...acc, [cur.questionId]: cur.feedback }), {}));
-        setNumericalAnswers(userProgressData.reduce((acc: any, cur: UserPerformance) => ({ ...acc, [cur.questionId]: cur.userAnswer }), {}));
-        setSelectedOptions(userProgressData.reduce((acc: any, cur: UserPerformance) => ({ ...acc, [cur.questionId]: cur.selectedOption }), {}));
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -194,10 +221,10 @@ const QuestionBank: React.FC = () => {
     updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>
   ) => {
     try {
-      const response = await fetch(`/api/user-performance/update`, {
+      const response = await fetch("/api/user-performance/update", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, questionId, ...updatedFields }),
+        body: JSON.stringify({ questionId, ...updatedFields }),
       });
       if (!response.ok) throw new Error("Failed to update user performance");
     } catch (error) {
@@ -207,10 +234,10 @@ const QuestionBank: React.FC = () => {
 
   const saveUserAnswer = async (questionId: string, selectedOption: string, isCorrect: boolean) => {
     try {
-      const response = await fetch(`/api/user-answers`, {
+      const response = await fetch("/api/user-answers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, questionId, selectedOption, isCorrect }),
+        body: JSON.stringify({ questionId, selectedOption, isCorrect }),
       });
       if (!response.ok) throw new Error("Failed to save user answer");
     } catch (error) {
@@ -242,11 +269,12 @@ const QuestionBank: React.FC = () => {
     });
 
     const updatedFields = {
-      selectedOption: option,
-      isCorrect: isCorrect,
-      feedback: isCorrect ? "correct" : "incorrect",
-      completed: true,
+      correctAnswers: isCorrect ? 1 : 0,
+      incorrectAnswers: !isCorrect ? 1 : 0,
+      uniqueQuestions: 1,
+      questionsAttempted: 1,
       lastAttempted: new Date().toISOString(),
+      completed: true,
     };
 
     await updateUserPerformance(questionId, updatedFields);
@@ -263,16 +291,7 @@ const QuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
-
-    const updatedFields = {
-      userAnswer: userAnswer,
-      isCorrect: isCorrect,
-      feedback: isCorrect ? "correct" : "incorrect",
-      completed: true,
-      lastAttempted: new Date().toISOString(),
-    };
-
-    await updateUserPerformance(questionId, updatedFields);
+    await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString(), completed: true });
     await saveUserAnswer(questionId, userAnswer, isCorrect);
 
     setQuestions((prevQuestions) =>
@@ -290,7 +309,7 @@ const QuestionBank: React.FC = () => {
       const response = await fetch("/api/notes/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, questionId, content: note }),
+        body: JSON.stringify({ questionId, content: note }),
       });
       if (!response.ok) throw new Error("Failed to save note");
     } catch (error) {
@@ -303,7 +322,7 @@ const QuestionBank: React.FC = () => {
       const response = await fetch("/api/notes/delete", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, questionId }),
+        body: JSON.stringify({ questionId }),
       });
       if (!response.ok) throw new Error("Failed to delete note");
     } catch (error) {
@@ -342,9 +361,9 @@ const QuestionBank: React.FC = () => {
           <div>
             {[...Array(10)].map((_, i) => (
               <div key={i} className="mb-4 p-4 border rounded-md">
-                <Skeleton height={20} width="80%" />
-                <Skeleton height={20} width="90%" />
-                <Skeleton height={20} width="60%" />
+                <Skeleton height={20} width={"80%"} />
+                <Skeleton height={20} width={"90%"} />
+                <Skeleton height={20} width={"60%"} />
               </div>
             ))}
           </div>
