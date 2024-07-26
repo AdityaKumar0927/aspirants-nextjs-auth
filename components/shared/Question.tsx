@@ -23,14 +23,12 @@ interface QuestionType {
   markscheme?: string;
   notes?: string;
   diagramUrl?: string;
-  selectedOption?: string;
-  isCorrect?: boolean;
-  feedback?: string;
 }
 
 interface QuestionProps {
   question: QuestionType;
   feedback: string | undefined;
+  selectedOption: string | undefined;
   numericalAnswer: string | undefined;
   showMarkscheme: boolean | undefined;
   handleOptionClick: (
@@ -59,6 +57,7 @@ interface QuestionProps {
 const Question: React.FC<QuestionProps> = ({
   question,
   feedback,
+  selectedOption,
   numericalAnswer,
   showMarkscheme,
   handleOptionClick,
@@ -75,7 +74,7 @@ const Question: React.FC<QuestionProps> = ({
   userId,
   handleDeleteNote,
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(question.selectedOption || null);
+  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null);
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
@@ -92,14 +91,12 @@ const Question: React.FC<QuestionProps> = ({
   const { toast, dismiss } = useToast();
 
   useEffect(() => {
-    setSelectedOption(question.selectedOption || null);
-  }, [question.selectedOption]);
-
-  console.log("Question data received: ", question);
+    setLocalSelectedOption(selectedOption || null);
+  }, [selectedOption]);
 
   const handleOptionClickLocal = (option: string) => {
-    if (selectedOption !== option) {
-      setSelectedOption(option);
+    if (localSelectedOption !== option) {
+      setLocalSelectedOption(option);
       handleOptionClick(question.questionId, option, question.correctOption || '');
       saveProgress(question.questionId, 'completed', true);
     }
@@ -283,7 +280,7 @@ const Question: React.FC<QuestionProps> = ({
                 <div key={index} className="flex items-center space-x-2">
                   <button
                     className={`px-4 py-2 border-gray-500 border rounded ${
-                      selectedOption === String.fromCharCode(65 + index)
+                      localSelectedOption === String.fromCharCode(65 + index)
                         ? feedback === 'correct'
                           ? 'bg-green-100 text-green-700'
                           : feedback === 'incorrect'
@@ -305,7 +302,7 @@ const Question: React.FC<QuestionProps> = ({
               )}
             </div>
           )}
-          {selectedOption && markschemeEnabled && (
+          {localSelectedOption && markschemeEnabled && (
             <button
               className="relative inline-flex items-center justify-center px-2 py-2 overflow-hidden text-gray-600 border border-gray-400 rounded"
               onClick={toggleMarkscheme}

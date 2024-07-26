@@ -253,6 +253,11 @@ const QuestionBank: React.FC = () => {
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
 
+    setSelectedOptions({
+      ...selectedOptions,
+      [questionId]: option,
+    });
+
     const updatedFields = {
       correctAnswers: isCorrect ? 1 : 0,
       incorrectAnswers: !isCorrect ? 1 : 0,
@@ -461,6 +466,7 @@ const QuestionBank: React.FC = () => {
               key={question.questionId}
               question={question}
               feedback={feedback[question.questionId]}
+              selectedOption={selectedOptions[question.questionId]}
               numericalAnswer={numericalAnswers[question.questionId]}
               showMarkscheme={showMarkscheme[question.questionId]}
               handleOptionClick={(questionId, option, correctOption) =>
