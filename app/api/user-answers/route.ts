@@ -5,6 +5,25 @@ import { authOptions } from '../auth/[...nextauth]/options';
 
 const prisma = new PrismaClient();
 
+export async function GET(request: Request) {
+  try {
+    const session = await getServerSession(authOptions);
+
+    if (!session || !session.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const userAnswers = await prisma.userAnswer.findMany({
+      where: { userId: session.user.id },
+    });
+
+    return NextResponse.json(userAnswers);
+  } catch (error) {
+    console.error('Error fetching user answers:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
