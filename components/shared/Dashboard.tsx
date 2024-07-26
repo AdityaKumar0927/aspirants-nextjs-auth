@@ -1,24 +1,22 @@
-"use client";
-
-import { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from 'react';
 import {
-  Area,
-  AreaChart,
-  Bar,
   BarChart,
-  CartesianGrid,
-  Line,
-  LineChart,
+  Bar,
   XAxis,
   YAxis,
+  Tooltip,
+  CartesianGrid,
+  LabelList,
   ReferenceLine,
   Label,
-  LabelList,
+  LineChart,
+  Line,
+  AreaChart,
+  Area,
   PolarAngleAxis,
-  RadialBar,
   RadialBarChart,
   Rectangle,
-  Tooltip,
+  RadialBar,
 } from 'recharts';
 import {
   Card,
@@ -28,14 +26,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from '@/components/ui/chart';
+import { ChartContainer } from '@/components/ui/chart';
 import { Separator } from '@/components/ui/separator';
 
-interface UserPerformance {
+type UserPerformance = {
   questionId: string;
   accuracy: number;
   dailyAccuracy: { date: string; accuracy: number }[];
@@ -63,58 +57,43 @@ interface UserPerformance {
   completed: boolean;
   reviewed: boolean;
   lastAttempted: string;
-}
-
-const fetchUserPerformance = async (userId: string): Promise<UserPerformance[]> => {
-  const response = await fetch(`/api/user-performance/get?userId=${userId}`);
-  if (!response.ok) {
-    console.error('Failed to fetch user performance');
-    return [];
-  }
-  return response.json();
 };
 
-export default function Dashboard({ initialUserPerformance, userId }: { initialUserPerformance: UserPerformance[], userId: string }) {
+async function fetchUserPerformance(userId: string): Promise<UserPerformance[]> {
+  const response = await fetch(`/api/user-performance/update`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userId }),
+  });
+  if (!response.ok) {
+    throw new Error('Failed to fetch user performance');
+  }
+  const data = await response.json();
+  return data;
+}
+
+interface DashboardProps {
+  initialUserPerformance: UserPerformance[];
+  userId: string;
+}
+
+const Dashboard: React.FC<DashboardProps> = ({ initialUserPerformance, userId }) => {
   const [userPerformance, setUserPerformance] = useState<UserPerformance[]>(initialUserPerformance);
-  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const getUserPerformance = async () => {
-      setLoading(true);
+    async function getUserPerformance() {
       try {
         const data = await fetchUserPerformance(userId);
-        console.log('Fetched user performance:', data);
         setUserPerformance(data);
       } catch (error) {
         console.error('Error fetching user performance:', error);
-      } finally {
-        setLoading(false);
       }
-    };
-
-    if (!userPerformance || userPerformance.length === 0) {
-      getUserPerformance();
     }
-  }, [userId, userPerformance]);
+    getUserPerformance();
+  }, [userId]);
 
-  if (loading) {
-    return (
-      <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
-        <div className="text-center text-gray-500">
-          Loading user performance data...
-        </div>
-      </div>
-    );
-  }
-
-  if (!userPerformance || userPerformance.length === 0) {
-    return (
-      <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
-        <div className="text-center text-gray-500">
-          No user performance data available. Please try again later.
-        </div>
-      </div>
-    );
+  if (userPerformance.length === 0) {
+    return <div>No data available</div>;
   }
 
   const latestPerformance = userPerformance[userPerformance.length - 1];
@@ -144,10 +123,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <BarChart
                 accessibilityLayer
                 margin={{ left: -4, right: -4 }}
-                data={userPerformance.map(performance => ({
-                  date: performance.questionId,
-                  accuracy: performance.accuracy,
-                }))}
+                data={latestPerformance.dailyAccuracy}
               >
                 <Bar
                   dataKey="accuracy"
@@ -209,7 +185,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
             <div>
               <CardDescription>Time per Question</CardDescription>
               <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                {latestPerformance.timeSpent}
+                {latestPerformance.timePerQuestion}
                 <span className="text-sm font-normal tracking-normal text-muted-foreground">
                   min/question
                 </span>
@@ -238,10 +214,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <LineChart
                 accessibilityLayer
                 margin={{ left: 14, right: 14, top: 10 }}
-                data={userPerformance.map(performance => ({
-                  date: performance.questionId,
-                  time: performance.timeSpent,
-                }))}
+                data={latestPerformance.dailyTimePerQuestion}
               >
                 <CartesianGrid
                   strokeDasharray="4 4"
@@ -399,10 +372,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <BarChart
                 accessibilityLayer
                 margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={userPerformance.map(performance => ({
-                  date: performance.questionId,
-                  time: performance.timePerSubtopic,
-                }))}
+                data={latestPerformance.dailyTimePerSubtopic}
               >
                 <Bar
                   dataKey="time"
@@ -447,8 +417,8 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
                 data={[
                   {
                     activity: 'speed',
-                    value: (latestPerformance.timeSpent / 5) * 100,
-                    label: `${latestPerformance.timeSpent} min/q`,
+                    value: (latestPerformance.timePerQuestion / 5) * 100,
+                    label: `${latestPerformance.timePerQuestion} min/q`,
                     fill: 'var(--color-speed)',
                   },
                   {
@@ -494,7 +464,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-xs text-muted-foreground">Speed</div>
                 <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  {latestPerformance.timeSpent}
+                  {latestPerformance.timePerQuestion}
                   <span className="text-sm font-normal text-muted-foreground">
                     min/q
                   </span>
@@ -531,7 +501,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <div className="grid flex-1 auto-rows-min gap-0.5">
                 <div className="text-sm text-muted-foreground">Speed</div>
                 <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
-                  {latestPerformance.timeSpent} min/q
+                  {latestPerformance.timePerQuestion} min/q
                   <span className="text-sm font-normal text-muted-foreground">
                     min/q
                   </span>
@@ -576,7 +546,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
               <RadialBarChart
                 margin={{ left: -10, right: -10, top: -10, bottom: -10 }}
                 data={[
-                  { activity: 'speed', value: (latestPerformance.timeSpent / 5) * 100, fill: 'var(--color-speed)' },
+                  { activity: 'speed', value: (latestPerformance.timePerQuestion / 5) * 100, fill: 'var(--color-speed)' },
                   { activity: 'accuracy', value: latestPerformance.accuracy, fill: 'var(--color-accuracy)' },
                   { activity: 'consistency', value: latestPerformance.consistency, fill: 'var(--color-consistency)' },
                 ]}
@@ -665,10 +635,7 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
             >
               <AreaChart
                 margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                data={userPerformance.map(performance => ({
-                  date: performance.questionId,
-                  time: performance.studyTime,
-                }))}
+                data={latestPerformance.dailyStudyTime}
               >
                 <Area
                   dataKey="time"
@@ -699,4 +666,6 @@ export default function Dashboard({ initialUserPerformance, userId }: { initialU
       </div>
     </div>
   );
-}
+};
+
+export default Dashboard;
