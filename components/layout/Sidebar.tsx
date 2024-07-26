@@ -21,31 +21,37 @@ export default function Sidebar() {
   const mouseX = useMotionValue(Infinity);
   const userId = getUserId(); // Fetch or define the userId
 
-  const initialUserPerformance = {
-    accuracy: 0,
-    dailyAccuracy: [],
-    timePerQuestion: 0,
-    consistency: 0,
-    dailyTimePerQuestion: [],
-    currentYearAccuracy: 0,
-    previousYearAccuracy: 0,
-    timePerSubtopic: 0,
-    dailyTimePerSubtopic: [],
-    studyTime: 0,
-    dailyStudyTime: [],
-    correctAnswers: 0,
-    incorrectAnswers: 0,
-    uniqueQuestions: 0,
-    questionsAttempted: 0,
-    timeSpent: 0,
-    weaknessBySubtopic: [],
-    improvementOverTime: [],
-    attemptRate: 0,
-    firstAttemptSuccessRate: 0,
-    reattemptAccuracy: 0,
-    topicPerformance: [],
-    engagementLevel: 0,
-  };
+  const initialUserPerformance = [
+    {
+      questionId: "initial",
+      accuracy: 0,
+      dailyAccuracy: [],
+      timePerQuestion: 0,
+      consistency: 0,
+      dailyTimePerQuestion: [],
+      currentYearAccuracy: 0,
+      previousYearAccuracy: 0,
+      timePerSubtopic: 0,
+      dailyTimePerSubtopic: [],
+      studyTime: 0,
+      dailyStudyTime: [],
+      correctAnswers: 0,
+      incorrectAnswers: 0,
+      uniqueQuestions: 0,
+      questionsAttempted: 0,
+      timeSpent: 0,
+      weaknessBySubtopic: [],
+      improvementOverTime: [],
+      attemptRate: 0,
+      firstAttemptSuccessRate: 0,
+      reattemptAccuracy: 0,
+      topicPerformance: [],
+      engagementLevel: 0,
+      completed: false,
+      reviewed: false,
+      lastAttempted: new Date().toISOString(),
+    },
+  ];
 
   return (
     <>
