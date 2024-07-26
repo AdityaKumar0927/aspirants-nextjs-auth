@@ -348,7 +348,7 @@ const QuestionBank: React.FC = () => {
           <div className="flex space-x-4 mb-6">
             <Skeleton height={40} width={120} />
             <Skeleton height={40} width={120} />
-            <Skeleton height={40} width={120} />
+            < Skeleton height={40} width={120} />
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
