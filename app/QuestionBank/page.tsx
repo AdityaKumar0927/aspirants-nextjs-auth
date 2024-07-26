@@ -265,6 +265,10 @@ const QuestionBank: React.FC = () => {
       questionsAttempted: 1,
       lastAttempted: new Date().toISOString(),
       completed: true,
+      accuracy: isCorrect ? 100 : 0, // Update as per your logic
+      firstAttemptSuccessRate: isCorrect ? 100 : 0, // Update as per your logic
+      reattemptAccuracy: isCorrect ? 100 : 0, // Update as per your logic
+      // Add other fields as necessary
     };
 
     await updateUserPerformance(questionId, updatedFields);
@@ -281,7 +285,13 @@ const QuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
-    await updateUserPerformance(questionId, { lastAttempted: new Date().toISOString(), completed: true });
+    await updateUserPerformance(questionId, { 
+      lastAttempted: new Date().toISOString(), 
+      completed: true,
+      accuracy: isCorrect ? 100 : 0, // Update as per your logic
+      firstAttemptSuccessRate: isCorrect ? 100 : 0, // Update as per your logic
+      reattemptAccuracy: isCorrect ? 100 : 0, // Update as per your logic
+    });
     await saveUserAnswer(questionId, userAnswer, isCorrect);
 
     setQuestions((prevQuestions) =>

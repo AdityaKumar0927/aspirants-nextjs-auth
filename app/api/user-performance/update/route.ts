@@ -1,4 +1,3 @@
-// app/api/user-performance/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
@@ -15,6 +14,7 @@ export async function POST(request: Request) {
     }
 
     const {
+      questionId,
       correctAnswers,
       incorrectAnswers,
       uniqueQuestions,
@@ -31,6 +31,7 @@ export async function POST(request: Request) {
       engagementLevel,
       completed,
       reviewed,
+      lastAttempted
     } = await request.json();
 
     const userPerformance = await prisma.userPerformance.upsert({
@@ -52,6 +53,7 @@ export async function POST(request: Request) {
         engagementLevel,
         completed,
         reviewed,
+        lastAttempted
       },
       create: {
         userId: session.user.id,
@@ -71,6 +73,7 @@ export async function POST(request: Request) {
         engagementLevel: engagementLevel || 0,
         completed: completed || 0,
         reviewed: reviewed || 0,
+        lastAttempted: lastAttempted || new Date().toISOString(),
       },
     });
 
