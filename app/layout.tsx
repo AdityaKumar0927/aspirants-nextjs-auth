@@ -8,11 +8,10 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
+import Bottombar from '@/components/layout/Bottombar';
 import { Toaster } from "@/components/ui/toaster";
-import { LoadingProvider } from "@/components/layout/LoadingContext";
-import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"; 
-import { getSession, useSession } from "next-auth/react";
-import { SidebarDemo } from "@/components/ui/SidebarDemo";
+import { LoadingProvider } from "@/components/layout/LoadingContext";  // Import the LoadingProvider
+import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"; // Import the UserPerformanceProvider
 
 config.autoAddCss = false;
 
@@ -23,9 +22,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const { data: session, status } = useSession();
-  const userId = session?.user?.id || "user-id-placeholder"; // Replace this with actual user ID fetching logic
-
   return (
     <html lang="en">
       <head>
@@ -79,22 +75,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
-        <LoadingProvider> 
-          <UserPerformanceProvider userId={userId}> 
+        <LoadingProvider> {/* Wrap with LoadingProvider */}
+          <UserPerformanceProvider userId=""> {/* Wrap with UserPerformanceProvider */}
             <TooltipProvider>
               <div className="fixed inset-0 z-[-10]"></div>
               <Suspense fallback="...">
                 <Nav />
               </Suspense>
               <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-                {status === "authenticated" ? <SidebarDemo /> : children}
+                {children}
               </main>
+              <Bottombar />
               <Footer />
               <VercelAnalytics />
             </TooltipProvider>
             <Toaster />
-          </UserPerformanceProvider> 
-        </LoadingProvider> 
+          </UserPerformanceProvider> {/* Close UserPerformanceProvider */}
+        </LoadingProvider> {/* Close LoadingProvider */}
       </body>
     </html>
   );

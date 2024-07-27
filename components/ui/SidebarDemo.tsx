@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "./Sidebar";
+import { Sidebar, SidebarBody, SidebarLink } from "../layout/Sidebar";
 import {
   IconArrowLeft,
   IconBrandTabler,
