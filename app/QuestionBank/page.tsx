@@ -110,13 +110,27 @@ const QuestionBank: React.FC = () => {
     const fetchAllData = async () => {
       try {
         setLoading(true);
-        const [questionsData, userProgressData, userAnswersData, notesData, userPerformanceData] = await Promise.all([
-          fetchData("/api/questions"),
-          fetchData("/api/user-progress"),
-          fetchData("/api/user-answers"),
-          fetchData("/api/notes"),
-          fetchData("/api/user-performance/get")
-        ]);
+        let questionsData = JSON.parse(localStorage.getItem('questionsData') || 'null');
+        let userProgressData = JSON.parse(localStorage.getItem('userProgressData') || 'null');
+        let userAnswersData = JSON.parse(localStorage.getItem('userAnswersData') || 'null');
+        let notesData = JSON.parse(localStorage.getItem('notesData') || 'null');
+        let userPerformanceData = JSON.parse(localStorage.getItem('userPerformanceData') || 'null');
+
+        if (!questionsData || !userProgressData || !userAnswersData || !notesData || !userPerformanceData) {
+          [questionsData, userProgressData, userAnswersData, notesData, userPerformanceData] = await Promise.all([
+            fetchData("/api/questions"),
+            fetchData("/api/user-progress"),
+            fetchData("/api/user-answers"),
+            fetchData("/api/notes"),
+            fetchData("/api/user-performance/get")
+          ]);
+          
+          localStorage.setItem('questionsData', JSON.stringify(questionsData));
+          localStorage.setItem('userProgressData', JSON.stringify(userProgressData));
+          localStorage.setItem('userAnswersData', JSON.stringify(userAnswersData));
+          localStorage.setItem('notesData', JSON.stringify(notesData));
+          localStorage.setItem('userPerformanceData', JSON.stringify(userPerformanceData));
+        }
 
         const mergedQuestions = questionsData.map((question: QuestionType) => {
           const progress = userProgressData.find((p: any) => p.questionId === question.questionId);

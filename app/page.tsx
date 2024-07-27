@@ -70,7 +70,6 @@ const testimonials = [
   },
 ];
 
-
 const projects = [
   {
     title: "JEE",
@@ -506,6 +505,16 @@ const Page = () => {
         <CardDemo />
        
       <FAQ />
+
+      <main className="flex-grow flex flex-col items-center justify-center px-4 py-16">
+                        <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 max-w-3xl">
+                            It&apos;s free.
+                        </h1>
+                        <div className="flex space-x-4 mb-16">
+                            <button className="bg-white border border-black hover:border-dotted text-black px-6 py-2 rounded-full font-medium">Try Now</button>
+                            
+                        </div>
+                    </main>
     </>
   );
 };

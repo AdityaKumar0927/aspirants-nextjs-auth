@@ -8,10 +8,11 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
-import Sidebar from '@/components/layout/Sidebar';
 import { Toaster } from "@/components/ui/toaster";
 import { LoadingProvider } from "@/components/layout/LoadingContext";
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"; 
+import { getSession, useSession } from "next-auth/react";
+import { SidebarDemo } from "@/components/ui/SidebarDemo";
 
 config.autoAddCss = false;
 
@@ -22,8 +23,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // Assuming you get the userId from some authentication context or similar.
-  const userId = "user-id-placeholder"; // Replace this with actual user ID fetching logic
+  const { data: session, status } = useSession();
+  const userId = session?.user?.id || "user-id-placeholder"; // Replace this with actual user ID fetching logic
 
   return (
     <html lang="en">
@@ -86,9 +87,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Nav />
               </Suspense>
               <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-                {children}
+                {status === "authenticated" ? <SidebarDemo /> : children}
               </main>
-              <Sidebar />
               <Footer />
               <VercelAnalytics />
             </TooltipProvider>
