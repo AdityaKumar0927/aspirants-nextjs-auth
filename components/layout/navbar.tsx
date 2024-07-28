@@ -6,19 +6,18 @@ import Link from "next/link";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
 import NotificationDropdown from "@/components/shared/NotificationDropdown";
+import Sidebar from "@/components/layout/Sidebar";
 import { Session } from "next-auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import useScroll from "@/lib/hooks/use-scroll";
 import ExamDropdown from "@/components/layout/ExamDropdown";
 import GradualSpacing from "@/components/magicui/gradual-spacing";
-import { useSidebar } from "./Sidebar"; 
 
 export default function NavBar({ session }: { session: Session | null }) {
   const { SignInModal, setShowSignInModal } = useSignInModal();
   const scrolled = useScroll(50);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { setOpen } = useSidebar(); 
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "auto";
@@ -31,6 +30,7 @@ export default function NavBar({ session }: { session: Session | null }) {
   return (
     <>
       <SignInModal />
+      {session && <Sidebar />}
       <div
         className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-8/12 max-w-screen-md border-2 bg-white ${
           scrolled
@@ -52,11 +52,12 @@ export default function NavBar({ session }: { session: Session | null }) {
             />
           </Link>
           <div className="hidden md:flex items-center justify-center space-x-4 flex-1">
+           
             <Link href="/QuestionBank" className="mr-4">
-              <GradualSpacing
-                className="font-display text-center tracking-[-0.2em] text-black md:text-2xl md:leading-[5rem]"
-                text="Question Bank"
-              />
+            <GradualSpacing
+      className="font-display text-center tracking-[-0.2em] text-black md:text-2xl md:leading-[5rem]"
+      text="Question Bank"
+    />
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-4">
@@ -74,20 +75,11 @@ export default function NavBar({ session }: { session: Session | null }) {
               </button>
             )}
           </div>
-          {session && (
-            <div className="md:hidden flex items-center">
-              <button onClick={() => setOpen(true)} className="text-black focus:outline-none">
-                <FontAwesomeIcon icon={faBars} size="lg" />
-              </button>
-            </div>
-          )}
-          {!session && (
-            <div className="md:hidden flex items-center">
-              <button onClick={toggleMenu} className="text-black focus:outline-none">
-                <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} size="lg" />
-              </button>
-            </div>
-          )}
+          <div className="md:hidden flex items-center">
+            <button onClick={toggleMenu} className="text-black focus:outline-none">
+              <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} size="lg" />
+            </button>
+          </div>
         </div>
       </div>
       {menuOpen && (
