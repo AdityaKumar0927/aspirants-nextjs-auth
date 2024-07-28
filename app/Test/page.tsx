@@ -105,6 +105,7 @@ const QuestionBank: React.FC = () => {
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const userId = ""; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
@@ -359,6 +360,28 @@ const QuestionBank: React.FC = () => {
     });
   };
 
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const data = JSON.parse(e.target?.result as string);
+          if (Array.isArray(data)) {
+            setQuestions(data);
+            setFilteredQuestions(data);
+            setError(null);
+          } else {
+            setError("Invalid JSON format. Expected an array of questions.");
+          }
+        } catch (err) {
+          setError("Error parsing JSON file.");
+        }
+      };
+      reader.readAsText(file);
+    }
+  };
+
   if (loading) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -410,6 +433,13 @@ const QuestionBank: React.FC = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
           />
+          <input
+            type="file"
+            accept="application/json"
+            onChange={handleFileUpload}
+            className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          />
+          {error && <p className="text-red-400">{error}</p>}
         </div>
 
         <div className="flex space-x-4 mb-2">

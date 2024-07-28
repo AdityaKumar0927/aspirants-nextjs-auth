@@ -37,6 +37,7 @@ import { BentoGridThirdDemo } from "@/components/home/features-grid";
 import OrbitingCircles from "@/components/magicui/orbiting-circles";
 import { AnimatedListDemo } from "@/components/magicui/animated-list-demo";
 import { CardDemo } from "@/components/ui/newcard";
+import PulsatingButton from "@/components/magicui/pulsating-button";
 
 const testimonials = [
   {
@@ -511,7 +512,7 @@ const Page = () => {
                             It&apos;s free.
                         </h1>
                         <div className="flex space-x-4 mb-16">
-                            <button className="bg-white border border-black hover:border-dotted text-black px-6 py-2 rounded-full font-medium">Try Now</button>
+                        <PulsatingButton>Join Affiliate Program</PulsatingButton>;
                             
                         </div>
                     </main>
