@@ -440,7 +440,7 @@ const Page = () => {
       <div className="relative w-11/12 h-[1300px] border-4 rounded-2xl overflow-hidden">
   <Image src="/imac.jpg" alt="Background" layout="fill" objectFit="cover" className="absolute inset-0 blur-md" />
   <div className="absolute inset-0 flex items-center justify-center p-4">
-    <div className="w-10/12 h-[1300px] bg-white bg-opacity-60 rounded-2xl overflow-auto p-4">
+    <div className="w-full h-[1300px] bg-white bg-opacity-60 rounded-2xl overflow-auto p-4">
       <MainContent />
     </div>
   </div>
@@ -454,7 +454,7 @@ const Page = () => {
       <p className="text-sm lg:text-base mb-12 max-w-2xl my-4 mx-auto text-neutral-500 text-center font-norma">
         View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill.
       </p>
-      <div className="w-6/12 mb-4 border-4 rounded-2xl p-2">
+      <div className="w-10/12 mb-4 border-4 rounded-2xl p-2">
         <NoteApp />
       </div>
 
