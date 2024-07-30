@@ -189,6 +189,3 @@ export function ProfileForm() {
     </Form>
   )
 }
-
-
-export default ProfileForm;
