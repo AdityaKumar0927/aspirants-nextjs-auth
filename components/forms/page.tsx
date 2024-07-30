@@ -1,6 +1,8 @@
+// Import the necessary components
 import { Separator } from "@/components/ui/separator"
-import { ProfileForm } from "./profile-form"
+import { ProfileForm } from "@/components/forms/profile-form"
 
+// Define and export the SettingsProfilePage component
 export default function SettingsProfilePage() {
   return (
     <div className="space-y-6">
