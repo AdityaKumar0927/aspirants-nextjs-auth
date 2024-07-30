@@ -412,12 +412,11 @@ const Page = () => {
         </ContainerScroll>
       </div>
       <div className="container mx-auto px-4 py-12 max-w-6xl">
-        <h1 className="text-center text-gray-600 text-sm mb-4">chaze X ChatGPT 4o</h1>
+        <h1 className="text-center text-gray-600 text-sm mb-4">aspirants X ChatGPT 4o</h1>
         <h2 className="text-center text-6xl font-bold mb-2">Supercharge your</h2>
         <h2 className="text-center text-6xl font-normal mb-6">learning experience</h2>
         <p className="text-center text-gray-600 max-w-3xl mx-auto mb-16">
-          Essentially a headless open source editor, chaze has a wide range of paid features that give developers
-          exactly the kind of experience they&apos;re looking for - fully customizable to build their product needs.
+        
         </p>
 
         

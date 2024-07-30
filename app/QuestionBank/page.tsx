@@ -6,6 +6,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import Question from "@/components/shared/Question";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 
 interface QuestionType {
   exam: string;
@@ -396,153 +397,168 @@ const QuestionBank: React.FC = () => {
   }
 
   return (
-    <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-      <div className="max-w-6xl w-full">
-        <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
-          Question Bank
-        </h1>
+    <TooltipProvider>
+      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+        <div className="max-w-6xl w-full">
+          <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
+            Question Bank
+          </h1>
 
-        <div className="flex space-x-4 mb-6">
-          <input
-            type="text"
-            placeholder="Search questions..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-          />
-        </div>
+          <div className="flex space-x-4 mb-6">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <input
+                  type="text"
+                  placeholder="Search questions..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                />
+              </TooltipTrigger>
+              <TooltipContent>Search Questions</TooltipContent>
+            </Tooltip>
+          </div>
 
-        <div className="flex space-x-4 mb-2">
-          {["all", "complete", "review"].map((status) => (
-            <button
-              key={status}
-              onClick={() => setFilters({ ...filters, status })}
-              className={`px-4 py-2 rounded-md ${
-                filters.status === status
-                  ? "bg-white border hover:border-black border-gray-600 text-gray-500"
-                  : "bg-white hover:border-black border border-gray-300 text-gray-500"
-              }`}
-            >
-              {status.charAt(0).toUpperCase() + status.slice(1)}
-            </button>
-          ))}
-        </div>
+          <div className="flex space-x-4 mb-2">
+            {["all", "complete", "review"].map((status) => (
+              <Tooltip key={status}>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() => setFilters({ ...filters, status })}
+                    className={`px-4 py-2 rounded-md ${
+                      filters.status === status
+                        ? "bg-white border hover:border-black border-gray-600 text-gray-500"
+                        : "bg-white hover:border-black border border-gray-300 text-gray-500"
+                    }`}
+                  >
+                    {status.charAt(0).toUpperCase() + status.slice(1)}
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>{status.charAt(0).toUpperCase() + status.slice(1)}</TooltipContent>
+              </Tooltip>
+            ))}
+          </div>
 
-        <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-          {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map((filterType) => (
-            <Popover
-              key={filterType}
-              content={
-                <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                  {(filterType === "exams"
-                    ? exams
-                    : filterType === "subjects"
-                    ? subjects
-                    : filterType === "topics"
-                    ? topics
-                    : filterType === "subtopics"
-                    ? subtopics
-                    : filterType === "difficulties"
-                    ? difficulties
-                    : filterType === "years"
-                    ? years
-                    : types
-                  ).map((value: string) => (
-                    <div key={value} className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id={`${filterType}-${value}`}
-                        className="mr-2"
-                        checked={(filters[filterType as keyof FiltersType] as string[] || []).includes(value)}
-                        onChange={() => handleFilterChange(filterType as keyof FiltersType, value)}
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
+            {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map((filterType) => (
+              <Tooltip key={filterType}>
+                <TooltipTrigger asChild>
+                  <Popover
+                    content={
+                      <div className="w-full bg-white rounded-md p-2 sm:w-40">
+                        {(filterType === "exams"
+                          ? exams
+                          : filterType === "subjects"
+                          ? subjects
+                          : filterType === "topics"
+                          ? topics
+                          : filterType === "subtopics"
+                          ? subtopics
+                          : filterType === "difficulties"
+                          ? difficulties
+                          : filterType === "years"
+                          ? years
+                          : types
+                        ).map((value: string) => (
+                          <div key={value} className="flex items-center">
+                            <input
+                              type="checkbox"
+                              id={`${filterType}-${value}`}
+                              className="mr-2"
+                              checked={(filters[filterType as keyof FiltersType] as string[] || []).includes(value)}
+                              onChange={() => handleFilterChange(filterType as keyof FiltersType, value)}
+                            />
+                            <label
+                              htmlFor={`${filterType}-${value}`}
+                              className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
+                            >
+                              {value}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    }
+                    align="start"
+                    openPopover={dropdowns[filterType as keyof typeof dropdowns]}
+                    setOpenPopover={(open) => {
+                      setDropdowns((prev) => ({
+                        ...prev,
+                        [filterType]: open,
+                      }));
+                    }}
+                  >
+                    <button
+                      onClick={() =>
+                        setDropdowns((prev) => ({
+                          ...prev,
+                          [filterType]: !prev[filterType as keyof typeof dropdowns],
+                        }))
+                      }
+                      className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
+                    >
+                      <p className="text-gray-600">
+                        {isStringArray(filters[filterType as keyof FiltersType])
+                          ? (filters[filterType as keyof FiltersType] as string[]).length
+                            ? `${(filters[filterType as keyof FiltersType] as string[]).length} selected`
+                            : filterType.charAt(0).toUpperCase() + filterType.slice(1)
+                          : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                      </p>
+                      <ChevronDown
+                        className={`h-4 w-4 text-gray-600 transition-all ${
+                          dropdowns[filterType as keyof typeof dropdowns] ? "rotate-180" : ""
+                        }`}
                       />
-                      <label
-                        htmlFor={`${filterType}-${value}`}
-                        className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
-                      >
-                        {value}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              }
-              align="start"
-              openPopover={dropdowns[filterType as keyof typeof dropdowns]}
-              setOpenPopover={(open) => {
-                setDropdowns((prev) => ({
-                  ...prev,
-                  [filterType]: open,
-                }));
-              }}
-            >
-              <button
-                onClick={() =>
-                  setDropdowns((prev) => ({
+                    </button>
+                  </Popover>
+                </TooltipTrigger>
+                <TooltipContent>Select {filterType.charAt(0).toUpperCase() + filterType.slice(1)}</TooltipContent>
+              </Tooltip>
+            ))}
+          </div>
+
+          {filteredQuestions.length > 0 ? (
+            filteredQuestions.map((question) => (
+              <Question
+                key={question.questionId}
+                question={question}
+                feedback={feedback[question.questionId]}
+                selectedOption={selectedOptions[question.questionId]}
+                numericalAnswer={numericalAnswers[question.questionId]}
+                showMarkscheme={showMarkscheme[question.questionId]}
+                handleOptionClick={(questionId, option, correctOption) =>
+                  handleOptionClick(questionId, option, correctOption)
+                }
+                handleNumericalSubmit={handleNumericalSubmit}
+                handleNumericalChange={(questionId, value) => {
+                  setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
+                }}
+                handleMarkschemeToggle={() =>
+                  setShowMarkscheme((prev) => ({
                     ...prev,
-                    [filterType]: !prev[filterType as keyof typeof dropdowns],
+                    [question.questionId]: !prev[question.questionId],
                   }))
                 }
-                className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
-              >
-                <p className="text-gray-600">
-                  {isStringArray(filters[filterType as keyof FiltersType])
-                    ? (filters[filterType as keyof FiltersType] as string[]).length
-                      ? `${(filters[filterType as keyof FiltersType] as string[]).length} selected`
-                      : filterType.charAt(0).toUpperCase() + filterType.slice(1)
-                    : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                </p>
-                <ChevronDown
-                  className={`h-4 w-4 text-gray-600 transition-all ${
-                    dropdowns[filterType as keyof typeof dropdowns] ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-            </Popover>
-          ))}
+                handleMarkForReview={() =>
+                  handleMarkForReview(question.questionId, !question.reviewed)
+                }
+                handleMarkComplete={() =>
+                  handleMarkComplete(question.questionId, !question.completed)
+                }
+                isMarkedForReview={question.reviewed}
+                isMarkedComplete={question.completed}
+                markschemesDisabled={false}
+                note={notes[question.questionId] || ""}
+                handleNoteChange={handleNoteChange}
+                userId={userId}
+                handleDeleteNote={handleDeleteNote}
+              />
+            ))
+          ) : (
+            <p className="text-red-400">No questions found with the selected filters.</p>
+          )}
         </div>
-
-        {filteredQuestions.length > 0 ? (
-          filteredQuestions.map((question) => (
-            <Question
-              key={question.questionId}
-              question={question}
-              feedback={feedback[question.questionId]}
-              selectedOption={selectedOptions[question.questionId]}
-              numericalAnswer={numericalAnswers[question.questionId]}
-              showMarkscheme={showMarkscheme[question.questionId]}
-              handleOptionClick={(questionId, option, correctOption) =>
-                handleOptionClick(questionId, option, correctOption)
-              }
-              handleNumericalSubmit={handleNumericalSubmit}
-              handleNumericalChange={(questionId, value) => {
-                setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
-              }}
-              handleMarkschemeToggle={() =>
-                setShowMarkscheme((prev) => ({
-                  ...prev,
-                  [question.questionId]: !prev[question.questionId],
-                }))
-              }
-              handleMarkForReview={() =>
-                handleMarkForReview(question.questionId, !question.reviewed)
-              }
-              handleMarkComplete={() =>
-                handleMarkComplete(question.questionId, !question.completed)
-              }
-              isMarkedForReview={question.reviewed}
-              isMarkedComplete={question.completed}
-              markschemesDisabled={false}
-              note={notes[question.questionId] || ""}
-              handleNoteChange={handleNoteChange}
-              userId={userId}
-              handleDeleteNote={handleDeleteNote}
-            />
-          ))
-        ) : (
-          <p className="text-red-400">No questions found with the selected filters.</p>
-        )}
       </div>
-    </div>
+    </TooltipProvider>
   );
 };
 

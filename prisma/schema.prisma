@@ -50,6 +50,7 @@ model User {
   notes         Note[]
   performances  UserPerformance[]
   answers       UserAnswer[]
+  settings      UserSettings?
 }
 
 model VerificationToken {
@@ -98,7 +99,7 @@ model Question {
   notes            Note[]            @relation("QuestionNotes")
   progresses       UserProgress[]
   answers          UserAnswer[]
-  userPerformances UserPerformance[] // Added this line
+  userPerformances UserPerformance[]
 }
 
 model Note {
@@ -151,4 +152,14 @@ model UserAnswer {
   question      Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
+}
+
+model UserSettings {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  theme         String
+  font          String
+  notifications Json     @default("{}")
+  display       Json     @default("{}")
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
