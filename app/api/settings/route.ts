@@ -10,7 +10,7 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const settings = await prisma.settings.findUnique({
+    const settings = await prisma.userSettings.findUnique({
       where: { userId: session.user.id },
     });
 
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
 
     const data = await request.json();
 
-    const settings = await prisma.settings.upsert({
+    const settings = await prisma.userSettings.upsert({
       where: { userId: session.user.id },
       update: data,
       create: { userId: session.user.id, ...data },
