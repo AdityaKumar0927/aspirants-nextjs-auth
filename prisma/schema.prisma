@@ -157,6 +157,13 @@ model UserAnswer {
 model UserSettings {
   id            String   @id @default(cuid())
   userId        String   @unique
+  username      String
+  email         String
+  bio           String
+  urls          Json
+  name          String
+  dob           DateTime
+  language      String
   theme         String
   font          String
   notifications Json     @default("{}")
