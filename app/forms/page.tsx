@@ -1,6 +1,6 @@
 // Import the necessary components
 import { Separator } from "@/components/ui/separator"
-import { ProfileForm } from "@/components/forms/profile-form"
+import { ProfileForm } from "@/app/forms/profile-form"
 
 // Define and export the SettingsProfilePage component
 export default function SettingsProfilePage() {
