@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -46,7 +44,6 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
-// This can come from your database or API.
 const defaultValues: Partial<ProfileFormValues> = {
   bio: "I own a computer.",
   urls: [
@@ -69,30 +66,35 @@ export function ProfileForm() {
 
   async function onSubmit(data: ProfileFormValues) {
     try {
-      const response = await fetch("/api/settings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-
-      if (response.ok) {
-        toast({
-          title: "Success",
-          description: "Profile updated successfully.",
-        });
-      } else {
-        toast({
-          title: "Error",
-          description: "Failed to update profile.",
-        });
-      }
+      if (!response.ok) throw new Error('Failed to update settings');
+      toast({ title: 'Settings updated successfully' });
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "An unexpected error occurred.",
+      if (error instanceof Error) {
+        toast({ title: 'Failed to update settings', description: error.message });
+      } else {
+        toast({ title: 'Failed to update settings', description: 'An unknown error occurred' });
+      }
+    }
+  }
+
+  async function onDelete() {
+    try {
+      const response = await fetch('/api/settings', {
+        method: 'DELETE',
       });
+      if (!response.ok) throw new Error('Failed to delete settings');
+      toast({ title: 'Settings deleted successfully' });
+    } catch (error) {
+      if (error instanceof Error) {
+        toast({ title: 'Failed to delete settings', description: error.message });
+      } else {
+        toast({ title: 'Failed to delete settings', description: 'An unknown error occurred' });
+      }
     }
   }
 
@@ -106,12 +108,8 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Your username" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name. It can be your real name or a
-                pseudonym. You can only change this once every 30 days.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -123,12 +121,8 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="your-email@example.com" {...field} />
+                <Input placeholder="Your email" {...field} />
               </FormControl>
-              <FormDescription>
-                You can manage verified email addresses in your{" "}
-                <Link href="/app/forms">email settings</Link>.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -140,16 +134,8 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel>Bio</FormLabel>
               <FormControl>
-                <Textarea
-                  placeholder="Tell us a little bit about yourself"
-                  className="resize-none"
-                  {...field}
-                />
+                <Textarea placeholder="Tell us a little bit about yourself" {...field} />
               </FormControl>
-              <FormDescription>
-                You can <span>@mention</span> other users and organizations to
-                link to them.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -162,12 +148,9 @@ export function ProfileForm() {
               name={`urls.${index}.value`}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={cn(index !== 0 && "sr-only")}>
+                  <FormLabel className={index !== 0 ? "sr-only" : ""}>
                     URLs
                   </FormLabel>
-                  <FormDescription className={cn(index !== 0 && "sr-only")}>
-                    Add links to your website, blog, or social media profiles.
-                  </FormDescription>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -176,17 +159,14 @@ export function ProfileForm() {
               )}
             />
           ))}
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            className="mt-2"
-            onClick={() => append({ value: "" })}
-          >
+          <Button type="button" onClick={() => append({ value: "" })}>
             Add URL
           </Button>
         </div>
-        <Button type="submit">Update profile</Button>
+        <Button type="submit">Update settings</Button>
+        <Button type="button" onClick={onDelete}>
+          Delete all settings
+        </Button>
       </form>
     </Form>
   );

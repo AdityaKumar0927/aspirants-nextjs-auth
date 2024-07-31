@@ -10,14 +10,6 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-import {
   Form,
   FormControl,
   FormDescription,
@@ -27,12 +19,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { toast } from "@/components/ui/use-toast";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { useEffect } from "react";
 
 const languages = [
   { label: "English", value: "en" },
@@ -47,62 +37,54 @@ const languages = [
 ] as const;
 
 const accountFormSchema = z.object({
-  name: z
-    .string()
-    .min(2, {
-      message: "Name must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Name must not be longer than 30 characters.",
-    }),
-  dob: z.date({
-    required_error: "A date of birth is required.",
-  }),
-  language: z.string({
-    required_error: "Please select a language.",
-  }),
+  name: z.string().min(2).max(30),
+  dob: z.date({ required_error: "A date of birth is required." }),
+  language: z.string({ required_error: "Please select a language." }),
 });
 
 type AccountFormValues = z.infer<typeof accountFormSchema>;
 
-// This can come from your database or API.
-const defaultValues: Partial<AccountFormValues> = {
-  // name: "Your name",
-  // dob: new Date("2023-01-23"),
-};
-
 export function AccountForm() {
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
-    defaultValues,
+    defaultValues: async () => {
+      const response = await fetch('/api/settings');
+      if (!response.ok) throw new Error('Failed to fetch settings');
+      return response.json();
+    },
   });
 
   async function onSubmit(data: AccountFormValues) {
     try {
-      const response = await fetch("/api/settings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-
-      if (response.ok) {
-        toast({
-          title: "Success",
-          description: "Account settings updated successfully.",
-        });
-      } else {
-        toast({
-          title: "Error",
-          description: "Failed to update account settings.",
-        });
-      }
+      if (!response.ok) throw new Error('Failed to update settings');
+      toast({ title: 'Settings updated successfully' });
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "An unexpected error occurred.",
+      if (error instanceof Error) {
+        toast({ title: 'Failed to update settings', description: error.message });
+      } else {
+        toast({ title: 'Failed to update settings', description: 'An unknown error occurred' });
+      }
+    }
+  }
+
+  async function onDelete() {
+    try {
+      const response = await fetch('/api/settings', {
+        method: 'DELETE',
       });
+      if (!response.ok) throw new Error('Failed to delete settings');
+      toast({ title: 'Settings deleted successfully' });
+    } catch (error) {
+      if (error instanceof Error) {
+        toast({ title: 'Failed to delete settings', description: error.message });
+      } else {
+        toast({ title: 'Failed to delete settings', description: 'An unknown error occurred' });
+      }
     }
   }
 
@@ -136,7 +118,7 @@ export function AccountForm() {
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
-                      variant={"outline"}
+                      variant="outline"
                       className={cn(
                         "w-[240px] pl-3 text-left font-normal",
                         !field.value && "text-muted-foreground"
@@ -234,6 +216,9 @@ export function AccountForm() {
           )}
         />
         <Button type="submit">Update account</Button>
+        <Button type="button" onClick={onDelete}>
+          Delete all account settings
+        </Button>
       </form>
     </Form>
   );
