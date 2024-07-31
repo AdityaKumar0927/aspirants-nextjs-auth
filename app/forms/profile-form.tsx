@@ -17,6 +17,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 
@@ -58,7 +65,11 @@ const defaultValues: Partial<ProfileFormValues> = {
 export function ProfileForm() {
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues,
+    defaultValues: async () => {
+      const response = await fetch('/api/settings');
+      if (!response.ok) throw new Error('Failed to fetch settings');
+      return response.json();
+    },
     mode: "onChange",
   });
 
@@ -67,35 +78,26 @@ export function ProfileForm() {
     control: form.control,
   });
 
-  const onSubmit = async (data: ProfileFormValues) => {
+  async function onSubmit(data: ProfileFormValues) {
     try {
-      const response = await fetch("/api/settings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-
-      if (response.ok) {
-        toast({
-          title: "Success",
-          description: "Profile updated successfully",
-        });
-      } else {
-        const errorData = await response.json();
-        toast({
-          title: "Error",
-          description: errorData.error || "Failed to update profile",
-        });
-      }
-    } catch (error) {
+      if (!response.ok) throw new Error('Failed to update settings');
       toast({
-        title: "Error",
-        description: "An unexpected error occurred",
+        title: "Settings updated successfully",
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+          </pre>
+        ),
       });
+    } catch (error: any) {
+      toast({ title: 'Failed to update settings', description: error.message });
     }
-  };
+  }
 
   return (
     <Form {...form}>
@@ -123,9 +125,18 @@ export function ProfileForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="m@example.com" {...field} />
-              </FormControl>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a verified email to display" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="m@example.com">m@example.com</SelectItem>
+                  <SelectItem value="m@google.com">m@google.com</SelectItem>
+                  <SelectItem value="m@support.com">m@support.com</SelectItem>
+                </SelectContent>
+              </Select>
               <FormDescription>
                 You can manage verified email addresses in your{" "}
                 <Link href="/examples/forms">email settings</Link>.

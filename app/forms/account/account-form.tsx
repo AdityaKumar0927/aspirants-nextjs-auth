@@ -74,35 +74,31 @@ const defaultValues: Partial<AccountFormValues> = {
 export function AccountForm() {
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
-    defaultValues,
+    defaultValues: async () => {
+      const response = await fetch('/api/settings');
+      if (!response.ok) throw new Error('Failed to fetch settings');
+      return response.json();
+    },
   });
 
   async function onSubmit(data: AccountFormValues) {
     try {
-      const response = await fetch("/api/settings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-
-      if (response.ok) {
-        toast({
-          title: "Success",
-          description: "Account settings updated successfully.",
-        });
-      } else {
-        toast({
-          title: "Error",
-          description: "Failed to update account settings.",
-        });
-      }
-    } catch (error) {
+      if (!response.ok) throw new Error('Failed to update settings');
       toast({
-        title: "Error",
-        description: "An unexpected error occurred.",
+        title: "Settings updated successfully",
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+          </pre>
+        ),
       });
+    } catch (error: any) {
+      toast({ title: 'Failed to update settings', description: error.message });
     }
   }
 
