@@ -1,50 +1,47 @@
-import { PrismaClient } from '@prisma/client';
-import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../../auth/[...nextauth]/options';
-
-const prisma = new PrismaClient();
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
+import prisma from "@/lib/prisma";
 
 export async function GET() {
-  try {
-    const session = await getServerSession(authOptions);
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  const session = await getServerSession(authOptions);
 
-    const settings = await prisma.userSettings.findUnique({
-      where: { userId: session.user.id },
-      select: { name: true, dob: true, language: true },
-    });
-
-    return NextResponse.json(settings);
-  } catch (error) {
-    console.error('Error fetching account settings:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const settings = await prisma.userSettings.findUnique({
+    where: { userId: session.user.id },
+  });
+
+  if (!settings) {
+    return NextResponse.json({ error: "Settings not found" }, { status: 404 });
+  }
+
+  return NextResponse.json(settings);
 }
 
 export async function POST(request: Request) {
-  try {
-    const session = await getServerSession(authOptions);
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  const session = await getServerSession(authOptions);
+  const data = await request.json();
 
-    const data = await request.json();
-    const { name, dob, language } = data;
-
-    const dobDate = dob ? new Date(dob) : new Date();
-
-    const settings = await prisma.userSettings.upsert({
-      where: { userId: session.user.id },
-      update: { name, dob: dobDate, language },
-      create: { userId: session.user.id, name, dob: dobDate, language, username: '', email: '', bio: '', urls: {} },
-    });
-
-    return NextResponse.json(settings);
-  } catch (error) {
-    console.error('Error updating account settings:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const settings = await prisma.userSettings.upsert({
+    where: { userId: session.user.id },
+    update: { name: data.name, language: data.language },
+    create: {
+      userId: session.user.id,
+      name: data.name,
+      language: data.language,
+      username: "", // Default value
+      email: "", // Default value
+      bio: "", // Default value
+      urls: "", // Default value
+    },
+  });
+
+  return NextResponse.json(settings);
 }
