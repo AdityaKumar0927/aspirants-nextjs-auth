@@ -51,14 +51,14 @@ export function ProfileForm() {
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: async () => {
-      const response = await fetch('/api/settings');
-      if (!response.ok) throw new Error('Failed to fetch settings');
+      const response = await fetch('/api/profile-settings');
+      if (!response.ok) throw new Error('Failed to fetch profile settings');
       const data = await response.json();
       return {
         username: data.username || '',
         email: data.email || '',
         bio: data.bio || '',
-        urls: data.urls || [{ value: '' }],
+        urls: data.urls || [],
       };
     },
     mode: "onChange",
@@ -71,14 +71,14 @@ export function ProfileForm() {
 
   async function onSubmit(data: ProfileFormValues) {
     try {
-      const response = await fetch('/api/settings', {
+      const response = await fetch('/api/profile-settings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error('Failed to update settings');
+      if (!response.ok) throw new Error('Failed to update profile settings');
       toast({
-        title: "Settings updated successfully",
+        title: "Profile settings updated successfully",
         description: (
           <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
             <code className="text-white">{JSON.stringify(data, null, 2)}</code>
@@ -86,7 +86,7 @@ export function ProfileForm() {
         ),
       });
     } catch (error: any) {
-      toast({ title: 'Failed to update settings', description: error.message });
+      toast({ title: 'Failed to update profile settings', description: error.message });
     }
   }
 

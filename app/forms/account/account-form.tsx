@@ -57,7 +57,7 @@ const accountFormSchema = z.object({
     }),
   dob: z.date({
     required_error: "A date of birth is required.",
-  }).nullable(),
+  }),
   language: z.string({
     required_error: "Please select a language.",
   }),
@@ -69,20 +69,20 @@ export function AccountForm() {
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
     defaultValues: async () => {
-      const response = await fetch('/api/settings');
+      const response = await fetch('/api/settings/account-settings');
       if (!response.ok) throw new Error('Failed to fetch settings');
       const data = await response.json();
       return {
-        name: data.name || '',
-        dob: data.dob ? new Date(data.dob) : null,
-        language: data.language || '',
+        name: data.name,
+        dob: data.dob ? new Date(data.dob) : new Date(), // Ensure dob is a Date
+        language: data.language,
       };
     },
   });
 
   async function onSubmit(data: AccountFormValues) {
     try {
-      const response = await fetch('/api/settings', {
+      const response = await fetch('/api/settings/account-settings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -149,7 +149,7 @@ export function AccountForm() {
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
                     mode="single"
-                    selected={field.value || undefined} // Ensure null is handled properly
+                    selected={field.value ?? undefined} // Ensure selected is either Date or undefined
                     onSelect={field.onChange}
                     disabled={(date) =>
                       date > new Date() || date < new Date("1900-01-01")
