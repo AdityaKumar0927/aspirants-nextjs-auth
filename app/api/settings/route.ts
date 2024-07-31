@@ -48,7 +48,17 @@ export async function POST(request: Request) {
     const settings = await prisma.userSettings.upsert({
       where: { userId: session.user.id },
       update: { name: data.name, dob, language: data.language },
-      create: { userId: session.user.id, name: data.name, dob, language: data.language },
+      create: {
+        userId: session.user.id,
+        name: data.name,
+        dob,
+        language: data.language,
+        username: '',
+        email: '',
+        bio: '',
+        urls: [],
+        user: { connect: { id: session.user.id } },
+      },
     });
 
     return NextResponse.json(settings);

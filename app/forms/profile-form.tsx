@@ -53,9 +53,12 @@ export function ProfileForm() {
     defaultValues: async () => {
       const response = await fetch('/api/settings');
       if (!response.ok) throw new Error('Failed to fetch settings');
-      const settings = await response.json();
+      const data = await response.json();
       return {
-        ...settings,
+        username: data.username || '',
+        email: data.email || '',
+        bio: data.bio || '',
+        urls: data.urls || [{ value: '' }],
       };
     },
     mode: "onChange",
@@ -97,7 +100,7 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="aspirants" {...field} />
+                <Input placeholder="Your username" {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name. It can be your real name or a
