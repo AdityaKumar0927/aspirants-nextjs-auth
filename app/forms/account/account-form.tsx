@@ -74,7 +74,7 @@ export function AccountForm() {
       const data = await response.json();
       return {
         name: data.name || '',
-        dob: data.dob ? new Date(data.dob) : null,
+        dob: data.dob ? new Date(data.dob) : new Date(),
         language: data.language || '',
       };
     },
