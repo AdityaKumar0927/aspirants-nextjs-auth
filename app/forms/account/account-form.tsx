@@ -10,6 +10,14 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
   Form,
   FormControl,
   FormDescription,
@@ -19,10 +27,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { toast } from "@/components/ui/use-toast";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
-import { useEffect } from "react";
 
 const languages = [
   { label: "English", value: "en" },
@@ -37,54 +47,62 @@ const languages = [
 ] as const;
 
 const accountFormSchema = z.object({
-  name: z.string().min(2).max(30),
-  dob: z.date({ required_error: "A date of birth is required." }),
-  language: z.string({ required_error: "Please select a language." }),
+  name: z
+    .string()
+    .min(2, {
+      message: "Name must be at least 2 characters.",
+    })
+    .max(30, {
+      message: "Name must not be longer than 30 characters.",
+    }),
+  dob: z.date({
+    required_error: "A date of birth is required.",
+  }),
+  language: z.string({
+    required_error: "Please select a language.",
+  }),
 });
 
 type AccountFormValues = z.infer<typeof accountFormSchema>;
 
+// This can come from your database or API.
+const defaultValues: Partial<AccountFormValues> = {
+  // name: "Your name",
+  // dob: new Date("2023-01-23"),
+};
+
 export function AccountForm() {
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
-    defaultValues: async () => {
-      const response = await fetch('/api/settings');
-      if (!response.ok) throw new Error('Failed to fetch settings');
-      return response.json();
-    },
+    defaultValues,
   });
 
   async function onSubmit(data: AccountFormValues) {
     try {
-      const response = await fetch('/api/settings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/settings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error('Failed to update settings');
-      toast({ title: 'Settings updated successfully' });
-    } catch (error) {
-      if (error instanceof Error) {
-        toast({ title: 'Failed to update settings', description: error.message });
-      } else {
-        toast({ title: 'Failed to update settings', description: 'An unknown error occurred' });
-      }
-    }
-  }
 
-  async function onDelete() {
-    try {
-      const response = await fetch('/api/settings', {
-        method: 'DELETE',
-      });
-      if (!response.ok) throw new Error('Failed to delete settings');
-      toast({ title: 'Settings deleted successfully' });
-    } catch (error) {
-      if (error instanceof Error) {
-        toast({ title: 'Failed to delete settings', description: error.message });
+      if (response.ok) {
+        toast({
+          title: "Success",
+          description: "Account settings updated successfully.",
+        });
       } else {
-        toast({ title: 'Failed to delete settings', description: 'An unknown error occurred' });
+        toast({
+          title: "Error",
+          description: "Failed to update account settings.",
+        });
       }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred.",
+      });
     }
   }
 
@@ -101,7 +119,8 @@ export function AccountForm() {
                 <Input placeholder="Your name" {...field} />
               </FormControl>
               <FormDescription>
-                This is the name that will be displayed on your profile and in emails.
+                This is the name that will be displayed on your profile and in
+                emails.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -117,10 +136,17 @@ export function AccountForm() {
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
-                      variant="outline"
-                      className={cn("w-[240px] pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
+                      variant={"outline"}
+                      className={cn(
+                        "w-[240px] pl-3 text-left font-normal",
+                        !field.value && "text-muted-foreground"
+                      )}
                     >
-                      {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                      {field.value ? (
+                        format(field.value, "PPP")
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
                   </FormControl>
@@ -130,12 +156,16 @@ export function AccountForm() {
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}
-                    disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
+                    disabled={(date) =>
+                      date > new Date() || date < new Date("1900-01-01")
+                    }
                     initialFocus
                   />
                 </PopoverContent>
               </Popover>
-              <FormDescription>Your date of birth is used to calculate your age.</FormDescription>
+              <FormDescription>
+                Your date of birth is used to calculate your age.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -152,9 +182,16 @@ export function AccountForm() {
                     <Button
                       variant="outline"
                       role="combobox"
-                      className={cn("w-[200px] justify-between", !field.value && "text-muted-foreground")}
+                      className={cn(
+                        "w-[200px] justify-between",
+                        !field.value && "text-muted-foreground"
+                      )}
                     >
-                      {field.value ? languages.find((language) => language.value === field.value)?.label : "Select language"}
+                      {field.value
+                        ? languages.find(
+                            (language) => language.value === field.value
+                          )?.label
+                        : "Select language"}
                       <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                   </FormControl>
@@ -174,7 +211,12 @@ export function AccountForm() {
                             }}
                           >
                             <CheckIcon
-                              className={cn("mr-2 h-4 w-4", language.value === field.value ? "opacity-100" : "opacity-0")}
+                              className={cn(
+                                "mr-2 h-4 w-4",
+                                language.value === field.value
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              )}
                             />
                             {language.label}
                           </CommandItem>
@@ -184,15 +226,14 @@ export function AccountForm() {
                   </Command>
                 </PopoverContent>
               </Popover>
-              <FormDescription>This is the language that will be used in the dashboard.</FormDescription>
+              <FormDescription>
+                This is the language that will be used in the dashboard.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit">Update account</Button>
-        <Button type="button" onClick={onDelete}>
-          Delete all account settings
-        </Button>
       </form>
     </Form>
   );
