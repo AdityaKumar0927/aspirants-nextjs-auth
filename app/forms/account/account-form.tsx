@@ -1,16 +1,22 @@
 "use client";
 
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { useEffect, useState } from "react";
-import { toast } from "@/components/ui/use-toast";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon, CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 import {
   Form,
   FormControl,
@@ -20,61 +26,63 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
+import { toast } from "@/components/ui/use-toast";
 
 const languages = [
   { label: "English", value: "en" },
   { label: "French", value: "fr" },
-  // add more languages as needed
+  { label: "German", value: "de" },
+  { label: "Spanish", value: "es" },
+  { label: "Portuguese", value: "pt" },
+  { label: "Russian", value: "ru" },
+  { label: "Japanese", value: "ja" },
+  { label: "Korean", value: "ko" },
+  { label: "Chinese", value: "zh" },
 ] as const;
 
 const accountFormSchema = z.object({
   name: z
     .string()
-    .min(2, { message: "Name must be at least 2 characters." })
-    .max(30, { message: "Name must not be longer than 30 characters." }),
-  dob: z.date({ required_error: "A date of birth is required." }),
-  language: z.string({ required_error: "Please select a language." }),
+    .min(2, {
+      message: "Name must be at least 2 characters.",
+    })
+    .max(30, {
+      message: "Name must not be longer than 30 characters.",
+    }),
+  dob: z.date({
+    required_error: "A date of birth is required.",
+  }),
+  language: z.string({
+    required_error: "Please select a language.",
+  }),
 });
 
 type AccountFormValues = z.infer<typeof accountFormSchema>;
 
 export function AccountForm() {
-  const [loading, setLoading] = useState(true);
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
     defaultValues: async () => {
-      const response = await fetch("/api/settings");
-      if (!response.ok) throw new Error("Failed to fetch settings");
+      const response = await fetch('/api/settings');
+      if (!response.ok) throw new Error('Failed to fetch settings');
       return response.json();
     },
   });
 
-  useEffect(() => {
-    form.reset();
-    setLoading(false);
-  }, [form]);
-
-  const onSubmit = async (data: AccountFormValues) => {
+  async function onSubmit(data: AccountFormValues) {
     try {
-      const response = await fetch("/api/settings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error("Failed to update settings");
+      if (!response.ok) throw new Error('Failed to update settings');
       toast({
         title: "Settings updated successfully",
         description: (
@@ -83,14 +91,10 @@ export function AccountForm() {
           </pre>
         ),
       });
-    } catch (error) {
-      if (error instanceof Error) {
-        toast({ title: "Failed to update settings", description: error.message });
-      }
+    } catch (error: any) {
+      toast({ title: 'Failed to update settings', description: error.message });
     }
-  };
-
-  if (loading) return <div>Loading...</div>;
+  }
 
   return (
     <Form {...form}>
@@ -128,7 +132,11 @@ export function AccountForm() {
                         !field.value && "text-muted-foreground"
                       )}
                     >
-                      {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                      {field.value ? (
+                        format(field.value, "PPP")
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
                   </FormControl>
@@ -170,7 +178,9 @@ export function AccountForm() {
                       )}
                     >
                       {field.value
-                        ? languages.find((language) => language.value === field.value)?.label
+                        ? languages.find(
+                            (language) => language.value === field.value
+                          )?.label
                         : "Select language"}
                       <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
@@ -184,14 +194,18 @@ export function AccountForm() {
                       <CommandGroup>
                         {languages.map((language) => (
                           <CommandItem
-                            key={language.value}
                             value={language.label}
-                            onSelect={() => form.setValue("language", language.value)}
+                            key={language.value}
+                            onSelect={() => {
+                              form.setValue("language", language.value);
+                            }}
                           >
                             <CheckIcon
                               className={cn(
                                 "mr-2 h-4 w-4",
-                                language.value === field.value ? "opacity-100" : "opacity-0"
+                                language.value === field.value
+                                  ? "opacity-100"
+                                  : "opacity-0"
                               )}
                             />
                             {language.label}

@@ -3,38 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL")
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
-}
-
-model User {
-  id            String            @id @default(cuid())
-  name          String?
-  email         String?           @unique
-  emailVerified DateTime?
-  image         String?
-  subscribed    Boolean           @default(false)
-  accounts      Account[]
-  notes         Note[]
-  sessions      Session[]
-  answers       UserAnswer[]
-  performances  UserPerformance[]
-  progresses    UserProgress[]
-  settings      UserSettings?
-}
-
-model UserSettings {
-  id       String   @id @default(cuid())
-  userId   String   @unique
-  bio      String
-  dob      DateTime
-  email    String
-  language String
-  name     String
-  urls     Json
-  username String
-  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Account {
@@ -43,14 +14,15 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String?
-  access_token      String?
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String?
+  id_token          String? @db.Text
   session_state     String?
-  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
@@ -62,8 +34,23 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   @@index([userId])
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  subscribed    Boolean   @default(false)
+  accounts      Account[]
+  sessions      Session[]
+  progresses    UserProgress[]
+  notes         Note[]
+  performances  UserPerformance[]
+  answers       UserAnswer[]
+  settings      UserSettings?
 }
 
 model VerificationToken {
@@ -75,14 +62,14 @@ model VerificationToken {
 }
 
 model UserProgress {
-  id            String    @id @default(cuid())
+  id            String   @id @default(cuid())
   userId        String
   questionId    String
-  completed     Boolean   @default(false)
-  reviewed      Boolean   @default(false)
+  completed     Boolean  @default(false)
+  reviewed      Boolean  @default(false)
   lastAttempted DateTime?
-  question      Question  @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
-  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question      Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
@@ -110,9 +97,9 @@ model Question {
   lastAttempted    DateTime?
   diagramUrl       String?
   notes            Note[]            @relation("QuestionNotes")
+  progresses       UserProgress[]
   answers          UserAnswer[]
   userPerformances UserPerformance[]
-  progresses       UserProgress[]
 }
 
 model Note {
@@ -120,49 +107,62 @@ model Note {
   content    String
   userId     String
   questionId String
-  question   Question @relation("QuestionNotes", fields: [questionId], references: [questionId], onDelete: Cascade)
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question   Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade, name: "QuestionNotes")
 
   @@unique([userId, questionId])
 }
 
 model UserPerformance {
-  id                      Int      @id @default(autoincrement())
-  userId                  String
-  questionId              String
-  correctAnswers          Int
-  incorrectAnswers        Int
-  uniqueQuestions         Int
-  questionsAttempted      Int
-  timeSpent               Int
-  accuracy                Float
-  weaknessBySubtopic      Json
-  improvementOverTime     Json
-  attemptRate             Float
+  id                    Int       @id @default(autoincrement())
+  userId                String
+  questionId            String
+  correctAnswers        Int
+  incorrectAnswers      Int
+  uniqueQuestions       Int
+  questionsAttempted    Int
+  timeSpent             Int
+  accuracy              Float
+  weaknessBySubtopic    Json
+  improvementOverTime   Json
+  attemptRate           Float
   firstAttemptSuccessRate Float
-  reattemptAccuracy       Float
-  topicPerformance        Json
-  consistency             Float
-  engagementLevel         Float
-  completed               Boolean
-  reviewed                Boolean
-  lastAttempted           DateTime
-  createdAt               DateTime @default(now())
-  updatedAt               DateTime @updatedAt
-  question                Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
-  user                    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reattemptAccuracy     Float
+  topicPerformance      Json
+  consistency           Float
+  engagementLevel       Float
+  completed             Boolean
+  reviewed              Boolean
+  lastAttempted         DateTime
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question              Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
 
 model UserAnswer {
-  id             String   @id @default(cuid())
-  questionId     String
-  userId         String
+  id            String   @id @default(cuid())
+  questionId    String
+  userId        String
   selectedOption String
-  isCorrect      Boolean
-  question       Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  isCorrect     Boolean
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question      Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
+}
+
+model UserSettings {
+  id       String   @id @default(cuid())
+  userId   String   @unique
+  username String
+  email    String
+  bio      String
+  urls     Json
+  name     String
+  dob      DateTime
+  language String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

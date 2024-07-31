@@ -4,13 +4,9 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
-import { useEffect, useState } from "react";
-import { toast } from "@/components/ui/use-toast";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -20,28 +16,49 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/components/ui/use-toast";
 
 const profileFormSchema = z.object({
   username: z
     .string()
-    .min(2, { message: "Username must be at least 2 characters." })
-    .max(30, { message: "Username must not be longer than 30 characters." }),
-  email: z.string().email({ message: "Invalid email address." }),
+    .min(2, {
+      message: "Username must be at least 2 characters.",
+    })
+    .max(30, {
+      message: "Username must not be longer than 30 characters.",
+    }),
+  email: z
+    .string({
+      required_error: "Please select an email to display.",
+    })
+    .email(),
   bio: z.string().max(160).min(4),
   urls: z
-    .array(z.object({ value: z.string().url({ message: "Invalid URL." }) }))
+    .array(
+      z.object({
+        value: z.string().url({ message: "Please enter a valid URL." }),
+      })
+    )
     .optional(),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export function ProfileForm() {
-  const [loading, setLoading] = useState(true);
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: async () => {
-      const response = await fetch("/api/settings");
-      if (!response.ok) throw new Error("Failed to fetch settings");
+      const response = await fetch('/api/settings');
+      if (!response.ok) throw new Error('Failed to fetch settings');
       return response.json();
     },
     mode: "onChange",
@@ -52,19 +69,14 @@ export function ProfileForm() {
     control: form.control,
   });
 
-  useEffect(() => {
-    form.reset();
-    setLoading(false);
-  }, [form]);
-
-  const onSubmit = async (data: ProfileFormValues) => {
+  async function onSubmit(data: ProfileFormValues) {
     try {
-      const response = await fetch("/api/settings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error("Failed to update settings");
+      if (!response.ok) throw new Error('Failed to update settings');
       toast({
         title: "Settings updated successfully",
         description: (
@@ -73,14 +85,10 @@ export function ProfileForm() {
           </pre>
         ),
       });
-    } catch (error) {
-      if (error instanceof Error) {
-        toast({ title: "Failed to update settings", description: error.message });
-      }
+    } catch (error: any) {
+      toast({ title: 'Failed to update settings', description: error.message });
     }
-  };
-
-  if (loading) return <div>Loading...</div>;
+  }
 
   return (
     <Form {...form}>
@@ -152,8 +160,8 @@ export function ProfileForm() {
         <div>
           {fields.map((field, index) => (
             <FormField
-              key={field.id}
               control={form.control}
+              key={field.id}
               name={`urls.${index}.value`}
               render={({ field }) => (
                 <FormItem>
