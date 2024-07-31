@@ -5,6 +5,7 @@ import { CalendarIcon, CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -65,21 +66,33 @@ const accountFormSchema = z.object({
 
 type AccountFormValues = z.infer<typeof accountFormSchema>;
 
-// This can come from your database or API.
 const defaultValues: Partial<AccountFormValues> = {
   // name: "Your name",
   // dob: new Date("2023-01-23"),
 };
 
 export function AccountForm() {
+  const [loading, setLoading] = useState(true);
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
-    defaultValues: async () => {
-      const response = await fetch('/api/settings');
-      if (!response.ok) throw new Error('Failed to fetch settings');
-      return response.json();
-    },
+    defaultValues,
   });
+
+  useEffect(() => {
+    async function fetchSettings() {
+      try {
+        const response = await fetch('/api/settings');
+        if (!response.ok) throw new Error('Failed to fetch settings');
+        const data = await response.json();
+        form.reset(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchSettings();
+  }, [form]);
 
   async function onSubmit(data: AccountFormValues) {
     try {
@@ -101,6 +114,8 @@ export function AccountForm() {
       toast({ title: 'Failed to update settings', description: error.message });
     }
   }
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <Form {...form}>

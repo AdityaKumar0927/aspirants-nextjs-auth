@@ -54,16 +54,19 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
+const defaultValues: Partial<ProfileFormValues> = {
+  bio: "I own a computer.",
+  urls: [
+    { value: "https://shadcn.com" },
+    { value: "http://twitter.com/shadcn" },
+  ],
+};
+
 export function ProfileForm() {
   const [loading, setLoading] = useState(true);
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues: async () => {
-      const response = await fetch('/api/settings');
-      if (!response.ok) throw new Error('Failed to fetch settings');
-      setLoading(false);
-      return response.json();
-    },
+    defaultValues,
     mode: "onChange",
   });
 
@@ -71,6 +74,22 @@ export function ProfileForm() {
     name: "urls",
     control: form.control,
   });
+
+  useEffect(() => {
+    async function fetchSettings() {
+      try {
+        const response = await fetch('/api/settings');
+        if (!response.ok) throw new Error('Failed to fetch settings');
+        const data = await response.json();
+        form.reset(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchSettings();
+  }, [form]);
 
   async function onSubmit(data: ProfileFormValues) {
     try {
