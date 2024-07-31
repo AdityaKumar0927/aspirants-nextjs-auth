@@ -4,6 +4,7 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
+import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -53,21 +54,14 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
-// This can come from your database or API.
-const defaultValues: Partial<ProfileFormValues> = {
-  bio: "I own a computer.",
-  urls: [
-    { value: "https://shadcn.com" },
-    { value: "http://twitter.com/shadcn" },
-  ],
-};
-
 export function ProfileForm() {
+  const [loading, setLoading] = useState(true);
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: async () => {
       const response = await fetch('/api/settings');
       if (!response.ok) throw new Error('Failed to fetch settings');
+      setLoading(false);
       return response.json();
     },
     mode: "onChange",
@@ -98,6 +92,8 @@ export function ProfileForm() {
       toast({ title: 'Failed to update settings', description: error.message });
     }
   }
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <Form {...form}>

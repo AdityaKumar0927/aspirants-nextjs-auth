@@ -62,7 +62,7 @@ export default function SettingsPopover({
       <PopoverPrimitive.Content
         sideOffset={8}
         align="center"
-        className="z-50 p-4 rounded-md border border-gray-200 bg-white shadow-lg"
+        className="z-50 p-4"
       >
         <Card className="w-96">
           <CardHeader>
