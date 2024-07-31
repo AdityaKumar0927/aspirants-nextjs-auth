@@ -4,7 +4,6 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
-import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -27,6 +26,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
+import { useEffect, useState } from "react";
 
 const profileFormSchema = z.object({
   username: z
@@ -54,6 +54,7 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
+// This can come from your database or API.
 const defaultValues: Partial<ProfileFormValues> = {
   bio: "I own a computer.",
   urls: [
@@ -63,7 +64,6 @@ const defaultValues: Partial<ProfileFormValues> = {
 };
 
 export function ProfileForm() {
-  const [loading, setLoading] = useState(true);
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues,
@@ -75,19 +75,22 @@ export function ProfileForm() {
     control: form.control,
   });
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    async function fetchSettings() {
+    const fetchSettings = async () => {
       try {
         const response = await fetch('/api/settings');
         if (!response.ok) throw new Error('Failed to fetch settings');
         const data = await response.json();
         form.reset(data);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching settings:", error);
       } finally {
         setLoading(false);
       }
-    }
+    };
+
     fetchSettings();
   }, [form]);
 

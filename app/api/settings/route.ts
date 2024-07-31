@@ -52,3 +52,22 @@ export async function POST(request: Request) {
   }
 }
 
+export async function DELETE() {
+  try {
+    const session = await getServerSession(authOptions);
+    console.log('Session:', session);
+
+    if (!session || !session.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    await prisma.userSettings.delete({
+      where: { userId: session.user.id },
+    });
+
+    return NextResponse.json({ message: 'Settings deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting settings:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}

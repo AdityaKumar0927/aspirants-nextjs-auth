@@ -498,23 +498,18 @@ const Page = () => {
           </a>
         </motion.div>
 
-        <BentoGridThirdDemo />
-
-        <OrbitingCirclesDemo />     
-        
-        <CardDemo />
-       
-      <FAQ />
-
-      <main className="flex-grow flex flex-col items-center justify-center px-4 py-16">
+        <main className="flex-grow flex flex-col items-center justify-center px-4 py-16">
                         <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 max-w-3xl">
                             It&apos;s free.
                         </h1>
                         <div className="flex space-x-4 mb-16">
-                        <PulsatingButton>Join Affiliate Program</PulsatingButton>;
+                        <PulsatingButton>aight</PulsatingButton>;
                             
                         </div>
                     </main>
+       
+      <FAQ />
+
     </>
   );
 };

@@ -5,7 +5,6 @@ import { CalendarIcon, CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -34,6 +33,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { toast } from "@/components/ui/use-toast";
+import { useEffect, useState } from "react";
 
 const languages = [
   { label: "English", value: "en" },
@@ -66,31 +66,34 @@ const accountFormSchema = z.object({
 
 type AccountFormValues = z.infer<typeof accountFormSchema>;
 
+// This can come from your database or API.
 const defaultValues: Partial<AccountFormValues> = {
   // name: "Your name",
   // dob: new Date("2023-01-23"),
 };
 
 export function AccountForm() {
-  const [loading, setLoading] = useState(true);
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
     defaultValues,
   });
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    async function fetchSettings() {
+    const fetchSettings = async () => {
       try {
         const response = await fetch('/api/settings');
         if (!response.ok) throw new Error('Failed to fetch settings');
         const data = await response.json();
         form.reset(data);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching settings:", error);
       } finally {
         setLoading(false);
       }
-    }
+    };
+
     fetchSettings();
   }, [form]);
 
