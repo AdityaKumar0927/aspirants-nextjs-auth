@@ -17,13 +17,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 
@@ -53,10 +46,19 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
+// This can come from your database or API.
+const defaultValues: Partial<ProfileFormValues> = {
+  bio: "I own a computer.",
+  urls: [
+    { value: "https://shadcn.com" },
+    { value: "http://twitter.com/shadcn" },
+  ],
+};
 
 export function ProfileForm() {
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
+    defaultValues,
     mode: "onChange",
   });
 
@@ -75,22 +77,21 @@ export function ProfileForm() {
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to update settings");
+      if (response.ok) {
+        toast({
+          title: "Success",
+          description: "Profile updated successfully.",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to update profile.",
+        });
       }
-
+    } catch (error) {
       toast({
-        title: "Settings updated successfully",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-          </pre>
-        ),
-      });
-    } catch (error: any) {
-      toast({
-        title: "Error updating settings",
-        description: error.message,
+        title: "Error",
+        description: "An unexpected error occurred.",
       });
     }
   }
@@ -121,21 +122,12 @@ export function ProfileForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a verified email to display" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
-                </SelectContent>
-              </Select>
+              <FormControl>
+                <Input placeholder="your-email@example.com" {...field} />
+              </FormControl>
               <FormDescription>
                 You can manage verified email addresses in your{" "}
-                <Link href="/forms">email settings</Link>.
+                <Link href="/app/forms">email settings</Link>.
               </FormDescription>
               <FormMessage />
             </FormItem>
