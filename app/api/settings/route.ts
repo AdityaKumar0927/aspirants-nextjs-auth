@@ -17,7 +17,7 @@ export async function GET() {
       where: { userId: session.user.id },
     });
 
-    return NextResponse.json(settings);
+    return NextResponse.json(settings || {});
   } catch (error) {
     console.error('Error fetching settings:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
@@ -43,25 +43,6 @@ export async function POST(request: Request) {
     return NextResponse.json(settings);
   } catch (error) {
     console.error('Error updating settings:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
-  }
-}
-
-export async function DELETE() {
-  try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    await prisma.userSettings.delete({
-      where: { userId: session.user.id },
-    });
-
-    return NextResponse.json({ message: 'Settings deleted successfully' });
-  } catch (error) {
-    console.error('Error deleting settings:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
