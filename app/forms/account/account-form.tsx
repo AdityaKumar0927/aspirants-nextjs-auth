@@ -71,7 +71,11 @@ export function AccountForm() {
     defaultValues: async () => {
       const response = await fetch('/api/settings');
       if (!response.ok) throw new Error('Failed to fetch settings');
-      return response.json();
+      const settings = await response.json();
+      return {
+        ...settings,
+        dob: new Date(settings.dob), // Ensure the date is correctly formatted
+      };
     },
   });
 

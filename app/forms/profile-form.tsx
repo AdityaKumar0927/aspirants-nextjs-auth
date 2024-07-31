@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
+import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -17,13 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 
@@ -59,7 +53,10 @@ export function ProfileForm() {
     defaultValues: async () => {
       const response = await fetch('/api/settings');
       if (!response.ok) throw new Error('Failed to fetch settings');
-      return response.json();
+      const settings = await response.json();
+      return {
+        ...settings,
+      };
     },
     mode: "onChange",
   });
@@ -100,7 +97,7 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="aspirants" {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name. It can be your real name or a
