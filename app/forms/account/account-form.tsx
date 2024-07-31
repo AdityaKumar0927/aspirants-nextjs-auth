@@ -57,7 +57,7 @@ const accountFormSchema = z.object({
     }),
   dob: z.date({
     required_error: "A date of birth is required.",
-  }),
+  }).nullable(),
   language: z.string({
     required_error: "Please select a language.",
   }),
@@ -74,7 +74,7 @@ export function AccountForm() {
       const data = await response.json();
       return {
         name: data.name || '',
-        dob: data.dob ? new Date(data.dob) : new Date(),
+        dob: data.dob ? new Date(data.dob) : null,
         language: data.language || '',
       };
     },
@@ -149,7 +149,7 @@ export function AccountForm() {
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
                     mode="single"
-                    selected={field.value}
+                    selected={field.value || undefined} // Ensure null is handled properly
                     onSelect={field.onChange}
                     disabled={(date) =>
                       date > new Date() || date < new Date("1900-01-01")
