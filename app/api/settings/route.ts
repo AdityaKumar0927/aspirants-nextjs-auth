@@ -6,6 +6,7 @@ import prisma from '@/lib/prisma';
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
+    console.log("Session:", session);
     if (!session || !session.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -13,6 +14,8 @@ export async function GET() {
     const settings = await prisma.userSettings.findUnique({
       where: { userId: session.user.id },
     });
+
+    console.log("Settings fetched:", settings);
 
     return NextResponse.json(settings);
   } catch (error) {
@@ -24,17 +27,21 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
+    console.log("Session:", session);
     if (!session || !session.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const data = await request.json();
+    console.log("Data received:", data);
 
     const settings = await prisma.userSettings.upsert({
       where: { userId: session.user.id },
       update: data,
       create: { userId: session.user.id, ...data },
     });
+
+    console.log("Settings upserted:", settings);
 
     return NextResponse.json(settings);
   } catch (error) {
@@ -46,6 +53,7 @@ export async function POST(request: Request) {
 export async function DELETE() {
   try {
     const session = await getServerSession(authOptions);
+    console.log("Session:", session);
     if (!session || !session.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -53,6 +61,8 @@ export async function DELETE() {
     await prisma.userSettings.delete({
       where: { userId: session.user.id },
     });
+
+    console.log("Settings deleted for user:", session.user.id);
 
     return NextResponse.json({ message: 'Settings deleted successfully' });
   } catch (error) {
