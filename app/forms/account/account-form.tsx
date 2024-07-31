@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -28,7 +28,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { toast } from "@/components/ui/use-toast";
-import { Skeleton } from "@/components/ui/skeleton"; // Import the SkeletonDemo component
+import { Skeleton } from "@/components/ui/skeleton";
 
 const languages = [
   { label: "English", value: "en" },
@@ -66,25 +66,13 @@ export function AccountForm() {
       const response = await fetch('/api/settings/account-settings');
       if (!response.ok) throw new Error('Failed to fetch settings');
       const data = await response.json();
+      setLoading(false);
       return {
         name: data.name,
         language: data.language,
       };
     },
   });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await form.reset();
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
 
   async function onSubmit(data: AccountFormValues) {
     try {
@@ -108,7 +96,12 @@ export function AccountForm() {
   }
 
   if (loading) {
-    return <Skeleton />;
+    return (
+      <div className="space-y-8">
+        <Skeleton className="h-12 w-1/3" />
+        <Skeleton className="h-12 w-2/3" />
+      </div>
+    );
   }
 
   return (

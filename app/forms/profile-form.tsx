@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import Link from "next/link";
+import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
-import { Skeleton } from "@/components/ui/skeleton"; // Import the SkeletonDemo component
+import { Skeleton } from "@/components/ui/skeleton";
 
 const profileFormSchema = z.object({
   username: z
@@ -57,6 +57,7 @@ export function ProfileForm() {
       const response = await fetch('/api/settings/profile-settings');
       if (!response.ok) throw new Error('Failed to fetch profile settings');
       const data = await response.json();
+      setLoading(false);
       return {
         username: data.username || '',
         email: data.email || '',
@@ -66,19 +67,6 @@ export function ProfileForm() {
     },
     mode: "onChange",
   });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await form.reset();
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
 
   const { fields, append } = useFieldArray({
     name: "urls",
@@ -107,7 +95,13 @@ export function ProfileForm() {
   }
 
   if (loading) {
-    return <Skeleton />;
+    return (
+      <div className="space-y-8">
+        <Skeleton className="h-12 w-1/3" />
+        <Skeleton className="h-12 w-2/3" />
+        <Skeleton className="h-12 w-full" />
+      </div>
+    );
   }
 
   return (
