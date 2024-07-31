@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
@@ -27,6 +28,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { toast } from "@/components/ui/use-toast";
+import { Skeleton } from "@/components/ui/skeleton"; // Import the SkeletonDemo component
 
 const languages = [
   { label: "English", value: "en" },
@@ -57,6 +59,7 @@ const accountFormSchema = z.object({
 type AccountFormValues = z.infer<typeof accountFormSchema>;
 
 export function AccountForm() {
+  const [loading, setLoading] = useState(true);
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
     defaultValues: async () => {
@@ -69,6 +72,19 @@ export function AccountForm() {
       };
     },
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await form.reset();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   async function onSubmit(data: AccountFormValues) {
     try {
@@ -89,6 +105,10 @@ export function AccountForm() {
     } catch (error: any) {
       toast({ title: 'Failed to update settings', description: error.message });
     }
+  }
+
+  if (loading) {
+    return <Skeleton />;
   }
 
   return (

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -20,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
+import { Skeleton } from "@/components/ui/skeleton"; // Import the SkeletonDemo component
 
 const profileFormSchema = z.object({
   username: z
@@ -48,6 +50,7 @@ const profileFormSchema = z.object({
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export function ProfileForm() {
+  const [loading, setLoading] = useState(true);
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: async () => {
@@ -63,6 +66,19 @@ export function ProfileForm() {
     },
     mode: "onChange",
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await form.reset();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   const { fields, append } = useFieldArray({
     name: "urls",
@@ -88,6 +104,10 @@ export function ProfileForm() {
     } catch (error: any) {
       toast({ title: 'Failed to update profile settings', description: error.message });
     }
+  }
+
+  if (loading) {
+    return <Skeleton />;
   }
 
   return (
