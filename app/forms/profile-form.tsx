@@ -54,12 +54,18 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
-export function ProfileForm() {
-  const [loading, setLoading] = useState(true);
+const defaultValues: Partial<ProfileFormValues> = {
+  bio: "I own a computer.",
+  urls: [
+    { value: "https://shadcn.com" },
+    { value: "http://twitter.com/shadcn" },
+  ],
+};
 
+export function ProfileForm() {
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues: {},
+    defaultValues,
     mode: "onChange",
   });
 
@@ -67,6 +73,8 @@ export function ProfileForm() {
     name: "urls",
     control: form.control,
   });
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchSettings = async () => {
