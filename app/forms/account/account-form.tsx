@@ -65,6 +65,7 @@ const accountFormSchema = z.object({
 
 type AccountFormValues = z.infer<typeof accountFormSchema>;
 
+// This can come from your database or API.
 const defaultValues: Partial<AccountFormValues> = {
   // name: "Your name",
   // dob: new Date("2023-01-23"),
@@ -86,22 +87,21 @@ export function AccountForm() {
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to update settings");
+      if (response.ok) {
+        toast({
+          title: "Success",
+          description: "Account settings updated successfully.",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to update account settings.",
+        });
       }
-
+    } catch (error) {
       toast({
-        title: "Settings updated successfully",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-          </pre>
-        ),
-      });
-    } catch (error: any) {
-      toast({
-        title: "Error updating settings",
-        description: error.message,
+        title: "Error",
+        description: "An unexpected error occurred.",
       });
     }
   }

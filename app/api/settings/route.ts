@@ -3,7 +3,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]/options';
 import prisma from '@/lib/prisma';
 
-// GET user settings
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
@@ -22,7 +21,6 @@ export async function GET() {
   }
 }
 
-// POST update or create user settings
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
@@ -45,7 +43,6 @@ export async function POST(request: Request) {
   }
 }
 
-// DELETE all user data
 export async function DELETE() {
   try {
     const session = await getServerSession(authOptions);
@@ -53,13 +50,13 @@ export async function DELETE() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    await prisma.user.delete({
-      where: { id: session.user.id },
+    await prisma.userSettings.delete({
+      where: { userId: session.user.id },
     });
 
-    return NextResponse.json({ message: 'User data deleted successfully' });
+    return NextResponse.json({ message: 'Settings deleted successfully' });
   } catch (error) {
-    console.error('Error deleting user data:', error);
+    console.error('Error deleting settings:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

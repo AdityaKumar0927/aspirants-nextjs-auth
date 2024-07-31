@@ -227,7 +227,7 @@ export function NotificationsForm() {
                 </FormLabel>
                 <FormDescription>
                   You can manage your mobile notifications in the{" "}
-                  <Link href="/examples/forms">mobile settings</Link> page.
+                  <Link href="/forms">mobile settings</Link> page.
                 </FormDescription>
               </div>
             </FormItem>
