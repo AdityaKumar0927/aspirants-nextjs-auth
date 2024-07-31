@@ -161,7 +161,7 @@ model UserSettings {
   email    String
   bio      String
   urls     Json
-  name     Strings
+  name     String
   language String
   user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
