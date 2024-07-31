@@ -8,6 +8,35 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  subscribed    Boolean   @default(false)
+  accounts      Account[]
+  sessions      Session[]
+  progresses    UserProgress[]
+  notes         Note[]
+  performances  UserPerformance[]
+  answers       UserAnswer[]
+  settings      UserSettings?
+}
+
+model UserSettings {
+  id       String   @id @default(cuid())
+  userId   String   @unique
+  username String
+  email    String
+  bio      String
+  urls     Json
+  name     String
+  dob      DateTime
+  language String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -35,22 +64,6 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@index([userId])
-}
-
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  subscribed    Boolean   @default(false)
-  accounts      Account[]
-  sessions      Session[]
-  progresses    UserProgress[]
-  notes         Note[]
-  performances  UserPerformance[]
-  answers       UserAnswer[]
-  settings      UserSettings?
 }
 
 model VerificationToken {
@@ -152,17 +165,4 @@ model UserAnswer {
   question      Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
-}
-
-model UserSettings {
-  id       String   @id @default(cuid())
-  userId   String   @unique
-  username String
-  email    String
-  bio      String
-  urls     Json
-  name     String
-  dob      DateTime
-  language String
-  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

@@ -66,19 +66,13 @@ const accountFormSchema = z.object({
 
 type AccountFormValues = z.infer<typeof accountFormSchema>;
 
-// This can come from your database or API.
-const defaultValues: Partial<AccountFormValues> = {
-  // name: "Your name",
-  // dob: new Date("2023-01-23"),
-};
-
 export function AccountForm() {
+  const [loading, setLoading] = useState(true);
+
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
-    defaultValues,
+    defaultValues: {},
   });
-
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchSettings = async () => {
