@@ -164,9 +164,6 @@ model UserSettings {
   name          String
   dob           DateTime
   language      String
-  theme         String
   font          String
-  notifications Json     @default("{}")
-  display       Json     @default("{}")
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
