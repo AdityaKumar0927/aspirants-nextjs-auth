@@ -51,7 +51,7 @@ export function ProfileForm() {
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: async () => {
-      const response = await fetch('/api/profile-settings');
+      const response = await fetch('/api/settings/profile-settings');
       if (!response.ok) throw new Error('Failed to fetch profile settings');
       const data = await response.json();
       return {
@@ -71,7 +71,7 @@ export function ProfileForm() {
 
   async function onSubmit(data: ProfileFormValues) {
     try {
-      const response = await fetch('/api/profile-settings', {
+      const response = await fetch('/api/settings/profile-settings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
