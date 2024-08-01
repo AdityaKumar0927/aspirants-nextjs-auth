@@ -97,7 +97,7 @@ export function AccountForm() {
 
   if (loading) {
     return (
-      <div className="space-y-8">
+      <div className="space-y-8 max-w-3xl">
         <Skeleton className="h-12 w-1/3" />
         <Skeleton className="h-12 w-2/3" />
       </div>
@@ -106,7 +106,7 @@ export function AccountForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-3xl">
         <FormField
           control={form.control}
           name="name"

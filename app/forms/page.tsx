@@ -5,7 +5,7 @@ import { ProfileForm } from "@/app/forms/profile-form"
 // Define and export the SettingsProfilePage component
 export default function SettingsProfilePage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-3xl">
       <div>
         <h3 className="text-lg font-medium">Profile</h3>
         <p className="text-sm text-muted-foreground">
