@@ -8,18 +8,21 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { LucidePencil, HomeIcon } from "lucide-react";
 import AnimatedModal from "@/components/shared/AnimatedModal";
 import { NoteApp } from "@/components/shared/NoteApp";
-import Dashboard from "@/components/shared/Dashboard";
+import Stats from "@/components/shared/Stats";
 import { useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-// You can replace this with actual userId fetching logic
-const getUserId = () => "user-id-placeholder";
+// Define the type for the userId prop
+interface BarProps {
+  userId: string | null;
+}
 
-export default function Sidebar() {
+export default function Bar({ userId }: BarProps) {
   const [showNoteModal, setShowNoteModal] = useState(false);
   const [showDashboardModal, setShowDashboardModal] = useState(false);
   const mouseX = useMotionValue(Infinity);
-  const userId = getUserId(); // Fetch or define the userId
+
+  if (!userId) return null; // Return null if user is not signed in
 
   return (
     <>
@@ -80,7 +83,7 @@ export default function Sidebar() {
       </AnimatedModal>
 
       <AnimatedModal showModal={showDashboardModal} setShowModal={setShowDashboardModal}>
-        <Dashboard />
+        <Stats />
       </AnimatedModal>
     </>
   );

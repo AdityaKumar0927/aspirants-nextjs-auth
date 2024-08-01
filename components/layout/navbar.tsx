@@ -1,4 +1,3 @@
-// @/components/layout/NavBar.tsx
 "use client";
 
 import * as React from "react";
@@ -122,30 +121,29 @@ export default function NavBar({ session }: { session: Session | null }) {
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-display text-sm text-black">Exams</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-4 lg:w-[500px]">
-                      {examsLinks.map((exam) => (
-                        <ListItem key={exam.title} title={exam.title} href={exam.href}>
-                          {exam.title}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-display text-sm text-black">Automation Tools</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className="font-display text-sm text-black">Features</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
-                      {components.map((component) => (
-                        <ListItem
-                          key={component.title}
-                          title={component.title}
-                          href={component.href}
-                        >
-                          {component.description}
-                        </ListItem>
-                      ))}
+                      <li>
+                        <p className="font-display text-lg font-medium leading-none">Exams</p>
+                        <ul>
+                          {examsLinks.map((exam) => (
+                            <ListItem key={exam.title} title={exam.title} href={exam.href}>
+                              {exam.title}
+                            </ListItem>
+                          ))}
+                        </ul>
+                      </li>
+                      <li>
+                        <p className="font-display text-lg font-medium leading-none">Automation Tools</p>
+                        <ul>
+                          {components.map((component) => (
+                            <ListItem key={component.title} title={component.title} href={component.href}>
+                              {component.description}
+                            </ListItem>
+                          ))}
+                        </ul>
+                      </li>
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
@@ -199,32 +197,31 @@ export default function NavBar({ session }: { session: Session | null }) {
                     </p>
                   </Link>
                   <Accordion type="single" collapsible>
-                    <AccordionItem value="exams">
+                    <AccordionItem value="features">
                       <AccordionTrigger className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
-                        Exams
+                        Features
                       </AccordionTrigger>
                       <AccordionContent>
-                        {examsLinks.map((exam) => (
-                          <Link key={exam.title} href={exam.href} onClick={() => setMenuOpen(false)}>
-                            <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
-                              {exam.title}
-                            </p>
-                          </Link>
-                        ))}
-                      </AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="automation-tools">
-                      <AccordionTrigger className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
-                        Automation Tools
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        {components.map((component) => (
-                          <Link key={component.title} href={component.href} onClick={() => setMenuOpen(false)}>
-                            <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
-                              {component.title}
-                            </p>
-                          </Link>
-                        ))}
+                        <div>
+                          <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">Exams</p>
+                          {examsLinks.map((exam) => (
+                            <Link key={exam.title} href={exam.href} onClick={() => setMenuOpen(false)}>
+                              <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
+                                {exam.title}
+                              </p>
+                            </Link>
+                          ))}
+                        </div>
+                        <div>
+                          <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">Automation Tools</p>
+                          {components.map((component) => (
+                            <Link key={component.title} href={component.href} onClick={() => setMenuOpen(false)}>
+                              <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
+                                {component.title}
+                              </p>
+                            </Link>
+                          ))}
+                        </div>
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="support">

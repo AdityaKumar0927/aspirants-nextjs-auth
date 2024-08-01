@@ -49,7 +49,7 @@ const calculateAverage = (data: UserPerformance[], key: keyof UserPerformance): 
   return total / data.length;
 };
 
-const Dashboard: React.FC = () => {
+const Stats: React.FC = () => {
   const { userPerformance, loading } = useUserPerformance();
 
   if (loading) {
@@ -290,4 +290,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default Stats;

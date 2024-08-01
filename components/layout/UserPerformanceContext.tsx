@@ -30,7 +30,7 @@ interface UserPerformanceContextType {
 
 const UserPerformanceContext = createContext<UserPerformanceContextType | undefined>(undefined);
 
-export const UserPerformanceProvider: React.FC<{ userId: string; children: ReactNode }> = ({ userId, children }) => {
+export const UserPerformanceProvider: React.FC<{ userId: string | null; children: ReactNode }> = ({ userId, children }) => {
   const [userPerformance, setUserPerformance] = useState<UserPerformance[]>([]);
   const [loading, setLoading] = useState(true);
 
