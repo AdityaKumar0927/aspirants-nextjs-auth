@@ -51,7 +51,6 @@ model User {
   performances  UserPerformance[]
   answers       UserAnswer[]
   settings      UserSettings?
-  customQuestionBanks CustomQuestionBank[]
   questionBanks       QuestionBank[]
 }
 
@@ -170,24 +169,15 @@ model UserSettings {
   user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model CustomQuestionBank {
-  id          String   @id @default(cuid())
-  userId      String
-  title       String
-  subtitle    String?
-  questions   Json
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
 model QuestionBank {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   userId      String
   title       String
-  subtitle    String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  description String?
   questions   Question[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
