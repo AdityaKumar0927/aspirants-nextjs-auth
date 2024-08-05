@@ -1,28 +1,24 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
-import prisma from "@/lib/prisma";
+import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/options';
+import prisma from '@/lib/prisma';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === "GET") {
-    try {
-      const session = await getSession({ req });
-      if (!session) {
-        return res.status(401).json({ message: "Unauthorized" });
-      }
-
-      const userId = session.user.id;
-
-      const questionBanks = await prisma.customQuestionBank.findMany({
-        where: { userId },
-        include: { questions: true },
-      });
-
-      res.status(200).json(questionBanks);
-    } catch (error) {
-      res.status(500).json({ message: "Internal Server Error", error });
+export async function GET(req: NextRequest) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
-  } else {
-    res.setHeader("Allow", ["GET"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+
+    const userId = session.user.id;
+
+    const questionBanks = await prisma.customQuestionBank.findMany({
+      where: { userId },
+      include: { questions: true },
+    });
+
+    return NextResponse.json(questionBanks, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ message: "Internal Server Error", error }, { status: 500 });
   }
 }
