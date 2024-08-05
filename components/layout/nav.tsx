@@ -1,8 +1,15 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import Navbar from "./navbar";
+import SignedInNavbar from "./signed-in-navbar";
+import SignedOutNavbar from "./signed-out-navbar";
 import { getServerSession } from "next-auth/next";
 
 export default async function Nav() {
   const session = await getServerSession(authOptions);
-  return <Navbar session={session} />;
+
+  // Ensure that `session` is being correctly handled
+  if (session) {
+    return <SignedInNavbar session={session} />;
+  } else {
+    return <SignedOutNavbar />;
+  }
 }

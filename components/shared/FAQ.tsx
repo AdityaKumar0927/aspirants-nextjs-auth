@@ -83,7 +83,7 @@ export function FAQ() {
               we&apos;ve got answers
             </p>
           </div>
-          <div className="container mx-auto my-12 max-w-[600px] space-y-12">
+          <div className="container mx-auto my-12 max-w-[1600px] space-y-12">
             {faqs.map((faq, idx) => (
               <section key={idx} id={"faq-" + faq.section}>
                 <h2 className="mb-4 text-left text-base font-semibold tracking-tight text-foreground/60">
@@ -92,7 +92,7 @@ export function FAQ() {
                 <Accordion
                   type="single"
                   collapsible
-                  className="flex w-full flex-col items-center justify-center"
+                  className="flex w-[1000px] flex-col items-center justify-center"
                 >
                   {faq.qa.map((faq, idx) => (
                     <AccordionItem

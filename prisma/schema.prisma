@@ -38,12 +38,12 @@ model Session {
 }
 
 model User {
-  id            String               @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String?
-  email         String?              @unique
+  email         String?   @unique
   emailVerified DateTime?
   image         String?
-  subscribed    Boolean              @default(false)
+  subscribed    Boolean   @default(false)
   accounts      Account[]
   sessions      Session[]
   progresses    UserProgress[]
@@ -51,7 +51,7 @@ model User {
   performances  UserPerformance[]
   answers       UserAnswer[]
   settings      UserSettings?
-  questionBanks       QuestionBank[]
+  questionBanks CustomQuestionBank[]
 }
 
 model VerificationToken {
@@ -76,33 +76,35 @@ model UserProgress {
 }
 
 model Question {
-  id               Int               @id @default(autoincrement())
-  exam             String
-  questionId       String            @unique
-  text             String
-  subject          String
-  topic            String
-  subtopic         String
-  difficulty       String
-  type             String
-  year             Int
-  reviewed         Boolean
-  completed        Boolean
-  options          String[]
-  correctOption    String
-  markscheme       String
-  marks            String?
-  correctAttempts  String?
-  wrongAttempts    String?
-  averageTimeTaken String?
-  lastAttempted    DateTime?
-  diagramUrl       String?
-  notes            Note[]            @relation("QuestionNotes")
-  progresses       UserProgress[]
-  answers          UserAnswer[]
-  userPerformances UserPerformance[]
-  questionBankId   String?
-  questionBank     QuestionBank?     @relation(fields: [questionBankId], references: [id])
+  id                    Int               @id @default(autoincrement())
+  exam                  String
+  questionId            String            @unique
+  text                  String
+  subject               String
+  topic                 String
+  subtopic              String
+  difficulty            String
+  type                  String
+  year                  Int
+  reviewed              Boolean
+  completed             Boolean
+  options               String[]
+  correctOption         String
+  markscheme            String
+  marks                 String?
+  correctAttempts       String?
+  wrongAttempts         String?
+  averageTimeTaken      String?
+  lastAttempted         DateTime?
+  diagramUrl            String?
+  notes                 Note[]            @relation("QuestionNotes")
+  progresses            UserProgress[]
+  answers               UserAnswer[]
+  userPerformances      UserPerformance[]
+  customQuestionBankId  String?
+  customQuestionBank    CustomQuestionBank? @relation(fields: [customQuestionBankId], references: [id], onDelete: Cascade)
+
+  @@index([customQuestionBankId])
 }
 
 model Note {
@@ -169,15 +171,11 @@ model UserSettings {
   user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model QuestionBank {
-  id          String    @id @default(cuid())
-  userId      String
-  title       String
-  description String?
+model CustomQuestionBank {
+  id          String     @id @default(cuid())
+  name        String
+  description String
   questions   Question[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
+  userId      String
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

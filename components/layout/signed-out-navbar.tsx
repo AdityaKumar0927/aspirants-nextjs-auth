@@ -4,9 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSignInModal } from "./sign-in-modal";
-import UserDropdown from "./user-dropdown";
-import NotificationDropdown from "@/components/shared/NotificationDropdown";
-import { Session } from "next-auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import useScroll from "@/lib/hooks/use-scroll";
@@ -82,7 +79,7 @@ const examsLinks = [
   { title: "UPSC", href: "/#" },
 ];
 
-export default function NavBar({ session }: { session: Session | null }) {
+export default function SignedOutNavbar() {
   const { SignInModal, setShowSignInModal } = useSignInModal();
   const scrolled = useScroll(50);
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -120,33 +117,7 @@ export default function NavBar({ session }: { session: Session | null }) {
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-display text-sm text-black">Features</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
-                      <li>
-                        <p className="font-display text-lg font-medium leading-none">Exams</p>
-                        <ul>
-                          {examsLinks.map((exam) => (
-                            <ListItem key={exam.title} title={exam.title} href={exam.href}>
-                              {exam.title}
-                            </ListItem>
-                          ))}
-                        </ul>
-                      </li>
-                      <li>
-                        <p className="font-display text-lg font-medium leading-none">Automation Tools</p>
-                        <ul>
-                          {components.map((component) => (
-                            <ListItem key={component.title} title={component.title} href={component.href}>
-                              {component.description}
-                            </ListItem>
-                          ))}
-                        </ul>
-                      </li>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+              
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="font-display text-sm text-black">Support</NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -165,19 +136,12 @@ export default function NavBar({ session }: { session: Session | null }) {
             </NavigationMenu>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-            {session ? (
-              <>
-                <NotificationDropdown />
-                <UserDropdown session={session} />
-              </>
-            ) : (
-              <button
-                className="rounded-full border border-black bg-white p-1.5 px-4 text-sm text-black transition-all hover:bg-black hover:text-white"
-                onClick={() => setShowSignInModal(true)}
-              >
-                Sign In
-              </button>
-            )}
+            <button
+              className="rounded-full border border-black bg-white p-1.5 px-4 text-sm text-black transition-all hover:bg-black hover:text-white"
+              onClick={() => setShowSignInModal(true)}
+            >
+              Sign In
+            </button>
           </div>
           <div className="md:hidden flex items-center">
             <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
@@ -197,33 +161,6 @@ export default function NavBar({ session }: { session: Session | null }) {
                     </p>
                   </Link>
                   <Accordion type="single" collapsible>
-                    <AccordionItem value="features">
-                      <AccordionTrigger className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
-                        Features
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <div>
-                          <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">Exams</p>
-                          {examsLinks.map((exam) => (
-                            <Link key={exam.title} href={exam.href} onClick={() => setMenuOpen(false)}>
-                              <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
-                                {exam.title}
-                              </p>
-                            </Link>
-                          ))}
-                        </div>
-                        <div>
-                          <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">Automation Tools</p>
-                          {components.map((component) => (
-                            <Link key={component.title} href={component.href} onClick={() => setMenuOpen(false)}>
-                              <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
-                                {component.title}
-                              </p>
-                            </Link>
-                          ))}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
                     <AccordionItem value="support">
                       <AccordionTrigger className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
                         Support
@@ -239,19 +176,15 @@ export default function NavBar({ session }: { session: Session | null }) {
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>
-                  {session ? (
-                    <UserDropdown session={session} />
-                  ) : (
-                    <button
-                      className="rounded-full border border-black bg-white p-1.5 px-4 text-lg text-black transition-all hover:bg-black hover:text-white"
-                      onClick={() => {
-                        setShowSignInModal(true);
-                        setMenuOpen(false);
-                      }}
-                    >
-                      Sign In
-                    </button>
-                  )}
+                  <button
+                    className="rounded-full border border-black bg-white p-1.5 px-4 text-lg text-black transition-all hover:bg-black hover:text-white"
+                    onClick={() => {
+                      setShowSignInModal(true);
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Sign In
+                  </button>
                 </div>
               </SheetContent>
             </Sheet>

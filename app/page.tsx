@@ -503,7 +503,7 @@ const Page = () => {
                             It&apos;s free.
                         </h1>
                         <div className="flex space-x-4 mb-16">
-                        <PulsatingButton>aight</PulsatingButton>;
+                        <PulsatingButton>aight</PulsatingButton>
                             
                         </div>
                     </main>

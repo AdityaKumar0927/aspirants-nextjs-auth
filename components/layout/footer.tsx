@@ -110,7 +110,7 @@ export function Footer() {
                 src="bulb.svg"
                 alt="aspirants Logo"
               />
-              <span className="self-center whitespace-nowrap  font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem] text-neutral-900 dark:text-white">
+              <span className="self-center whitespace-nowrap text-3xl font-bold tracking-tighter sm:text-5xl text-neutral-900 dark:text-white">
                 aspirants
               </span>
             </a>

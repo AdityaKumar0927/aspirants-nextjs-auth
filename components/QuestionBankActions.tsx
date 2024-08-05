@@ -20,6 +20,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog"
 import {
   DropdownMenu,
@@ -32,9 +33,30 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { toast } from "@/components/ui/use-toast"
 
-export function PresetActions() {
+export function QuestionBankActions({ bankId, onDelete }: { bankId: string; onDelete: () => void }) {
   const [open, setIsOpen] = React.useState(false)
   const [showDeleteDialog, setShowDeleteDialog] = React.useState(false)
+
+  const handleDelete = async () => {
+    try {
+      await fetch(`/api/custom-question-banks/delete`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: bankId }),
+      })
+      toast({
+        description: "Question bank has been deleted.",
+      })
+      onDelete()
+    } catch (error) {
+      toast({
+        description: "Failed to delete question bank.",
+        variant: "destructive",
+      })
+    }
+  }
 
   return (
     <>
@@ -54,7 +76,7 @@ export function PresetActions() {
             onSelect={() => setShowDeleteDialog(true)}
             className="text-red-600"
           >
-            Delete preset
+            Delete question bank
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -97,7 +119,7 @@ export function PresetActions() {
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This preset will no longer be
+              This action cannot be undone. This question bank will no longer be
               accessible by you or others you&apos;ve shared it with.
             </AlertDialogDescription>
           </AlertDialogHeader>
@@ -105,12 +127,7 @@ export function PresetActions() {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <Button
               variant="destructive"
-              onClick={() => {
-                setShowDeleteDialog(false)
-                toast({
-                  description: "This preset has been deleted.",
-                })
-              }}
+              onClick={handleDelete}
             >
               Delete
             </Button>
