@@ -21,7 +21,7 @@ export async function POST(request: Request) {
         description,
         userId: session.user.id,
         questions: {
-          connect: questions.map((questionId: string) => ({ questionId })),
+          create: questions,
         },
       },
     });
