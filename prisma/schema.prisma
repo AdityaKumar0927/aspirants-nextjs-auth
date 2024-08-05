@@ -177,5 +177,5 @@ model CustomQuestionBank {
   description String
   userId      String
   user        User       @relation(fields: [userId], references: [id])
-  questions   Question[] @relation()
+  questions   Question[]
 }

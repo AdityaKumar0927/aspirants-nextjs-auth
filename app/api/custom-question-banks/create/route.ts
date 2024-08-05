@@ -15,11 +15,15 @@ export async function POST(request: Request) {
 
     const { name, description, questions } = await request.json();
 
-    const newQuestionBank = await prisma.customQuestionBank.create({
+    const customQuestionBank = await prisma.customQuestionBank.create({
       data: {
         name,
         description,
-        userId: session.user.id,
+        user: {
+          connect: {
+            id: session.user.id,
+          },
+        },
         questions: {
           create: questions.map((question: any) => ({
             exam: question.exam,
@@ -47,7 +51,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json(newQuestionBank);
+    return NextResponse.json(customQuestionBank);
   } catch (error) {
     console.error('Error creating question bank:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
