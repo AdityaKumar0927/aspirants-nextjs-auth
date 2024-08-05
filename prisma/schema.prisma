@@ -172,10 +172,10 @@ model UserSettings {
 }
 
 model CustomQuestionBank {
-  id          String     @id @default(cuid())
+  id          String     @id @default(uuid())
   name        String
   description String
-  questions   Question[]
   userId      String
-  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User       @relation(fields: [userId], references: [id])
+  questions   Question[] @relation()
 }
