@@ -1,35 +1,34 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
-import prisma from "@/lib/prisma";
+import { PrismaClient } from '@prisma/client';
+import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../../auth/[...nextauth]/options';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === "POST") {
-    try {
-      const session = await getSession({ req });
-      if (!session) {
-        return res.status(401).json({ message: "Unauthorized" });
-      }
+const prisma = new PrismaClient();
 
-      const { name, description, questions } = req.body;
-      const userId = session.user.id;
+export async function POST(request: Request) {
+  try {
+    const session = await getServerSession(authOptions);
 
-      const newQuestionBank = await prisma.customQuestionBank.create({
-        data: {
-          name,
-          description,
-          userId,
-          questions: {
-            connect: questions.map((id: string) => ({ questionId: id })),
-          },
-        },
-      });
-
-      res.status(200).json(newQuestionBank);
-    } catch (error) {
-      res.status(500).json({ message: "Internal Server Error", error });
+    if (!session || !session.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+
+    const { name, description, questions } = await request.json();
+
+    const newQuestionBank = await prisma.customQuestionBank.create({
+      data: {
+        name,
+        description,
+        userId: session.user.id,
+        questions: {
+          connect: questions.map((questionId: string) => ({ questionId })),
+        },
+      },
+    });
+
+    return NextResponse.json(newQuestionBank);
+  } catch (error) {
+    console.error('Error creating question bank:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
