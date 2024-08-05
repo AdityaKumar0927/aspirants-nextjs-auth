@@ -35,7 +35,7 @@ export default function Develop() {
     // Fetch question banks from API and set the state
     const fetchQuestionBanks = async () => {
       try {
-        const response = await fetch("/api/question-banks")
+        const response = await fetch("/api/custom-question-banks")
         const data = await response.json()
         setQuestionBanks(data)
       } catch (error) {
@@ -67,7 +67,7 @@ export default function Develop() {
   const handleSaveQuestionBank = async (name: string, description: string) => {
     // Logic to save the question bank
     try {
-      const response = await fetch("/api/question-banks/create", {
+      const response = await fetch("/api/custom-question-banks/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -84,7 +84,7 @@ export default function Develop() {
   const handleDeleteQuestionBank = async (bankId: string) => {
     // Logic to delete the question bank
     try {
-      await fetch(`/api/question-banks/delete`, {
+      await fetch(`/api/custom-question-banks/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"
@@ -111,7 +111,7 @@ export default function Develop() {
           <h2 className="text-lg font-semibold">Develop</h2>
           <div className="ml-auto flex w-full space-x-2 sm:justify-end">
             <QuestionBankSelector questionBanks={questionBanks} onSelect={handleSelectQuestionBank} />
-            <QuestionBankSave onSave={() => handleSaveQuestionBank} />
+            <QuestionBankSave onSave={handleSaveQuestionBank} />
             <div className="hidden space-x-2 md:flex">
               <Button>Code Viewer</Button>
               <Button>Share</Button>
