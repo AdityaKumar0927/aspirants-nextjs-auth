@@ -1,24 +1,28 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/options';
-import prisma from '@/lib/prisma';
+import { authOptions } from '../../auth/[...nextauth]/options';
 
-export async function GET(req: NextRequest) {
+const prisma = new PrismaClient();
+
+export async function GET() {
   try {
     const session = await getServerSession(authOptions);
-    if (!session) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+
+    if (!session || !session.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const userId = session.user.id;
-
     const questionBanks = await prisma.customQuestionBank.findMany({
-      where: { userId },
-      include: { questions: true },
+      where: { userId: session.user.id },
+      include: {
+        questions: true,
+      },
     });
 
-    return NextResponse.json(questionBanks, { status: 200 });
+    return NextResponse.json(questionBanks);
   } catch (error) {
-    return NextResponse.json({ message: "Internal Server Error", error }, { status: 500 });
+    console.error('Error fetching question banks:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

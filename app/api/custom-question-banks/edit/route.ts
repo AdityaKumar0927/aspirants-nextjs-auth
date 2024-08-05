@@ -1,32 +1,35 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth/next';
-import prisma from '@/lib/prisma';
-import { authOptions } from '@/app/api/auth/[...nextauth]/options'; // Correct the import path
+import { PrismaClient } from '@prisma/client';
+import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../../auth/[...nextauth]/options';
 
-export async function PUT(req: NextRequest) {
-  const session = await getServerSession(authOptions);
-  if (!session) {
-    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
-  }
+const prisma = new PrismaClient();
 
-  const { id, name, description, questions } = await req.json();
-  const userId = session.user.id;
-
+export async function PUT(request: Request) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session || !session.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { id, name, description, questions } = await request.json();
+
     const updatedQuestionBank = await prisma.customQuestionBank.update({
       where: { id },
       data: {
         name,
         description,
-        userId,
+        userId: session.user.id,
         questions: {
-          set: questions.map((id: string) => ({ questionId: id })),
+          set: questions.map((questionId: string) => ({ questionId })),
         },
       },
     });
 
-    return NextResponse.json(updatedQuestionBank, { status: 200 });
+    return NextResponse.json(updatedQuestionBank);
   } catch (error) {
-    return NextResponse.json({ message: 'Internal Server Error', error }, { status: 500 });
+    console.error('Error updating question bank:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

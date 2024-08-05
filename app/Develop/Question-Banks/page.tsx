@@ -170,19 +170,21 @@ export default function Develop() {
                     {questions.length > 0 ? (
                       <div>
                         {questions.map((question) => (
-                          <div key={question.questionId} className="p-2 mb-2 border-b">
-                            <p><strong>Question:</strong> {question.text}</p>
-                            <ul>
+                          <div key={question.questionId} className="p-4 border-b">
+                            <p className="font-semibold">{question.text}</p>
+                            <ul className="pl-4">
                               {question.options.map((option, index) => (
-                                <li key={index}>{option}</li>
+                                <li key={index} className="list-disc">
+                                  {option}
+                                </li>
                               ))}
                             </ul>
-                            <p><strong>Correct Option:</strong> {question.correctOption}</p>
+                            <p className="mt-2">Correct Option: {question.correctOption}</p>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <p>No questions available. Please upload a valid JSON file or paste JSON input.</p>
+                      <p>No questions to display</p>
                     )}
                   </div>
                 </div>

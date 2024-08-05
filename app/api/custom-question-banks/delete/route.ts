@@ -1,23 +1,27 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth/next';
-import prisma from '@/lib/prisma';
-import { authOptions } from '@/app/api/auth/[...nextauth]/options'; // Correct the import path
+import { NextApiRequest, NextApiResponse } from "next";
+import { getSession } from "next-auth/react";
+import prisma from "@/lib/prisma";
 
-export async function DELETE(req: NextRequest) {
-  const session = await getServerSession(authOptions);
-  if (!session) {
-    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
-  }
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === "DELETE") {
+    try {
+      const session = await getSession({ req });
+      if (!session) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
 
-  const { id } = await req.json();
+      const { id } = req.body;
 
-  try {
-    await prisma.customQuestionBank.delete({
-      where: { id },
-    });
+      await prisma.customQuestionBank.delete({
+        where: { id },
+      });
 
-    return NextResponse.json({ message: 'Question Bank Deleted' }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ message: 'Internal Server Error', error }, { status: 500 });
+      res.status(200).json({ message: "Question Bank Deleted" });
+    } catch (error) {
+      res.status(500).json({ message: "Internal Server Error", error });
+    }
+  } else {
+    res.setHeader("Allow", ["DELETE"]);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
