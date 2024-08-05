@@ -30,12 +30,13 @@ export default function Develop() {
   const [jsonInput, setJsonInput] = useState<string>("")
   const [questionBanks, setQuestionBanks] = useState<CustomQuestionBank[]>([])
   const [selectedBank, setSelectedBank] = useState<CustomQuestionBank | null>(null)
+  const [questions, setQuestions] = useState<Question[]>([])
 
   useEffect(() => {
     // Fetch question banks from API and set the state
     const fetchQuestionBanks = async () => {
       try {
-        const response = await fetch("/api/custom-question-banks")
+        const response = await fetch("/api/custom-question-banks/get")
         const data = await response.json()
         setQuestionBanks(data)
       } catch (error) {
@@ -46,8 +47,14 @@ export default function Develop() {
   }, [])
 
   const handleManualJsonInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setJsonInput(e.target.value)
-    // Logic to render the question bank from JSON input
+    const input = e.target.value
+    setJsonInput(input)
+    try {
+      const parsedQuestions = JSON.parse(input)
+      setQuestions(parsedQuestions)
+    } catch (error) {
+      console.error("Invalid JSON input:", error)
+    }
   }
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,8 +63,14 @@ export default function Develop() {
       const reader = new FileReader()
       reader.onload = (event) => {
         if (event.target?.result) {
-          setJsonInput(event.target.result as string)
-          // Logic to render the question bank from file input
+          const input = event.target.result as string
+          setJsonInput(input)
+          try {
+            const parsedQuestions = JSON.parse(input)
+            setQuestions(parsedQuestions)
+          } catch (error) {
+            console.error("Invalid JSON input:", error)
+          }
         }
       }
       reader.readAsText(file)
@@ -72,7 +85,7 @@ export default function Develop() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ name, description, questions: JSON.parse(jsonInput) })
+        body: JSON.stringify({ name, description, questions })
       })
       const newBank = await response.json()
       setQuestionBanks([...questionBanks, newBank])
@@ -101,7 +114,9 @@ export default function Develop() {
   const handleSelectQuestionBank = (selectedBank: CustomQuestionBank) => {
     // Logic to select the question bank
     setSelectedBank(selectedBank)
-    setJsonInput(JSON.stringify(selectedBank.questions, null, 2))
+    const questionsJson = JSON.stringify(selectedBank.questions, null, 2)
+    setJsonInput(questionsJson)
+    setQuestions(selectedBank.questions)
   }
 
   return (
@@ -150,8 +165,25 @@ export default function Develop() {
                       />
                     </div>
                   </div>
-                  <div className="mt-[21px] min-h-[400px] rounded-md border bg-muted lg:min-h-[700px] overflow-auto">
+                  <div className="mt-[21px] min-h-[400px] rounded-md border bg-muted lg:min-h-[700px] overflow-auto p-4">
                     {/* Render the question bank here */}
+                    {questions.length > 0 ? (
+                      <div>
+                        {questions.map((question) => (
+                          <div key={question.questionId} className="p-2 mb-2 border-b">
+                            <p><strong>Question:</strong> {question.text}</p>
+                            <ul>
+                              {question.options.map((option, index) => (
+                                <li key={index}>{option}</li>
+                              ))}
+                            </ul>
+                            <p><strong>Correct Option:</strong> {question.correctOption}</p>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p>No questions available. Please upload a valid JSON file or paste JSON input.</p>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
