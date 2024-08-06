@@ -195,14 +195,14 @@ model CustomNote {
 }
 
 model CustomUserProgress {
-  id            String          @id @default(cuid())
+  id            String    @id @default(cuid())
   userId        String
   questionId    String
-  completed     Boolean         @default(false)
-  reviewed      Boolean         @default(false)
+  completed     Boolean   @default(false)
+  reviewed      Boolean   @default(false)
   lastAttempted DateTime?
-  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question      CustomQuestion  @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question      CustomQuestion @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
