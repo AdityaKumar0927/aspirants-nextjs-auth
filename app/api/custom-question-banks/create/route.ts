@@ -19,8 +19,8 @@ export async function POST(request: Request) {
       data: {
         name,
         description,
-        user: { connect: { id: session.user.id } }, // Connect the question bank to the user
-        customQuestions: {
+        user: { connect: { id: session.user.id } },
+        questions: {
           create: questions.map((question: any) => ({
             exam: question.exam,
             questionId: question.questionId,
@@ -46,7 +46,7 @@ export async function POST(request: Request) {
         },
       },
       include: {
-        customQuestions: true,
+        questions: true,
       },
     });
 

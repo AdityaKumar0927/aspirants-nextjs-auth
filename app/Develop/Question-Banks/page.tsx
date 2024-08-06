@@ -21,10 +21,26 @@ interface CustomQuestionBank {
 }
 
 interface Question {
+  exam: string;
   questionId: string;
   text: string;
+  subject: string;
+  topic: string;
+  subtopic: string;
+  difficulty: string;
+  type: string;
+  year: string;
+  reviewed: boolean;
+  completed: boolean;
   options: string[];
   correctOption: string;
+  markscheme: string;
+  marks: string;
+  correctAttempts: string;
+  wrongAttempts: string;
+  averageTimeTaken: string;
+  lastAttempted: string;
+  diagramUrl: string;
 }
 
 export default function Develop() {
