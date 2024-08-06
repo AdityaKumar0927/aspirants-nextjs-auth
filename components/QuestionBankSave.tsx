@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,34 +8,37 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { toast } from "@/components/ui/use-toast"
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { toast } from '@/components/ui/use-toast';
 
-interface QuestionBankSaveProps {
-  onSave: (name: string, description: string) => Promise<void>;
-}
-
-export function QuestionBankSave({ onSave }: QuestionBankSaveProps) {
-  const [name, setName] = useState("")
-  const [description, setDescription] = useState("")
-  const [open, setOpen] = useState(false)
+export function QuestionBankSave({ onSave }: { onSave: () => void }) {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [open, setOpen] = useState(false);
 
   const handleSave = async () => {
     try {
-      await onSave(name, description)
+      await fetch(`/api/custom-question-banks/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, description, questions: [] }), // Update as per requirement
+      });
       toast({
-        description: "Question bank has been saved.",
-      })
-      setOpen(false)
+        description: 'Question bank has been saved.',
+      });
+      setOpen(false);
+      onSave();
     } catch (error) {
       toast({
-        description: "Failed to save question bank.",
-        variant: "destructive",
-      })
+        description: 'Failed to save question bank.',
+        variant: 'destructive',
+      });
     }
-  }
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -65,5 +68,5 @@ export function QuestionBankSave({ onSave }: QuestionBankSaveProps) {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

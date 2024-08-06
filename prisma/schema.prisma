@@ -38,20 +38,24 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  subscribed    Boolean   @default(false)
-  accounts      Account[]
-  sessions      Session[]
-  progresses    UserProgress[]
-  notes         Note[]
-  performances  UserPerformance[]
-  answers       UserAnswer[]
-  settings      UserSettings?
-  questionBanks CustomQuestionBank[]
+  id                    String                 @id @default(cuid())
+  name                  String?
+  email                 String?                @unique
+  emailVerified         DateTime?
+  image                 String?
+  subscribed            Boolean                @default(false)
+  accounts              Account[]
+  sessions              Session[]
+  progresses            UserProgress[]
+  notes                 Note[]
+  performances          UserPerformance[]
+  answers               UserAnswer[]
+  settings              UserSettings?
+  questionBanks         CustomQuestionBank[]
+  customNotes           CustomNote[]
+  customUserProgresses  CustomUserProgress[]
+  customUserAnswers     CustomUserAnswer[]
+  customUserPerformances CustomUserPerformance[]
 }
 
 model VerificationToken {
@@ -102,9 +106,7 @@ model Question {
   answers               UserAnswer[]
   userPerformances      UserPerformance[]
   customQuestionBankId  String?
-  customQuestionBank    CustomQuestionBank? @relation(fields: [customQuestionBankId], references: [id], onDelete: Cascade)
-
-  @@index([customQuestionBankId])
+  customQuestionBank    CustomQuestionBank? @relation(fields: [customQuestionBankId], references: [id], onDelete: Cascade, name: "CustomQuestionBankQuestions")
 }
 
 model Note {
@@ -119,30 +121,30 @@ model Note {
 }
 
 model UserPerformance {
-  id                    Int       @id @default(autoincrement())
-  userId                String
-  questionId            String
-  correctAnswers        Int
-  incorrectAnswers      Int
-  uniqueQuestions       Int
-  questionsAttempted    Int
-  timeSpent             Int
-  accuracy              Float
-  weaknessBySubtopic    Json
-  improvementOverTime   Json
-  attemptRate           Float
+  id                      Int               @id @default(autoincrement())
+  userId                  String
+  questionId              String
+  correctAnswers          Int
+  incorrectAnswers        Int
+  uniqueQuestions         Int
+  questionsAttempted      Int
+  timeSpent               Int
+  accuracy                Float
+  weaknessBySubtopic      Json
+  improvementOverTime     Json
+  attemptRate             Float
   firstAttemptSuccessRate Float
-  reattemptAccuracy     Float
-  topicPerformance      Json
-  consistency           Float
-  engagementLevel       Float
-  completed             Boolean
-  reviewed              Boolean
-  lastAttempted         DateTime
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
-  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question              Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  reattemptAccuracy       Float
+  topicPerformance        Json
+  consistency             Float
+  engagementLevel         Float
+  completed               Boolean
+  reviewed                Boolean
+  lastAttempted           DateTime
+  createdAt               DateTime           @default(now())
+  updatedAt               DateTime           @updatedAt
+  user                    User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question                Question           @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
@@ -172,10 +174,106 @@ model UserSettings {
 }
 
 model CustomQuestionBank {
-  id          String     @id @default(uuid())
+  id          String           @id @default(uuid())
   name        String
   description String
   userId      String
-  user        User       @relation(fields: [userId], references: [id])
-  questions   Question[]
+  user        User             @relation(fields: [userId], references: [id])
+  questions   Question[]       @relation("CustomQuestionBankQuestions")
+  customQuestions CustomQuestion[] @relation("CustomQuestionBankQuestions")
+}
+
+model CustomNote {
+  id         String          @id @default(cuid())
+  content    String
+  userId     String
+  questionId String
+  user       User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question   CustomQuestion  @relation(fields: [questionId], references: [questionId], onDelete: Cascade, name: "CustomQuestionNotes")
+
+  @@unique([userId, questionId])
+}
+
+model CustomUserProgress {
+  id            String          @id @default(cuid())
+  userId        String
+  questionId    String
+  completed     Boolean         @default(false)
+  reviewed      Boolean         @default(false)
+  lastAttempted DateTime?
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question      CustomQuestion  @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+
+  @@unique([userId, questionId])
+}
+
+model CustomUserAnswer {
+  id            String          @id @default(cuid())
+  questionId    String
+  userId        String
+  selectedOption String
+  isCorrect     Boolean
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question      CustomQuestion  @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+
+  @@unique([userId, questionId])
+}
+
+model CustomUserPerformance {
+  id                      Int               @id @default(autoincrement())
+  userId                  String
+  questionId              String
+  correctAnswers          Int
+  incorrectAnswers        Int
+  uniqueQuestions         Int
+  questionsAttempted      Int
+  timeSpent               Int
+  accuracy                Float
+  weaknessBySubtopic      Json
+  improvementOverTime     Json
+  attemptRate             Float
+  firstAttemptSuccessRate Float
+  reattemptAccuracy       Float
+  topicPerformance        Json
+  consistency             Float
+  engagementLevel         Float
+  completed               Boolean
+  reviewed                Boolean
+  lastAttempted           DateTime
+  createdAt               DateTime           @default(now())
+  updatedAt               DateTime           @updatedAt
+  user                    User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question                CustomQuestion     @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+
+  @@unique([userId, questionId])
+}
+
+model CustomQuestion {
+  id                    Int                   @id @default(autoincrement())
+  exam                  String
+  questionId            String                @unique
+  text                  String
+  subject               String
+  topic                 String
+  subtopic              String
+  difficulty            String
+  type                  String
+  year                  Int
+  reviewed              Boolean
+  completed             Boolean
+  options               String[]
+  correctOption         String
+  markscheme            String
+  marks                 String?
+  correctAttempts       String?
+  wrongAttempts         String?
+  averageTimeTaken      String?
+  lastAttempted         DateTime?
+  diagramUrl            String?
+  notes                 CustomNote[]          @relation("CustomQuestionNotes")
+  progresses            CustomUserProgress[]
+  answers               CustomUserAnswer[]
+  userPerformances      CustomUserPerformance[]
+  customQuestionBankId  String?
+  customQuestionBank    CustomQuestionBank?   @relation(fields: [customQuestionBankId], references: [id], onDelete: Cascade, name: "CustomQuestionBankQuestions")
 }

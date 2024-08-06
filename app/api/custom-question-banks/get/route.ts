@@ -5,7 +5,7 @@ import { authOptions } from '../../auth/[...nextauth]/options';
 
 const prisma = new PrismaClient();
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     const session = await getServerSession(authOptions);
 
@@ -14,9 +14,11 @@ export async function GET() {
     }
 
     const questionBanks = await prisma.customQuestionBank.findMany({
-      where: { userId: session.user.id },
+      where: {
+        userId: session.user.id,
+      },
       include: {
-        questions: true,
+        customQuestions: true,
       },
     });
 
