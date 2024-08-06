@@ -15,45 +15,47 @@ export async function POST(request: Request) {
 
     const { name, description, questions } = await request.json();
 
-    const customQuestionBank = await prisma.customQuestionBank.create({
+    // Transform the questions into the format Prisma expects
+    const transformedQuestions = questions.map((question: any) => ({
+      exam: question.exam,
+      questionId: question.questionId,
+      text: question.text,
+      subject: question.subject,
+      topic: question.topic,
+      subtopic: question.subtopic,
+      difficulty: question.difficulty,
+      type: question.type,
+      year: question.year,
+      reviewed: question.reviewed,
+      completed: question.completed,
+      options: question.options,
+      correctOption: question.correctOption,
+      markscheme: question.markscheme,
+      marks: question.marks,
+      correctAttempts: question.correctAttempts,
+      wrongAttempts: question.wrongAttempts,
+      averageTimeTaken: question.averageTimeTaken,
+      lastAttempted: question.lastAttempted,
+      diagramUrl: question.diagramUrl
+    }));
+
+    const newBank = await prisma.customQuestionBank.create({
       data: {
         name,
         description,
-        user: {
-          connect: {
-            id: session.user.id,
-          },
-        },
-        questions: {
-          create: questions.map((question: any) => ({
-            exam: question.exam,
-            questionId: question.questionId,
-            text: question.text,
-            subject: question.subject,
-            topic: question.topic,
-            subtopic: question.subtopic,
-            difficulty: question.difficulty,
-            type: question.type,
-            year: question.year,
-            reviewed: question.reviewed,
-            completed: question.completed,
-            options: question.options,
-            correctOption: question.correctOption,
-            markscheme: question.markscheme,
-            marks: question.marks,
-            correctAttempts: question.correctAttempts,
-            wrongAttempts: question.wrongAttempts,
-            averageTimeTaken: question.averageTimeTaken,
-            lastAttempted: question.lastAttempted,
-            diagramUrl: question.diagramUrl,
-          })),
-        },
+        userId: session.user.id,
+        customQuestions: {
+          create: transformedQuestions
+        }
       },
+      include: {
+        customQuestions: true
+      }
     });
 
-    return NextResponse.json(customQuestionBank);
+    return NextResponse.json(newBank);
   } catch (error) {
     console.error('Error creating question bank:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to create question bank' }, { status: 500 });
   }
 }

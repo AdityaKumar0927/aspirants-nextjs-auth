@@ -1,122 +1,123 @@
-'use client';
+"use client"
+import React, { useState, useEffect } from "react"
+import { CounterClockwiseClockIcon } from "@radix-ui/react-icons"
 
-import React, { useState, useEffect } from 'react';
-import { CounterClockwiseClockIcon } from '@radix-ui/react-icons';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
-import { Textarea } from '@/components/ui/textarea';
-import { QuestionBankActions } from '@/components/QuestionBankActions';
-import { QuestionBankSave } from '@/components/QuestionBankSave';
-import { QuestionBankSelector } from '@/components/QuestionBankSelector';
+import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import { Separator } from "@/components/ui/separator"
+import { Textarea } from "@/components/ui/textarea"
+
+import { QuestionBankActions } from "@/components/QuestionBankActions"
+import { QuestionBankSave } from "@/components/QuestionBankSave"
+import { QuestionBankSelector } from "@/components/QuestionBankSelector"
 
 // Define types within the component file
 interface CustomQuestionBank {
-  id: string;
-  name: string;
-  description: string;
-  questions: Question[];
+  id: string
+  name: string
+  description: string
+  questions: Question[]
 }
 
 interface Question {
-  questionId: string;
-  text: string;
-  options: string[];
-  correctOption: string;
+  questionId: string
+  text: string
+  options: string[]
+  correctOption: string
 }
 
 export default function Develop() {
-  const [jsonInput, setJsonInput] = useState<string>('');
-  const [questionBanks, setQuestionBanks] = useState<CustomQuestionBank[]>([]);
-  const [selectedBank, setSelectedBank] = useState<CustomQuestionBank | null>(null);
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [jsonInput, setJsonInput] = useState<string>("")
+  const [questionBanks, setQuestionBanks] = useState<CustomQuestionBank[]>([])
+  const [selectedBank, setSelectedBank] = useState<CustomQuestionBank | null>(null)
+  const [questions, setQuestions] = useState<Question[]>([])
 
   useEffect(() => {
     // Fetch question banks from API and set the state
     const fetchQuestionBanks = async () => {
       try {
-        const response = await fetch('/api/custom-question-banks/get');
-        const data = await response.json();
-        setQuestionBanks(data);
+        const response = await fetch("/api/custom-question-banks/get")
+        const data = await response.json()
+        setQuestionBanks(data)
       } catch (error) {
-        console.error('Error fetching question banks:', error);
+        console.error("Error fetching question banks:", error)
       }
-    };
-    fetchQuestionBanks();
-  }, []);
+    }
+    fetchQuestionBanks()
+  }, [])
 
   const handleManualJsonInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const input = e.target.value;
-    setJsonInput(input);
+    const input = e.target.value
+    setJsonInput(input)
     try {
-      const parsedQuestions = JSON.parse(input);
-      setQuestions(parsedQuestions);
+      const parsedQuestions = JSON.parse(input)
+      setQuestions(parsedQuestions)
     } catch (error) {
-      console.error('Invalid JSON input:', error);
+      console.error("Invalid JSON input:", error)
     }
-  };
+  }
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    const file = e.target.files?.[0]
     if (file) {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onload = (event) => {
         if (event.target?.result) {
-          const input = event.target.result as string;
-          setJsonInput(input);
+          const input = event.target.result as string
+          setJsonInput(input)
           try {
-            const parsedQuestions = JSON.parse(input);
-            setQuestions(parsedQuestions);
+            const parsedQuestions = JSON.parse(input)
+            setQuestions(parsedQuestions)
           } catch (error) {
-            console.error('Invalid JSON input:', error);
+            console.error("Invalid JSON input:", error)
           }
         }
-      };
-      reader.readAsText(file);
+      }
+      reader.readAsText(file)
     }
-  };
+  }
 
   const handleSaveQuestionBank = async (name: string, description: string) => {
     // Logic to save the question bank
     try {
-      const response = await fetch('/api/custom-question-banks/create', {
-        method: 'POST',
+      const response = await fetch("/api/custom-question-banks/create", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify({ name, description, questions }),
-      });
-      const newBank = await response.json();
-      setQuestionBanks([...questionBanks, newBank]);
+        body: JSON.stringify({ name, description, questions })
+      })
+      const newBank = await response.json()
+      setQuestionBanks([...questionBanks, newBank])
     } catch (error) {
-      console.error('Error saving question bank:', error);
+      console.error("Error saving question bank:", error)
     }
-  };
+  }
 
   const handleDeleteQuestionBank = async (bankId: string) => {
     // Logic to delete the question bank
     try {
       await fetch(`/api/custom-question-banks/delete`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify({ bankId }),
-      });
-      setQuestionBanks(questionBanks.filter((bank) => bank.id !== bankId));
-      setSelectedBank(null);
+        body: JSON.stringify({ bankId })
+      })
+      setQuestionBanks(questionBanks.filter(bank => bank.id !== bankId))
+      setSelectedBank(null)
     } catch (error) {
-      console.error('Error deleting question bank:', error);
+      console.error("Error deleting question bank:", error)
     }
-  };
+  }
 
   const handleSelectQuestionBank = (selectedBank: CustomQuestionBank) => {
     // Logic to select the question bank
-    setSelectedBank(selectedBank);
-    const questionsJson = JSON.stringify(selectedBank.questions, null, 2);
-    setJsonInput(questionsJson);
-    setQuestions(selectedBank.questions);
-  };
+    setSelectedBank(selectedBank)
+    const questionsJson = JSON.stringify(selectedBank.questions, null, 2)
+    setJsonInput(questionsJson)
+    setQuestions(selectedBank.questions)
+  }
 
   return (
     <>
@@ -125,7 +126,7 @@ export default function Develop() {
           <h2 className="text-lg font-semibold">Develop</h2>
           <div className="ml-auto flex w-full space-x-2 sm:justify-end">
             <QuestionBankSelector questionBanks={questionBanks} onSelect={handleSelectQuestionBank} />
-            <QuestionBankSave onSave={handleSaveQuestionBank} />
+            <QuestionBankSave onSave={() => handleSaveQuestionBank("Default Name", "Default Description")} />
             <div className="hidden space-x-2 md:flex">
               <Button>Code Viewer</Button>
               <Button>Share</Button>
@@ -200,5 +201,5 @@ export default function Develop() {
         </div>
       </div>
     </>
-  );
+  )
 }
