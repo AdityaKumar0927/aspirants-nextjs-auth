@@ -13,25 +13,18 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
 
-export function QuestionBankSave({ onSave }: { onSave: () => void }) {
+export function QuestionBankSave({ onSave }: { onSave: (name: string, description: string) => void }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [open, setOpen] = useState(false);
 
   const handleSave = async () => {
     try {
-      await fetch(`/api/custom-question-banks/create`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, description, questions: [] }), // Update as per requirement
-      });
+      onSave(name, description);
       toast({
         description: 'Question bank has been saved.',
       });
       setOpen(false);
-      onSave();
     } catch (error) {
       toast({
         description: 'Failed to save question bank.',
