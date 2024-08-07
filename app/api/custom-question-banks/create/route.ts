@@ -14,15 +14,18 @@ export async function POST(request: Request) {
 
   const { name, description, questions } = await request.json();
 
+  if (!name || !description || !questions || !Array.isArray(questions)) {
+    return NextResponse.json({ error: 'Invalid input data' }, { status: 400 });
+  }
+
   try {
     const newQuestionBank = await prisma.customQuestionBank.create({
       data: {
         name,
         description,
-        user: { connect: { id: session.user.id } },
+        userId: session.user.id,
         questions: {
           create: questions.map((question: any) => ({
-            exam: question.exam,
             questionId: question.questionId,
             text: question.text,
             subject: question.subject,
@@ -30,18 +33,19 @@ export async function POST(request: Request) {
             subtopic: question.subtopic,
             difficulty: question.difficulty,
             type: question.type,
-            year: question.year,
+            year: parseInt(question.year, 10),
             reviewed: question.reviewed,
             completed: question.completed,
             options: question.options,
             correctOption: question.correctOption,
             markscheme: question.markscheme,
+            exam: question.exam,
             marks: question.marks,
             correctAttempts: question.correctAttempts,
             wrongAttempts: question.wrongAttempts,
             averageTimeTaken: question.averageTimeTaken,
-            lastAttempted: question.lastAttempted,
-            diagramUrl: question.diagramUrl,
+            lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
+            diagramUrl: question.diagramUrl || null,
           })),
         },
       },
