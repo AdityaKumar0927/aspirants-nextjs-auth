@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 
 import { QuestionBankActions } from "@/components/QuestionBankActions";
-import { QuestionBankSave } from "@/components/QuestionBankSave";
+import QuestionBankSave from "@/components/QuestionBankSave";
 import { QuestionBankSelector } from "@/components/QuestionBankSelector";
 
 // Define types within the component file

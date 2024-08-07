@@ -1,65 +1,44 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { toast } from '@/components/ui/use-toast';
+// QuestionBankSave.tsx
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
 
-export function QuestionBankSave({ onSave }: { onSave: (name: string, description: string) => void }) {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [open, setOpen] = useState(false);
+interface QuestionBankSaveProps {
+  onSave: (name: string, description: string) => Promise<void>;
+}
 
-  const handleSave = async () => {
-    try {
-      onSave(name, description);
-      toast({
-        description: 'Question bank has been saved.',
-      });
-      setOpen(false);
-    } catch (error) {
-      toast({
-        description: 'Failed to save question bank.',
-        variant: 'destructive',
-      });
-    }
+const QuestionBankSave: React.FC<QuestionBankSaveProps> = ({ onSave }) => {
+  const [name, setName] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await onSave(name, description);
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="secondary">Save</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[475px]">
-        <DialogHeader>
-          <DialogTitle>Save Question Bank</DialogTitle>
-          <DialogDescription>
-            This will save the current Question Bank state in your dashboard which you
-            can access later or share with others.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid gap-2">
-            <Label htmlFor="name">Name</Label>
-            <Input id="name" value={name} onChange={(e) => setName(e.target.value)} autoFocus />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="description">Description</Label>
-            <Input id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit" onClick={handleSave}>Save</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="description">Description:</label>
+        <textarea
+          id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        ></textarea>
+      </div>
+      <Button type="submit">Save Question Bank</Button>
+    </form>
   );
-}
+};
+
+export default QuestionBankSave;
