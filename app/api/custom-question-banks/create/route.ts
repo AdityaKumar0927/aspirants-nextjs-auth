@@ -22,6 +22,7 @@ export async function POST(req: Request) {
         userId: session.user.id,
         customQuestions: {
           create: customQuestions.map((question: any) => ({
+            exam: question.exam,
             questionId: question.questionId,
             text: question.text,
             subject: question.subject,
