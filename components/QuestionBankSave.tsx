@@ -1,43 +1,51 @@
-// QuestionBankSave.tsx
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 interface QuestionBankSaveProps {
-  onSave: (name: string, description: string) => Promise<void>;
+  onSave: (name: string, description: string) => void;
 }
 
 const QuestionBankSave: React.FC<QuestionBankSaveProps> = ({ onSave }) => {
-  const [name, setName] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await onSave(name, description);
+  const handleSave = () => {
+    if (name && description) {
+      onSave(name, description);
+      setName("");
+      setDescription("");
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="space-y-4">
       <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+          Question Bank Name
+        </label>
+        <Input
           id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          required
+          placeholder="Enter name"
         />
       </div>
       <div>
-        <label htmlFor="description">Description:</label>
-        <textarea
+        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+          Description
+        </label>
+        <Input
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          required
-        ></textarea>
+          placeholder="Enter description"
+        />
       </div>
-      <Button type="submit">Save Question Bank</Button>
-    </form>
+      <Button variant="default" onClick={handleSave}>
+        Save
+      </Button>
+    </div>
   );
 };
 

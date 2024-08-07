@@ -17,7 +17,7 @@ interface CustomQuestionBank {
   id: string;
   name: string;
   description: string;
-  questions: Question[];
+  customQuestions: Question[];
 }
 
 interface Question {
@@ -104,7 +104,7 @@ export default function Develop() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, description, questions }),
+        body: JSON.stringify({ name, description, customQuestions: questions }),
       });
       const newBank = await response.json();
       setQuestionBanks([...questionBanks, newBank]);
@@ -133,9 +133,9 @@ export default function Develop() {
   const handleSelectQuestionBank = (selectedBank: CustomQuestionBank) => {
     // Logic to select the question bank
     setSelectedBank(selectedBank);
-    const questionsJson = JSON.stringify(selectedBank.questions, null, 2);
+    const questionsJson = JSON.stringify(selectedBank.customQuestions, null, 2);
     setJsonInput(questionsJson);
-    setQuestions(selectedBank.questions);
+    setQuestions(selectedBank.customQuestions);
   };
 
   return (
