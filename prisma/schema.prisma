@@ -105,8 +105,6 @@ model Question {
   progresses            UserProgress[]
   answers               UserAnswer[]
   userPerformances      UserPerformance[]
-  customQuestionBankId  String?
-  customQuestionBank    CustomQuestionBank? @relation(fields: [customQuestionBankId], references: [id], onDelete: Cascade, name: "CustomQuestionBankQuestions")
 }
 
 model Note {
