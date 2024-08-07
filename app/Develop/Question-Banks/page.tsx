@@ -99,7 +99,6 @@ export default function Develop() {
   };
 
   const handleSaveQuestionBank = async (name: string, description: string) => {
-    // Logic to save the question bank
     try {
       const formattedQuestions = questions.map((question) => ({
         ...question,
@@ -122,7 +121,6 @@ export default function Develop() {
   };
 
   const handleDeleteQuestionBank = async (bankId: string) => {
-    // Logic to delete the question bank
     try {
       await fetch(`/api/custom-question-banks/delete`, {
         method: "DELETE",
@@ -140,7 +138,6 @@ export default function Develop() {
   };
 
   const handleSelectQuestionBank = (selectedBank: CustomQuestionBank) => {
-    // Logic to select the question bank
     setSelectedBank(selectedBank);
     const questionsJson = JSON.stringify(selectedBank.customQuestions, null, 2);
     setJsonInput(questionsJson);
