@@ -1,18 +1,19 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getSession } from 'next-auth/react';
-import prisma from '@/lib/prisma';
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../auth/[...nextauth]/options";
+import prisma from "@/lib/prisma";
 
-export async function POST(req: NextRequest) {
-  const session = await getSession({ req: req as any });
-
+export async function POST(req: Request) {
+  const session = await getServerSession(authOptions);
+  
   if (!session) {
-    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const { name, description, customQuestions } = await req.json();
 
   try {
-    const newQuestionBank = await prisma.customQuestionBank.create({
+    const newBank = await prisma.customQuestionBank.create({
       data: {
         name,
         description,
@@ -26,7 +27,7 @@ export async function POST(req: NextRequest) {
             subtopic: question.subtopic,
             difficulty: question.difficulty,
             type: question.type,
-            year: parseInt(question.year, 10),
+            year: question.year,
             reviewed: question.reviewed,
             completed: question.completed,
             options: question.options,
@@ -42,10 +43,8 @@ export async function POST(req: NextRequest) {
         },
       },
     });
-
-    return NextResponse.json(newQuestionBank, { status: 200 });
+    return NextResponse.json(newBank);
   } catch (error) {
-    console.error('Error creating question bank:', error);
-    return NextResponse.json({ message: 'Error creating question bank' }, { status: 500 });
+    return NextResponse.json({ error: "Error creating question bank" }, { status: 500 });
   }
 }

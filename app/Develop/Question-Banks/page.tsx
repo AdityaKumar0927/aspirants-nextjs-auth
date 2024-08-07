@@ -55,7 +55,9 @@ export default function Develop() {
     // Fetch question banks from API and set the state
     const fetchQuestionBanks = async () => {
       try {
-        const response = await fetch("/api/custom-question-banks/get");
+        const response = await fetch("/api/custom-question-banks/get", {
+          credentials: 'include',
+        });
         const data = await response.json();
         setQuestionBanks(data);
       } catch (error) {
@@ -104,6 +106,7 @@ export default function Develop() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: 'include',
         body: JSON.stringify({ name, description, customQuestions: questions }),
       });
       const newBank = await response.json();
@@ -121,6 +124,7 @@ export default function Develop() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: 'include',
         body: JSON.stringify({ bankId }),
       });
       setQuestionBanks(questionBanks.filter((bank) => bank.id !== bankId));
