@@ -12,13 +12,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const { name, description, questions } = await request.json();
-
-  if (!name || !description || !questions || !Array.isArray(questions)) {
-    return NextResponse.json({ error: 'Invalid input data' }, { status: 400 });
-  }
-
   try {
+    const { name, description, questions } = await request.json();
+
+    if (!name || !description || !questions || !Array.isArray(questions)) {
+      return NextResponse.json({ error: 'Invalid input data' }, { status: 400 });
+    }
+
     const newQuestionBank = await prisma.customQuestionBank.create({
       data: {
         name,
@@ -57,6 +57,11 @@ export async function POST(request: Request) {
     return NextResponse.json(newQuestionBank);
   } catch (error) {
     console.error('Error creating question bank:', error);
+
+    if (error instanceof SyntaxError) {
+      return NextResponse.json({ error: 'Invalid JSON input' }, { status: 400 });
+    }
+
     return NextResponse.json({ error: 'Failed to create question bank' }, { status: 500 });
   }
 }
