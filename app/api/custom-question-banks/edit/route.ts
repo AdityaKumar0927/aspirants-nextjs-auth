@@ -1,35 +1,52 @@
-import { PrismaClient } from '@prisma/client';
-import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../../auth/[...nextauth]/options';
+import { NextRequest, NextResponse } from 'next/server';
+import { getSession } from 'next-auth/react';
+import prisma from '@/lib/prisma';
 
-const prisma = new PrismaClient();
+export async function POST(req: NextRequest) {
+  const session = await getSession({ req: req as any });
 
-export async function PUT(request: Request) {
+  if (!session) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  }
+
+  const { id, name, description, customQuestions } = await req.json();
+
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const { id, name, description, questions } = await request.json();
-
     const updatedQuestionBank = await prisma.customQuestionBank.update({
       where: { id },
       data: {
         name,
         description,
         userId: session.user.id,
-        questions: {
-          set: questions.map((questionId: string) => ({ questionId })),
+        customQuestions: {
+          set: customQuestions.map((question: any) => ({
+            questionId: question.questionId,
+            text: question.text,
+            subject: question.subject,
+            topic: question.topic,
+            subtopic: question.subtopic,
+            difficulty: question.difficulty,
+            type: question.type,
+            year: parseInt(question.year, 10),
+            reviewed: question.reviewed,
+            completed: question.completed,
+            options: question.options,
+            correctOption: question.correctOption,
+            markscheme: question.markscheme,
+            marks: question.marks,
+            correctAttempts: question.correctAttempts,
+            wrongAttempts: question.wrongAttempts,
+            averageTimeTaken: question.averageTimeTaken,
+            lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
+            diagramUrl: question.diagramUrl,
+          })),
         },
       },
     });
 
-    return NextResponse.json(updatedQuestionBank);
+    return NextResponse.json(updatedQuestionBank, { status: 200 });
   } catch (error) {
     console.error('Error updating question bank:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ message: 'Error updating question bank' }, { status: 500 });
   }
 }
