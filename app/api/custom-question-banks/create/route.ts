@@ -5,14 +5,16 @@ import prisma from "@/lib/prisma";
 
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
-  
+
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { name, description, customQuestions } = await req.json();
-
   try {
+    const { name, description, customQuestions } = await req.json();
+
+    console.log("Received data:", { name, description, customQuestions });
+
     const newBank = await prisma.customQuestionBank.create({
       data: {
         name,
@@ -43,8 +45,11 @@ export async function POST(req: Request) {
         },
       },
     });
+
+    console.log("New Bank Created:", newBank);
     return NextResponse.json(newBank);
   } catch (error) {
+    console.error("Error creating question bank:", error);
     return NextResponse.json({ error: "Error creating question bank" }, { status: 500 });
   }
 }
