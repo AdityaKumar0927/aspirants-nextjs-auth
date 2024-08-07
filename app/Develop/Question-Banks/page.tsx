@@ -101,13 +101,18 @@ export default function Develop() {
   const handleSaveQuestionBank = async (name: string, description: string) => {
     // Logic to save the question bank
     try {
+      const formattedQuestions = questions.map((question) => ({
+        ...question,
+        year: parseInt(question.year, 10),
+        lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
+      }));
       const response = await fetch("/api/custom-question-banks/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         credentials: 'include',
-        body: JSON.stringify({ name, description, customQuestions: questions }),
+        body: JSON.stringify({ name, description, customQuestions: formattedQuestions }),
       });
       const newBank = await response.json();
       setQuestionBanks([...questionBanks, newBank]);

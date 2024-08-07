@@ -22,7 +22,6 @@ export async function POST(req: Request) {
         userId: session.user.id,
         customQuestions: {
           create: customQuestions.map((question: any) => ({
-            exam: question.exam,
             questionId: question.questionId,
             text: question.text,
             subject: question.subject,
@@ -30,7 +29,7 @@ export async function POST(req: Request) {
             subtopic: question.subtopic,
             difficulty: question.difficulty,
             type: question.type,
-            year: question.year,
+            year: parseInt(question.year, 10),
             reviewed: question.reviewed,
             completed: question.completed,
             options: question.options,
@@ -47,10 +46,9 @@ export async function POST(req: Request) {
       },
     });
 
-    console.log("New Bank Created:", newBank);
     return NextResponse.json(newBank);
   } catch (error) {
     console.error("Error creating question bank:", error);
-    return NextResponse.json({ error: "Error creating question bank" }, { status: 500 });
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
