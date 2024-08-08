@@ -43,6 +43,30 @@ interface Question {
   diagramUrl: string;
 }
 
+const formatQuestions = (questions: any[]) => {
+  return questions.map((question) => ({
+    questionId: question.questionId,
+    text: question.text,
+    subject: question.subject,
+    topic: question.topic,
+    subtopic: question.subtopic,
+    difficulty: question.difficulty,
+    type: question.type,
+    year: parseInt(question.year, 10),
+    reviewed: question.reviewed,
+    completed: question.completed,
+    options: question.options,
+    correctOption: question.correctOption,
+    markscheme: question.markscheme,
+    marks: question.marks,
+    correctAttempts: question.correctAttempts,
+    wrongAttempts: question.wrongAttempts,
+    averageTimeTaken: question.averageTimeTaken,
+    lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
+    diagramUrl: question.diagramUrl,
+  }));
+};
+
 export default function Develop() {
   const [jsonInput, setJsonInput] = useState<string>("");
   const [questionBanks, setQuestionBanks] = useState<CustomQuestionBank[]>([]);
@@ -100,11 +124,7 @@ export default function Develop() {
 
   const handleSaveQuestionBank = async (name: string, description: string) => {
     try {
-      const formattedQuestions = questions.map((question) => ({
-        ...question,
-        year: parseInt(question.year, 10),
-        lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
-      }));
+      const formattedQuestions = formatQuestions(questions);
       const response = await fetch("/api/custom-question-banks/create", {
         method: "POST",
         headers: {
@@ -168,64 +188,41 @@ export default function Develop() {
           </div>
         </div>
         <Separator />
-
-        <div className="container h-full py-6">
-          <div className="grid h-full items-stretch gap-6 md:grid-cols-[1fr_200px]">
-            <div className="md:order-1">
-              <div className="flex flex-col space-y-4">
-                <div className="grid h-full gap-6 lg:grid-cols-2">
-                  <div className="flex flex-col space-y-4">
-                    <div className="flex flex-1 flex-col space-y-2">
-                      <Label htmlFor="input">Input</Label>
-                      <Textarea
-                        id="input"
-                        placeholder="Paste your JSON input here..."
-                        className="flex-1 lg:min-h-[580px]"
-                        value={jsonInput}
-                        onChange={handleManualJsonInput}
-                      />
-                    </div>
-                    <div className="flex flex-1 flex-col space-y-2">
-                      <Label htmlFor="file">Upload a file</Label>
-                      <input
-                        id="file"
-                        type="file"
-                        accept="application/json"
-                        onChange={handleFileUpload}
-                        className="border p-2 rounded"
-                      />
-                    </div>
-                  </div>
-                  <div className="mt-[21px] min-h-[400px] rounded-md border bg-muted lg:min-h-[700px] overflow-auto p-4">
-                    {/* Render the question bank here */}
-                    {questions.length > 0 ? (
-                      <div>
-                        {questions.map((question) => (
-                          <div key={question.questionId} className="p-4 border-b">
-                            <p className="font-semibold">{question.text}</p>
-                            <ul className="pl-4">
-                              {question.options.map((option, index) => (
-                                <li key={index} className="list-disc">
-                                  {option}
-                                </li>
-                              ))}
-                            </ul>
-                            <p className="mt-2">Correct Option: {question.correctOption}</p>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p>No questions to display</p>
-                    )}
-                  </div>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Button>Submit</Button>
-                  <Button variant="secondary">
-                    <span className="sr-only">Show history</span>
-                    <CounterClockwiseClockIcon className="h-4 w-4" />
-                  </Button>
-                </div>
+        <div className="container grid flex-1 gap-4 md:grid-cols-[1fr_200px]">
+          <div className="col-span-3 flex flex-col overflow-hidden">
+            <div className="flex-1 space-y-4 p-8 pt-6">
+              <div className="flex items-center justify-between space-y-2">
+                <h3 className="text-lg font-semibold">Edit Question Bank</h3>
+              </div>
+              <div>
+                <Label htmlFor="question-bank-json" className="sr-only">
+                  Question Bank JSON
+                </Label>
+                <Textarea
+                  id="question-bank-json"
+                  value={jsonInput}
+                  onChange={handleManualJsonInput}
+                  rows={20}
+                  placeholder="Paste JSON here..."
+                />
+              </div>
+            </div>
+          </div>
+          <div className="flex w-full flex-col overflow-hidden">
+            <div className="flex-1 space-y-4 p-8 pt-6">
+              <div className="flex items-center justify-between space-y-2">
+                <h3 className="text-lg font-semibold">Upload JSON File</h3>
+              </div>
+              <div>
+                <Label htmlFor="file-upload" className="sr-only">
+                  Upload JSON File
+                </Label>
+                <input
+                  type="file"
+                  id="file-upload"
+                  accept=".json"
+                  onChange={handleFileUpload}
+                />
               </div>
             </div>
           </div>

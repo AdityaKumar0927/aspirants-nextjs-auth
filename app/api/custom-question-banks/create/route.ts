@@ -13,7 +13,28 @@ export async function POST(req: Request) {
   try {
     const { name, description, customQuestions } = await req.json();
 
-    console.log("Received data:", { name, description, customQuestions });
+    // Ensure customQuestions have the correct format
+    const formattedQuestions = customQuestions.map((question: any) => ({
+      questionId: question.questionId,
+      text: question.text,
+      subject: question.subject,
+      topic: question.topic,
+      subtopic: question.subtopic,
+      difficulty: question.difficulty,
+      type: question.type,
+      year: parseInt(question.year, 10),
+      reviewed: question.reviewed,
+      completed: question.completed,
+      options: question.options,
+      correctOption: question.correctOption,
+      markscheme: question.markscheme,
+      marks: question.marks,
+      correctAttempts: question.correctAttempts,
+      wrongAttempts: question.wrongAttempts,
+      averageTimeTaken: question.averageTimeTaken,
+      lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
+      diagramUrl: question.diagramUrl,
+    }));
 
     const newBank = await prisma.customQuestionBank.create({
       data: {
@@ -21,27 +42,7 @@ export async function POST(req: Request) {
         description,
         userId: session.user.id,
         customQuestions: {
-          create: customQuestions.map((question: any) => ({
-            questionId: question.questionId,
-            text: question.text,
-            subject: question.subject,
-            topic: question.topic,
-            subtopic: question.subtopic,
-            difficulty: question.difficulty,
-            type: question.type,
-            year: parseInt(question.year, 10),
-            reviewed: question.reviewed,
-            completed: question.completed,
-            options: question.options,
-            correctOption: question.correctOption,
-            markscheme: question.markscheme,
-            marks: question.marks,
-            correctAttempts: question.correctAttempts,
-            wrongAttempts: question.wrongAttempts,
-            averageTimeTaken: question.averageTimeTaken,
-            lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
-            diagramUrl: question.diagramUrl,
-          })),
+          create: formattedQuestions,
         },
       },
     });
