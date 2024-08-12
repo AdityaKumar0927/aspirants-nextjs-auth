@@ -28,12 +28,12 @@ export async function POST(req: Request) {
       options: question.options,
       correctOption: question.correctOption,
       markscheme: question.markscheme,
-      marks: question.marks,
-      correctAttempts: question.correctAttempts,
-      wrongAttempts: question.wrongAttempts,
-      averageTimeTaken: question.averageTimeTaken,
+      marks: question.marks || null,
+      correctAttempts: question.correctAttempts || null,
+      wrongAttempts: question.wrongAttempts || null,
+      averageTimeTaken: question.averageTimeTaken || null,
       lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
-      diagramUrl: question.diagramUrl,
+      diagramUrl: question.diagramUrl || null,
     }));
 
     const newBank = await prisma.customQuestionBank.create({

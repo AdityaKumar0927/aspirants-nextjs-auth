@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -25,18 +23,18 @@ interface Question {
   subtopic: string;
   difficulty: string;
   type: string;
-  year: string;
+  year: number;
   reviewed: boolean;
   completed: boolean;
   options: string[];
   correctOption: string;
   markscheme: string;
-  marks: string;
-  correctAttempts: string;
-  wrongAttempts: string;
-  averageTimeTaken: string;
-  lastAttempted: string;
-  diagramUrl: string;
+  marks: string | null;
+  correctAttempts: string | null;
+  wrongAttempts: string | null;
+  averageTimeTaken: string | null;
+  lastAttempted: Date | null;
+  diagramUrl: string | null;
 }
 
 const formatQuestions = (questions: any[]) => {
@@ -54,12 +52,12 @@ const formatQuestions = (questions: any[]) => {
     options: question.options,
     correctOption: question.correctOption,
     markscheme: question.markscheme,
-    marks: question.marks,
-    correctAttempts: question.correctAttempts,
-    wrongAttempts: question.wrongAttempts,
-    averageTimeTaken: question.averageTimeTaken,
+    marks: question.marks || null,
+    correctAttempts: question.correctAttempts || null,
+    wrongAttempts: question.wrongAttempts || null,
+    averageTimeTaken: question.averageTimeTaken || null,
     lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
-    diagramUrl: question.diagramUrl,
+    diagramUrl: question.diagramUrl || null,
   }));
 };
 
