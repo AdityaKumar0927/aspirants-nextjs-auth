@@ -182,7 +182,7 @@ model CustomQuestionBank {
 
 model CustomNote {
   id         String          @id @default(cuid())
-  content    String
+  content    String?
   userId     String
   questionId String
   user       User            @relation(fields: [userId], references: [id], onDelete: Cascade)
