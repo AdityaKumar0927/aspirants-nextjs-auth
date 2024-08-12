@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -80,6 +80,7 @@ export default function Develop() {
     const fetchQuestionBanks = async () => {
       try {
         const response = await fetch("/api/custom-question-banks/get", {
+          cache: "no-store", // Ensure it's not statically generated
           credentials: "include",
         });
         const data = await response.json();

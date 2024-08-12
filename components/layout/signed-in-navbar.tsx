@@ -125,7 +125,7 @@ export default function NavBar({ session }: { session: Session | null }) {
                   <NavigationMenuContent>
                     <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-3 lg:w-[500px]">
                       <li>
-                        <p className="font-display text-lg font-medium leading-none">Exams</p>
+                       
                         <ul>
                           {examsLinks.map((exam) => (
                             <ListItem key={exam.title} title={exam.title} href={exam.href}>
