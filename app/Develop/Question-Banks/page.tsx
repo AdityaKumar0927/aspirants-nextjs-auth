@@ -4,10 +4,16 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
 import { QuestionBankActions } from "@/components/QuestionBankActions";
 import QuestionBankSave from "@/components/QuestionBankSave";
 import { QuestionBankSelector } from "@/components/QuestionBankSelector";
+import { FileUpload } from "@/components/ui/file-upload";
+import CustomQuestion from "@/components/shared/CustomQuestion";
+import dynamic from "next/dynamic";
+import "react-json-view"; // Importing the CSS for the JSON editor
+
+// Dynamically import the React JSON View component
+const ReactJsonView = dynamic(() => import("react-json-view"), { ssr: false });
 
 interface CustomQuestionBank {
   id: string;
@@ -24,7 +30,7 @@ interface Question {
   topic: string;
   subtopic: string;
   difficulty: string;
-  type: string;
+  type: "Multiple Choice" | "Numerical";
   year: number;
   reviewed: boolean;
   completed: boolean;
@@ -36,7 +42,7 @@ interface Question {
   wrongAttempts: string | null;
   averageTimeTaken: string | null;
   lastAttempted: Date | null;
-  diagramUrl: string | null;
+  diagramUrl: string | undefined;
 }
 
 const formatQuestions = (questions: any[]) => {
@@ -47,7 +53,7 @@ const formatQuestions = (questions: any[]) => {
     topic: question.topic,
     subtopic: question.subtopic,
     difficulty: question.difficulty,
-    type: question.type,
+    type: question.type === "Multiple Choice" || question.type === "Numerical" ? question.type : "Multiple Choice",
     year: parseInt(question.year, 10),
     reviewed: question.reviewed,
     completed: question.completed,
@@ -59,62 +65,61 @@ const formatQuestions = (questions: any[]) => {
     wrongAttempts: question.wrongAttempts || null,
     averageTimeTaken: question.averageTimeTaken || null,
     lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
-    diagramUrl: question.diagramUrl || null,
+    diagramUrl: question.diagramUrl || undefined,
   }));
 };
 
 export default function Develop() {
-  const [jsonInput, setJsonInput] = useState<string>("");
+  const [jsonInput, setJsonInput] = useState<any>({});
   const [questionBanks, setQuestionBanks] = useState<CustomQuestionBank[]>([]);
-  const [selectedBank, setSelectedBank] = useState<CustomQuestionBank | null>(
-    null
-  );
+  const [selectedBank, setSelectedBank] = useState<CustomQuestionBank | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [fileUploaded, setFileUploaded] = useState<boolean>(false); // State to track if a file is uploaded
 
   useEffect(() => {
-    // Fetch question banks from API and set the state
     const fetchQuestionBanks = async () => {
       try {
         const response = await fetch("/api/custom-question-banks/get", {
-          credentials: 'include',
+          credentials: "include",
         });
         const data = await response.json();
-        setQuestionBanks(data);
+
+        setQuestionBanks(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Error fetching question banks:", error);
+        setQuestionBanks([]);
       }
     };
     fetchQuestionBanks();
   }, []);
 
-  const handleManualJsonInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const input = e.target.value;
+  const handleManualJsonInput = (input: any) => {
     setJsonInput(input);
     try {
-      const parsedQuestions = JSON.parse(input);
+      const parsedQuestions = input;
       setQuestions(parsedQuestions);
     } catch (error) {
       console.error("Invalid JSON input:", error);
     }
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
+  const handleFileUpload = (files: File[]) => {
+    if (files.length > 0) {
       const reader = new FileReader();
       reader.onload = (event) => {
         if (event.target?.result) {
           const input = event.target.result as string;
-          setJsonInput(input);
           try {
             const parsedQuestions = JSON.parse(input);
+            setJsonInput(parsedQuestions);
             setQuestions(parsedQuestions);
+            setFileUploaded(true); // Set file uploaded to true after successful file upload
           } catch (error) {
             console.error("Invalid JSON input:", error);
           }
         }
       };
-      reader.readAsText(file);
+      reader.readAsText(files[0]);
     }
   };
 
@@ -126,7 +131,7 @@ export default function Develop() {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: 'include',
+        credentials: "include",
         body: JSON.stringify({ name, description, customQuestions: formattedQuestions }),
       });
       const newBank = await response.json();
@@ -143,7 +148,7 @@ export default function Develop() {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: 'include',
+        credentials: "include",
         body: JSON.stringify({ bankId }),
       });
       setQuestionBanks(questionBanks.filter((bank) => bank.id !== bankId));
@@ -155,75 +160,99 @@ export default function Develop() {
 
   const handleSelectQuestionBank = (selectedBank: CustomQuestionBank) => {
     setSelectedBank(selectedBank);
-    const questionsJson = JSON.stringify(selectedBank.customQuestions, null, 2);
+    const questionsJson = selectedBank.customQuestions;
     setJsonInput(questionsJson);
     setQuestions(selectedBank.customQuestions);
+    setFileUploaded(true); // Ensure the file uploaded state is true
   };
 
   return (
-    <>
-      <div className="hidden h-full flex-col md:flex">
-        <div className="container flex flex-w-full col items-start justify-between space-y-2 py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16">
-          <h2 className="text-lg font-semibold">Develop</h2>
-          <div className="ml-auto flex w-full space-x-2 sm:justify-end">
-            <QuestionBankSelector
-              questionBanks={questionBanks}
-              onSelect={handleSelectQuestionBank}
+    <div className="h-full w-full flex flex-col">
+      <div className="container flex justify-between items-center p-4 md:p-6">
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Develop</h2>
+        <div className="ml-auto flex space-x-2">
+          <QuestionBankSelector
+            questionBanks={questionBanks}
+            onSelect={handleSelectQuestionBank}
+          />
+          <QuestionBankSave onSave={handleSaveQuestionBank} />
+          {selectedBank && (
+            <QuestionBankActions
+              bankId={selectedBank.id}
+              onDelete={() => handleDeleteQuestionBank(selectedBank.id)}
             />
-            <QuestionBankSave onSave={handleSaveQuestionBank} />
-            <div className="hidden space-x-2 md:flex">
-              <Button>Code Viewer</Button>
-              <Button>Share</Button>
-            </div>
-            {selectedBank && (
-              <QuestionBankActions
-                bankId={selectedBank.id}
-                onDelete={() => handleDeleteQuestionBank(selectedBank.id)}
-              />
-            )}
-          </div>
-        </div>
-        <Separator />
-        <div className="container grid flex-1 gap-4 md:grid-cols-[1fr_200px]">
-          <div className="col-span-3 flex flex-col overflow-hidden">
-            <div className="flex-1 space-y-4 p-8 pt-6">
-              <div className="flex items-center justify-between space-y-2">
-                <h3 className="text-lg font-semibold">Edit Question Bank</h3>
-              </div>
-              <div>
-                <Label htmlFor="question-bank-json" className="sr-only">
-                  Question Bank JSON
-                </Label>
-                <Textarea
-                  id="question-bank-json"
-                  value={jsonInput}
-                  onChange={handleManualJsonInput}
-                  rows={20}
-                  placeholder="Paste JSON here..."
-                />
-              </div>
-            </div>
-          </div>
-          <div className="flex w-full flex-col overflow-hidden">
-            <div className="flex-1 space-y-4 p-8 pt-6">
-              <div className="flex items-center justify-between space-y-2">
-                <h3 className="text-lg font-semibold">Upload JSON File</h3>
-              </div>
-              <div>
-                <Label htmlFor="file-upload" className="sr-only">
-                  Upload JSON File
-                </Label>
-                <input
-                  type="file"
-                  id="file-upload"
-                  accept=".json"
-                  onChange={handleFileUpload}
-                />
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
-    </>
+      <Separator />
+      <div className="flex-1 flex flex-col items-center p-4 md:p-6">
+        {!fileUploaded && (
+          <div className="flex-1 flex items-center justify-center">
+            <FileUploadDemo handleFileUpload={handleFileUpload} />
+          </div>
+        )}
+        {fileUploaded && (
+          <div className="w-full h-full flex flex-col md:flex-row mt-2">
+            <div className="flex flex-col w-full md:w-1/2 p-4">
+              <h3 className="text-lg font-semibold">Edit Question Bank</h3>
+              <div className="flex-1 overflow-auto">
+                <ReactJsonView
+                  src={jsonInput}
+                  onEdit={(edit) => handleManualJsonInput(edit.updated_src)}
+                  onAdd={(add) => handleManualJsonInput(add.updated_src)}
+                  onDelete={(del) => handleManualJsonInput(del.updated_src)}
+                  enableClipboard={false}
+                  theme="monokai"
+                  style={{ minHeight: "400px" }}
+                />
+              </div>
+              <div className="mt-4">
+                <FileUploadDemo handleFileUpload={handleFileUpload} />
+              </div>
+            </div>
+            <div className="flex flex-col w-full md:w-1/2 overflow-y-auto p-4">
+              <h3 className="text-lg font-semibold">Questions</h3>
+              <div className="space-y-4">
+                {questions.length > 0 ? (
+                  questions.map((question) => (
+                    <CustomQuestion
+                      key={question.questionId}
+                      question={question}
+                      feedback={""}
+                      selectedOption={""}
+                      numericalAnswer={""}
+                      showMarkscheme={false}
+                      handleOptionClick={() => {}}
+                      handleNumericalSubmit={() => {}}
+                      handleNumericalChange={() => {}}
+                      handleMarkschemeToggle={() => {}}
+                      handleMarkForReview={() => {}}
+                      handleMarkComplete={() => {}}
+                      isMarkedForReview={false}
+                      isMarkedComplete={false}
+                      markschemesDisabled={false}
+                      note={""}
+                      handleNoteChange={() => {}}
+                      userId={""}
+                      handleDeleteNote={async () => {}}
+                    />
+                  ))
+                ) : (
+                  <p>No questions found.</p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function FileUploadDemo({ handleFileUpload }: { handleFileUpload: (files: File[]) => void }) {
+  return (
+    <div className="w-full max-w-4xl mx-auto border border-dashed bg-white dark:bg-black border-neutral-200 dark:border-neutral-800 rounded-lg p-4">
+      <FileUpload onChange={handleFileUpload} />
+    </div>
   );
 }

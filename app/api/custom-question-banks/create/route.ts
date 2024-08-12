@@ -42,8 +42,13 @@ export async function POST(req: Request) {
         description,
         userId: session.user.id,
         customQuestions: {
-          create: formattedQuestions,
+          createMany: {
+            data: formattedQuestions,
+          },
         },
+      },
+      include: {
+        customQuestions: true, // To ensure customQuestions are included in the response
       },
     });
 

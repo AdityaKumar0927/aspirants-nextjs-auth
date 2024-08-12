@@ -88,13 +88,13 @@ export default function SignedOutNavbar() {
     <>
       <SignInModal />
       <div
-        className={`fixed left-1/2 transform -translate-x-1/2 w-full ${
+        className={`fixed left-1/2 transform -translate-x-1/2 w-full max-w-screen-{1000px} ${
           scrolled
-            ? "bg-white/50 backdrop-blur-xl"
+            ? "bg-white/50 backdrop-blur-sm"
             : "bg-white/90"
         } flex justify-between items-center z-30 transition-all duration-300 ease-in-out`}
       >
-        <div className="mx-96 flex h-16 items-center justify-between w-full">
+        <div className="mx-24 flex h-16 items-center justify-between w-full">
           <Link href="/" className="flex items-center font-display text-2xl">
             <p className="text-left font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
               aspirants
