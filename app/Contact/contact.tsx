@@ -22,7 +22,6 @@ import {
 } from "@tabler/icons-react";
 import Password from "./password";
 import { Button } from "./button";
-import { Logo } from "./Logo";
 
 const formSchema = z.object({
   name: z
