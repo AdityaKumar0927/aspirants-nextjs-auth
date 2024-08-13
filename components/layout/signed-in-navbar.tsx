@@ -91,9 +91,9 @@ export default function NavBar({ session }: { session: Session | null }) {
     <>
       <SignInModal />
       <div
-        className={`fixed left-1/2 transform -translate-x-1/2 w-full ${
+        className={`fixed left-1/2 transform -translate-x-1/2 w-full max-w-screen-{1000px} ${
           scrolled
-            ? "bg-white/50 backdrop-blur-xl"
+            ? "bg-white/50 backdrop-blur-sm"
             : "bg-white/90"
         } flex justify-between items-center z-30 transition-all duration-300 ease-in-out`}
       >
