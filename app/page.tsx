@@ -38,6 +38,8 @@ import OrbitingCircles from "@/components/magicui/orbiting-circles";
 import { AnimatedListDemo } from "@/components/magicui/animated-list-demo";
 import { CardDemo } from "@/components/ui/newcard";
 import PulsatingButton from "@/components/magicui/pulsating-button";
+import { Features } from "@/components/aceternity-ui/features";
+import { FeatureIconContainer } from "@/components/aceternity-ui/feature-icon-container";
 
 const testimonials = [
   {
@@ -514,6 +516,8 @@ const Page = () => {
                             
                         </div>
                     </main>
+
+                    <Features />
        
       <FAQ />
 

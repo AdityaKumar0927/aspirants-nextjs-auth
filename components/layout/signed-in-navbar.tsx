@@ -58,17 +58,17 @@ const components = [
 const supportLinks = [
   {
     title: "Donate",
-    href: "/#",
+    href: "/Donate",
     description: "Support our platform with your donations.",
   },
   {
     title: "Report",
-    href: "/#",
+    href: "/Report",
     description: "Report issues or provide feedback.",
   },
   {
     title: "Contact",
-    href: "/#",
+    href: "/Contact",
     description: "Get in touch with us for support.",
   },
 ];
