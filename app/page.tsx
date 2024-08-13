@@ -500,7 +500,11 @@ const Page = () => {
           </a>
         </motion.div>
 
-        <main className="flex-grow flex flex-col items-center justify-center px-4 py-16">
+      
+
+                    <Features />
+
+                    <main className="flex-grow flex flex-col items-center justify-center px-4 py-16">
                         <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 max-w-3xl">
                             It&apos;s free.
                         </h1>
@@ -516,8 +520,6 @@ const Page = () => {
                             
                         </div>
                     </main>
-
-                    <Features />
        
       <FAQ />
 
