@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { QuestionBankActions } from "@/components/QuestionBankActions";
 import QuestionBankSave from "@/components/QuestionBankSave";

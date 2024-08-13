@@ -33,6 +33,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import PulsatingButton from "@/components/magicui/pulsating-button";
 
 const components = [
   {

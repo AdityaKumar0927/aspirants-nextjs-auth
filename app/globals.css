@@ -229,7 +229,7 @@ html {
 
 /* Change the text selection background color to red and the text color to white */
 ::selection {
-  background-color: rgb(189, 149, 149);
-  color: white;
+  background-color: rgb(238, 241, 185);
+  color: black;
 }
 
