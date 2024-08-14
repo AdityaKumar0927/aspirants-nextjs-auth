@@ -91,14 +91,12 @@ export default function NavBar({ session }: { session: Session | null }) {
     <>
       <SignInModal />
       <div
-        className={`fixed left-1/2 transform -translate-x-1/2 w-full max-w-screen-{1000px} ${
-          scrolled
-            ? "bg-white/50 backdrop-blur-sm"
-            : "bg-white/90"
-        } flex justify-between items-center z-30 transition-all duration-300 ease-in-out`}
+        className={`fixed left-0 right-0 w-full max-w-screen-1000px mx-auto ${
+          scrolled ? "bg-white/50 backdrop-blur-sm" : "bg-white/90"
+        } flex justify-center items-center z-30 transition-all duration-300 ease-in-out`}
       >
-        <div className="mx-5 flex h-16 items-center justify-between w-full">
-          <Link href="/" className="flex items-center font-display text-2xl">
+        <div className="mx-5 flex h-16 items-center justify-center w-full">
+          <Link href="/" className="flex items-center font-display text-2xl mr-auto">
             <p className="text-left font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
               aspirants
             </p>
@@ -125,7 +123,6 @@ export default function NavBar({ session }: { session: Session | null }) {
                   <NavigationMenuContent>
                     <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-3 lg:w-[500px]">
                       <li>
-                       
                         <ul>
                           {examsLinks.map((exam) => (
                             <ListItem key={exam.title} title={exam.title} href={exam.href}>
@@ -154,7 +151,7 @@ export default function NavBar({ session }: { session: Session | null }) {
               <NavigationMenuViewport />
             </NavigationMenu>
           </div>
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4 ml-auto">
             {session ? (
               <>
                 <NotificationDropdown />
@@ -169,7 +166,7 @@ export default function NavBar({ session }: { session: Session | null }) {
               </button>
             )}
           </div>
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center ml-4">
             <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
               <SheetTrigger asChild>
                 <button className="text-black focus:outline-none">

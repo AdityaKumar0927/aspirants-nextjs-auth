@@ -35,7 +35,7 @@ export async function GET() {
 export async function POST(request: Request) {
   const { questionId, reviewed, completed } = await request.json();
 
-  if (reviewed !== undefined || completed !== undefined) {
+  if (questionId && (reviewed !== undefined || completed !== undefined)) {
     try {
       await prisma.customQuestion.update({
         where: { questionId },
