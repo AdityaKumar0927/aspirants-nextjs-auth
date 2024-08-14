@@ -15,6 +15,7 @@ export async function POST(req: Request) {
 
     // Ensure customQuestions have the correct format
     const formattedQuestions = customQuestions.map((question: any) => ({
+      exam: question.exam, // Ensure the 'exam' field is included
       questionId: question.questionId,
       text: question.text,
       subject: question.subject,
@@ -22,18 +23,18 @@ export async function POST(req: Request) {
       subtopic: question.subtopic,
       difficulty: question.difficulty,
       type: question.type,
-      year: parseInt(question.year, 10), // Convert year to integer
+      year: parseInt(question.year, 10),
       reviewed: question.reviewed,
       completed: question.completed,
-      options: question.options,
+      options: question.options, // Ensure this is an array of strings
       correctOption: question.correctOption,
       markscheme: question.markscheme,
-      marks: question.marks || null, // Convert empty string to null
-      correctAttempts: question.correctAttempts || null, // Convert empty string to null
-      wrongAttempts: question.wrongAttempts || null, // Convert empty string to null
-      averageTimeTaken: question.averageTimeTaken || null, // Convert empty string to null
-      lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null, // Convert empty string to null or valid Date
-      diagramUrl: question.diagramUrl || null, // Convert empty string to null
+      marks: question.marks || null,
+      correctAttempts: question.correctAttempts || null,
+      wrongAttempts: question.wrongAttempts || null,
+      averageTimeTaken: question.averageTimeTaken || null,
+      lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
+      diagramUrl: question.diagramUrl || null,
     }));
 
     const newBank = await prisma.customQuestionBank.create({
