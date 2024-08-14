@@ -98,7 +98,7 @@ export default function NavBar({ session }: { session: Session | null }) {
         <div className="mx-5 flex h-16 items-center justify-center w-full max-w-screen-xl">
           <div className="flex items-center space-x-4">
             <Link href="/" className="flex items-center font-display text-2xl">
-              <p className="text-left font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+              <p className="text-left font-light text-2xl tracking-[-0.07em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
                 aspirants
               </p>
               <Image

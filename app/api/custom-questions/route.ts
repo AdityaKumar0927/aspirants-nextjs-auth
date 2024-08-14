@@ -26,26 +26,13 @@ export async function GET() {
         diagramUrl: true,
       },
     });
+
+    // Debugging: Log the fetched questions
+    console.log('Custom Questions Fetched:', customQuestions);
+
     return NextResponse.json(customQuestions);
   } catch (error) {
+    console.error("Failed to fetch custom questions:", error);
     return NextResponse.json({ error: 'Failed to fetch custom questions' }, { status: 500 });
-  }
-}
-
-export async function POST(request: Request) {
-  const { questionId, reviewed, completed } = await request.json();
-
-  if (questionId && (reviewed !== undefined || completed !== undefined)) {
-    try {
-      await prisma.customQuestion.update({
-        where: { questionId },
-        data: { reviewed, completed },
-      });
-      return NextResponse.json({ message: 'Status updated' });
-    } catch (error) {
-      return NextResponse.json({ error: 'Failed to update status' }, { status: 500 });
-    }
-  } else {
-    return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
   }
 }

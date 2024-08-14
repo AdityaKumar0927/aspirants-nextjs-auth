@@ -97,7 +97,7 @@ export default function SignedOutNavbar() {
       >
         <div className="mx-24 flex h-16 items-center justify-between w-full">
           <Link href="/" className="flex items-center font-display text-2xl">
-            <p className="text-left font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+            <p className="text-left font-display text-2xl tracking-[-0.07em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
               aspirants
             </p>
             <Image

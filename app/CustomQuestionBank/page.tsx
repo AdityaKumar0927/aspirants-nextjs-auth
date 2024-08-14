@@ -112,16 +112,16 @@ const CustomQuestionBank: React.FC = () => {
     const fetchAllData = async () => {
       try {
         setLoading(true);
-        let questionsData = JSON.parse(localStorage.getItem('customQuestionsData') || 'null');
-        let userProgressData = JSON.parse(localStorage.getItem('customUserProgressData') || 'null');
-        let userAnswersData = JSON.parse(localStorage.getItem('customUserAnswersData') || 'null');
-        let notesData = JSON.parse(localStorage.getItem('customNotesData') || 'null');
-        let userPerformanceData = JSON.parse(localStorage.getItem('customUserPerformanceData') || 'null');
+        let questionsData = await fetchData("/api/custom-questions");
 
-        if (!questionsData) {
-          questionsData = await fetchData("/api/custom-questions");
-          localStorage.setItem('customQuestionsData', JSON.stringify(questionsData));
-        }
+        // Debugging: Log fetched questions
+        console.log('Fetched questions:', questionsData);
+
+        // Handle user-specific data fetch
+        let userProgressData: any[] = [];
+        let userAnswersData: any[] = [];
+        let notesData: any[] = [];
+        let userPerformanceData: any[] = [];
 
         if (userId) {
           [userProgressData, userAnswersData, notesData, userPerformanceData] = await Promise.all([
@@ -130,18 +130,13 @@ const CustomQuestionBank: React.FC = () => {
             fetchData("/api/custom-notes"),
             fetchData("/api/custom-user-performance/get")
           ]);
-          
-          localStorage.setItem('customUserProgressData', JSON.stringify(userProgressData));
-          localStorage.setItem('customUserAnswersData', JSON.stringify(userAnswersData));
-          localStorage.setItem('customNotesData', JSON.stringify(notesData));
-          localStorage.setItem('customUserPerformanceData', JSON.stringify(userPerformanceData));
         }
 
         const mergedQuestions = questionsData.map((question: CustomQuestionType) => {
-          const progress = userProgressData?.find((p: any) => p.questionId === question.questionId);
-          const userAnswer = userAnswersData?.find((a: UserAnswer) => a.questionId === question.questionId);
-          const note = notesData?.find((n: any) => n.questionId === question.questionId);
-          const performance = userPerformanceData?.find((p: UserPerformance) => p.questionId === question.questionId);
+          const progress = userProgressData.find((p) => p.questionId === question.questionId);
+          const userAnswer = userAnswersData.find((a: UserAnswer) => a.questionId === question.questionId);
+          const note = notesData.find((n) => n.questionId === question.questionId);
+          const performance = userPerformanceData.find((p: UserPerformance) => p.questionId === question.questionId);
 
           if (userAnswer) {
             setSelectedOptions((prev) => ({
@@ -318,10 +313,9 @@ const CustomQuestionBank: React.FC = () => {
       questionsAttempted: 1,
       lastAttempted: new Date().toISOString(),
       completed: true,
-      accuracy: isCorrect ? 100 : 0, // Update as per your logic
-      firstAttemptSuccessRate: isCorrect ? 100 : 0, // Update as per your logic
-      reattemptAccuracy: isCorrect ? 100 : 0, // Update as per your logic
-      // Add other fields as necessary
+      accuracy: isCorrect ? 100 : 0,
+      firstAttemptSuccessRate: isCorrect ? 100 : 0,
+      reattemptAccuracy: isCorrect ? 100 : 0,
     };
 
     await updateUserPerformance(questionId, updatedFields);
@@ -341,9 +335,9 @@ const CustomQuestionBank: React.FC = () => {
     await updateUserPerformance(questionId, { 
       lastAttempted: new Date().toISOString(), 
       completed: true,
-      accuracy: isCorrect ? 100 : 0, // Update as per your logic
-      firstAttemptSuccessRate: isCorrect ? 100 : 0, // Update as per your logic
-      reattemptAccuracy: isCorrect ? 100 : 0, // Update as per your logic
+      accuracy: isCorrect ? 100 : 0,
+      firstAttemptSuccessRate: isCorrect ? 100 : 0,
+      reattemptAccuracy: isCorrect ? 100 : 0,
     });
     await saveUserAnswer(questionId, userAnswer, isCorrect);
 
