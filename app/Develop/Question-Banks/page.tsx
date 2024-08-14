@@ -41,8 +41,9 @@ interface Question {
   diagramUrl: string | undefined;
 }
 
-const formatQuestions = (questions: any[]) => {
+const formatQuestions = (questions: any[]): Question[] => {
   return questions.map((question) => ({
+    exam: question.exam, // Make sure to include the exam field
     questionId: question.questionId,
     text: question.text,
     subject: question.subject,
@@ -50,18 +51,18 @@ const formatQuestions = (questions: any[]) => {
     subtopic: question.subtopic,
     difficulty: question.difficulty,
     type: question.type === "Multiple Choice" || question.type === "Numerical" ? question.type : "Multiple Choice",
-    year: parseInt(question.year, 10),
+    year: parseInt(question.year, 10), // Convert year to integer
     reviewed: question.reviewed,
     completed: question.completed,
     options: question.options,
     correctOption: question.correctOption,
     markscheme: question.markscheme,
-    marks: question.marks || null,
-    correctAttempts: question.correctAttempts || null,
-    wrongAttempts: question.wrongAttempts || null,
-    averageTimeTaken: question.averageTimeTaken || null,
-    lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
-    diagramUrl: question.diagramUrl || undefined,
+    marks: question.marks || null, // Convert empty string to null
+    correctAttempts: question.correctAttempts || null, // Convert empty string to null
+    wrongAttempts: question.wrongAttempts || null, // Convert empty string to null
+    averageTimeTaken: question.averageTimeTaken || null, // Convert empty string to null
+    lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null, // Convert empty string to null or valid Date
+    diagramUrl: question.diagramUrl || undefined, // Convert null to undefined
   }));
 };
 
@@ -95,7 +96,7 @@ export default function Develop() {
     setJsonInput(input);
     try {
       const parsedQuestions = JSON.parse(input);
-      setQuestions(parsedQuestions);
+      setQuestions(formatQuestions(parsedQuestions)); // Format questions
     } catch (error) {
       console.error("Invalid JSON input:", error);
     }
@@ -110,7 +111,7 @@ export default function Develop() {
           try {
             const parsedQuestions = JSON.parse(input);
             setJsonInput(input);
-            setQuestions(parsedQuestions);
+            setQuestions(formatQuestions(parsedQuestions)); // Format questions
             setFileUploaded(true); // Set file uploaded to true after successful file upload
           } catch (error) {
             console.error("Invalid JSON input:", error);
@@ -160,7 +161,7 @@ export default function Develop() {
     setSelectedBank(selectedBank);
     const questionsJson = JSON.stringify(selectedBank.customQuestions, null, 2);
     setJsonInput(questionsJson);
-    setQuestions(selectedBank.customQuestions);
+    setQuestions(formatQuestions(selectedBank.customQuestions)); // Format questions
     setFileUploaded(true); // Ensure the file uploaded state is true
   };
 
