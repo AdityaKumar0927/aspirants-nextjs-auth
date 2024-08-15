@@ -56,17 +56,17 @@ const components = [
 const supportLinks = [
   {
     title: "Donate",
-    href: "/#",
+    href: "/Donate",
     description: "Support our platform with your donations.",
   },
   {
     title: "Report",
-    href: "/#",
+    href: "/Report",
     description: "Report issues or provide feedback.",
   },
   {
     title: "Contact",
-    href: "/#",
+    href: "/Contact",
     description: "Get in touch with us for support.",
   },
 ];
@@ -154,11 +154,11 @@ export default function SignedOutNavbar() {
               </SheetTrigger>
               <SheetContent side="right" className="w-3/4 sm:w-1/3">
                 <SheetHeader>
-                  <SheetTitle>Menu</SheetTitle>
+             
                 </SheetHeader>
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col text-left space-y-4">
                   <Link href="/QuestionBank" onClick={() => setMenuOpen(false)}>
-                    <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
+                    <p className="text-left font-display text-2xl font-bold tracking-tight drop-shadow-sm">
                       Question Bank
                     </p>
                   </Link>
@@ -170,7 +170,7 @@ export default function SignedOutNavbar() {
                       <AccordionContent>
                         {supportLinks.map((link) => (
                           <Link key={link.title} href={link.href} onClick={() => setMenuOpen(false)}>
-                            <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
+                            <p className="text-center font-display text-lg font-medium tracking-tight mb-5 drop-shadow-sm">
                               {link.title}
                             </p>
                           </Link>

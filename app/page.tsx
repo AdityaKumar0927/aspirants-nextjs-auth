@@ -18,7 +18,7 @@ import {
 import Link from "next/link";
 import MainContent from "@/components/home/MainContent";
 import { FAQ } from "@/components/shared/FAQ";
-import { cubicBezier, motion, useInView } from "framer-motion";
+import { cubicBezier, motion, useInView, AnimatePresence } from "framer-motion";
 import { Clock, Download, MessageCircle, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
@@ -40,6 +40,7 @@ import { CardDemo } from "@/components/ui/newcard";
 import PulsatingButton from "@/components/magicui/pulsating-button";
 import { Features } from "@/components/aceternity-ui/features";
 import { FeatureIconContainer } from "@/components/aceternity-ui/feature-icon-container";
+import { CanvasRevealEffect } from "@/components/aceternity-ui/canvas-reveal-effect";
 
 const testimonials = [
   {
@@ -370,7 +371,7 @@ const Page = () => {
               <div className="flex items-center mb-4">
                 <div className="w-6 h-6"></div>
                 <h1
-                  className="animate-fade-up bg-gradient-to-br from-black to-black bg-clip-text text-center font-display text-9xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm sm:text-5xl sm:leading-[5rem]"
+                  className="animate-fade-up bg-gradient-to-br from-black to-black bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm sm:text-5xl sm:leading-[5rem]"
                   style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
                 >
                   Study For Your Exams With{" "}
@@ -440,15 +441,24 @@ const Page = () => {
       <p className="text-sm mb-8 lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal">
         Filter questions by exam, topic, sub-topic, year, difficulty, completed, or marked for review to save time.
       </p>
-
+     
       <div className="relative w-11/12 h-[1300px] border-4 rounded-2xl overflow-hidden">
-  <Image src="/imac.jpg" alt="Background" layout="fill" objectFit="cover" className="absolute inset-0 blur-md" />
-  <div className="absolute inset-0 flex items-center justify-center p-4">
+  <Image 
+    src="/imac.jpg" 
+    alt="Background" 
+    layout="fill" 
+    objectFit="cover" 
+    className="absolute inset-0 blur-md hidden sm:block"
+  />
+  <div className="absolute inset-0 flex items-center justify-center">
     <div className="w-full h-[1300px] bg-white bg-opacity-60 rounded-2xl overflow-auto p-4">
       <MainContent />
     </div>
   </div>
 </div>
+
+
+
 
 
       <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
@@ -458,9 +468,11 @@ const Page = () => {
       <p className="text-sm lg:text-base mb-12 max-w-2xl my-4 mx-auto text-neutral-500 text-center font-norma">
         View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill.
       </p>
-      <div className="w-10/12 mb-4 border-4 rounded-2xl p-2">
-        <NoteApp />
-      </div>
+
+        <div className="relative z-20 p-4">
+          <NoteApp />
+        </div>
+      
 
       
       <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
@@ -509,24 +521,9 @@ const Page = () => {
 
       </div>
 
-                    <main className="flex-grow flex flex-col items-center justify-center px-4 py-16">
-                        <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 max-w-3xl">
-                            It&apos;s free.
-                        </h1>
-                        <div className="flex space-x-4 mb-16">
-                        <a href="#_" className="relative inline-block text-lg group">
-<span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
-<span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
-<span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-red-500 group-hover:-rotate-180 ease"></span>
-<span className="relative">a&apos;ight</span>
-</span>
-<span className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-black rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
-</a>
-                            
-                        </div>
-                    </main>
-
                     
+
+                 
        
       <FAQ />
 

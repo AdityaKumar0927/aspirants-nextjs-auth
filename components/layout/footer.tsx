@@ -101,7 +101,7 @@ const footerSocials = [
 export function Footer() {
   return (
     <footer className="border-t">
-      <div className="mx-auto w-full max-w-screen-xl px-4">
+      <div className="mx-auto w-full sm:w-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="gap-4 p-4 py-16 sm:pb-16 md:flex md:justify-between">
           <div className="mb-12 flex flex-col gap-4">
             <a href="/" className="flex items-center gap-2">
@@ -135,7 +135,7 @@ export function Footer() {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
             {footerNavs.map((nav) => (
               <div key={nav.label}>
                 <h2 className="mb-6 text-sm font-semibold uppercase text-neutral-900 dark:text-white">

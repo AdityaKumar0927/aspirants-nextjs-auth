@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <div className="relative overflow-hidden py-20 md:py-0 px-4 md:px-20 w-full h-full bg-gray-50 dark:bg-black">
+    <div className="relative overflow-hidden py-20 md:py-0 px-4 md:px-20 w-full h-full -my-28 dark:bg-black">
       <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-2 relative overflow-hidden">
         <Background />
         <ContactForm />
