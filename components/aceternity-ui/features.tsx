@@ -19,15 +19,14 @@ import { SkeletonFive } from "./fifth";
 
 export const Features = () => {
   return (
-    <GradientContainer className="md:my-20 bg-black w-full">
+    <GradientContainer className="md:my-20 bg-black w-full border rounded-3xl">
       <Container className="py-20 max-w-5xl mx-auto  relative z-40">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
           <FaBolt className="h-6 w-6 text-cyan-500" />
         </FeatureIconContainer>
-        <Heading className="pt-4">Automate your social media</Heading>
+        <Heading className="pt-4">Automate Your Exam Prep</Heading>
         <Subheading>
-          Proactiv houses a rich set of features to automate your marketing
-          efforts across all social medias
+          aspirants provides you tools to convert handwritten/typed PDFs of exam papers/question-banks to shareable Mock Exams & Question Banks
         </Subheading>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 py-10">

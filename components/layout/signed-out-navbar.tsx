@@ -95,9 +95,9 @@ export default function SignedOutNavbar() {
             : "bg-white/90"
         } flex justify-between items-center z-30 transition-all duration-300 ease-in-out`}
       >
-        <div className="mx-24 flex h-16 items-center justify-between w-full">
+        <div className="mx-auto flex h-16 items-center justify-between w-6/12">
           <Link href="/" className="flex items-center font-display text-2xl">
-            <p className="text-left font-display text-2xl tracking-[-0.07em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+            <p className="font-display text-2xl tracking-[-0.07em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
               aspirants
             </p>
             <Image
@@ -138,7 +138,7 @@ export default function SignedOutNavbar() {
           </div>
           <div className="hidden md:flex items-center space-x-4">
             <button
-              className="rounded-full border border-black bg-white p-1.5 px-4 text-sm text-black transition-all hover:bg-black hover:text-white"
+              className="rounded-full text-center border border-black bg-white p-1.5 px-4 text-sm text-black transition-all hover:bg-black hover:text-white"
               onClick={() => setShowSignInModal(true)}
             >
               Sign In

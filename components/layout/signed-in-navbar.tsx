@@ -91,54 +91,44 @@ export default function NavBar({ session }: { session: Session | null }) {
     <>
       <SignInModal />
       <div
-        className={`fixed left-0 right-0 w-full ${
-          scrolled ? "bg-white/50 backdrop-blur-sm" : "bg-white/90"
+        className={`fixed left-1/2 transform -translate-x-1/2 w-full max-w-screen-{1000px} ${
+          scrolled
+            ? "bg-white/50 backdrop-blur-sm"
+            : "bg-white/90"
         } flex justify-between items-center z-30 transition-all duration-300 ease-in-out`}
       >
-        <div className="mx-5 flex h-16 items-center justify-center w-full max-w-screen-xl">
-          <div className="flex items-center space-x-4">
-            <Link href="/" className="flex items-center font-display text-2xl">
-              <p className="text-left font-light text-2xl tracking-[-0.07em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-                aspirants
-              </p>
-              <Image
-                src="/bulb.svg"
-                alt="aspirants logo"
-                width={30}
-                height={30}
-                className="ml-2"
-              />
-            </Link>
-          </div>
+        <div className="mx-auto flex h-16 items-center justify-between w-6/12">
+          <Link href="/" className="flex items-center font-display text-2xl">
+            <p className="text-left font-display text-2xl tracking-[-0.07em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+              aspirants
+            </p>
+            <Image
+              src="/bulb.svg"
+              alt="aspirants logo"
+              width={30}
+              height={30}
+              className="ml-2"
+            />
+          </Link>
           <div className="hidden md:flex items-center justify-center space-x-4 flex-1">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <Link href="/QuestionBank" passHref legacyBehavior>
-                    <NavigationMenuLink
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        "font-display text-sm text-black"
-                      )}
-                    >
+                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black")}>
                       Question Bank
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-display text-sm text-black">
-                    Exams
-                  </NavigationMenuTrigger>
+                  <NavigationMenuTrigger className="font-display text-sm text-black">Exams</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-3 lg:w-[500px]">
                       <li>
+                       
                         <ul>
                           {examsLinks.map((exam) => (
-                            <ListItem
-                              key={exam.title}
-                              title={exam.title}
-                              href={exam.href}
-                            >
+                            <ListItem key={exam.title} title={exam.title} href={exam.href}>
                               {exam.title}
                             </ListItem>
                           ))}
@@ -148,17 +138,11 @@ export default function NavBar({ session }: { session: Session | null }) {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-display text-sm text-black">
-                    Support
-                  </NavigationMenuTrigger>
+                  <NavigationMenuTrigger className="font-display text-sm text-black">Support</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
                       {supportLinks.map((link) => (
-                        <ListItem
-                          key={link.title}
-                          title={link.title}
-                          href={link.href}
-                        >
+                        <ListItem key={link.title} title={link.title} href={link.href}>
                           {link.description}
                         </ListItem>
                       ))}
@@ -170,7 +154,7 @@ export default function NavBar({ session }: { session: Session | null }) {
               <NavigationMenuViewport />
             </NavigationMenu>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
             {session ? (
               <>
                 <NotificationDropdown />
@@ -184,102 +168,83 @@ export default function NavBar({ session }: { session: Session | null }) {
                 Sign In
               </button>
             )}
-            <div className="md:hidden flex items-center ml-4">
-              <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-                <SheetTrigger asChild>
-                  <button className="text-black focus:outline-none">
-                    <FontAwesomeIcon icon={faBars} size="lg" />
-                  </button>
-                </SheetTrigger>
-                <SheetContent side="right" className="w-3/4 sm:w-1/3">
-                  <SheetHeader>
-                    <SheetTitle>Menu</SheetTitle>
-                  </SheetHeader>
-                  <div className="flex flex-col space-y-4">
-                    <Link
-                      href="/QuestionBank"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
-                        Question Bank
-                      </p>
-                    </Link>
-                    <Accordion type="single" collapsible>
-                      <AccordionItem value="features">
-                        <AccordionTrigger className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
-                          Features
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          <div>
-                            <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
-                              Exams
-                            </p>
-                            {examsLinks.map((exam) => (
-                              <Link
-                                key={exam.title}
-                                href={exam.href}
-                                onClick={() => setMenuOpen(false)}
-                              >
-                                <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
-                                  {exam.title}
-                                </p>
-                              </Link>
-                            ))}
-                          </div>
-                          <div>
-                            <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
-                              Automation Tools
-                            </p>
-                            {components.map((component) => (
-                              <Link
-                                key={component.title}
-                                href={component.href}
-                                onClick={() => setMenuOpen(false)}
-                              >
-                                <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
-                                  {component.title}
-                                </p>
-                              </Link>
-                            ))}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="support">
-                        <AccordionTrigger className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
-                          Support
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          {supportLinks.map((link) => (
-                            <Link
-                              key={link.title}
-                              href={link.href}
-                              onClick={() => setMenuOpen(false)}
-                            >
+          </div>
+          <div className="md:hidden flex items-center">
+            <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+              <SheetTrigger asChild>
+                <button className="text-black focus:outline-none">
+                  <FontAwesomeIcon icon={faBars} size="lg" />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-3/4 sm:w-1/3">
+                <SheetHeader>
+                  <SheetTitle>Menu</SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col space-y-4">
+                  <Link href="/QuestionBank" onClick={() => setMenuOpen(false)}>
+                    <p className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
+                      Question Bank
+                    </p>
+                  </Link>
+                  <Accordion type="single" collapsible>
+                    <AccordionItem value="features">
+                      <AccordionTrigger className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
+                        Features
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div>
+                          <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">Exams</p>
+                          {examsLinks.map((exam) => (
+                            <Link key={exam.title} href={exam.href} onClick={() => setMenuOpen(false)}>
                               <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
-                                {link.title}
+                                {exam.title}
                               </p>
                             </Link>
                           ))}
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                    {session ? (
-                      <UserDropdown session={session} />
-                    ) : (
-                      <button
-                        className="rounded-full border border-black bg-white p-1.5 px-4 text-lg text-black transition-all hover:bg-black hover:text-white"
-                        onClick={() => {
-                          setShowSignInModal(true);
-                          setMenuOpen(false);
-                        }}
-                      >
-                        Sign In
-                      </button>
-                    )}
-                  </div>
-                </SheetContent>
-              </Sheet>
-            </div>
+                        </div>
+                        <div>
+                          <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">Automation Tools</p>
+                          {components.map((component) => (
+                            <Link key={component.title} href={component.href} onClick={() => setMenuOpen(false)}>
+                              <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
+                                {component.title}
+                              </p>
+                            </Link>
+                          ))}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="support">
+                      <AccordionTrigger className="text-center font-display text-2xl font-bold tracking-tight drop-shadow-sm">
+                        Support
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        {supportLinks.map((link) => (
+                          <Link key={link.title} href={link.href} onClick={() => setMenuOpen(false)}>
+                            <p className="text-center font-display text-lg font-medium tracking-tight drop-shadow-sm">
+                              {link.title}
+                            </p>
+                          </Link>
+                        ))}
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                  {session ? (
+                    <UserDropdown session={session} />
+                  ) : (
+                    <button
+                      className="rounded-full border border-black bg-white p-1.5 px-4 text-lg text-black transition-all hover:bg-black hover:text-white"
+                      onClick={() => {
+                        setShowSignInModal(true);
+                        setMenuOpen(false);
+                      }}
+                    >
+                      Sign In
+                    </button>
+                  )}
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
