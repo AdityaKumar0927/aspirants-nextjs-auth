@@ -1,4 +1,3 @@
-// /app/api/custom-user-answers/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
@@ -6,7 +5,7 @@ import { authOptions } from '../auth/[...nextauth]/options';
 
 const prisma = new PrismaClient();
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const session = await getServerSession(authOptions);
 

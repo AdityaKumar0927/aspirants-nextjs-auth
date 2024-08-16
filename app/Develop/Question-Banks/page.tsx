@@ -166,9 +166,9 @@ export default function Develop() {
   };
 
   return (
-    <div className="h-full w-full flex flex-col">
-      <div className="container flex justify-between items-center p-4 md:p-6">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Develop</h2>
+    <div className="h-full w-full p-24 -mt-32 flex flex-col">
+      <div className="container rounded-3xl flex bg-gray-100 w-full justify-between items-center p-4 md:p-6">
+        <h2 className="text-3xl tracking-tighter sm:text-5xl">Develop</h2>
         <div className="ml-auto flex space-x-2">
           <QuestionBankSelector
             questionBanks={questionBanks}
@@ -183,7 +183,9 @@ export default function Develop() {
           )}
         </div>
       </div>
+      <div className="w-full">
       <Separator />
+      </div>
       <div className="flex-1 flex flex-col items-center p-4 md:p-6">
         {!fileUploaded && (
           <div className="flex-1 flex items-center justify-center">
@@ -200,7 +202,7 @@ export default function Develop() {
                 onChange={handleManualJsonInput}
                 rows={20}
                 placeholder="Paste JSON here..."
-                className="flex-1"
+                className="flex-1 bg-black text-white rounded-2xl"
               />
               <div className="mt-4">
                 <FileUploadDemo handleFileUpload={handleFileUpload} />

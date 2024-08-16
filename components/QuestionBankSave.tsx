@@ -27,7 +27,7 @@ const QuestionBankSave: React.FC<QuestionBankSaveProps> = ({ onSave }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="secondary">Save</Button>
+        <Button>Save</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[475px]">
         <DialogHeader>
