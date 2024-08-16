@@ -112,16 +112,12 @@ const CustomQuestionBank: React.FC = () => {
     const fetchAllData = async () => {
       try {
         setLoading(true);
+
         let questionsData = await fetchData("/api/custom-questions");
-
-        // Debugging: Log fetched questions
-        console.log('Fetched questions:', questionsData);
-
-        // Handle user-specific data fetch
-        let userProgressData: any[] = [];
-        let userAnswersData: any[] = [];
-        let notesData: any[] = [];
-        let userPerformanceData: any[] = [];
+        let userProgressData = JSON.parse(localStorage.getItem('customUserProgressData') || 'null');
+        let userAnswersData = JSON.parse(localStorage.getItem('customUserAnswersData') || 'null');
+        let notesData = JSON.parse(localStorage.getItem('customNotesData') || 'null');
+        let userPerformanceData = JSON.parse(localStorage.getItem('customUserPerformanceData') || 'null');
 
         if (userId) {
           [userProgressData, userAnswersData, notesData, userPerformanceData] = await Promise.all([
@@ -130,13 +126,18 @@ const CustomQuestionBank: React.FC = () => {
             fetchData("/api/custom-notes"),
             fetchData("/api/custom-user-performance/get")
           ]);
+          
+          localStorage.setItem('customUserProgressData', JSON.stringify(userProgressData));
+          localStorage.setItem('customUserAnswersData', JSON.stringify(userAnswersData));
+          localStorage.setItem('customNotesData', JSON.stringify(notesData));
+          localStorage.setItem('customUserPerformanceData', JSON.stringify(userPerformanceData));
         }
 
         const mergedQuestions = questionsData.map((question: CustomQuestionType) => {
-          const progress = userProgressData.find((p) => p.questionId === question.questionId);
-          const userAnswer = userAnswersData.find((a: UserAnswer) => a.questionId === question.questionId);
-          const note = notesData.find((n) => n.questionId === question.questionId);
-          const performance = userPerformanceData.find((p: UserPerformance) => p.questionId === question.questionId);
+          const progress = userProgressData?.find((p: any) => p.questionId === question.questionId);
+          const userAnswer = userAnswersData?.find((a: UserAnswer) => a.questionId === question.questionId);
+          const note = notesData?.find((n: any) => n.questionId === question.questionId);
+          const performance = userPerformanceData?.find((p: UserPerformance) => p.questionId === question.questionId);
 
           if (userAnswer) {
             setSelectedOptions((prev) => ({
