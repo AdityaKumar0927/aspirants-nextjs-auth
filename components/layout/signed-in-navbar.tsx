@@ -123,7 +123,7 @@ export default function NavBar({ session }: { session: Session | null }) {
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="font-display text-sm text-black">Exams</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-3 lg:w-[500px]">
+                    <ul className="grid w-[300px] columns-4 gap-3 p-4 md:w-[400px] md:grid-cols-3 lg:w-[500px]">
                       <li>
                        
                         <ul>
@@ -178,7 +178,7 @@ export default function NavBar({ session }: { session: Session | null }) {
               </SheetTrigger>
               <SheetContent side="right" className="w-3/4 sm:w-1/3">
                 <SheetHeader>
-                  <SheetTitle>Menu</SheetTitle>
+                
                 </SheetHeader>
                 <div className="flex flex-col space-y-4">
                   <Link href="/QuestionBank" onClick={() => setMenuOpen(false)}>
