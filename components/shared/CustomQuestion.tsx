@@ -5,15 +5,14 @@ import { Checkbox } from "@/components/ui/checkbox";
 import MathRenderer from "@/components/layout/MathRenderer";
 import Modal from "@/components/shared/modal";
 import { LucideBookmark, BookOpen, LucideBot, MoreVertical } from "lucide-react";
-import { Switch } from "@headlessui/react";
-import Image from "next/image";
-import Tiptap from "@/components/layout/Tiptap";
-import Chat from "@/components/shared/Chat";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 import SettingsPopover from "@/components/ui/SettingsPopover";
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
-import { MorePopover } from "@/components/layout/MorePopover";
+import Image from "next/image";
+import Tiptap from "@/components/layout/Tiptap";
+import Chat from "@/components/shared/Chat";
+import { MorePopover } from "../layout/MorePopover";
 
 interface CustomQuestionType {
   questionId: string;
@@ -468,6 +467,7 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
                 </>
               )}
             </div>
+
           </div>
 
           {showAiChat && aiEnabled && <Chat questionText={question.text} />}

@@ -371,11 +371,11 @@ const Page = () => {
               <div className="flex items-center mb-4">
                 <div className="w-6 h-6"></div>
                 <h1
-                  className="animate-fade-up bg-gradient-to-br from-black to-black bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm sm:text-5xl sm:leading-[5rem]"
+                  className="animate-fade-up bg-gradient-to-br from-black to-black bg-clip-text text-center text-3xl tracking-tighter text-transparent opacity-0 drop-shadow-sm sm:text-6xl sm:leading-[5rem]"
                   style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
                 >
-                  Study For Your Exams With{" "}
-                  <div className="text-white text-gradient-to-br from-cyan-300 to-white">aspirants</div>
+                  Ease your Exam{" "}
+                  <div className="text-white text-gradient-to-br from-cyan-300 to-white">Prep</div>
                 </h1>
                 
               </div>
