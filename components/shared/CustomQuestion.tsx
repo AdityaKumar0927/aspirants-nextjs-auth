@@ -136,7 +136,7 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
 
   const saveNote = async () => {
     try {
-      const response = await fetch('/api/notes/save', {
+      const response = await fetch('/api/custom-notes/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ questionId: question.questionId, content: note }),
