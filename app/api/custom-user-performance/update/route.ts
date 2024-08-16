@@ -1,3 +1,5 @@
+
+// /app/api/custom-user-performance/update/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
@@ -31,7 +33,7 @@ export async function POST(request: Request) {
       engagementLevel,
       completed,
       reviewed,
-      lastAttempted,
+      lastAttempted
     } = await request.json();
 
     const existingPerformance = await prisma.customUserPerformance.findFirst({
@@ -59,7 +61,7 @@ export async function POST(request: Request) {
           engagementLevel,
           completed,
           reviewed,
-          lastAttempted,
+          lastAttempted
         },
       });
     } else {
