@@ -114,9 +114,6 @@ const CustomQuestionBank: React.FC = () => {
         setLoading(true);
         let questionsData = await fetchData("/api/custom-questions");
 
-        // Debugging: Log fetched questions
-        console.log('Fetched questions:', questionsData);
-
         // Handle user-specific data fetch
         let userProgressData: any[] = [];
         let userAnswersData: any[] = [];
