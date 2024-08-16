@@ -474,15 +474,15 @@ const Page = () => {
         </div>
       
 
-      
-      <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
+      <div className="-my-40 mb-20">
+      <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
         A Plethora of Exams
       </h4>
 
       <div className="max-w-5xl mx-auto px-8">
         <HoverEffect items={projects} />
       </div>
-
+     
 
       <motion.div
           animate={fadeInInView ? "animate" : "initial"}
@@ -513,7 +513,7 @@ const Page = () => {
             <ChevronRight className="size-4 translate-x-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
           </a>
         </motion.div>
-
+        </div>
       
         <div className="flex justify-between items-center mt-10">
         

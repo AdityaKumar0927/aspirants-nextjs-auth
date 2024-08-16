@@ -162,7 +162,7 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
 
   const saveProgress = async (questionId: string, field: string, value: boolean) => {
     try {
-      const response = await fetch(`/api/user-progress`, {
+      const response = await fetch(`/api/custom-user-progress`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ questionId, [field]: value }),

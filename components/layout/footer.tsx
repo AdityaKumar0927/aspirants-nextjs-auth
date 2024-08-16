@@ -116,11 +116,11 @@ export function Footer() {
             </a>
             <div className="max-w-sm">
               <div className="z-10 mt-4 flex w-full flex-col items-start text-left">
-                <p className="mt-2">
+                <p className="-my-2">
                   Use aspirants, save time.
                 </p>
                 <a
-                  href="/signup"
+                  href="/sign-in"
                   className={cn(
                     buttonVariants({
                       size: "lg",
