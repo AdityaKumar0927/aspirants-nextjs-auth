@@ -1,13 +1,19 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import CustomQuestion from "@/components/shared/CustomQuestion";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from "@/components/ui/tooltip";
 
+// Types and Interfaces
 interface CustomQuestionType {
   exam: string;
   questionId: string;
@@ -80,12 +86,14 @@ const isStringArray = (value: any): value is string[] => {
   return Array.isArray(value) && value.every((item) => typeof item === "string");
 };
 
+// Fetch data utility function
 const fetchData = async (url: string) => {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`Failed to fetch data from ${url}`);
   return response.json();
 };
 
+// Main Component
 const CustomQuestionBank: React.FC = () => {
   const [questions, setQuestions] = useState<CustomQuestionType[]>([]);
   const [filteredQuestions, setFilteredQuestions] = useState<CustomQuestionType[]>([]);
@@ -108,36 +116,32 @@ const CustomQuestionBank: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const userId = ""; // Add logic to retrieve user ID if signed in
 
+  // Fetching data and merging with local state
   useEffect(() => {
     const fetchAllData = async () => {
       try {
         setLoading(true);
-
         let questionsData = await fetchData("/api/custom-questions");
-        let userProgressData = JSON.parse(localStorage.getItem('customUserProgressData') || 'null');
-        let userAnswersData = JSON.parse(localStorage.getItem('customUserAnswersData') || 'null');
-        let notesData = JSON.parse(localStorage.getItem('customNotesData') || 'null');
-        let userPerformanceData = JSON.parse(localStorage.getItem('customUserPerformanceData') || 'null');
+
+        let userProgressData: any[] = [];
+        let userAnswersData: any[] = [];
+        let notesData: any[] = [];
+        let userPerformanceData: any[] = [];
 
         if (userId) {
           [userProgressData, userAnswersData, notesData, userPerformanceData] = await Promise.all([
             fetchData("/api/custom-user-progress"),
             fetchData("/api/custom-user-answers"),
             fetchData("/api/custom-notes"),
-            fetchData("/api/custom-user-performance/get")
+            fetchData("/api/custom-user-performance/get"),
           ]);
-          
-          localStorage.setItem('customUserProgressData', JSON.stringify(userProgressData));
-          localStorage.setItem('customUserAnswersData', JSON.stringify(userAnswersData));
-          localStorage.setItem('customNotesData', JSON.stringify(notesData));
-          localStorage.setItem('customUserPerformanceData', JSON.stringify(userPerformanceData));
         }
 
         const mergedQuestions = questionsData.map((question: CustomQuestionType) => {
-          const progress = userProgressData?.find((p: any) => p.questionId === question.questionId);
-          const userAnswer = userAnswersData?.find((a: UserAnswer) => a.questionId === question.questionId);
-          const note = notesData?.find((n: any) => n.questionId === question.questionId);
-          const performance = userPerformanceData?.find((p: UserPerformance) => p.questionId === question.questionId);
+          const progress = userProgressData.find((p) => p.questionId === question.questionId);
+          const userAnswer = userAnswersData.find((a: UserAnswer) => a.questionId === question.questionId);
+          const note = notesData.find((n) => n.questionId === question.questionId);
+          const performance = userPerformanceData.find((p: UserPerformance) => p.questionId === question.questionId);
 
           if (userAnswer) {
             setSelectedOptions((prev) => ({
@@ -191,9 +195,9 @@ const CustomQuestionBank: React.FC = () => {
         (!filters.years.length || filters.years.includes(question.year)) &&
         (!filters.types.length || filters.types.includes(question.type)) &&
         (question.text.toLowerCase().includes(searchQuery.toLowerCase()) ||
-         question.topic.toLowerCase().includes(searchQuery.toLowerCase()) ||
-         question.subtopic.toLowerCase().includes(searchQuery.toLowerCase()) ||
-         question.subject.toLowerCase().includes(searchQuery.toLowerCase()))
+          question.topic.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          question.subtopic.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          question.subject.toLowerCase().includes(searchQuery.toLowerCase()))
       );
     });
 
@@ -241,14 +245,14 @@ const CustomQuestionBank: React.FC = () => {
         });
         if (!response.ok) throw new Error("Failed to update user performance");
       } else {
-        const userPerformanceData = JSON.parse(localStorage.getItem('customUserPerformanceData') || '[]');
+        const userPerformanceData = JSON.parse(localStorage.getItem("customUserPerformanceData") || "[]");
         const index = userPerformanceData.findIndex((item: any) => item.questionId === questionId);
         if (index !== -1) {
           userPerformanceData[index] = { ...userPerformanceData[index], ...updatedFields };
         } else {
           userPerformanceData.push({ questionId, ...updatedFields });
         }
-        updateLocalStorage('customUserPerformanceData', userPerformanceData);
+        updateLocalStorage("customUserPerformanceData", userPerformanceData);
       }
     } catch (error) {
       console.error("Error updating user performance:", error);
@@ -265,14 +269,14 @@ const CustomQuestionBank: React.FC = () => {
         });
         if (!response.ok) throw new Error("Failed to save user answer");
       } else {
-        const userAnswersData = JSON.parse(localStorage.getItem('customUserAnswersData') || '[]');
+        const userAnswersData = JSON.parse(localStorage.getItem("customUserAnswersData") || "[]");
         const index = userAnswersData.findIndex((item: any) => item.questionId === questionId);
         if (index !== -1) {
           userAnswersData[index] = { questionId, selectedOption, isCorrect };
         } else {
           userAnswersData.push({ questionId, selectedOption, isCorrect });
         }
-        updateLocalStorage('customUserAnswersData', userAnswersData);
+        updateLocalStorage("customUserAnswersData", userAnswersData);
       }
     } catch (error) {
       console.error("Error saving user answer:", error);
@@ -333,8 +337,8 @@ const CustomQuestionBank: React.FC = () => {
       ...feedback,
       [questionId]: isCorrect ? "correct" : "incorrect",
     });
-    await updateUserPerformance(questionId, { 
-      lastAttempted: new Date().toISOString(), 
+    await updateUserPerformance(questionId, {
+      lastAttempted: new Date().toISOString(),
       completed: true,
       accuracy: isCorrect ? 100 : 0,
       firstAttemptSuccessRate: isCorrect ? 100 : 0,
@@ -362,14 +366,14 @@ const CustomQuestionBank: React.FC = () => {
         });
         if (!response.ok) throw new Error("Failed to save note");
       } else {
-        const notesData = JSON.parse(localStorage.getItem('customNotesData') || '[]');
+        const notesData = JSON.parse(localStorage.getItem("customNotesData") || "[]");
         const index = notesData.findIndex((item: any) => item.questionId === questionId);
         if (index !== -1) {
           notesData[index] = { questionId, content: note };
         } else {
           notesData.push({ questionId, content: note });
         }
-        updateLocalStorage('customNotesData', notesData);
+        updateLocalStorage("customNotesData", notesData);
       }
     } catch (error) {
       console.error("Error saving note:", error);
@@ -386,9 +390,9 @@ const CustomQuestionBank: React.FC = () => {
         });
         if (!response.ok) throw new Error("Failed to delete note");
       } else {
-        const notesData = JSON.parse(localStorage.getItem('customNotesData') || '[]');
+        const notesData = JSON.parse(localStorage.getItem("customNotesData") || "[]");
         const updatedNotes = notesData.filter((item: any) => item.questionId !== questionId);
-        updateLocalStorage('customNotesData', updatedNotes);
+        updateLocalStorage("customNotesData", updatedNotes);
       }
     } catch (error) {
       console.error("Error deleting note:", error);
