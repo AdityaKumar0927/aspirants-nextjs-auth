@@ -6,13 +6,13 @@ import MathRenderer from "@/components/layout/MathRenderer";
 import Modal from "@/components/shared/modal";
 import { LucideBookmark, BookOpen, LucideBot, MoreVertical } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
-import { ToastAction } from "@/components/ui/toast";
-import { useToast } from "@/components/ui/use-toast";
-import SettingsPopover from "@/components/ui/SettingsPopover";
 import Image from "next/image";
 import Tiptap from "@/components/layout/Tiptap";
 import Chat from "@/components/shared/Chat";
-import { MorePopover } from "../layout/MorePopover";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
+import SettingsPopover from "@/components/ui/SettingsPopover";
+import { MorePopover } from "@/components/layout/MorePopover";
 
 interface CustomQuestionType {
   questionId: string;
@@ -79,37 +79,25 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null);
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(100);
-  const [showVolumeControl, setShowVolumeControl] = useState(false);
-  const [userQuestion, setUserQuestion] = useState('');
-  const [aiResponse, setAiResponse] = useState('');
   const [showEditor, setShowEditor] = useState(false);
-  const [aiEnabled, setAiEnabled] = useState(true);
-  const [notesEnabled, setNotesEnabled] = useState(true);
-  const [timerEnabled, setTimerEnabled] = useState(false);
-  const [hintsEnabled, setHintsEnabled] = useState(true);
-  const [darkModeEnabled, setDarkModeEnabled] = useState(false);
-  const [progressTrackingEnabled, setProgressTrackingEnabled] = useState(true);
   const [showAiChat, setShowAiChat] = useState(false);
-
   const { toast, dismiss } = useToast();
+  const [notesEnabled, setNotesEnabled] = useState(true);  // Define notesEnabled state
+  const [aiEnabled, setAiEnabled] = useState(true);        // Define aiEnabled state
 
   useEffect(() => {
     setLocalSelectedOption(selectedOption || null);
   }, [selectedOption]);
 
-  const handleOptionClickLocal = (option: string) => {
+  const handleOptionClickLocal = async (option: string) => {
     if (localSelectedOption !== option) {
       setLocalSelectedOption(option);
-      handleOptionClick(question.questionId, option, question.correctOption || '');
-      saveProgress(question.questionId, 'completed', true);
+      await handleOptionClick(question.questionId, option, question.correctOption || '');
     }
   };
 
-  const handleNumericalSubmitLocal = () => {
-    handleNumericalSubmit(question.questionId, numericalAnswer || '', question.correctOption || '');
-    saveProgress(question.questionId, 'completed', true);
+  const handleNumericalSubmitLocal = async () => {
+    await handleNumericalSubmit(question.questionId, numericalAnswer || '', question.correctOption || '');
   };
 
   const toggleMarkscheme = () => {
@@ -117,64 +105,8 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
     handleMarkschemeToggle(question.questionId);
   };
 
-  const handleMarkschemeSwitch = () => {
-    setMarkschemeEnabled(!markschemeEnabled);
-  };
-
-  const handlePlayPause = () => {
-    setIsPlaying(!isPlaying);
-  };
-
-  const toggleVolumeControl = () => {
-    setShowVolumeControl(!showVolumeControl);
-  };
-
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVolume(Number(e.target.value));
-  };
-
-  const saveNote = async () => {
-    try {
-      const response = await fetch('/api/custom-notes/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId: question.questionId, content: note }),
-      });
-      if (!response.ok) throw new Error('Failed to save note');
-      alert('Note saved successfully!');
-    } catch (error) {
-      console.error('Error saving note:', error);
-      alert('Failed to save note');
-    }
-  };
-
-  const deleteNote = async () => {
-    try {
-      await handleDeleteNote(question.questionId);
-      alert('Note deleted successfully!');
-      handleNoteChange(question.questionId, '');
-    } catch (error) {
-      console.error('Error deleting note:', error);
-      alert('Failed to delete note');
-    }
-  };
-
-  const saveProgress = async (questionId: string, field: string, value: boolean) => {
-    try {
-      const response = await fetch(`/api/custom-user-progress`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId, [field]: value }),
-      });
-      if (!response.ok) throw new Error('Failed to save progress');
-    } catch (error) {
-      console.error('Error saving progress:', error);
-    }
-  };
-
   const handleMarkCompleteLocal = async (questionId: string) => {
     await handleMarkComplete(questionId);
-    saveProgress(questionId, 'completed', !isMarkedComplete);
     toast({
       title: "Question Completed",
       description: `You have completed question ${questionId}.`,
@@ -185,7 +117,6 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
 
   const handleMarkForReviewLocal = async (questionId: string) => {
     await handleMarkForReview(questionId);
-    saveProgress(questionId, 'reviewed', !isMarkedForReview);
     toast({
       title: "Question Bookmarked",
       description: `You have bookmarked question ${questionId}.`,
@@ -196,14 +127,40 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
 
   const undoMarkComplete = async (questionId: string) => {
     await handleMarkComplete(questionId);
-    saveProgress(questionId, 'completed', false);
     dismiss();
   };
 
   const undoMarkForReview = async (questionId: string) => {
     await handleMarkForReview(questionId);
-    saveProgress(questionId, 'reviewed', false);
     dismiss();
+  };
+
+  const saveNote = async () => {
+    try {
+      const response = await fetch('/api/custom-notes/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId: question.questionId, content: note }),
+      });
+      if (!response.ok) throw new Error('Failed to save note');
+      toast({ title: 'Note saved successfully!' });
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('Error saving note:', errorMessage);
+      toast({ title: 'Failed to save note', description: errorMessage });
+    }
+  };
+
+  const deleteNote = async () => {
+    try {
+      await handleDeleteNote(question.questionId);
+      toast({ title: 'Note deleted successfully!' });
+      handleNoteChange(question.questionId, '');
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('Error deleting note:', errorMessage);
+      toast({ title: 'Failed to delete note', description: errorMessage });
+    }
   };
 
   return (
@@ -267,21 +224,21 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
                 </Tooltip>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                  <SettingsPopover
+                    <SettingsPopover
                       markschemeEnabled={markschemeEnabled}
-                      setMarkschemeEnabled={handleMarkschemeSwitch}
+                      setMarkschemeEnabled={() => setMarkschemeEnabled(!markschemeEnabled)}
                       aiEnabled={aiEnabled}
                       setAiEnabled={setAiEnabled}
                       notesEnabled={notesEnabled}
                       setNotesEnabled={setNotesEnabled}
-                      timerEnabled={timerEnabled}
-                      setTimerEnabled={setTimerEnabled}
-                      hintsEnabled={hintsEnabled}
-                      setHintsEnabled={setHintsEnabled}
-                      darkModeEnabled={darkModeEnabled}
-                      setDarkModeEnabled={setDarkModeEnabled}
-                      progressTrackingEnabled={progressTrackingEnabled}
-                      setProgressTrackingEnabled={setProgressTrackingEnabled}
+                      timerEnabled={true}
+                      setTimerEnabled={() => {}}
+                      hintsEnabled={true}
+                      setHintsEnabled={() => {}}
+                      darkModeEnabled={true}
+                      setDarkModeEnabled={() => {}}
+                      progressTrackingEnabled={true}
+                      setProgressTrackingEnabled={() => {}}
                     />
                   </TooltipTrigger>
                   <TooltipContent>Settings</TooltipContent>
@@ -467,10 +424,10 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
                 </>
               )}
             </div>
-
+              
+            {showAiChat && aiEnabled && <div className="p-10 border-2 rounded-3x1 scroll-m-6"> <Chat questionText={question.text} /></div>}
+            
           </div>
-
-          {showAiChat && aiEnabled && <Chat questionText={question.text} />}
         </div>
       </div>
     </TooltipProvider>
