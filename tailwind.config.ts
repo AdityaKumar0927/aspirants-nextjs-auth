@@ -34,7 +34,7 @@ const config = {
         move: "move 5s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        pulse: "pulse var(--duration) ease-out infinite", // Added pulse animation
+        pulse: "pulse var(--duration) ease-out infinite",
       },
       keyframes: {
         scroll: {
@@ -133,8 +133,8 @@ const config = {
           to: { height: "0" },
         },
         pulse: {
-          "0%, 100%": { boxShadow: "0 0 0 0 var(--pulse-color)" }, // Added pulse keyframes
-          "50%": { boxShadow: "0 0 0 8px var(--pulse-color)" }, // Added pulse keyframes
+          "0%, 100%": { boxShadow: "0 0 0 0 var(--pulse-color)" },
+          "50%": { boxShadow: "0 0 0 8px var(--pulse-color)" },
         },
       },
       colors: {
@@ -194,7 +194,13 @@ const config = {
   ],
 };
 
-function addVariablesForColors({ addBase, theme }: { addBase: (base: object) => void, theme: (path: string) => any }) {
+function addVariablesForColors({
+  addBase,
+  theme,
+}: {
+  addBase: (base: Record<string, any>) => void;
+  theme: (path: string) => Record<string, any>;
+}) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
