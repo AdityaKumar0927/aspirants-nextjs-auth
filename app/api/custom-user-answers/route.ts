@@ -1,4 +1,3 @@
-// /app/api/custom-user-answers/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
@@ -14,13 +13,13 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const customUserAnswers = await prisma.customUserAnswer.findMany({
+    const userAnswers = await prisma.customUserAnswer.findMany({
       where: { userId: session.user.id },
     });
 
-    return NextResponse.json(customUserAnswers);
+    return NextResponse.json(userAnswers);
   } catch (error) {
-    console.error('Error fetching custom user answers:', error);
+    console.error('Error fetching user answers:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -35,7 +34,7 @@ export async function POST(request: Request) {
 
     const { questionId, selectedOption, isCorrect } = await request.json();
 
-    const customUserAnswer = await prisma.customUserAnswer.upsert({
+    const userAnswer = await prisma.customUserAnswer.upsert({
       where: { userId_questionId: { userId: session.user.id, questionId } },
       update: {
         selectedOption,
@@ -49,9 +48,9 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json(customUserAnswer);
+    return NextResponse.json(userAnswer);
   } catch (error) {
-    console.error('Error saving custom user answer:', error);
+    console.error('Error saving user answer:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

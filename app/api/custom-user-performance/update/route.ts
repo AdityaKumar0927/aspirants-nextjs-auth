@@ -1,5 +1,3 @@
-
-// /app/api/custom-user-performance/update/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
@@ -40,9 +38,9 @@ export async function POST(request: Request) {
       where: { userId: session.user.id, questionId },
     });
 
-    let customUserPerformance;
+    let userPerformance;
     if (existingPerformance) {
-      customUserPerformance = await prisma.customUserPerformance.update({
+      userPerformance = await prisma.customUserPerformance.update({
         where: { id: existingPerformance.id },
         data: {
           correctAnswers,
@@ -65,7 +63,7 @@ export async function POST(request: Request) {
         },
       });
     } else {
-      customUserPerformance = await prisma.customUserPerformance.create({
+      userPerformance = await prisma.customUserPerformance.create({
         data: {
           userId: session.user.id,
           questionId,
@@ -90,9 +88,9 @@ export async function POST(request: Request) {
       });
     }
 
-    return NextResponse.json(customUserPerformance);
+    return NextResponse.json(userPerformance);
   } catch (error) {
-    console.error('Error updating custom user performance:', error);
+    console.error('Error updating user performance:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
