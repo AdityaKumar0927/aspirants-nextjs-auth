@@ -202,7 +202,7 @@ export default function Develop() {
                 onChange={handleManualJsonInput}
                 rows={20}
                 placeholder="Paste JSON here..."
-                className="flex-1 bg-black text-white rounded-2xl"
+                className="flex-1 bg-black text-green-500 rounded-2xl"
               />
               <div className="mt-4">
                 <FileUploadDemo handleFileUpload={handleFileUpload} />
