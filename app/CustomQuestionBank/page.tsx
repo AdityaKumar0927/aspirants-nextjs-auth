@@ -1,12 +1,17 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import CustomQuestion from "@/components/shared/CustomQuestion";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from "@/components/ui/tooltip";
 
 interface CustomQuestionType {
   exam: string;
@@ -86,9 +91,10 @@ const fetchData = async (url: string) => {
   return response.json();
 };
 
+const PAGE_SIZE = 10; // Number of questions to load per page
+
 const CustomQuestionBank: React.FC = () => {
   const [questions, setQuestions] = useState<CustomQuestionType[]>([]);
-  const [filteredQuestions, setFilteredQuestions] = useState<CustomQuestionType[]>([]);
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [dropdowns, setDropdowns] = useState({
@@ -100,12 +106,16 @@ const CustomQuestionBank: React.FC = () => {
     year: false,
     type: false,
   });
-  const [feedback, setFeedback] = useState<Record<string, string>>({});
-  const [numericalAnswers, setNumericalAnswers] = useState<Record<string, string>>({});
-  const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
-  const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
-  const [notes, setNotes] = useState<Record<string, string>>({});
+  const [state, setState] = useState({
+    feedback: {} as Record<string, string>,
+    numericalAnswers: {} as Record<string, string>,
+    showMarkscheme: {} as Record<string, boolean>,
+    selectedOptions: {} as Record<string, string>,
+    notes: {} as Record<string, string>,
+  });
   const [loading, setLoading] = useState<boolean>(true);
+  const [currentPage, setCurrentPage] = useState(1); // Pagination state
+
   const userId = ""; // Add logic to retrieve user ID if signed in
 
   useEffect(() => {
@@ -114,39 +124,51 @@ const CustomQuestionBank: React.FC = () => {
         setLoading(true);
 
         let questionsData = await fetchData("/api/custom-questions");
-        let userProgressData = JSON.parse(localStorage.getItem('customUserProgressData') || 'null');
-        let userAnswersData = JSON.parse(localStorage.getItem('customUserAnswersData') || 'null');
-        let notesData = JSON.parse(localStorage.getItem('customNotesData') || 'null');
-        let userPerformanceData = JSON.parse(localStorage.getItem('customUserPerformanceData') || 'null');
+        let userProgressData = JSON.parse(localStorage.getItem("customUserProgressData") || "null");
+        let userAnswersData = JSON.parse(localStorage.getItem("customUserAnswersData") || "null");
+        let notesData = JSON.parse(localStorage.getItem("customNotesData") || "null");
+        let userPerformanceData = JSON.parse(
+          localStorage.getItem("customUserPerformanceData") || "null"
+        );
 
         if (userId) {
-          [userProgressData, userAnswersData, notesData, userPerformanceData] = await Promise.all([
-            fetchData("/api/custom-user-progress"),
-            fetchData("/api/custom-user-answers"),
-            fetchData("/api/custom-notes"),
-            fetchData("/api/custom-user-performance/get")
-          ]);
-          
-          localStorage.setItem('customUserProgressData', JSON.stringify(userProgressData));
-          localStorage.setItem('customUserAnswersData', JSON.stringify(userAnswersData));
-          localStorage.setItem('customNotesData', JSON.stringify(notesData));
-          localStorage.setItem('customUserPerformanceData', JSON.stringify(userPerformanceData));
+          [userProgressData, userAnswersData, notesData, userPerformanceData] =
+            await Promise.all([
+              fetchData("/api/custom-user-progress"),
+              fetchData("/api/custom-user-answers"),
+              fetchData("/api/custom-notes"),
+              fetchData("/api/custom-user-performance/get"),
+            ]);
+
+          localStorage.setItem("customUserProgressData", JSON.stringify(userProgressData));
+          localStorage.setItem("customUserAnswersData", JSON.stringify(userAnswersData));
+          localStorage.setItem("customNotesData", JSON.stringify(notesData));
+          localStorage.setItem("customUserPerformanceData", JSON.stringify(userPerformanceData));
         }
 
         const mergedQuestions = questionsData.map((question: CustomQuestionType) => {
-          const progress = userProgressData?.find((p: any) => p.questionId === question.questionId);
-          const userAnswer = userAnswersData?.find((a: UserAnswer) => a.questionId === question.questionId);
+          const progress = userProgressData?.find(
+            (p: any) => p.questionId === question.questionId
+          );
+          const userAnswer = userAnswersData?.find(
+            (a: UserAnswer) => a.questionId === question.questionId
+          );
           const note = notesData?.find((n: any) => n.questionId === question.questionId);
-          const performance = userPerformanceData?.find((p: UserPerformance) => p.questionId === question.questionId);
+          const performance = userPerformanceData?.find(
+            (p: UserPerformance) => p.questionId === question.questionId
+          );
 
           if (userAnswer) {
-            setSelectedOptions((prev) => ({
-              ...prev,
-              [question.questionId]: userAnswer.selectedOption,
-            }));
-            setFeedback((prev) => ({
-              ...prev,
-              [question.questionId]: userAnswer.isCorrect ? "correct" : "incorrect",
+            setState((prevState) => ({
+              ...prevState,
+              selectedOptions: {
+                ...prevState.selectedOptions,
+                [question.questionId]: userAnswer.selectedOption,
+              },
+              feedback: {
+                ...prevState.feedback,
+                [question.questionId]: userAnswer.isCorrect ? "correct" : "incorrect",
+              },
             }));
           }
 
@@ -161,7 +183,6 @@ const CustomQuestionBank: React.FC = () => {
         });
 
         setQuestions(mergedQuestions);
-        setFilteredQuestions(mergedQuestions);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -172,15 +193,7 @@ const CustomQuestionBank: React.FC = () => {
     fetchAllData();
   }, [userId]);
 
-  const exams = Array.from(new Set(questions.map((q) => q.exam)));
-  const subjects = Array.from(new Set(questions.map((q) => q.subject)));
-  const topics = Array.from(new Set(questions.map((q) => q.topic)));
-  const subtopics = Array.from(new Set(questions.map((q) => q.subtopic)));
-  const difficulties = Array.from(new Set(questions.map((q) => q.difficulty)));
-  const years = Array.from(new Set(questions.map((q) => q.year)));
-  const types = Array.from(new Set(questions.map((q) => q.type)));
-
-  const filterQuestions = useCallback(() => {
+  const filteredQuestions = useMemo(() => {
     let filtered = questions.filter((question) => {
       return (
         (!filters.exams.length || filters.exams.includes(question.exam)) &&
@@ -191,9 +204,9 @@ const CustomQuestionBank: React.FC = () => {
         (!filters.years.length || filters.years.includes(question.year)) &&
         (!filters.types.length || filters.types.includes(question.type)) &&
         (question.text.toLowerCase().includes(searchQuery.toLowerCase()) ||
-         question.topic.toLowerCase().includes(searchQuery.toLowerCase()) ||
-         question.subtopic.toLowerCase().includes(searchQuery.toLowerCase()) ||
-         question.subject.toLowerCase().includes(searchQuery.toLowerCase()))
+          question.topic.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          question.subtopic.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          question.subject.toLowerCase().includes(searchQuery.toLowerCase()))
       );
     });
 
@@ -203,14 +216,20 @@ const CustomQuestionBank: React.FC = () => {
       filtered = filtered.filter((question) => question.completed);
     }
 
-    setFilteredQuestions(filtered);
+    return filtered;
   }, [questions, filters, searchQuery]);
 
-  useEffect(() => {
-    filterQuestions();
-  }, [filters, filterQuestions, searchQuery]);
+  const paginatedQuestions = useMemo(() => {
+    const startIndex = 0;
+    const endIndex = currentPage * PAGE_SIZE;
+    return filteredQuestions.slice(startIndex, endIndex);
+  }, [filteredQuestions, currentPage]);
 
-  const handleFilterChange = (tag: keyof FiltersType, value: string) => {
+  const handleLoadMore = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handleFilterChange = useCallback((tag: keyof FiltersType, value: string) => {
     setFilters((prevFilters) => {
       const filterValues = prevFilters[tag];
       if (isStringArray(filterValues)) {
@@ -222,184 +241,229 @@ const CustomQuestionBank: React.FC = () => {
       }
       return prevFilters;
     });
-  };
+  }, []);
 
   const updateLocalStorage = (key: string, value: any) => {
     localStorage.setItem(key, JSON.stringify(value));
   };
 
-  const updateUserPerformance = async (
-    questionId: string,
-    updatedFields: Partial<CustomQuestionType & Omit<UserPerformance, "timePerQuestion">>
-  ) => {
-    try {
-      if (userId) {
-        const response = await fetch("/api/custom-user-performance/update", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, ...updatedFields }),
-        });
-        if (!response.ok) throw new Error("Failed to update user performance");
-      } else {
-        const userPerformanceData = JSON.parse(localStorage.getItem('customUserPerformanceData') || '[]');
-        const index = userPerformanceData.findIndex((item: any) => item.questionId === questionId);
-        if (index !== -1) {
-          userPerformanceData[index] = { ...userPerformanceData[index], ...updatedFields };
+  const updateUserPerformance = useCallback(
+    async (
+      questionId: string,
+      updatedFields: Partial<CustomQuestionType & Omit<UserPerformance, "timePerQuestion">>
+    ) => {
+      try {
+        if (userId) {
+          const response = await fetch("/api/custom-user-performance/update", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ questionId, ...updatedFields }),
+          });
+          if (!response.ok) throw new Error("Failed to update user performance");
         } else {
-          userPerformanceData.push({ questionId, ...updatedFields });
+          const userPerformanceData = JSON.parse(
+            localStorage.getItem("customUserPerformanceData") || "[]"
+          );
+          const index = userPerformanceData.findIndex(
+            (item: any) => item.questionId === questionId
+          );
+          if (index !== -1) {
+            userPerformanceData[index] = { ...userPerformanceData[index], ...updatedFields };
+          } else {
+            userPerformanceData.push({ questionId, ...updatedFields });
+          }
+          updateLocalStorage("customUserPerformanceData", userPerformanceData);
         }
-        updateLocalStorage('customUserPerformanceData', userPerformanceData);
+      } catch (error) {
+        console.error("Error updating user performance:", error);
       }
-    } catch (error) {
-      console.error("Error updating user performance:", error);
-    }
-  };
+    },
+    [userId]
+  );
 
-  const saveUserAnswer = async (questionId: string, selectedOption: string, isCorrect: boolean) => {
-    try {
-      if (userId) {
-        const response = await fetch("/api/custom-user-answers", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, selectedOption, isCorrect }),
-        });
-        if (!response.ok) throw new Error("Failed to save user answer");
-      } else {
-        const userAnswersData = JSON.parse(localStorage.getItem('customUserAnswersData') || '[]');
-        const index = userAnswersData.findIndex((item: any) => item.questionId === questionId);
-        if (index !== -1) {
-          userAnswersData[index] = { questionId, selectedOption, isCorrect };
+  const saveUserAnswer = useCallback(
+    async (questionId: string, selectedOption: string, isCorrect: boolean) => {
+      try {
+        if (userId) {
+          const response = await fetch("/api/custom-user-answers", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ questionId, selectedOption, isCorrect }),
+          });
+          if (!response.ok) throw new Error("Failed to save user answer");
         } else {
-          userAnswersData.push({ questionId, selectedOption, isCorrect });
+          const userAnswersData = JSON.parse(localStorage.getItem("customUserAnswersData") || "[]");
+          const index = userAnswersData.findIndex((item: any) => item.questionId === questionId);
+          if (index !== -1) {
+            userAnswersData[index] = { questionId, selectedOption, isCorrect };
+          } else {
+            userAnswersData.push({ questionId, selectedOption, isCorrect });
+          }
+          updateLocalStorage("customUserAnswersData", userAnswersData);
         }
-        updateLocalStorage('customUserAnswersData', userAnswersData);
+      } catch (error) {
+        console.error("Error saving user answer:", error);
       }
-    } catch (error) {
-      console.error("Error saving user answer:", error);
-    }
-  };
+    },
+    [userId]
+  );
 
-  const handleMarkComplete = async (questionId: string, isComplete: boolean) => {
-    await updateUserPerformance(questionId, { completed: isComplete });
+  const handleMarkComplete = useCallback(
+    async (questionId: string, isComplete: boolean) => {
+      await updateUserPerformance(questionId, { completed: isComplete });
 
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) => (q.questionId === questionId ? { ...q, completed: isComplete } : q))
-    );
-  };
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: isComplete } : q
+        )
+      );
+    },
+    [updateUserPerformance]
+  );
 
-  const handleMarkForReview = async (questionId: string, isReviewed: boolean) => {
-    await updateUserPerformance(questionId, { reviewed: isReviewed });
+  const handleMarkForReview = useCallback(
+    async (questionId: string, isReviewed: boolean) => {
+      await updateUserPerformance(questionId, { reviewed: isReviewed });
 
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) => (q.questionId === questionId ? { ...q, reviewed: isReviewed } : q))
-    );
-  };
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
+        )
+      );
+    },
+    [updateUserPerformance]
+  );
 
-  const handleOptionClick = async (questionId: string, option: string, correctOption: string) => {
-    const isCorrect = option === correctOption;
-    setFeedback({
-      ...feedback,
-      [questionId]: isCorrect ? "correct" : "incorrect",
-    });
+  const handleOptionClick = useCallback(
+    async (questionId: string, option: string, correctOption: string) => {
+      const isCorrect = option === correctOption;
+      setState((prevState) => ({
+        ...prevState,
+        feedback: {
+          ...prevState.feedback,
+          [questionId]: isCorrect ? "correct" : "incorrect",
+        },
+        selectedOptions: {
+          ...prevState.selectedOptions,
+          [questionId]: option,
+        },
+      }));
 
-    setSelectedOptions({
-      ...selectedOptions,
-      [questionId]: option,
-    });
+      const updatedFields = {
+        correctAnswers: isCorrect ? 1 : 0,
+        incorrectAnswers: !isCorrect ? 1 : 0,
+        uniqueQuestions: 1,
+        questionsAttempted: 1,
+        lastAttempted: new Date().toISOString(),
+        completed: true,
+        accuracy: isCorrect ? 100 : 0, // Update as per your logic
+        firstAttemptSuccessRate: isCorrect ? 100 : 0, // Update as per your logic
+        reattemptAccuracy: isCorrect ? 100 : 0, // Update as per your logic
+        // Add other fields as necessary
+      };
 
-    const updatedFields = {
-      correctAnswers: isCorrect ? 1 : 0,
-      incorrectAnswers: !isCorrect ? 1 : 0,
-      uniqueQuestions: 1,
-      questionsAttempted: 1,
-      lastAttempted: new Date().toISOString(),
-      completed: true,
-      accuracy: isCorrect ? 100 : 0,
-      firstAttemptSuccessRate: isCorrect ? 100 : 0,
-      reattemptAccuracy: isCorrect ? 100 : 0,
-    };
+      await updateUserPerformance(questionId, updatedFields);
+      await saveUserAnswer(questionId, option, isCorrect);
 
-    await updateUserPerformance(questionId, updatedFields);
-    await saveUserAnswer(questionId, option, isCorrect);
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: true } : q
+        )
+      );
+    },
+    [saveUserAnswer, updateUserPerformance]
+  );
 
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) => (q.questionId === questionId ? { ...q, completed: true } : q))
-    );
-  };
+  const handleNumericalSubmit = useCallback(
+    async (questionId: string, userAnswer: string, correctAnswer: string) => {
+      const isCorrect = userAnswer === correctAnswer;
+      setState((prevState) => ({
+        ...prevState,
+        feedback: {
+          ...prevState.feedback,
+          [questionId]: isCorrect ? "correct" : "incorrect",
+        },
+      }));
+      await updateUserPerformance(questionId, {
+        lastAttempted: new Date().toISOString(),
+        completed: true,
+        accuracy: isCorrect ? 100 : 0, // Update as per your logic
+        firstAttemptSuccessRate: isCorrect ? 100 : 0, // Update as per your logic
+        reattemptAccuracy: isCorrect ? 100 : 0, // Update as per your logic
+      });
+      await saveUserAnswer(questionId, userAnswer, isCorrect);
 
-  const handleNumericalSubmit = async (questionId: string, userAnswer: string, correctAnswer: string) => {
-    const isCorrect = userAnswer === correctAnswer;
-    setFeedback({
-      ...feedback,
-      [questionId]: isCorrect ? "correct" : "incorrect",
-    });
-    await updateUserPerformance(questionId, { 
-      lastAttempted: new Date().toISOString(), 
-      completed: true,
-      accuracy: isCorrect ? 100 : 0,
-      firstAttemptSuccessRate: isCorrect ? 100 : 0,
-      reattemptAccuracy: isCorrect ? 100 : 0,
-    });
-    await saveUserAnswer(questionId, userAnswer, isCorrect);
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: true } : q
+        )
+      );
+    },
+    [saveUserAnswer, updateUserPerformance]
+  );
 
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) => (q.questionId === questionId ? { ...q, completed: true } : q))
-    );
-  };
+  const handleNoteChange = useCallback(
+    async (questionId: string, note: string) => {
+      setState((prevState) => ({
+        ...prevState,
+        notes: {
+          ...prevState.notes,
+          [questionId]: note,
+        },
+      }));
 
-  const handleNoteChange = async (questionId: string, note: string) => {
-    setNotes({
-      ...notes,
-      [questionId]: note,
-    });
-
-    try {
-      if (userId) {
-        const response = await fetch("/api/custom-notes/save", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, content: note }),
-        });
-        if (!response.ok) throw new Error("Failed to save note");
-      } else {
-        const notesData = JSON.parse(localStorage.getItem('customNotesData') || '[]');
-        const index = notesData.findIndex((item: any) => item.questionId === questionId);
-        if (index !== -1) {
-          notesData[index] = { questionId, content: note };
+      try {
+        if (userId) {
+          const response = await fetch("/api/custom-notes/save", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ questionId, content: note }),
+          });
+          if (!response.ok) throw new Error("Failed to save note");
         } else {
-          notesData.push({ questionId, content: note });
+          const notesData = JSON.parse(localStorage.getItem("customNotesData") || "[]");
+          const index = notesData.findIndex((item: any) => item.questionId === questionId);
+          if (index !== -1) {
+            notesData[index] = { questionId, content: note };
+          } else {
+            notesData.push({ questionId, content: note });
+          }
+          updateLocalStorage("customNotesData", notesData);
         }
-        updateLocalStorage('customNotesData', notesData);
+      } catch (error) {
+        console.error("Error saving note:", error);
       }
-    } catch (error) {
-      console.error("Error saving note:", error);
-    }
-  };
+    },
+    [userId]
+  );
 
-  const handleDeleteNote = async (questionId: string) => {
-    try {
-      if (userId) {
-        const response = await fetch("/api/custom-notes/delete", {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId }),
-        });
-        if (!response.ok) throw new Error("Failed to delete note");
-      } else {
-        const notesData = JSON.parse(localStorage.getItem('customNotesData') || '[]');
-        const updatedNotes = notesData.filter((item: any) => item.questionId !== questionId);
-        updateLocalStorage('customNotesData', updatedNotes);
+  const handleDeleteNote = useCallback(
+    async (questionId: string) => {
+      try {
+        if (userId) {
+          const response = await fetch("/api/custom-notes/delete", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ questionId }),
+          });
+          if (!response.ok) throw new Error("Failed to delete note");
+        } else {
+          const notesData = JSON.parse(localStorage.getItem("customNotesData") || "[]");
+          const updatedNotes = notesData.filter((item: any) => item.questionId !== questionId);
+          updateLocalStorage("customNotesData", updatedNotes);
+        }
+      } catch (error) {
+        console.error("Error deleting note:", error);
       }
-    } catch (error) {
-      console.error("Error deleting note:", error);
-    }
 
-    setNotes((prevNotes) => {
-      const updatedNotes = { ...prevNotes };
-      delete updatedNotes[questionId];
-      return updatedNotes;
-    });
-  };
+      setState((prevState) => {
+        const updatedNotes = { ...prevState.notes };
+        delete updatedNotes[questionId];
+        return { ...prevState, notes: updatedNotes };
+      });
+    },
+    [userId]
+  );
 
   if (loading) {
     return (
@@ -416,11 +480,13 @@ const CustomQuestionBank: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map((filterType) => (
-              <div key={filterType} className="flex items-center space-x-2">
-                <Skeleton height={40} width={120} />
-              </div>
-            ))}
+            {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map(
+              (filterType) => (
+                <div key={filterType} className="flex items-center space-x-2">
+                  <Skeleton height={40} width={120} />
+                </div>
+              )
+            )}
           </div>
 
           <div>
@@ -481,33 +547,46 @@ const CustomQuestionBank: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map((filterType) => (
+            {[
+              "exams",
+              "subjects",
+              "topics",
+              "subtopics",
+              "difficulties",
+              "years",
+              "types",
+            ].map((filterType) => (
               <Tooltip key={filterType}>
                 <TooltipTrigger asChild>
                   <Popover
                     content={
                       <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                        {(filterType === "exams"
-                          ? exams
-                          : filterType === "subjects"
-                          ? subjects
-                          : filterType === "topics"
-                          ? topics
-                          : filterType === "subtopics"
-                          ? subtopics
-                          : filterType === "difficulties"
-                          ? difficulties
-                          : filterType === "years"
-                          ? years
-                          : types
+                        {(
+                          filterType === "exams"
+                            ? Array.from(new Set(questions.map((q) => q.exam)))
+                            : filterType === "subjects"
+                            ? Array.from(new Set(questions.map((q) => q.subject)))
+                            : filterType === "topics"
+                            ? Array.from(new Set(questions.map((q) => q.topic)))
+                            : filterType === "subtopics"
+                            ? Array.from(new Set(questions.map((q) => q.subtopic)))
+                            : filterType === "difficulties"
+                            ? Array.from(new Set(questions.map((q) => q.difficulty)))
+                            : filterType === "years"
+                            ? Array.from(new Set(questions.map((q) => q.year)))
+                            : Array.from(new Set(questions.map((q) => q.type)))
                         ).map((value: string) => (
                           <div key={value} className="flex items-center">
                             <input
                               type="checkbox"
                               id={`${filterType}-${value}`}
                               className="mr-2"
-                              checked={(filters[filterType as keyof FiltersType] as string[] || []).includes(value)}
-                              onChange={() => handleFilterChange(filterType as keyof FiltersType, value)}
+                              checked={(
+                                filters[filterType as keyof FiltersType] as string[] || []
+                              ).includes(value)}
+                              onChange={() =>
+                                handleFilterChange(filterType as keyof FiltersType, value)
+                              }
                             />
                             <label
                               htmlFor={`${filterType}-${value}`}
@@ -540,7 +619,9 @@ const CustomQuestionBank: React.FC = () => {
                       <p className="text-gray-600">
                         {isStringArray(filters[filterType as keyof FiltersType])
                           ? (filters[filterType as keyof FiltersType] as string[]).length
-                            ? `${(filters[filterType as keyof FiltersType] as string[]).length} selected`
+                            ? `${
+                                (filters[filterType as keyof FiltersType] as string[]).length
+                              } selected`
                             : filterType.charAt(0).toUpperCase() + filterType.slice(1)
                           : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                       </p>
@@ -557,43 +638,62 @@ const CustomQuestionBank: React.FC = () => {
             ))}
           </div>
 
-          {filteredQuestions.length > 0 ? (
-            filteredQuestions.map((question) => (
-              <CustomQuestion
-                key={question.questionId}
-                question={question}
-                feedback={feedback[question.questionId]}
-                selectedOption={selectedOptions[question.questionId]}
-                numericalAnswer={numericalAnswers[question.questionId]}
-                showMarkscheme={showMarkscheme[question.questionId]}
-                handleOptionClick={(questionId, option, correctOption) =>
-                  handleOptionClick(questionId, option, correctOption)
-                }
-                handleNumericalSubmit={handleNumericalSubmit}
-                handleNumericalChange={(questionId, value) => {
-                  setNumericalAnswers({ ...numericalAnswers, [questionId]: value });
-                }}
-                handleMarkschemeToggle={() =>
-                  setShowMarkscheme((prev) => ({
-                    ...prev,
-                    [question.questionId]: !prev[question.questionId],
-                  }))
-                }
-                handleMarkForReview={() =>
-                  handleMarkForReview(question.questionId, !question.reviewed)
-                }
-                handleMarkComplete={() =>
-                  handleMarkComplete(question.questionId, !question.completed)
-                }
-                isMarkedForReview={question.reviewed}
-                isMarkedComplete={question.completed}
-                markschemesDisabled={false}
-                note={notes[question.questionId] || ""}
-                handleNoteChange={handleNoteChange}
-                userId={userId}
-                handleDeleteNote={handleDeleteNote}
-              />
-            ))
+          {paginatedQuestions.length > 0 ? (
+            <>
+              {paginatedQuestions.map((question) => (
+                <CustomQuestion
+                  key={question.questionId}
+                  question={question}
+                  feedback={state.feedback[question.questionId]}
+                  selectedOption={state.selectedOptions[question.questionId]}
+                  numericalAnswer={state.numericalAnswers[question.questionId]}
+                  showMarkscheme={state.showMarkscheme[question.questionId]}
+                  handleOptionClick={(questionId, option, correctOption) =>
+                    handleOptionClick(questionId, option, correctOption)
+                  }
+                  handleNumericalSubmit={handleNumericalSubmit}
+                  handleNumericalChange={(questionId, value) => {
+                    setState((prevState) => ({
+                      ...prevState,
+                      numericalAnswers: {
+                        ...prevState.numericalAnswers,
+                        [questionId]: value,
+                      },
+                    }));
+                  }}
+                  handleMarkschemeToggle={() =>
+                    setState((prevState) => ({
+                      ...prevState,
+                      showMarkscheme: {
+                        ...prevState.showMarkscheme,
+                        [question.questionId]: !prevState.showMarkscheme[question.questionId],
+                      },
+                    }))
+                  }
+                  handleMarkForReview={() =>
+                    handleMarkForReview(question.questionId, !question.reviewed)
+                  }
+                  handleMarkComplete={() =>
+                    handleMarkComplete(question.questionId, !question.completed)
+                  }
+                  isMarkedForReview={question.reviewed}
+                  isMarkedComplete={question.completed}
+                  markschemesDisabled={false}
+                  note={state.notes[question.questionId] || ""}
+                  handleNoteChange={handleNoteChange}
+                  userId={userId}
+                  handleDeleteNote={handleDeleteNote}
+                />
+              ))}
+              {paginatedQuestions.length < filteredQuestions.length && (
+                <button
+                  onClick={handleLoadMore}
+                  className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md"
+                >
+                  Load More
+                </button>
+              )}
+            </>
           ) : (
             <p className="text-red-400">No questions found with the selected filters.</p>
           )}
