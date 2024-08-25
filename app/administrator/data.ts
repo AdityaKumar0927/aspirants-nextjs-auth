@@ -10,7 +10,7 @@ export async function getOrders() {
   return [
     {
       id: 3000,
-      url: '/orders/3000',
+      url: '/administrator/orders/3000',
       date: 'May 9, 2024',
       amount: {
         usd: '$80.00',
