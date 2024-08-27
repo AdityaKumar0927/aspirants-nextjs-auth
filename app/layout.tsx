@@ -11,7 +11,7 @@ import { TooltipProvider } from '@radix-ui/react-tooltip';
 import Bar from '@/components/layout/Bar';
 import { Toaster } from "@/components/ui/toaster";
 import { LoadingProvider } from "@/components/layout/LoadingContext";
-import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"; 
+import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext";
 
 config.autoAddCss = false;
 
@@ -35,8 +35,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-      <link rel="preconnect" href="https://rsms.me/" />
-      <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+        <link rel="preconnect" href="https://rsms.me/" />
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         <script
           async
           id="MathJax-script"
@@ -97,7 +97,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
                 {children}
               </main>
-              {userId && <Bar userId={userId} />} {/* Pass userId as a prop */}
+              {/* Render the Bar for both signed-in and non-signed-in users */}
+              <Bar userId={userId} />
               <Footer />
               <VercelAnalytics />
             </TooltipProvider>

@@ -1,4 +1,3 @@
-// @/components/shared/Question.tsx
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -269,7 +268,7 @@ const Question: React.FC<QuestionProps> = ({
                 </Tooltip>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                  <SettingsPopover
+                    <SettingsPopover
                       markschemeEnabled={markschemeEnabled}
                       setMarkschemeEnabled={handleMarkschemeSwitch}
                       aiEnabled={aiEnabled}
@@ -469,11 +468,11 @@ const Question: React.FC<QuestionProps> = ({
                 </>
               )}
             </div>
-          </div>
               
           {showAiChat && aiEnabled && <div className="p-10 border-2 rounded-3x1 scroll-m-6"> <Chat questionText={question.text} /></div>}
           
         </div>
+      </div>
       </div>
     </TooltipProvider>
   );

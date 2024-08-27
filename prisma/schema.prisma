@@ -56,6 +56,7 @@ model User {
   customUserProgresses  CustomUserProgress[]
   customUserAnswers     CustomUserAnswer[]
   customUserPerformances CustomUserPerformance[]
+  issues                Issue[]                @relation("UserIssues")
 }
 
 model VerificationToken {
@@ -273,4 +274,48 @@ model CustomQuestion {
   userPerformances      CustomUserPerformance[]
   customQuestionBankId  String?
   customQuestionBank    CustomQuestionBank?   @relation(fields: [customQuestionBankId], references: [id], onDelete: Cascade, name: "CustomQuestionBankQuestions")
+}
+
+model Issue {
+  id              String           @id @default(cuid())
+  title           String
+  description     String
+  status          IssueStatus      @default(OPEN)
+  priority        IssuePriority    @default(MEDIUM)
+  categoryId      String?
+  category        IssueCategory?   @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  comments        IssueComment[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  createdById     String
+  createdBy       User             @relation(fields: [createdById], references: [id], onDelete: Cascade, name: "UserIssues")
+}
+
+model IssueComment {
+  id        String   @id @default(cuid())
+  content   String
+  issueId   String
+  issue     Issue    @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  createdBy String
+}
+
+model IssueCategory {
+  id    String   @id @default(cuid())
+  name  String   @unique
+  issues Issue[]
+}
+
+enum IssueStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+enum IssuePriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
 }

@@ -2,20 +2,20 @@ import { Avatar } from '@/components/administrator-ui/avatar'
 import { Button } from '@/components/administrator-ui/button'
 import { Heading } from '@/components/administrator-ui/heading'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/administrator-ui/table'
-import { getOrders } from '../data'
+import { getissues } from '../data'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Orders',
+  title: 'issues',
 }
 
-export default async function Orders() {
-  let orders = await getOrders()
+export default async function issues() {
+  let issues = await getissues()
 
   return (
     <>
       <div className="flex items-end justify-between gap-4">
-        <Heading>Orders</Heading>
+        <Heading>issues</Heading>
         <Button className="-my-0.5">Create order</Button>
       </div>
       <Table className="mt-8 [--gutter:theme(spacing.6)] lg:[--gutter:theme(spacing.10)]">
@@ -29,7 +29,7 @@ export default async function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders.map((order) => (
+          {issues.map((order) => (
             <TableRow key={order.id} href={order.url} title={`Order #${order.id}`}>
               <TableCell>{order.id}</TableCell>
               <TableCell className="text-zinc-500">{order.date}</TableCell>

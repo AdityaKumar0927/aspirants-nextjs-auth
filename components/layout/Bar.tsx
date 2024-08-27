@@ -11,6 +11,7 @@ import { NoteApp } from "@/components/shared/NoteApp";
 import Stats from "@/components/shared/Stats";
 import { useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
+import DashboardContent from "@/components/home/DashboardContent"; // Import the sample DashboardContent
 
 // Define the type for the userId prop
 interface BarProps {
@@ -21,8 +22,6 @@ export default function Bar({ userId }: BarProps) {
   const [showNoteModal, setShowNoteModal] = useState(false);
   const [showDashboardModal, setShowDashboardModal] = useState(false);
   const mouseX = useMotionValue(Infinity);
-
-  if (!userId) return null; // Return null if user is not signed in
 
   return (
     <>
@@ -83,7 +82,11 @@ export default function Bar({ userId }: BarProps) {
       </AnimatedModal>
 
       <AnimatedModal showModal={showDashboardModal} setShowModal={setShowDashboardModal}>
-        <Stats />
+        {userId ? (
+          <Stats />  // For signed-in users, show the Stats component with their data
+        ) : (
+          <DashboardContent />  // For non-signed-in users, show the sample dashboard content
+        )}
       </AnimatedModal>
     </>
   );

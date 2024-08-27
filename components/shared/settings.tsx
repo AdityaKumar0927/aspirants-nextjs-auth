@@ -46,7 +46,7 @@ export function Dashboard() {
             href="#"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
-            Orders
+            issues
           </Link>
           <Link
             href="#"
@@ -97,7 +97,7 @@ export function Dashboard() {
                 href="#"
                 className="text-muted-foreground hover:text-foreground"
               >
-                Orders
+                issues
               </Link>
               <Link
                 href="#"
