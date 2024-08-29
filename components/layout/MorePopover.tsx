@@ -28,7 +28,7 @@ import { useToast } from "@/components/ui/use-toast";
 export function MorePopover() {
   const [openPopover, setOpenPopover] = useState(false);
   const [area, setArea] = useState("billing");
-  const [securityLevel, setSecurityLevel] = useState("2");
+  const [securityLevel, setSecurityLevel] = useState("MEDIUM"); // Defaulting to a valid enum value
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
   const { toast } = useToast();
@@ -43,9 +43,9 @@ export function MorePopover() {
         body: JSON.stringify({
           title: subject,
           description,
-          priority: securityLevel,
+          priority: securityLevel, // Sending a correct enum value
           category: area,
-          status: "OPEN", // Assuming OPEN as the default status
+          status: "OPEN",
         }),
       });
 
@@ -108,7 +108,7 @@ export function MorePopover() {
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="security-level">Security Level</Label>
-                <Select defaultValue="2" onValueChange={setSecurityLevel}>
+                <Select defaultValue="MEDIUM" onValueChange={setSecurityLevel}>
                   <SelectTrigger
                     id="security-level"
                     className="line-clamp-1 w-[160px] truncate"
@@ -116,10 +116,10 @@ export function MorePopover() {
                     <SelectValue placeholder="Select level" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="1">Severity 1 (Highest)</SelectItem>
-                    <SelectItem value="2">Severity 2</SelectItem>
-                    <SelectItem value="3">Severity 3</SelectItem>
-                    <SelectItem value="4">Severity 4 (Lowest)</SelectItem>
+                    <SelectItem value="LOW">Severity 4 (Lowest)</SelectItem>
+                    <SelectItem value="MEDIUM">Severity 3</SelectItem>
+                    <SelectItem value="HIGH">Severity 2</SelectItem>
+                    <SelectItem value="CRITICAL">Severity 1 (Highest)</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

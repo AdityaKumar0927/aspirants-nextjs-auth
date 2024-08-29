@@ -15,6 +15,11 @@ export async function POST(request: Request) {
 
     const { title, description, category, priority, status } = await request.json();
 
+    // Validate priority against enum values
+    if (!['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'].includes(priority)) {
+      return NextResponse.json({ error: 'Invalid priority value' }, { status: 400 });
+    }
+
     if (!title || !description || !category || !priority) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
     }
@@ -23,7 +28,7 @@ export async function POST(request: Request) {
       data: {
         title,
         description,
-        status: status || 'OPEN', // Defaulting to OPEN if status not provided
+        status: status || 'OPEN', // Default to OPEN if not provided
         priority,
         category: {
           connectOrCreate: {
