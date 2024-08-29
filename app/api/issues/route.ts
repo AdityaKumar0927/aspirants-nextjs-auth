@@ -13,9 +13,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { title, description, area, securityLevel } = await request.json();
+    const { title, description, category, priority, status } = await request.json();
 
-    if (!title || !description || !area || !securityLevel) {
+    if (!title || !description || !category || !priority) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
     }
 
@@ -23,13 +23,14 @@ export async function POST(request: Request) {
       data: {
         title,
         description,
+        status: status || 'OPEN', // Defaulting to OPEN if status not provided
+        priority,
         category: {
           connectOrCreate: {
-            where: { name: area },
-            create: { name: area },
+            where: { name: category },
+            create: { name: category },
           },
         },
-        priority: securityLevel,
         createdBy: {
           connect: { id: session.user.id },
         },

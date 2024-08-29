@@ -45,7 +45,7 @@ export function MorePopover() {
           description,
           priority: securityLevel,
           category: area,
-          status: "OPEN",
+          status: "OPEN", // Assuming OPEN as the default status
         }),
       });
 
