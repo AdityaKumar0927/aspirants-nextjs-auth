@@ -1,10 +1,25 @@
 // @/app/api/issues/route.ts
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, IssuePriority } from '@prisma/client'; // Import IssuePriority enum
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]/options';
 
 const prisma = new PrismaClient();
+
+export async function GET(request: Request) {
+  try {
+    const issues = await prisma.issue.findMany({
+      include: {
+        category: true,
+        comments: true,
+      },
+    });
+    return NextResponse.json(issues, { status: 200 });
+  } catch (error) {
+    console.error('Error fetching issues:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
 
 export async function POST(request: Request) {
   try {
@@ -13,26 +28,34 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { title, description, category, priority, status } = await request.json();
+    const { title, description, area, securityLevel } = await request.json();
 
-    if (!['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'].includes(priority)) {
-      return NextResponse.json({ error: 'Invalid priority value' }, { status: 400 });
-    }
-
-    if (!title || !description || !category || !priority) {
+    if (!title || !description || !area || !securityLevel) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
     }
+
+    // Define the type of keys allowed in priorityMapping
+    type PriorityKeys = '1' | '2' | '3' | '4';
+
+    // Map string securityLevel to the enum values of IssuePriority
+    const priorityMapping: Record<PriorityKeys, IssuePriority> = {
+      '1': IssuePriority.CRITICAL,
+      '2': IssuePriority.HIGH,
+      '3': IssuePriority.MEDIUM,
+      '4': IssuePriority.LOW,
+    };
+
+    const mappedPriority = priorityMapping[securityLevel as PriorityKeys] || IssuePriority.MEDIUM;
 
     const newIssue = await prisma.issue.create({
       data: {
         title,
         description,
-        status: status || 'OPEN', // Default to OPEN if not provided
-        priority,
+        priority: mappedPriority, // Use the mapped IssuePriority enum value
         category: {
           connectOrCreate: {
-            where: { name: category },
-            create: { name: category },
+            where: { name: area },
+            create: { name: area },
           },
         },
         createdBy: {
@@ -46,17 +69,4 @@ export async function POST(request: Request) {
     console.error('Error creating issue:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
-}
-
-// Add methods for handling other requests if necessary
-export async function GET(request: Request) {
-  return NextResponse.json({ message: 'This endpoint is not configured to handle GET requests' }, { status: 405 });
-}
-
-export async function PATCH(request: Request) {
-  return NextResponse.json({ message: 'This endpoint is not configured to handle PATCH requests' }, { status: 405 });
-}
-
-export async function DELETE(request: Request) {
-  return NextResponse.json({ message: 'This endpoint is not configured to handle DELETE requests' }, { status: 405 });
 }
