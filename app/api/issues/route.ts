@@ -15,7 +15,6 @@ export async function POST(request: Request) {
 
     const { title, description, category, priority, status } = await request.json();
 
-    // Validate priority against enum values
     if (!['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'].includes(priority)) {
       return NextResponse.json({ error: 'Invalid priority value' }, { status: 400 });
     }
@@ -47,4 +46,17 @@ export async function POST(request: Request) {
     console.error('Error creating issue:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
+}
+
+// Add methods for handling other requests if necessary
+export async function GET(request: Request) {
+  return NextResponse.json({ message: 'This endpoint is not configured to handle GET requests' }, { status: 405 });
+}
+
+export async function PATCH(request: Request) {
+  return NextResponse.json({ message: 'This endpoint is not configured to handle PATCH requests' }, { status: 405 });
+}
+
+export async function DELETE(request: Request) {
+  return NextResponse.json({ message: 'This endpoint is not configured to handle DELETE requests' }, { status: 405 });
 }

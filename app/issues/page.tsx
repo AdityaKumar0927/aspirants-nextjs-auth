@@ -24,10 +24,13 @@ interface Issue {
 
 export default function IssuesPage() {
   const [issues, setIssues] = useState<Issue[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     const fetchIssues = async () => {
+      setLoading(true);
       try {
         const response = await fetch("/api/issues");
         if (!response.ok) {
@@ -37,6 +40,9 @@ export default function IssuesPage() {
         setIssues(data);
       } catch (error) {
         console.error("Error fetching issues:", error);
+        setError("Failed to load issues. Please try again.");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -47,42 +53,53 @@ export default function IssuesPage() {
     router.refresh(); // Use router.refresh instead of router.reload in the app directory
   };
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return (
+      <div>
+        <p>{error}</p>
+        <Button onClick={handleRefresh}>Retry</Button>
+      </div>
+    );
+  }
+
   return (
     <div className="h-full w-full">
-    <Card className="p-4">
-      <CardHeader>
-        <CardTitle>Reported Issues</CardTitle>
-        <Button onClick={handleRefresh} className="ml-auto">
-          Refresh
-        </Button>
-      </CardHeader>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Title</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Priority</TableCell>
-            <TableCell>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {issues.map((issue) => (
-            <TableRow key={issue.id}>
-              <TableCell>{issue.id}</TableCell>
-              <TableCell>{issue.title}</TableCell>
-              <TableCell>{issue.description}</TableCell>
-              <TableCell>{issue.status}</TableCell>
-              <TableCell>{issue.priority}</TableCell>
-              <TableCell>
-                <MorePopover /> {/* Reuse the MorePopover component for each issue */}
-              </TableCell>
+      <Card className="p-4">
+        <CardHeader className="flex items-center justify-between">
+          <CardTitle>Reported Issues</CardTitle>
+          <Button onClick={handleRefresh}>Refresh</Button>
+        </CardHeader>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell>Title</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Priority</TableCell>
+              <TableCell>Actions</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Card>
+          </TableHead>
+          <TableBody>
+            {issues.map((issue) => (
+              <TableRow key={issue.id}>
+                <TableCell>{issue.id}</TableCell>
+                <TableCell>{issue.title}</TableCell>
+                <TableCell>{issue.description}</TableCell>
+                <TableCell>{issue.status}</TableCell>
+                <TableCell>{issue.priority}</TableCell>
+                <TableCell>
+                  <MorePopover /> {/* Reuse the MorePopover component for each issue */}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Card>
     </div>
   );
 }
