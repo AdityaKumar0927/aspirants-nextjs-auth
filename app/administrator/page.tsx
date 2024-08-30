@@ -59,21 +59,40 @@ export default function Home() {
 
   const handleStatusUpdate = async (id: string, status: string) => {
     try {
+      // Map the string status to the correct enum value
+      const statusEnumMap: Record<string, string> = {
+        Open: "OPEN",
+        "In Progress": "IN_PROGRESS",
+        Resolved: "RESOLVED",
+        Closed: "CLOSED",
+      };
+  
+      const enumStatus = statusEnumMap[status];
+  
+      if (!enumStatus) {
+        toast({
+          title: "Error",
+          description: `Invalid status value: ${status}.`,
+          variant: "destructive",
+        });
+        return;
+      }
+  
       const response = await fetch(`/api/issues/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ status }),
+        body: JSON.stringify({ status: enumStatus }),
       });
-
+  
       if (!response.ok) throw new Error("Failed to update issue status");
-
+  
       toast({
         title: "Success",
         description: `Issue status updated to ${status}.`,
       });
-
+  
       fetchIssues(); // Refresh the list after update
     } catch (error) {
       toast({
@@ -83,6 +102,7 @@ export default function Home() {
       });
     }
   };
+  
 
   const handleDeleteIssue = async (id: string) => {
     try {
