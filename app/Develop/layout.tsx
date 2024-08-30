@@ -1,4 +1,3 @@
-// app/administrator/layout.tsx
 import "../globals.css";
 import cx from "classnames";
 import { sfPro, inter } from "../fonts";
@@ -13,22 +12,24 @@ import Bar from '@/components/layout/Bar';
 import { Toaster } from "@/components/ui/toaster";
 import { LoadingProvider } from "@/components/layout/LoadingContext";
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext";
-import { ApplicationLayout } from './application-layout';
-import { getEvents } from "./data";
 
-// Configuration for FontAwesome
 config.autoAddCss = false;
 
-// Mock function to get the user ID; replace this with actual authentication logic.
+export const metadata = {
+  title: "aspirants",
+  description: "",
+  metadataBase: new URL("https://aspirants.tech/"),
+};
+
+// Assuming you get the userId from some authentication context or similar.
 const getUserId = () => {
   // Replace this with actual logic to fetch user ID, e.g., from a session or a context.
-  // Return null if the user is not signed in.
+  // Return null if user is not signed in.
   const userId = null; // Simulate unsigned user. Replace with actual authentication logic.
   return userId;
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const events = await getEvents(); // Fetch events data
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const userId = getUserId(); // Fetch the user ID
 
   return (
@@ -86,9 +87,24 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
       </head>
       <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
-        <ApplicationLayout events={events}>
-          {children}
-        </ApplicationLayout>
+        <LoadingProvider> 
+          <UserPerformanceProvider userId={userId}> 
+            <TooltipProvider>
+              <div className="fixed inset-0 z-[-10]"></div>
+              <Suspense fallback="...">
+                <Nav />
+              </Suspense>
+              <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+                {children}
+              </main>
+              {/* Render the Bar for both signed-in and non-signed-in users */}
+              <Bar userId={userId} />
+              <Footer />
+              <VercelAnalytics />
+            </TooltipProvider>
+            <Toaster />
+          </UserPerformanceProvider> 
+        </LoadingProvider> 
       </body>
     </html>
   );
