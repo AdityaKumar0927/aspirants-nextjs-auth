@@ -1,35 +1,37 @@
+// app/(public)/layout.tsx
 import "../globals.css";
 import cx from "classnames";
 import { sfPro, inter } from "../fonts";
-import Nav from "@/components/layout/nav";
-import { Footer } from "@/components/layout/footer";
 import { Suspense } from "react";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
-import Bar from '@/components/layout/Bar';
 import { Toaster } from "@/components/ui/toaster";
 import { LoadingProvider } from "@/components/layout/LoadingContext";
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext";
+import Nav from "@/components/layout/nav";
+import { Footer } from "@/components/layout/footer";
+import Bar from '@/components/layout/Bar';
+import CookiePopup from "@/components/layout/cookie-popup"; // Import the updated CookiePopup component
 
 config.autoAddCss = false;
 
-export const metadata = {
-  title: "aspirants",
-  description: "",
-  metadataBase: new URL("https://aspirants.tech/"),
-};
-
-// Assuming you get the userId from some authentication context or similar.
+// Function to get the user ID; replace this with actual authentication logic
 const getUserId = () => {
-  // Replace this with actual logic to fetch user ID, e.g., from a session or a context.
-  // Return null if user is not signed in.
+  // Replace this with the actual logic to fetch user ID, e.g., from a session or a context.
+  // Return null if the user is not signed in.
   const userId = null; // Simulate unsigned user. Replace with actual authentication logic.
   return userId;
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const metadata = {
+  title: 'aspirants',
+  description: '',
+  metadataBase: new URL('https://aspirants.tech/'),
+};
+
+export default function PublicLayout({ children }: { children: React.ReactNode }) {
   const userId = getUserId(); // Fetch the user ID
 
   return (
@@ -86,25 +88,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
-        <LoadingProvider> 
-          <UserPerformanceProvider userId={userId}> 
+      <body className={cx(sfPro.variable, inter.variable, 'bg-white')}>
+        <LoadingProvider>
+          <UserPerformanceProvider userId={userId}>
             <TooltipProvider>
               <div className="fixed inset-0 z-[-10]"></div>
               <Suspense fallback="...">
                 <Nav />
               </Suspense>
+              {/* Render the CookiePopup only if the user is not signed in */}
+              {!userId && <CookiePopup />}
               <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
                 {children}
               </main>
-              {/* Render the Bar for both signed-in and non-signed-in users */}
               <Bar userId={userId} />
               <Footer />
               <VercelAnalytics />
+              <Toaster />
             </TooltipProvider>
-            <Toaster />
-          </UserPerformanceProvider> 
-        </LoadingProvider> 
+          </UserPerformanceProvider>
+        </LoadingProvider>
       </body>
     </html>
   );

@@ -1,54 +1,45 @@
-// pages/api/policy/accept.ts
-import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
+// app/api/policy/accept/route.ts
+import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
 import prisma from '@/lib/prisma';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // Ensure the request is a POST request
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
-  }
+// Define the route handler
+export async function POST(req: Request) {
+  const session = await getServerSession(); // Fetch the session for the authenticated user
 
-  // Get the session to validate the user
-  const session = await getSession({ req });
-
-  // Check if session exists and has user information
+  // Check if the user is signed in
   if (!session || !session.user || !session.user.email) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
-  const { policyName } = req.body;
+  const { policyName } = await req.json(); // Parse the request body
 
-  // Validate that the policy name is provided
+  // Validate the incoming request
   if (!policyName) {
-    return res.status(400).json({ message: 'Policy name is required' });
+    return NextResponse.json({ message: 'Policy name is required' }, { status: 400 });
   }
 
   try {
-    // Find the user based on the email from the session
+    // Find the user in the database
     const user = await prisma.user.findUnique({
       where: { email: session.user.email },
     });
 
-    // If user is not found, respond with a 404 error
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return NextResponse.json({ message: 'User not found' }, { status: 404 });
     }
 
-    // Create a new policy agreement record for the user
+    // Create a new policy acceptance record
     await prisma.userPolicyAgreement.create({
       data: {
         userId: user.id,
         policyName,
-        acceptedAt: new Date(), // Ensure the timestamp is recorded
       },
     });
 
-    // Send a success response
-    res.status(200).json({ message: 'Policy accepted successfully' });
+    return NextResponse.json({ message: 'Policy accepted successfully' }, { status: 200 });
   } catch (error) {
-    // Log the error for debugging purposes
     console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+    return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
   }
 }
