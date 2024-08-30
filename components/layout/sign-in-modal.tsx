@@ -34,7 +34,7 @@ const policies = [
           You may need to create an Aspirants account to use all or part of our Service. Your username and password are for your personal use only and should be kept confidential. You understand that you are responsible for all use (including any unauthorized use) of your username and password. Notify us immediately if your username or password is lost or stolen, or if you believe there has been unauthorized access to your account. We may reclaim, or require you to change, your username for any reason.
         </p>
         <p className="text-lg text-gray-700 mb-4">
-          You may use our Services only for lawful personal use, and in accordance with these Terms and Conditions. Aspirants may, in its sole discretion, terminate your right to use our Services at any time, and may take all available legal recourse for actual or suspected violations of these Terms and Conditions, including deletion of your account made in violation of these Terms and Conditions. Any delay by Aspirants in taking such actions does not constitute a waiver of Aspirants’ rights to enforce these Terms and Conditions. By making the Services available for your use, Aspirants does not consent to act as your agent or fiduciary.
+          You may use our Services only for lawful personal use, and in accordance with these Terms and Conditions. Aspirants may, in its sole discretion, terminate your right to use our Services at any time, and may take all available legal recourse for actual or suspected violations of these Terms and Conditions, including deletion of your account made in violation of these Terms and Conditions. Any delay by Aspirants in taking such actions does not constitute a waiver of Aspirants&apos; rights to enforce these Terms and Conditions. By making the Services available for your use, Aspirants does not consent to act as your agent or fiduciary.
         </p>
         <p className="text-lg text-gray-700 mb-4">
           We may provide links to other websites or Internet resources for your convenience only, and such links do not signify or imply our endorsement of such other website or resource or its contents over which we have no control and which we do not monitor. You use those links at your own risk and should apply a reasonable level of caution and discretion in doing so. You agree that we shall have no responsibility or liability for any information, software, or materials found at any other web site or internet resource.
@@ -43,14 +43,14 @@ const policies = [
           You agree to use the Site only for lawful purposes and in accordance with these Terms. You are prohibited from:
         </p>
         <ul className="list-disc list-inside text-lg text-gray-700 mb-4">
-          <li>Using the Site in any manner that could disable, overburden, damage, or impair the Site or interfere with any other party's use of the Site.</li>
+          <li>Using the Site in any manner that could disable, overburden, damage, or impair the Site or interfere with any other party&apos;s use of the Site.</li>
           <li>Using any robot, spider, or other automatic device, process, or means to access the Site for any purpose, including monitoring or copying any of the material on the Site.</li>
           <li>Introducing any viruses, trojan horses, worms, logic bombs, or other material that is malicious or technologically harmful.</li>
           <li>Attempting to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Site, the server on which the Site is stored, or any server, computer, or database connected to the Site.</li>
-          <li>Engaging in any other conduct that restricts or inhibits anyone's use or enjoyment of the Site, or which, as determined by us, may harm us or users of the Site, or expose them to liability.</li>
+          <li>Engaging in any other conduct that restricts or inhibits anyone&apos;s use or enjoyment of the Site, or which, as determined by us, may harm us or users of the Site, or expose them to liability.</li>
         </ul>
         <p className="text-lg text-gray-700 mb-4">
-          Aspirants reserves the right to change, suspend, or discontinue any of the Services for you, any or all users, at any time, for any reason, including those laid out in Aspirants’ policies under these Terms and Conditions. We will not be liable to you for the effect that any changes to the Services may have on you.
+          Aspirants reserves the right to change, suspend, or discontinue any of the Services for you, any or all users, at any time, for any reason, including those laid out in Aspirants&apos; policies under these Terms and Conditions. We will not be liable to you for the effect that any changes to the Services may have on you.
         </p>
 
         <h2 className="text-3xl font-semibold mb-4">Intellectual Property</h2>
@@ -60,7 +60,7 @@ const policies = [
 
         <h2 className="text-3xl font-semibold mb-4">Applicable Laws</h2>
         <p className="text-lg text-gray-700 mb-4">
-          These Terms and Conditions and the relationship between Aspirants and its users shall be governed by the laws of the Republic of India as applied to agreements made, entered, and performed entirely in Republic of India, notwithstanding the users’ place of residence. All lawsuits arising from or relating to these Terms and Conditions, or your use of the Services shall be brought in the courts located in New Delhi, India, and you hereby irrevocably submit to the exclusive personal jurisdiction of such courts for such purpose.
+          These Terms and Conditions and the relationship between Aspirants and its users shall be governed by the laws of the Republic of India as applied to agreements made, entered, and performed entirely in Republic of India, notwithstanding the users&apos; place of residence. All lawsuits arising from or relating to these Terms and Conditions, or your use of the Services shall be brought in the courts located in New Delhi, India, and you hereby irrevocably submit to the exclusive personal jurisdiction of such courts for such purpose.
         </p>
 
         <h2 className="text-3xl font-semibold mb-4">Privacy</h2>
@@ -70,7 +70,7 @@ const policies = [
 
         <h2 className="text-3xl font-semibold mb-4">Disclaimers</h2>
         <p className="text-lg text-gray-700 mb-4">
-          The Site and all materials provided through the Site are provided on an "as-is" and "as-available" basis, without any warranties of any kind, either express or implied. We do not warrant that the Site will be uninterrupted, error-free, or free from viruses or other harmful components. The content provided on the Site is for educational purposes only. We do not guarantee the accuracy, completeness, or usefulness of any information on the Site.
+          The Site and all materials provided through the Site are provided on an &quot;as-is&quot; and &quot;as-available&quot; basis, without any warranties of any kind, either express or implied. We do not warrant that the Site will be uninterrupted, error-free, or free from viruses or other harmful components. The content provided on the Site is for educational purposes only. We do not guarantee the accuracy, completeness, or usefulness of any information on the Site.
         </p>
 
         <h2 className="text-3xl font-semibold mb-4">Indemnification</h2>
@@ -102,7 +102,7 @@ const policies = [
           In addition to our Terms and Conditions, Aspirants is dedicated to maintaining the privacy of its users and protecting their data.
         </p>
         <p className="text-lg text-gray-700 mb-4">
-          This privacy policy highlights and explains the policy of Aspirants, (hereinafter referred to as "we", "us", or "our"), and its website aspirants.tech (hereinafter referred to as "the website") with respect to collection, storage, and usage of your data during the course of your interaction with the Website.
+          This privacy policy highlights and explains the policy of Aspirants, (hereinafter referred to as &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), and its website aspirants.tech (hereinafter referred to as &quot;the website&quot;) with respect to collection, storage, and usage of your data during the course of your interaction with the Website.
         </p>
         <p className="text-lg text-gray-700 mb-4">
           Please read this Privacy Policy carefully and in conjunction with the Terms of Use. If you do not understand this policy, or do not accept any part of it, then you should not use the Platform, as the case may be. Your use and/or continued use of the Platform, amounts to consent to the terms of this Privacy Policy as well as the Terms and Conditions. For any questions, please contact [email id].
@@ -164,7 +164,7 @@ const policies = [
           We may update this Privacy Policy from time to time to reflect changes in our practices or comply with legal requirements. We will notify you of any changes by posting the new Privacy Policy on the Website. You are also thus advised to review this Privacy Policy periodically for any changes.
         </p>
 
-        <h2 className="text-3xl font-semibold mb-4">Children’s Privacy</h2>
+        <h2 className="text-3xl font-semibold mb-4">Children&apos;s Privacy</h2>
         <p className="text-lg text-gray-700 mb-4">
           Aspirants is intended for users 18 years of age and older. We do not knowingly collect personal information from children under 18. If you are a parent or guardian and believe your child has provided us with personal information, please contact us at [email id]. We will take steps to remove the information from our systems.
         </p>
@@ -176,80 +176,8 @@ const policies = [
       </div>
     `,
   },
-  {
-    title: "Cookie Policy",
-    content: `
-      <div>
-        <h2 className="text-3xl font-semibold mb-4">What is a Cookie</h2>
-        <p className="text-lg text-gray-700 mb-4">
-          A cookie is a small text file that is downloaded onto your device when you access a website. It is sent through your browser, and it helps us to recognise you and your device.
-          There are technologies, which, although technically not "cookies", are like cookies. These include:
-        </p>
-        <ul className="list-disc list-inside text-lg text-gray-700 mb-4">
-          <li>Web beacons/pixels: used to count the number of users who have interacted with some content on our website</li>
-          <li>Local storage: storage of data in your device’s (phone, laptop, computer, etc.) local cache (temporary memory)</li>
-          <li>Scripts: Computer programs designed to give extra functionality</li>
-        </ul>
-        <p className="text-lg text-gray-700 mb-4">
-          Our cookie policy includes not only cookies, but also the above-mentioned technologies, which are hereafter referred to as "cookies" as well.
-        </p>
-
-        <h2 className="text-3xl font-semibold mb-4">Different Types of Cookies</h2>
-        <p className="text-lg text-gray-700 mb-4">
-          The different types of cookies include:
-        </p>
-        <ul className="list-disc list-inside text-lg text-gray-700 mb-4">
-          <li>First party cookies: these are the cookies created by us which you might encounter while using our website</li>
-          <li>Third party cookies: these are the cookies created by third party platforms which you might encounter while using our website</li>
-          <li>Session cookies: these are the cookies which only last for the duration of your visit to our website</li>
-          <li>Persistent cookies: these are the cookies which last for a longer period of time than Session Cookies</li>
-          <li>Zombie cookies: these are the cookies that are automatically recreated after you delete it. We DO NOT use this type of malicious cookie.</li>
-        </ul>
-
-        <h2 className="text-3xl font-semibold mb-4">How we use Cookies</h2>
-        <p className="text-lg text-gray-700 mb-4">
-          We use cookies for a variety of purposes, including but not limited to:
-        </p>
-        <ul className="list-disc list-inside text-lg text-gray-700 mb-4">
-          <li>Keeping you logged into our website</li>
-          <li>Analyzing your site usage patterns, such as the duration of your visit, and so on.</li>
-          <li>Tracking you navigate and engage with our site's pages to detect and resolve technical problems.</li>
-        </ul>
-        <p className="text-lg text-gray-700 mb-4">
-          Please keep in mind that cookies are necessary for the functioning of our website. We only use first party, third party and session cookies. We do not use any type of marketing cookie.
-          You can change your browser settings to not accept any cookies. Your browser will allow you to:
-        </p>
-        <ul className="list-disc list-inside text-lg text-gray-700 mb-4">
-          <li>See what cookies are installed on your browser</li>
-          <li>Block any cookie</li>
-          <li>Delete cookies from your browser</li>
-        </ul>
-        <p className="text-lg text-gray-700 mb-4">
-          However, it may impact your experience on different websites, including our site.
-        </p>
-        <p className="text-lg text-gray-700 mb-4">
-          For more information on how to manage your cookies on your browser, please browse through:
-        </p>
-        <ul className="list-disc list-inside text-lg text-gray-700 mb-4">
-          <li><a href="https://support.google.com/chrome/answer/95647?hl=en" className="text-blue-500">Google Chrome</a></li>
-          <li><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" className="text-blue-500">Firefox</a></li>
-          <li><a href="https://support.microsoft.com/en-us/microsoft-edge/view-cookies-in-microsoft-edge-a7d95376-f2cd-8e4a-25dc-1de753474879" className="text-blue-500">Microsoft Edge</a></li>
-          <li><a href="https://support.apple.com/en-in/105082" className="text-blue-500">Safari</a></li>
-        </ul>
-
-        <h2 className="text-3xl font-semibold mb-4">Changes to this Policy</h2>
-        <p className="text-lg text-gray-700 mb-4">
-          We may change this policy from time to time. As such, you should check this policy each and every time you visit our website. Any changes will be notified on the site.
-        </p>
-
-        <h2 className="text-3xl font-semibold mb-4">Contact Us</h2>
-        <p className="text-lg text-gray-700 mb-4">
-          For more information, please check out our privacy policy or email us at [email id].
-        </p>
-      </div>
-    `,
-  },
 ];
+
 
 const SignInModal = ({
   showSignInModal,
