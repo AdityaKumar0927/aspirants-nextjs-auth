@@ -114,7 +114,7 @@ const QuestionBank: React.FC = () => {
     notes: {} as Record<string, string>,
   });
   const [loading, setLoading] = useState<boolean>(true);
-  const [currentPage, setCurrentPage] = useState(1); // Track the current page for pagination
+  const [currentPage, setCurrentPage] = useState(1);
 
   const userId = ""; // Add logic to retrieve user ID if signed in
 
@@ -360,7 +360,6 @@ const QuestionBank: React.FC = () => {
         accuracy: isCorrect ? 100 : 0, // Update as per your logic
         firstAttemptSuccessRate: isCorrect ? 100 : 0, // Update as per your logic
         reattemptAccuracy: isCorrect ? 100 : 0, // Update as per your logic
-        // Add other fields as necessary
       };
 
       await updateUserPerformance(questionId, updatedFields);
