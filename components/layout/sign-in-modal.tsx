@@ -242,26 +242,15 @@ const SignInModal = ({
   return (
     <Modal2 showModal={showSignInModal} setShowModal={setShowSignInModal}>
       <section className="flex w-full items-start justify-center bg-[url('https://tailframes.com/images/squares-bg.webp')] bg-cover bg-center bg-no-repeat">
-        <FlickeringGrid
-          className="z-0 absolute inset-0 [mask:radial-gradient(circle_at_center,#fff_300px,transparent_0)]"
-          squareSize={4}
-          gridGap={6}
-          color="#60A5FA"
-          maxOpacity={0.5}
-          flickerChance={0.1}
-          height={800}
-          width={800}
-        />
+        
         <div className="flex max-w-screen-2xl grow flex-col items-start justify-start gap-12 px-3 py-12 md:pt-24 lg:px-0 xl:flex-row">
           <div className="sm:pl-8 lg:pl-16 xl:pl-32 mb-0 flex flex-1 flex-col items-start gap-12 px-0 xl:mb-24">
-            <Badge>Tailframes v1.0</Badge>
+            <Badge className="bg-white border-2 border-blue-200 text-black hover:text-white">aspirants v1.0</Badge>
             <div className="flex max-w-lg flex-col gap-6">
               <h3 className="text-4xl font-semibold text-slate-950 md:text-6xl">
-                Start of your <div className="text-blue-300">Academic Comeback</div> with Aspirants!
+                 Begin your <div className="text-blue-300">Academic Comeback</div> with Aspirants!
               </h3>
-              <h4 className="text-lg font-normal leading-7 text-slate-500">
-                And it&apos;s free. Forever.
-              </h4>
+            
             </div>
             <div className="flex gap-4">
               <Button>Save Time</Button>
@@ -337,6 +326,7 @@ const SignInModal = ({
               >
                 Next
               </button>
+              
             ) : (
               <>
                 <label className="flex items-center space-x-3">
