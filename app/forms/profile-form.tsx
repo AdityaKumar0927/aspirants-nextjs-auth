@@ -103,12 +103,24 @@ export function ProfileForm() {
 
   async function onSubmit(data: ProfileFormValues) {
     try {
+      // Update profile settings
       const response = await fetch("/api/settings/profile-settings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (!response.ok) throw new Error("Failed to update profile settings");
+
+      // If the policy agreement is accepted, send an additional request
+      if (data.policyAgreement) {
+        const policyResponse = await fetch("/api/user/policy-accept", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ policyAccepted: true }),
+        });
+        if (!policyResponse.ok) throw new Error("Failed to accept policy agreement");
+      }
+
       toast({
         title: "Profile settings updated successfully",
         description: (
@@ -322,7 +334,7 @@ export function ProfileForm() {
       </form>
 
       {showResetConfirm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div className="fixed inset-0 backdrop-blur-md flex items-center justify-center">
           <div className="bg-white p-6 rounded-md shadow-md">
             <h3 className="text-lg font-semibold">
               Are you sure you want to reset your account?

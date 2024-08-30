@@ -1,4 +1,3 @@
-"use client"
 // components/layout/sign-in-modal.tsx
 import Modal2 from "@/components/layout/modal-2";
 import { signIn } from "next-auth/react";
@@ -19,7 +18,6 @@ import {
 } from "@/components/ui/tooltip";
 import { EnterFullScreenIcon } from "@radix-ui/react-icons";
 import Modal from "../shared/modal";
-import { useEffect } from "react";
 
 const policies = [
   {
@@ -206,66 +204,53 @@ const SignInModal = ({
   const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
   const [showPolicyModal, setShowPolicyModal] = useState(false);
 
-  const policyContentRef = useRef<HTMLDivElement>(null);
-
   const canSignIn = acceptedTerms && acceptedPrivacy && acceptedCookies && isAbove18;
+
+  const currentPolicy = policies[currentPolicyIndex];
+
+  const policyContentRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = () => {
     if (policyContentRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = policyContentRef.current;
-      setIsScrolledToBottom(scrollTop + clientHeight >= scrollHeight - 10);
+      const isBottom = scrollTop + clientHeight >= scrollHeight - 10;
+      setIsScrolledToBottom(isBottom);
     }
   };
 
   const handleAcceptPolicy = async () => {
-    if (!isScrolledToBottom) return;
-
-    try {
-      const policyName =
-        currentPolicyIndex === 0
-          ? "Terms and Conditions"
-          : currentPolicyIndex === 1
-          ? "Privacy Policy"
-          : "Cookie Policy";
-
-      await fetch("/api/policy/accept", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ policyName }),
-      });
-
-      if (currentPolicyIndex === 0) setAcceptedTerms(true);
-      if (currentPolicyIndex === 1) setAcceptedPrivacy(true);
-      if (currentPolicyIndex === 2) setAcceptedCookies(true);
-    } catch (error) {
-      console.error("Error saving policy acceptance:", error);
+    if (isScrolledToBottom) {
+      try {
+        const policyName =
+          currentPolicyIndex === 0 ? 'Terms and Conditions' : currentPolicyIndex === 1 ? 'Privacy Policy' : 'Cookie Policy';
+  
+        await fetch('/api/policy/accept', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ policyName }),
+        });
+  
+        if (currentPolicyIndex === 0) setAcceptedTerms(!acceptedTerms);
+        if (currentPolicyIndex === 1) setAcceptedPrivacy(!acceptedPrivacy);
+        if (currentPolicyIndex === 2) setAcceptedCookies(!acceptedCookies);
+      } catch (error) {
+        console.error('Error saving policy acceptance:', error);
+      }
     }
   };
-
-  // Synchronize state updates with scroll
-  useEffect(() => {
-    if (isScrolledToBottom) {
-      if (currentPolicyIndex === 0 && !acceptedTerms) setAcceptedTerms(true);
-      if (currentPolicyIndex === 1 && !acceptedPrivacy) setAcceptedPrivacy(true);
-      if (currentPolicyIndex === 2 && !acceptedCookies) setAcceptedCookies(true);
-    }
-  }, [isScrolledToBottom, currentPolicyIndex, acceptedTerms, acceptedPrivacy, acceptedCookies]);
-
-  useEffect(() => {
-    // Ensure state changes trigger updates to canSignIn
-    console.log("Acceptance states:", { acceptedTerms, acceptedPrivacy, acceptedCookies, isAbove18 });
-  }, [acceptedTerms, acceptedPrivacy, acceptedCookies, isAbove18]);
-
+  
   return (
     <Modal2 showModal={showSignInModal} setShowModal={setShowSignInModal}>
       <section className="flex w-full items-start justify-center bg-[url('https://tailframes.com/images/squares-bg.webp')] bg-cover bg-center bg-no-repeat">
+        
         <div className="flex max-w-screen-2xl grow flex-col items-start justify-start gap-12 px-3 py-12 md:pt-24 lg:px-0 xl:flex-row">
           <div className="sm:pl-8 lg:pl-16 xl:pl-32 mb-0 flex flex-1 flex-col items-start gap-12 px-0 xl:mb-24">
             <Badge className="bg-white border-2 border-blue-200 text-black hover:text-white">aspirants v1.0</Badge>
             <div className="flex max-w-lg flex-col gap-6">
               <h3 className="text-4xl font-semibold text-slate-950 md:text-6xl">
-                Begin your <div className="text-blue-300">Academic Comeback</div> with Aspirants!
+                 Begin your <div className="text-blue-300">Academic Comeback</div> with Aspirants!
               </h3>
+            
             </div>
             <div className="flex gap-4">
               <Button>Save Time</Button>
@@ -274,10 +259,16 @@ const SignInModal = ({
           </div>
         </div>
 
-        <div className="w-1/4 mt-36 mx-36 overflow-hidden shadow-xl md:rounded-2xl md:border md:border-gray-200">
+        <div className="w-1/4 mt-36 mx-auto overflow-hidden shadow-xl md:rounded-2xl md:border md:border-gray-200">
           <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
             <a href="https://aspirants.tech">
-              <Image src="/bulb.svg" alt="Logo" className="h-10 w-10 rounded-full" width={20} height={20} />
+              <Image
+                src="/bulb.svg"
+                alt="Logo"
+                className="h-10 w-10 rounded-full"
+                width={20}
+                height={20}
+              />
             </a>
             <h3 className="font-display text-2xl font-bold">Sign In</h3>
             <p className="text-sm text-gray-500">
@@ -292,14 +283,14 @@ const SignInModal = ({
               onScroll={handleScroll}
             >
               <div className="flex justify-between items-center">
-                <h4 className="font-bold text-lg mb-2">{policies[currentPolicyIndex].title}</h4>
+                <h4 className="font-bold text-lg mb-2">{currentPolicy.title}</h4>
                 <button onClick={() => setShowPolicyModal(true)}>
                   <EnterFullScreenIcon className="h-5 w-5 text-blue-500 cursor-pointer" />
                 </button>
               </div>
               <div
                 className="text-sm text-gray-600"
-                dangerouslySetInnerHTML={{ __html: policies[currentPolicyIndex].content }}
+                dangerouslySetInnerHTML={{ __html: currentPolicy.content }}
               />
             </div>
 
@@ -321,7 +312,7 @@ const SignInModal = ({
                       disabled={!isScrolledToBottom}
                     />
                     <span className="text-sm text-gray-600">
-                      I have read and accept the {policies[currentPolicyIndex].title}
+                      I have read and accept the {currentPolicy.title}
                     </span>
                   </label>
                 </TooltipTrigger>
@@ -335,6 +326,7 @@ const SignInModal = ({
               >
                 Next
               </button>
+              
             ) : (
               <>
                 <label className="flex items-center space-x-3">
@@ -344,7 +336,9 @@ const SignInModal = ({
                     checked={isAbove18}
                     onChange={() => setIsAbove18(!isAbove18)}
                   />
-                  <span className="text-sm text-gray-600">I confirm that I am 18 years of age or older.</span>
+                  <span className="text-sm text-gray-600">
+                    I confirm that I am 18 years of age or older.
+                  </span>
                 </label>
                 <button
                   className="border border-gray-200 bg-white text-black hover:bg-gray-50 flex h-10 items-center justify-center rounded-md shadow-sm transition-all duration-75 focus:outline-none"
@@ -379,12 +373,13 @@ const SignInModal = ({
         </div>
       </section>
 
+      {/* Modal for Viewing Policies */}
       <Modal showModal={showPolicyModal} setShowModal={setShowPolicyModal} className="z-50">
         <div className="p-6 bg-white rounded-lg shadow-lg">
-          <h4 className="font-bold text-lg mb-4">{policies[currentPolicyIndex].title}</h4>
+          <h4 className="font-bold text-lg mb-4">{currentPolicy.title}</h4>
           <div
             className="text-base text-gray-700 leading-relaxed overflow-y-auto max-h-[70vh]"
-            dangerouslySetInnerHTML={{ __html: policies[currentPolicyIndex].content }}
+            dangerouslySetInnerHTML={{ __html: currentPolicy.content }}
           />
         </div>
       </Modal>
@@ -396,8 +391,16 @@ export function useSignInModal() {
   const [showSignInModal, setShowSignInModal] = useState(false);
 
   const SignInModalCallback = useCallback(() => {
-    return <SignInModal showSignInModal={showSignInModal} setShowSignInModal={setShowSignInModal} />;
+    return (
+      <SignInModal
+        showSignInModal={showSignInModal}
+        setShowSignInModal={setShowSignInModal}
+      />
+    );
   }, [showSignInModal, setShowSignInModal]);
 
-  return useMemo(() => ({ setShowSignInModal, SignInModal: SignInModalCallback }), [setShowSignInModal, SignInModalCallback]);
+  return useMemo(
+    () => ({ setShowSignInModal, SignInModal: SignInModalCallback }),
+    [setShowSignInModal, SignInModalCallback]
+  );
 }

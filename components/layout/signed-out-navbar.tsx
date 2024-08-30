@@ -136,12 +136,19 @@ export default function SignedOutNavbar() {
               <NavigationMenuViewport />
             </NavigationMenu>
           </div>
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden grid-cols-2 md:flex items-center space-x-4">
             <button
-              className="rounded-full text-center border border-black bg-white p-1.5 px-4 text-sm text-black transition-all hover:bg-black hover:text-white"
+              className="rounded-lg text-center border border-black bg-black p-1.5 px-4 text-sm text-white transition-all"
               onClick={() => setShowSignInModal(true)}
             >
-              Sign In
+              Log In
+            </button>
+         
+             <button
+              className="rounded-lg text-center border border-black p-1.5 px-4 text-sm text-black transition-all hover:bg-gray-200"
+              onClick={() => setShowSignInModal(true)}
+            >
+              Sign Up
             </button>
           </div>
        
