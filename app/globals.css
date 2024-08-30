@@ -227,6 +227,14 @@ html {
   overflow: hidden;
 }
 
+.bg-background-image4 {
+  background-image: url('/beach.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 2rem; /* Adjust the value as needed */
+  overflow: hidden;
+}
+
 .bg-background-image3 {
   background-image: url('/background.png');
   background-size: cover;
