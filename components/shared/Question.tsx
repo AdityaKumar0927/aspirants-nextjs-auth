@@ -469,7 +469,7 @@ const Question: React.FC<QuestionProps> = ({
               )}
             </div>
               
-          {showAiChat && aiEnabled && <div className="p-10 border-2 rounded-3x1 scroll-m-6"> <Chat questionText={question.text} /></div>}
+          {showAiChat && aiEnabled && <div className="rounded-3x1 scroll-m-6"> <Chat questionText={question.text} /></div>}
           
         </div>
       </div>
