@@ -125,6 +125,32 @@ export function ProfileForm() {
     }
   }
 
+  // Function to handle reset of user data
+  async function handleResetAccount() {
+    if (!confirm("Are you sure you want to delete all your data? This action cannot be undone.")) {
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/user/delete', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (!response.ok) throw new Error('Failed to delete user data');
+
+      toast({
+        title: "Account reset successfully",
+        description: "All your data has been deleted.",
+      });
+
+      // Optionally, sign the user out after resetting their account
+      signIn();
+    } catch (error: any) {
+      toast({ title: 'Failed to reset account', description: error.message });
+    }
+  }
+
   if (loading) {
     return (
       <div className="space-y-8 max-w-3xl">
@@ -256,6 +282,16 @@ export function ProfileForm() {
         />
 
         <Button type="submit">Update profile</Button>
+
+        {/* Reset Account Button */}
+        <Button
+          type="button"
+          variant="destructive"
+          className="mt-4"
+          onClick={handleResetAccount}
+        >
+          Reset Account
+        </Button>
       </form>
     </Form>
   );
