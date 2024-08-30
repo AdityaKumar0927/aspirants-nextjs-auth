@@ -6,7 +6,7 @@ import { Drawer } from "vaul";
 import * as Dialog from "@radix-ui/react-dialog";
 import useMediaQuery from "@/lib/hooks/use-media-query";
 
-export default function Modal({
+export default function Modal2({
   children,
   className,
   showModal,

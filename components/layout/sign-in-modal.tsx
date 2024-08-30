@@ -1,7 +1,7 @@
 // components/layout/sign-in-modal.tsx
-import Modal from "@/components/layout/modal-2";
+import Modal2 from "@/components/layout/modal-2";
 import { signIn } from "next-auth/react";
-import { useState, Dispatch, SetStateAction, useCallback, useMemo } from "react";
+import { useState, Dispatch, SetStateAction, useCallback, useMemo, useRef } from "react";
 import { LoadingDots, Google } from "@/components/shared/icons";
 import Image from "next/image";
 import { Badge } from "../magicui/badge";
@@ -9,6 +9,15 @@ import FlickeringGrid from "../magicui/flickering-grid";
 import { Button } from "@/app/Contact/button";
 import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import Tooltip from "../shared/tooltip";
+import AnimatedModal from "../shared/AnimatedModal";
+import {
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from "@/components/ui/tooltip";
+import { EnterFullScreenIcon } from "@radix-ui/react-icons";
+import Modal from "../shared/modal";
 
 const policies = [
   {
@@ -179,6 +188,7 @@ const policies = [
 ];
 
 
+
 const SignInModal = ({
   showSignInModal,
   setShowSignInModal,
@@ -192,157 +202,186 @@ const SignInModal = ({
   const [acceptedCookies, setAcceptedCookies] = useState(false);
   const [isAbove18, setIsAbove18] = useState(false);
   const [currentPolicyIndex, setCurrentPolicyIndex] = useState(0);
+  const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
+  const [showPolicyModal, setShowPolicyModal] = useState(false);
 
   const canSignIn = acceptedTerms && acceptedPrivacy && acceptedCookies && isAbove18;
 
   const currentPolicy = policies[currentPolicyIndex];
 
+  const policyContentRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    if (policyContentRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = policyContentRef.current;
+      const isBottom = scrollTop + clientHeight >= scrollHeight - 10;
+      setIsScrolledToBottom(isBottom);
+    }
+  };
+
+  const handleAcceptPolicy = () => {
+    if (isScrolledToBottom) {
+      if (currentPolicyIndex === 0) setAcceptedTerms(!acceptedTerms);
+      if (currentPolicyIndex === 1) setAcceptedPrivacy(!acceptedPrivacy);
+      if (currentPolicyIndex === 2) setAcceptedCookies(!acceptedCookies);
+    }
+  };
+
   return (
-    
-    <Modal showModal={showSignInModal} setShowModal={setShowSignInModal}>
-        <section
-        
-      className="flex w-full items-start justify-center bg-[url('https://tailframes.com/images/squares-bg.webp')] bg-cover bg-center bg-no-repeat"
->    
-      <FlickeringGrid
-        className="z-0 absolute inset-0 [mask:radial-gradient(circle_at_center,#fff_300px,transparent_0)]"
-        squareSize={4}
-        gridGap={6}
-        color="#60A5FA"
-        maxOpacity={0.5}
-        flickerChance={0.1}
-        height={800}
-        width={800}
-      />
-    
-      <div
-        className="flex max-w-screen-2xl grow flex-col items-start justify-start gap-12 px-3 py-12 md:pt-24 lg:px-0 xl:flex-row"
-      >
-        <div className="sm:pl-8 lg:pl-16 xl:pl-32 mb-0 flex flex-1 flex-col items-start gap-12 px-0 xl:mb-24">
-          <Badge>
-            Tailframes v1.0
-          </Badge>
-          <div className="flex max-w-lg flex-col gap-6">
-            <h3 className="text-4xl font-semibold text-slate-950 md:text-6xl">
-              Start of your <div className="text-blue-300">Academic Comeback </div> with Aspirants!
-            </h3>
-            <h4 className="text-lg font-normal leading-7 text-slate-500">
-              And its free. Forever. 
-            </h4>
+    <Modal2 showModal={showSignInModal} setShowModal={setShowSignInModal}>
+      <section className="flex w-full items-start justify-center bg-[url('https://tailframes.com/images/squares-bg.webp')] bg-cover bg-center bg-no-repeat">
+        <FlickeringGrid
+          className="z-0 absolute inset-0 [mask:radial-gradient(circle_at_center,#fff_300px,transparent_0)]"
+          squareSize={4}
+          gridGap={6}
+          color="#60A5FA"
+          maxOpacity={0.5}
+          flickerChance={0.1}
+          height={800}
+          width={800}
+        />
+        <div className="flex max-w-screen-2xl grow flex-col items-start justify-start gap-12 px-3 py-12 md:pt-24 lg:px-0 xl:flex-row">
+          <div className="sm:pl-8 lg:pl-16 xl:pl-32 mb-0 flex flex-1 flex-col items-start gap-12 px-0 xl:mb-24">
+            <Badge>Tailframes v1.0</Badge>
+            <div className="flex max-w-lg flex-col gap-6">
+              <h3 className="text-4xl font-semibold text-slate-950 md:text-6xl">
+                Start of your <div className="text-blue-300">Academic Comeback</div> with Aspirants!
+              </h3>
+              <h4 className="text-lg font-normal leading-7 text-slate-500">
+                And it's free. Forever.
+              </h4>
+            </div>
+            <div className="flex gap-4">
+              <Button>Save Time</Button>
+              <Button>Make Your Own Question Banks in 1-click</Button>
+            </div>
           </div>
-          <div className="flex gap-4">
-            <Button>
-              Save Time
-            </Button>
-            <Button>
-              Make Your Own Question Banks in 1-click
-            </Button>
-          </div>
-        </div>
-      
-      </div>
-    
-      <div className="w-1/4 mt-36 mx-36 overflow-hidden shadow-xl md:rounded-2xl md:border md:border-gray-200">
-        <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
-          <a href="https://aspirants.tech">
-            <Image
-              src="/bulb.svg"
-              alt="Logo"
-              className="h-10 w-10 rounded-full"
-              width={20}
-              height={20}
-            />
-          </a>
-          <h3 className="font-display text-2xl font-bold">Sign In</h3>
-          <p className="text-sm text-gray-500">
-            This is strictly for demo purposes - only your email and profile picture will be stored.
-          </p>
         </div>
 
-        <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16">
-          <div className="bg-white rounded-md p-4 shadow-md border border-gray-300 overflow-y-auto max-h-60">
-            <h4 className="font-bold text-lg mb-2">{currentPolicy.title}</h4>
+        <div className="w-1/4 mt-36 mx-36 overflow-hidden shadow-xl md:rounded-2xl md:border md:border-gray-200">
+          <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
+            <a href="https://aspirants.tech">
+              <Image
+                src="/bulb.svg"
+                alt="Logo"
+                className="h-10 w-10 rounded-full"
+                width={20}
+                height={20}
+              />
+            </a>
+            <h3 className="font-display text-2xl font-bold">Sign In</h3>
+            <p className="text-sm text-gray-500">
+              This is strictly for demo purposes - only your email and profile picture will be stored.
+            </p>
+          </div>
+
+          <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16">
             <div
-              className="text-sm text-gray-600"
-              dangerouslySetInnerHTML={{ __html: currentPolicy.content }}
-            />
-          </div>
-          <label className="flex items-center space-x-3">
-            <input
-              type="checkbox"
-              className="h-4 w-4"
-              checked={
-                currentPolicyIndex === 0
-                  ? acceptedTerms
-                  : currentPolicyIndex === 1
-                  ? acceptedPrivacy
-                  : acceptedCookies
-              }
-              onChange={() => {
-                if (currentPolicyIndex === 0) setAcceptedTerms(!acceptedTerms);
-                if (currentPolicyIndex === 1) setAcceptedPrivacy(!acceptedPrivacy);
-                if (currentPolicyIndex === 2) setAcceptedCookies(!acceptedCookies);
-              }}
-            />
-            <span className="text-sm text-gray-600">
-              I have read and accept the {currentPolicy.title}
-            </span>
-          </label>
-
-          {currentPolicyIndex < policies.length - 1 ? (
-            <button
-              className="border border-gray-200 bg-white text-black hover:bg-gray-50 flex h-10 items-center justify-center rounded-md shadow-sm transition-all duration-75 focus:outline-none"
-              onClick={() => setCurrentPolicyIndex(currentPolicyIndex + 1)}
+              className="bg-white rounded-md p-4 shadow-md border border-gray-300 overflow-y-auto max-h-60"
+              ref={policyContentRef}
+              onScroll={handleScroll}
             >
-              Next
-            </button>
-          ) : (
-            <>
-              <label className="flex items-center space-x-3">
-                <input
-                  type="checkbox"
-                  className="h-4 w-4"
-                  checked={isAbove18}
-                  onChange={() => setIsAbove18(!isAbove18)}
-                />
-                <span className="text-sm text-gray-600">
-                  I confirm that I am 18 years of age or older.
-                </span>
-              </label>
+              <div className="flex justify-between items-center">
+                <h4 className="font-bold text-lg mb-2">{currentPolicy.title}</h4>
+                <button onClick={() => setShowPolicyModal(true)}>
+                  <EnterFullScreenIcon className="h-5 w-5 text-blue-500 cursor-pointer" />
+                </button>
+              </div>
+              <div
+                className="text-sm text-gray-600"
+                dangerouslySetInnerHTML={{ __html: currentPolicy.content }}
+              />
+            </div>
+
+            <TooltipProvider>
+              <Tooltip content="Scroll down to read the policy before accepting.">
+                <TooltipTrigger asChild>
+                  <label className="flex items-center space-x-3">
+                    <input
+                      type="checkbox"
+                      className="h-4 w-4"
+                      checked={
+                        currentPolicyIndex === 0
+                          ? acceptedTerms
+                          : currentPolicyIndex === 1
+                          ? acceptedPrivacy
+                          : acceptedCookies
+                      }
+                      onChange={handleAcceptPolicy}
+                      disabled={!isScrolledToBottom}
+                    />
+                    <span className="text-sm text-gray-600">
+                      I have read and accept the {currentPolicy.title}
+                    </span>
+                  </label>
+                </TooltipTrigger>
+              </Tooltip>
+            </TooltipProvider>
+
+            {currentPolicyIndex < policies.length - 1 ? (
               <button
                 className="border border-gray-200 bg-white text-black hover:bg-gray-50 flex h-10 items-center justify-center rounded-md shadow-sm transition-all duration-75 focus:outline-none"
-                onClick={() => setCurrentPolicyIndex(currentPolicyIndex - 1)}
+                onClick={() => setCurrentPolicyIndex(currentPolicyIndex + 1)}
               >
-                Previous
+                Next
               </button>
-              <button
-                disabled={signInClicked || !canSignIn}
-                className={`${
-                  signInClicked || !canSignIn
-                    ? "cursor-not-allowed border-gray-200 bg-gray-100"
-                    : "border border-gray-200 bg-white text-black hover:bg-gray-50"
-                } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none mt-4`}
-                onClick={() => {
-                  setSignInClicked(true);
-                  signIn("google");
-                }}
-              >
-                {signInClicked ? (
-                  <LoadingDots color="#808080" />
-                ) : (
-                  <>
-                    <Google className="h-5 w-5" />
-                    <p>Sign In with Google</p>
-                  </>
-                )}
-              </button>
-            </>
-          )}
+            ) : (
+              <>
+                <label className="flex items-center space-x-3">
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4"
+                    checked={isAbove18}
+                    onChange={() => setIsAbove18(!isAbove18)}
+                  />
+                  <span className="text-sm text-gray-600">
+                    I confirm that I am 18 years of age or older.
+                  </span>
+                </label>
+                <button
+                  className="border border-gray-200 bg-white text-black hover:bg-gray-50 flex h-10 items-center justify-center rounded-md shadow-sm transition-all duration-75 focus:outline-none"
+                  onClick={() => setCurrentPolicyIndex(currentPolicyIndex - 1)}
+                >
+                  Previous
+                </button>
+                <button
+                  disabled={signInClicked || !canSignIn}
+                  className={`${
+                    signInClicked || !canSignIn
+                      ? "cursor-not-allowed border-gray-200 bg-gray-100"
+                      : "border border-gray-200 bg-white text-black hover:bg-gray-50"
+                  } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none mt-4`}
+                  onClick={() => {
+                    setSignInClicked(true);
+                    signIn("google");
+                  }}
+                >
+                  {signInClicked ? (
+                    <LoadingDots color="#808080" />
+                  ) : (
+                    <>
+                      <Google className="h-5 w-5" />
+                      <p>Sign In with Google</p>
+                    </>
+                  )}
+                </button>
+              </>
+            )}
+          </div>
         </div>
-      </div>
       </section>
-    </Modal>
-  
+
+      {/* Modal for Viewing Policies */}
+      <Modal showModal={showPolicyModal} setShowModal={setShowPolicyModal} className="z-50">
+        <div className="p-6 bg-white rounded-lg shadow-lg">
+          <h4 className="font-bold text-lg mb-4">{currentPolicy.title}</h4>
+          <div
+            className="text-base text-gray-700 leading-relaxed overflow-y-auto max-h-[70vh]"
+            dangerouslySetInnerHTML={{ __html: currentPolicy.content }}
+          />
+        </div>
+      </Modal>
+    </Modal2>
   );
 };
 
@@ -360,6 +399,6 @@ export function useSignInModal() {
 
   return useMemo(
     () => ({ setShowSignInModal, SignInModal: SignInModalCallback }),
-    [setShowSignInModal, SignInModalCallback],
+    [setShowSignInModal, SignInModalCallback]
   );
 }

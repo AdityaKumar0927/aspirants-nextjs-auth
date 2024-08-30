@@ -167,12 +167,13 @@ export function ContactForm() {
                   name="company"
                   render={({ field }) => (
                     <FormItem>
-                      <label
-                        htmlFor="company"
-                        className="block text-sm font-medium leading-6 text-neutral-700 dark:text-muted-dark"
-                      >
-                        Company (Optional)
-                      </label>
+                    <label
+                  htmlFor="company"
+                 className="block text-sm font-medium leading-6 text-neutral-700 dark:text-muted-dark"
+                  >
+                  Company <span className="not-italic">(Optional)</span>
+                    </label>
+
                       <FormControl>
                         <div className="mt-2">
                           <input
