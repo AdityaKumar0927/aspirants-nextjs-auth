@@ -263,19 +263,14 @@ export function ProfileForm() {
           control={form.control}
           name="policyAgreement"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="flex justify-between items-center">
               <FormLabel>Policy Agreement</FormLabel>
               <FormControl>
                 <Switch
                   checked={field.value}
                   onCheckedChange={field.onChange}
-                  className="mt-2"
                 />
               </FormControl>
-              <FormDescription>
-                Agree to the policies to continue using our platform.
-              </FormDescription>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -285,7 +280,7 @@ export function ProfileForm() {
             control={form.control}
             name="analyticsCookies"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex justify-between items-center">
                 <FormLabel>Analytics Cookies</FormLabel>
                 <FormControl>
                   <Switch
@@ -293,10 +288,6 @@ export function ProfileForm() {
                     onCheckedChange={field.onChange}
                   />
                 </FormControl>
-                <FormDescription>
-                  Enable analytics cookies to help us improve our platform by collecting information on how you use it.
-                </FormDescription>
-                <FormMessage />
               </FormItem>
             )}
           />
@@ -305,7 +296,7 @@ export function ProfileForm() {
             control={form.control}
             name="marketingCookies"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex justify-between items-center">
                 <FormLabel>Marketing Cookies</FormLabel>
                 <FormControl>
                   <Switch
@@ -313,10 +304,6 @@ export function ProfileForm() {
                     onCheckedChange={field.onChange}
                   />
                 </FormControl>
-                <FormDescription>
-                  Enable marketing cookies to provide you with personalized content and advertising based on your interactions with our platform.
-                </FormDescription>
-                <FormMessage />
               </FormItem>
             )}
           />
