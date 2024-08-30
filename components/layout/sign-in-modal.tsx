@@ -188,7 +188,6 @@ const policies = [
 ];
 
 
-
 const SignInModal = ({
   showSignInModal,
   setShowSignInModal,
@@ -219,14 +218,27 @@ const SignInModal = ({
     }
   };
 
-  const handleAcceptPolicy = () => {
+  const handleAcceptPolicy = async () => {
     if (isScrolledToBottom) {
-      if (currentPolicyIndex === 0) setAcceptedTerms(!acceptedTerms);
-      if (currentPolicyIndex === 1) setAcceptedPrivacy(!acceptedPrivacy);
-      if (currentPolicyIndex === 2) setAcceptedCookies(!acceptedCookies);
+      try {
+        const policyName =
+          currentPolicyIndex === 0 ? 'Terms and Conditions' : currentPolicyIndex === 1 ? 'Privacy Policy' : 'Cookie Policy';
+  
+        await fetch('/api/policy/accept', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ policyName }),
+        });
+  
+        if (currentPolicyIndex === 0) setAcceptedTerms(!acceptedTerms);
+        if (currentPolicyIndex === 1) setAcceptedPrivacy(!acceptedPrivacy);
+        if (currentPolicyIndex === 2) setAcceptedCookies(!acceptedCookies);
+      } catch (error) {
+        console.error('Error saving policy acceptance:', error);
+      }
     }
   };
-
+  
   return (
     <Modal2 showModal={showSignInModal} setShowModal={setShowSignInModal}>
       <section className="flex w-full items-start justify-center bg-[url('https://tailframes.com/images/squares-bg.webp')] bg-cover bg-center bg-no-repeat">
@@ -248,7 +260,7 @@ const SignInModal = ({
                 Start of your <div className="text-blue-300">Academic Comeback</div> with Aspirants!
               </h3>
               <h4 className="text-lg font-normal leading-7 text-slate-500">
-                And it's free. Forever.
+                And it&apos;s free. Forever.
               </h4>
             </div>
             <div className="flex gap-4">
@@ -294,7 +306,7 @@ const SignInModal = ({
             </div>
 
             <TooltipProvider>
-              <Tooltip content="Scroll down to read the policy before accepting.">
+              <Tooltip content="Scroll down to read the policy before accepting." disabled={isScrolledToBottom}>
                 <TooltipTrigger asChild>
                   <label className="flex items-center space-x-3">
                     <input

@@ -4,7 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { getSession } from "next-auth/react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -18,7 +20,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -37,7 +45,7 @@ const profileFormSchema = z.object({
       required_error: "Please select an email to display.",
     })
     .email(),
-  bio: z.string().max(160).min(4),
+  bio: z.string().max(160).min(4).optional(),
   urls: z
     .array(
       z.object({
@@ -45,25 +53,52 @@ const profileFormSchema = z.object({
       })
     )
     .optional(),
+  acceptedPolicies: z.array(z.string()).optional(),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export function ProfileForm() {
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const [acceptedPolicies, setAcceptedPolicies] = useState<string[]>([]);
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const session = await getSession();
+      if (!session) {
+        router.push("/api/auth/signin"); // Redirect to sign in if not authenticated
+      }
+    };
+    checkSession();
+  }, [router]);
+
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: async () => {
-      const response = await fetch('/api/settings/profile-settings');
-      if (!response.ok) throw new Error('Failed to fetch profile settings');
-      const data = await response.json();
-      setLoading(false);
-      return {
-        username: data.username || '',
-        email: data.email || '',
-        bio: data.bio || '',
-        urls: data.urls || [],
-      };
+      try {
+        const response = await fetch("/api/settings/profile-settings");
+        if (!response.ok) throw new Error("Failed to fetch profile settings");
+        const data = await response.json();
+        setLoading(false);
+        return {
+          username: data.username || "",
+          email: data.email || "",
+          bio: data.bio || "",
+          urls: data.urls || [],
+          acceptedPolicies: data.acceptedPolicies || [],
+        };
+      } catch (error) {
+        // Handle case for new users without default values
+        setLoading(false);
+        return {
+          username: "",
+          email: "",
+          bio: "",
+          urls: [],
+          acceptedPolicies: [],
+        };
+      }
     },
     mode: "onChange",
   });
@@ -73,14 +108,39 @@ export function ProfileForm() {
     control: form.control,
   });
 
+  // Function to handle policy acceptance
+  async function acceptPolicy(policyName: string) {
+    try {
+      const response = await fetch("/api/policy/accept", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ policyName }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Failed to accept policy");
+      }
+
+      // Update accepted policies state
+      setAcceptedPolicies((prev) => [...prev, policyName]);
+      toast({
+        title: "Policy accepted successfully",
+        description: `You have accepted the ${policyName}.`,
+      });
+    } catch (error: any) {
+      toast({ title: "Error accepting policy", description: error.message });
+    }
+  }
+
   async function onSubmit(data: ProfileFormValues) {
     try {
-      const response = await fetch('/api/settings/profile-settings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/settings/profile-settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error('Failed to update profile settings');
+      if (!response.ok) throw new Error("Failed to update profile settings");
       toast({
         title: "Profile settings updated successfully",
         description: (
@@ -90,7 +150,10 @@ export function ProfileForm() {
         ),
       });
     } catch (error: any) {
-      toast({ title: 'Failed to update profile settings', description: error.message });
+      toast({
+        title: "Failed to update profile settings",
+        description: error.message,
+      });
     }
   }
 
@@ -117,8 +180,8 @@ export function ProfileForm() {
                 <Input placeholder="Your username" {...field} />
               </FormControl>
               <FormDescription>
-                This is your public display name. It can be your real name or a
-                pseudonym. You can only change this once every 30 days.
+                This is your public display name. It can be your real name or a pseudonym. You can
+                only change this once every 30 days.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -164,8 +227,7 @@ export function ProfileForm() {
                 />
               </FormControl>
               <FormDescription>
-                You can <span>@mention</span> other users and organizations to
-                link to them.
+                You can <span>@mention</span> other users and organizations to link to them.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -179,9 +241,7 @@ export function ProfileForm() {
               name={`urls.${index}.value`}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={cn(index !== 0 && "sr-only")}>
-                    URLs
-                  </FormLabel>
+                  <FormLabel className={cn(index !== 0 && "sr-only")}>URLs</FormLabel>
                   <FormDescription className={cn(index !== 0 && "sr-only")}>
                     Add links to your website, blog, or social media profiles.
                   </FormDescription>
@@ -203,6 +263,27 @@ export function ProfileForm() {
             Add URL
           </Button>
         </div>
+
+        {/* Section for displaying and accepting policies */}
+        <div className="space-y-4">
+          <h4 className="font-medium text-lg">Policies</h4>
+          <ul>
+            {["Terms and Conditions", "Privacy Policy", "Cookie Policy"].map((policy) => (
+              <li key={policy} className="flex items-center justify-between">
+                <span>{policy}</span>
+                <Button
+                  type="button"
+                  variant="outline"
+                  disabled={acceptedPolicies.includes(policy)}
+                  onClick={() => acceptPolicy(policy)}
+                >
+                  {acceptedPolicies.includes(policy) ? "Accepted" : "Accept"}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <Button type="submit">Update profile</Button>
       </form>
     </Form>

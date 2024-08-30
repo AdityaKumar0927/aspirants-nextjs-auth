@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
@@ -34,29 +34,43 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId])
 }
 
 model User {
-  id                    String                 @id @default(cuid())
-  name                  String?
-  email                 String?                @unique
-  emailVerified         DateTime?
-  image                 String?
-  subscribed            Boolean                @default(false)
-  accounts              Account[]
-  sessions              Session[]
-  progresses            UserProgress[]
-  notes                 Note[]
-  performances          UserPerformance[]
-  answers               UserAnswer[]
-  settings              UserSettings?
-  questionBanks         CustomQuestionBank[]
-  customNotes           CustomNote[]
-  customUserProgresses  CustomUserProgress[]
-  customUserAnswers     CustomUserAnswer[]
+  id                     String                  @id @default(cuid())
+  name                   String?
+  email                  String?                 @unique
+  emailVerified          DateTime?
+  image                  String?
+  subscribed             Boolean                 @default(false)
+  accounts               Account[]
+  sessions               Session[]
+  progresses             UserProgress[]
+  notes                  Note[]
+  performances           UserPerformance[]
+  answers                UserAnswer[]
+  settings               UserSettings?
+  questionBanks          CustomQuestionBank[]
+  customNotes            CustomNote[]
+  customUserProgresses   CustomUserProgress[]
+  customUserAnswers      CustomUserAnswer[]
   customUserPerformances CustomUserPerformance[]
-  issues                Issue[]                @relation("UserIssues")
+  issues                 Issue[]                 @relation("UserIssues")
+  policyAgreements       UserPolicyAgreement[] // Added relation field
+
+  // other fields...
+}
+
+model UserPolicyAgreement {
+  id         String   @id @default(cuid())
+  userId     String
+  policyName String // e.g., "Terms and Conditions", "Privacy Policy", etc.
+  acceptedAt DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 model VerificationToken {
@@ -68,44 +82,44 @@ model VerificationToken {
 }
 
 model UserProgress {
-  id            String   @id @default(cuid())
+  id            String    @id @default(cuid())
   userId        String
   questionId    String
-  completed     Boolean  @default(false)
-  reviewed      Boolean  @default(false)
+  completed     Boolean   @default(false)
+  reviewed      Boolean   @default(false)
   lastAttempted DateTime?
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question      Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question      Question  @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
 
 model Question {
-  id                    Int               @id @default(autoincrement())
-  exam                  String
-  questionId            String            @unique
-  text                  String
-  subject               String
-  topic                 String
-  subtopic              String
-  difficulty            String
-  type                  String
-  year                  Int
-  reviewed              Boolean
-  completed             Boolean
-  options               String[]
-  correctOption         String
-  markscheme            String
-  marks                 String?
-  correctAttempts       String?
-  wrongAttempts         String?
-  averageTimeTaken      String?
-  lastAttempted         DateTime?
-  diagramUrl            String?
-  notes                 Note[]            @relation("QuestionNotes")
-  progresses            UserProgress[]
-  answers               UserAnswer[]
-  userPerformances      UserPerformance[]
+  id               Int               @id @default(autoincrement())
+  exam             String
+  questionId       String            @unique
+  text             String
+  subject          String
+  topic            String
+  subtopic         String
+  difficulty       String
+  type             String
+  year             Int
+  reviewed         Boolean
+  completed        Boolean
+  options          String[]
+  correctOption    String
+  markscheme       String
+  marks            String?
+  correctAttempts  String?
+  wrongAttempts    String?
+  averageTimeTaken String?
+  lastAttempted    DateTime?
+  diagramUrl       String?
+  notes            Note[]            @relation("QuestionNotes")
+  progresses       UserProgress[]
+  answers          UserAnswer[]
+  userPerformances UserPerformance[]
 }
 
 model Note {
@@ -120,7 +134,7 @@ model Note {
 }
 
 model UserPerformance {
-  id                      Int               @id @default(autoincrement())
+  id                      Int      @id @default(autoincrement())
   userId                  String
   questionId              String
   correctAnswers          Int
@@ -140,85 +154,85 @@ model UserPerformance {
   completed               Boolean
   reviewed                Boolean
   lastAttempted           DateTime
-  createdAt               DateTime           @default(now())
-  updatedAt               DateTime           @updatedAt
-  user                    User               @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question                Question           @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+  user                    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question                Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
 
 model UserAnswer {
-  id            String   @id @default(cuid())
-  questionId    String
-  userId        String
+  id             String   @id @default(cuid())
+  questionId     String
+  userId         String
   selectedOption String
-  isCorrect     Boolean
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question      Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  isCorrect      Boolean
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question       Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
 
 model UserSettings {
-  id       String   @id @default(cuid())
-  userId   String   @unique
+  id       String @id @default(cuid())
+  userId   String @unique
   username String
   email    String
   bio      String
   urls     Json
   name     String
   language String
-  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model CustomQuestionBank {
-  id          String           @id @default(uuid())
-  name        String
-  description String
-  userId      String
-  user        User             @relation(fields: [userId], references: [id])
+  id              String           @id @default(uuid())
+  name            String
+  description     String
+  userId          String
+  user            User             @relation(fields: [userId], references: [id])
   customQuestions CustomQuestion[] @relation("CustomQuestionBankQuestions")
 }
 
 model CustomNote {
-  id         String          @id @default(cuid())
+  id         String         @id @default(cuid())
   content    String?
   userId     String
   questionId String
-  user       User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question   CustomQuestion  @relation(fields: [questionId], references: [questionId], onDelete: Cascade, name: "CustomQuestionNotes")
+  user       User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question   CustomQuestion @relation(fields: [questionId], references: [questionId], onDelete: Cascade, name: "CustomQuestionNotes")
 
   @@unique([userId, questionId])
 }
 
 model CustomUserProgress {
-  id            String          @id @default(cuid())
+  id            String         @id @default(cuid())
   userId        String
   questionId    String
-  completed     Boolean         @default(false)
-  reviewed      Boolean         @default(false)
+  completed     Boolean        @default(false)
+  reviewed      Boolean        @default(false)
   lastAttempted DateTime?
-  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question      CustomQuestion  @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question      CustomQuestion @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
 
 model CustomUserAnswer {
-  id            String          @id @default(cuid())
-  questionId    String
-  userId        String
+  id             String         @id @default(cuid())
+  questionId     String
+  userId         String
   selectedOption String
-  isCorrect     Boolean
-  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question      CustomQuestion  @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  isCorrect      Boolean
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question       CustomQuestion @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
 
 model CustomUserPerformance {
-  id                      Int               @id @default(autoincrement())
+  id                      Int            @id @default(autoincrement())
   userId                  String
   questionId              String
   correctAnswers          Int
@@ -238,57 +252,57 @@ model CustomUserPerformance {
   completed               Boolean
   reviewed                Boolean
   lastAttempted           DateTime
-  createdAt               DateTime           @default(now())
-  updatedAt               DateTime           @updatedAt
-  user                    User               @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question                CustomQuestion     @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  createdAt               DateTime       @default(now())
+  updatedAt               DateTime       @updatedAt
+  user                    User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question                CustomQuestion @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
 
 model CustomQuestion {
-  id                    Int                   @id @default(autoincrement())
-  exam                  String
-  questionId            String                @unique
-  text                  String
-  subject               String
-  topic                 String
-  subtopic              String
-  difficulty            String
-  type                  String
-  year                  Int
-  reviewed              Boolean
-  completed             Boolean
-  options               String[]
-  correctOption         String
-  markscheme            String
-  marks                 String?
-  correctAttempts       String?
-  wrongAttempts         String?
-  averageTimeTaken      String?
-  lastAttempted         DateTime?
-  diagramUrl            String?
-  notes                 CustomNote[]          @relation("CustomQuestionNotes")
-  progresses            CustomUserProgress[]
-  answers               CustomUserAnswer[]
-  userPerformances      CustomUserPerformance[]
-  customQuestionBankId  String?
-  customQuestionBank    CustomQuestionBank?   @relation(fields: [customQuestionBankId], references: [id], onDelete: Cascade, name: "CustomQuestionBankQuestions")
+  id                   Int                     @id @default(autoincrement())
+  exam                 String
+  questionId           String                  @unique
+  text                 String
+  subject              String
+  topic                String
+  subtopic             String
+  difficulty           String
+  type                 String
+  year                 Int
+  reviewed             Boolean
+  completed            Boolean
+  options              String[]
+  correctOption        String
+  markscheme           String
+  marks                String?
+  correctAttempts      String?
+  wrongAttempts        String?
+  averageTimeTaken     String?
+  lastAttempted        DateTime?
+  diagramUrl           String?
+  notes                CustomNote[]            @relation("CustomQuestionNotes")
+  progresses           CustomUserProgress[]
+  answers              CustomUserAnswer[]
+  userPerformances     CustomUserPerformance[]
+  customQuestionBankId String?
+  customQuestionBank   CustomQuestionBank?     @relation(fields: [customQuestionBankId], references: [id], onDelete: Cascade, name: "CustomQuestionBankQuestions")
 }
 
 model Issue {
-  id              String           @id @default(cuid())
-  title           String
-  description     String
-  status          IssueStatus      @default(OPEN)
-  priority        IssuePriority    @default(MEDIUM)
-  categoryId      String?
-  category        IssueCategory?   @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  comments        IssueComment[]
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-  createdById     String
-  createdBy       User             @relation(fields: [createdById], references: [id], onDelete: Cascade, name: "UserIssues")
+  id          String         @id @default(cuid())
+  title       String
+  description String
+  status      IssueStatus    @default(OPEN)
+  priority    IssuePriority  @default(MEDIUM)
+  categoryId  String?
+  category    IssueCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  comments    IssueComment[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  createdById String
+  createdBy   User           @relation(fields: [createdById], references: [id], onDelete: Cascade, name: "UserIssues")
 }
 
 model IssueComment {
@@ -301,8 +315,8 @@ model IssueComment {
 }
 
 model IssueCategory {
-  id    String   @id @default(cuid())
-  name  String   @unique
+  id     String  @id @default(cuid())
+  name   String  @unique
   issues Issue[]
 }
 
