@@ -25,7 +25,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md">
       <div className="bg-white rounded-lg p-6 w-96 shadow-lg">
         <h2 className="text-lg font-semibold">{title}</h2>
         <p className="mt-2 text-sm text-gray-600">{description}</p>

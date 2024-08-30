@@ -47,6 +47,9 @@ const profileFormSchema = z.object({
     )
     .optional(),
   policyAgreement: z.boolean().optional(),
+  essentialCookies: z.boolean().default(true), // Always enabled
+  analyticsCookies: z.boolean().optional(),
+  marketingCookies: z.boolean().optional(),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -72,6 +75,9 @@ export function ProfileForm() {
           bio: data.bio || "",
           urls: data.urls || [{ value: "" }],
           policyAgreement: data.policyAgreement ?? false,
+          essentialCookies: true,
+          analyticsCookies: data.analyticsCookies ?? false,
+          marketingCookies: data.marketingCookies ?? false,
         };
       } catch (error) {
         setLoading(false);
@@ -81,6 +87,9 @@ export function ProfileForm() {
           bio: "",
           urls: [{ value: "" }],
           policyAgreement: false,
+          essentialCookies: true,
+          analyticsCookies: false,
+          marketingCookies: false,
         };
       }
     },
@@ -162,13 +171,13 @@ export function ProfileForm() {
                 <Input placeholder="Your username" {...field} />
               </FormControl>
               <FormDescription>
-                This is your public display name. It can be your real name or a
-                pseudonym. You can only change this once every 30 days.
+                This is your public display name. It can be your real name or a pseudonym. You can only change this once every 30 days.
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
+
         <FormField
           control={form.control}
           name="email"
@@ -195,6 +204,7 @@ export function ProfileForm() {
             </FormItem>
           )}
         />
+
         <FormField
           control={form.control}
           name="bio"
@@ -209,14 +219,14 @@ export function ProfileForm() {
                 />
               </FormControl>
               <FormDescription>
-                You can <span>@mention</span> other users and organizations to
-                link to them.
+                You can <span>@mention</span> other users and organizations to link to them.
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div>
+
+        <div className="space-y-4">
           {fields.map((field, index) => (
             <FormField
               control={form.control}
@@ -248,6 +258,7 @@ export function ProfileForm() {
             Add URL
           </Button>
         </div>
+
         <FormField
           control={form.control}
           name="policyAgreement"
@@ -268,14 +279,59 @@ export function ProfileForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Update profile</Button>
-        <Button
-          type="button"
-          variant="destructive"
-          onClick={() => setShowResetConfirm(true)}
-        >
-          Reset Account
-        </Button>
+
+        <div className="space-y-4">
+          <FormField
+            control={form.control}
+            name="analyticsCookies"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Analytics Cookies</FormLabel>
+                <FormControl>
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormDescription>
+                  Enable analytics cookies to help us improve our platform by collecting information on how you use it.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="marketingCookies"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Marketing Cookies</FormLabel>
+                <FormControl>
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormDescription>
+                  Enable marketing cookies to provide you with personalized content and advertising based on your interactions with our platform.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="space-x-4 mt-6">
+          <Button type="submit">Update profile</Button>
+          <Button
+            type="button"
+            variant="destructive"
+            onClick={() => setShowResetConfirm(true)}
+          >
+            Reset Account
+          </Button>
+        </div>
       </form>
 
       {showResetConfirm && (
