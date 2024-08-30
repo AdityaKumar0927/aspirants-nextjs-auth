@@ -1,13 +1,10 @@
-// app/forms/profile-form.tsx
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { useSession, signIn } from "next-auth/react";
-
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,25 +17,26 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Switch } from "@/components/ui/switch";
+import { useRouter } from "next/navigation";
 
 const profileFormSchema = z.object({
   username: z
     .string()
-    .min(2, {
-      message: "Username must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Username must not be longer than 30 characters.",
-    }),
+    .min(2, { message: "Username must be at least 2 characters." })
+    .max(30, { message: "Username must not be longer than 30 characters." }),
   email: z
-    .string({
-      required_error: "Please select an email to display.",
-    })
+    .string({ required_error: "Please select an email to display." })
     .email(),
   bio: z.string().max(160).min(4),
   urls: z
@@ -48,41 +46,43 @@ const profileFormSchema = z.object({
       })
     )
     .optional(),
-  policyAgreed: z.boolean().optional(),
+  policyAgreement: z.boolean().optional(),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export function ProfileForm() {
-  const { data: session, status } = useSession();
   const [loading, setLoading] = useState(true);
-  const [profileData, setProfileData] = useState<ProfileFormValues | null>(null);
-
-  // Redirect to sign-in if the user is not authenticated
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      signIn();
-    }
-  }, [status]);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const router = useRouter();
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: async () => {
-      const response = await fetch('/api/settings/profile-settings');
-      if (!response.ok) {
+      try {
+        const response = await fetch("/api/settings/profile-settings");
+        if (!response.ok) throw new Error("Failed to fetch profile settings");
+
+        const data = await response.json();
+        setLoading(false);
+
+        return {
+          username: data.username || "",
+          email: data.email || "",
+          bio: data.bio || "",
+          urls: data.urls || [{ value: "" }],
+          policyAgreement: data.policyAgreement ?? false,
+        };
+      } catch (error) {
         setLoading(false);
         return {
-          username: '',
-          email: '',
-          bio: '',
-          urls: [],
-          policyAgreed: false,
-        }; // Provide default values for new users
+          username: "",
+          email: "",
+          bio: "",
+          urls: [{ value: "" }],
+          policyAgreement: false,
+        };
       }
-      const data = await response.json();
-      setLoading(false);
-      setProfileData(data);
-      return { ...data, policyAgreed: data.policyAgreed || false };
     },
     mode: "onChange",
   });
@@ -94,24 +94,12 @@ export function ProfileForm() {
 
   async function onSubmit(data: ProfileFormValues) {
     try {
-      // Update profile settings
-      const response = await fetch('/api/settings/profile-settings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/settings/profile-settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
-      if (!response.ok) throw new Error('Failed to update profile settings');
-
-      // Update policy agreement if the switch is toggled
-      if (data.policyAgreed) {
-        await fetch('/api/policy/accept', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ policyName: 'Terms and Conditions' }),
-        });
-      }
-
+      if (!response.ok) throw new Error("Failed to update profile settings");
       toast({
         title: "Profile settings updated successfully",
         description: (
@@ -121,35 +109,35 @@ export function ProfileForm() {
         ),
       });
     } catch (error: any) {
-      toast({ title: 'Failed to update profile settings', description: error.message });
+      toast({
+        title: "Failed to update profile settings",
+        description: error.message,
+      });
     }
   }
 
-  // Function to handle reset of user data
-  async function handleResetAccount() {
-    if (!confirm("Are you sure you want to delete all your data? This action cannot be undone.")) {
-      return;
-    }
-
+  const handleReset = async () => {
     try {
-      const response = await fetch('/api/user/delete', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/user/delete", {
+        method: "DELETE",
       });
 
-      if (!response.ok) throw new Error('Failed to delete user data');
+      if (!response.ok) {
+        throw new Error("Failed to reset user data");
+      }
 
       toast({
-        title: "Account reset successfully",
-        description: "All your data has been deleted.",
+        title: "User data reset successfully",
       });
 
-      // Optionally, sign the user out after resetting their account
-      signIn();
+      router.push("/");
     } catch (error: any) {
-      toast({ title: 'Failed to reset account', description: error.message });
+      toast({
+        title: "Failed to reset user data",
+        description: error.message,
+      });
     }
-  }
+  };
 
   if (loading) {
     return (
@@ -157,15 +145,6 @@ export function ProfileForm() {
         <Skeleton className="h-12 w-1/3" />
         <Skeleton className="h-12 w-2/3" />
         <Skeleton className="h-12 w-full" />
-      </div>
-    );
-  }
-
-  if (!session) {
-    return (
-      <div>
-        <p>You need to be signed in to access your profile.</p>
-        <button onClick={() => signIn()}>Sign In</button>
       </div>
     );
   }
@@ -183,7 +162,8 @@ export function ProfileForm() {
                 <Input placeholder="Your username" {...field} />
               </FormControl>
               <FormDescription>
-                This is your public display name. It can be your real name or a pseudonym. You can only change this once every 30 days.
+                This is your public display name. It can be your real name or a
+                pseudonym. You can only change this once every 30 days.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -229,7 +209,8 @@ export function ProfileForm() {
                 />
               </FormControl>
               <FormDescription>
-                You can <span>@mention</span> other users and organizations to link to them.
+                You can <span>@mention</span> other users and organizations to
+                link to them.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -267,32 +248,56 @@ export function ProfileForm() {
             Add URL
           </Button>
         </div>
-
-        {/* Policy Agreement Switch */}
         <FormField
           control={form.control}
-          name="policyAgreed"
+          name="policyAgreement"
           render={({ field }) => (
-            <FormItem className="flex items-center space-x-3">
-              <FormLabel>I accept the Terms and Conditions</FormLabel>
-              <Switch checked={field.value} onCheckedChange={field.onChange} />
+            <FormItem>
+              <FormLabel>Policy Agreement</FormLabel>
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  className="mt-2"
+                />
+              </FormControl>
+              <FormDescription>
+                Agree to the policies to continue using our platform.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-
         <Button type="submit">Update profile</Button>
-
-        {/* Reset Account Button */}
         <Button
           type="button"
           variant="destructive"
-          className="mt-4"
-          onClick={handleResetAccount}
+          onClick={() => setShowResetConfirm(true)}
         >
           Reset Account
         </Button>
       </form>
+
+      {showResetConfirm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-md shadow-md">
+            <h3 className="text-lg font-semibold">
+              Are you sure you want to reset your account?
+            </h3>
+            <p className="text-sm text-gray-600">
+              This action will delete all your data and cannot be undone.
+            </p>
+            <div className="mt-4 flex space-x-4">
+              <Button variant="destructive" onClick={handleReset}>
+                Reset
+              </Button>
+              <Button variant="outline" onClick={() => setShowResetConfirm(false)}>
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </Form>
   );
 }
