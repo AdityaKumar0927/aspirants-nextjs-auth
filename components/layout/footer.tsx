@@ -101,40 +101,9 @@ const footerSocials = [
 export function Footer() {
   return (
     <footer className="border-t">
-      <div className="mx-auto w-full sm:w-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-96 w-full sm:w-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="gap-4 p-4 py-16 sm:pb-16 md:flex md:justify-between">
-          <div className="mb-12 flex flex-col gap-4">
-            <a href="/" className="flex items-center gap-2">
-              <img
-                className="h-20 w-20"
-                src="bulb.svg"
-                alt="aspirants Logo"
-              />
-              <span className="self-center whitespace-nowrap text-3xl font-bold tracking-tighter sm:text-5xl text-neutral-900 dark:text-white">
-                aspirants
-              </span>
-            </a>
-            <div className="max-w-sm">
-              <div className="z-10 mt-4 flex w-full flex-col items-start text-left">
-                <p className="-my-2">
-                  Use aspirants, save time.
-                </p>
-                <a
-                  href="/sign-in"
-                  className={cn(
-                    buttonVariants({
-                      size: "lg",
-                      variant: "default",
-                    }),
-                    "mt-4 w-full rounded-full px-6 text-sm font-semibold tracking-tighter transition-all ease-out hover:ring-2 hover:ring-neutral-800 hover:ring-offset-2 hover:ring-offset-current dark:hover:ring-neutral-50",
-                  )}
-                >
-                  Get Started
-                  <ChevronRightIcon className="ml-1 size-4 transition-all duration-300 ease-out group-hover:translate-x-1" />
-                </a>
-              </div>
-            </div>
-          </div>
+          
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
             {footerNavs.map((nav) => (
               <div key={nav.label}>
@@ -172,7 +141,7 @@ export function Footer() {
               </a>
             ))}
           </div>
-          <span className="text-sm tracking-tight text-neutral-500 dark:text-neutral-400 sm:text-center">
+          <span className="text-sm tracking-tight text-neutral-800 dark:text-neutral-400 sm:text-center">
             Copyright © {new Date().getFullYear()}{" "}
             <a href="/" className="cursor-pointer">
               aspirants

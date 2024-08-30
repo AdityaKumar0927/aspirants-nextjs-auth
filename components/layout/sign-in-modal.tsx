@@ -1,9 +1,12 @@
 // components/layout/sign-in-modal.tsx
-import Modal from "@/components/shared/modal";
+import Modal from "@/components/layout/modal-2";
 import { signIn } from "next-auth/react";
 import { useState, Dispatch, SetStateAction, useCallback, useMemo } from "react";
 import { LoadingDots, Google } from "@/components/shared/icons";
 import Image from "next/image";
+import { Badge } from "../magicui/badge";
+import { Button } from "@/app/Contact/button";
+import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 const policies = [
@@ -268,7 +271,37 @@ const SignInModal = ({
   return (
     
     <Modal showModal={showSignInModal} setShowModal={setShowSignInModal}>
-      <div className="w-full overflow-hidden shadow-xl md:max-w-md md:rounded-2xl md:border md:border-gray-200">
+        <section
+      className="flex w-full items-start justify-center bg-[url('https://tailframes.com/images/squares-bg.webp')] bg-cover bg-center bg-no-repeat"
+>
+      <div
+        className="flex max-w-screen-2xl grow flex-col items-start justify-start gap-12 px-3 py-12 md:pt-24 lg:px-0 xl:flex-row"
+      >
+        <div className="sm:pl-8 lg:pl-16 xl:pl-32 mb-0 flex flex-1 flex-col items-start gap-12 px-0 xl:mb-24">
+          <Badge>
+            Tailframes v1.0
+          </Badge>
+          <div className="flex max-w-lg flex-col gap-6">
+            <h3 className="text-4xl font-semibold text-slate-950 md:text-6xl">
+              Here is your new Tailwind UI kit, welcome!
+            </h3>
+            <h4 className="text-lg font-normal leading-7 text-slate-500">
+              We've done it carefully and simply. The elements work well together to create stunning landings.
+            </h4>
+          </div>
+          <div className="flex gap-4">
+            <Button>
+              Get a Template
+            </Button>
+            <Button>
+              See More
+            </Button>
+          </div>
+        </div>
+      
+      </div>
+    
+      <div className="w-1/4 mt-36 mx-36 overflow-hidden shadow-xl md:rounded-2xl md:border md:border-gray-200">
         <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
           <a href="https://aspirants.tech">
             <Image
@@ -366,8 +399,9 @@ const SignInModal = ({
           )}
         </div>
       </div>
+      </section>
     </Modal>
-    
+  
   );
 };
 
