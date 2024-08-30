@@ -103,22 +103,15 @@ export function ProfileForm() {
 
   async function onSubmit(data: ProfileFormValues) {
     try {
-      // Update profile settings
+      // Update profile settings including policy agreement
       const response = await fetch("/api/settings/profile-settings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error("Failed to update profile settings");
 
-      // If the policy agreement is accepted, send an additional request
-      if (data.policyAgreement) {
-        const policyResponse = await fetch("/api/user/policy-accept", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ policyAccepted: true }),
-        });
-        if (!policyResponse.ok) throw new Error("Failed to accept policy agreement");
+      if (!response.ok) {
+        throw new Error("Failed to update profile settings");
       }
 
       toast({
