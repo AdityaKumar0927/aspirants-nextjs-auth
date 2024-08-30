@@ -114,7 +114,7 @@ const QuestionBank: React.FC = () => {
     notes: {} as Record<string, string>,
   });
   const [loading, setLoading] = useState<boolean>(true);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1); // Track the current page for pagination
 
   const userId = ""; // Add logic to retrieve user ID if signed in
 
@@ -159,6 +159,7 @@ const QuestionBank: React.FC = () => {
             (p: UserPerformance) => p.questionId === question.questionId
           );
 
+          // Update state for feedback and selected options
           if (userAnswer) {
             setState((prevState) => ({
               ...prevState,
@@ -175,8 +176,8 @@ const QuestionBank: React.FC = () => {
 
           return {
             ...question,
-            reviewed: progress ? progress.reviewed : false,
-            completed: progress ? progress.completed : false,
+            reviewed: performance ? performance.reviewed : progress ? progress.reviewed : false,
+            completed: performance ? performance.completed : progress ? progress.completed : false,
             notes: note ? note.content : "",
             lastAttempted: progress ? progress.lastAttempted : "",
             performance: performance || {},
@@ -360,6 +361,7 @@ const QuestionBank: React.FC = () => {
         accuracy: isCorrect ? 100 : 0, // Update as per your logic
         firstAttemptSuccessRate: isCorrect ? 100 : 0, // Update as per your logic
         reattemptAccuracy: isCorrect ? 100 : 0, // Update as per your logic
+        // Add other fields as necessary
       };
 
       await updateUserPerformance(questionId, updatedFields);
