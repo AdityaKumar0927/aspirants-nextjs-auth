@@ -78,7 +78,7 @@ interface Question {
   options?: string[];
 }
 
-export function QuestionBankDashboard() {
+const QuestionBankDashboard: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [editingQuestionId, setEditingQuestionId] = useState<string | null>(null);
   const [updatedText, setUpdatedText] = useState("");
@@ -498,6 +498,6 @@ export function QuestionBankDashboard() {
       </div>
     </TooltipProvider>
   );
-}
+};
 
 export default QuestionBankDashboard;
