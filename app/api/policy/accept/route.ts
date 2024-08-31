@@ -1,45 +1,36 @@
-// app/api/policy/accept/route.ts
+import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import prisma from '@/lib/prisma';
+import { authOptions } from '../auth/[...nextauth]/options'; // Adjust the import path if needed
 
-// Define the route handler
-export async function POST(req: Request) {
-  const session = await getServerSession(); // Fetch the session for the authenticated user
+const prisma = new PrismaClient();
 
-  // Check if the user is signed in
-  if (!session || !session.user || !session.user.email) {
-    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
-  }
-
-  const { policyName } = await req.json(); // Parse the request body
-
-  // Validate the incoming request
-  if (!policyName) {
-    return NextResponse.json({ message: 'Policy name is required' }, { status: 400 });
-  }
-
+export async function POST(request: Request) {
   try {
-    // Find the user in the database
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
+    const session = await getServerSession(authOptions);
 
-    if (!user) {
-      return NextResponse.json({ message: 'User not found' }, { status: 404 });
+    if (!session || !session.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Create a new policy acceptance record
-    await prisma.userPolicyAgreement.create({
+    const { policyName } = await request.json();
+
+    if (!policyName) {
+      return NextResponse.json({ error: 'Policy name is required' }, { status: 400 });
+    }
+
+    // Create a new policy acceptance record for the user
+    const policyAgreement = await prisma.userPolicyAgreement.create({
       data: {
-        userId: user.id,
+        userId: session.user.id,
         policyName,
+        acceptedAt: new Date(),
       },
     });
 
-    return NextResponse.json({ message: 'Policy accepted successfully' }, { status: 200 });
+    return NextResponse.json({ message: 'Policy accepted successfully', policyAgreement });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
+    console.error('Error accepting policy:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
