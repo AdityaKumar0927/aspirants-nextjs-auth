@@ -1,13 +1,18 @@
-// app/api/users/role/route.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
-import { authorize } from '../../auth/middleware/route'; // Adjust the path as needed
+import { checkAuthorization } from '../../auth/middleware/route'; // Adjust the path as needed
 
 const prisma = new PrismaClient();
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Check authorization within the handler
+  const isAuthorized = await checkAuthorization(req, ['administrator']);
+  if (!isAuthorized) {
+    return res.status(403).json({ error: 'Forbidden: Insufficient permissions' });
   }
 
   try {
@@ -35,5 +40,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-// Only allow administrators to access this endpoint
-export default authorize(handler, ['administrator']);
+export default handler;

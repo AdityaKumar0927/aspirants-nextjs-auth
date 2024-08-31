@@ -2,17 +2,8 @@
 import "../globals.css";
 import cx from "classnames";
 import { sfPro, inter } from "../fonts";
-import Nav from "@/components/layout/nav";
-import { Footer } from "@/components/layout/footer";
-import { Suspense } from "react";
-import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
-import { TooltipProvider } from '@radix-ui/react-tooltip';
-import Bar from '@/components/layout/Bar';
-import { Toaster } from "@/components/ui/toaster";
-import { LoadingProvider } from "@/components/layout/LoadingContext";
-import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext";
 import { ApplicationLayout } from './application-layout';
 import { getEvents } from "./data";
 

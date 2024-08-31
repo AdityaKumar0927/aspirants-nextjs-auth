@@ -1,455 +1,503 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
-import Question from "@/components/shared/Question";
-import Popover from "@/components/shared/popover";
-import { ChevronDown } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  File,
+  Home,
+  LineChart,
+  FilterIcon,
+  MoreHorizontal,
+  Package,
+  Package2,
+  PlusCircle,
+  Search,
+  Settings,
+  Users,
+} from "lucide-react";
+
+import { Badge } from "@/components/ui/badge";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 import {
   Tooltip,
-  TooltipTrigger,
   TooltipContent,
   TooltipProvider,
+  TooltipTrigger,
 } from "@/components/ui/tooltip";
+import Modal from "@/components/shared/modal";
+import MathRenderer from "@/components/layout/MathRenderer";
 
-interface QuestionType {
-  exam: string;
+interface Question {
   questionId: string;
   text: string;
-  subject: string;
-  topic: string;
-  subtopic: string;
-  difficulty: string;
-  type: "Multiple Choice" | "Numerical";
-  year: string;
   reviewed: boolean;
-  completed: boolean;
+  subject: string;
+  difficulty: string;
+  status: "Active" | "Draft" | "Archived";
   options?: string[];
-  correctOption?: string;
-  markscheme?: string;
-  notes?: string;
-  lastAttempted?: string;
-  diagramUrl?: string;
 }
 
-type FiltersType = {
-  exams: string[];
-  subjects: string[];
-  topics: string[];
-  subtopics: string[];
-  difficulties: string[];
-  types: string[];
-  years: string[];
-  status: string;
-};
-
-const initialFilters: FiltersType = {
-  exams: [],
-  subjects: [],
-  topics: [],
-  subtopics: [],
-  difficulties: [],
-  types: [],
-  years: [],
-  status: "all",
-};
-
-const fetchData = async (url: string) => {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(`Failed to fetch data from ${url}`);
-  return response.json();
-};
-
-const PAGE_SIZE = 10;
-
-const QuestionBank: React.FC = () => {
-  const [questions, setQuestions] = useState<QuestionType[]>([]);
-  const [filters, setFilters] = useState<FiltersType>(initialFilters);
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [dropdowns, setDropdowns] = useState({
-    exam: false,
-    subject: false,
-    topic: false,
-    subtopic: false,
-    difficulty: false,
-    year: false,
-    type: false,
-  });
-  const [state, setState] = useState({
-    feedback: {} as Record<string, string>,
-    numericalAnswers: {} as Record<string, string>,
-    showMarkscheme: {} as Record<string, boolean>,
-    selectedOptions: {} as Record<string, string>,
-    notes: {} as Record<string, string>,
-  });
-  const [loading, setLoading] = useState<boolean>(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const userId = "someUserId"; // replace with actual user ID fetching logic
-
-  const handleOptionClick = (questionId: string, option: string, correctOption: string) => {
-    const isCorrect = option === correctOption;
-    setState((prevState) => ({
-      ...prevState,
-      feedback: {
-        ...prevState.feedback,
-        [questionId]: isCorrect ? "correct" : "incorrect",
-      },
-      selectedOptions: {
-        ...prevState.selectedOptions,
-        [questionId]: option,
-      },
-    }));
-  };
-
-  const handleNumericalSubmit = (questionId: string, userAnswer: string, correctAnswer: string) => {
-    const isCorrect = userAnswer === correctAnswer;
-    setState((prevState) => ({
-      ...prevState,
-      feedback: {
-        ...prevState.feedback,
-        [questionId]: isCorrect ? "correct" : "incorrect",
-      },
-    }));
-  };
-
-  // Adjusted functions to match the expected type `(questionId: string) => void`
-  const handleMarkForReview = (questionId: string) => {
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.questionId === questionId ? { ...q, reviewed: !q.reviewed } : q
-      )
-    );
-  };
-
-  const handleMarkComplete = (questionId: string) => {
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.questionId === questionId ? { ...q, completed: !q.completed } : q
-      )
-    );
-  };
-
-  const handleNoteChange = (questionId: string, note: string) => {
-    setState((prevState) => ({
-      ...prevState,
-      notes: {
-        ...prevState.notes,
-        [questionId]: note,
-      },
-    }));
-  };
-
-  const handleDeleteNote = async (questionId: string) => {
-    setState((prevState) => {
-      const updatedNotes = { ...prevState.notes };
-      delete updatedNotes[questionId];
-      return { ...prevState, notes: updatedNotes };
-    });
-  };
+export function QuestionBankDashboard() {
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [editingQuestionId, setEditingQuestionId] = useState<string | null>(null);
+  const [updatedText, setUpdatedText] = useState("");
+  const [updatedOptions, setUpdatedOptions] = useState<string[]>([]);
+  const [questionStatus, setQuestionStatus] = useState<"Active" | "Draft" | "Archived">("Active");
+  const [showPreview, setShowPreview] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [confirmationAction, setConfirmationAction] = useState<() => void>(() => {});
 
   useEffect(() => {
-    const fetchAllData = async () => {
+    const fetchQuestions = async () => {
       try {
-        setLoading(true);
-        let questionsData = JSON.parse(localStorage.getItem("questionsData") || "null");
-
-        if (!questionsData) {
-          questionsData = await fetchData("/api/questions");
-          localStorage.setItem("questionsData", JSON.stringify(questionsData));
-        }
-
-        setQuestions(questionsData);
+        const response = await fetch("/api/questions");
+        const data = await response.json();
+        setQuestions(data);
       } catch (error) {
-        if (error instanceof Error) {
-          console.error("Error fetching data:", error.message);
-        } else {
-          console.error("An unexpected error occurred:", error);
-        }
-      } finally {
-        setLoading(false);
+        console.error("Error fetching questions:", error);
       }
     };
 
-    fetchAllData();
+    fetchQuestions();
   }, []);
 
-  const filteredQuestions = useMemo(() => {
-    return questions.filter((question) => {
-      return (
-        (!filters.exams.length || filters.exams.includes(question.exam)) &&
-        (!filters.subjects.length || filters.subjects.includes(question.subject)) &&
-        (!filters.topics.length || filters.topics.includes(question.topic)) &&
-        (!filters.subtopics.length || filters.subtopics.includes(question.subtopic)) &&
-        (!filters.difficulties.length || filters.difficulties.includes(question.difficulty)) &&
-        (!filters.years.length || filters.years.includes(question.year)) &&
-        (!filters.types.length || filters.types.includes(question.type)) &&
-        (question.text.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          question.topic.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          question.subtopic.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          question.subject.toLowerCase().includes(searchQuery.toLowerCase()))
-      );
-    });
-  }, [questions, filters, searchQuery]);
-
-  const paginatedQuestions = useMemo(() => {
-    const startIndex = 0;
-    const endIndex = currentPage * PAGE_SIZE;
-    return filteredQuestions.slice(startIndex, endIndex);
-  }, [filteredQuestions, currentPage]);
-
-  const handleLoadMore = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+  const handleEditClick = (question: Question) => {
+    setEditingQuestionId(question.questionId);
+    setUpdatedText(question.text);
+    setUpdatedOptions(question.options || []);
+    setQuestionStatus(question.status);
   };
 
-  const handleFilterChange = useCallback((tag: keyof FiltersType, value: string) => {
-    setFilters((prevFilters) => {
-      const filterValues = prevFilters[tag];
-      if (Array.isArray(filterValues)) {
-        const isSelected = filterValues.includes(value);
-        const updatedFilter = isSelected
-          ? filterValues.filter((v: string) => v !== value)
-          : [...filterValues, value];
-        return { ...prevFilters, [tag]: updatedFilter };
+  const handleSaveChanges = async () => {
+    if (!editingQuestionId) return;
+
+    const updatedQuestion: Question = {
+      questionId: editingQuestionId,
+      text: updatedText,
+      options: updatedOptions,
+      reviewed: true,
+      subject: "Subject",
+      difficulty: "Medium",
+      status: questionStatus,
+    };
+
+    try {
+      const response = await fetch(`/api/questions/${editingQuestionId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedQuestion),
+      });
+
+      if (!response.ok) throw new Error("Failed to update question");
+
+      setQuestions((prev) =>
+        prev.map((q) => (q.questionId === editingQuestionId ? updatedQuestion : q))
+      );
+      setEditingQuestionId(null);
+      setShowPreview(false);
+    } catch (error) {
+      console.error("Error updating question:", error);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditingQuestionId(null);
+    setShowPreview(false);
+  };
+
+  const handleDelete = (questionId: string) => {
+    setConfirmationAction(() => async () => {
+      try {
+        const response = await fetch(`/api/questions/${questionId}`, {
+          method: "DELETE",
+        });
+
+        if (!response.ok) throw new Error("Failed to delete question");
+
+        setQuestions((prev) => prev.filter((q) => q.questionId !== questionId));
+        setShowConfirmationModal(false);
+      } catch (error) {
+        console.error("Error deleting question:", error);
       }
-      return prevFilters;
     });
-  }, []);
+    setShowConfirmationModal(true);
+  };
 
-  if (loading) {
-    return (
-      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-        <div className="max-w-6xl w-full">
-          <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
-            Question Bank
-          </h1>
+  const handleAddOption = () => {
+    setUpdatedOptions([...updatedOptions, ""]);
+  };
 
-          <div className="flex space-x-4 mb-6">
-            <Skeleton height={40} width={120} />
-            <Skeleton height={40} width={120} />
-            <Skeleton height={40} width={120} />
-          </div>
+  const handleOptionChange = (index: number, value: string) => {
+    setUpdatedOptions((prev) => prev.map((opt, i) => (i === index ? value : opt)));
+  };
 
-          <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map(
-              (filterType) => (
-                <div key={filterType} className="flex items-center space-x-2">
-                  <Skeleton height={40} width={120} />
-                </div>
-              )
-            )}
-          </div>
-
-          <div>
-            {[...Array(10)].map((_, i) => (
-              <div key={i} className="mb-4 p-4 border rounded-md">
-                <Skeleton height={20} width={"80%"} />
-                <Skeleton height={20} width={"90%"} />
-                <Skeleton height={20} width={"60%"} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const handleRemoveOption = (index: number) => {
+    setUpdatedOptions((prev) => prev.filter((_, i) => i !== index));
+  };
 
   return (
     <TooltipProvider>
-      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-        <div className="max-w-6xl w-full">
-          <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
-            Question Bank
-          </h1>
-
-          <div className="flex space-x-4 mb-6">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <input
-                  type="text"
-                  placeholder="Search questions..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                />
-              </TooltipTrigger>
-              <TooltipContent>Search Questions</TooltipContent>
-            </Tooltip>
-          </div>
-
-          <div className="flex space-x-4 mb-2">
-            {["all", "complete", "review"].map((status) => (
-              <Tooltip key={status}>
-                <TooltipTrigger asChild>
-                  <button
-                    onClick={() => setFilters({ ...filters, status })}
-                    className={`px-4 py-2 rounded-md ${
-                      filters.status === status
-                        ? "bg-white border hover:border-black border-gray-600 text-gray-500"
-                        : "bg-white hover:border-black border border-gray-300 text-gray-500"
-                    }`}
+      <div className="flex min-h-screen w-full flex-col">
+        <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+          <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button size="icon" variant="outline" className="sm:hidden">
+                  <span className="sr-only">Toggle Menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="sm:max-w-xs">
+                <nav className="grid gap-6 text-lg font-medium">
+                  <Link
+                    href="#"
+                    className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
                   >
-                    {status.charAt(0).toUpperCase() + status.slice(1)}
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  {status.charAt(0).toUpperCase() + status.slice(1)}
-                </TooltipContent>
-              </Tooltip>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {[
-              "exams",
-              "subjects",
-              "topics",
-              "subtopics",
-              "difficulties",
-              "years",
-              "types",
-            ].map((filterType) => (
-              <Tooltip key={filterType}>
-                <TooltipTrigger asChild>
-                  <Popover
-                    content={
-                      <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                        {(
-                          filterType === "exams"
-                            ? Array.from(new Set(questions.map((q) => q.exam)))
-                            : filterType === "subjects"
-                            ? Array.from(new Set(questions.map((q) => q.subject)))
-                            : filterType === "topics"
-                            ? Array.from(new Set(questions.map((q) => q.topic)))
-                            : filterType === "subtopics"
-                            ? Array.from(new Set(questions.map((q) => q.subtopic)))
-                            : filterType === "difficulties"
-                            ? Array.from(new Set(questions.map((q) => q.difficulty)))
-                            : filterType === "years"
-                            ? Array.from(new Set(questions.map((q) => q.year)))
-                            : Array.from(new Set(questions.map((q) => q.type)))
-                        ).map((value: string) => (
-                          <div key={value} className="flex items-center">
-                            <input
-                              type="checkbox"
-                              id={`${filterType}-${value}`}
-                              className="mr-2"
-                              checked={(
-                                filters[filterType as keyof FiltersType] as string[] || []
-                              ).includes(value)}
-                              onChange={() =>
-                                handleFilterChange(filterType as keyof FiltersType, value)
-                              }
-                            />
-                            <label
-                              htmlFor={`${filterType}-${value}`}
-                              className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
-                            >
-                              {value}
-                            </label>
-                          </div>
-                        ))}
-                      </div>
-                    }
-                    align="start"
-                    openPopover={dropdowns[filterType as keyof typeof dropdowns]}
-                    setOpenPopover={(open) => {
-                      setDropdowns((prev) => ({
-                        ...prev,
-                        [filterType]: open,
-                      }));
-                    }}
+                    <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
+                    <span className="sr-only">Acme Inc</span>
+                  </Link>
+                  <Link
+                    href="#"
+                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                   >
-                    <button
-                      onClick={() =>
-                        setDropdowns((prev) => ({
-                          ...prev,
-                          [filterType]: !prev[filterType as keyof typeof dropdowns],
-                        }))
-                      }
-                      className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
-                    >
-                      <p className="text-gray-600">
-                        {Array.isArray(filters[filterType as keyof FiltersType])
-                          ? (filters[filterType as keyof FiltersType] as string[]).length
-                            ? `${
-                                (filters[filterType as keyof FiltersType] as string[]).length
-                              } selected`
-                            : filterType.charAt(0).toUpperCase() + filterType.slice(1)
-                          : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                      </p>
-                      <ChevronDown
-                        className={`h-4 w-4 text-gray-600 transition-all ${
-                          dropdowns[filterType as keyof typeof dropdowns] ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-                  </Popover>
-                </TooltipTrigger>
-                <TooltipContent>
-                  Select {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                </TooltipContent>
-              </Tooltip>
-            ))}
-          </div>
-
-          {paginatedQuestions.length > 0 ? (
-            <>
-              {paginatedQuestions.map((question) => (
-                <Question
-                  key={question.questionId}
-                  question={question}
-                  feedback={state.feedback[question.questionId]}
-                  selectedOption={state.selectedOptions[question.questionId]}
-                  numericalAnswer={state.numericalAnswers[question.questionId]}
-                  showMarkscheme={state.showMarkscheme[question.questionId]}
-                  handleOptionClick={handleOptionClick}
-                  handleNumericalSubmit={handleNumericalSubmit}
-                  handleNumericalChange={(questionId, value) => {
-                    setState((prevState) => ({
-                      ...prevState,
-                      numericalAnswers: {
-                        ...prevState.numericalAnswers,
-                        [questionId]: value,
-                      },
-                    }));
-                  }}
-                  handleMarkschemeToggle={() =>
-                    setState((prevState) => ({
-                      ...prevState,
-                      showMarkscheme: {
-                        ...prevState.showMarkscheme,
-                        [question.questionId]: !prevState.showMarkscheme[question.questionId],
-                      },
-                    }))
-                  }
-                  handleMarkForReview={handleMarkForReview}
-                  handleMarkComplete={handleMarkComplete}
-                  isMarkedForReview={question.reviewed}
-                  isMarkedComplete={question.completed}
-                  markschemesDisabled={false}
-                  note={state.notes[question.questionId] || ""}
-                  handleNoteChange={handleNoteChange}
-                  userId={userId}
-                  handleDeleteNote={handleDeleteNote}
-                />
-              ))}
-              {paginatedQuestions.length < filteredQuestions.length && (
-                <button
-                  onClick={handleLoadMore}
-                  className="mt-4 px-4 py-2 border border-black bg-white hover:bg-gray-200 translate-x-2 rounded-md"
+                    <Home className="h-5 w-5" />
+                    Dashboard
+                  </Link>
+                  <Link
+                    href="#"
+                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  >
+                    <Package className="h-5 w-5" />
+                    Questions
+                  </Link>
+                  <Link
+                    href="#"
+                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  >
+                    <Users className="h-5 w-5" />
+                    Users
+                  </Link>
+                  <Link
+                    href="#"
+                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  >
+                    <LineChart className="h-5 w-5" />
+                    Analytics
+                  </Link>
+                </nav>
+              </SheetContent>
+            </Sheet>
+            <div className="relative ml-auto flex-1 md:grow-0">
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="search"
+                placeholder="Search..."
+                className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
+              />
+            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="overflow-hidden rounded-full"
                 >
-                  Load More
-                </button>
-              )}
-            </>
-          ) : (
-            <p className="text-red-400">No questions found with the selected filters.</p>
-          )}
+                  <Image
+                    src="/placeholder-user.jpg"
+                    width={36}
+                    height={36}
+                    alt="Avatar"
+                    className="overflow-hidden rounded-full"
+                  />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuItem>Support</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Logout</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </header>
+          <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+            <Tabs defaultValue="all">
+              <div className="flex items-center">
+                <TabsList>
+                  <TabsTrigger value="all">All</TabsTrigger>
+                  <TabsTrigger value="active">Active</TabsTrigger>
+                  <TabsTrigger value="draft">Draft</TabsTrigger>
+                  <TabsTrigger value="archived" className="hidden sm:flex">
+                    Archived
+                  </TabsTrigger>
+                </TabsList>
+                <div className="ml-auto flex items-center gap-2">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="outline" size="sm" className="h-8 gap-1">
+                        <FilterIcon className="h-3.5 w-3.5" />
+                        <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                          Filter
+                        </span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuLabel>Filter by</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem>Active</DropdownMenuItem>
+                      <DropdownMenuItem>Draft</DropdownMenuItem>
+                      <DropdownMenuItem>Archived</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                  <Button size="sm" variant="outline" className="h-8 gap-1">
+                    <File className="h-3.5 w-3.5" />
+                    <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                      Export
+                    </span>
+                  </Button>
+                  <Button size="sm" className="h-8 gap-1">
+                    <PlusCircle className="h-3.5 w-3.5" />
+                    <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                      Add Question
+                    </span>
+                  </Button>
+                </div>
+              </div>
+              <TabsContent value="all">
+                <Card x-chunk="dashboard-06-chunk-0">
+                  <CardHeader>
+                    <CardTitle>Questions</CardTitle>
+                    <CardDescription>
+                      Manage your questions and track their performance.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>#</TableHead>
+                          <TableHead>Question</TableHead>
+                          <TableHead>Status</TableHead>
+                          <TableHead className="hidden md:table-cell">
+                            Subject
+                          </TableHead>
+                          <TableHead className="hidden md:table-cell">
+                            Difficulty
+                          </TableHead>
+                          <TableHead>
+                            <span className="sr-only">Actions</span>
+                          </TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {questions.map((question, index) =>
+                          editingQuestionId === question.questionId ? (
+                            <TableRow key={question.questionId}>
+                              <TableCell>{index + 1}</TableCell>
+                              <TableCell className="font-medium">
+                                <textarea
+                                  className="w-full p-2 border rounded"
+                                  value={updatedText}
+                                  onChange={(e) => setUpdatedText(e.target.value)}
+                                  rows={4}
+                                />
+                                <div className="mt-2">
+                                  <label className="block text-sm font-medium text-gray-700">
+                                    Options (LaTeX Supported)
+                                  </label>
+                                  {updatedOptions.map((option, index) => (
+                                    <div key={index} className="flex items-center mb-2">
+                                      <input
+                                        type="text"
+                                        className="w-full p-2 border rounded mr-2"
+                                        value={option}
+                                        onChange={(e) =>
+                                          handleOptionChange(index, e.target.value)
+                                        }
+                                      />
+                                      <Button
+                                        variant="outline"
+                                        size="icon"
+                                        onClick={() => handleRemoveOption(index)}
+                                      >
+                                        ✕
+                                      </Button>
+                                    </div>
+                                  ))}
+                                  <Button size="sm" onClick={handleAddOption}>
+                                    Add Option
+                                  </Button>
+                                </div>
+                                {showPreview && (
+                                  <div className="mt-4 border p-4 bg-gray-50 rounded-md">
+                                    <MathRenderer text={updatedText} />
+                                    <div className="mt-2">
+                                      <strong>Options:</strong>
+                                      {updatedOptions.map((option, index) => (
+                                        <p key={index}>
+                                          <MathRenderer text={option} />
+                                        </p>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                              </TableCell>
+                              <TableCell>
+                                <select
+                                  className="w-full p-2 border rounded"
+                                  value={questionStatus}
+                                  onChange={(e) =>
+                                    setQuestionStatus(
+                                      e.target.value as "Active" | "Draft" | "Archived"
+                                    )
+                                  }
+                                >
+                                  <option value="Active">Active</option>
+                                  <option value="Draft">Draft</option>
+                                  <option value="Archived">Archived</option>
+                                </select>
+                              </TableCell>
+                              <TableCell className="hidden md:table-cell">
+                                {question.subject}
+                              </TableCell>
+                              <TableCell className="hidden md:table-cell">
+                                {question.difficulty}
+                              </TableCell>
+                              <TableCell className="flex flex-col gap-2">
+                                <Button size="sm" onClick={handleSaveChanges}>
+                                  Save
+                                </Button>
+                                <Button size="sm" variant="outline" onClick={handleCancelEdit}>
+                                  Cancel
+                                </Button>
+                                <Button size="sm" onClick={() => setShowPreview((prev) => !prev)}>
+                                  {showPreview ? "Hide Preview" : "Preview"}
+                                </Button>
+                              </TableCell>
+                            </TableRow>
+                          ) : (
+                            <TableRow key={question.questionId}>
+                              <TableCell>{index + 1}</TableCell>
+                              <TableCell className="font-medium">
+                                <MathRenderer text={question.text} />
+                              </TableCell>
+                              <TableCell>
+                                <Badge variant="outline">{question.status}</Badge>
+                              </TableCell>
+                              <TableCell className="hidden md:table-cell">
+                                {question.subject}
+                              </TableCell>
+                              <TableCell className="hidden md:table-cell">
+                                {question.difficulty}
+                              </TableCell>
+                              <TableCell>
+                                <DropdownMenu>
+                                  <DropdownMenuTrigger asChild>
+                                    <Button
+                                      aria-haspopup="true"
+                                      size="icon"
+                                      variant="ghost"
+                                    >
+                                      <MoreHorizontal className="h-4 w-4" />
+                                      <span className="sr-only">Toggle menu</span>
+                                    </Button>
+                                  </DropdownMenuTrigger>
+                                  <DropdownMenuContent align="end">
+                                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                                    <DropdownMenuItem
+                                      onClick={() => handleEditClick(question)}
+                                    >
+                                      Edit
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem
+                                      onClick={() => handleDelete(question.questionId)}
+                                    >
+                                      Delete
+                                    </DropdownMenuItem>
+                                  </DropdownMenuContent>
+                                </DropdownMenu>
+                              </TableCell>
+                            </TableRow>
+                          )
+                        )}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                  <CardFooter>
+                    <div className="text-xs text-muted-foreground">
+                      Showing <strong>1-10</strong> of{" "}
+                      <strong>{questions.length}</strong> questions
+                    </div>
+                  </CardFooter>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </main>
         </div>
+
+        {/* Confirmation Modal */}
+        {showConfirmationModal && (
+          <Modal
+            showModal={showConfirmationModal}
+            setShowModal={setShowConfirmationModal}
+          >
+            <div className="text-center">
+              <p>Are you sure you want to proceed with this action?</p>
+              <div className="flex justify-center mt-4 space-x-2">
+                <Button variant="outline" onClick={() => setShowConfirmationModal(false)}>
+                  Cancel
+                </Button>
+                <Button onClick={confirmationAction}>Confirm</Button>
+              </div>
+            </div>
+          </Modal>
+        )}
       </div>
     </TooltipProvider>
   );
-};
+}
 
-export default QuestionBank;
+export default QuestionBankDashboard;

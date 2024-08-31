@@ -1,17 +1,19 @@
-// middleware/auth.ts
-import { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
+import { NextApiRequest } from 'next';
 import { getSession } from 'next-auth/react'; // Assuming you're using NextAuth for authentication
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const authorize = (handler: NextApiHandler, allowedRoles: string[]) => {
-  return async (req: NextApiRequest, res: NextApiResponse) => {
+export const checkAuthorization = async (
+  req: NextApiRequest,
+  allowedRoles: string[]
+): Promise<boolean> => {
+  try {
     const session = await getSession({ req });
 
     // Check if the user is authenticated
     if (!session || !session.user?.email) {
-      return res.status(401).json({ error: 'Unauthorized access' });
+      return false; // Return false instead of null
     }
 
     // Fetch the user and their role from the database
@@ -21,11 +23,9 @@ export const authorize = (handler: NextApiHandler, allowedRoles: string[]) => {
     });
 
     // Check if the user has one of the allowed roles
-    if (!user || !allowedRoles.includes(user.role?.name || '')) {
-      return res.status(403).json({ error: 'Forbidden: Insufficient permissions' });
-    }
-
-    // Proceed with the handler if checks pass
-    return handler(req, res);
-  };
+    return user ? allowedRoles.includes(user.role?.name || '') : false; // Return false if user or role is missing
+  } catch (error) {
+    console.error('Error checking authorization:', error);
+    return false; // Return false if there's an error
+  }
 };
