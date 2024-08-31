@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react"; // Import useSession from next-auth
 
 const CookiePopup = () => {
+  const { data: session } = useSession(); // Check for user's session
   const [isVisible, setIsVisible] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
   const [cookiePreferences, setCookiePreferences] = useState<Record<string, boolean>>({
@@ -11,13 +13,15 @@ const CookiePopup = () => {
     marketing: false,
   });
 
-  // Check for cookie consent in local storage or cookies
+  // Check for cookie consent in local storage or cookies and if the user is not signed in
   useEffect(() => {
-    const consent = localStorage.getItem("cookieConsent");
-    if (!consent) {
-      setIsVisible(true);
+    if (!session) { // Show popup only if the user is not signed in
+      const consent = localStorage.getItem("cookieConsent");
+      if (!consent) {
+        setIsVisible(true);
+      }
     }
-  }, []);
+  }, [session]);
 
   // Handle Accept all button click
   const handleAccept = () => {
@@ -65,8 +69,8 @@ const CookiePopup = () => {
     }));
   };
 
-  // Do not render if the user has already accepted or rejected cookies
-  if (!isVisible) return null;
+  // Do not render if the user has already accepted or rejected cookies or if the user is signed in
+  if (!isVisible || session) return null;
 
   return (
     <>
