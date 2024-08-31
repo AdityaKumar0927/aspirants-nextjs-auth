@@ -1,26 +1,58 @@
 // app/administrator/layout.tsx
+"use client";
+
 import "../globals.css";
 import cx from "classnames";
 import { sfPro, inter } from "../fonts";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { ApplicationLayout } from './application-layout';
-import { getEvents } from "./data";
+import { useSession, SessionProvider } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 // Configuration for FontAwesome
 config.autoAddCss = false;
 
-// Mock function to get the user ID; replace this with actual authentication logic.
-const getUserId = () => {
-  // Replace this with actual logic to fetch user ID, e.g., from a session or a context.
-  // Return null if the user is not signed in.
-  const userId = null; // Simulate unsigned user. Replace with actual authentication logic.
-  return userId;
-};
+// Define the updated Event type to match the ApplicationLayout's expected type
+interface Event {
+  id: number;
+  name: string;
+  url: string;
+  date: string;
+  time: string;
+  location: string;
+  totalRevenue: string;
+  totalRevenueChange: string;
+  ticketsAvailable: number;
+  ticketsSold: number;
+  ticketsSoldChange: string;
+  thumbUrl: string;
+  pageViews: string; // Corrected to match the expected type
+  pageViewsChange: string;
+  status: string;
+  imgUrl: string;
+}
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const events = await getEvents(); // Fetch events data
-  const userId = getUserId(); // Fetch the user ID
+function AuthorizationGuard({ children }: { children: React.ReactNode }) {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const allowedEmails = ['artistadityakumar@gmail.com', 'aditanshu.sinha@gmail.com'];
+
+  useEffect(() => {
+    if (status === 'loading') return;
+
+    if (!session || !allowedEmails.includes(session.user?.email || '')) {
+      router.push('/'); // Redirect unauthorized users
+    }
+  }, [session, status, router]);
+
+  return session && allowedEmails.includes(session.user?.email || '') ? <>{children}</> : null;
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Correctly typed events array, initializing with an empty array
+  const events: Event[] = []; // Replace with actual events fetching logic if needed
 
   return (
     <html lang="en">
@@ -32,54 +64,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           id="MathJax-script"
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
         ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.MathJax = {
-                tex: {
-                  inlineMath: [['$', '$'], ['\\(', '\\)']],
-                  displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                },
-                options: {
-                  skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-                },
-                startup: {
-                  ready: () => {
-                    window.MathJax.startup.defaultReady();
-                    window.MathJax.startup.promise.then(() => {
-                      console.log('MathJax is loaded, configured, and ready');
-                    });
-                  },
-                },
-              };
-            `,
-          }}
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-          integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMGd8V0ER0VgLRW3UppZWW1tBgFO7VVHAb7FZk5"
-          crossOrigin="anonymous"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
-                link.integrity = 'sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMGd8V0ER0VgLRW3UppZWW1tBgFO7VVHAb7FZk5';
-                link.crossOrigin = 'anonymous';
-                document.head.appendChild(link);
-              })();
-            `,
-          }}
-        />
       </head>
       <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
-        <ApplicationLayout events={events}>
-          {children}
-        </ApplicationLayout>
+        <SessionProvider>
+          <AuthorizationGuard>
+            <ApplicationLayout events={events}>
+              {children}
+            </ApplicationLayout>
+          </AuthorizationGuard>
+        </SessionProvider>
       </body>
     </html>
   );
