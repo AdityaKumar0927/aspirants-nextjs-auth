@@ -1,3 +1,5 @@
+// schema.prisma
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -59,16 +61,20 @@ model User {
   customUserPerformances CustomUserPerformance[]
   issues                 Issue[]                 @relation("UserIssues")
   policyAgreements       UserPolicyAgreement[]   // Relation to policy agreements
+
+  // other fields...
 }
 
 model UserPolicyAgreement {
-  id         String   @id @default(cuid())
-  userId     String
-  policyName String   // e.g., "Terms and Conditions", "Privacy Policy", etc.
-  acceptedAt DateTime @default(now())
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                  String   @id @default(cuid())
+  userId              String
+  policyName          String   // e.g., "Terms and Conditions", "Privacy Policy", etc.
+  accepted            Boolean  @default(false)  // Indicates if the policy is accepted
+  acceptedAt          DateTime?  // Timestamp of when the policy was accepted
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId, policyName])
+  @@index([userId])
+  @@unique([userId, policyName])  // Ensures each policy can only be accepted once per user
 }
 
 model VerificationToken {

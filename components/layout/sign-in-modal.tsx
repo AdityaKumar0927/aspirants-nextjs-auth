@@ -187,7 +187,6 @@ const policies = [
   },
 ];
 
-
 const SignInModal = ({
   showSignInModal,
   setShowSignInModal,
@@ -204,10 +203,12 @@ const SignInModal = ({
   const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
   const [showPolicyModal, setShowPolicyModal] = useState(false);
 
-  const canSignIn = acceptedTerms && acceptedPrivacy && acceptedCookies && isAbove18;
+  const canSignIn = useMemo(
+    () => acceptedTerms && acceptedPrivacy && acceptedCookies && isAbove18,
+    [acceptedTerms, acceptedPrivacy, acceptedCookies, isAbove18]
+  );
 
   const currentPolicy = policies[currentPolicyIndex];
-
   const policyContentRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = () => {
@@ -218,39 +219,27 @@ const SignInModal = ({
     }
   };
 
-  const handleAcceptPolicy = async () => {
+  const handleAcceptPolicy = () => {
+    // Only enable accepting the policy if scrolled to the bottom
     if (isScrolledToBottom) {
-      try {
-        const policyName =
-          currentPolicyIndex === 0 ? 'Terms and Conditions' : currentPolicyIndex === 1 ? 'Privacy Policy' : 'Cookie Policy';
-  
-        await fetch('/api/policy/accept', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ policyName }),
-        });
-  
-        if (currentPolicyIndex === 0) setAcceptedTerms(!acceptedTerms);
-        if (currentPolicyIndex === 1) setAcceptedPrivacy(!acceptedPrivacy);
-        if (currentPolicyIndex === 2) setAcceptedCookies(!acceptedCookies);
-      } catch (error) {
-        console.error('Error saving policy acceptance:', error);
-      }
+      if (currentPolicyIndex === 0) setAcceptedTerms(true);
+      if (currentPolicyIndex === 1) setAcceptedPrivacy(true);
+      if (currentPolicyIndex === 2) setAcceptedCookies(true);
     }
   };
-  
+
   return (
     <Modal2 showModal={showSignInModal} setShowModal={setShowSignInModal}>
       <section className="flex w-full items-start justify-center bg-[url('https://tailframes.com/images/squares-bg.webp')] bg-cover bg-center bg-no-repeat">
-        
         <div className="flex max-w-screen-2xl grow flex-col items-start justify-start gap-12 px-3 py-12 md:pt-24 lg:px-0 xl:flex-row">
           <div className="sm:pl-8 lg:pl-16 xl:pl-32 mb-0 flex flex-1 flex-col items-start gap-12 px-0 xl:mb-24">
-            <Badge className="bg-white border-2 border-blue-200 text-black hover:text-white">aspirants v1.0</Badge>
+            <Badge className="bg-white border-2 border-blue-200 text-black hover:text-white">
+              aspirants v1.0
+            </Badge>
             <div className="flex max-w-lg flex-col gap-6">
               <h3 className="text-4xl font-semibold text-slate-950 md:text-6xl">
-                 Begin your <div className="text-blue-300">Academic Comeback</div> with Aspirants!
+                Begin your <div className="text-blue-300">Academic Comeback</div> with Aspirants!
               </h3>
-            
             </div>
             <div className="flex gap-4">
               <Button>Save Time</Button>
@@ -326,7 +315,6 @@ const SignInModal = ({
               >
                 Next
               </button>
-              
             ) : (
               <>
                 <label className="flex items-center space-x-3">

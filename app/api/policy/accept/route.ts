@@ -1,3 +1,4 @@
+// app/api/policy/accept/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
@@ -13,24 +14,33 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { policyName } = await request.json();
+    const { policyName, accepted } = await request.json();
 
-    if (!policyName) {
-      return NextResponse.json({ error: 'Policy name is required' }, { status: 400 });
+    // Validate the incoming request
+    if (!policyName || typeof accepted !== 'boolean') {
+      return NextResponse.json({ message: 'Invalid data' }, { status: 400 });
     }
 
-    // Create a new policy acceptance record for the user
-    const policyAgreement = await prisma.userPolicyAgreement.create({
-      data: {
+    // Find or create the policy agreement for the user
+    const policyAgreement = await prisma.userPolicyAgreement.upsert({
+      where: {
+        userId_policyName: {
+          userId: session.user.id,
+          policyName,
+        },
+      },
+      update: { accepted, acceptedAt: accepted ? new Date() : null },
+      create: {
         userId: session.user.id,
         policyName,
-        acceptedAt: new Date(),
+        accepted,
+        acceptedAt: accepted ? new Date() : null,
       },
     });
 
-    return NextResponse.json({ message: 'Policy accepted successfully', policyAgreement });
+    return NextResponse.json({ message: 'Policy updated successfully', policyAgreement });
   } catch (error) {
-    console.error('Error accepting policy:', error);
+    console.error('Error updating policy agreement:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
