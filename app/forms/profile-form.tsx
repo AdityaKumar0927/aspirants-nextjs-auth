@@ -30,27 +30,15 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
 import { useRouter } from "next/navigation";
 
-type PolicyAgreement = {
-  policyName: string;
-  accepted: boolean;
-};
-
 const profileFormSchema = z.object({
-  username: z
-    .string()
-    .min(2, { message: "Username must be at least 2 characters." })
-    .max(30, { message: "Username must not be longer than 30 characters." }),
-  email: z
-    .string({ required_error: "Please select an email to display." })
-    .email(),
+  username: z.string().min(2, { message: "Username must be at least 2 characters." }).max(30, { message: "Username must not be longer than 30 characters." }),
+  email: z.string({ required_error: "Please select an email to display." }).email(),
   bio: z.string().max(160).min(4),
-  urls: z
-    .array(
-      z.object({
-        value: z.string().url({ message: "Please enter a valid URL." }),
-      })
-    )
-    .optional(),
+  urls: z.array(
+    z.object({
+      value: z.string().url({ message: "Please enter a valid URL." }),
+    })
+  ).optional(),
   termsAccepted: z.boolean().default(false),
   privacyPolicyAccepted: z.boolean().default(false),
   cookiePolicyAccepted: z.boolean().default(false),
@@ -87,27 +75,27 @@ export function ProfileForm() {
       try {
         const response = await fetch("/api/settings/profile-settings");
         if (!response.ok) throw new Error("Failed to fetch profile settings");
-
+  
         const data = await response.json();
-        const policyAgreements: PolicyAgreement[] = data.policyAgreements || [];
-
+        const policyAgreements: { policyName: string; accepted: boolean }[] = data.policyAgreements || [];
+  
         // Initialize switches based on policy agreements
         const updatedData = {
           username: data.username || "",
           email: data.email || "",
           bio: data.bio || "",
           urls: data.urls || [{ value: "" }],
-          termsAccepted: !!policyAgreements.find(
-            (agreement) => agreement.policyName === "Terms and Conditions" && agreement.accepted
+          termsAccepted: policyAgreements.some((agreement: { policyName: string; accepted: boolean }) =>
+            agreement.policyName === "Terms and Conditions" && agreement.accepted
           ),
-          privacyPolicyAccepted: !!policyAgreements.find(
-            (agreement) => agreement.policyName === "Privacy Policy" && agreement.accepted
+          privacyPolicyAccepted: policyAgreements.some((agreement: { policyName: string; accepted: boolean }) =>
+            agreement.policyName === "Privacy Policy" && agreement.accepted
           ),
-          cookiePolicyAccepted: !!policyAgreements.find(
-            (agreement) => agreement.policyName === "Cookie Policy" && agreement.accepted
+          cookiePolicyAccepted: policyAgreements.some((agreement: { policyName: string; accepted: boolean }) =>
+            agreement.policyName === "Cookie Policy" && agreement.accepted
           ),
         };
-
+  
         form.reset(updatedData);
         setLoading(false);
       } catch (error) {
@@ -115,9 +103,10 @@ export function ProfileForm() {
         console.error("Error fetching profile data:", error);
       }
     };
-
+  
     fetchData();
   }, [form]);
+  
 
   async function onSubmit(data: ProfileFormValues) {
     try {

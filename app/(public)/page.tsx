@@ -1,46 +1,23 @@
 "use client";
 
-import Card from "@/components/home/card";
-import { DEPLOY_URL } from "@/lib/constants";
-import WebVitals from "@/components/home/web-vitals";
-import ComponentGrid from "@/components/home/component-grid";
-import { OrbitingCirclesDemo } from "@/components/magicui/orbiting";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Dashboard from "@/components/home/DashboardContent";
 import { NoteApp } from "@/components/shared/NoteApp";
-import {
-  faBookOpen,
-  faChartLine,
-  faTools,
-  faClipboardList,
-} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import MainContent from "@/components/home/MainContent";
-import { FAQ } from "@/components/shared/FAQ";
 import { cubicBezier, motion, useInView, AnimatePresence } from "framer-motion";
 import { Clock, Download, MessageCircle, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { useRef } from "react";
-import Meteors from "@/components/magicui/meteors";
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import Image from "next/image";
-import { TabsDemo } from "@/components/home/TabsComponent";
 import ShinyButton from "@/components/magicui/shiny-button";
 import ShimmerButton from "@/components/magicui/shimmer-button";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import Chat from "@/components/shared/Chat";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
-import { BentoGridThirdDemo } from "@/components/home/features-grid";
-import OrbitingCircles from "@/components/magicui/orbiting-circles";
-import { AnimatedListDemo } from "@/components/magicui/animated-list-demo";
-import { CardDemo } from "@/components/ui/newcard";
-import PulsatingButton from "@/components/magicui/pulsating-button";
 import { Features } from "@/components/aceternity-ui/features";
-import { FeatureIconContainer } from "@/components/aceternity-ui/feature-icon-container";
-import { CanvasRevealEffect } from "@/components/aceternity-ui/canvas-reveal-effect";
+
 
 const testimonials = [
   {
@@ -521,10 +498,6 @@ const Page = () => {
 
       </div>
 
-                    
-
-                 
-     
 
     </>
   );

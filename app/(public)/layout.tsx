@@ -14,16 +14,31 @@ import Nav from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import Bar from '@/components/layout/Bar';
 import CookiePopup from "@/components/layout/cookie-popup"; // Import the updated CookiePopup component
+import { getServerSession } from 'next-auth/next'; // Ensure this points to NextAuth setup
+import { authOptions } from "../api/auth/[...nextauth]/options";// Adjust the path based on your file structure
+import { cookies } from 'next/headers'; // Import cookies for server-side session management
 
 config.autoAddCss = false;
 
-// Function to get the user ID; replace this with actual authentication logic
-const getUserId = () => {
-  // Replace this with the actual logic to fetch user ID, e.g., from a session or a context.
-  // Return null if the user is not signed in.
-  const userId = null; // Simulate unsigned user. Replace with actual authentication logic.
-  return userId;
+// Function to get the user ID from the session
+const getUserId = async () => {
+  try {
+    // Fetch the session using NextAuth's getServerSession with the defined options
+    const session = await getServerSession(authOptions);
+
+    // Check if session exists and has a user with an ID
+    if (session && session.user && session.user.id) {
+      return session.user.id;
+    }
+
+    // Return null if the session does not contain a valid user ID
+    return null;
+  } catch (error) {
+    console.error('Error fetching user ID:', error);
+    return null;
+  }
 };
+
 
 export const metadata = {
   title: 'aspirants',
@@ -31,8 +46,11 @@ export const metadata = {
   metadataBase: new URL('https://aspirants.tech/'),
 };
 
-export default function PublicLayout({ children }: { children: React.ReactNode }) {
-  const userId = getUserId(); // Fetch the user ID
+
+export default async function PublicLayout({ children }: { children: React.ReactNode }) {
+  // Fetch the user ID before rendering the component
+  const userId = await getUserId();
+
 
   return (
     <html lang="en">
