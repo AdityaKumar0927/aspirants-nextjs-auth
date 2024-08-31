@@ -1,35 +1,28 @@
-// app/api/user/get.ts
-import { NextApiRequest, NextApiResponse } from 'next';
+// app/api/user/get/route.ts
+import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { checkAuthorization } from '@/app/utils/auth'; // Adjust the path if necessary
+import { getToken } from 'next-auth/jwt'; // Assuming you use NextAuth for session management
 
 const prisma = new PrismaClient();
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  // Allow only GET requests
-  if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
-
-  // Optional: Check authorization for administrators
-  const isAuthorized = await checkAuthorization(req, ['administrator']);
-  if (!isAuthorized) {
-    return res.status(403).json({ error: 'Forbidden: Insufficient permissions' });
-  }
-
+export async function GET(req: NextRequest) {
   try {
-    // Fetch all users with their roles
+    // Retrieve the session using NextAuth's getToken function
+    const token = await getToken({ req });
+
+    // Check if the user is authenticated
+    if (!token || !token.email) {
+      return NextResponse.json({ error: 'Unauthorized access' }, { status: 401 });
+    }
+
+    // Fetch all users from the database
     const users = await prisma.user.findMany({
-      include: {
-        role: true, // Assuming the role relation is set up correctly in your Prisma schema
-      },
+      include: { role: true }, // Include roles if available
     });
 
-    return res.status(200).json(users);
+    return NextResponse.json(users);
   } catch (error) {
     console.error('Error fetching users:', error);
-    return res.status(500).json({ error: 'Failed to fetch users' });
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
-};
-
-export default handler;
+}
