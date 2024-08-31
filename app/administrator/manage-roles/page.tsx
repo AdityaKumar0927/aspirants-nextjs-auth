@@ -1,57 +1,62 @@
+// app/administrator/manage-roles/page.tsx
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 interface User {
   id: string;
   name: string;
   email: string;
-  role: string;
+  role: { name: string };
 }
 
-const validRoles = ['member', 'volunteer', 'moderator', 'administrator'];
+const validRoles = ["member", "volunteer", "moderator", "administrator"];
 
 const ManageRoles: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const [selectedUser, setSelectedUser] = useState<string>('');
-  const [selectedRole, setSelectedRole] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
+  const [selectedUser, setSelectedUser] = useState<string>("");
+  const [selectedRole, setSelectedRole] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+
+  // Define the fetchUsers function
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch("/api/user/get"); // Correct endpoint and method for fetching users
+      if (!response.ok) {
+        throw new Error("Failed to fetch users");
+      }
+      const data = await response.json();
+      setUsers(data);
+    } catch (error) {
+      console.error("Failed to fetch users:", error);
+      setMessage(`Error: ${(error as Error).message}`);
+    }
+  };
 
   useEffect(() => {
-    // Fetch users from the backend
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch('/api/users'); // Assume an API route to fetch users
-        const data = await response.json();
-        setUsers(data);
-      } catch (error) {
-        console.error('Failed to fetch users:', error);
-      }
-    };
-
-    fetchUsers();
+    fetchUsers(); // Fetch users on component mount
   }, []);
 
   const handleRoleChange = async () => {
     if (!selectedUser || !selectedRole) {
-      setMessage('Please select a user and a role.');
+      setMessage("Please select a user and a role.");
       return;
     }
 
     try {
-      const response = await fetch('/api/users/role', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: selectedUser, role: selectedRole }),
+      const response = await fetch("/api/user/role", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: selectedUser, roleName: selectedRole }),
       });
 
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to update user role');
+        throw new Error(data.error || "Failed to update user role");
       }
 
       setMessage(`User role updated to ${selectedRole} successfully.`);
-      // Refresh the user list or update state as necessary
+      fetchUsers(); // Re-fetch users to update the list after role change
     } catch (error) {
       setMessage(`Error: ${(error as Error).message}`);
     }
@@ -71,7 +76,7 @@ const ManageRoles: React.FC = () => {
           <option value="">-- Select User --</option>
           {users.map((user) => (
             <option key={user.id} value={user.id}>
-              {user.name} ({user.email})
+              {user.name} ({user.email}) - Current Role: {user.role.name}
             </option>
           ))}
         </select>
