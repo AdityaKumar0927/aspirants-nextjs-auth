@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/tooltip";
 import { EnterFullScreenIcon } from "@radix-ui/react-icons";
 import Modal from "../shared/modal";
+import { useEffect } from "react";
 
 const policies = [
   {
@@ -187,6 +188,7 @@ const policies = [
   },
 ];
 
+
 const SignInModal = ({
   showSignInModal,
   setShowSignInModal,
@@ -195,37 +197,48 @@ const SignInModal = ({
   setShowSignInModal: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [signInClicked, setSignInClicked] = useState(false);
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
-  const [acceptedCookies, setAcceptedCookies] = useState(false);
-  const [isAbove18, setIsAbove18] = useState(false);
+  const [acceptedPolicies, setAcceptedPolicies] = useState({
+    terms: false,
+    privacy: false,
+    cookies: false,
+    age: false,
+  });
   const [currentPolicyIndex, setCurrentPolicyIndex] = useState(0);
   const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
   const [showPolicyModal, setShowPolicyModal] = useState(false);
 
-  const canSignIn = useMemo(
-    () => acceptedTerms && acceptedPrivacy && acceptedCookies && isAbove18,
-    [acceptedTerms, acceptedPrivacy, acceptedCookies, isAbove18]
-  );
-
-  const currentPolicy = policies[currentPolicyIndex];
   const policyContentRef = useRef<HTMLDivElement>(null);
 
-  const handleScroll = () => {
-    if (policyContentRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = policyContentRef.current;
-      const isBottom = scrollTop + clientHeight >= scrollHeight - 10;
-      setIsScrolledToBottom(isBottom);
-    }
-  };
+  // Determine if all policies are accepted and the user is above 18
+  const canSignIn = useMemo(
+    () =>
+      acceptedPolicies.terms &&
+      acceptedPolicies.privacy &&
+      acceptedPolicies.cookies &&
+      acceptedPolicies.age,
+    [acceptedPolicies]
+  );
 
-  const handleAcceptPolicy = () => {
-    // Only enable accepting the policy if scrolled to the bottom
-    if (isScrolledToBottom) {
-      if (currentPolicyIndex === 0) setAcceptedTerms(true);
-      if (currentPolicyIndex === 1) setAcceptedPrivacy(true);
-      if (currentPolicyIndex === 2) setAcceptedCookies(true);
-    }
+  // Handle scrolling within the policy content to enable the checkbox
+  useEffect(() => {
+    const handleScroll = () => {
+      if (policyContentRef.current) {
+        const { scrollTop, scrollHeight, clientHeight } = policyContentRef.current;
+        setIsScrolledToBottom(scrollTop + clientHeight >= scrollHeight - 10);
+      }
+    };
+
+    const refCurrent = policyContentRef.current;
+    refCurrent?.addEventListener("scroll", handleScroll);
+
+    return () => {
+      refCurrent?.removeEventListener("scroll", handleScroll);
+    };
+  }, [currentPolicyIndex]);
+
+  // Update acceptance state when a checkbox is checked
+  const handleCheckboxChange = (type: string) => {
+    setAcceptedPolicies((prev) => ({ ...prev, [type]: true }));
   };
 
   return (
@@ -269,17 +282,16 @@ const SignInModal = ({
             <div
               className="bg-white rounded-md p-4 shadow-md border border-gray-300 overflow-y-auto max-h-60"
               ref={policyContentRef}
-              onScroll={handleScroll}
             >
               <div className="flex justify-between items-center">
-                <h4 className="font-bold text-lg mb-2">{currentPolicy.title}</h4>
+                <h4 className="font-bold text-lg mb-2">{policies[currentPolicyIndex].title}</h4>
                 <button onClick={() => setShowPolicyModal(true)}>
                   <EnterFullScreenIcon className="h-5 w-5 text-blue-500 cursor-pointer" />
                 </button>
               </div>
               <div
                 className="text-sm text-gray-600"
-                dangerouslySetInnerHTML={{ __html: currentPolicy.content }}
+                dangerouslySetInnerHTML={{ __html: policies[currentPolicyIndex].content }}
               />
             </div>
 
@@ -292,16 +304,22 @@ const SignInModal = ({
                       className="h-4 w-4"
                       checked={
                         currentPolicyIndex === 0
-                          ? acceptedTerms
+                          ? acceptedPolicies.terms
                           : currentPolicyIndex === 1
-                          ? acceptedPrivacy
-                          : acceptedCookies
+                          ? acceptedPolicies.privacy
+                          : acceptedPolicies.cookies
                       }
-                      onChange={handleAcceptPolicy}
+                      onChange={() =>
+                        currentPolicyIndex === 0
+                          ? handleCheckboxChange("terms")
+                          : currentPolicyIndex === 1
+                          ? handleCheckboxChange("privacy")
+                          : handleCheckboxChange("cookies")
+                      }
                       disabled={!isScrolledToBottom}
                     />
                     <span className="text-sm text-gray-600">
-                      I have read and accept the {currentPolicy.title}
+                      I have read and accept the {policies[currentPolicyIndex].title}
                     </span>
                   </label>
                 </TooltipTrigger>
@@ -321,8 +339,8 @@ const SignInModal = ({
                   <input
                     type="checkbox"
                     className="h-4 w-4"
-                    checked={isAbove18}
-                    onChange={() => setIsAbove18(!isAbove18)}
+                    checked={acceptedPolicies.age}
+                    onChange={() => handleCheckboxChange("age")}
                   />
                   <span className="text-sm text-gray-600">
                     I confirm that I am 18 years of age or older.
@@ -364,10 +382,10 @@ const SignInModal = ({
       {/* Modal for Viewing Policies */}
       <Modal showModal={showPolicyModal} setShowModal={setShowPolicyModal} className="z-50">
         <div className="p-6 bg-white rounded-lg shadow-lg">
-          <h4 className="font-bold text-lg mb-4">{currentPolicy.title}</h4>
+          <h4 className="font-bold text-lg mb-4">{policies[currentPolicyIndex].title}</h4>
           <div
             className="text-base text-gray-700 leading-relaxed overflow-y-auto max-h-[70vh]"
-            dangerouslySetInnerHTML={{ __html: currentPolicy.content }}
+            dangerouslySetInnerHTML={{ __html: policies[currentPolicyIndex].content }}
           />
         </div>
       </Modal>
