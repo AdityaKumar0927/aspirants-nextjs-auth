@@ -58,19 +58,17 @@ model User {
   customUserAnswers      CustomUserAnswer[]
   customUserPerformances CustomUserPerformance[]
   issues                 Issue[]                 @relation("UserIssues")
-  policyAgreements       UserPolicyAgreement[] // Added relation field
-
-  // other fields...
+  policyAgreements       UserPolicyAgreement[]   // Relation to policy agreements
 }
 
 model UserPolicyAgreement {
   id         String   @id @default(cuid())
   userId     String
-  policyName String // e.g., "Terms and Conditions", "Privacy Policy", etc.
+  policyName String   // e.g., "Terms and Conditions", "Privacy Policy", etc.
   acceptedAt DateTime @default(now())
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId])
+  @@index([userId, policyName])
 }
 
 model VerificationToken {

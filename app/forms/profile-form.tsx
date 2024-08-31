@@ -46,10 +46,9 @@ const profileFormSchema = z.object({
       })
     )
     .optional(),
-  policyAgreement: z.boolean().optional(),
-  essentialCookies: z.boolean().default(true), // Always enabled
-  analyticsCookies: z.boolean().optional(),
-  marketingCookies: z.boolean().optional(),
+  termsAccepted: z.boolean().default(false),
+  privacyPolicyAccepted: z.boolean().default(false),
+  cookiePolicyAccepted: z.boolean().default(false),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -74,10 +73,9 @@ export function ProfileForm() {
           email: data.email || "",
           bio: data.bio || "",
           urls: data.urls || [{ value: "" }],
-          policyAgreement: data.policyAgreement ?? false,
-          essentialCookies: true,
-          analyticsCookies: data.analyticsCookies ?? false,
-          marketingCookies: data.marketingCookies ?? false,
+          termsAccepted: data.termsAccepted ?? false,
+          privacyPolicyAccepted: data.privacyPolicyAccepted ?? false,
+          cookiePolicyAccepted: data.cookiePolicyAccepted ?? false,
         };
       } catch (error) {
         setLoading(false);
@@ -86,10 +84,9 @@ export function ProfileForm() {
           email: "",
           bio: "",
           urls: [{ value: "" }],
-          policyAgreement: false,
-          essentialCookies: true,
-          analyticsCookies: false,
-          marketingCookies: false,
+          termsAccepted: false,
+          privacyPolicyAccepted: false,
+          cookiePolicyAccepted: false,
         };
       }
     },
@@ -103,7 +100,7 @@ export function ProfileForm() {
 
   async function onSubmit(data: ProfileFormValues) {
     try {
-      // Update profile settings including policy agreement
+      // Update profile settings including policy agreements
       const response = await fetch("/api/settings/profile-settings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -113,6 +110,23 @@ export function ProfileForm() {
       if (!response.ok) {
         throw new Error("Failed to update profile settings");
       }
+
+      // Save each policy acceptance status separately
+      await Promise.all(
+        [
+          { policyName: "Terms and Conditions", accepted: data.termsAccepted },
+          { policyName: "Privacy Policy", accepted: data.privacyPolicyAccepted },
+          { policyName: "Cookie Policy", accepted: data.cookiePolicyAccepted },
+        ].map(async ({ policyName, accepted }) => {
+          if (accepted) {
+            await fetch("/api/policy/accept", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ policyName }),
+            });
+          }
+        })
+      );
 
       toast({
         title: "Profile settings updated successfully",
@@ -264,34 +278,15 @@ export function ProfileForm() {
           </Button>
         </div>
 
-        <FormField
-          control={form.control}
-          name="policyAgreement"
-          render={({ field }) => (
-            <FormItem className="flex justify-between items-center">
-              <FormLabel>Policy Agreement</FormLabel>
-              <FormControl>
-                <Switch
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-
         <div className="space-y-4">
           <FormField
             control={form.control}
-            name="analyticsCookies"
+            name="termsAccepted"
             render={({ field }) => (
               <FormItem className="flex justify-between items-center">
-                <FormLabel>Analytics Cookies</FormLabel>
+                <FormLabel>Terms and Conditions</FormLabel>
                 <FormControl>
-                  <Switch
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
+                  <Switch checked={field.value} onCheckedChange={field.onChange} />
                 </FormControl>
               </FormItem>
             )}
@@ -299,15 +294,25 @@ export function ProfileForm() {
 
           <FormField
             control={form.control}
-            name="marketingCookies"
+            name="privacyPolicyAccepted"
             render={({ field }) => (
               <FormItem className="flex justify-between items-center">
-                <FormLabel>Marketing Cookies</FormLabel>
+                <FormLabel>Privacy Policy</FormLabel>
                 <FormControl>
-                  <Switch
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
+                  <Switch checked={field.value} onCheckedChange={field.onChange} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="cookiePolicyAccepted"
+            render={({ field }) => (
+              <FormItem className="flex justify-between items-center">
+                <FormLabel>Cookie Policy</FormLabel>
+                <FormControl>
+                  <Switch checked={field.value} onCheckedChange={field.onChange} />
                 </FormControl>
               </FormItem>
             )}
