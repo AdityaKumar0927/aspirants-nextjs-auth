@@ -1,5 +1,4 @@
-// @/app/api/issues/route.ts
-import { PrismaClient, IssuePriority } from '@prisma/client'; // Import IssuePriority enum
+import { PrismaClient, IssuePriority } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]/options';
@@ -28,10 +27,15 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { title, description, area, securityLevel } = await request.json();
+    // Log incoming request body for debugging
+    const body = await request.json();
+    console.log('Incoming request data:', body);
 
-    if (!title || !description || !area || !securityLevel) {
-      return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
+    const { title, description, area, securityLevel } = body;
+
+    // Validate that all fields are present and not empty
+    if (!title?.trim() || !description?.trim() || !area?.trim() || !securityLevel) {
+      return NextResponse.json({ error: 'Missing or empty fields' }, { status: 400 });
     }
 
     // Define the type of keys allowed in priorityMapping
@@ -45,13 +49,19 @@ export async function POST(request: Request) {
       '4': IssuePriority.LOW,
     };
 
-    const mappedPriority = priorityMapping[securityLevel as PriorityKeys] || IssuePriority.MEDIUM;
+    // Check if securityLevel is valid before mapping
+    if (!Object.keys(priorityMapping).includes(securityLevel)) {
+      return NextResponse.json({ error: 'Invalid security level' }, { status: 400 });
+    }
 
+    const mappedPriority = priorityMapping[securityLevel as PriorityKeys];
+
+    // Create the issue
     const newIssue = await prisma.issue.create({
       data: {
         title,
         description,
-        priority: mappedPriority, // Use the mapped IssuePriority enum value
+        priority: mappedPriority,
         category: {
           connectOrCreate: {
             where: { name: area },

@@ -1,4 +1,3 @@
-// @/components/layout/MorePopover.tsx
 "use client";
 
 import * as PopoverPrimitive from "@radix-ui/react-popover";
@@ -35,6 +34,7 @@ export function MorePopover() {
 
   const handleSubmit = async () => {
     try {
+      // Prepare data for API request
       const response = await fetch("/api/issues", {
         method: "POST",
         headers: {
@@ -43,12 +43,12 @@ export function MorePopover() {
         body: JSON.stringify({
           title: subject,
           description,
-          priority: securityLevel, // Sending a correct enum value
-          category: area,
-          status: "OPEN",
+          area, // Correctly mapping the area field
+          securityLevel, // Correctly sending the security level as the backend expects
         }),
       });
 
+      // Check the response status
       if (response.ok) {
         toast({
           title: "Issue reported",
@@ -58,9 +58,16 @@ export function MorePopover() {
         setSubject("");
         setDescription("");
       } else {
-        throw new Error("Failed to report issue");
+        // Extract error message from the response
+        const errorData = await response.json();
+        toast({
+          title: "Error",
+          description: errorData.error || "There was an error reporting your issue. Please try again.",
+          variant: "destructive",
+        });
       }
     } catch (error) {
+      // Handle unexpected errors
       toast({
         title: "Error",
         description: "There was an error reporting your issue. Please try again.",
