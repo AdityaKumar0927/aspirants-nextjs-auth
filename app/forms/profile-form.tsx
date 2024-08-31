@@ -66,7 +66,7 @@ export function ProfileForm() {
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues: initialData || {
+    defaultValues: {
       username: "",
       email: "",
       bio: "",
@@ -91,8 +91,10 @@ export function ProfileForm() {
 
         const data = await response.json();
 
+        // Ensure that data has the expected structure and is not undefined
         const policyAgreements: PolicyAgreement[] = data.policyAgreements || [];
 
+        // Mapping policy agreement values to switches
         const updatedData: ProfileFormValues = {
           username: data.username || "",
           email: data.email || "",
@@ -110,10 +112,11 @@ export function ProfileForm() {
         };
 
         setInitialData(updatedData);
-        form.reset(updatedData); // Reset the form with the fetched data
+        form.reset(updatedData); // Correctly reset form with the updated data
         setLoading(false);
       } catch (error) {
         setLoading(false);
+        console.error("Error fetching profile data:", error); // Log the error for debugging
       }
     };
 
