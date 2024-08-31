@@ -134,7 +134,7 @@ const QuestionBankDashboard: React.FC = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ questionId: editingQuestionId, ...updatedQuestion }),
+        body: JSON.stringify(updatedQuestion),
       });
 
       if (!response.ok) throw new Error("Failed to update question");
