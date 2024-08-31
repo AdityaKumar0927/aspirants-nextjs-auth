@@ -1,7 +1,7 @@
 // app/api/user/get.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
-import { checkAuthorization } from '../../auth/middleware/route'; // Adjust the path if necessary
+import { checkAuthorization } from '@/app/utils/auth'; // Adjust the path if necessary
 
 const prisma = new PrismaClient();
 
