@@ -33,32 +33,6 @@ interface QuestionType {
   diagramUrl?: string;
 }
 
-interface UserAnswer {
-  questionId: string;
-  selectedOption: string;
-  isCorrect: boolean;
-}
-
-interface UserPerformance {
-  questionId: string;
-  correctAnswers: number;
-  incorrectAnswers: number;
-  uniqueQuestions: number;
-  questionsAttempted: number;
-  timeSpent: number;
-  accuracy: number;
-  weaknessBySubtopic: any;
-  improvementOverTime: any;
-  attemptRate: number;
-  firstAttemptSuccessRate: number;
-  reattemptAccuracy: number;
-  topicPerformance: any;
-  consistency: number;
-  engagementLevel: number;
-  completed: boolean;
-  reviewed: boolean;
-}
-
 type FiltersType = {
   exams: string[];
   subjects: string[];
@@ -114,77 +88,20 @@ const QuestionBank: React.FC = () => {
     notes: {} as Record<string, string>,
   });
   const [loading, setLoading] = useState<boolean>(true);
-  const [currentPage, setCurrentPage] = useState(1); // Track the current page for pagination
-
-  const userId = ""; // Add logic to retrieve user ID if signed in
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchAllData = async () => {
       try {
         setLoading(true);
         let questionsData = JSON.parse(localStorage.getItem("questionsData") || "null");
-        let userProgressData = JSON.parse(localStorage.getItem("userProgressData") || "null");
-        let userAnswersData = JSON.parse(localStorage.getItem("userAnswersData") || "null");
-        let notesData = JSON.parse(localStorage.getItem("notesData") || "null");
-        let userPerformanceData = JSON.parse(localStorage.getItem("userPerformanceData") || "null");
 
         if (!questionsData) {
           questionsData = await fetchData("/api/questions");
           localStorage.setItem("questionsData", JSON.stringify(questionsData));
         }
 
-        if (userId) {
-          [userProgressData, userAnswersData, notesData, userPerformanceData] = await Promise.all([
-            fetchData("/api/user-progress"),
-            fetchData("/api/user-answers"),
-            fetchData("/api/notes"),
-            fetchData("/api/user-performance/get"),
-          ]);
-
-          localStorage.setItem("userProgressData", JSON.stringify(userProgressData));
-          localStorage.setItem("userAnswersData", JSON.stringify(userAnswersData));
-          localStorage.setItem("notesData", JSON.stringify(notesData));
-          localStorage.setItem("userPerformanceData", JSON.stringify(userPerformanceData));
-        }
-
-        const mergedQuestions = questionsData.map((question: QuestionType) => {
-          const progress = userProgressData?.find(
-            (p: any) => p.questionId === question.questionId
-          );
-          const userAnswer = userAnswersData?.find(
-            (a: UserAnswer) => a.questionId === question.questionId
-          );
-          const note = notesData?.find((n: any) => n.questionId === question.questionId);
-          const performance = userPerformanceData?.find(
-            (p: UserPerformance) => p.questionId === question.questionId
-          );
-
-          // Update state for feedback and selected options
-          if (userAnswer) {
-            setState((prevState) => ({
-              ...prevState,
-              selectedOptions: {
-                ...prevState.selectedOptions,
-                [question.questionId]: userAnswer.selectedOption,
-              },
-              feedback: {
-                ...prevState.feedback,
-                [question.questionId]: userAnswer.isCorrect ? "correct" : "incorrect",
-              },
-            }));
-          }
-
-          return {
-            ...question,
-            reviewed: performance ? performance.reviewed : progress ? progress.reviewed : false,
-            completed: performance ? performance.completed : progress ? progress.completed : false,
-            notes: note ? note.content : "",
-            lastAttempted: progress ? progress.lastAttempted : "",
-            performance: performance || {},
-          };
-        });
-
-        setQuestions(mergedQuestions);
+        setQuestions(questionsData);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -193,7 +110,133 @@ const QuestionBank: React.FC = () => {
     };
 
     fetchAllData();
-  }, [userId]);
+  }, []);
+
+  const updateLocalStorage = (questions: QuestionType[]) => {
+    localStorage.setItem("questionsData", JSON.stringify(questions));
+  };
+
+  const updateQuestion = async (questionId: string, updates: Partial<QuestionType>) => {
+    try {
+      const response = await fetch("/api/questions", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, ...updates }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update question");
+      }
+
+      const updatedQuestion = await response.json();
+
+      setQuestions((prevQuestions) => {
+        const updatedQuestions = prevQuestions.map((q) =>
+          q.questionId === updatedQuestion.questionId ? updatedQuestion : q
+        );
+        updateLocalStorage(updatedQuestions);
+        return updatedQuestions;
+      });
+    } catch (error) {
+      console.error("Error updating question:", error);
+    }
+  };
+
+  const handleOptionClick = useCallback(
+    (questionId: string, option: string, correctOption: string) => {
+      const isCorrect = option === correctOption;
+      setState((prevState) => ({
+        ...prevState,
+        feedback: {
+          ...prevState.feedback,
+          [questionId]: isCorrect ? "correct" : "incorrect",
+        },
+        selectedOptions: {
+          ...prevState.selectedOptions,
+          [questionId]: option,
+        },
+      }));
+
+      updateQuestion(questionId, {
+        completed: true,
+        reviewed: true,
+      });
+    },
+    []
+  );
+
+  const handleNumericalSubmit = useCallback(
+    (questionId: string, userAnswer: string, correctAnswer: string) => {
+      const isCorrect = userAnswer === correctAnswer;
+      setState((prevState) => ({
+        ...prevState,
+        feedback: {
+          ...prevState.feedback,
+          [questionId]: isCorrect ? "correct" : "incorrect",
+        },
+      }));
+
+      updateQuestion(questionId, {
+        completed: true,
+        reviewed: true,
+      });
+    },
+    []
+  );
+
+  const handleMarkForReview = useCallback(
+    (questionId: string, isReviewed: boolean) => {
+      updateQuestion(questionId, { reviewed: isReviewed });
+
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
+        )
+      );
+    },
+    []
+  );
+
+  const handleMarkComplete = useCallback(
+    (questionId: string, isComplete: boolean) => {
+      updateQuestion(questionId, { completed: isComplete });
+
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: isComplete } : q
+        )
+      );
+    },
+    []
+  );
+
+  const handleNoteChange = useCallback(
+    (questionId: string, note: string) => {
+      setState((prevState) => ({
+        ...prevState,
+        notes: {
+          ...prevState.notes,
+          [questionId]: note,
+        },
+      }));
+
+      updateQuestion(questionId, { notes: note });
+    },
+    []
+  );
+
+  const handleDeleteNote = useCallback(
+    async (questionId: string) => {
+      setState((prevState) => {
+        const updatedNotes = { ...prevState.notes };
+        delete updatedNotes[questionId];
+        return { ...prevState, notes: updatedNotes };
+      });
+
+      updateQuestion(questionId, { notes: "" });
+    },
+    []
+  );
 
   const filteredQuestions = useMemo(() => {
     let filtered = questions.filter((question) => {
@@ -244,228 +287,6 @@ const QuestionBank: React.FC = () => {
       return prevFilters;
     });
   }, []);
-
-  const updateLocalStorage = (key: string, value: any) => {
-    localStorage.setItem(key, JSON.stringify(value));
-  };
-
-  const updateUserPerformance = useCallback(
-    async (
-      questionId: string,
-      updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>
-    ) => {
-      try {
-        if (userId) {
-          const response = await fetch("/api/user-performance/update", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ questionId, ...updatedFields }),
-          });
-          if (!response.ok) throw new Error("Failed to update user performance");
-        } else {
-          const userPerformanceData = JSON.parse(
-            localStorage.getItem("userPerformanceData") || "[]"
-          );
-          const index = userPerformanceData.findIndex(
-            (item: any) => item.questionId === questionId
-          );
-          if (index !== -1) {
-            userPerformanceData[index] = { ...userPerformanceData[index], ...updatedFields };
-          } else {
-            userPerformanceData.push({ questionId, ...updatedFields });
-          }
-          updateLocalStorage("userPerformanceData", userPerformanceData);
-        }
-      } catch (error) {
-        console.error("Error updating user performance:", error);
-      }
-    },
-    [userId]
-  );
-
-  const saveUserAnswer = useCallback(
-    async (questionId: string, selectedOption: string, isCorrect: boolean) => {
-      try {
-        if (userId) {
-          const response = await fetch("/api/user-answers", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ questionId, selectedOption, isCorrect }),
-          });
-          if (!response.ok) throw new Error("Failed to save user answer");
-        } else {
-          const userAnswersData = JSON.parse(localStorage.getItem("userAnswersData") || "[]");
-          const index = userAnswersData.findIndex((item: any) => item.questionId === questionId);
-          if (index !== -1) {
-            userAnswersData[index] = { questionId, selectedOption, isCorrect };
-          } else {
-            userAnswersData.push({ questionId, selectedOption, isCorrect });
-          }
-          updateLocalStorage("userAnswersData", userAnswersData);
-        }
-      } catch (error) {
-        console.error("Error saving user answer:", error);
-      }
-    },
-    [userId]
-  );
-
-  const handleMarkComplete = useCallback(
-    async (questionId: string, isComplete: boolean) => {
-      await updateUserPerformance(questionId, { completed: isComplete });
-
-      setQuestions((prevQuestions) =>
-        prevQuestions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: isComplete } : q
-        )
-      );
-    },
-    [updateUserPerformance]
-  );
-
-  const handleMarkForReview = useCallback(
-    async (questionId: string, isReviewed: boolean) => {
-      await updateUserPerformance(questionId, { reviewed: isReviewed });
-
-      setQuestions((prevQuestions) =>
-        prevQuestions.map((q) =>
-          q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
-        )
-      );
-    },
-    [updateUserPerformance]
-  );
-
-  const handleOptionClick = useCallback(
-    async (questionId: string, option: string, correctOption: string) => {
-      const isCorrect = option === correctOption;
-      setState((prevState) => ({
-        ...prevState,
-        feedback: {
-          ...prevState.feedback,
-          [questionId]: isCorrect ? "correct" : "incorrect",
-        },
-        selectedOptions: {
-          ...prevState.selectedOptions,
-          [questionId]: option,
-        },
-      }));
-
-      const updatedFields = {
-        correctAnswers: isCorrect ? 1 : 0,
-        incorrectAnswers: !isCorrect ? 1 : 0,
-        uniqueQuestions: 1,
-        questionsAttempted: 1,
-        lastAttempted: new Date().toISOString(),
-        completed: true,
-        accuracy: isCorrect ? 100 : 0, // Update as per your logic
-        firstAttemptSuccessRate: isCorrect ? 100 : 0, // Update as per your logic
-        reattemptAccuracy: isCorrect ? 100 : 0, // Update as per your logic
-        // Add other fields as necessary
-      };
-
-      await updateUserPerformance(questionId, updatedFields);
-      await saveUserAnswer(questionId, option, isCorrect);
-
-      setQuestions((prevQuestions) =>
-        prevQuestions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: true } : q
-        )
-      );
-    },
-    [saveUserAnswer, updateUserPerformance]
-  );
-
-  const handleNumericalSubmit = useCallback(
-    async (questionId: string, userAnswer: string, correctAnswer: string) => {
-      const isCorrect = userAnswer === correctAnswer;
-      setState((prevState) => ({
-        ...prevState,
-        feedback: {
-          ...prevState.feedback,
-          [questionId]: isCorrect ? "correct" : "incorrect",
-        },
-      }));
-      await updateUserPerformance(questionId, {
-        lastAttempted: new Date().toISOString(),
-        completed: true,
-        accuracy: isCorrect ? 100 : 0, // Update as per your logic
-        firstAttemptSuccessRate: isCorrect ? 100 : 0, // Update as per your logic
-        reattemptAccuracy: isCorrect ? 100 : 0, // Update as per your logic
-      });
-      await saveUserAnswer(questionId, userAnswer, isCorrect);
-
-      setQuestions((prevQuestions) =>
-        prevQuestions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: true } : q
-        )
-      );
-    },
-    [saveUserAnswer, updateUserPerformance]
-  );
-
-  const handleNoteChange = useCallback(
-    async (questionId: string, note: string) => {
-      setState((prevState) => ({
-        ...prevState,
-        notes: {
-          ...prevState.notes,
-          [questionId]: note,
-        },
-      }));
-
-      try {
-        if (userId) {
-          const response = await fetch("/api/notes/save", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ questionId, content: note }),
-          });
-          if (!response.ok) throw new Error("Failed to save note");
-        } else {
-          const notesData = JSON.parse(localStorage.getItem("notesData") || "[]");
-          const index = notesData.findIndex((item: any) => item.questionId === questionId);
-          if (index !== -1) {
-            notesData[index] = { questionId, content: note };
-          } else {
-            notesData.push({ questionId, content: note });
-          }
-          updateLocalStorage("notesData", notesData);
-        }
-      } catch (error) {
-        console.error("Error saving note:", error);
-      }
-    },
-    [userId]
-  );
-
-  const handleDeleteNote = useCallback(
-    async (questionId: string) => {
-      try {
-        if (userId) {
-          const response = await fetch("/api/notes/delete", {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ questionId }),
-          });
-          if (!response.ok) throw new Error("Failed to delete note");
-        } else {
-          const notesData = JSON.parse(localStorage.getItem("notesData") || "[]");
-          const updatedNotes = notesData.filter((item: any) => item.questionId !== questionId);
-          updateLocalStorage("notesData", updatedNotes);
-        }
-      } catch (error) {
-        console.error("Error deleting note:", error);
-      }
-
-      setState((prevState) => {
-        const updatedNotes = { ...prevState.notes };
-        delete updatedNotes[questionId];
-        return { ...prevState, notes: updatedNotes };
-      });
-    },
-    [userId]
-  );
 
   if (loading) {
     return (
@@ -526,28 +347,6 @@ const QuestionBank: React.FC = () => {
               </TooltipTrigger>
               <TooltipContent>Search Questions</TooltipContent>
             </Tooltip>
-          </div>
-
-          <div className="flex space-x-4 mb-2">
-            {["all", "complete", "review"].map((status) => (
-              <Tooltip key={status}>
-                <TooltipTrigger asChild>
-                  <button
-                    onClick={() => setFilters({ ...filters, status })}
-                    className={`px-4 py-2 rounded-md ${
-                      filters.status === status
-                        ? "bg-white border hover:border-black border-gray-600 text-gray-500"
-                        : "bg-white hover:border-black border border-gray-300 text-gray-500"
-                    }`}
-                  >
-                    {status.charAt(0).toUpperCase() + status.slice(1)}
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  {status.charAt(0).toUpperCase() + status.slice(1)}
-                </TooltipContent>
-              </Tooltip>
-            ))}
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
@@ -687,7 +486,7 @@ const QuestionBank: React.FC = () => {
                   markschemesDisabled={false}
                   note={state.notes[question.questionId] || ""}
                   handleNoteChange={handleNoteChange}
-                  userId={userId}
+                  userId={""} // If user ID is required, pass it here
                   handleDeleteNote={handleDeleteNote}
                 />
               ))}

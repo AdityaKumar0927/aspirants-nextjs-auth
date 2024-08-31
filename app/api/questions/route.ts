@@ -29,20 +29,8 @@ export async function GET() {
     });
     return NextResponse.json(questions);
   } catch (error) {
+    console.error('Error fetching questions:', error);
     return NextResponse.json({ error: 'Failed to fetch questions' }, { status: 500 });
-  }
-}
-
-export async function POST(request: Request) {
-  const data = await request.json();
-
-  try {
-    const newQuestion = await prisma.question.create({
-      data,
-    });
-    return NextResponse.json(newQuestion);
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed to create question' }, { status: 500 });
   }
 }
 
@@ -50,25 +38,43 @@ export async function PATCH(request: Request) {
   const { questionId, ...updates } = await request.json();
 
   try {
+    // Update the question in the database
     const updatedQuestion = await prisma.question.update({
       where: { questionId },
       data: updates,
     });
-    return NextResponse.json(updatedQuestion);
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed to update question' }, { status: 500 });
-  }
-}
 
-export async function DELETE(request: Request) {
-  const { questionId } = await request.json();
-
-  try {
-    await prisma.question.delete({
+    // Re-fetch the updated question to ensure correct data
+    const refreshedQuestion = await prisma.question.findUnique({
       where: { questionId },
+      select: {
+        questionId: true,
+        exam: true,
+        text: true,
+        subject: true,
+        topic: true,
+        subtopic: true,
+        difficulty: true,
+        type: true,
+        year: true,
+        reviewed: true,
+        completed: true,
+        options: true,
+        correctOption: true,
+        markscheme: true,
+        notes: true,
+        lastAttempted: true,
+        diagramUrl: true,
+      },
     });
-    return NextResponse.json({ message: 'Question deleted successfully' });
+
+    if (!refreshedQuestion) {
+      return NextResponse.json({ error: 'Question not found after update' }, { status: 404 });
+    }
+
+    return NextResponse.json(refreshedQuestion);
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to delete question' }, { status: 500 });
+    console.error('Error updating question:', error);
+    return NextResponse.json({ error: 'Failed to update question' }, { status: 500 });
   }
 }
