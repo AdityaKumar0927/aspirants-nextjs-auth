@@ -16,29 +16,29 @@ export async function POST(request: Request) {
 
     const { policyName, accepted } = await request.json();
 
-    // Validate the incoming request
+    // Validate incoming request
     if (!policyName || typeof accepted !== 'boolean') {
-      return NextResponse.json({ message: 'Invalid data' }, { status: 400 });
+      return NextResponse.json({ message: 'Invalid input data' }, { status: 400 });
     }
 
-    // Find or create the policy agreement for the user
-    const policyAgreement = await prisma.userPolicyAgreement.upsert({
+    // Check if the policy already exists
+    const policy = await prisma.userPolicyAgreement.upsert({
       where: {
         userId_policyName: {
           userId: session.user.id,
           policyName,
         },
       },
-      update: { accepted, acceptedAt: accepted ? new Date() : null },
+      update: { accepted, acceptedAt: new Date() },
       create: {
         userId: session.user.id,
         policyName,
         accepted,
-        acceptedAt: accepted ? new Date() : null,
+        acceptedAt: new Date(),
       },
     });
 
-    return NextResponse.json({ message: 'Policy updated successfully', policyAgreement });
+    return NextResponse.json({ message: 'Policy status updated successfully', policy }, { status: 200 });
   } catch (error) {
     console.error('Error updating policy agreement:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

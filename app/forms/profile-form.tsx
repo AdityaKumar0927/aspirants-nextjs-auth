@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,6 +29,11 @@ import { toast } from "@/components/ui/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
 import { useRouter } from "next/navigation";
+
+type PolicyAgreement = {
+  policyName: string;
+  accepted: boolean;
+};
 
 const profileFormSchema = z.object({
   username: z
@@ -60,14 +65,46 @@ export function ProfileForm() {
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues: {
-      username: "",
-      email: "",
-      bio: "",
-      urls: [{ value: "" }],
-      termsAccepted: false,
-      privacyPolicyAccepted: false,
-      cookiePolicyAccepted: false,
+    defaultValues: async () => {
+      try {
+        const response = await fetch("/api/settings/profile-settings");
+        if (!response.ok) throw new Error("Failed to fetch profile settings");
+
+        const data = await response.json();
+        setLoading(false);
+
+        const policyAgreements: PolicyAgreement[] = data.policyAgreements || [];
+
+        return {
+          username: data.username || "",
+          email: data.email || "",
+          bio: data.bio || "",
+          urls: data.urls || [{ value: "" }],
+          termsAccepted: policyAgreements.some(
+            (agreement: PolicyAgreement) =>
+              agreement.policyName === "Terms and Conditions" && agreement.accepted
+          ),
+          privacyPolicyAccepted: policyAgreements.some(
+            (agreement: PolicyAgreement) =>
+              agreement.policyName === "Privacy Policy" && agreement.accepted
+          ),
+          cookiePolicyAccepted: policyAgreements.some(
+            (agreement: PolicyAgreement) =>
+              agreement.policyName === "Cookie Policy" && agreement.accepted
+          ),
+        };
+      } catch (error) {
+        setLoading(false);
+        return {
+          username: "",
+          email: "",
+          bio: "",
+          urls: [{ value: "" }],
+          termsAccepted: false,
+          privacyPolicyAccepted: false,
+          cookiePolicyAccepted: false,
+        };
+      }
     },
     mode: "onChange",
   });
@@ -77,39 +114,8 @@ export function ProfileForm() {
     control: form.control,
   });
 
-  useEffect(() => {
-    const fetchProfileSettings = async () => {
-      try {
-        const response = await fetch("/api/settings/profile-settings");
-        if (!response.ok) throw new Error("Failed to fetch profile settings");
-
-        const data = await response.json();
-        setLoading(false);
-
-        form.reset({
-          username: data.username || "",
-          email: data.email || "",
-          bio: data.bio || "",
-          urls: data.urls || [{ value: "" }],
-          termsAccepted: data.termsAccepted ?? false,
-          privacyPolicyAccepted: data.privacyPolicyAccepted ?? false,
-          cookiePolicyAccepted: data.cookiePolicyAccepted ?? false,
-        });
-      } catch (error) {
-        setLoading(false);
-        toast({
-          title: "Error",
-          description: "Failed to load profile settings",
-        });
-      }
-    };
-
-    fetchProfileSettings();
-  }, [form]);
-
   async function onSubmit(data: ProfileFormValues) {
     try {
-      // Update profile settings including policy agreements
       const response = await fetch("/api/settings/profile-settings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -120,19 +126,21 @@ export function ProfileForm() {
         throw new Error("Failed to update profile settings");
       }
 
-      // Save each policy acceptance status separately
       await Promise.all(
         [
           { policyName: "Terms and Conditions", accepted: data.termsAccepted },
           { policyName: "Privacy Policy", accepted: data.privacyPolicyAccepted },
           { policyName: "Cookie Policy", accepted: data.cookiePolicyAccepted },
         ].map(async ({ policyName, accepted }) => {
-          if (accepted) {
-            await fetch("/api/policy/accept", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ policyName }),
-            });
+          const policyResponse = await fetch("/api/policy/accept", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ policyName, accepted }),
+          });
+
+          if (!policyResponse.ok) {
+            const error = await policyResponse.json();
+            throw new Error(`Failed to accept ${policyName}: ${error.message}`);
           }
         })
       );
