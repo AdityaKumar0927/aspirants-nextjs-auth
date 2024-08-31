@@ -1,6 +1,8 @@
-"use client"
-// @/app/administrator/page.tsx
+"use client";
 
+import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react'; // Ensure next-auth is correctly configured
+import { useRouter } from 'next/navigation'; // For programmatic navigation
 import { Avatar } from '@/components/administrator-ui/avatar';
 import { Badge } from '@/components/administrator-ui/badge';
 import { Divider } from '@/components/administrator-ui/divider';
@@ -16,10 +18,8 @@ import {
 } from '@/components/administrator-ui/table';
 import { Button } from '@/components/ui/button';
 import { Stat } from '@/components/administrator-ui/Stat';
-import { useState, useEffect } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 
-// Define the Issue type
 interface Issue {
   id: string;
   title: string;
@@ -31,12 +31,26 @@ interface Issue {
 }
 
 export default function Home() {
+  const { data: session, status } = useSession(); // Fetch the current session
+  const router = useRouter();
   const [issues, setIssues] = useState<Issue[]>([]);
   const { toast } = useToast();
 
+  // Define allowed users
+  const allowedUsers = ['artistadityakumar@gmail.com', 'aditanshu.sinha@gmail.com'];
+
   useEffect(() => {
-    fetchIssues();
-  }, []);
+    // Check if the user is logged in and if their email is allowed
+    if (status === 'authenticated') {
+      if (!allowedUsers.includes(session?.user?.email || '')) {
+        // Redirect if the user is not allowed
+        router.push('/403'); // Adjust the route if necessary, or use a custom 403 page
+      } else {
+        // Fetch issues if the user is allowed
+        fetchIssues();
+      }
+    }
+  }, [status, session]);
 
   const fetchIssues = async () => {
     try {
@@ -98,6 +112,11 @@ export default function Home() {
     }
   };
 
+  // Show loading or fallback content while the session status is being determined
+  if (status === 'loading') {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
       <Heading>Good afternoon, Administrator</Heading>
@@ -131,7 +150,11 @@ export default function Home() {
         </TableHead>
         <TableBody>
           {issues.map((issue) => (
-            <TableRow key={issue.id} href={`/administrator/issues/${issue.id}`} title={`Issue #${issue.id}`}>
+            <TableRow
+              key={issue.id}
+              href={`/administrator/issues/${issue.id}`}
+              title={`Issue #${issue.id}`}
+            >
               <TableCell>{issue.id}</TableCell>
               <TableCell className="text-zinc-500">{issue.createdAt}</TableCell>
               <TableCell>{issue.reporterName}</TableCell>

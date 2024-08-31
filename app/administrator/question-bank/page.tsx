@@ -80,13 +80,19 @@ interface Question {
 
 const QuestionBankDashboard: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [editingQuestionId, setEditingQuestionId] = useState<string | null>(null);
+  const [editingQuestionId, setEditingQuestionId] = useState<string | null>(
+    null
+  );
   const [updatedText, setUpdatedText] = useState("");
   const [updatedOptions, setUpdatedOptions] = useState<string[]>([]);
-  const [questionStatus, setQuestionStatus] = useState<"Active" | "Draft" | "Archived">("Active");
+  const [questionStatus, setQuestionStatus] = useState<
+    "Active" | "Draft" | "Archived"
+  >("Active");
   const [showPreview, setShowPreview] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const [confirmationAction, setConfirmationAction] = useState<() => void>(() => {});
+  const [confirmationAction, setConfirmationAction] = useState<() => void>(
+    () => {}
+  );
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -123,8 +129,8 @@ const QuestionBankDashboard: React.FC = () => {
     };
 
     try {
-      const response = await fetch(`/api/questions/${editingQuestionId}`, {
-        method: "PUT",
+      const response = await fetch(`/api/questions`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
@@ -134,7 +140,9 @@ const QuestionBankDashboard: React.FC = () => {
       if (!response.ok) throw new Error("Failed to update question");
 
       setQuestions((prev) =>
-        prev.map((q) => (q.questionId === editingQuestionId ? updatedQuestion : q))
+        prev.map((q) =>
+          q.questionId === editingQuestionId ? updatedQuestion : q
+        )
       );
       setEditingQuestionId(null);
       setShowPreview(false);
@@ -151,8 +159,12 @@ const QuestionBankDashboard: React.FC = () => {
   const handleDelete = (questionId: string) => {
     setConfirmationAction(() => async () => {
       try {
-        const response = await fetch(`/api/questions/${questionId}`, {
+        const response = await fetch(`/api/questions`, {
           method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ questionId }),
         });
 
         if (!response.ok) throw new Error("Failed to delete question");
@@ -171,7 +183,9 @@ const QuestionBankDashboard: React.FC = () => {
   };
 
   const handleOptionChange = (index: number, value: string) => {
-    setUpdatedOptions((prev) => prev.map((opt, i) => (i === index ? value : opt)));
+    setUpdatedOptions((prev) =>
+      prev.map((opt, i) => (i === index ? value : opt))
+    );
   };
 
   const handleRemoveOption = (index: number) => {
@@ -349,7 +363,10 @@ const QuestionBankDashboard: React.FC = () => {
                                     Options (LaTeX Supported)
                                   </label>
                                   {updatedOptions.map((option, index) => (
-                                    <div key={index} className="flex items-center mb-2">
+                                    <div
+                                      key={index}
+                                      className="flex items-center mb-2"
+                                    >
                                       <input
                                         type="text"
                                         className="w-full p-2 border rounded mr-2"
@@ -410,10 +427,17 @@ const QuestionBankDashboard: React.FC = () => {
                                 <Button size="sm" onClick={handleSaveChanges}>
                                   Save
                                 </Button>
-                                <Button size="sm" variant="outline" onClick={handleCancelEdit}>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={handleCancelEdit}
+                                >
                                   Cancel
                                 </Button>
-                                <Button size="sm" onClick={() => setShowPreview((prev) => !prev)}>
+                                <Button
+                                  size="sm"
+                                  onClick={() => setShowPreview((prev) => !prev)}
+                                >
                                   {showPreview ? "Hide Preview" : "Preview"}
                                 </Button>
                               </TableCell>
@@ -487,7 +511,10 @@ const QuestionBankDashboard: React.FC = () => {
             <div className="text-center">
               <p>Are you sure you want to proceed with this action?</p>
               <div className="flex justify-center mt-4 space-x-2">
-                <Button variant="outline" onClick={() => setShowConfirmationModal(false)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowConfirmationModal(false)}
+                >
                   Cancel
                 </Button>
                 <Button onClick={confirmationAction}>Confirm</Button>
