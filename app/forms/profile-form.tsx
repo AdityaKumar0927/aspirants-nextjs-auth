@@ -60,7 +60,6 @@ type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export function ProfileForm() {
   const [loading, setLoading] = useState(true);
-  const [initialData, setInitialData] = useState<ProfileFormValues | null>(null);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const router = useRouter();
 
@@ -90,33 +89,30 @@ export function ProfileForm() {
         if (!response.ok) throw new Error("Failed to fetch profile settings");
 
         const data = await response.json();
-
-        // Ensure that data has the expected structure and is not undefined
         const policyAgreements: PolicyAgreement[] = data.policyAgreements || [];
 
-        // Mapping policy agreement values to switches
-        const updatedData: ProfileFormValues = {
+        // Initialize switches based on policy agreements
+        const updatedData = {
           username: data.username || "",
           email: data.email || "",
           bio: data.bio || "",
           urls: data.urls || [{ value: "" }],
-          termsAccepted: policyAgreements.some(
+          termsAccepted: !!policyAgreements.find(
             (agreement) => agreement.policyName === "Terms and Conditions" && agreement.accepted
           ),
-          privacyPolicyAccepted: policyAgreements.some(
+          privacyPolicyAccepted: !!policyAgreements.find(
             (agreement) => agreement.policyName === "Privacy Policy" && agreement.accepted
           ),
-          cookiePolicyAccepted: policyAgreements.some(
+          cookiePolicyAccepted: !!policyAgreements.find(
             (agreement) => agreement.policyName === "Cookie Policy" && agreement.accepted
           ),
         };
 
-        setInitialData(updatedData);
-        form.reset(updatedData); // Correctly reset form with the updated data
+        form.reset(updatedData);
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        console.error("Error fetching profile data:", error); // Log the error for debugging
+        console.error("Error fetching profile data:", error);
       }
     };
 
