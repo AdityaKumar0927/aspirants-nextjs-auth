@@ -1,10 +1,11 @@
-// /app/api/users/role/route.ts
+// app/api/users/role/route.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
+import { authorize } from '../../auth/middleware/route'; // Adjust the path as needed
 
 const prisma = new PrismaClient();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -32,5 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.error('Error updating user role:', error);
     return res.status(500).json({ error: 'Failed to update user role' });
   }
-}
+};
 
+// Only allow administrators to access this endpoint
+export default authorize(handler, ['administrator']);
