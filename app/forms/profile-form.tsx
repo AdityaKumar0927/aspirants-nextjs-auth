@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -60,51 +60,20 @@ type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export function ProfileForm() {
   const [loading, setLoading] = useState(true);
+  const [initialData, setInitialData] = useState<ProfileFormValues | null>(null);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const router = useRouter();
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues: async () => {
-      try {
-        const response = await fetch("/api/settings/profile-settings");
-        if (!response.ok) throw new Error("Failed to fetch profile settings");
-
-        const data = await response.json();
-        setLoading(false);
-
-        const policyAgreements: PolicyAgreement[] = data.policyAgreements || [];
-
-        return {
-          username: data.username || "",
-          email: data.email || "",
-          bio: data.bio || "",
-          urls: data.urls || [{ value: "" }],
-          termsAccepted: policyAgreements.some(
-            (agreement: PolicyAgreement) =>
-              agreement.policyName === "Terms and Conditions" && agreement.accepted
-          ),
-          privacyPolicyAccepted: policyAgreements.some(
-            (agreement: PolicyAgreement) =>
-              agreement.policyName === "Privacy Policy" && agreement.accepted
-          ),
-          cookiePolicyAccepted: policyAgreements.some(
-            (agreement: PolicyAgreement) =>
-              agreement.policyName === "Cookie Policy" && agreement.accepted
-          ),
-        };
-      } catch (error) {
-        setLoading(false);
-        return {
-          username: "",
-          email: "",
-          bio: "",
-          urls: [{ value: "" }],
-          termsAccepted: false,
-          privacyPolicyAccepted: false,
-          cookiePolicyAccepted: false,
-        };
-      }
+    defaultValues: initialData || {
+      username: "",
+      email: "",
+      bio: "",
+      urls: [{ value: "" }],
+      termsAccepted: false,
+      privacyPolicyAccepted: false,
+      cookiePolicyAccepted: false,
     },
     mode: "onChange",
   });
@@ -113,6 +82,43 @@ export function ProfileForm() {
     name: "urls",
     control: form.control,
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/settings/profile-settings");
+        if (!response.ok) throw new Error("Failed to fetch profile settings");
+
+        const data = await response.json();
+
+        const policyAgreements: PolicyAgreement[] = data.policyAgreements || [];
+
+        const updatedData: ProfileFormValues = {
+          username: data.username || "",
+          email: data.email || "",
+          bio: data.bio || "",
+          urls: data.urls || [{ value: "" }],
+          termsAccepted: policyAgreements.some(
+            (agreement) => agreement.policyName === "Terms and Conditions" && agreement.accepted
+          ),
+          privacyPolicyAccepted: policyAgreements.some(
+            (agreement) => agreement.policyName === "Privacy Policy" && agreement.accepted
+          ),
+          cookiePolicyAccepted: policyAgreements.some(
+            (agreement) => agreement.policyName === "Cookie Policy" && agreement.accepted
+          ),
+        };
+
+        setInitialData(updatedData);
+        form.reset(updatedData); // Reset the form with the fetched data
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [form]);
 
   async function onSubmit(data: ProfileFormValues) {
     try {
