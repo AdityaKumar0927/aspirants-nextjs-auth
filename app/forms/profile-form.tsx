@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -60,35 +60,14 @@ export function ProfileForm() {
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues: async () => {
-      try {
-        const response = await fetch("/api/settings/profile-settings");
-        if (!response.ok) throw new Error("Failed to fetch profile settings");
-
-        const data = await response.json();
-        setLoading(false);
-
-        return {
-          username: data.username || "",
-          email: data.email || "",
-          bio: data.bio || "",
-          urls: data.urls || [{ value: "" }],
-          termsAccepted: data.termsAccepted ?? false,
-          privacyPolicyAccepted: data.privacyPolicyAccepted ?? false,
-          cookiePolicyAccepted: data.cookiePolicyAccepted ?? false,
-        };
-      } catch (error) {
-        setLoading(false);
-        return {
-          username: "",
-          email: "",
-          bio: "",
-          urls: [{ value: "" }],
-          termsAccepted: false,
-          privacyPolicyAccepted: false,
-          cookiePolicyAccepted: false,
-        };
-      }
+    defaultValues: {
+      username: "",
+      email: "",
+      bio: "",
+      urls: [{ value: "" }],
+      termsAccepted: false,
+      privacyPolicyAccepted: false,
+      cookiePolicyAccepted: false,
     },
     mode: "onChange",
   });
@@ -97,6 +76,36 @@ export function ProfileForm() {
     name: "urls",
     control: form.control,
   });
+
+  useEffect(() => {
+    const fetchProfileSettings = async () => {
+      try {
+        const response = await fetch("/api/settings/profile-settings");
+        if (!response.ok) throw new Error("Failed to fetch profile settings");
+
+        const data = await response.json();
+        setLoading(false);
+
+        form.reset({
+          username: data.username || "",
+          email: data.email || "",
+          bio: data.bio || "",
+          urls: data.urls || [{ value: "" }],
+          termsAccepted: data.termsAccepted ?? false,
+          privacyPolicyAccepted: data.privacyPolicyAccepted ?? false,
+          cookiePolicyAccepted: data.cookiePolicyAccepted ?? false,
+        });
+      } catch (error) {
+        setLoading(false);
+        toast({
+          title: "Error",
+          description: "Failed to load profile settings",
+        });
+      }
+    };
+
+    fetchProfileSettings();
+  }, [form]);
 
   async function onSubmit(data: ProfileFormValues) {
     try {
