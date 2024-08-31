@@ -1,3 +1,4 @@
+// app/api/questions/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 
@@ -33,19 +34,41 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const { questionId, reviewed, completed } = await request.json();
+  const data = await request.json();
 
-  if (reviewed !== undefined || completed !== undefined) {
-    try {
-      await prisma.question.update({
-        where: { questionId },
-        data: { reviewed, completed },
-      });
-      return NextResponse.json({ message: 'Status updated' });
-    } catch (error) {
-      return NextResponse.json({ error: 'Failed to update status' }, { status: 500 });
-    }
-  } else {
-    return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
+  try {
+    const newQuestion = await prisma.question.create({
+      data,
+    });
+    return NextResponse.json(newQuestion);
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to create question' }, { status: 500 });
+  }
+}
+
+export async function PATCH(request: Request) {
+  const { questionId, ...updates } = await request.json();
+
+  try {
+    const updatedQuestion = await prisma.question.update({
+      where: { questionId },
+      data: updates,
+    });
+    return NextResponse.json(updatedQuestion);
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to update question' }, { status: 500 });
+  }
+}
+
+export async function DELETE(request: Request) {
+  const { questionId } = await request.json();
+
+  try {
+    await prisma.question.delete({
+      where: { questionId },
+    });
+    return NextResponse.json({ message: 'Question deleted successfully' });
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to delete question' }, { status: 500 });
   }
 }

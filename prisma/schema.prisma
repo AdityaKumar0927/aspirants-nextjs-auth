@@ -59,8 +59,16 @@ model User {
   customUserPerformances CustomUserPerformance[]
   issues                 Issue[]                 @relation("UserIssues")
   policyAgreements       UserPolicyAgreement[]   // Relation to policy agreements
+  role                   UserRole?               @relation(fields: [roleId], references: [id])
 
-  // other fields...
+  roleId                 String?
+}
+
+model UserRole {
+  id          String   @id @default(cuid())
+  name        String   @unique // Roles: member, volunteer, moderator, administrator
+  permissions Json     // Permissions associated with the role (e.g., { canEdit: true, canDelete: true })
+  users       User[]
 }
 
 model UserPolicyAgreement {
