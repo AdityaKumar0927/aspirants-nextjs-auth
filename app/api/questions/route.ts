@@ -38,8 +38,10 @@ export async function PATCH(request: Request) {
   const { questionId, status, ...updates } = await request.json();
 
   try {
-    const validStatus = status as QuestionStatus; // Convert string status to enum
+    // Convert string status to enum
+    const validStatus = status as QuestionStatus;
 
+    // Update the question in the database
     const updatedQuestion = await prisma.question.update({
       where: { questionId },
       data: {
@@ -48,8 +50,9 @@ export async function PATCH(request: Request) {
       },
     });
 
-    // Re-fetch the updated question to ensure data is fresh
-    const refreshedQuestions = await prisma.question.findMany({
+    // Re-fetch the updated question to ensure correct data
+    const refreshedQuestion = await prisma.question.findUnique({
+      where: { questionId },
       select: {
         questionId: true,
         exam: true,
@@ -72,7 +75,11 @@ export async function PATCH(request: Request) {
       },
     });
 
-    return NextResponse.json(refreshedQuestions);
+    if (!refreshedQuestion) {
+      return NextResponse.json({ error: 'Question not found after update' }, { status: 404 });
+    }
+
+    return NextResponse.json(refreshedQuestion);
   } catch (error) {
     console.error('Error updating question:', error);
     return NextResponse.json({ error: 'Failed to update question' }, { status: 500 });
