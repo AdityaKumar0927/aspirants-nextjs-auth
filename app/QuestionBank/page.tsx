@@ -186,6 +186,11 @@ const QuestionBank: React.FC = () => {
           };
         });
 
+        // Sort questions by questionId in ascending order
+        mergedQuestions.sort((a: QuestionType, b: QuestionType) =>
+          a.questionId.localeCompare(b.questionId)
+        );
+
         setQuestions(mergedQuestions);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -196,7 +201,7 @@ const QuestionBank: React.FC = () => {
 
     fetchAllData();
   }, [userId]);
-
+  
   const filteredQuestions = useMemo(() => {
     let filtered = questions.filter((question) => {
       return (
