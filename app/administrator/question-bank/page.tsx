@@ -16,6 +16,8 @@ import {
   Settings,
   Users,
   Upload,
+  CheckCircle,
+  XCircle,
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -73,37 +75,35 @@ interface Question {
   options?: string[];
 }
 
+const Notification = ({ message, type }: { message: string; type: 'success' | 'error' }) => (
+  <div className={`fixed top-4 right-4 z-50 p-4 flex items-center gap-2 rounded-full ${type === 'success' ? 'bg-green-100 text-gray-700' : 'bg-red-100 text-gray-700'}`}>
+    {type === 'success' ? <CheckCircle className="text-green-500" /> : <XCircle className="text-red-500" />}
+    <span>{message}</span>
+  </div>
+);
+
 const QuestionBankDashboard: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [editingQuestionId, setEditingQuestionId] = useState<string | null>(
-    null
-  );
+  const [editingQuestionId, setEditingQuestionId] = useState<string | null>(null);
   const [updatedText, setUpdatedText] = useState("");
   const [updatedOptions, setUpdatedOptions] = useState<string[]>([]);
-  const [questionStatus, setQuestionStatus] = useState<QuestionStatus>(
-    QuestionStatus.ACTIVE
-  );
+  const [questionStatus, setQuestionStatus] = useState<QuestionStatus>(QuestionStatus.ACTIVE);
   const [showPreview, setShowPreview] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const [confirmationAction, setConfirmationAction] = useState<() => void>(
-    () => {}
-  );
+  const [confirmationAction, setConfirmationAction] = useState<() => void>(() => {});
   const [jsonInput, setJsonInput] = useState<string>(""); // State for JSON input
   const [batchUpload, setBatchUpload] = useState<Question[]>([]); // State for uploaded questions
+  const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
         const response = await fetch("/api/questions");
         const data = await response.json();
-        // Sort questions by questionId numerically
-        data.sort(
-          (a: Question, b: Question) =>
-            parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
-        );
+        data.sort((a: Question, b: Question) => parseInt(a.questionId, 10) - parseInt(b.questionId, 10));
         setQuestions(data);
       } catch (error) {
-        console.error("Error fetching questions:", error);
+        setNotification({ message: "Error fetching questions", type: "error" });
       }
     };
 
@@ -120,7 +120,6 @@ const QuestionBankDashboard: React.FC = () => {
   const handleSaveChanges = async () => {
     if (!editingQuestionId) return;
 
-    // Map string status to enum value
     const updatedQuestion: Question = {
       questionId: editingQuestionId,
       text: updatedText,
@@ -149,8 +148,9 @@ const QuestionBankDashboard: React.FC = () => {
       );
       setEditingQuestionId(null);
       setShowPreview(false);
+      setNotification({ message: "Question updated successfully", type: "success" });
     } catch (error) {
-      console.error("Error updating question:", error);
+      setNotification({ message: "Error updating question", type: "error" });
     }
   };
 
@@ -174,8 +174,9 @@ const QuestionBankDashboard: React.FC = () => {
 
         setQuestions((prev) => prev.filter((q) => q.questionId !== questionId));
         setShowConfirmationModal(false);
+        setNotification({ message: "Question deleted successfully", type: "success" });
       } catch (error) {
-        console.error("Error deleting question:", error);
+        setNotification({ message: "Error deleting question", type: "error" });
       }
     });
     setShowConfirmationModal(true);
@@ -195,7 +196,6 @@ const QuestionBankDashboard: React.FC = () => {
     setUpdatedOptions((prev) => prev.filter((_, i) => i !== index));
   };
 
-  // Handle JSON input for batch upload
   const handleJsonInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = e.target.value;
     setJsonInput(input);
@@ -203,34 +203,35 @@ const QuestionBankDashboard: React.FC = () => {
       const parsedQuestions: Question[] = JSON.parse(input);
       setBatchUpload(parsedQuestions);
     } catch (error) {
-      console.error("Invalid JSON input:", error);
+      setNotification({ message: "Invalid JSON input", type: "error" });
     }
   };
 
-const handleBatchUpload = async () => {
-  try {
-    const response = await fetch('/api/questions/batch-upload', {
-      method: 'POST', // Ensure this matches the backend route
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(batchUpload), // Ensure data is properly formatted
-    });
+  const handleBatchUpload = async () => {
+    try {
+      const response = await fetch("/api/questions/batch-upload", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(batchUpload),
+      });
 
-    if (!response.ok) throw new Error('Failed to upload batch of questions');
+      if (!response.ok) throw new Error("Failed to upload batch of questions");
 
-    const newQuestions = await response.json();
-    setQuestions((prev) => [...prev, ...newQuestions]);
-    setJsonInput('');
-    setBatchUpload([]);
-  } catch (error) {
-    console.error('Error uploading batch:', error);
-  }
-};
-
+      const newQuestions = await response.json();
+      setQuestions((prev) => [...prev, ...newQuestions]);
+      setJsonInput("");
+      setBatchUpload([]);
+      setNotification({ message: "Batch upload successful", type: "success" });
+    } catch (error) {
+      setNotification({ message: "Error uploading batch", type: "error" });
+    }
+  };
 
   return (
     <TooltipProvider>
+      {notification && <Notification message={notification.message} type={notification.type} />}
       <div className="flex min-h-screen w-full flex-col">
         <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
           <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
@@ -574,14 +575,14 @@ const handleBatchUpload = async () => {
                     />
                   </CardContent>
                   <CardFooter>
-                  <Button
-                  variant="default" // Change "primary" to "default" or another valid variant
-                  onClick={handleBatchUpload}
-                  disabled={!batchUpload.length}
-                  >
-                  <Upload className="mr-2 h-4 w-4" />
-                  Upload Batch
-                  </Button>
+                    <Button
+                      variant="default"
+                      onClick={handleBatchUpload}
+                      disabled={!batchUpload.length}
+                    >
+                      <Upload className="mr-2 h-4 w-4" />
+                      Upload Batch
+                    </Button>
                   </CardFooter>
                 </Card>
               </TabsContent>
@@ -591,17 +592,11 @@ const handleBatchUpload = async () => {
 
         {/* Confirmation Modal */}
         {showConfirmationModal && (
-          <Modal
-            showModal={showConfirmationModal}
-            setShowModal={setShowConfirmationModal}
-          >
-            <div className="text-center">
+          <Modal showModal={showConfirmationModal} setShowModal={setShowConfirmationModal}>
+            <div className="text-center backdrop-blur-md p-6 rounded-xl">
               <p>Are you sure you want to proceed with this action?</p>
               <div className="flex justify-center mt-4 space-x-2">
-                <Button
-                  variant="outline"
-                  onClick={() => setShowConfirmationModal(false)}
-                >
+                <Button variant="outline" onClick={() => setShowConfirmationModal(false)}>
                   Cancel
                 </Button>
                 <Button onClick={confirmationAction}>Confirm</Button>
