@@ -123,12 +123,11 @@ const QuestionBank: React.FC = () => {
       try {
         setLoading(true);
 
-        const questionsData = await fetchData("/api/questions");
-
-        let userProgressData = [];
-        let userAnswersData = [];
-        let notesData = [];
-        let userPerformanceData = [];
+        const questionsData: QuestionType[] = await fetchData("/api/questions");
+        let userProgressData: any[] = [];
+        let userAnswersData: any[] = [];
+        let notesData: any[] = [];
+        let userPerformanceData: any[] = [];
 
         if (userId) {
           [userProgressData, userAnswersData, notesData, userPerformanceData] = await Promise.all([
@@ -139,16 +138,15 @@ const QuestionBank: React.FC = () => {
           ]);
         }
 
-        // Merge data from API responses with questions
         const mergedQuestions = questionsData.map((question: QuestionType) => {
-          const progress = userProgressData.find(
+          const progress = userProgressData?.find(
             (p: any) => p.questionId === question.questionId
           );
-          const userAnswer = userAnswersData.find(
+          const userAnswer = userAnswersData?.find(
             (a: UserAnswer) => a.questionId === question.questionId
           );
-          const note = notesData.find((n: any) => n.questionId === question.questionId);
-          const performance = userPerformanceData.find(
+          const note = notesData?.find((n: any) => n.questionId === question.questionId);
+          const performance = userPerformanceData?.find(
             (p: UserPerformance) => p.questionId === question.questionId
           );
 
@@ -176,7 +174,7 @@ const QuestionBank: React.FC = () => {
           };
         });
 
-        // Sort questions by questionId numerically
+        // Sort questions by questionId numerically in ascending order
         mergedQuestions.sort((a: QuestionType, b: QuestionType) =>
           parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
         );
