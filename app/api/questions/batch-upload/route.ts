@@ -1,99 +1,64 @@
 // app/api/questions/batch-upload/route.ts
 
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma'; // Adjust the path based on your project structure
-
-// Helper function to validate question object
-function validateQuestion(question: any) {
-  const requiredFields = [
-    'exam',
-    'questionId',
-    'text',
-    'subject',
-    'topic',
-    'subtopic',
-    'difficulty',
-    'type',
-    'year',
-    'reviewed',
-    'completed',
-    'options',
-    'correctOption',
-    'markscheme',
-  ];
-  
-  for (const field of requiredFields) {
-    if (!question.hasOwnProperty(field) || question[field] === undefined || question[field] === null) {
-      return false;
-    }
-  }
-
-  // Additional type checks
-  if (!Array.isArray(question.options) || question.options.length === 0) {
-    return false;
-  }
-
-  return true;
-}
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../../auth/[...nextauth]/options';
+import prisma from '@/lib/prisma';
 
 // POST method for batch uploading questions
-export async function POST(request: Request) {
-  try {
-    const body = await request.json();
-    const { questions } = body;
+export async function POST(req: Request) {
+  // Check if the user is authenticated
+  const session = await getServerSession(authOptions);
 
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  try {
+    const { questions } = await req.json();
+
+    // Check if the questions array is valid
     if (!Array.isArray(questions) || questions.length === 0) {
       return NextResponse.json({ message: 'Invalid or empty questions data' }, { status: 400 });
     }
 
-    // Validate each question
-    const formattedQuestions = questions.map((question) => {
-      if (!validateQuestion(question)) {
-        throw new Error('Validation failed for one or more questions');
-      }
-
-      return {
-        exam: question.exam || '',
-        questionId: question.questionId || '',
-        text: question.text || '',
-        subject: question.subject || '',
-        topic: question.topic || '',
-        subtopic: question.subtopic || '',
-        difficulty: question.difficulty || '',
-        type: question.type || '',
-        year: parseInt(question.year) || 0,
-        reviewed: Boolean(question.reviewed),
-        completed: Boolean(question.completed),
-        options: question.options || [],
-        correctOption: question.correctOption || '',
-        markscheme: question.markscheme || '',
-        marks: question.marks?.toString() || '',
-        correctAttempts: question.correctAttempts?.toString() || '',
-        wrongAttempts: question.wrongAttempts?.toString() || '',
-        averageTimeTaken: question.averageTimeTaken?.toString() || '',
-        lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
-        diagramUrl: question.diagramUrl || '',
-        status: question.status || 'ACTIVE',
-      };
-    });
+    // Format and validate each question object similar to the working API
+    const formattedQuestions = questions.map((question: any) => ({
+      exam: question.exam || '',
+      questionId: question.questionId || '',
+      text: question.text || '',
+      subject: question.subject || '',
+      topic: question.topic || '',
+      subtopic: question.subtopic || '',
+      difficulty: question.difficulty || '',
+      type: question.type || '',
+      year: parseInt(question.year, 10) || 0, // Parse year as an integer
+      reviewed: Boolean(question.reviewed),
+      completed: Boolean(question.completed),
+      options: question.options || [], // Ensure this is an array
+      correctOption: question.correctOption || '',
+      markscheme: question.markscheme || '',
+      marks: question.marks?.toString() || null, // Convert marks to string or null
+      correctAttempts: question.correctAttempts?.toString() || null, // Convert to string or null
+      wrongAttempts: question.wrongAttempts?.toString() || null, // Convert to string or null
+      averageTimeTaken: question.averageTimeTaken?.toString() || null, // Convert to string or null
+      lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
+      diagramUrl: question.diagramUrl || null,
+      status: question.status || 'ACTIVE', // Default status
+    }));
 
     // Use Prisma to batch create the formatted questions
     const result = await prisma.question.createMany({
       data: formattedQuestions,
-      skipDuplicates: true,
+      skipDuplicates: true, // Skip duplicate entries based on unique constraints
     });
 
+    // Respond with a success message and result
     return NextResponse.json({ message: 'Batch upload successful', result });
   } catch (error) {
-    if (error instanceof Error) {
-      console.error('Error during batch upload:', error.message);
-      return NextResponse.json(
-        { message: 'An error occurred during batch upload', error: error.message },
-        { status: 500 }
-      );
-    }
+    console.error('Error during batch upload:', error);
     return NextResponse.json(
-      { message: 'An unexpected error occurred during batch upload' },
+      { message: 'An error occurred during batch upload', error: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }

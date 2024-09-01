@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React, { useState, useEffect, useCallback } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import {
@@ -15,13 +13,12 @@ import {
   Package2,
   PlusCircle,
   Search,
-  Settings,
   Users,
   Upload,
   CheckCircle,
   XCircle,
+  Loader,
 } from "lucide-react";
-
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -50,18 +47,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
-import { QuestionStatus } from "@prisma/client";
 import { Button } from "@/components/magicui/button";
 import { Textarea } from "@headlessui/react";
+import Link from "next/link";
 
+// Define Question and Props types directly in the file
 interface Question {
   questionId: string;
   text: string;
@@ -72,7 +65,22 @@ interface Question {
   options?: string[];
 }
 
-// Notification Component with animation and auto-dismiss
+type QuestionStatus = "ACTIVE" | "DRAFT" | "ARCHIVED";
+
+interface Props {
+  children: React.ReactNode;
+}
+
+// Error boundary to handle unexpected errors gracefully
+const ErrorBoundary = ({ children }: Props) => {
+  return (
+    <React.Suspense fallback={<Skeleton height={40} count={5} />}>
+      {children}
+    </React.Suspense>
+  );
+};
+
+// Enhanced Notification Component with dismiss button and stacking
 const Notification = ({
   message,
   type,
@@ -89,18 +97,42 @@ const Notification = ({
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center z-50 p-3 rounded-md shadow-md transition-transform transform ${
+      className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 max-w-md p-4 rounded-md shadow-md transition-all flex items-center gap-2 ${
         type === "success"
-          ? "bg-white text-green-700 scale-105"
-          : "bg-white text-red-700 scale-105"
+          ? "bg-green-100 text-green-800"
+          : "bg-red-100 text-red-800"
       }`}
+      style={{ animation: "fadeInOut 0.3s ease-in-out" }}
     >
       {type === "success" ? (
         <CheckCircle className="text-green-500" />
       ) : (
         <XCircle className="text-red-500" />
       )}
-      <span className="ml-2">{message}</span>
+      <span>{message}</span>
+      <button onClick={onClose} className="ml-auto text-xl font-bold">
+        ×
+      </button>
+      <style jsx>{`
+        @keyframes fadeInOut {
+          0% {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          10% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          90% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+        }
+      `}</style>
     </div>
   );
 };
@@ -113,7 +145,7 @@ const QuestionBankDashboard: React.FC = () => {
   const [updatedText, setUpdatedText] = useState("");
   const [updatedOptions, setUpdatedOptions] = useState<string[]>([]);
   const [questionStatus, setQuestionStatus] = useState<QuestionStatus>(
-    QuestionStatus.ACTIVE
+    "ACTIVE"
   );
   const [showPreview, setShowPreview] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -122,10 +154,9 @@ const QuestionBankDashboard: React.FC = () => {
   );
   const [jsonInput, setJsonInput] = useState<string>("");
   const [batchUpload, setBatchUpload] = useState<Question[]>([]);
-  const [notification, setNotification] = useState<{
-    message: string;
-    type: "success" | "error";
-  } | null>(null);
+  const [notifications, setNotifications] = useState<
+    { message: string; type: "success" | "error" }[]
+  >([]);
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -134,17 +165,13 @@ const QuestionBankDashboard: React.FC = () => {
       setIsLoading(true);
       try {
         const response = await fetch("/api/questions");
-        const data = await response.json();
+        const data: Question[] = await response.json();
         data.sort(
-          (a: Question, b: Question) =>
-            parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
+          (a, b) => parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
         );
         setQuestions(data);
       } catch (error) {
-        setNotification({
-          message: "Error fetching questions",
-          type: "error",
-        });
+        addNotification("Error fetching questions", "error");
       } finally {
         setIsLoading(false);
       }
@@ -152,6 +179,14 @@ const QuestionBankDashboard: React.FC = () => {
 
     fetchQuestions();
   }, []);
+
+  const addNotification = (message: string, type: "success" | "error") => {
+    setNotifications((prev) => [...prev, { message, type }]);
+  };
+
+  const handleDismissNotification = (index: number) => {
+    setNotifications((prev) => prev.filter((_, i) => i !== index));
+  };
 
   const handleEditClick = (question: Question) => {
     setEditingQuestionId(question.questionId);
@@ -169,7 +204,7 @@ const QuestionBankDashboard: React.FC = () => {
       text: updatedText,
       options: updatedOptions,
       reviewed: true,
-      subject: "Subject", // Replace with the correct subject if needed
+      subject: "Subject",
       difficulty: "Medium",
       status: questionStatus,
     };
@@ -192,12 +227,9 @@ const QuestionBankDashboard: React.FC = () => {
       );
       setEditingQuestionId(null);
       setShowPreview(false);
-      setNotification({
-        message: "Question updated successfully",
-        type: "success",
-      });
+      addNotification("Question updated successfully", "success");
     } catch (error) {
-      setNotification({ message: "Error updating question", type: "error" });
+      addNotification("Error updating question", "error");
     } finally {
       setIsLoading(false);
     }
@@ -224,12 +256,9 @@ const QuestionBankDashboard: React.FC = () => {
 
         setQuestions((prev) => prev.filter((q) => q.questionId !== questionId));
         setShowConfirmationModal(false);
-        setNotification({
-          message: "Question deleted successfully",
-          type: "success",
-        });
+        addNotification("Question deleted successfully", "success");
       } catch (error) {
-        setNotification({ message: "Error deleting question", type: "error" });
+        addNotification("Error deleting question", "error");
       } finally {
         setIsLoading(false);
       }
@@ -261,15 +290,9 @@ const QuestionBankDashboard: React.FC = () => {
         );
         setSelectedQuestions([]);
         setShowConfirmationModal(false);
-        setNotification({
-          message: "Selected questions deleted successfully",
-          type: "success",
-        });
+        addNotification("Selected questions deleted successfully", "success");
       } catch (error) {
-        setNotification({
-          message: "Error deleting selected questions",
-          type: "error",
-        });
+        addNotification("Error deleting selected questions", "error");
       } finally {
         setIsLoading(false);
       }
@@ -308,7 +331,7 @@ const QuestionBankDashboard: React.FC = () => {
       const parsedQuestions: Question[] = JSON.parse(input);
       setBatchUpload(parsedQuestions);
     } catch (error) {
-      setNotification({ message: "Invalid JSON input", type: "error" });
+      addNotification("Invalid JSON input", "error");
     }
   };
 
@@ -329,9 +352,9 @@ const QuestionBankDashboard: React.FC = () => {
       setQuestions((prev) => [...prev, ...newQuestions]);
       setJsonInput("");
       setBatchUpload([]);
-      setNotification({ message: "Batch upload successful", type: "success" });
+      addNotification("Batch upload successful", "success");
     } catch (error) {
-      setNotification({ message: "Error uploading batch", type: "error" });
+      addNotification("Error uploading batch", "error");
     } finally {
       setIsLoading(false);
     }
@@ -339,13 +362,14 @@ const QuestionBankDashboard: React.FC = () => {
 
   return (
     <TooltipProvider>
-      {notification && (
+      {notifications.map((notification, index) => (
         <Notification
+          key={index}
           message={notification.message}
           type={notification.type}
-          onClose={() => setNotification(null)}
+          onClose={() => handleDismissNotification(index)}
         />
-      )}
+      ))}
       <div className="flex min-h-screen w-full flex-col">
         <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
           <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
@@ -586,15 +610,9 @@ const QuestionBankDashboard: React.FC = () => {
                                       )
                                     }
                                   >
-                                    <option value={QuestionStatus.ACTIVE}>
-                                      Active
-                                    </option>
-                                    <option value={QuestionStatus.DRAFT}>
-                                      Draft
-                                    </option>
-                                    <option value={QuestionStatus.ARCHIVED}>
-                                      Archived
-                                    </option>
+                                    <option value="ACTIVE">Active</option>
+                                    <option value="DRAFT">Draft</option>
+                                    <option value="ARCHIVED">Archived</option>
                                   </select>
                                 </TableCell>
                                 <TableCell className="hidden md:table-cell">
@@ -608,7 +626,11 @@ const QuestionBankDashboard: React.FC = () => {
                                     size="sm"
                                     onClick={handleSaveChanges}
                                   >
-                                    Save
+                                    {isLoading ? (
+                                      <Loader className="animate-spin" />
+                                    ) : (
+                                      "Save"
+                                    )}
                                   </Button>
                                   <Button
                                     size="sm"
@@ -726,8 +748,14 @@ const QuestionBankDashboard: React.FC = () => {
                       onClick={handleBatchUpload}
                       disabled={!batchUpload.length}
                     >
-                      <Upload className="mr-2 h-4 w-4" />
-                      Upload Batch
+                      {isLoading ? (
+                        <Loader className="mr-2 h-4 w-4 animate-spin" />
+                      ) : (
+                        <>
+                          <Upload className="mr-2 h-4 w-4" />
+                          Upload Batch
+                        </>
+                      )}
                     </Button>
                   </CardFooter>
                 </Card>
@@ -741,7 +769,7 @@ const QuestionBankDashboard: React.FC = () => {
             showModal={showConfirmationModal}
             setShowModal={setShowConfirmationModal}
           >
-            <div className="text-center backdrop-blur-md p-8 rounded-xl">
+            <div className="text-center backdrop-blur-md p-8 rounded-xl transition-opacity">
               <p>Are you sure you want to proceed with this action?</p>
               <div className="flex justify-center mt-4 space-x-2">
                 <Button

@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client';
-import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../../auth/[...nextauth]/options';
+import { PrismaClient } from "@prisma/client";
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../auth/[...nextauth]/options";
 
 const prisma = new PrismaClient();
 
@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const {
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
       engagementLevel,
       completed,
       reviewed,
-      lastAttempted
+      lastAttempted,
     } = await request.json();
 
     const existingPerformance = await prisma.userPerformance.findFirst({
@@ -59,7 +59,7 @@ export async function POST(request: Request) {
           engagementLevel,
           completed,
           reviewed,
-          lastAttempted
+          lastAttempted,
         },
       });
     } else {
@@ -90,7 +90,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(userPerformance);
   } catch (error) {
-    console.error('Error updating user performance:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    console.error("Error updating user performance:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
