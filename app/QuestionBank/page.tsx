@@ -114,7 +114,7 @@ const QuestionBank: React.FC = () => {
     notes: {} as Record<string, string>,
   });
   const [loading, setLoading] = useState<boolean>(true);
-  const [currentPage, setCurrentPage] = useState(1); // Track the current page for pagination
+  const [currentPage, setCurrentPage] = useState(1);
 
   const userId = ""; // Add logic to retrieve user ID if signed in
 
@@ -122,6 +122,8 @@ const QuestionBank: React.FC = () => {
     const fetchAllData = async () => {
       try {
         setLoading(true);
+
+        // Fetch data from localStorage or API
         let questionsData = JSON.parse(localStorage.getItem("questionsData") || "null");
         let userProgressData = JSON.parse(localStorage.getItem("userProgressData") || "null");
         let userAnswersData = JSON.parse(localStorage.getItem("userAnswersData") || "null");
@@ -147,6 +149,7 @@ const QuestionBank: React.FC = () => {
           localStorage.setItem("userPerformanceData", JSON.stringify(userPerformanceData));
         }
 
+        // Merge data from API/localStorage with questions
         const mergedQuestions = questionsData.map((question: QuestionType) => {
           const progress = userProgressData?.find(
             (p: any) => p.questionId === question.questionId
@@ -159,7 +162,6 @@ const QuestionBank: React.FC = () => {
             (p: UserPerformance) => p.questionId === question.questionId
           );
 
-          // Update state for feedback and selected options
           if (userAnswer) {
             setState((prevState) => ({
               ...prevState,
@@ -358,10 +360,9 @@ const QuestionBank: React.FC = () => {
         questionsAttempted: 1,
         lastAttempted: new Date().toISOString(),
         completed: true,
-        accuracy: isCorrect ? 100 : 0, // Update as per your logic
-        firstAttemptSuccessRate: isCorrect ? 100 : 0, // Update as per your logic
-        reattemptAccuracy: isCorrect ? 100 : 0, // Update as per your logic
-        // Add other fields as necessary
+        accuracy: isCorrect ? 100 : 0,
+        firstAttemptSuccessRate: isCorrect ? 100 : 0,
+        reattemptAccuracy: isCorrect ? 100 : 0,
       };
 
       await updateUserPerformance(questionId, updatedFields);
@@ -389,9 +390,9 @@ const QuestionBank: React.FC = () => {
       await updateUserPerformance(questionId, {
         lastAttempted: new Date().toISOString(),
         completed: true,
-        accuracy: isCorrect ? 100 : 0, // Update as per your logic
-        firstAttemptSuccessRate: isCorrect ? 100 : 0, // Update as per your logic
-        reattemptAccuracy: isCorrect ? 100 : 0, // Update as per your logic
+        accuracy: isCorrect ? 100 : 0,
+        firstAttemptSuccessRate: isCorrect ? 100 : 0,
+        reattemptAccuracy: isCorrect ? 100 : 0,
       });
       await saveUserAnswer(questionId, userAnswer, isCorrect);
 

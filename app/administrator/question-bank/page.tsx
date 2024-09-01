@@ -19,15 +19,6 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
-import {
   Card,
   CardContent,
   CardDescription,
@@ -67,6 +58,8 @@ import {
 } from "@/components/ui/tooltip";
 import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
+import { QuestionStatus } from "@prisma/client"; // Import the enum
+import { Button } from "@/components/magicui/button";
 
 interface Question {
   questionId: string;
@@ -74,7 +67,9 @@ interface Question {
   reviewed: boolean;
   subject: string;
   difficulty: string;
-  status: "Active" | "Draft" | "Archived";
+  exam: string;
+  year: string;
+  status: QuestionStatus;
   options?: string[];
 }
 
@@ -85,14 +80,21 @@ const QuestionBankDashboard: React.FC = () => {
   );
   const [updatedText, setUpdatedText] = useState("");
   const [updatedOptions, setUpdatedOptions] = useState<string[]>([]);
-  const [questionStatus, setQuestionStatus] = useState<
-    "Active" | "Draft" | "Archived"
-  >("Active");
+  const [questionStatus, setQuestionStatus] = useState<QuestionStatus>(
+    QuestionStatus.ACTIVE
+  );
   const [showPreview, setShowPreview] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [confirmationAction, setConfirmationAction] = useState<() => void>(
     () => {}
   );
+  const [filters, setFilters] = useState({
+    exam: "",
+    year: "",
+    difficulty: "",
+    questionId: "",
+    status: "",
+  });
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -123,8 +125,10 @@ const QuestionBankDashboard: React.FC = () => {
       text: updatedText,
       options: updatedOptions,
       reviewed: true,
-      subject: "Subject", // Replace with the correct subject if needed
-      difficulty: "Medium", // Adjust based on your data requirements
+      subject: "Subject",
+      difficulty: "Medium",
+      exam: "Exam",
+      year: "Year",
       status: questionStatus,
     };
 
@@ -192,6 +196,20 @@ const QuestionBankDashboard: React.FC = () => {
     setUpdatedOptions((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const handleFilterChange = (key: keyof typeof filters, value: string) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const filteredQuestions = questions.filter((question) => {
+    return (
+      (!filters.exam || question.exam.includes(filters.exam)) &&
+      (!filters.year || question.year.includes(filters.year)) &&
+      (!filters.difficulty || question.difficulty.includes(filters.difficulty)) &&
+      (!filters.questionId || question.questionId.includes(filters.questionId)) &&
+      (!filters.status || question.status === filters.status)
+    );
+  });
+
   return (
     <TooltipProvider>
       <div className="flex min-h-screen w-full flex-col">
@@ -249,6 +267,7 @@ const QuestionBankDashboard: React.FC = () => {
                 type="search"
                 placeholder="Search..."
                 className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
+                onChange={(e) => handleFilterChange("questionId", e.target.value)}
               />
             </div>
             <DropdownMenu>
@@ -278,50 +297,38 @@ const QuestionBankDashboard: React.FC = () => {
             </DropdownMenu>
           </header>
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+            <div className="flex items-center gap-2 mb-4">
+              <Input
+                type="text"
+                placeholder="Filter by Exam"
+                onChange={(e) => handleFilterChange("exam", e.target.value)}
+                className="max-w-xs"
+              />
+              <Input
+                type="text"
+                placeholder="Filter by Year"
+                onChange={(e) => handleFilterChange("year", e.target.value)}
+                className="max-w-xs"
+              />
+              <Input
+                type="text"
+                placeholder="Filter by Difficulty"
+                onChange={(e) => handleFilterChange("difficulty", e.target.value)}
+                className="max-w-xs"
+              />
+              <select
+                onChange={(e) => handleFilterChange("status", e.target.value)}
+                className="max-w-xs p-2 border rounded"
+              >
+                <option value="">Filter by Status</option>
+                <option value={QuestionStatus.ACTIVE}>Active</option>
+                <option value={QuestionStatus.DRAFT}>Draft</option>
+                <option value={QuestionStatus.ARCHIVED}>Archived</option>
+              </select>
+            </div>
             <Tabs defaultValue="all">
-              <div className="flex items-center">
-                <TabsList>
-                  <TabsTrigger value="all">All</TabsTrigger>
-                  <TabsTrigger value="active">Active</TabsTrigger>
-                  <TabsTrigger value="draft">Draft</TabsTrigger>
-                  <TabsTrigger value="archived" className="hidden sm:flex">
-                    Archived
-                  </TabsTrigger>
-                </TabsList>
-                <div className="ml-auto flex items-center gap-2">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="sm" className="h-8 gap-1">
-                        <FilterIcon className="h-3.5 w-3.5" />
-                        <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                          Filter
-                        </span>
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuLabel>Filter by</DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>Active</DropdownMenuItem>
-                      <DropdownMenuItem>Draft</DropdownMenuItem>
-                      <DropdownMenuItem>Archived</DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                  <Button size="sm" variant="outline" className="h-8 gap-1">
-                    <File className="h-3.5 w-3.5" />
-                    <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                      Export
-                    </span>
-                  </Button>
-                  <Button size="sm" className="h-8 gap-1">
-                    <PlusCircle className="h-3.5 w-3.5" />
-                    <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                      Add Question
-                    </span>
-                  </Button>
-                </div>
-              </div>
               <TabsContent value="all">
-                <Card x-chunk="dashboard-06-chunk-0">
+                <Card>
                   <CardHeader>
                     <CardTitle>Questions</CardTitle>
                     <CardDescription>
@@ -347,7 +354,7 @@ const QuestionBankDashboard: React.FC = () => {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {questions.map((question, index) =>
+                        {filteredQuestions.map((question, index) =>
                           editingQuestionId === question.questionId ? (
                             <TableRow key={question.questionId}>
                               <TableCell>{index + 1}</TableCell>
@@ -371,9 +378,7 @@ const QuestionBankDashboard: React.FC = () => {
                                         type="text"
                                         className="w-full p-2 border rounded mr-2"
                                         value={option}
-                                        onChange={(e) =>
-                                          handleOptionChange(index, e.target.value)
-                                        }
+                                        onChange={(e) => handleOptionChange(index, e.target.value)}
                                       />
                                       <Button
                                         variant="outline"
@@ -407,14 +412,12 @@ const QuestionBankDashboard: React.FC = () => {
                                   className="w-full p-2 border rounded"
                                   value={questionStatus}
                                   onChange={(e) =>
-                                    setQuestionStatus(
-                                      e.target.value as "Active" | "Draft" | "Archived"
-                                    )
+                                    setQuestionStatus(e.target.value as QuestionStatus)
                                   }
                                 >
-                                  <option value="Active">Active</option>
-                                  <option value="Draft">Draft</option>
-                                  <option value="Archived">Archived</option>
+                                  <option value={QuestionStatus.ACTIVE}>Active</option>
+                                  <option value={QuestionStatus.DRAFT}>Draft</option>
+                                  <option value={QuestionStatus.ARCHIVED}>Archived</option>
                                 </select>
                               </TableCell>
                               <TableCell className="hidden md:table-cell">
@@ -493,7 +496,7 @@ const QuestionBankDashboard: React.FC = () => {
                   <CardFooter>
                     <div className="text-xs text-muted-foreground">
                       Showing <strong>1-10</strong> of{" "}
-                      <strong>{questions.length}</strong> questions
+                      <strong>{filteredQuestions.length}</strong> questions
                     </div>
                   </CardFooter>
                 </Card>
