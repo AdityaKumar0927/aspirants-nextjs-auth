@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import {
   File,
   Home,
@@ -70,36 +72,81 @@ interface Question {
   options?: string[];
 }
 
-const Notification = ({ message, type }: { message: string; type: 'success' | 'error' }) => (
-  <div className={`fixed top-4 right-4 z-50 p-4 flex items-center gap-2 rounded-full ${type === 'success' ? 'bg-green-100 text-gray-700' : 'bg-red-100 text-gray-700'}`}>
-    {type === 'success' ? <CheckCircle className="text-green-500" /> : <XCircle className="text-red-500" />}
-    <span>{message}</span>
-  </div>
-);
+// Notification Component with animation and auto-dismiss
+const Notification = ({
+  message,
+  type,
+  onClose,
+}: {
+  message: string;
+  type: "success" | "error";
+  onClose: () => void;
+}) => {
+  useEffect(() => {
+    const timer = setTimeout(onClose, 5000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  return (
+    <div
+      className={`fixed inset-0 flex items-center justify-center z-50 p-3 rounded-md shadow-md transition-transform transform ${
+        type === "success"
+          ? "bg-white text-green-700 scale-105"
+          : "bg-white text-red-700 scale-105"
+      }`}
+    >
+      {type === "success" ? (
+        <CheckCircle className="text-green-500" />
+      ) : (
+        <XCircle className="text-red-500" />
+      )}
+      <span className="ml-2">{message}</span>
+    </div>
+  );
+};
 
 const QuestionBankDashboard: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [editingQuestionId, setEditingQuestionId] = useState<string | null>(null);
+  const [editingQuestionId, setEditingQuestionId] = useState<string | null>(
+    null
+  );
   const [updatedText, setUpdatedText] = useState("");
   const [updatedOptions, setUpdatedOptions] = useState<string[]>([]);
-  const [questionStatus, setQuestionStatus] = useState<QuestionStatus>(QuestionStatus.ACTIVE);
+  const [questionStatus, setQuestionStatus] = useState<QuestionStatus>(
+    QuestionStatus.ACTIVE
+  );
   const [showPreview, setShowPreview] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const [confirmationAction, setConfirmationAction] = useState<() => void>(() => {});
+  const [confirmationAction, setConfirmationAction] = useState<() => void>(
+    () => {}
+  );
   const [jsonInput, setJsonInput] = useState<string>("");
   const [batchUpload, setBatchUpload] = useState<Question[]>([]);
-  const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+  const [notification, setNotification] = useState<{
+    message: string;
+    type: "success" | "error";
+  } | null>(null);
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchQuestions = async () => {
+      setIsLoading(true);
       try {
         const response = await fetch("/api/questions");
         const data = await response.json();
-        data.sort((a: Question, b: Question) => parseInt(a.questionId, 10) - parseInt(b.questionId, 10));
+        data.sort(
+          (a: Question, b: Question) =>
+            parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
+        );
         setQuestions(data);
       } catch (error) {
-        setNotification({ message: "Error fetching questions", type: "error" });
+        setNotification({
+          message: "Error fetching questions",
+          type: "error",
+        });
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -116,6 +163,7 @@ const QuestionBankDashboard: React.FC = () => {
   const handleSaveChanges = async () => {
     if (!editingQuestionId) return;
 
+    setIsLoading(true);
     const updatedQuestion: Question = {
       questionId: editingQuestionId,
       text: updatedText,
@@ -144,9 +192,14 @@ const QuestionBankDashboard: React.FC = () => {
       );
       setEditingQuestionId(null);
       setShowPreview(false);
-      setNotification({ message: "Question updated successfully", type: "success" });
+      setNotification({
+        message: "Question updated successfully",
+        type: "success",
+      });
     } catch (error) {
       setNotification({ message: "Error updating question", type: "error" });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -157,6 +210,7 @@ const QuestionBankDashboard: React.FC = () => {
 
   const handleDelete = (questionId: string) => {
     setConfirmationAction(() => async () => {
+      setIsLoading(true);
       try {
         const response = await fetch(`/api/questions`, {
           method: "DELETE",
@@ -170,9 +224,14 @@ const QuestionBankDashboard: React.FC = () => {
 
         setQuestions((prev) => prev.filter((q) => q.questionId !== questionId));
         setShowConfirmationModal(false);
-        setNotification({ message: "Question deleted successfully", type: "success" });
+        setNotification({
+          message: "Question deleted successfully",
+          type: "success",
+        });
       } catch (error) {
         setNotification({ message: "Error deleting question", type: "error" });
+      } finally {
+        setIsLoading(false);
       }
     });
     setShowConfirmationModal(true);
@@ -180,6 +239,7 @@ const QuestionBankDashboard: React.FC = () => {
 
   const handleBulkDelete = () => {
     setConfirmationAction(() => async () => {
+      setIsLoading(true);
       try {
         await Promise.all(
           selectedQuestions.map(async (questionId) => {
@@ -191,16 +251,27 @@ const QuestionBankDashboard: React.FC = () => {
               body: JSON.stringify({ questionId }),
             });
 
-            if (!response.ok) throw new Error(`Failed to delete question ${questionId}`);
+            if (!response.ok)
+              throw new Error(`Failed to delete question ${questionId}`);
           })
         );
 
-        setQuestions((prev) => prev.filter((q) => !selectedQuestions.includes(q.questionId)));
+        setQuestions((prev) =>
+          prev.filter((q) => !selectedQuestions.includes(q.questionId))
+        );
         setSelectedQuestions([]);
         setShowConfirmationModal(false);
-        setNotification({ message: "Selected questions deleted successfully", type: "success" });
+        setNotification({
+          message: "Selected questions deleted successfully",
+          type: "success",
+        });
       } catch (error) {
-        setNotification({ message: "Error deleting selected questions", type: "error" });
+        setNotification({
+          message: "Error deleting selected questions",
+          type: "error",
+        });
+      } finally {
+        setIsLoading(false);
       }
     });
     setShowConfirmationModal(true);
@@ -228,7 +299,9 @@ const QuestionBankDashboard: React.FC = () => {
     setUpdatedOptions((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleJsonInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleJsonInputChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const input = e.target.value;
     setJsonInput(input);
     try {
@@ -240,6 +313,7 @@ const QuestionBankDashboard: React.FC = () => {
   };
 
   const handleBatchUpload = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch("/api/questions/batch-upload", {
         method: "POST",
@@ -258,12 +332,20 @@ const QuestionBankDashboard: React.FC = () => {
       setNotification({ message: "Batch upload successful", type: "success" });
     } catch (error) {
       setNotification({ message: "Error uploading batch", type: "error" });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <TooltipProvider>
-      {notification && <Notification message={notification.message} type={notification.type} />}
+      {notification && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={() => setNotification(null)}
+        />
+      )}
       <div className="flex min-h-screen w-full flex-col">
         <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
           <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
@@ -367,7 +449,11 @@ const QuestionBankDashboard: React.FC = () => {
                       Add Question
                     </span>
                   </Button>
-                  <Button size="sm" variant="destructive" onClick={handleBulkDelete}>
+                  <Button
+                    size="sm"
+                    variant="destructive"
+                    onClick={handleBulkDelete}
+                  >
                     Delete Selected
                   </Button>
                 </div>
@@ -381,215 +467,233 @@ const QuestionBankDashboard: React.FC = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Table>
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead>
-                            <input
-                              type="checkbox"
-                              onChange={(e) =>
-                                setSelectedQuestions(
-                                  e.target.checked
-                                    ? questions.map((q) => q.questionId)
-                                    : []
-                                )
-                              }
-                            />
-                          </TableHead>
-                          <TableHead>#</TableHead>
-                          <TableHead>Question</TableHead>
-                          <TableHead>Status</TableHead>
-                          <TableHead className="hidden md:table-cell">
-                            Subject
-                          </TableHead>
-                          <TableHead className="hidden md:table-cell">
-                            Difficulty
-                          </TableHead>
-                          <TableHead>
-                            <span className="sr-only">Actions</span>
-                          </TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {questions.map((question, index) =>
-                          editingQuestionId === question.questionId ? (
-                            <TableRow key={question.questionId}>
-                              <TableCell>
-                                <input
-                                  type="checkbox"
-                                  checked={selectedQuestions.includes(
-                                    question.questionId
-                                  )}
-                                  onChange={() =>
-                                    handleSelectQuestion(question.questionId)
-                                  }
-                                />
-                              </TableCell>
-                              <TableCell>{index + 1}</TableCell>
-                              <TableCell className="font-medium">
-                                <textarea
-                                  className="w-full p-2 border rounded"
-                                  value={updatedText}
-                                  onChange={(e) =>
-                                    setUpdatedText(e.target.value)
-                                  }
-                                  rows={4}
-                                />
-                                <div className="mt-2">
-                                  <label className="block text-sm font-medium text-gray-700">
-                                    Options (LaTeX Supported)
-                                  </label>
-                                  {updatedOptions.map((option, index) => (
-                                    <div
-                                      key={index}
-                                      className="flex items-center mb-2"
+                    {isLoading ? (
+                      <Skeleton height={40} count={5} />
+                    ) : (
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>
+                              <input
+                                type="checkbox"
+                                onChange={(e) =>
+                                  setSelectedQuestions(
+                                    e.target.checked
+                                      ? questions.map((q) => q.questionId)
+                                      : []
+                                  )
+                                }
+                              />
+                            </TableHead>
+                            <TableHead>#</TableHead>
+                            <TableHead>Question</TableHead>
+                            <TableHead>Status</TableHead>
+                            <TableHead className="hidden md:table-cell">
+                              Subject
+                            </TableHead>
+                            <TableHead className="hidden md:table-cell">
+                              Difficulty
+                            </TableHead>
+                            <TableHead>
+                              <span className="sr-only">Actions</span>
+                            </TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {questions.map((question, index) =>
+                            editingQuestionId === question.questionId ? (
+                              <TableRow key={question.questionId}>
+                                <TableCell>
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedQuestions.includes(
+                                      question.questionId
+                                    )}
+                                    onChange={() =>
+                                      handleSelectQuestion(question.questionId)
+                                    }
+                                  />
+                                </TableCell>
+                                <TableCell>{index + 1}</TableCell>
+                                <TableCell className="font-medium">
+                                  <textarea
+                                    className="w-full p-2 border rounded"
+                                    value={updatedText}
+                                    onChange={(e) =>
+                                      setUpdatedText(e.target.value)
+                                    }
+                                    rows={4}
+                                  />
+                                  <div className="mt-2">
+                                    <label className="block text-sm font-medium text-gray-700">
+                                      Options (LaTeX Supported)
+                                    </label>
+                                    {updatedOptions.map((option, index) => (
+                                      <div
+                                        key={index}
+                                        className="flex items-center mb-2"
+                                      >
+                                        <input
+                                          type="text"
+                                          className="w-full p-2 border rounded mr-2"
+                                          value={option}
+                                          onChange={(e) =>
+                                            handleOptionChange(
+                                              index,
+                                              e.target.value
+                                            )
+                                          }
+                                        />
+                                        <Button
+                                          variant="outline"
+                                          size="icon"
+                                          onClick={() =>
+                                            handleRemoveOption(index)
+                                          }
+                                        >
+                                          ✕
+                                        </Button>
+                                      </div>
+                                    ))}
+                                    <Button
+                                      size="sm"
+                                      onClick={handleAddOption}
                                     >
-                                      <input
-                                        type="text"
-                                        className="w-full p-2 border rounded mr-2"
-                                        value={option}
-                                        onChange={(e) =>
-                                          handleOptionChange(
-                                            index,
-                                            e.target.value
-                                          )
-                                        }
-                                      />
+                                      Add Option
+                                    </Button>
+                                  </div>
+                                  {showPreview && (
+                                    <div className="mt-4 border p-4 bg-gray-50 rounded-md">
+                                      <MathRenderer text={updatedText} />
+                                      <div className="mt-2">
+                                        <strong>Options:</strong>
+                                        {updatedOptions.map((option, index) => (
+                                          <p key={index}>
+                                            <MathRenderer text={option} />
+                                          </p>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  )}
+                                </TableCell>
+                                <TableCell>
+                                  <select
+                                    className="w-full p-2 border rounded"
+                                    value={questionStatus}
+                                    onChange={(e) =>
+                                      setQuestionStatus(
+                                        e.target.value as QuestionStatus
+                                      )
+                                    }
+                                  >
+                                    <option value={QuestionStatus.ACTIVE}>
+                                      Active
+                                    </option>
+                                    <option value={QuestionStatus.DRAFT}>
+                                      Draft
+                                    </option>
+                                    <option value={QuestionStatus.ARCHIVED}>
+                                      Archived
+                                    </option>
+                                  </select>
+                                </TableCell>
+                                <TableCell className="hidden md:table-cell">
+                                  {question.subject}
+                                </TableCell>
+                                <TableCell className="hidden md:table-cell">
+                                  {question.difficulty}
+                                </TableCell>
+                                <TableCell className="flex flex-col gap-2">
+                                  <Button
+                                    size="sm"
+                                    onClick={handleSaveChanges}
+                                  >
+                                    Save
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={handleCancelEdit}
+                                  >
+                                    Cancel
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    onClick={() =>
+                                      setShowPreview((prev) => !prev)
+                                    }
+                                  >
+                                    {showPreview ? "Hide Preview" : "Preview"}
+                                  </Button>
+                                </TableCell>
+                              </TableRow>
+                            ) : (
+                              <TableRow key={question.questionId}>
+                                <TableCell>
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedQuestions.includes(
+                                      question.questionId
+                                    )}
+                                    onChange={() =>
+                                      handleSelectQuestion(question.questionId)
+                                    }
+                                  />
+                                </TableCell>
+                                <TableCell>{index + 1}</TableCell>
+                                <TableCell className="font-medium">
+                                  <MathRenderer text={question.text} />
+                                </TableCell>
+                                <TableCell>
+                                  <Badge variant="outline">
+                                    {question.status}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell className="hidden md:table-cell">
+                                  {question.subject}
+                                </TableCell>
+                                <TableCell className="hidden md:table-cell">
+                                  {question.difficulty}
+                                </TableCell>
+                                <TableCell>
+                                  <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
                                       <Button
-                                        variant="outline"
+                                        aria-haspopup="true"
                                         size="icon"
+                                        variant="ghost"
+                                      >
+                                        <MoreHorizontal className="h-4 w-4" />
+                                        <span className="sr-only">
+                                          Toggle menu
+                                        </span>
+                                      </Button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent align="end">
+                                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                                      <DropdownMenuItem
                                         onClick={() =>
-                                          handleRemoveOption(index)
+                                          handleEditClick(question)
                                         }
                                       >
-                                        ✕
-                                      </Button>
-                                    </div>
-                                  ))}
-                                  <Button size="sm" onClick={handleAddOption}>
-                                    Add Option
-                                  </Button>
-                                </div>
-                                {showPreview && (
-                                  <div className="mt-4 border p-4 bg-gray-50 rounded-md">
-                                    <MathRenderer text={updatedText} />
-                                    <div className="mt-2">
-                                      <strong>Options:</strong>
-                                      {updatedOptions.map((option, index) => (
-                                        <p key={index}>
-                                          <MathRenderer text={option} />
-                                        </p>
-                                      ))}
-                                    </div>
-                                  </div>
-                                )}
-                              </TableCell>
-                              <TableCell>
-                                <select
-                                  className="w-full p-2 border rounded"
-                                  value={questionStatus}
-                                  onChange={(e) =>
-                                    setQuestionStatus(
-                                      e.target.value as QuestionStatus
-                                    )
-                                  }
-                                >
-                                  <option value={QuestionStatus.ACTIVE}>
-                                    Active
-                                  </option>
-                                  <option value={QuestionStatus.DRAFT}>
-                                    Draft
-                                  </option>
-                                  <option value={QuestionStatus.ARCHIVED}>
-                                    Archived
-                                  </option>
-                                </select>
-                              </TableCell>
-                              <TableCell className="hidden md:table-cell">
-                                {question.subject}
-                              </TableCell>
-                              <TableCell className="hidden md:table-cell">
-                                {question.difficulty}
-                              </TableCell>
-                              <TableCell className="flex flex-col gap-2">
-                                <Button size="sm" onClick={handleSaveChanges}>
-                                  Save
-                                </Button>
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  onClick={handleCancelEdit}
-                                >
-                                  Cancel
-                                </Button>
-                                <Button
-                                  size="sm"
-                                  onClick={() =>
-                                    setShowPreview((prev) => !prev)
-                                  }
-                                >
-                                  {showPreview ? "Hide Preview" : "Preview"}
-                                </Button>
-                              </TableCell>
-                            </TableRow>
-                          ) : (
-                            <TableRow key={question.questionId}>
-                              <TableCell>
-                                <input
-                                  type="checkbox"
-                                  checked={selectedQuestions.includes(
-                                    question.questionId
-                                  )}
-                                  onChange={() =>
-                                    handleSelectQuestion(question.questionId)
-                                  }
-                                />
-                              </TableCell>
-                              <TableCell>{index + 1}</TableCell>
-                              <TableCell className="font-medium">
-                                <MathRenderer text={question.text} />
-                              </TableCell>
-                              <TableCell>
-                                <Badge variant="outline">{question.status}</Badge>
-                              </TableCell>
-                              <TableCell className="hidden md:table-cell">
-                                {question.subject}
-                              </TableCell>
-                              <TableCell className="hidden md:table-cell">
-                                {question.difficulty}
-                              </TableCell>
-                              <TableCell>
-                                <DropdownMenu>
-                                  <DropdownMenuTrigger asChild>
-                                    <Button
-                                      aria-haspopup="true"
-                                      size="icon"
-                                      variant="ghost"
-                                    >
-                                      <MoreHorizontal className="h-4 w-4" />
-                                      <span className="sr-only">Toggle menu</span>
-                                    </Button>
-                                  </DropdownMenuTrigger>
-                                  <DropdownMenuContent align="end">
-                                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                    <DropdownMenuItem
-                                      onClick={() => handleEditClick(question)}
-                                    >
-                                      Edit
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem
-                                      onClick={() => handleDelete(question.questionId)}
-                                    >
-                                      Delete
-                                    </DropdownMenuItem>
-                                  </DropdownMenuContent>
-                                </DropdownMenu>
-                              </TableCell>
-                            </TableRow>
-                          )
-                        )}
-                      </TableBody>
-                    </Table>
+                                        Edit
+                                      </DropdownMenuItem>
+                                      <DropdownMenuItem
+                                        onClick={() =>
+                                          handleDelete(question.questionId)
+                                        }
+                                      >
+                                        Delete
+                                      </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                  </DropdownMenu>
+                                </TableCell>
+                              </TableRow>
+                            )
+                          )}
+                        </TableBody>
+                      </Table>
+                    )}
                   </CardContent>
                   <CardFooter>
                     <div className="text-xs text-muted-foreground">
@@ -633,11 +737,17 @@ const QuestionBankDashboard: React.FC = () => {
         </div>
 
         {showConfirmationModal && (
-          <Modal showModal={showConfirmationModal} setShowModal={setShowConfirmationModal}>
-            <div className="text-center backdrop-blur-md p-6 rounded-xl">
+          <Modal
+            showModal={showConfirmationModal}
+            setShowModal={setShowConfirmationModal}
+          >
+            <div className="text-center backdrop-blur-md p-8 rounded-xl">
               <p>Are you sure you want to proceed with this action?</p>
               <div className="flex justify-center mt-4 space-x-2">
-                <Button variant="outline" onClick={() => setShowConfirmationModal(false)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowConfirmationModal(false)}
+                >
                   Cancel
                 </Button>
                 <Button onClick={confirmationAction}>Confirm</Button>
