@@ -207,27 +207,27 @@ const QuestionBankDashboard: React.FC = () => {
     }
   };
 
-  // Save batch uploaded questions to the question bank
-  const handleBatchUpload = async () => {
-    try {
-      const response = await fetch("/api/questions/batch-upload", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(batchUpload),
-      });
+const handleBatchUpload = async () => {
+  try {
+    const response = await fetch('/api/questions/batch-upload', {
+      method: 'POST', // Ensure this matches the backend route
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(batchUpload), // Ensure data is properly formatted
+    });
 
-      if (!response.ok) throw new Error("Failed to upload batch of questions");
+    if (!response.ok) throw new Error('Failed to upload batch of questions');
 
-      const newQuestions = await response.json();
-      setQuestions((prev) => [...prev, ...newQuestions]);
-      setJsonInput("");
-      setBatchUpload([]);
-    } catch (error) {
-      console.error("Error uploading batch:", error);
-    }
-  };
+    const newQuestions = await response.json();
+    setQuestions((prev) => [...prev, ...newQuestions]);
+    setJsonInput('');
+    setBatchUpload([]);
+  } catch (error) {
+    console.error('Error uploading batch:', error);
+  }
+};
+
 
   return (
     <TooltipProvider>
