@@ -1,26 +1,29 @@
-// pages/api/questions/batch-upload.ts
-import { NextApiRequest, NextApiResponse } from 'next';
+// app/api/questions/batch-upload/route.ts
+
+import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
-    // Only allow POST requests
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
-
+export async function POST(request: Request) {
   try {
-    const questions = req.body; // Parse the questions from the request body
-    // Assuming questions is an array of question objects
+    // Parse the incoming request body as JSON
+    const questions = await request.json();
+
+    // Ensure that questions is an array and each item has the necessary fields
+    if (!Array.isArray(questions) || questions.some(q => !q.text || !q.questionId)) {
+      return NextResponse.json({ error: 'Invalid question format' }, { status: 400 });
+    }
+
+    // Create questions in the database
     const createdQuestions = await prisma.question.createMany({
       data: questions,
-      skipDuplicates: true, // Optional: skip duplicates if any
+      skipDuplicates: true, // Optional: Skip duplicates if necessary
     });
 
-    return res.status(201).json(createdQuestions);
+    return NextResponse.json(createdQuestions, { status: 201 });
   } catch (error) {
     console.error('Error uploading batch of questions:', error);
-    return res.status(500).json({ error: 'Failed to upload batch of questions' });
+    return NextResponse.json({ error: 'Failed to upload batch of questions' }, { status: 500 });
   }
 }
