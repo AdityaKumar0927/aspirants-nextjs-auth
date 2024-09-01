@@ -92,8 +92,8 @@ const QuestionBankDashboard: React.FC = () => {
       try {
         const response = await fetch("/api/questions");
         const data = await response.json();
-        // Sort questions by questionId in ascending order
-        data.sort((a: Question, b: Question) => a.questionId.localeCompare(b.questionId));
+        // Sort questions by questionId numerically
+        data.sort((a: Question, b: Question) => parseInt(a.questionId, 10) - parseInt(b.questionId, 10));
         setQuestions(data);
       } catch (error) {
         console.error("Error fetching questions:", error);

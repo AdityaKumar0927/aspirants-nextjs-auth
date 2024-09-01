@@ -5,7 +5,6 @@ import prisma from "@/lib/prisma";
 import { authOptions } from "../../auth/[...nextauth]/options";
 
 export async function DELETE(req: Request) {
-  // Get the session to authenticate the user
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user || !session.user.email) {
@@ -13,7 +12,6 @@ export async function DELETE(req: Request) {
   }
 
   try {
-    // Find the user by their email from the session
     const user = await prisma.user.findUnique({
       where: { email: session.user.email },
     });
@@ -22,7 +20,12 @@ export async function DELETE(req: Request) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    // Delete the user's data
+    // Manually delete related records if needed (for more control)
+    await prisma.customQuestionBank.deleteMany({
+      where: { userId: user.id },
+    });
+
+    // Delete the user (cascading deletes should handle the rest)
     await prisma.user.delete({
       where: { id: user.id },
     });

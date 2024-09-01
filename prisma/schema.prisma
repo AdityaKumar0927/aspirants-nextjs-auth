@@ -59,7 +59,7 @@ model User {
   customUserPerformances CustomUserPerformance[]
   issues                 Issue[]                 @relation("UserIssues")
   policyAgreements       UserPolicyAgreement[]   // Relation to policy agreements
-  role                   UserRole?               @relation(fields: [roleId], references: [id])
+  role                   UserRole?               @relation(fields: [roleId], references: [id], onDelete: Cascade)
 
   roleId                 String?
 }
@@ -210,7 +210,7 @@ model CustomQuestionBank {
   name            String
   description     String
   userId          String
-  user            User             @relation(fields: [userId], references: [id])
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   customQuestions CustomQuestion[] @relation("CustomQuestionBankQuestions")
 }
 
