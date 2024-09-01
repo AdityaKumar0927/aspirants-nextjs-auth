@@ -1,9 +1,9 @@
-// app/api/questions/route.ts
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
+// GET Request Handler
 export async function GET() {
   try {
     const questions = await prisma.question.findMany({
@@ -25,6 +25,7 @@ export async function GET() {
         notes: true,
         lastAttempted: true,
         diagramUrl: true,
+        status: true,  
       },
     });
     return NextResponse.json(questions);
@@ -34,6 +35,7 @@ export async function GET() {
   }
 }
 
+// PATCH Request Handler
 export async function PATCH(request: Request) {
   const { questionId, ...updates } = await request.json();
 
@@ -65,6 +67,7 @@ export async function PATCH(request: Request) {
         notes: true,
         lastAttempted: true,
         diagramUrl: true,
+        status: true,  // Include status in the select
       },
     });
 

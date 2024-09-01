@@ -130,6 +130,15 @@ model Question {
   progresses       UserProgress[]
   answers          UserAnswer[]
   userPerformances UserPerformance[]
+  status           QuestionStatus    @default(ACTIVE)
+
+  @@index([status])
+}
+
+enum QuestionStatus {
+  ACTIVE
+  DRAFT
+  ARCHIVED
 }
 
 model Note {

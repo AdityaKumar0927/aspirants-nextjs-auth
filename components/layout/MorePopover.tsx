@@ -27,7 +27,7 @@ import { useToast } from "@/components/ui/use-toast";
 export function MorePopover() {
   const [openPopover, setOpenPopover] = useState(false);
   const [area, setArea] = useState("billing");
-  const [securityLevel, setSecurityLevel] = useState("MEDIUM"); // Defaulting to a valid enum value
+  const [priority, setPriority] = useState("MEDIUM"); // Defaulting to a valid enum value
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
   const { toast } = useToast();
@@ -43,8 +43,8 @@ export function MorePopover() {
         body: JSON.stringify({
           title: subject,
           description,
-          area, // Correctly mapping the area field
-          securityLevel, // Correctly sending the security level as the backend expects
+          area,
+          securityLevel: mapPriorityToSecurityLevel(priority), // Correctly mapping the priority to security level
         }),
       });
 
@@ -62,7 +62,8 @@ export function MorePopover() {
         const errorData = await response.json();
         toast({
           title: "Error",
-          description: errorData.error || "There was an error reporting your issue. Please try again.",
+          description:
+            errorData.error || "There was an error reporting your issue. Please try again.",
           variant: "destructive",
         });
       }
@@ -76,6 +77,22 @@ export function MorePopover() {
     }
   };
 
+  // Maps the priority string to the expected security level for backend
+  const mapPriorityToSecurityLevel = (priority: String) => {
+    switch (priority) {
+      case "LOW":
+        return "4";
+      case "MEDIUM":
+        return "3";
+      case "HIGH":
+        return "2";
+      case "CRITICAL":
+        return "1";
+      default:
+        return "3"; // Default to medium if not matched
+    }
+  };
+
   return (
     <PopoverPrimitive.Root open={openPopover} onOpenChange={setOpenPopover}>
       <PopoverPrimitive.Trigger asChild>
@@ -84,17 +101,11 @@ export function MorePopover() {
           <MoreVertical className="h-5 w-5" />
         </button>
       </PopoverPrimitive.Trigger>
-      <PopoverPrimitive.Content
-        sideOffset={8}
-        align="center"
-        className="z-50 p-2"
-      >
+      <PopoverPrimitive.Content sideOffset={8} align="center" className="z-50 p-2">
         <Card className="w-96">
           <CardHeader>
             <CardTitle>Report an issue</CardTitle>
-            <CardDescription>
-              What area are you having problems with?
-            </CardDescription>
+            <CardDescription>What area are you having problems with?</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-6">
             <div className="grid grid-cols-2 gap-4">
@@ -114,13 +125,10 @@ export function MorePopover() {
                 </Select>
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="security-level">Security Level</Label>
-                <Select defaultValue="MEDIUM" onValueChange={setSecurityLevel}>
-                  <SelectTrigger
-                    id="security-level"
-                    className="line-clamp-1 w-[160px] truncate"
-                  >
-                    <SelectValue placeholder="Select level" />
+                <Label htmlFor="priority">Priority</Label>
+                <Select defaultValue="MEDIUM" onValueChange={setPriority}>
+                  <SelectTrigger id="priority" className="line-clamp-1 w-[160px] truncate">
+                    <SelectValue placeholder="Select priority" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="LOW">Severity 4 (Lowest)</SelectItem>
