@@ -47,12 +47,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Tooltip,
   TooltipContent,
@@ -61,9 +56,9 @@ import {
 } from "@/components/ui/tooltip";
 import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
-import { QuestionStatus } from "@prisma/client"; // Import the enum
+import { QuestionStatus } from "@prisma/client";
 import { Button } from "@/components/magicui/button";
-import { Textarea } from "@headlessui/react"; // Import Textarea component for JSON input
+import { Textarea } from "@headlessui/react";
 
 interface Question {
   questionId: string;
@@ -91,9 +86,10 @@ const QuestionBankDashboard: React.FC = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [confirmationAction, setConfirmationAction] = useState<() => void>(() => {});
-  const [jsonInput, setJsonInput] = useState<string>(""); // State for JSON input
-  const [batchUpload, setBatchUpload] = useState<Question[]>([]); // State for uploaded questions
+  const [jsonInput, setJsonInput] = useState<string>("");
+  const [batchUpload, setBatchUpload] = useState<Question[]>([]);
   const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+  const [selectedQuestions, setSelectedQuestions] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -126,7 +122,7 @@ const QuestionBankDashboard: React.FC = () => {
       options: updatedOptions,
       reviewed: true,
       subject: "Subject", // Replace with the correct subject if needed
-      difficulty: "Medium", // Adjust based on your data requirements
+      difficulty: "Medium",
       status: questionStatus,
     };
 
@@ -180,6 +176,42 @@ const QuestionBankDashboard: React.FC = () => {
       }
     });
     setShowConfirmationModal(true);
+  };
+
+  const handleBulkDelete = () => {
+    setConfirmationAction(() => async () => {
+      try {
+        await Promise.all(
+          selectedQuestions.map(async (questionId) => {
+            const response = await fetch(`/api/questions`, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ questionId }),
+            });
+
+            if (!response.ok) throw new Error(`Failed to delete question ${questionId}`);
+          })
+        );
+
+        setQuestions((prev) => prev.filter((q) => !selectedQuestions.includes(q.questionId)));
+        setSelectedQuestions([]);
+        setShowConfirmationModal(false);
+        setNotification({ message: "Selected questions deleted successfully", type: "success" });
+      } catch (error) {
+        setNotification({ message: "Error deleting selected questions", type: "error" });
+      }
+    });
+    setShowConfirmationModal(true);
+  };
+
+  const handleSelectQuestion = (questionId: string) => {
+    setSelectedQuestions((prev) =>
+      prev.includes(questionId)
+        ? prev.filter((id) => id !== questionId)
+        : [...prev, questionId]
+    );
   };
 
   const handleAddOption = () => {
@@ -289,31 +321,6 @@ const QuestionBankDashboard: React.FC = () => {
                 className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
               />
             </div>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="overflow-hidden rounded-full"
-                >
-                  <Image
-                    src="/placeholder-user.jpg"
-                    width={36}
-                    height={36}
-                    alt="Avatar"
-                    className="overflow-hidden rounded-full"
-                  />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </header>
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
             <Tabs defaultValue="all">
@@ -360,11 +367,13 @@ const QuestionBankDashboard: React.FC = () => {
                       Add Question
                     </span>
                   </Button>
+                  <Button size="sm" variant="destructive" onClick={handleBulkDelete}>
+                    Delete Selected
+                  </Button>
                 </div>
               </div>
               <TabsContent value="all">
-                {/* Existing Question Management UI */}
-                <Card x-chunk="dashboard-06-chunk-0">
+                <Card>
                   <CardHeader>
                     <CardTitle>Questions</CardTitle>
                     <CardDescription>
@@ -375,6 +384,18 @@ const QuestionBankDashboard: React.FC = () => {
                     <Table>
                       <TableHeader>
                         <TableRow>
+                          <TableHead>
+                            <input
+                              type="checkbox"
+                              onChange={(e) =>
+                                setSelectedQuestions(
+                                  e.target.checked
+                                    ? questions.map((q) => q.questionId)
+                                    : []
+                                )
+                              }
+                            />
+                          </TableHead>
                           <TableHead>#</TableHead>
                           <TableHead>Question</TableHead>
                           <TableHead>Status</TableHead>
@@ -393,6 +414,17 @@ const QuestionBankDashboard: React.FC = () => {
                         {questions.map((question, index) =>
                           editingQuestionId === question.questionId ? (
                             <TableRow key={question.questionId}>
+                              <TableCell>
+                                <input
+                                  type="checkbox"
+                                  checked={selectedQuestions.includes(
+                                    question.questionId
+                                  )}
+                                  onChange={() =>
+                                    handleSelectQuestion(question.questionId)
+                                  }
+                                />
+                              </TableCell>
                               <TableCell>{index + 1}</TableCell>
                               <TableCell className="font-medium">
                                 <textarea
@@ -502,6 +534,17 @@ const QuestionBankDashboard: React.FC = () => {
                             </TableRow>
                           ) : (
                             <TableRow key={question.questionId}>
+                              <TableCell>
+                                <input
+                                  type="checkbox"
+                                  checked={selectedQuestions.includes(
+                                    question.questionId
+                                  )}
+                                  onChange={() =>
+                                    handleSelectQuestion(question.questionId)
+                                  }
+                                />
+                              </TableCell>
                               <TableCell>{index + 1}</TableCell>
                               <TableCell className="font-medium">
                                 <MathRenderer text={question.text} />
@@ -557,7 +600,6 @@ const QuestionBankDashboard: React.FC = () => {
                 </Card>
               </TabsContent>
               <TabsContent value="batch-upload">
-                {/* Batch Upload UI */}
                 <Card>
                   <CardHeader>
                     <CardTitle>Batch Upload Questions</CardTitle>
@@ -590,7 +632,6 @@ const QuestionBankDashboard: React.FC = () => {
           </main>
         </div>
 
-        {/* Confirmation Modal */}
         {showConfirmationModal && (
           <Modal showModal={showConfirmationModal} setShowModal={setShowConfirmationModal}>
             <div className="text-center backdrop-blur-md p-6 rounded-xl">
