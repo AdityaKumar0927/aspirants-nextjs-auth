@@ -15,6 +15,7 @@ import {
   Search,
   Settings,
   Users,
+  Upload,
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -60,6 +61,7 @@ import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
 import { QuestionStatus } from "@prisma/client"; // Import the enum
 import { Button } from "@/components/magicui/button";
+import { Textarea } from "@headlessui/react"; // Import Textarea component for JSON input
 
 interface Question {
   questionId: string;
@@ -86,6 +88,8 @@ const QuestionBankDashboard: React.FC = () => {
   const [confirmationAction, setConfirmationAction] = useState<() => void>(
     () => {}
   );
+  const [jsonInput, setJsonInput] = useState<string>(""); // State for JSON input
+  const [batchUpload, setBatchUpload] = useState<Question[]>([]); // State for uploaded questions
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -93,7 +97,10 @@ const QuestionBankDashboard: React.FC = () => {
         const response = await fetch("/api/questions");
         const data = await response.json();
         // Sort questions by questionId numerically
-        data.sort((a: Question, b: Question) => parseInt(a.questionId, 10) - parseInt(b.questionId, 10));
+        data.sort(
+          (a: Question, b: Question) =>
+            parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
+        );
         setQuestions(data);
       } catch (error) {
         console.error("Error fetching questions:", error);
@@ -186,6 +193,40 @@ const QuestionBankDashboard: React.FC = () => {
 
   const handleRemoveOption = (index: number) => {
     setUpdatedOptions((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  // Handle JSON input for batch upload
+  const handleJsonInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const input = e.target.value;
+    setJsonInput(input);
+    try {
+      const parsedQuestions: Question[] = JSON.parse(input);
+      setBatchUpload(parsedQuestions);
+    } catch (error) {
+      console.error("Invalid JSON input:", error);
+    }
+  };
+
+  // Save batch uploaded questions to the question bank
+  const handleBatchUpload = async () => {
+    try {
+      const response = await fetch("/api/questions/batch-upload", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(batchUpload),
+      });
+
+      if (!response.ok) throw new Error("Failed to upload batch of questions");
+
+      const newQuestions = await response.json();
+      setQuestions((prev) => [...prev, ...newQuestions]);
+      setJsonInput("");
+      setBatchUpload([]);
+    } catch (error) {
+      console.error("Error uploading batch:", error);
+    }
   };
 
   return (
@@ -283,6 +324,10 @@ const QuestionBankDashboard: React.FC = () => {
                   <TabsTrigger value="archived" className="hidden sm:flex">
                     Archived
                   </TabsTrigger>
+                  <TabsTrigger value="batch-upload">
+                    <PlusCircle className="mr-2 h-4 w-4" />
+                    Batch Upload
+                  </TabsTrigger>
                 </TabsList>
                 <div className="ml-auto flex items-center gap-2">
                   <DropdownMenu>
@@ -317,6 +362,7 @@ const QuestionBankDashboard: React.FC = () => {
                 </div>
               </div>
               <TabsContent value="all">
+                {/* Existing Question Management UI */}
                 <Card x-chunk="dashboard-06-chunk-0">
                   <CardHeader>
                     <CardTitle>Questions</CardTitle>
@@ -506,6 +552,36 @@ const QuestionBankDashboard: React.FC = () => {
                       Showing <strong>1-10</strong> of{" "}
                       <strong>{questions.length}</strong> questions
                     </div>
+                  </CardFooter>
+                </Card>
+              </TabsContent>
+              <TabsContent value="batch-upload">
+                {/* Batch Upload UI */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Batch Upload Questions</CardTitle>
+                    <CardDescription>
+                      Upload a batch of questions in JSON format.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Textarea
+                      value={jsonInput}
+                      onChange={handleJsonInputChange}
+                      rows={10}
+                      placeholder="Paste JSON of questions here..."
+                      className="w-full p-2 border rounded"
+                    />
+                  </CardContent>
+                  <CardFooter>
+                  <Button
+                  variant="default" // Change "primary" to "default" or another valid variant
+                  onClick={handleBatchUpload}
+                  disabled={!batchUpload.length}
+                  >
+                  <Upload className="mr-2 h-4 w-4" />
+                  Upload Batch
+                  </Button>
                   </CardFooter>
                 </Card>
               </TabsContent>
