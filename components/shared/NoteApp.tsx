@@ -1,101 +1,228 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { useForm, Controller } from "react-hook-form";
-import { RocketIcon } from "lucide-react";
-import { toast, Toaster } from "sonner";
-import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
-import {
-  Command,
-  CommandInput,
-  CommandList,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-  CommandSeparator,
-  CommandShortcut,
-} from "@/components/ui/command";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { useState, useEffect, useRef } from "react"
+import { useForm, Controller } from "react-hook-form"
+import { motion, AnimatePresence } from "framer-motion"
+import { toast, Toaster } from "sonner"
+import { RocketIcon, Search, PlusIcon, ImageIcon, FileIcon, Loader2Icon, PencilIcon, Square, Circle, Edit2Icon, EraserIcon, BoldIcon, ItalicIcon, UnderlineIcon, ListIcon, ListOrderedIcon } from "lucide-react"
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "@/components/ui/command"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Toggle } from "@/components/ui/toggle"
+import { Skeleton } from "@/components/ui/skeleton"
+import { useEditor, EditorContent } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
+
+type NoteType = "text" | "image" | "file" | "stylus"
 
 type Note = {
-  id: number;
-  title: string;
-  note: string;
-  date: Date;
-  type: "text";
-};
+  id: number
+  title: string
+  content: string
+  date: Date
+  type: NoteType
+}
 
-export function NoteApp() {
-  const [notes, setNotes] = useState<Note[]>([]);
-  const { control, handleSubmit, reset } = useForm<{ title: string; note: string }>({
-    defaultValues: { title: "", note: "" },
-  });
-  const [editingNote, setEditingNote] = useState<Note | null>(null);
+const MenuBar = ({ editor }: { editor: any }) => {
+  if (!editor) {
+    return null
+  }
 
-  const onSubmit = (data: { title: string; note: string }) => {
-    const newNote: Note = {
-      ...data,
-      id: editingNote ? editingNote.id : Date.now(),
-      date: new Date(),
-      type: "text",
-    };
+  return (
+    <div className="flex space-x-2 mb-2">
+      <Toggle
+        pressed={editor.isActive('bold')}
+        onPressedChange={() => editor.chain().focus().toggleBold().run()}
+      >
+        <BoldIcon className="h-4 w-4" />
+      </Toggle>
+      <Toggle
+        pressed={editor.isActive('italic')}
+        onPressedChange={() => editor.chain().focus().toggleItalic().run()}
+      >
+        <ItalicIcon className="h-4 w-4" />
+      </Toggle>
+      <Toggle
+        pressed={editor.isActive('underline')}
+        onPressedChange={() => editor.chain().focus().toggleUnderline().run()}
+      >
+        <UnderlineIcon className="h-4 w-4" />
+      </Toggle>
+      <Toggle
+        pressed={editor.isActive('bulletList')}
+        onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
+      >
+        <ListIcon className="h-4 w-4" />
+      </Toggle>
+      <Toggle
+        pressed={editor.isActive('orderedList')}
+        onPressedChange={() => editor.chain().focus().toggleOrderedList().run()}
+      >
+        <ListOrderedIcon className="h-4 w-4" />
+      </Toggle>
+    </div>
+  )
+}
 
-    if (editingNote) {
-      setNotes(notes.map((note) => (note.id === editingNote.id ? newNote : note)));
-      setEditingNote(null);
-    } else {
-      setNotes([...notes, newNote]);
-    }
+export default function Component() {
+  const [notes, setNotes] = useState<Note[]>([])
+  const [editingNote, setEditingNote] = useState<Note | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("")
+  const [isDrawing, setIsDrawing] = useState(false)
+  const [penColor, setPenColor] = useState("#000000")
+  const [penSize, setPenSize] = useState(2)
+  const [currentShape, setCurrentShape] = useState<"pen" | "square" | "circle">("pen")
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const { control, handleSubmit, reset, watch } = useForm<{ title: string; content: string; type: NoteType }>({
+    defaultValues: { title: "", content: "", type: "text" },
+  })
 
-    toast("Note added", {
-      description: "Your text note has been added.",
-    });
-    reset();
-  };
+  const noteType = watch("type")
+
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      Underline,
+    ],
+    content: '',
+  })
+
+  useEffect(() => {
+    setIsLoading(true)
+    setTimeout(() => {
+      setNotes([
+        { id: 1, title: "Welcome", content: "Welcome to your new note-taking app!", date: new Date(), type: "text" },
+      ])
+      setIsLoading(false)
+    }, 1000)
+  }, [])
+
+  const onSubmit = (data: { title: string; content: string; type: NoteType }) => {
+    setIsLoading(true)
+    setTimeout(() => {
+      const newNote: Note = {
+        ...data,
+        id: editingNote ? editingNote.id : Date.now(),
+        date: new Date(),
+        content: data.type === 'stylus' ? canvasRef.current?.toDataURL() || '' : 
+                 data.type === 'text' ? editor?.getHTML() || '' : data.content,
+      }
+
+      if (editingNote) {
+        setNotes(notes.map((note) => (note.id === editingNote.id ? newNote : note)))
+        setEditingNote(null)
+      } else {
+        setNotes([newNote, ...notes])
+      }
+
+      toast.success(editingNote ? "Note updated" : "Note added", {
+        description: `Your ${data.type} note has been ${editingNote ? "updated" : "added"}.`,
+      })
+      reset({ title: "", content: "", type: "text" })
+      editor?.commands.setContent('')
+      setIsLoading(false)
+    }, 500)
+  }
 
   const deleteNote = (id: number) => {
-    const noteToDelete = notes.find((note) => note.id === id);
+    const noteToDelete = notes.find((note) => note.id === id)
     if (noteToDelete) {
-      setNotes(notes.filter((note) => note.id !== id));
-      toast("Note deleted", {
+      setNotes(notes.filter((note) => note.id !== id))
+      toast.success("Note deleted", {
         description: "Your note has been deleted.",
         action: {
           label: "Undo",
-          onClick: () => setNotes((prevNotes) => [...prevNotes, noteToDelete]),
+          onClick: () => setNotes((prevNotes) => [noteToDelete, ...prevNotes]),
         },
-      });
+      })
     }
-  };
+  }
 
   const handleEdit = (note: Note) => {
-    setEditingNote(note);
-    reset({ title: note.title, note: note.note });
-  };
+    setEditingNote(note)
+    reset({ title: note.title, content: note.content, type: note.type })
+    if (note.type === 'stylus' && canvasRef.current) {
+      const ctx = canvasRef.current.getContext('2d')
+      const img = new Image()
+      img.onload = () => {
+        ctx?.drawImage(img, 0, 0)
+      }
+      img.src = note.content
+    } else if (note.type === 'text') {
+      editor?.commands.setContent(note.content)
+    }
+  }
+
+  const filteredNotes = notes.filter(
+    (note) => note.title.toLowerCase().includes(searchTerm.toLowerCase()) || note.content.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
+  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    setIsDrawing(true)
+    draw(e)
+  }
+
+  const stopDrawing = () => {
+    setIsDrawing(false)
+    if (canvasRef.current) {
+      const ctx = canvasRef.current.getContext('2d')
+      ctx?.beginPath()
+    }
+  }
+
+  const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    if (!isDrawing || !canvasRef.current) return
+
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const rect = canvas.getBoundingClientRect()
+    const scaleX = canvas.width / rect.width
+    const scaleY = canvas.height / rect.height
+
+    let x, y
+    if ('touches' in e) {
+      x = (e.touches[0].clientX - rect.left) * scaleX
+      y = (e.touches[0].clientY - rect.top) * scaleY
+    } else {
+      x = (e.clientX - rect.left) * scaleX
+      y = (e.clientY - rect.top) * scaleY
+    }
+
+    ctx.strokeStyle = penColor
+    ctx.lineWidth = penSize
+    ctx.lineCap = 'round'
+
+    if (currentShape === 'pen') {
+      ctx.lineTo(x, y)
+      ctx.stroke()
+      ctx.beginPath()
+      ctx.moveTo(x, y)
+    } else if (currentShape === 'square') {
+      ctx.strokeRect(x - penSize / 2, y - penSize / 2, penSize, penSize)
+    } else if (currentShape === 'circle') {
+      ctx.beginPath()
+      ctx.arc(x, y, penSize / 2, 0, Math.PI * 2)
+      ctx.stroke()
+    }
+  }
+
+  const clearCanvas = () => {
+    if (canvasRef.current) {
+      const ctx = canvasRef.current.getContext('2d')
+      ctx?.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+    }
+  }
 
   return (
     <>
@@ -106,21 +233,21 @@ export function NoteApp() {
             <PopoverTrigger asChild>
               <Button variant="outline">Menu</Button>
             </PopoverTrigger>
-            <PopoverContent>
+            <PopoverContent className="w-56">
               <Command>
                 <CommandInput placeholder="Type a command or search..." />
                 <CommandList>
                   <CommandEmpty>No results found.</CommandEmpty>
-                  <CommandGroup heading="Suggestions">
-                    <CommandItem>
-                      <RocketIcon className="mr-2 h-4 w-4" />
-                      <span>Launch</span>
+                  <CommandGroup heading="Actions">
+                    <CommandItem onSelect={() => reset({ title: "", content: "", type: "text" })}>
+                      <PlusIcon className="mr-2 h-4 w-4" />
+                      <span>New Note</span>
                     </CommandItem>
                   </CommandGroup>
                   <CommandSeparator />
                   <CommandGroup heading="Settings">
                     <CommandItem>
-                      <MagnifyingGlassIcon className="mr-2 h-4 w-4" />
+                      <Search className="mr-2 h-4 w-4" />
                       <span>Search</span>
                       <CommandShortcut>⌘K</CommandShortcut>
                     </CommandItem>
@@ -129,97 +256,228 @@ export function NoteApp() {
               </Command>
             </PopoverContent>
           </Popover>
+          <div className="flex-1" />
+          <Input
+            className="w-[200px] md:w-[300px]"
+            placeholder="Search notes..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 overflow-auto">
-          <h1 className="text-2xl font-bold">Notes</h1>
-          <Alert>
-            <RocketIcon className="h-4 w-4" />
-            <AlertTitle>Heads up!</AlertTitle>
-            <AlertDescription>
-              Ideally, you should use an external digital tablet and pen for note-taking.
-            </AlertDescription>
-          </Alert>
+          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <h1 className="text-3xl font-bold mb-4">My Notes</h1>
+            <Alert>
+              <RocketIcon className="h-4 w-4" />
+              <AlertTitle>Pro Tip!</AlertTitle>
+              <AlertDescription>Use keyboard shortcuts to quickly create new notes. Press ⌘+K to open the command menu.</AlertDescription>
+            </Alert>
+          </motion.div>
 
           <Card className="w-full md:w-[700px]">
             <CardHeader>
-              <CardTitle>Create Note</CardTitle>
-              <CardDescription>Type your note below.</CardDescription>
+              <CardTitle>{editingNote ? "Edit Note" : "Create Note"}</CardTitle>
+              <CardDescription>Capture your thoughts, ideas, and more.</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid w-full items-center gap-4">
-                  <Controller
-                    name="title"
-                    control={control}
-                    render={({ field }) => (
-                      <Input {...field} placeholder="Title" />
-                    )}
-                  />
-                  <Controller
-                    name="note"
-                    control={control}
-                    render={({ field }) => (
-                      <Input {...field} placeholder="Write your note here..." />
-                    )}
-                  />
+                  <div className="flex flex-col space-y-1.5">
+                    <Label htmlFor="title">Title</Label>
+                    <Controller name="title" control={control} render={({ field }) => <Input id="title" {...field} placeholder="Enter a title" />} />
+                  </div>
+                  <div className="flex flex-col space-y-1.5">
+                    <Label>Note Type</Label>
+                    <Tabs value={noteType} onValueChange={(value) => reset({ ...watch(), type: value as NoteType })}>
+                      <TabsList>
+                        <TabsTrigger value="text">Text</TabsTrigger>
+                        <TabsTrigger value="image">Image</TabsTrigger>
+                        <TabsTrigger value="file">File</TabsTrigger>
+                        <TabsTrigger value="stylus">Stylus</TabsTrigger>
+                      </TabsList>
+                      <TabsContent value="text">
+                        <div className="border rounded-md p-4">
+                          <MenuBar editor={editor} />
+                          <EditorContent editor={editor} className="prose max-w-none" />
+                        </div>
+                      </TabsContent>
+                      <TabsContent value="image">
+                        <Input id="picture" type="file" accept="image/*" />
+                      </TabsContent>
+                      <TabsContent value="file">
+                        <Input id="file" type="file" />
+                      </TabsContent>
+                      <TabsContent value="stylus">
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button variant="outline">Open Drawing Canvas</Button>
+                          </DialogTrigger>
+                          <DialogContent className="sm:max-w-[800px] backdrop-blur-sm bg-opacity-50">
+                            <DialogHeader>
+                              <DialogTitle>Drawing Canvas</DialogTitle>
+                              <DialogDescription>Use your stylus or mouse to draw a note.</DialogDescription>
+                            </DialogHeader>
+                            <div className="flex flex-col space-y-4">
+                              <div className="flex justify-between items-center">
+                                <div className="flex space-x-2">
+                                  <Toggle pressed={currentShape === 'pen'} onPressedChange={() => setCurrentShape('pen')}>
+                                    <PencilIcon className="h-4 w-4"  />
+                                  </Toggle>
+                                  <Toggle pressed={currentShape === 'square'} onPressedChange={() => setCurrentShape('square')}>
+                                    <Square className="h-4 w-4" />
+                                  </Toggle>
+                                  <Toggle pressed={currentShape === 'circle'} onPressedChange={() => setCurrentShape('circle')}>
+                                    <Circle className="h-4 w-4" />
+                                  </Toggle>
+                                </div>
+                                <Input
+                                  type="color"
+                                  value={penColor}
+                                  onChange={(e) => setPenColor(e.target.value)}
+                                  className="w-10 h-10 p-0 border-0"
+                                />
+                                <Input
+                                  type="range"
+                                  min="1"
+                                  max="20"
+                                  value={penSize}
+                                  onChange={(e) => setPenSize(parseInt(e.target.value))}
+                                  className="w-32"
+                                />
+                                <Button variant="outline" onClick={clearCanvas}>
+                                  <EraserIcon className="h-4 w-4 mr-2" />
+                                  Clear
+                                </Button>
+                              </div>
+                              <canvas
+                                ref={canvasRef}
+                                width={700}
+                                height={400}
+                                onMouseDown={startDrawing}
+                                onMouseUp={stopDrawing}
+                                onMouseOut={stopDrawing}
+                                onMouseMove={draw}
+                                onTouchStart={startDrawing}
+                                onTouchEnd={stopDrawing}
+                                onTouchMove={draw}
+                                className="border border-gray-300 rounded-lg touch-none"
+                              />
+                            </div>
+                          </DialogContent>
+                        </Dialog>
+                      </TabsContent>
+                    </Tabs>
+                  </div>
                 </div>
                 <div className="mt-4 flex justify-between">
-                  <Button type="submit">{editingNote ? "Update Note" : "Add Note"}</Button>
+                  <Button type="submit" disabled={isLoading}>
+                    {isLoading ? (
+                      <>
+                        <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                        Please wait
+                      </>
+                    ) : editingNote ? (
+                      "Update Note"
+                    ) : (
+                      "Add Note"
+                    )}
+                  </Button>
+                  {editingNote && (
+                    <Button type="button" variant="outline" onClick={() => setEditingNote(null)}>
+                      Cancel Edit
+                    </Button>
+                  )}
                 </div>
               </form>
             </CardContent>
           </Card>
 
-          <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
-            {notes.map((note) => (
-              <Card key={note.id}>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">
-                    {note.title || "Untitled Note"}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-md">{note.note}</p>
-                  <p className="text-xs text-muted-foreground">{note.date.toLocaleString()}</p>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button variant="outline" size="sm">Options</Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-48">
-                      <Button
-                        variant="ghost"
-                        className="w-full text-left text-gray-500"
-                        onClick={() => handleEdit(note)}
-                      >
-                        Edit
-                      </Button>
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button variant="ghost" className="w-full text-left text-gray-500">Delete</Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                            <AlertDialogDescription>
-                              This action cannot be undone. This will permanently delete your note.
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction onClick={() => deleteNote(note.id)}>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <AnimatePresence>
+              {isLoading ? (
+                Array.from({ length: 3 }).map((_, index) => (
+                  <motion.div
+                    key={`skeleton-${index}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <Card>
+                      <CardHeader>
+                        <Skeleton className="h-5 w-1/2" />
+                      </CardHeader>
+                      <CardContent>
+                        <Skeleton className="h-4 w-full mb-2" />
+                        <Skeleton className="h-4 w-2/3" />
+                      </CardContent>
+                      <CardFooter>
+                        <Skeleton className="h-9 w-20 mr-2" />
+                        <Skeleton className="h-9 w-20" />
+                      </CardFooter>
+                    </Card>
+                  </motion.div>
+                ))
+              ) : filteredNotes.length === 0 ? (
+                <motion.div
+                  key="no-notes"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="col-span-full text-center text-muted-foreground"
+                >
+                  No notes found. Start by creating a new note!
+                </motion.div>
+              ) : (
+                filteredNotes.map((note) => (
+                  <motion.div key={note.id} layout initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}>
+                    <Card>
+                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium">{note.title || "Untitled Note"}</CardTitle>
+                        {note.type === "text" && <Edit2Icon className="h-4 w-4 text-muted-foreground" />}
+                        {note.type === "image" && <ImageIcon className="h-4 w-4 text-muted-foreground" />}
+                        {note.type === "file" && <FileIcon className="h-4 w-4 text-muted-foreground" />}
+                        {note.type === "stylus" && <PencilIcon className="h-4 w-4 text-muted-foreground" />}
+                      </CardHeader>
+                      <CardContent>
+                        {note.type === 'stylus' ? (
+                          <img src={note.content} alt="Stylus note" className="w-full h-auto" />
+                        ) : note.type === 'text' ? (
+                          <div dangerouslySetInnerHTML={{ __html: note.content }} className="prose max-w-none" />
+                        ) : (
+                          <p className="text-sm">{note.content}</p>
+                        )}
+                        <p className="text-xs text-muted-foreground mt-2">{note.date.toLocaleString()}</p>
+                      </CardContent>
+                      <CardFooter className="flex justify-between">
+                        <Button variant="outline" size="sm" onClick={() => handleEdit(note)}>
+                          Edit
+                        </Button>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button variant="outline" size="sm">
                               Delete
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
-                    </PopoverContent>
-                  </Popover>
-                </CardContent>
-              </Card>
-            ))}
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                              <AlertDialogDescription>This action cannot be undone. This will permanently delete your note.</AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogAction onClick={() => deleteNote(note.id)}>Delete</AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </CardFooter>
+                    </Card>
+                  </motion.div>
+                ))
+              )}
+            </AnimatePresence>
           </div>
         </main>
       </div>
     </>
-  );
+  )
 }

@@ -7,7 +7,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { LucidePencil, HomeIcon } from "lucide-react";
 import AnimatedModal from "@/components/shared/AnimatedModal";
-import { NoteApp } from "@/components/shared/NoteApp";
+import NoteApp from "@/components/shared/NoteApp";
 import Stats from "@/components/shared/Stats";
 import { useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";

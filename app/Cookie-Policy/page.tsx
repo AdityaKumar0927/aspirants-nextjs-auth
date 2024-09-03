@@ -1,83 +1,186 @@
-import React from 'react';
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { ExternalLink } from "lucide-react"
 
-const CookiePolicy = () => {
+export default function CookiePolicy() {
   return (
-    <div className="bg-white min-h-screen flex justify-center py-10 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl w-full">
-        <h1 className="text-5xl font-bold mb-6 font-sans">Cookie Policy</h1>
-        <p className="text-lg text-gray-700 mb-4 font-sans">
-          This is the cookie policy for Aspirants (“Aspirants”, “we”, “us” or “our”). For more information about how we may use personal data, please read our privacy policy or contact us at [email id].
-        </p>
+    <div className="min-h-screen bg-background text-foreground py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl font-bold mb-2">Cookie Policy</h1>
+        <p className="text-muted-foreground mb-8">Effective date: 1st September, 2024</p>
 
-        <h2 className="text-3xl font-semibold mb-4 font-sans">What is a Cookie</h2>
-        <p className="text-lg text-gray-700 mb-4 font-sans">
-          A cookie is a small text file that is downloaded onto your device when you access a website. It is sent through your browser, and it helps us to recognise you and your device.
-          There are technologies, which, although technically not “cookies”, are like cookies. These include:
-        </p>
-        <ul className="list-disc list-inside text-lg text-gray-700 mb-4 font-sans">
-          <li>Web beacons/pixels: used to count the number of users who have interacted with some content on our website</li>
-          <li>Local storage: storage of data in your device’s (phone, laptop, computer, etc.) local cache (temporary memory)</li>
-          <li>Scripts: Computer programs designed to give extra functionality</li>
-        </ul>
-        <p className="text-lg text-gray-700 mb-4 font-sans">
-          Our cookie policy includes not only cookies, but also the above-mentioned technologies, which are hereafter referred to as “cookies” as well.
-        </p>
+        <Card className="mb-8">
+          <CardContent className="p-6">
+            <p className="text-sm text-muted-foreground">
+              This is the cookie policy for Aspirants ("Aspirants", "we", "us" or "our"). For more information about how we may use personal data, please read our privacy policy or contact us at aspirants.contact@gmail.com.
+            </p>
+          </CardContent>
+        </Card>
 
-        <h2 className="text-3xl font-semibold mb-4 font-sans">Different Types of Cookies</h2>
-        <p className="text-lg text-gray-700 mb-4 font-sans">
-          The different types of cookies include:
-        </p>
-        <ul className="list-disc list-inside text-lg text-gray-700 mb-4 font-sans">
-          <li>First party cookies: these are the cookies created by us which you might encounter while using our website</li>
-          <li>Third party cookies: these are the cookies created by third party platforms which you might encounter while using our website</li>
-          <li>Session cookies: these are the cookies which only last for the duration of your visit to our website</li>
-          <li>Persistent cookies: these are the cookies which last for a longer period of time than Session Cookies</li>
-          <li>Zombie cookies: these are the cookies that are automatically recreated after you delete it. We DO NOT use this type of malicious cookie.</li>
-        </ul>
+        <ScrollArea className="h-[calc(100vh-200px)] pr-4">
+          <div className="space-y-8">
+            <Section title="What is a Cookie">
+              <p className="mb-4">
+                A cookie is a small text file that is downloaded onto your device when you access a website. It is sent through your browser, and it helps us to recognise you and your device.
+              </p>
+              <p className="mb-4">
+                There are technologies, which, although technically not "cookies", are like cookies. These include:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+                <li>Web beacons/pixels: used to count the number of users who have interacted with some content on our website</li>
+                <li>Local storage: storage of data in your device's (phone, laptop, computer, etc.) local cache (temporary memory)</li>
+                <li>Scripts: Computer programs designed to give extra functionality</li>
+              </ul>
+            </Section>
 
-        <h2 className="text-3xl font-semibold mb-4 font-sans">How we use Cookies</h2>
-        <p className="text-lg text-gray-700 mb-4 font-sans">
-          We use cookies for a variety of purposes, including but not limited to:
-        </p>
-        <ul className="list-disc list-inside text-lg text-gray-700 mb-4 font-sans">
-          <li>Keeping you logged into our website</li>
-          <li>Analyzing your site usage patterns, such as the duration of your visit, and so on.</li>
-          <li>Tracking you navigate and engage with our site&apos;s pages to detect and resolve technical problems.</li>
-        </ul>
-        <p className="text-lg text-gray-700 mb-4 font-sans">
-          Please keep in mind that cookies are necessary for the functioning of our website. We only use first party, third party and session cookies. We do not use any type of marketing cookie.
-          You can change your browser settings to not accept any cookies. Your browser will allow you to:
-        </p>
-        <ul className="list-disc list-inside text-lg text-gray-700 mb-4 font-sans">
-          <li>See what cookies are installed on your browser</li>
-          <li>Block any cookie</li>
-          <li>Delete cookies from your browser</li>
-        </ul>
-        <p className="text-lg text-gray-700 mb-4 font-sans">
-          However, it may impact your experience on different websites, including our site.
-        </p>
-        <p className="text-lg text-gray-700 mb-4 font-sans">
-          For more information on how to manage your cookies on your browser, please browse through:
-        </p>
-        <ul className="list-disc list-inside text-lg text-gray-700 mb-4 font-sans">
-          <li><a href="https://support.google.com/chrome/answer/95647?hl=en" className="text-blue-500">Google Chrome</a></li>
-          <li><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" className="text-blue-500">Firefox</a></li>
-          <li><a href="https://support.microsoft.com/en-us/microsoft-edge/view-cookies-in-microsoft-edge-a7d95376-f2cd-8e4a-25dc-1de753474879" className="text-blue-500">Microsoft Edge</a></li>
-          <li><a href="https://support.apple.com/en-in/105082" className="text-blue-500">Safari</a></li>
-        </ul>
+            <Section title="Different Types of Cookies">
+              <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+                <li>First party cookies: these are the cookies created by us which you might encounter while using our website</li>
+                <li>Third party cookies: these are the cookies created by third party platforms which you might encounter while using our website</li>
+                <li>Session cookies: these are the cookies which only last for the duration of your visit to our website</li>
+                <li>Persistent cookies: these are the cookies which last for a longer period of time than Session Cookies</li>
+                <li>Zombie cookies: these are the cookies that are automatically recreated after you delete them. We DO NOT use this type of malicious cookie.</li>
+              </ul>
+            </Section>
 
-        <h2 className="text-3xl font-semibold mb-4 font-sans">Changes to this Policy</h2>
-        <p className="text-lg text-gray-700 mb-4 font-sans">
-          We may change this policy from time to time. As such, you should check this policy each and every time you visit our website. Any changes will be notified on the site.
-        </p>
+            <Section title="How we use Cookies">
+              <p className="mb-4">We use cookies for a variety of purposes, including but not limited to:</p>
+              <ul className="list-disc list-inside space-y-2 mb-4 text-sm text-muted-foreground">
+                <li>Keeping you logged into our website</li>
+                <li>Analyzing your site usage patterns, such as the duration of your visit, and so on</li>
+                <li>Tracking how you navigate and engage with our site's pages to detect and resolve technical problems</li>
+              </ul>
+              <p className="mb-4 text-sm">
+                Please keep in mind that cookies are necessary for the functioning of our website. We only use first party, third party and session cookies. We do not use any type of marketing cookie.
+              </p>
+              <p className="mb-4 text-sm">
+                You can change your browser settings to not accept any cookies. Your browser will allow you to:
+              </p>
+              <ol className="list-decimal list-inside space-y-2 mb-4 text-sm text-muted-foreground">
+                <li>See what cookies are installed on your browser</li>
+                <li>Block any cookie</li>
+                <li>Delete cookies from your browser</li>
+              </ol>
+              <p className="mb-4 text-sm">
+                However, it may impact your experience on different websites, including our site.
+              </p>
+              <p className="mb-4 text-sm">
+                For more information on how to manage your cookies on your browser, please browse through:
+              </p>
+              <ul className="list-none space-y-2 text-sm">
+                {[
+                  { name: "Google Chrome", url: "https://support.google.com/chrome/answer/95647?hl=en" },
+                  { name: "Firefox", url: "https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" },
+                  { name: "Microsoft Edge", url: "https://support.microsoft.com/en-us/microsoft-edge/view-cookies-in-microsoft-edge-a7d95376-f2cd-8e4a-25dc-1de753474879" },
+                  { name: "Safari", url: "https://support.apple.com/en-in/105082" },
+                ].map((browser) => (
+                  <li key={browser.name}>
+                    <a href={browser.url} className="text-primary hover:underline inline-flex items-center">
+                      {browser.name}
+                      <ExternalLink className="ml-1 h-4 w-4" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Section>
 
-        <h2 className="text-3xl font-semibold mb-4 font-sans">Contact Us</h2>
-        <p className="text-lg text-gray-700 mb-4 font-sans">
-          For more information, please check out our privacy policy or email us at [email id].
-        </p>
+            <Section title="List of Cookies we Use">
+              <CookieTable
+                title="Necessary Cookies"
+                description="These cookies are essential for the basic functionality of our website. They enable basic features such as page navigation and access to secure areas of the site. The website cannot function properly without these cookies."
+                cookies={[
+                  { name: "session_id", provider: "Aspirants", purpose: "Maintains user session across pages for seamless navigation.", expiry: "Session", type: "HTTP Cookie" },
+                  { name: "csrf_token", provider: "Aspirants", purpose: "Ensures visitor browsing security by preventing cross-site request forgery.", expiry: "1 day", type: "HTTP Cookie" },
+                  { name: "consent_status", provider: "Aspirants", purpose: "Stores the user's consent preferences for cookie usage.", expiry: "1 year", type: "HTTP Cookie" },
+                  { name: "cookie_test", provider: "Aspirants", purpose: "Used to check if the user's browser supports cookies.", expiry: "Session", type: "HTTP Cookie" },
+                  { name: "XSRF-TOKEN", provider: "Aspirants", purpose: "Protects the website and users from cross-site request forgery attacks.", expiry: "1 day", type: "HTTP Cookie" },
+                ]}
+              />
+
+              <CookieTable
+                title="Preference Cookies"
+                description="Preference cookies enable a website to remember information that changes how the website behaves or looks, such as your preferred language or the region you are in."
+                cookies={[
+                  { name: "user_prefs", provider: "Aspirants", purpose: "Stores user preferences for future visits, like language settings.", expiry: "1 year", type: "HTTP Cookie" },
+                  { name: "loglevel", provider: "Aspirants", purpose: "Maintains settings and outputs in the Developer Tools Console on the current session.", expiry: "Persistent", type: "HTML Local Storage" },
+                ]}
+              />
+
+              <CookieTable
+                title="Analytics Cookies"
+                description="Analytics cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. These insights help us improve the user experience."
+                cookies={[
+                  { name: "_ga", provider: "Google", purpose: "Registers a unique ID to generate statistical data on how visitors use the website.", expiry: "2 years", type: "HTTP Cookie" },
+                  { name: "_gid", provider: "Google", purpose: "Used to distinguish users for analytical purposes.", expiry: "24 hours", type: "HTTP Cookie" },
+                  { name: "_gat", provider: "Google", purpose: "Throttles request rate to improve performance on high-traffic sites.", expiry: "1 minute", type: "HTTP Cookie" },
+                ]}
+              />
+
+              <div className="mt-8">
+                <h3 className="text-lg font-semibold mb-2">Marketing Cookies (Currently Not Used)</h3>
+                <p className="text-sm text-muted-foreground">
+                  Marketing cookies are used to track visitors across websites to display ads that are relevant and engaging for the individual user. We currently do not deploy marketing cookies but may do so in the future based on business needs.
+                </p>
+              </div>
+            </Section>
+
+            <Section title="Changes to this Policy">
+              <p className="text-sm text-muted-foreground">
+                We may change this policy from time to time. As such, you should check this policy each and every time you visit our website. Any changes will be notified on the site.
+              </p>
+            </Section>
+
+            <Section title="Contact Us">
+              <p className="text-sm text-muted-foreground">
+                For more information, please check out our privacy policy or email us at aspirants.contact@gmail.com.
+              </p>
+            </Section>
+          </div>
+        </ScrollArea>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CookiePolicy;
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <Card className="mb-8">
+      <CardHeader>
+        <CardTitle>{title}</CardTitle>
+      </CardHeader>
+      <CardContent>{children}</CardContent>
+    </Card>
+  )
+}
+
+function CookieTable({ title, description, cookies }: { title: string; description: string; cookies: { name: string; provider: string; purpose: string; expiry: string; type: string }[] }) {
+  return (
+    <div className="mt-8">
+      <h3 className="text-lg font-semibold mb-2">{title}</h3>
+      <p className="text-sm text-muted-foreground mb-4">{description}</p>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Name</TableHead>
+            <TableHead>Provider</TableHead>
+            <TableHead>Purpose</TableHead>
+            <TableHead>Expiry</TableHead>
+            <TableHead>Type</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {cookies.map((cookie) => (
+            <TableRow key={cookie.name}>
+              <TableCell className="font-medium">{cookie.name}</TableCell>
+              <TableCell>{cookie.provider}</TableCell>
+              <TableCell>{cookie.purpose}</TableCell>
+              <TableCell>{cookie.expiry}</TableCell>
+              <TableCell>{cookie.type}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  )
+}

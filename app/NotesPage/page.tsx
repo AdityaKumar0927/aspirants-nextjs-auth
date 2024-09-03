@@ -5,6 +5,7 @@ import cx from "classnames";
 import Popover from "@/components/shared/popover";
 import { ChevronDown } from "lucide-react";
 import yaml from "js-yaml";
+import ImprovedStudyPlanner from "@/components/shared/study-planner";
 
 interface NoteType {
   title: string;
@@ -185,7 +186,10 @@ const NotesPage: React.FC = () => {
           <p>No notes found with the selected filters.</p>
         )}
       </div>
+      <ImprovedStudyPlanner />
     </div>
+
+
   );
 };
 

@@ -2,11 +2,11 @@
 
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import Dashboard from "@/components/home/DashboardContent";
-import { NoteApp } from "@/components/shared/NoteApp";
+import NoteApp from "@/components/shared/NoteApp";
 import Link from "next/link";
 import MainContent from "@/components/home/MainContent";
 import { cubicBezier, motion, useInView, AnimatePresence } from "framer-motion";
-import { Clock, Download, MessageCircle, Star } from "lucide-react";
+import { Clock, Download, MessageCircle, Star, CheckIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { useRef } from "react";
@@ -17,7 +17,17 @@ import { HoverEffect } from "@/components/ui/card-hover-effect";
 import Chat from "@/components/shared/Chat";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { Features } from "@/components/aceternity-ui/features";
-
+import { Select } from "@/components/ui/select";
+import { SelectTrigger } from "@/components/ui/select";
+import { SelectValue } from "@/components/ui/select";
+import { SelectContent } from "@/components/ui/select";
+import { SelectGroup } from "@/components/ui/select";
+import { SelectItem } from "@/components/ui/select";
+import { RadioGroupItem, RadioGroup } from "@radix-ui/react-radio-group";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/administrator-ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 const testimonials = [
   {
@@ -395,8 +405,8 @@ const Page = () => {
       </div>
       <div className="container mx-auto px-4 py-12 max-w-6xl">
         <h1 className="text-center text-gray-600 text-sm mb-4">aspirants X ChatGPT 4o</h1>
-        <h2 className="text-center text-6xl font-bold mb-2">Supercharge your</h2>
-        <h2 className="text-center text-6xl font-normal mb-6">learning experience</h2>
+        <h2 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">Supercharge your</h2>
+        <h2 className="text-sm mb-8 lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal">learning experience</h2>
         <p className="text-center text-gray-600 max-w-3xl mx-auto mb-16">
         
         </p>
@@ -437,7 +447,7 @@ const Page = () => {
 
 
 
-
+    <div className="mb-20">
       <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
         Never Forget Anything
       </h4>
@@ -449,9 +459,10 @@ const Page = () => {
         <div className="relative z-20 p-4">
           <NoteApp />
         </div>
+        </div>
       
 
-      <div className="-my-40 mb-20">
+      <div className="mb-20">
       <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
         A Plethora of Exams
       </h4>
@@ -498,6 +509,165 @@ const Page = () => {
 
       </div>
 
+      <div className="flex min-h-[100dvh] flex-col bg-background">
+      <main className="container mx-auto flex-1 px-4 py-12 md:px-6 lg:py-24">
+        <div className="mx-auto max-w-3xl space-y-8">
+          <div className="space-y-4 text-center">
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Support Our Cause</h1>
+            <p className="text-muted-foreground md:text-xl">
+              Your donation will make a real difference in the lives of those we serve. Help us continue our important
+              work.
+            </p>
+          </div>
+          <div className="rounded-lg border bg-card p-6 shadow-sm md:p-8">
+            <div className="space-y-4">
+              <div>
+                <h2 className="text-2xl font-bold">Donation Options</h2>
+                <p className="text-muted-foreground">Choose how you'd like to support our cause.</p>
+              </div>
+              <RadioGroup defaultValue="one-time" className="grid gap-4">
+                <div>
+                  <RadioGroupItem value="one-time" id="one-time" className="peer sr-only" />
+                  <Label
+                    htmlFor="one-time"
+                    className="flex items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                  >
+                    <div>
+                      <h3 className="text-lg font-medium">One-Time Donation</h3>
+                      <p className="text-muted-foreground">Make a single donation.</p>
+                    </div>
+                    <CheckIcon className="h-6 w-6 text-primary" />
+                  </Label>
+                </div>
+                <div>
+                  <RadioGroupItem value="recurring" id="recurring" className="peer sr-only" />
+                  <Label
+                    htmlFor="recurring"
+                    className="flex items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                  >
+                    <div>
+                      <h3 className="text-lg font-medium">Recurring Donation</h3>
+                      <p className="text-muted-foreground">Make a monthly donation.</p>
+                    </div>
+                    <CheckIcon className="h-6 w-6 text-primary" />
+                  </Label>
+                </div>
+              </RadioGroup>
+              <div>
+                <h2 className="text-2xl font-bold">Donation Amount</h2>
+                <p className="text-muted-foreground">Select the amount you'd like to donate.</p>
+                <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+                  <Button
+                    variant="outline"
+                    className="rounded-md border-muted bg-popover px-4 py-2 text-lg font-medium hover:bg-accent hover:text-accent-foreground"
+                  >
+                    $25
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="rounded-md border-muted bg-popover px-4 py-2 text-lg font-medium hover:bg-accent hover:text-accent-foreground"
+                  >
+                    $50
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="rounded-md border-muted bg-popover px-4 py-2 text-lg font-medium hover:bg-accent hover:text-accent-foreground"
+                  >
+                    $100
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="rounded-md border-muted bg-popover px-4 py-2 text-lg font-medium hover:bg-accent hover:text-accent-foreground"
+                  >
+                    $250
+                  </Button>
+                </div>
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold">Your Information</h2>
+                <p className="text-muted-foreground">Please provide your contact details.</p>
+                <form className="mt-4 space-y-4">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div className="grid gap-2">
+                      <Label htmlFor="name">Name</Label>
+                      <Input id="name" placeholder="First Last" />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="email">Email</Label>
+                      <Input id="email" type="email" placeholder="you@example.com" />
+                    </div>
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="address">Address</Label>
+                    <Textarea id="address" placeholder="123 Main St, Anytown USA" />
+                  </div>
+                </form>
+              </div>
+              <div className="flex justify-end">
+                <Button className="w-full max-w-[200px]">Donate Now</Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+   
+
+      <div className="flex flex-col min-h-[100dvh]">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-blue-500 border rounded-md">
+        <div className="container px-4 md:px-6">
+          <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
+            <div className="flex flex-col justify-center space-y-4 text-primary-foreground">
+              <div className="space-y-2">
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">Support Our Cause</h1>
+                <p className="max-w-[600px] text-primary-foreground/80 md:text-xl">
+                  Your donation can make a real difference in the lives of those in need. Help us continue our mission
+                  to provide essential services to the community.
+                </p>
+              </div>
+              <Link
+                href="#"
+                className="inline-flex h-10 items-center justify-center rounded-md bg-primary-foreground px-8 text-sm font-medium text-primary shadow transition-colors hover:bg-primary-foreground/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                prefetch={false}
+              >
+                Donate Now
+              </Link>
+            </div>
+            <img
+              src="/placeholder.svg"
+              width="550"
+              height="550"
+              alt="Donation"
+              className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
+            />
+          </div>
+        </div>
+      </section>
+      <section className="w-full py-12 md:py-24 lg:py-32">
+        <div className="container px-4 md:px-6">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
+            <div>
+              <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Our Mission</div>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Helping Those in Need</h2>
+              <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                Your donation will help us provide essential services and resources to families and individuals
+                struggling with poverty, homelessness, and other challenges. We are committed to making a lasting impact
+                in our community.
+              </p>
+            </div>
+            <div>
+              <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">How We Use Donations</div>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Transparent Allocation</h2>
+              <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                We are committed to using your donations responsibly and transparently. 80% of all donations go directly
+                to our programs and services, with the remaining 20% used for operational expenses and administrative
+                costs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
     </>
   );

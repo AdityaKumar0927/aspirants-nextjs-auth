@@ -1,5 +1,5 @@
-"use client"
 // @/app/administrator/page.tsx
+"use client"
 
 import { Avatar } from '@/components/administrator-ui/avatar';
 import { Badge } from '@/components/administrator-ui/badge';
@@ -19,12 +19,15 @@ import { Stat } from '@/components/administrator-ui/Stat';
 import { useState, useEffect } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 
+// Define types for status
+type Status = 'OPEN' | 'IN_PROGRESS' | 'RESOLVED' | 'CLOSED';
+
 // Define the Issue type
 interface Issue {
   id: string;
   title: string;
   description: string;
-  status: 'OPEN' | 'IN_PROGRESS' | 'RESOLVED' | 'CLOSED';
+  status: Status;
   createdAt: string;
   updatedAt: string;
   reporterName: string;
@@ -53,32 +56,14 @@ export default function Home() {
     }
   };
 
-  const handleStatusUpdate = async (id: string, status: string) => {
+  const handleStatusUpdate = async (id: string, status: Status) => {
     try {
-      const statusEnumMap: Record<string, string> = {
-        Open: 'OPEN',
-        'In Progress': 'IN_PROGRESS',
-        Resolved: 'RESOLVED',
-        Closed: 'CLOSED',
-      };
-
-      const enumStatus = statusEnumMap[status];
-
-      if (!enumStatus) {
-        toast({
-          title: 'Error',
-          description: `Invalid status value: ${status}.`,
-          variant: 'destructive',
-        });
-        return;
-      }
-
       const response = await fetch(`/api/issues/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ status: enumStatus }),
+        body: JSON.stringify({ status }),
       });
 
       if (!response.ok) throw new Error('Failed to update issue status');
@@ -138,7 +123,7 @@ export default function Home() {
               <TableCell>
                 <Select
                   defaultValue={issue.status}
-                  onChange={(e) => handleStatusUpdate(issue.id, e.target.value)}
+                  onChange={(e) => handleStatusUpdate(issue.id, e.target.value as Status)}
                 >
                   <option value="OPEN">Open</option>
                   <option value="IN_PROGRESS">In Progress</option>
