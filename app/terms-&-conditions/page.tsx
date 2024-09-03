@@ -38,11 +38,11 @@ export default function TermsAndConditions() {
                 You agree to use the Site only for lawful purposes and in accordance with these Terms. You are prohibited from:
               </p>
               <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
-                <li>Using the Site in any manner that could disable, overburden, damage, or impair the Site or interfere with any other party's use of the Site.</li>
+                <li>Using the Site in any manner that could disable, overburden, damage, or impair the Site or interfere with any other party&apos;s use of the Site.</li>
                 <li>Using any robot, spider, or other automatic device, process, or means to access the Site for any purpose, including monitoring or copying any of the material on the Site.</li>
                 <li>Introducing any viruses, trojan horses, worms, logic bombs, or other material that is malicious or technologically harmful.</li>
                 <li>Attempting to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Site, the server on which the Site is stored, or any server, computer, or database connected to the Site.</li>
-                <li>Engaging in any other conduct that restricts or inhibits anyone's use or enjoyment of the Site, or which, as determined by us, may harm us or users of the Site, or expose them to liability.</li>
+                <li>Engaging in any other conduct that restricts or inhibits anyone&apos;s use or enjoyment of the Site, or which, as determined by us, may harm us or users of the Site, or expose them to liability.</li>
               </ul>
             </Section>
 
@@ -54,7 +54,7 @@ export default function TermsAndConditions() {
 
             <Section title="Applicable Laws">
               <p className="text-sm text-muted-foreground">
-                These Terms and Conditions and the relationship between Aspirants and its users shall be governed by the laws of the Republic of India as applied to agreements made, entered, and performed entirely in Republic of India, notwithstanding the users' place of residence. All lawsuits arising from or relating to these Terms and Conditions, or your use of the Services shall be brought in the courts located in New Delhi, India, and you hereby irrevocably submit to the exclusive personal jurisdiction of such courts for such purpose.
+                These Terms and Conditions and the relationship between Aspirants and its users shall be governed by the laws of the Republic of India as applied to agreements made, entered, and performed entirely in Republic of India, notwithstanding the users&apos; place of residence. All lawsuits arising from or relating to these Terms and Conditions, or your use of the Services shall be brought in the courts located in New Delhi, India, and you hereby irrevocably submit to the exclusive personal jurisdiction of such courts for such purpose.
               </p>
             </Section>
 

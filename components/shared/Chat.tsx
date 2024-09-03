@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Latex from "react-latex-next";
-import { Pencil, Trash, XCircle, Send, User, } from "lucide-react";
+import { Pencil, Trash, XCircle, Send, User, PaperclipIcon, SendIcon } from "lucide-react";
 import { PlaceholdersAndVanishInput } from "./placeholders-and-vanish-input";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -13,6 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "../ui/button";
 
 type MessageProps = {
   role: "user" | "assistant";
@@ -256,6 +257,17 @@ const Chat: React.FC<{ questionText: string; options?: string[]; markscheme?: st
             clear
           </button>
         </div>
+      </div>
+      <div className="flex flex-wrap justify-center mt-4 space-x-2">
+        <Button variant="outline" className="mb-2">
+          Generate a sticky header
+        </Button>
+        <Button variant="outline" className="mb-2">
+          How can I structure LLM output?
+        </Button>
+        <Button variant="outline" className="mb-2">
+          Calculate the factorial of a number
+        </Button>
       </div>
     </div>
   );

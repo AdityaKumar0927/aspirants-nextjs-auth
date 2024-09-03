@@ -29,7 +29,7 @@ export default function CookiePolicy() {
               </p>
               <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
                 <li>Web beacons/pixels: used to count the number of users who have interacted with some content on our website</li>
-                <li>Local storage: storage of data in your device's (phone, laptop, computer, etc.) local cache (temporary memory)</li>
+                <li>Local storage: storage of data in your device&apos;s (phone, laptop, computer, etc.) local cache (temporary memory)</li>
                 <li>Scripts: Computer programs designed to give extra functionality</li>
               </ul>
             </Section>
@@ -49,7 +49,7 @@ export default function CookiePolicy() {
               <ul className="list-disc list-inside space-y-2 mb-4 text-sm text-muted-foreground">
                 <li>Keeping you logged into our website</li>
                 <li>Analyzing your site usage patterns, such as the duration of your visit, and so on</li>
-                <li>Tracking how you navigate and engage with our site's pages to detect and resolve technical problems</li>
+                <li>Tracking how you navigate and engage with our site&apos;s pages to detect and resolve technical problems</li>
               </ul>
               <p className="mb-4 text-sm">
                 Please keep in mind that cookies are necessary for the functioning of our website. We only use first party, third party and session cookies. We do not use any type of marketing cookie.
