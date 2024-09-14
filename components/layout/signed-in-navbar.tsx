@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useSignInModal } from "./sign-in-modal";
+import { useSignInModal } from "./sign-in";
 import UserDropdown from "./user-dropdown";
 import NotificationDropdown from "@/components/shared/NotificationDropdown";
 import { Session } from "next-auth";

@@ -13,20 +13,6 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip";
 
-// Define fetchData function to handle API requests
-const fetchData = async (url: string) => {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch data from ${url}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    throw error;
-  }
-};
-
 // Define the page size for pagination
 const PAGE_SIZE = 10; // Set the desired page size
 
@@ -190,93 +176,89 @@ const QuestionBank: React.FC = () => {
 
   const userId = ""; // Add logic to retrieve user ID if signed in
 
-  useEffect(() => {
-    const fetchAllData = async () => {
-      try {
-        dispatch({ type: "SET_LOADING", payload: true });
+  const fetchAllData = useCallback(async () => {
+    dispatch({ type: "SET_LOADING", payload: true });
 
-        const questionsData: QuestionType[] = await fetchData("/api/questions");
-        let userProgressData: any[] = [];
-        let userAnswersData: any[] = [];
-        let notesData: any[] = [];
-        let userPerformanceData: any[] = [];
+    try {
+      const [questionsData, userProgressData = [], userAnswersData = [], notesData = [], userPerformanceData = []] =
+        await Promise.all([
+          fetchData("/api/questions"),
+          userId
+            ? Promise.all([
+                fetchData("/api/user-progress"),
+                fetchData("/api/user-answers"),
+                fetchData("/api/notes"),
+                fetchData("/api/user-performance/get"),
+              ])
+            : [],
+        ]).then((results) => (userId ? [results[0], ...results[1]] : [results[0]]));
 
-        if (userId) {
-          [userProgressData, userAnswersData, notesData, userPerformanceData] =
-            await Promise.all([
-              fetchData("/api/user-progress"),
-              fetchData("/api/user-answers"),
-              fetchData("/api/notes"),
-              fetchData("/api/user-performance/get"),
-            ]);
-        }
+      const feedback: Record<string, string> = {};
+      const selectedOptions: Record<string, string> = {};
+      const notes: Record<string, string> = {};
 
-        const mergedQuestions = questionsData.map((question: QuestionType) => {
-          const progress = userProgressData?.find(
-            (p: any) => p.questionId === question.questionId
-          );
-          const userAnswer = userAnswersData?.find(
-            (a: UserAnswer) => a.questionId === question.questionId
-          );
-          const note = notesData?.find((n: any) => n.questionId === question.questionId);
-          const performance = userPerformanceData?.find(
-            (p: UserPerformance) => p.questionId === question.questionId
-          );
-
-          if (userAnswer) {
-            dispatch({
-              type: "SET_SELECTED_OPTIONS",
-              payload: {
-                ...state.selectedOptions,
-                [question.questionId]: userAnswer.selectedOption,
-              },
-            });
-            dispatch({
-              type: "SET_FEEDBACK",
-              payload: {
-                ...state.feedback,
-                [question.questionId]: userAnswer.isCorrect ? "correct" : "incorrect",
-              },
-            });
-          }
-
-          return {
-            ...question,
-            reviewed: performance
-              ? performance.reviewed
-              : progress
-              ? progress.reviewed
-              : false,
-            completed: performance
-              ? performance.completed
-              : progress
-              ? progress.completed
-              : false,
-            notes: note ? note.content : "",
-            lastAttempted: progress ? progress.lastAttempted : "",
-            performance: performance || {},
-          };
-        });
-
-        // Sort questions by questionId numerically in ascending order
-        mergedQuestions.sort((a: QuestionType, b: QuestionType) =>
-          parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
+      const mergedQuestions = questionsData.map((question: QuestionType) => {
+        const progress = userProgressData.find(
+          (p: any) => p.questionId === question.questionId
+        );
+        const userAnswer = userAnswersData.find(
+          (a: UserAnswer) => a.questionId === question.questionId
+        );
+        const note = notesData.find((n: any) => n.questionId === question.questionId);
+        const performance = userPerformanceData.find(
+          (p: UserPerformance) => p.questionId === question.questionId
         );
 
-        dispatch({ type: "SET_QUESTIONS", payload: mergedQuestions });
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        dispatch({ type: "SET_LOADING", payload: false });
-      }
-    };
+        if (userAnswer) {
+          selectedOptions[question.questionId] = userAnswer.selectedOption;
+          feedback[question.questionId] = userAnswer.isCorrect ? "correct" : "incorrect";
+        }
 
-    fetchAllData();
+        if (note) {
+          notes[question.questionId] = note.content;
+        }
+
+        return {
+          ...question,
+          reviewed: performance?.reviewed ?? progress?.reviewed ?? false,
+          completed: performance?.completed ?? progress?.completed ?? false,
+          notes: note ? note.content : "",
+          lastAttempted: progress?.lastAttempted ?? "",
+          performance: performance || {},
+        };
+      });
+
+      // Sort questions by questionId numerically in ascending order
+      mergedQuestions.sort(
+        (a: QuestionType, b: QuestionType) =>
+          parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
+      );
+
+      dispatch({ type: "SET_QUESTIONS", payload: mergedQuestions });
+      dispatch({ type: "SET_SELECTED_OPTIONS", payload: selectedOptions });
+      dispatch({ type: "SET_FEEDBACK", payload: feedback });
+      dispatch({ type: "SET_NOTES", payload: notes });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      dispatch({ type: "SET_LOADING", payload: false });
+    }
   }, [userId]);
+
+  useEffect(() => {
+    fetchAllData();
+  }, [fetchAllData]);
 
   const filteredQuestions = useMemo(() => {
     let filtered = state.questions.filter((question) => {
-      return (
+      const searchQuery = state.searchQuery.toLowerCase();
+      const matchesSearch =
+        question.text.toLowerCase().includes(searchQuery) ||
+        question.topic.toLowerCase().includes(searchQuery) ||
+        question.subtopic.toLowerCase().includes(searchQuery) ||
+        question.subject.toLowerCase().includes(searchQuery);
+
+      const matchesFilters =
         (!state.filters.exams.length || state.filters.exams.includes(question.exam)) &&
         (!state.filters.subjects.length ||
           state.filters.subjects.includes(question.subject)) &&
@@ -286,12 +268,9 @@ const QuestionBank: React.FC = () => {
         (!state.filters.difficulties.length ||
           state.filters.difficulties.includes(question.difficulty)) &&
         (!state.filters.years.length || state.filters.years.includes(question.year)) &&
-        (!state.filters.types.length || state.filters.types.includes(question.type)) &&
-        (question.text.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
-          question.topic.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
-          question.subtopic.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
-          question.subject.toLowerCase().includes(state.searchQuery.toLowerCase()))
-      );
+        (!state.filters.types.length || state.filters.types.includes(question.type));
+
+      return matchesSearch && matchesFilters;
     });
 
     if (state.filters.status === "review") {
@@ -304,14 +283,13 @@ const QuestionBank: React.FC = () => {
   }, [state.questions, state.filters, state.searchQuery]);
 
   const paginatedQuestions = useMemo(() => {
-    const startIndex = 0;
     const endIndex = state.currentPage * PAGE_SIZE;
-    return filteredQuestions.slice(startIndex, endIndex);
+    return filteredQuestions.slice(0, endIndex);
   }, [filteredQuestions, state.currentPage]);
 
-  const handleLoadMore = () => {
+  const handleLoadMore = useCallback(() => {
     dispatch({ type: "SET_CURRENT_PAGE", payload: state.currentPage + 1 });
-  };
+  }, [state.currentPage]);
 
   const handleFilterChange = useCallback(
     (tag: keyof FiltersType, value: string) => {
@@ -400,20 +378,12 @@ const QuestionBank: React.FC = () => {
   const handleOptionClick = useCallback(
     async (questionId: string, option: string, correctOption: string) => {
       const isCorrect = option === correctOption;
-      dispatch({
-        type: "SET_FEEDBACK",
-        payload: {
-          ...state.feedback,
-          [questionId]: isCorrect ? "correct" : "incorrect",
-        },
-      });
-      dispatch({
-        type: "SET_SELECTED_OPTIONS",
-        payload: {
-          ...state.selectedOptions,
-          [questionId]: option,
-        },
-      });
+
+      const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" };
+      const newSelectedOptions = { ...state.selectedOptions, [questionId]: option };
+
+      dispatch({ type: "SET_FEEDBACK", payload: newFeedback });
+      dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions });
 
       const updatedFields = {
         correctAnswers: isCorrect ? 1 : 0,
@@ -437,19 +407,22 @@ const QuestionBank: React.FC = () => {
         ),
       });
     },
-    [saveUserAnswer, updateUserPerformance, state.feedback, state.selectedOptions, state.questions]
+    [
+      saveUserAnswer,
+      updateUserPerformance,
+      state.feedback,
+      state.selectedOptions,
+      state.questions,
+    ]
   );
 
   const handleNumericalSubmit = useCallback(
     async (questionId: string, userAnswer: string, correctAnswer: string) => {
       const isCorrect = userAnswer === correctAnswer;
-      dispatch({
-        type: "SET_FEEDBACK",
-        payload: {
-          ...state.feedback,
-          [questionId]: isCorrect ? "correct" : "incorrect",
-        },
-      });
+
+      const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" };
+      dispatch({ type: "SET_FEEDBACK", payload: newFeedback });
+
       await updateUserPerformance(questionId, {
         lastAttempted: new Date().toISOString(),
         completed: true,
@@ -471,13 +444,8 @@ const QuestionBank: React.FC = () => {
 
   const handleNoteChange = useCallback(
     async (questionId: string, note: string) => {
-      dispatch({
-        type: "SET_NOTES",
-        payload: {
-          ...state.notes,
-          [questionId]: note,
-        },
-      });
+      const newNotes = { ...state.notes, [questionId]: note };
+      dispatch({ type: "SET_NOTES", payload: newNotes });
 
       try {
         if (userId) {
@@ -510,13 +478,8 @@ const QuestionBank: React.FC = () => {
         console.error("Error deleting note:", error);
       }
 
-      dispatch({
-        type: "SET_NOTES",
-        payload: {
-          ...state.notes,
-          [questionId]: "",
-        },
-      });
+      const newNotes = { ...state.notes, [questionId]: "" };
+      dispatch({ type: "SET_NOTES", payload: newNotes });
     },
     [userId, state.notes]
   );
@@ -626,24 +589,29 @@ const QuestionBank: React.FC = () => {
                   <Popover
                     content={
                       <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                        {(
-                          filterType === "exams"
-                            ? Array.from(new Set(state.questions.map((q) => q.exam)))
-                            : filterType === "subjects"
-                            ? Array.from(new Set(state.questions.map((q) => q.subject)))
-                            : filterType === "topics"
-                            ? Array.from(new Set(state.questions.map((q) => q.topic)))
-                            : filterType === "subtopics"
-                            ? Array.from(
-                                new Set(state.questions.map((q) => q.subtopic))
-                              )
-                            : filterType === "difficulties"
-                            ? Array.from(
-                                new Set(state.questions.map((q) => q.difficulty))
-                              )
-                            : filterType === "years"
-                            ? Array.from(new Set(state.questions.map((q) => q.year)))
-                            : Array.from(new Set(state.questions.map((q) => q.type)))
+                        {Array.from(
+                          new Set(
+                            state.questions.map((q) => {
+                              switch (filterType) {
+                                case "exams":
+                                  return q.exam;
+                                case "subjects":
+                                  return q.subject;
+                                case "topics":
+                                  return q.topic;
+                                case "subtopics":
+                                  return q.subtopic;
+                                case "difficulties":
+                                  return q.difficulty;
+                                case "years":
+                                  return q.year;
+                                case "types":
+                                  return q.type;
+                                default:
+                                  return "";
+                              }
+                            })
+                          )
                         ).map((value: string) => (
                           <div key={value} className="flex items-center">
                             <input
@@ -656,10 +624,7 @@ const QuestionBank: React.FC = () => {
                                 ).includes(value)
                               }
                               onChange={() =>
-                                handleFilterChange(
-                                  filterType as keyof FiltersType,
-                                  value
-                                )
+                                handleFilterChange(filterType as keyof FiltersType, value)
                               }
                             />
                             <label
@@ -696,15 +661,12 @@ const QuestionBank: React.FC = () => {
                       className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
                     >
                       <p className="text-gray-600">
-                        {Array.isArray(
-                          state.filters[filterType as keyof FiltersType]
-                        )
-                          ? (state.filters[filterType as keyof FiltersType] as string[]).length
-                            ? `${
-                                (state.filters[filterType as keyof FiltersType] as string[])
-                                  .length
-                              } selected`
-                            : filterType.charAt(0).toUpperCase() + filterType.slice(1)
+                        {Array.isArray(state.filters[filterType as keyof FiltersType]) &&
+                        (state.filters[filterType as keyof FiltersType] as string[]).length
+                          ? `${
+                              (state.filters[filterType as keyof FiltersType] as string[])
+                                .length
+                            } selected`
                           : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                       </p>
                       <ChevronDown
@@ -734,9 +696,7 @@ const QuestionBank: React.FC = () => {
                   selectedOption={state.selectedOptions[question.questionId]}
                   numericalAnswer={state.numericalAnswers[question.questionId]}
                   showMarkscheme={state.showMarkscheme[question.questionId]}
-                  handleOptionClick={(questionId, option, correctOption) =>
-                    handleOptionClick(questionId, option, correctOption)
-                  }
+                  handleOptionClick={handleOptionClick}
                   handleNumericalSubmit={handleNumericalSubmit}
                   handleNumericalChange={(questionId, value) => {
                     dispatch({
@@ -787,6 +747,20 @@ const QuestionBank: React.FC = () => {
       </div>
     </TooltipProvider>
   );
+};
+
+// Fetch data function moved inside the component
+const fetchData = async (url: string) => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data from ${url}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
 };
 
 export default QuestionBank;

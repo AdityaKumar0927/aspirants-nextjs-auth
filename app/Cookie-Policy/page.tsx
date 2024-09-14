@@ -1,7 +1,7 @@
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { ExternalLink } from "lucide-react"
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { ExternalLink } from "lucide-react";
 
 export default function CookiePolicy() {
   return (
@@ -13,7 +13,7 @@ export default function CookiePolicy() {
         <Card className="mb-8">
           <CardContent className="p-6">
             <p className="text-sm text-muted-foreground">
-              This is the cookie policy for Aspirants ("Aspirants", "we", "us" or "our"). For more information about how we may use personal data, please read our privacy policy or contact us at aspirants.contact@gmail.com.
+              This is the cookie policy for Aspirants (&quot;Aspirants&quot;, &quot;we&quot;, &quot;us&quot; or &quot;our&quot;). For more information about how we may use personal data, please read our privacy policy or contact us at aspirants.contact@gmail.com.
             </p>
           </CardContent>
         </Card>
@@ -25,22 +25,38 @@ export default function CookiePolicy() {
                 A cookie is a small text file that is downloaded onto your device when you access a website. It is sent through your browser, and it helps us to recognise you and your device.
               </p>
               <p className="mb-4">
-                There are technologies, which, although technically not "cookies", are like cookies. These include:
+                There are technologies, which, although technically not &quot;cookies&quot;, are like cookies. These include:
               </p>
               <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
-                <li>Web beacons/pixels: used to count the number of users who have interacted with some content on our website</li>
-                <li>Local storage: storage of data in your device&apos;s (phone, laptop, computer, etc.) local cache (temporary memory)</li>
-                <li>Scripts: Computer programs designed to give extra functionality</li>
+                <li>
+                  Web beacons/pixels: used to count the number of users who have interacted with some content on our website
+                </li>
+                <li>
+                  Local storage: storage of data in your device&apos;s (phone, laptop, computer, etc.) local cache (temporary memory)
+                </li>
+                <li>
+                  Scripts: Computer programs designed to give extra functionality
+                </li>
               </ul>
             </Section>
 
             <Section title="Different Types of Cookies">
               <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
-                <li>First party cookies: these are the cookies created by us which you might encounter while using our website</li>
-                <li>Third party cookies: these are the cookies created by third party platforms which you might encounter while using our website</li>
-                <li>Session cookies: these are the cookies which only last for the duration of your visit to our website</li>
-                <li>Persistent cookies: these are the cookies which last for a longer period of time than Session Cookies</li>
-                <li>Zombie cookies: these are the cookies that are automatically recreated after you delete them. We DO NOT use this type of malicious cookie.</li>
+                <li>
+                  First party cookies: these are the cookies created by us which you might encounter while using our website
+                </li>
+                <li>
+                  Third party cookies: these are the cookies created by third party platforms which you might encounter while using our website
+                </li>
+                <li>
+                  Session cookies: these are the cookies which only last for the duration of your visit to our website
+                </li>
+                <li>
+                  Persistent cookies: these are the cookies which last for a longer period of time than Session Cookies
+                </li>
+                <li>
+                  Zombie cookies: these are the cookies that are automatically recreated after you delete them. We DO NOT use this type of malicious cookie.
+                </li>
               </ul>
             </Section>
 
@@ -49,7 +65,9 @@ export default function CookiePolicy() {
               <ul className="list-disc list-inside space-y-2 mb-4 text-sm text-muted-foreground">
                 <li>Keeping you logged into our website</li>
                 <li>Analyzing your site usage patterns, such as the duration of your visit, and so on</li>
-                <li>Tracking how you navigate and engage with our site&apos;s pages to detect and resolve technical problems</li>
+                <li>
+                  Tracking how you navigate and engage with our site&apos;s pages to detect and resolve technical problems
+                </li>
               </ul>
               <p className="mb-4 text-sm">
                 Please keep in mind that cookies are necessary for the functioning of our website. We only use first party, third party and session cookies. We do not use any type of marketing cookie.
@@ -90,11 +108,41 @@ export default function CookiePolicy() {
                 title="Necessary Cookies"
                 description="These cookies are essential for the basic functionality of our website. They enable basic features such as page navigation and access to secure areas of the site. The website cannot function properly without these cookies."
                 cookies={[
-                  { name: "session_id", provider: "Aspirants", purpose: "Maintains user session across pages for seamless navigation.", expiry: "Session", type: "HTTP Cookie" },
-                  { name: "csrf_token", provider: "Aspirants", purpose: "Ensures visitor browsing security by preventing cross-site request forgery.", expiry: "1 day", type: "HTTP Cookie" },
-                  { name: "consent_status", provider: "Aspirants", purpose: "Stores the user's consent preferences for cookie usage.", expiry: "1 year", type: "HTTP Cookie" },
-                  { name: "cookie_test", provider: "Aspirants", purpose: "Used to check if the user's browser supports cookies.", expiry: "Session", type: "HTTP Cookie" },
-                  { name: "XSRF-TOKEN", provider: "Aspirants", purpose: "Protects the website and users from cross-site request forgery attacks.", expiry: "1 day", type: "HTTP Cookie" },
+                  {
+                    name: "session_id",
+                    provider: "Aspirants",
+                    purpose: "Maintains user session across pages for seamless navigation.",
+                    expiry: "Session",
+                    type: "HTTP Cookie",
+                  },
+                  {
+                    name: "csrf_token",
+                    provider: "Aspirants",
+                    purpose: "Ensures visitor browsing security by preventing cross-site request forgery.",
+                    expiry: "1 day",
+                    type: "HTTP Cookie",
+                  },
+                  {
+                    name: "consent_status",
+                    provider: "Aspirants",
+                    purpose: "Stores the user's consent preferences for cookie usage.",
+                    expiry: "1 year",
+                    type: "HTTP Cookie",
+                  },
+                  {
+                    name: "cookie_test",
+                    provider: "Aspirants",
+                    purpose: "Used to check if the user's browser supports cookies.",
+                    expiry: "Session",
+                    type: "HTTP Cookie",
+                  },
+                  {
+                    name: "XSRF-TOKEN",
+                    provider: "Aspirants",
+                    purpose: "Protects the website and users from cross-site request forgery attacks.",
+                    expiry: "1 day",
+                    type: "HTTP Cookie",
+                  },
                 ]}
               />
 
@@ -102,8 +150,20 @@ export default function CookiePolicy() {
                 title="Preference Cookies"
                 description="Preference cookies enable a website to remember information that changes how the website behaves or looks, such as your preferred language or the region you are in."
                 cookies={[
-                  { name: "user_prefs", provider: "Aspirants", purpose: "Stores user preferences for future visits, like language settings.", expiry: "1 year", type: "HTTP Cookie" },
-                  { name: "loglevel", provider: "Aspirants", purpose: "Maintains settings and outputs in the Developer Tools Console on the current session.", expiry: "Persistent", type: "HTML Local Storage" },
+                  {
+                    name: "user_prefs",
+                    provider: "Aspirants",
+                    purpose: "Stores user preferences for future visits, like language settings.",
+                    expiry: "1 year",
+                    type: "HTTP Cookie",
+                  },
+                  {
+                    name: "loglevel",
+                    provider: "Aspirants",
+                    purpose: "Maintains settings and outputs in the Developer Tools Console on the current session.",
+                    expiry: "Persistent",
+                    type: "HTML Local Storage",
+                  },
                 ]}
               />
 
@@ -111,14 +171,34 @@ export default function CookiePolicy() {
                 title="Analytics Cookies"
                 description="Analytics cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. These insights help us improve the user experience."
                 cookies={[
-                  { name: "_ga", provider: "Google", purpose: "Registers a unique ID to generate statistical data on how visitors use the website.", expiry: "2 years", type: "HTTP Cookie" },
-                  { name: "_gid", provider: "Google", purpose: "Used to distinguish users for analytical purposes.", expiry: "24 hours", type: "HTTP Cookie" },
-                  { name: "_gat", provider: "Google", purpose: "Throttles request rate to improve performance on high-traffic sites.", expiry: "1 minute", type: "HTTP Cookie" },
+                  {
+                    name: "_ga",
+                    provider: "Google",
+                    purpose: "Registers a unique ID to generate statistical data on how visitors use the website.",
+                    expiry: "2 years",
+                    type: "HTTP Cookie",
+                  },
+                  {
+                    name: "_gid",
+                    provider: "Google",
+                    purpose: "Used to distinguish users for analytical purposes.",
+                    expiry: "24 hours",
+                    type: "HTTP Cookie",
+                  },
+                  {
+                    name: "_gat",
+                    provider: "Google",
+                    purpose: "Throttles request rate to improve performance on high-traffic sites.",
+                    expiry: "1 minute",
+                    type: "HTTP Cookie",
+                  },
                 ]}
               />
 
               <div className="mt-8">
-                <h3 className="text-lg font-semibold mb-2">Marketing Cookies (Currently Not Used)</h3>
+                <h3 className="text-lg font-semibold mb-2">
+                  Marketing Cookies (Currently Not Used)
+                </h3>
                 <p className="text-sm text-muted-foreground">
                   Marketing cookies are used to track visitors across websites to display ads that are relevant and engaging for the individual user. We currently do not deploy marketing cookies but may do so in the future based on business needs.
                 </p>
@@ -140,7 +220,7 @@ export default function CookiePolicy() {
         </ScrollArea>
       </div>
     </div>
-  )
+  );
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -151,10 +231,18 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       </CardHeader>
       <CardContent>{children}</CardContent>
     </Card>
-  )
+  );
 }
 
-function CookieTable({ title, description, cookies }: { title: string; description: string; cookies: { name: string; provider: string; purpose: string; expiry: string; type: string }[] }) {
+function CookieTable({
+  title,
+  description,
+  cookies,
+}: {
+  title: string;
+  description: string;
+  cookies: { name: string; provider: string; purpose: string; expiry: string; type: string }[];
+}) {
   return (
     <div className="mt-8">
       <h3 className="text-lg font-semibold mb-2">{title}</h3>
@@ -182,5 +270,5 @@ function CookieTable({ title, description, cookies }: { title: string; descripti
         </TableBody>
       </Table>
     </div>
-  )
+  );
 }

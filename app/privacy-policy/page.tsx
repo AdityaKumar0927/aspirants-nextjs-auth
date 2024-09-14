@@ -1,5 +1,5 @@
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function PrivacyPolicy() {
   return (
@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
         <Card className="mb-8">
           <CardContent className="p-6">
             <p className="text-sm text-muted-foreground">
-              In addition to our Terms and Conditions, Aspirants is dedicated to maintaining the privacy of its users and protecting their data. This privacy policy highlights and explains the policy of Aspirants, (hereinafter referred to as "we", "us", or "our"), and its website aspirants.tech (hereinafter referred to as "the website") with respect to collection, storage, and usage of your data during the course of your interaction with the Website.
+              In addition to our Terms and Conditions, Aspirants is dedicated to maintaining the privacy of its users and protecting their data. This privacy policy highlights and explains the policy of Aspirants, (hereinafter referred to as &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), and its website aspirants.tech (hereinafter referred to as &quot;the website&quot;) with respect to collection, storage, and usage of your data during the course of your interaction with the Website.
             </p>
           </CardContent>
         </Card>
@@ -23,27 +23,45 @@ export default function PrivacyPolicy() {
                 We understand the need for respecting the privacy of the users. For this purpose, we undertake the following steps:
               </p>
               <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
-                <li>Limited Cookie Usage: We only utilize cookies for a specific purpose: to maintain user sessions. This means if you create an account on Aspirants (if applicable), cookies will help you stay logged in for a convenient browsing experience. We do not use cookies for tracking your browsing activity or for any marketing purposes, whatsoever.</li>
-                <li>Voluntary Data Collection: We collect your email address only when you choose to subscribe to our email list or contact us, using your email.</li>
+                <li>
+                  Limited Cookie Usage: We only utilize cookies for a specific purpose: to maintain user sessions. This means if you create an account on Aspirants (if applicable), cookies will help you stay logged in for a convenient browsing experience. We do not use cookies for tracking your browsing activity or for any marketing purposes, whatsoever.
+                </li>
+                <li>
+                  Voluntary Data Collection: We collect your email address only when you choose to subscribe to our email list or contact us, using your email.
+                </li>
               </ul>
             </Section>
 
             <Section title="Use of Personal Information">
-              <p className="text-sm text-muted-foreground mb-4">We only use the email addresses provided by you for 3 purposes, namely:</p>
+              <p className="text-sm text-muted-foreground mb-4">
+                We only use the email addresses provided by you for 3 purposes, namely:
+              </p>
               <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
-                <li>Enable you to login and register on the website, thus storing your progress on the website</li>
-                <li>Send you important information about the Website, including updates, announcements, and new features.</li>
-                <li>Respond to your inquiries and requests for support, in case you contact us.</li>
+                <li>
+                  Enable you to login and register on the website, thus storing your progress on the website
+                </li>
+                <li>
+                  Send you important information about the Website, including updates, announcements, and new features.
+                </li>
+                <li>
+                  Respond to your inquiries and requests for support, in case you contact us.
+                </li>
               </ol>
             </Section>
 
             <Section title="Security of Collected Data">
               <p className="text-sm text-muted-foreground mb-4">Measures are taken to protect your data:</p>
               <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
-                <li>SSL Certification: The website is SSL (Secure Sockets Layer) certified, enabling encrypted communication between your web browser and our web server.</li>
-                <li>Third-Party Authentication: We use Okta, a secure identity management provider, to handle user registration and login. This service ensures that your email address and login credentials are protected with industry-standard security measures.</li>
+                <li>
+                  SSL Certification: The website is SSL (Secure Sockets Layer) certified, enabling encrypted communication between your web browser and our web server.
+                </li>
+                <li>
+                  Third-Party Authentication: We use Okta, a secure identity management provider, to handle user registration and login. This service ensures that your email address and login credentials are protected with industry-standard security measures.
+                </li>
               </ol>
-              <p className="text-sm text-muted-foreground mt-4">However, please note, no website is completely secure.</p>
+              <p className="text-sm text-muted-foreground mt-4">
+                However, please note, no website is completely secure.
+              </p>
             </Section>
 
             <Section title="Sharing of Data">
@@ -81,7 +99,7 @@ export default function PrivacyPolicy() {
               </p>
             </Section>
 
-            <Section title="Children's Privacy">
+            <Section title="Children&apos;s Privacy">
               <p className="text-sm text-muted-foreground">
                 Aspirants is intended for users 18 years of age and older. We do not knowingly collect personal information from children under 18. If you are a parent or guardian and believe your child has provided us with personal information, please contact us at aspirants.contact@gmail.com. We will take steps to remove the information from our systems.
               </p>
@@ -96,7 +114,7 @@ export default function PrivacyPolicy() {
         </ScrollArea>
       </div>
     </div>
-  )
+  );
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -107,5 +125,5 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       </CardHeader>
       <CardContent>{children}</CardContent>
     </Card>
-  )
+  );
 }

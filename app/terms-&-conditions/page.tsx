@@ -1,5 +1,5 @@
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function TermsAndConditions() {
   return (
@@ -38,17 +38,28 @@ export default function TermsAndConditions() {
                 You agree to use the Site only for lawful purposes and in accordance with these Terms. You are prohibited from:
               </p>
               <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
-                <li>Using the Site in any manner that could disable, overburden, damage, or impair the Site or interfere with any other party&apos;s use of the Site.</li>
-                <li>Using any robot, spider, or other automatic device, process, or means to access the Site for any purpose, including monitoring or copying any of the material on the Site.</li>
-                <li>Introducing any viruses, trojan horses, worms, logic bombs, or other material that is malicious or technologically harmful.</li>
-                <li>Attempting to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Site, the server on which the Site is stored, or any server, computer, or database connected to the Site.</li>
-                <li>Engaging in any other conduct that restricts or inhibits anyone&apos;s use or enjoyment of the Site, or which, as determined by us, may harm us or users of the Site, or expose them to liability.</li>
+                <li>
+                  Using the Site in any manner that could disable, overburden, damage, or impair the Site or interfere with any other party&apos;s use of the Site.
+                </li>
+                <li>
+                  Using any robot, spider, or other automatic device, process, or means to access the Site for any purpose, including monitoring or copying any of the material on the Site.
+                </li>
+                <li>
+                  Introducing any viruses, trojan horses, worms, logic bombs, or other material that is malicious or technologically harmful.
+                </li>
+                <li>
+                  Attempting to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Site, the server on which the Site is stored, or any server, computer, or database connected to the Site.
+                </li>
+                <li>
+                  Engaging in any other conduct that restricts or inhibits anyone&apos;s use or enjoyment of the Site, or which, as determined by us, may harm us or users of the Site, or expose them to liability.
+                </li>
               </ul>
             </Section>
 
             <Section title="Intellectual Property">
               <p className="text-sm text-muted-foreground">
-                Unless otherwise stated, copyright and all intellectual property rights in all material presented on the site (including but not limited to text, audio, video or graphical images), trademarks and logos appearing on this site are the property of Aspirants and are protected under applicable Indian laws. You agree not to use any framing techniques to enclose any trademark or logo or other proprietary information of Aspirants; or remove, conceal or obliterate any copyright or other proprietary notice or any credit-line or dateline on other mark or source identifier included on the Site / Service, including without limitation, the size, colour, location or style of all proprietary marks. Any infringement shall be vigorously defended and pursued to the fullest extent permitted by law.
+                Unless otherwise stated, copyright and all intellectual property rights in all material presented on the site (including but not limited to text, audio, video or graphical images), trademarks and logos appearing on this site are the property of Aspirants and are protected under applicable Indian laws. You agree not to use any framing techniques to enclose any trademark or logo or other proprietary information of Aspirants; or remove, conceal or obliterate any copyright
+                or other proprietary notice or any credit-line or dateline on other mark or source identifier included on the Site / Service, including without limitation, the size, colour, location or style of all proprietary marks. Any infringement shall be vigorously defended and pursued to the fullest extent permitted by law.
               </p>
             </Section>
 
@@ -66,7 +77,7 @@ export default function TermsAndConditions() {
 
             <Section title="Disclaimers">
               <p className="text-sm text-muted-foreground">
-                The Site and all materials provided through the Site are provided on an "as-is" and "as-available" basis, without any warranties of any kind, either express or implied. We do not warrant that the Site will be uninterrupted, error-free, or free from viruses or other harmful components. The content provided on the Site is for educational purposes only. We do not guarantee the accuracy, completeness, or usefulness of any information on the Site.
+                The Site and all materials provided through the Site are provided on an &quot;as-is&quot; and &quot;as-available&quot; basis, without any warranties of any kind, either express or implied. We do not warrant that the Site will be uninterrupted, error-free, or free from viruses or other harmful components. The content provided on the Site is for educational purposes only. We do not guarantee the accuracy, completeness, or usefulness of any information on the Site.
               </p>
             </Section>
 
@@ -75,9 +86,15 @@ export default function TermsAndConditions() {
                 By using Aspirants, you agree to defend, indemnify, and hold harmless Aspirants, its affiliates, and their respective officers, directors, employees, and agents, from and against any and all claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including but not limited to legal fees) arising from:
               </p>
               <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
-                <li>Your Use of the Site: Any use of our Site, its content, or services, other than as expressly authorized in these Terms and Conditions.</li>
-                <li>Violation of Terms: Any breach or violation of these Terms and Conditions, the Privacy Policy, or any other policy or guidelines set forth by Aspirants.</li>
-                <li>User Content: Any content you post, upload, submit, or otherwise transmit through our Site.</li>
+                <li>
+                  Your Use of the Site: Any use of our Site, its content, or services, other than as expressly authorized in these Terms and Conditions.
+                </li>
+                <li>
+                  Violation of Terms: Any breach or violation of these Terms and Conditions, the Privacy Policy, or any other policy or guidelines set forth by Aspirants.
+                </li>
+                <li>
+                  User Content: Any content you post, upload, submit, or otherwise transmit through our Site.
+                </li>
               </ul>
             </Section>
 
@@ -90,7 +107,7 @@ export default function TermsAndConditions() {
         </ScrollArea>
       </div>
     </div>
-  )
+  );
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -101,5 +118,5 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       </CardHeader>
       <CardContent>{children}</CardContent>
     </Card>
-  )
+  );
 }

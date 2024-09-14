@@ -1,3 +1,5 @@
+// components/layout/modal-2.tsx
+
 "use client";
 
 import { Dispatch, SetStateAction } from "react";
@@ -55,12 +57,6 @@ export default function Modal2({
             className
           )}
         >
-          <button
-            className="absolute top-4 right-4 text-black"
-            onClick={() => setShowModal(false)}
-          >
-            ✕
-          </button>
           {children}
         </Dialog.Content>
       </Dialog.Portal>

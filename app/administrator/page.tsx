@@ -1,9 +1,5 @@
-// @/app/administrator/page.tsx
-"use client"
+"use client";
 
-import { Avatar } from '@/components/administrator-ui/avatar';
-import { Badge } from '@/components/administrator-ui/badge';
-import { Divider } from '@/components/administrator-ui/divider';
 import { Heading, Subheading } from '@/components/administrator-ui/heading';
 import { Select } from '@/components/administrator-ui/select';
 import {
@@ -16,7 +12,7 @@ import {
 } from '@/components/administrator-ui/table';
 import { Button } from '@/components/ui/button';
 import { Stat } from '@/components/administrator-ui/Stat';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 
 // Define types for status
@@ -37,11 +33,7 @@ export default function Home() {
   const [issues, setIssues] = useState<Issue[]>([]);
   const { toast } = useToast();
 
-  useEffect(() => {
-    fetchIssues();
-  }, []);
-
-  const fetchIssues = async () => {
+  const fetchIssues = useCallback(async () => {
     try {
       const response = await fetch('/api/issues');
       if (!response.ok) throw new Error('Failed to fetch issues');
@@ -54,34 +46,88 @@ export default function Home() {
         variant: 'destructive',
       });
     }
-  };
+  }, [toast]);
 
-  const handleStatusUpdate = async (id: string, status: Status) => {
-    try {
-      const response = await fetch(`/api/issues/${id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ status }),
-      });
+  useEffect(() => {
+    fetchIssues();
+  }, [fetchIssues]);
 
-      if (!response.ok) throw new Error('Failed to update issue status');
+  const handleStatusUpdate = useCallback(
+    async (id: string, status: Status) => {
+      try {
+        const response = await fetch(`/api/issues/${id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ status }),
+        });
 
-      toast({
-        title: 'Success',
-        description: `Issue status updated to ${status}.`,
-      });
+        if (!response.ok) throw new Error('Failed to update issue status');
 
-      fetchIssues();
-    } catch (error) {
-      toast({
-        title: 'Error',
-        description: 'Unable to update issue status.',
-        variant: 'destructive',
-      });
-    }
-  };
+        toast({
+          title: 'Success',
+          description: `Issue status updated to ${status}.`,
+        });
+
+        // Optimistically update the issue in the state
+        setIssues((prevIssues) =>
+          prevIssues.map((issue) =>
+            issue.id === id ? { ...issue, status } : issue
+          )
+        );
+      } catch (error) {
+        toast({
+          title: 'Error',
+          description: 'Unable to update issue status.',
+          variant: 'destructive',
+        });
+      }
+    },
+    [toast]
+  );
+
+  const totalIssues = issues.length;
+  const resolvedIssues = useMemo(
+    () => issues.filter((issue) => issue.status === 'RESOLVED').length,
+    [issues]
+  );
+  const openIssues = useMemo(
+    () => issues.filter((issue) => issue.status === 'OPEN').length,
+    [issues]
+  );
+
+  const IssueRow = ({ issue }: { issue: Issue }) => (
+    <TableRow
+      key={issue.id}
+      href={`/administrator/issues/${issue.id}`}
+      title={`Issue #${issue.id}`}
+    >
+      <TableCell>{issue.id}</TableCell>
+      <TableCell className="text-zinc-500">{issue.createdAt}</TableCell>
+      <TableCell>{issue.reporterName}</TableCell>
+      <TableCell>
+        <Select
+          value={issue.status}
+          onChange={(e) => handleStatusUpdate(issue.id, e.target.value as Status)}
+          disabled={issue.status === 'CLOSED'}
+        >
+          <option value="OPEN">Open</option>
+          <option value="IN_PROGRESS">In Progress</option>
+          <option value="RESOLVED">Resolved</option>
+          <option value="CLOSED">Closed</option>
+        </Select>
+      </TableCell>
+      <TableCell className="text-right">
+        <Button
+          onClick={() => handleStatusUpdate(issue.id, 'CLOSED')}
+          disabled={issue.status === 'CLOSED'}
+        >
+          Close
+        </Button>
+      </TableCell>
+    </TableRow>
+  );
 
   return (
     <>
@@ -98,9 +144,9 @@ export default function Home() {
         </div>
       </div>
       <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat title="Total issues" value={String(issues.length)} change="+5%" />
-        <Stat title="Resolved issues" value="5" change="-10%" />
-        <Stat title="Open issues" value="5" change="+20%" />
+        <Stat title="Total issues" value={String(totalIssues)} change="+5%" />
+        <Stat title="Resolved issues" value={String(resolvedIssues)} change="-10%" />
+        <Stat title="Open issues" value={String(openIssues)} change="+20%" />
         <Stat title="Average resolution time" value="2 days" change="+5%" />
       </div>
       <Subheading className="mt-14">Recent Issues</Subheading>
@@ -116,31 +162,10 @@ export default function Home() {
         </TableHead>
         <TableBody>
           {issues.map((issue) => (
-            <TableRow key={issue.id} href={`/administrator/issues/${issue.id}`} title={`Issue #${issue.id}`}>
-              <TableCell>{issue.id}</TableCell>
-              <TableCell className="text-zinc-500">{issue.createdAt}</TableCell>
-              <TableCell>{issue.reporterName}</TableCell>
-              <TableCell>
-                <Select
-                  defaultValue={issue.status}
-                  onChange={(e) => handleStatusUpdate(issue.id, e.target.value as Status)}
-                >
-                  <option value="OPEN">Open</option>
-                  <option value="IN_PROGRESS">In Progress</option>
-                  <option value="RESOLVED">Resolved</option>
-                  <option value="CLOSED">Closed</option>
-                </Select>
-              </TableCell>
-              <TableCell className="text-right">
-                <Button onClick={() => handleStatusUpdate(issue.id, 'CLOSED')}>
-                  Close
-                </Button>
-              </TableCell>
-            </TableRow>
+            <IssueRow key={issue.id} issue={issue} />
           ))}
         </TableBody>
       </Table>
     </>
   );
 }
-
