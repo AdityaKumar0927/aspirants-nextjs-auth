@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -272,7 +272,7 @@ export default function FeatureRequestPage() {
               <DialogHeader>
                 <DialogTitle>Submit a New Feature Request</DialogTitle>
                 <DialogDescription>
-                  Describe the feature you'd like to see implemented. Be as detailed as possible.
+                  Describe the feature you&apos;d like to see implemented. Be as detailed as possible.
                 </DialogDescription>
               </DialogHeader>
               <form onSubmit={handleSubmit(handleNewFeatureSubmit)} className="space-y-4">

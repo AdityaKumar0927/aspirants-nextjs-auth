@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { Label } from "@/components/ui/label";
@@ -81,7 +81,7 @@ export default function IssueReportForm() {
         <div>
           <h1 className="text-3xl font-bold">Report an Issue or Provide Feedback</h1>
           <p className="mt-2 text-muted-foreground">
-            Please fill out the form below to let us know about any problems you're experiencing or to share your
+            Please fill out the form below to let us know about any problems you&apos;re experiencing or to share your
             feedback.
           </p>
         </div>

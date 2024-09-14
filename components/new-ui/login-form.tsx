@@ -57,8 +57,6 @@ export default function LoginForm() {
           </div>
 
           <form className="grid gap-4">
-           
-
             {/* Policy Acceptance */}
             <div className="flex items-center space-x-2">
               <input
@@ -80,11 +78,10 @@ export default function LoginForm() {
                 </Link>
               </Label>
             </div>
-
           </form>
         </div>
         <div className="mt-4 text-center text-sm">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/signup" className="underline">
             Sign up
           </Link>
