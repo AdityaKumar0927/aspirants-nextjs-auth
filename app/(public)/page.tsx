@@ -257,7 +257,7 @@ const Page = () => {
               <div className="space-y-4">
                 <div>
                   <h2 className="text-2xl font-bold">Donation Options</h2>
-                  <p className="text-muted-foreground">Choose how you'd like to support our cause.</p>
+                  <p className="text-muted-foreground">Choose how you&apos;d like to support our cause.</p>
                 </div>
                 <RadioGroup defaultValue="one-time" className="grid gap-4">
                   <div>
@@ -289,7 +289,7 @@ const Page = () => {
                 </RadioGroup>
                 <div>
                   <h2 className="text-2xl font-bold">Donation Amount</h2>
-                  <p className="text-muted-foreground">Select the amount you'd like to donate.</p>
+                  <p className="text-muted-foreground">Select the amount you&apos;d like to donate.</p>
                   <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
                     <Button
                       variant="outline"
