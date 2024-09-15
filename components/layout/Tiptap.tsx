@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
@@ -18,10 +18,14 @@ import Blockquote from '@tiptap/extension-blockquote'
 import HorizontalRule from '@tiptap/extension-horizontal-rule'
 import HardBreak from '@tiptap/extension-hard-break'
 import Heading from '@tiptap/extension-heading'
-import { Bold, Italic, Strikethrough, Code, Pilcrow, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Undo, Redo, Paintbrush, Minus } from 'lucide-react'
+import { Bold, Italic, Strikethrough, Code, Pilcrow, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Undo, Redo, Paintbrush, Minus, PencilIcon, Square, Circle, EraserIcon } from 'lucide-react'
 import { Toggle } from "@/components/ui/toggle"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import Image from '@tiptap/extension-image'
 
 const MenuBar = ({ editor }: { editor: any }) => {
   if (!editor) {
@@ -219,6 +223,12 @@ const MenuBar = ({ editor }: { editor: any }) => {
 }
 
 export default function TiptapEditor({ content, onUpdate }: { content: string; onUpdate: (content: string) => void }) {
+  const [isDrawing, setIsDrawing] = useState(false)
+  const [penColor, setPenColor] = useState("#000000")
+  const [penSize, setPenSize] = useState(2)
+  const [currentShape, setCurrentShape] = useState<"pen" | "square" | "circle">("pen")
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -239,6 +249,7 @@ export default function TiptapEditor({ content, onUpdate }: { content: string; o
       HorizontalRule,
       HardBreak,
       Heading,
+      Image,
     ],
     content,
     onUpdate: ({ editor }) => {
@@ -246,14 +257,136 @@ export default function TiptapEditor({ content, onUpdate }: { content: string; o
     },
   })
 
+  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    setIsDrawing(true)
+    draw(e)
+  }
+
+  const stopDrawing = () => {
+    setIsDrawing(false)
+    if (canvasRef.current) {
+      const ctx = canvasRef.current.getContext('2d')
+      ctx?.beginPath()
+    }
+  }
+
+  const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    if (!isDrawing || !canvasRef.current) return
+
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const rect = canvas.getBoundingClientRect()
+    const scaleX = canvas.width / rect.width
+    const scaleY = canvas.height / rect.height
+
+    let x, y
+    if ('touches' in e) {
+      x = (e.touches[0].clientX - rect.left) * scaleX
+      y = (e.touches[0].clientY - rect.top) * scaleY
+    } else {
+      x = (e.clientX - rect.left) * scaleX
+      y = (e.clientY - rect.top) * scaleY
+    }
+
+    ctx.strokeStyle = penColor
+    ctx.lineWidth = penSize
+    ctx.lineCap = 'round'
+
+    if (currentShape === 'pen') {
+      ctx.lineTo(x, y)
+      ctx.stroke()
+      ctx.beginPath()
+      ctx.moveTo(x, y)
+    } else if (currentShape === 'square') {
+      ctx.strokeRect(x - penSize / 2, y - penSize / 2, penSize, penSize)
+    } else if (currentShape === 'circle') {
+      ctx.beginPath()
+      ctx.arc(x, y, penSize / 2, 0, Math.PI * 2)
+      ctx.stroke()
+    }
+  }
+
+  const clearCanvas = () => {
+    if (canvasRef.current) {
+      const ctx = canvasRef.current.getContext('2d')
+      ctx?.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+    }
+  }
+
+  const insertDrawing = () => {
+    if (canvasRef.current && editor) {
+      const dataUrl = canvasRef.current.toDataURL()
+      editor.chain().focus().setImage({ src: dataUrl }).run()
+    }
+  }
+
   if (!editor) {
     return null
   }
 
   return (
     <div className="tiptap">
-      <MenuBar editor={editor} />
-      <EditorContent editor={editor} className="border border-input bg-background rounded-md p-3 min-h-[200px]" />
+      <Tabs defaultValue="text">
+        <TabsList>
+          <TabsTrigger value="text">Text</TabsTrigger>
+          <TabsTrigger value="stylus">Stylus</TabsTrigger>
+        </TabsList>
+        <TabsContent value="text">
+          <MenuBar editor={editor} />
+          <EditorContent editor={editor} className="border border-input bg-background rounded-md p-3 min-h-[200px]" />
+        </TabsContent>
+        <TabsContent value="stylus">
+          <div className="flex flex-col space-y-4">
+            <div className="flex justify-between items-center">
+              <div className="flex space-x-2">
+                <Toggle pressed={currentShape === 'pen'} onPressedChange={() => setCurrentShape('pen')}>
+                  <PencilIcon className="h-4 w-4" />
+                </Toggle>
+                <Toggle pressed={currentShape === 'square'} onPressedChange={() => setCurrentShape('square')}>
+                  <Square className="h-4 w-4" />
+                </Toggle>
+                <Toggle pressed={currentShape === 'circle'} onPressedChange={() => setCurrentShape('circle')}>
+                  <Circle className="h-4 w-4" />
+                </Toggle>
+              </div>
+              <Input
+                type="color"
+                value={penColor}
+                onChange={(e) => setPenColor(e.target.value)}
+                className="w-10 h-10 p-0 border-0"
+              />
+              <Input
+                type="range"
+                min="1"
+                max="20"
+                value={penSize}
+                onChange={(e) => setPenSize(parseInt(e.target.value))}
+                className="w-32"
+              />
+              <Button variant="outline" onClick={clearCanvas}>
+                <EraserIcon className="h-4 w-4 mr-2" />
+                Clear
+              </Button>
+            </div>
+            <canvas
+              ref={canvasRef}
+              width={700}
+              height={400}
+              onMouseDown={startDrawing}
+              onMouseUp={stopDrawing}
+              onMouseOut={stopDrawing}
+              onMouseMove={draw}
+              onTouchStart={startDrawing}
+              onTouchEnd={stopDrawing}
+              onTouchMove={draw}
+              className="border border-gray-300 rounded-lg touch-none"
+            />
+            <Button onClick={insertDrawing}>Insert Drawing</Button>
+          </div>
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }
