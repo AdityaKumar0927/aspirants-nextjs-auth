@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, Dispatch, SetStateAction } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Checkbox } from "@/components/ui/checkbox"
 import MathRenderer from "@/components/layout/MathRenderer"
@@ -57,6 +57,7 @@ interface QuestionProps {
   handleDeleteNote: (questionId: string) => Promise<void>
 }
 
+
 const Question: React.FC<QuestionProps> = ({
   question,
   feedback,
@@ -89,6 +90,10 @@ const Question: React.FC<QuestionProps> = ({
   const [selectedTemplate, setSelectedTemplate] = useState("")
   const [showVersionHistory, setShowVersionHistory] = useState(false)
   const [showDataVisualization, setShowDataVisualization] = useState(false)
+  const [timerEnabled, setTimerEnabled] = useState(false)
+  const [hintsEnabled, setHintsEnabled] = useState(false)
+  const [solutionsEnabled, setSolutionsEnabled] = useState(false)
+  const [showStepByStep, setShowStepByStep] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   const { toast, dismiss } = useToast()
@@ -215,14 +220,12 @@ const Question: React.FC<QuestionProps> = ({
 
   const handleTemplateChange = (value: string) => {
     setSelectedTemplate(value)
-    // Apply the selected template to the note
-    // This is a placeholder and should be implemented based on your template system
     handleNoteChange(question.questionId, `Template: ${value}\n\n${note}`)
   }
 
   const exportNote = () => {
     const element = document.createElement("a")
-    const file = new Blob([note], {type: 'text/plain'})
+    const file = new Blob([note], { type: 'text/plain' })
     element.href = URL.createObjectURL(file)
     element.download = `note_${question.questionId}.txt`
     document.body.appendChild(element)
@@ -233,8 +236,6 @@ const Question: React.FC<QuestionProps> = ({
     if (canvasRef.current) {
       const ctx = canvasRef.current.getContext('2d')
       if (ctx) {
-        // This is a placeholder for data visualization
-        // You should implement actual data visualization based on your requirements
         ctx.fillStyle = 'rgb(200, 0, 0)'
         ctx.fillRect(10, 10, 50, 50)
         ctx.fillStyle = 'rgba(0, 0, 200, 0.5)'
@@ -319,6 +320,14 @@ const Question: React.FC<QuestionProps> = ({
                   setAiEnabled={setAiEnabled}
                   notesEnabled={notesEnabled}
                   setNotesEnabled={setNotesEnabled}
+                  timerEnabled={timerEnabled}
+                  setTimerEnabled={setTimerEnabled}
+                  hintsEnabled={hintsEnabled}
+                  setHintsEnabled={setHintsEnabled}
+                  solutionsEnabled={solutionsEnabled}
+                  setSolutionsEnabled={setSolutionsEnabled}
+                  showStepByStep={showStepByStep}
+                  setShowStepByStep={setShowStepByStep}
                 />
                 <MorePopover />
               </div>
@@ -566,4 +575,4 @@ const Question: React.FC<QuestionProps> = ({
   )
 }
 
-export default Question
+export default Question;

@@ -18,7 +18,7 @@ import { Settings2 } from "lucide-react";
 
 interface SettingsPopoverProps {
   markschemeEnabled: boolean;
-  setMarkschemeEnabled: Dispatch<SetStateAction<boolean>>;
+  setMarkschemeEnabled: () => void;
   aiEnabled: boolean;
   setAiEnabled: Dispatch<SetStateAction<boolean>>;
   notesEnabled: boolean;
@@ -27,10 +27,10 @@ interface SettingsPopoverProps {
   setTimerEnabled: Dispatch<SetStateAction<boolean>>;
   hintsEnabled: boolean;
   setHintsEnabled: Dispatch<SetStateAction<boolean>>;
-  darkModeEnabled: boolean;
-  setDarkModeEnabled: Dispatch<SetStateAction<boolean>>;
-  progressTrackingEnabled: boolean;
-  setProgressTrackingEnabled: Dispatch<SetStateAction<boolean>>;
+  solutionsEnabled: boolean; // Ensure this is added
+  setSolutionsEnabled: Dispatch<SetStateAction<boolean>>; // Ensure this is added
+  showStepByStep: boolean;
+  setShowStepByStep: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function SettingsPopover({
@@ -44,10 +44,6 @@ export default function SettingsPopover({
   setTimerEnabled,
   hintsEnabled,
   setHintsEnabled,
-  darkModeEnabled,
-  setDarkModeEnabled,
-  progressTrackingEnabled,
-  setProgressTrackingEnabled,
 }: SettingsPopoverProps) {
   const [openPopover, setOpenPopover] = useState(false);
 
@@ -133,32 +129,6 @@ export default function SettingsPopover({
                 id="hints"
                 checked={hintsEnabled}
                 onCheckedChange={setHintsEnabled}
-              />
-            </div>
-            <div className="flex items-center justify-between space-x-2">
-              <Label htmlFor="dark-mode" className="flex flex-col space-y-1">
-                <span>Enable Dark Mode</span>
-                <span className="font-normal leading-snug text-muted-foreground">
-                  Toggle between light and dark themes.
-                </span>
-              </Label>
-              <Switch
-                id="dark-mode"
-                checked={darkModeEnabled}
-                onCheckedChange={setDarkModeEnabled}
-              />
-            </div>
-            <div className="flex items-center justify-between space-x-2">
-              <Label htmlFor="progress-tracking" className="flex flex-col space-y-1">
-                <span>Enable Progress Tracking</span>
-                <span className="font-normal leading-snug text-muted-foreground">
-                  Track your progress during sessions.
-                </span>
-              </Label>
-              <Switch
-                id="progress-tracking"
-                checked={progressTrackingEnabled}
-                onCheckedChange={setProgressTrackingEnabled}
               />
             </div>
           </CardContent>
