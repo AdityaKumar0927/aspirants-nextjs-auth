@@ -1,6 +1,7 @@
-import Features from "@/components/features-vertical";
-import Section from "@/components/section";
-import { Sparkles, Upload, Zap } from "lucide-react";
+import Features from "../features-vertical";
+import Section from "../section";
+import { Upload, Zap } from "lucide-react";
+import { SparklesIcon } from "@heroicons/react/24/solid";
 
 const data = [
   {
@@ -25,7 +26,7 @@ const data = [
     content:
       "Receive clear, actionable insights and recommendations based on the AI analysis. Use these insights to make data-driven decisions and improve your business strategies.",
     image: "/dashboard.png",
-    icon: <Sparkles className="w-6 h-6 text-primary" />,
+    icon: <SparklesIcon className="w-6 h-6 text-primary" />,
   },
 ];
 

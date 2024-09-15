@@ -1,5 +1,5 @@
-import { Icons } from "@/components/icons";
-import Section from "@/components/section";
+import { Icons } from "../icons";
+import Section from "../section";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";

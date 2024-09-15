@@ -1,4 +1,4 @@
-import { Icons } from "@/components/icons";
+import { Icons } from "./icons";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Drawer,

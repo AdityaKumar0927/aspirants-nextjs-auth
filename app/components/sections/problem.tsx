@@ -1,14 +1,14 @@
 import BlurFade from "@/components/magicui/blur-fade";
-import Section from "@/components/section";
+import Section from "../section";
 import { Card, CardContent } from "@/components/ui/card";
-import { Brain, Shield, Zap } from "lucide-react";
+import { Loader2Icon, Shield, Zap } from "lucide-react";
 
 const problems = [
   {
     title: "Data Overload",
     description:
       "Businesses struggle to make sense of vast amounts of complex data, missing out on valuable insights that could drive growth and innovation.",
-    icon: Brain,
+    icon: Loader2Icon,
   },
   {
     title: "Slow Decision-Making",

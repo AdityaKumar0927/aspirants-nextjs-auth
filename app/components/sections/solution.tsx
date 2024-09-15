@@ -1,9 +1,9 @@
 "use client";
 
 import FlickeringGrid from "@/components/magicui/flickering-grid";
-import Ripple from "@/components/magicui/ripple";
-import Safari from "@/components/safari";
-import Section from "@/components/section";
+import Ripple from "../magicui/ripple";
+import Safari from "../safari";
+import Section from "../section";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 

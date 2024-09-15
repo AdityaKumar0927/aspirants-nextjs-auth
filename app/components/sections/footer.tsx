@@ -1,4 +1,4 @@
-import { Icons } from "@/components/icons";
+import { Icons } from "../icons";
 import { siteConfig } from "@/lib/config";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";

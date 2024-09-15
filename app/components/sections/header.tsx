@@ -1,8 +1,8 @@
 "use client";
 
-import Drawer from "@/components/drawer";
-import { Icons } from "@/components/icons";
-import Menu from "@/components/menu";
+import Drawer from "../drawer";
+import { Icons } from "../icons";
+import Menu from "../menu";
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <header
       className={
-        "relative sticky top-0 z-50 py-2 bg-background/60 backdrop-blur"
+        "sticky top-0 z-50 py-2 bg-background/60 backdrop-blur"
       }
     >
       <div className="flex justify-between items-center container">

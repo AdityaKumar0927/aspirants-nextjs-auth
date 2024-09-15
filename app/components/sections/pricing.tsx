@@ -1,6 +1,6 @@
 "use client";
 
-import Section from "@/components/section";
+import Section from "../section";
 import { buttonVariants } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";

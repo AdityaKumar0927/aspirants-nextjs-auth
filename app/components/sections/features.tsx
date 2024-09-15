@@ -1,6 +1,6 @@
-import Features from "@/components/features-horizontal";
-import Section from "@/components/section";
-import { BarChart3, Brain, FileText, LineChart } from "lucide-react";
+import Features from "../features-horizontal";
+import Section from "../section";
+import { BarChart3, HammerIcon, FileText, LineChart } from "lucide-react";
 
 const data = [
   {
@@ -15,7 +15,7 @@ const data = [
     title: "Natural Language Processing",
     content: "Analyze text and extract sentiment effortlessly.",
     image: "/dashboard.png",
-    icon: <Brain className="h-6 w-6 text-primary" />,
+    icon: <HammerIcon className="h-6 w-6 text-primary" />,
   },
   {
     id: 3,

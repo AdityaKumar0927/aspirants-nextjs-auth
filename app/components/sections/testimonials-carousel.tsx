@@ -1,5 +1,5 @@
 import BlurFade from "@/components/magicui/blur-fade";
-import Section from "@/components/section";
+import Section from "../section";
 import {
   Carousel,
   CarouselContent,

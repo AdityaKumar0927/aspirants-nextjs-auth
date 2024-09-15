@@ -1,5 +1,5 @@
-import BlogCard from "@/components/blog-card";
-import Section from "@/components/section";
+import BlogCard from "../blog-card";
+import Section from "../section";
 import { getBlogPosts } from "@/lib/blog";
 
 export default async function BlogSection() {
