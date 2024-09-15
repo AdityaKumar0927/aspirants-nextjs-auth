@@ -24,7 +24,7 @@ const problems = [
   },
 ];
 
-export default function Component() {
+export default function problem() {
   return (
     <Section
       title="Problem"

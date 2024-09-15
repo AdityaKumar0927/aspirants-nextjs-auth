@@ -15,12 +15,27 @@ import ShimmerButton from "@/components/magicui/shimmer-button";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import Chat from "@/components/shared/Chat";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { Features } from "@/components/aceternity-ui/features";
 import { RadioGroupItem, RadioGroup } from "@radix-ui/react-radio-group";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/administrator-ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import Blog from "@/app/components/sections/blog";
+import CTA from "@/app/components/sections/cta";
+import FAQ from "@/app/components/sections/faq";
+import Features from "@/app/components/sections/features";
+import Footer from "@/app/components/sections/footer";
+import Header from "@/app/components/sections/header";
+import Hero from "@/app/components/sections/hero";
+import HowItWorks from "@/app/components/sections/how-it-works";
+import Logos from "@/app/components/sections/logos";
+import Pricing from "@/app/components/sections/pricing";
+import Problem from "@/app/components/sections/problem";
+import Solution from "@/app/components/sections/solution";
+import Testimonials from "@/app/components/sections/testimonials";
+import TestimonialsCarousel from "@/app/components/sections/testimonials-carousel";
+import CtaSection from "@/app/components/sections/cta";
+
 
 // Projects array used in HoverEffect
 const projects = [
@@ -238,10 +253,21 @@ const Page = () => {
           </a>
         </motion.div>
       </div>
+            
+          
+            <Problem />
+            
+            <Solution />
 
-      <div className="flex justify-between items-center mt-10">
-        <Features />
-      </div>
+            <HowItWorks />
+
+            <CtaSection />
+
+            <TestimonialsCarousel />
+
+            <Testimonials />
+
+            <FAQ />
 
       <div className="flex min-h-[100dvh] flex-col bg-background">
         <main className="container mx-auto flex-1 px-4 py-12 md:px-6 lg:py-24">

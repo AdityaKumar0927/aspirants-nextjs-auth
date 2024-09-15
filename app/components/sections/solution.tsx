@@ -82,7 +82,7 @@ const features = [
   },
 ];
 
-export default function Component() {
+export default function solution() {
   return (
     <Section
       title="Solution"
