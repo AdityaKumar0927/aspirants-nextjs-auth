@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Dispatch, SetStateAction, useState } from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
@@ -30,13 +30,13 @@ interface SettingsPopoverProps {
   setSolutionsEnabled: Dispatch<SetStateAction<boolean>>;
   showStepByStep: boolean;
   setShowStepByStep: Dispatch<SetStateAction<boolean>>;
-  darkModeEnabled: boolean; // Ensure this is added
-  setDarkModeEnabled: Dispatch<SetStateAction<boolean>>; // Ensure this is added
-  progressTrackingEnabled: boolean; // Add this property
-  setProgressTrackingEnabled: Dispatch<SetStateAction<boolean>>; // Add this property
+  darkModeEnabled: boolean;
+  setDarkModeEnabled: Dispatch<SetStateAction<boolean>>;
+  progressTrackingEnabled: boolean;
+  setProgressTrackingEnabled: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function SettingsPopover({
+const SettingsPopover: React.FC<SettingsPopoverProps> = ({
   markschemeEnabled,
   setMarkschemeEnabled,
   aiEnabled,
@@ -55,7 +55,7 @@ export default function SettingsPopover({
   setDarkModeEnabled,
   progressTrackingEnabled,
   setProgressTrackingEnabled,
-}: SettingsPopoverProps) {
+}) => {
   const [openPopover, setOpenPopover] = useState(false);
 
   return (
@@ -208,4 +208,6 @@ export default function SettingsPopover({
       </PopoverPrimitive.Content>
     </PopoverPrimitive.Root>
   );
-}
+};
+
+export default SettingsPopover;
