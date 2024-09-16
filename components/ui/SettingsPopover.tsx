@@ -1,4 +1,3 @@
-// @/components/ui/SettingsPopover.tsx
 "use client";
 
 import { Dispatch, SetStateAction, useState } from "react";
@@ -27,10 +26,14 @@ interface SettingsPopoverProps {
   setTimerEnabled: Dispatch<SetStateAction<boolean>>;
   hintsEnabled: boolean;
   setHintsEnabled: Dispatch<SetStateAction<boolean>>;
-  solutionsEnabled: boolean; // Ensure this is added
-  setSolutionsEnabled: Dispatch<SetStateAction<boolean>>; // Ensure this is added
+  solutionsEnabled: boolean;
+  setSolutionsEnabled: Dispatch<SetStateAction<boolean>>;
   showStepByStep: boolean;
   setShowStepByStep: Dispatch<SetStateAction<boolean>>;
+  darkModeEnabled: boolean; // Ensure this is added
+  setDarkModeEnabled: Dispatch<SetStateAction<boolean>>; // Ensure this is added
+  progressTrackingEnabled: boolean; // Add this property
+  setProgressTrackingEnabled: Dispatch<SetStateAction<boolean>>; // Add this property
 }
 
 export default function SettingsPopover({
@@ -44,6 +47,14 @@ export default function SettingsPopover({
   setTimerEnabled,
   hintsEnabled,
   setHintsEnabled,
+  solutionsEnabled,
+  setSolutionsEnabled,
+  showStepByStep,
+  setShowStepByStep,
+  darkModeEnabled,
+  setDarkModeEnabled,
+  progressTrackingEnabled,
+  setProgressTrackingEnabled,
 }: SettingsPopoverProps) {
   const [openPopover, setOpenPopover] = useState(false);
 
@@ -131,9 +142,65 @@ export default function SettingsPopover({
                 onCheckedChange={setHintsEnabled}
               />
             </div>
+            <div className="flex items-center justify-between space-x-2">
+              <Label htmlFor="solutions" className="flex flex-col space-y-1">
+                <span>Enable Solutions</span>
+                <span className="font-normal leading-snug text-muted-foreground">
+                  Allow display of solutions.
+                </span>
+              </Label>
+              <Switch
+                id="solutions"
+                checked={solutionsEnabled}
+                onCheckedChange={setSolutionsEnabled}
+              />
+            </div>
+            <div className="flex items-center justify-between space-x-2">
+              <Label htmlFor="step-by-step" className="flex flex-col space-y-1">
+                <span>Enable Step-by-Step</span>
+                <span className="font-normal leading-snug text-muted-foreground">
+                  Show step-by-step solutions.
+                </span>
+              </Label>
+              <Switch
+                id="step-by-step"
+                checked={showStepByStep}
+                onCheckedChange={setShowStepByStep}
+              />
+            </div>
+            <div className="flex items-center justify-between space-x-2">
+              <Label htmlFor="dark-mode" className="flex flex-col space-y-1">
+                <span>Enable Dark Mode</span>
+                <span className="font-normal leading-snug text-muted-foreground">
+                  Use dark mode during sessions.
+                </span>
+              </Label>
+              <Switch
+                id="dark-mode"
+                checked={darkModeEnabled}
+                onCheckedChange={setDarkModeEnabled}
+              />
+            </div>
+            <div className="flex items-center justify-between space-x-2">
+              <Label htmlFor="progress-tracking" className="flex flex-col space-y-1">
+                <span>Enable Progress Tracking</span>
+                <span className="font-normal leading-snug text-muted-foreground">
+                  Track your progress during sessions.
+                </span>
+              </Label>
+              <Switch
+                id="progress-tracking"
+                checked={progressTrackingEnabled}
+                onCheckedChange={setProgressTrackingEnabled}
+              />
+            </div>
           </CardContent>
           <CardFooter>
-            <Button variant="outline" className="w-full" onClick={() => setOpenPopover(false)}>
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => setOpenPopover(false)}
+            >
               Save preferences
             </Button>
           </CardFooter>

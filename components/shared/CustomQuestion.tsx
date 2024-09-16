@@ -1,25 +1,25 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
-import MathRenderer from "@/components/layout/MathRenderer";
-import Modal from "@/components/shared/modal";
-import { LucideBookmark, BookOpen, LucideBot, MoreVertical } from "lucide-react";
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
-import { ToastAction } from "@/components/ui/toast";
-import { useToast } from "@/components/ui/use-toast";
-import SettingsPopover from "@/components/ui/SettingsPopover";
-import Image from "next/image";
-import Tiptap from "@/components/layout/Tiptap";
-import Chat from "@/components/shared/Chat";
-import { MorePopover } from "../layout/MorePopover";
+import React, { useState, useEffect } from 'react';
+import { Checkbox } from '@/components/ui/checkbox';
+import MathRenderer from '@/components/layout/MathRenderer';
+import Modal from '@/components/shared/modal';
+import { LucideBookmark, BookOpen, LucideBot, MoreVertical } from 'lucide-react';
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
+import { ToastAction } from '@/components/ui/toast';
+import { useToast } from '@/components/ui/use-toast';
+import SettingsPopover from '@/components/ui/SettingsPopover';
+import Image from 'next/image';
+import Tiptap from '@/components/layout/Tiptap';
+import Chat from '@/components/shared/Chat';
+import { MorePopover } from '../layout/MorePopover';
 
 interface CustomQuestionType {
   questionId: string;
   text: string;
   subject: string;
   difficulty: string;
-  type: "Multiple Choice" | "Numerical";
+  type: 'Multiple Choice' | 'Numerical';
   options?: string[];
   correctOption?: string;
   markscheme?: string;
@@ -33,16 +33,8 @@ interface CustomQuestionProps {
   selectedOption: string | undefined;
   numericalAnswer: string | undefined;
   showMarkscheme: boolean | undefined;
-  handleOptionClick: (
-    questionId: string,
-    option: string,
-    correctOption: string
-  ) => void;
-  handleNumericalSubmit: (
-    questionId: string,
-    userAnswer: string,
-    correctAnswer: string
-  ) => void;
+  handleOptionClick: (questionId: string, option: string, correctOption: string) => void;
+  handleNumericalSubmit: (questionId: string, userAnswer: string, correctAnswer: string) => void;
   handleNumericalChange: (questionId: string, value: string) => void;
   handleMarkschemeToggle: (questionId: string) => void;
   handleMarkForReview: (questionId: string) => void;
@@ -76,6 +68,7 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
   userId,
   handleDeleteNote,
 }) => {
+  // Define all required state variables
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null);
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
@@ -92,6 +85,8 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
   const [darkModeEnabled, setDarkModeEnabled] = useState(false);
   const [progressTrackingEnabled, setProgressTrackingEnabled] = useState(true);
   const [showAiChat, setShowAiChat] = useState(false);
+  const [solutionsEnabled, setSolutionsEnabled] = useState(false); // Added missing state
+  const [showStepByStep, setShowStepByStep] = useState(false);     // Added missing state
 
   const { toast, dismiss } = useToast();
 
@@ -141,21 +136,35 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
         body: JSON.stringify({ questionId: question.questionId, content: note }),
       });
       if (!response.ok) throw new Error('Failed to save note');
-      alert('Note saved successfully!');
+      toast({
+        title: 'Note Saved',
+        description: 'Your note has been saved successfully.',
+      });
     } catch (error) {
       console.error('Error saving note:', error);
-      alert('Failed to save note');
+      toast({
+        title: 'Error',
+        description: 'Failed to save note. Please try again.',
+        variant: 'destructive',
+      });
     }
   };
 
   const deleteNote = async () => {
     try {
       await handleDeleteNote(question.questionId);
-      alert('Note deleted successfully!');
+      toast({
+        title: 'Note Deleted',
+        description: 'Your note has been deleted successfully.',
+      });
       handleNoteChange(question.questionId, '');
     } catch (error) {
       console.error('Error deleting note:', error);
-      alert('Failed to delete note');
+      toast({
+        title: 'Error',
+        description: 'Failed to delete note. Please try again.',
+        variant: 'destructive',
+      });
     }
   };
 
@@ -176,7 +185,7 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
     await handleMarkComplete(questionId);
     saveProgress(questionId, 'completed', !isMarkedComplete);
     toast({
-      title: "Question Completed",
+      title: 'Question Completed',
       description: `You have completed question ${questionId}.`,
       duration: 5000,
       action: <ToastAction onClick={() => undoMarkComplete(questionId)} altText="Undo">Undo</ToastAction>,
@@ -187,7 +196,7 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
     await handleMarkForReview(questionId);
     saveProgress(questionId, 'reviewed', !isMarkedForReview);
     toast({
-      title: "Question Bookmarked",
+      title: 'Question Bookmarked',
       description: `You have bookmarked question ${questionId}.`,
       duration: 5000,
       action: <ToastAction onClick={() => undoMarkForReview(questionId)} altText="Undo">Undo</ToastAction>,
@@ -267,7 +276,7 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
                 </Tooltip>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                  <SettingsPopover
+                    <SettingsPopover
                       markschemeEnabled={markschemeEnabled}
                       setMarkschemeEnabled={handleMarkschemeSwitch}
                       aiEnabled={aiEnabled}
@@ -282,6 +291,10 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
                       setDarkModeEnabled={setDarkModeEnabled}
                       progressTrackingEnabled={progressTrackingEnabled}
                       setProgressTrackingEnabled={setProgressTrackingEnabled}
+                      solutionsEnabled={solutionsEnabled} // Pass solutionsEnabled state
+                      setSolutionsEnabled={setSolutionsEnabled} // Pass setSolutionsEnabled state
+                      showStepByStep={showStepByStep} // Pass showStepByStep state
+                      setShowStepByStep={setShowStepByStep} // Pass setShowStepByStep state
                     />
                   </TooltipTrigger>
                   <TooltipContent>Settings</TooltipContent>
@@ -294,7 +307,7 @@ const CustomQuestion: React.FC<CustomQuestionProps> = ({
                 </Tooltip>
               </div>
             </div>
-            {question.diagramUrl && question.diagramUrl !== "" && (
+            {question.diagramUrl && question.diagramUrl !== '' && (
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div className="relative w-64 h-64 mb-4">

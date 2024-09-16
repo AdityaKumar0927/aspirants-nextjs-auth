@@ -1,62 +1,61 @@
-'use client'
+'use client';
 
-import React, { useState, useEffect, useRef, Dispatch, SetStateAction } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Checkbox } from "@/components/ui/checkbox"
-import MathRenderer from "@/components/layout/MathRenderer"
-import { LucideBookmark, BookOpen, LucideBot, MoreVertical, X, ChevronDown, ChevronUp, Check, FileText, Download, History, BarChart2 } from "lucide-react"
-import Image from "next/image"
-import Tiptap from "@/components/layout/Tiptap"
-import Chat from "@/components/shared/Chat"
-import { ToastAction } from "@/components/ui/toast"
-import { useToast } from "@/components/ui/use-toast"
-import SettingsPopover from "@/components/ui/SettingsPopover"
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
-import { MorePopover } from "@/components/layout/MorePopover"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { Progress } from "@/components/ui/progress"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import React, { useState, useEffect, useRef, Dispatch, SetStateAction } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Checkbox } from '@/components/ui/checkbox';
+import MathRenderer from '@/components/layout/MathRenderer';
+import { LucideBookmark, BookOpen, LucideBot, MoreVertical, X, ChevronDown, ChevronUp, Check, FileText, Download, History, BarChart2 } from 'lucide-react';
+import Image from 'next/image';
+import Tiptap from '@/components/layout/Tiptap';
+import Chat from '@/components/shared/Chat';
+import { ToastAction } from '@/components/ui/toast';
+import { useToast } from '@/components/ui/use-toast';
+import SettingsPopover from '@/components/ui/SettingsPopover';
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
+import { MorePopover } from '@/components/layout/MorePopover';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Progress } from '@/components/ui/progress';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 interface QuestionType {
-  questionId: string
-  text: string
-  subject: string
-  difficulty: string
-  type: "Multiple Choice" | "Numerical"
-  options?: string[]
-  correctOption?: string
-  markscheme?: string
-  notes?: string
-  diagramUrl?: string
+  questionId: string;
+  text: string;
+  subject: string;
+  difficulty: string;
+  type: 'Multiple Choice' | 'Numerical';
+  options?: string[];
+  correctOption?: string;
+  markscheme?: string;
+  notes?: string;
+  diagramUrl?: string;
 }
 
 interface QuestionProps {
-  question: QuestionType
-  feedback: string | undefined
-  selectedOption: string | undefined
-  numericalAnswer: string | undefined
-  showMarkscheme: boolean | undefined
-  handleOptionClick: (questionId: string, option: string, correctOption: string) => void
-  handleNumericalSubmit: (questionId: string, userAnswer: string, correctAnswer: string) => void
-  handleNumericalChange: (questionId: string, value: string) => void
-  handleMarkschemeToggle: (questionId: string) => void
-  handleMarkForReview: (questionId: string) => void
-  handleMarkComplete: (questionId: string) => void
-  isMarkedForReview: boolean
-  isMarkedComplete: boolean
-  markschemesDisabled: boolean
-  note: string
-  handleNoteChange: (questionId: string, note: string) => void
-  userId: string
-  handleDeleteNote: (questionId: string) => Promise<void>
+  question: QuestionType;
+  feedback: string | undefined;
+  selectedOption: string | undefined;
+  numericalAnswer: string | undefined;
+  showMarkscheme: boolean | undefined;
+  handleOptionClick: (questionId: string, option: string, correctOption: string) => void;
+  handleNumericalSubmit: (questionId: string, userAnswer: string, correctAnswer: string) => void;
+  handleNumericalChange: (questionId: string, value: string) => void;
+  handleMarkschemeToggle: (questionId: string) => void;
+  handleMarkForReview: (questionId: string) => void;
+  handleMarkComplete: (questionId: string) => void;
+  isMarkedForReview: boolean;
+  isMarkedComplete: boolean;
+  markschemesDisabled: boolean;
+  note: string;
+  handleNoteChange: (questionId: string, note: string) => void;
+  userId: string;
+  handleDeleteNote: (questionId: string) => Promise<void>;
 }
-
 
 const Question: React.FC<QuestionProps> = ({
   question,
@@ -78,58 +77,60 @@ const Question: React.FC<QuestionProps> = ({
   userId,
   handleDeleteNote,
 }) => {
-  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null)
-  const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
-  const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
-  const [showEditor, setShowEditor] = useState(false)
-  const [aiEnabled, setAiEnabled] = useState(true)
-  const [notesEnabled, setNotesEnabled] = useState(true)
-  const [showAiChat, setShowAiChat] = useState(false)
-  const [isExpanded, setIsExpanded] = useState(true)
-  const [progress, setProgress] = useState(0)
-  const [selectedTemplate, setSelectedTemplate] = useState("")
-  const [showVersionHistory, setShowVersionHistory] = useState(false)
-  const [showDataVisualization, setShowDataVisualization] = useState(false)
-  const [timerEnabled, setTimerEnabled] = useState(false)
-  const [hintsEnabled, setHintsEnabled] = useState(false)
-  const [solutionsEnabled, setSolutionsEnabled] = useState(false)
-  const [showStepByStep, setShowStepByStep] = useState(false)
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null);
+  const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
+  const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
+  const [showEditor, setShowEditor] = useState(false);
+  const [aiEnabled, setAiEnabled] = useState(true);
+  const [notesEnabled, setNotesEnabled] = useState(true);
+  const [showAiChat, setShowAiChat] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [selectedTemplate, setSelectedTemplate] = useState('');
+  const [showVersionHistory, setShowVersionHistory] = useState(false);
+  const [showDataVisualization, setShowDataVisualization] = useState(false);
+  const [timerEnabled, setTimerEnabled] = useState(false);
+  const [hintsEnabled, setHintsEnabled] = useState(false);
+  const [solutionsEnabled, setSolutionsEnabled] = useState(false);
+  const [showStepByStep, setShowStepByStep] = useState(false);
+  const [darkModeEnabled, setDarkModeEnabled] = useState(false); // Added state for dark mode
+  const [progressTrackingEnabled, setProgressTrackingEnabled] = useState(true); // Added state for progress tracking
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const { toast, dismiss } = useToast()
+  const { toast, dismiss } = useToast();
 
   useEffect(() => {
-    setLocalSelectedOption(selectedOption || null)
-  }, [selectedOption])
+    setLocalSelectedOption(selectedOption || null);
+  }, [selectedOption]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setProgress(100)
-    }, 1000)
-    return () => clearTimeout(timer)
-  }, [])
+      setProgress(100);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleOptionClickLocal = (option: string) => {
     if (localSelectedOption !== option) {
-      setLocalSelectedOption(option)
-      handleOptionClick(question.questionId, option, question.correctOption || '')
-      saveProgress(question.questionId, 'completed', true)
+      setLocalSelectedOption(option);
+      handleOptionClick(question.questionId, option, question.correctOption || '');
+      saveProgress(question.questionId, 'completed', true);
     }
-  }
+  };
 
   const handleNumericalSubmitLocal = () => {
-    handleNumericalSubmit(question.questionId, numericalAnswer || '', question.correctOption || '')
-    saveProgress(question.questionId, 'completed', true)
-  }
+    handleNumericalSubmit(question.questionId, numericalAnswer || '', question.correctOption || '');
+    saveProgress(question.questionId, 'completed', true);
+  };
 
   const toggleMarkscheme = () => {
-    setShowMarkschemeModal(!showMarkschemeModal)
-    handleMarkschemeToggle(question.questionId)
-  }
+    setShowMarkschemeModal(!showMarkschemeModal);
+    handleMarkschemeToggle(question.questionId);
+  };
 
   const handleMarkschemeSwitch = () => {
-    setMarkschemeEnabled(!markschemeEnabled)
-  }
+    setMarkschemeEnabled(!markschemeEnabled);
+  };
 
   const saveNote = async () => {
     try {
@@ -137,39 +138,39 @@ const Question: React.FC<QuestionProps> = ({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ questionId: question.questionId, content: note }),
-      })
-      if (!response.ok) throw new Error('Failed to save note')
+      });
+      if (!response.ok) throw new Error('Failed to save note');
       toast({
-        title: "Note Saved",
-        description: "Your note has been saved successfully.",
-      })
+        title: 'Note Saved',
+        description: 'Your note has been saved successfully.',
+      });
     } catch (error) {
-      console.error('Error saving note:', error)
+      console.error('Error saving note:', error);
       toast({
-        title: "Error",
-        description: "Failed to save note. Please try again.",
-        variant: "destructive",
-      })
+        title: 'Error',
+        description: 'Failed to save note. Please try again.',
+        variant: 'destructive',
+      });
     }
-  }
+  };
 
   const deleteNote = async () => {
     try {
-      await handleDeleteNote(question.questionId)
+      await handleDeleteNote(question.questionId);
       toast({
-        title: "Note Deleted",
-        description: "Your note has been deleted successfully.",
-      })
-      handleNoteChange(question.questionId, '')
+        title: 'Note Deleted',
+        description: 'Your note has been deleted successfully.',
+      });
+      handleNoteChange(question.questionId, '');
     } catch (error) {
-      console.error('Error deleting note:', error)
+      console.error('Error deleting note:', error);
       toast({
-        title: "Error",
-        description: "Failed to delete note. Please try again.",
-        variant: "destructive",
-      })
+        title: 'Error',
+        description: 'Failed to delete note. Please try again.',
+        variant: 'destructive',
+      });
     }
-  }
+  };
 
   const saveProgress = async (questionId: string, field: string, value: boolean) => {
     try {
@@ -177,78 +178,78 @@ const Question: React.FC<QuestionProps> = ({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ questionId, [field]: value }),
-      })
-      if (!response.ok) throw new Error('Failed to save progress')
+      });
+      if (!response.ok) throw new Error('Failed to save progress');
     } catch (error) {
-      console.error('Error saving progress:', error)
+      console.error('Error saving progress:', error);
     }
-  }
+  };
 
   const handleMarkCompleteLocal = async (questionId: string) => {
-    await handleMarkComplete(questionId)
-    saveProgress(questionId, 'completed', !isMarkedComplete)
+    await handleMarkComplete(questionId);
+    saveProgress(questionId, 'completed', !isMarkedComplete);
     toast({
-      title: "Question Completed",
+      title: 'Question Completed',
       description: `You have completed question ${questionId}.`,
       duration: 5000,
       action: <ToastAction onClick={() => undoMarkComplete(questionId)} altText="Undo">Undo</ToastAction>,
-    })
-  }
+    });
+  };
 
   const handleMarkForReviewLocal = async (questionId: string) => {
-    await handleMarkForReview(questionId)
-    saveProgress(questionId, 'reviewed', !isMarkedForReview)
+    await handleMarkForReview(questionId);
+    saveProgress(questionId, 'reviewed', !isMarkedForReview);
     toast({
-      title: "Question Bookmarked",
+      title: 'Question Bookmarked',
       description: `You have bookmarked question ${questionId}.`,
       duration: 5000,
       action: <ToastAction onClick={() => undoMarkForReview(questionId)} altText="Undo">Undo</ToastAction>,
-    })
-  }
+    });
+  };
 
   const undoMarkComplete = async (questionId: string) => {
-    await handleMarkComplete(questionId)
-    saveProgress(questionId, 'completed', false)
-    dismiss()
-  }
+    await handleMarkComplete(questionId);
+    saveProgress(questionId, 'completed', false);
+    dismiss();
+  };
 
   const undoMarkForReview = async (questionId: string) => {
-    await handleMarkForReview(questionId)
-    saveProgress(questionId, 'reviewed', false)
-    dismiss()
-  }
+    await handleMarkForReview(questionId);
+    saveProgress(questionId, 'reviewed', false);
+    dismiss();
+  };
 
   const handleTemplateChange = (value: string) => {
-    setSelectedTemplate(value)
-    handleNoteChange(question.questionId, `Template: ${value}\n\n${note}`)
-  }
+    setSelectedTemplate(value);
+    handleNoteChange(question.questionId, `Template: ${value}\n\n${note}`);
+  };
 
   const exportNote = () => {
-    const element = document.createElement("a")
-    const file = new Blob([note], { type: 'text/plain' })
-    element.href = URL.createObjectURL(file)
-    element.download = `note_${question.questionId}.txt`
-    document.body.appendChild(element)
-    element.click()
-  }
+    const element = document.createElement('a');
+    const file = new Blob([note], { type: 'text/plain' });
+    element.href = URL.createObjectURL(file);
+    element.download = `note_${question.questionId}.txt`;
+    document.body.appendChild(element);
+    element.click();
+  };
 
   const renderDataVisualization = () => {
     if (canvasRef.current) {
-      const ctx = canvasRef.current.getContext('2d')
+      const ctx = canvasRef.current.getContext('2d');
       if (ctx) {
-        ctx.fillStyle = 'rgb(200, 0, 0)'
-        ctx.fillRect(10, 10, 50, 50)
-        ctx.fillStyle = 'rgba(0, 0, 200, 0.5)'
-        ctx.fillRect(30, 30, 50, 50)
+        ctx.fillStyle = 'rgb(200, 0, 0)';
+        ctx.fillRect(10, 10, 50, 50);
+        ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+        ctx.fillRect(30, 30, 50, 50);
       }
     }
-  }
+  };
 
   useEffect(() => {
     if (showDataVisualization) {
-      renderDataVisualization()
+      renderDataVisualization();
     }
-  }, [showDataVisualization])
+  }, [showDataVisualization]);
 
   return (
     <TooltipProvider>
@@ -262,8 +263,8 @@ const Question: React.FC<QuestionProps> = ({
           <CardHeader className="relative">
             <motion.div
               initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 1, ease: "easeInOut" }}
+              animate={{ width: '100%' }}
+              transition={{ duration: 1, ease: 'easeInOut' }}
               className="absolute top-0 left-0 h-1 bg-primary"
             />
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
@@ -328,6 +329,10 @@ const Question: React.FC<QuestionProps> = ({
                   setSolutionsEnabled={setSolutionsEnabled}
                   showStepByStep={showStepByStep}
                   setShowStepByStep={setShowStepByStep}
+                  darkModeEnabled={darkModeEnabled} // Added this line
+                  setDarkModeEnabled={setDarkModeEnabled} // Added this line
+                  progressTrackingEnabled={progressTrackingEnabled} // Added this line
+                  setProgressTrackingEnabled={setProgressTrackingEnabled} // Added this line
                 />
                 <MorePopover />
               </div>
@@ -337,7 +342,7 @@ const Question: React.FC<QuestionProps> = ({
             <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
               <CollapsibleTrigger asChild>
                 <Button variant="ghost" className="w-full justify-between">
-                  {isExpanded ? "Hide Question" : "Show Question"}
+                  {isExpanded ? 'Hide Question' : 'Show Question'}
                   {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </Button>
               </CollapsibleTrigger>
@@ -346,11 +351,11 @@ const Question: React.FC<QuestionProps> = ({
                   {isExpanded && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
+                      animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      {question.diagramUrl && question.diagramUrl !== "" && (
+                      {question.diagramUrl && question.diagramUrl !== '' && (
                         <motion.div
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
@@ -435,7 +440,9 @@ const Question: React.FC<QuestionProps> = ({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className={`mt-4 p-2 rounded ${feedback === 'correct' ? 'bg-green-100 text-green-700' : feedback === 'incorrect' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}`}
+                className={`mt-4 p-2 rounded ${
+                  feedback === 'correct' ? 'bg-green-100 text-green-700' : feedback === 'incorrect' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'
+                }`}
               >
                 {feedback === 'correct' ? 'Correct!' : feedback === 'incorrect' ? 'Incorrect, try again.' : 'No answer available'}
               </motion.div>
@@ -481,8 +488,12 @@ const Question: React.FC<QuestionProps> = ({
                     <Tiptap content={note} onUpdate={(content) => handleNoteChange(question.questionId, content)} />
                   </CardContent>
                   <CardFooter className="flex justify-between">
-                    <Button variant="outline" onClick={saveNote}>Save Note</Button>
-                    <Button variant="outline" onClick={deleteNote}>Delete Note</Button>
+                    <Button variant="outline" onClick={saveNote}>
+                      Save Note
+                    </Button>
+                    <Button variant="outline" onClick={deleteNote}>
+                      Delete Note
+                    </Button>
                     <Button variant="outline" onClick={exportNote}>
                       <FileText className="mr-2 h-4 w-4" />
                       Export
@@ -497,11 +508,8 @@ const Question: React.FC<QuestionProps> = ({
                       <DialogContent>
                         <DialogHeader>
                           <DialogTitle>Version History</DialogTitle>
-                          <DialogDescription>
-                            View and restore previous versions of your note.
-                          </DialogDescription>
+                          <DialogDescription>View and restore previous versions of your note.</DialogDescription>
                         </DialogHeader>
-                        {/* Implement version history UI here */}
                       </DialogContent>
                     </Dialog>
                     <Dialog>
@@ -514,9 +522,7 @@ const Question: React.FC<QuestionProps> = ({
                       <DialogContent>
                         <DialogHeader>
                           <DialogTitle>Data Visualization</DialogTitle>
-                          <DialogDescription>
-                            Visualize data from your notes.
-                          </DialogDescription>
+                          <DialogDescription>Visualize data from your notes.</DialogDescription>
                         </DialogHeader>
                         <canvas ref={canvasRef} width="400" height="200"></canvas>
                       </DialogContent>
@@ -550,12 +556,7 @@ const Question: React.FC<QuestionProps> = ({
               <Card className="w-full max-w-2xl">
                 <CardHeader>
                   <CardTitle>Markscheme</CardTitle>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute right-4 top-4"
-                    onClick={() => setShowMarkschemeModal(false)}
-                  >
+                  <Button variant="ghost" size="icon" className="absolute right-4 top-4" onClick={() => setShowMarkschemeModal(false)}>
                     <X className="h-4 w-4" />
                   </Button>
                 </CardHeader>
@@ -572,7 +573,7 @@ const Question: React.FC<QuestionProps> = ({
         </AnimatePresence>
       </motion.div>
     </TooltipProvider>
-  )
-}
+  );
+};
 
 export default Question;
