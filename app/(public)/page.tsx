@@ -22,7 +22,6 @@ import { Input } from "@/components/administrator-ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Blog from "@/app/components/sections/blog";
 import CTA from "@/app/components/sections/cta";
-import FAQ from "@/app/components/sections/faq";
 import Features from "@/app/components/sections/features";
 import Footer from "@/app/components/sections/footer";
 import Header from "@/app/components/sections/header";
@@ -35,6 +34,7 @@ import Solution from "@/app/components/sections/solution";
 import Testimonials from "@/app/components/sections/testimonials";
 import TestimonialsCarousel from "@/app/components/sections/testimonials-carousel";
 import CtaSection from "@/app/components/sections/cta";
+import { FAQ } from "@/components/shared/FAQ";
 
 
 // Projects array used in HoverEffect
@@ -263,11 +263,9 @@ const Page = () => {
 
             <CtaSection />
 
-            <TestimonialsCarousel />
-
-            <Testimonials />
-
             <FAQ />
+
+            
 
       <div className="flex min-h-[100dvh] flex-col bg-background">
         <main className="container mx-auto flex-1 px-4 py-12 md:px-6 lg:py-24">

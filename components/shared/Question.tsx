@@ -5,20 +5,66 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useSwipeable } from 'react-swipeable';
 import { Checkbox } from '@/components/ui/checkbox';
 import MathRenderer from '@/components/layout/MathRenderer';
-import { LucideBookmark, BookOpen, LucideBot, X, MessageSquare, ThumbsUp, ThumbsDown, Edit, Trash2, Reply, CornerDownRight, Sun, Maximize2, Minimize2, Trophy } from 'lucide-react';
+import {
+  LucideBookmark,
+  BookOpen,
+  LucideBot,
+  X,
+  MessageSquare,
+  ThumbsUp,
+  ThumbsDown,
+  Edit,
+  Trash2,
+  Reply,
+  CornerDownRight,
+  Sun,
+  Maximize2,
+  Minimize2,
+  Trophy,
+} from 'lucide-react';
 import Image from 'next/image';
 import Tiptap from '@/components/layout/Tiptap';
 import Chat from '@/components/shared/Chat';
 import { ToastAction } from '@/components/ui/toast';
 import { useToast } from '@/components/ui/use-toast';
 import SettingsPopover from '@/components/ui/SettingsPopover';
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from '@/components/ui/tooltip';
 import { MorePopover } from '@/components/layout/MorePopover';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@/components/ui/tabs';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -58,8 +104,16 @@ interface QuestionProps {
   selectedOption: string | undefined;
   numericalAnswer: string | undefined;
   showMarkscheme: boolean | undefined;
-  handleOptionClick: (questionId: string, option: string, correctOption: string) => void;
-  handleNumericalSubmit: (questionId: string, userAnswer: string, correctAnswer: string) => void;
+  handleOptionClick: (
+    questionId: string,
+    option: string,
+    correctOption: string
+  ) => void;
+  handleNumericalSubmit: (
+    questionId: string,
+    userAnswer: string,
+    correctAnswer: string
+  ) => void;
   handleNumericalChange: (questionId: string, value: string) => void;
   handleMarkschemeToggle: (questionId: string) => void;
   handleMarkForReview: (questionId: string) => void;
@@ -71,8 +125,8 @@ interface QuestionProps {
   handleNoteChange: (questionId: string, note: string) => void;
   userId: string;
   handleDeleteNote: (questionId: string) => Promise<void>;
-  onNextQuestion: () => void;
-  onPreviousQuestion: () => void;
+  onNextQuestion?: () => void; // Made optional
+  onPreviousQuestion?: () => void; // Made optional
 }
 
 const Question: React.FC<QuestionProps> = ({
@@ -97,9 +151,13 @@ const Question: React.FC<QuestionProps> = ({
   onNextQuestion,
   onPreviousQuestion,
 }) => {
-  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null);
+  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
+    selectedOption || null
+  );
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
-  const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
+  const [markschemeEnabled, setMarkschemeEnabled] = useState(
+    !markschemesDisabled
+  );
   const [aiEnabled, setAiEnabled] = useState(true);
   const [notesEnabled, setNotesEnabled] = useState(true);
   const [timerEnabled, setTimerEnabled] = useState(false);
@@ -115,7 +173,9 @@ const Question: React.FC<QuestionProps> = ({
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
   const [editedCommentContent, setEditedCommentContent] = useState('');
-  const [commentSort, setCommentSort] = useState<'newest' | 'oldest' | 'popular'>('newest');
+  const [commentSort, setCommentSort] = useState<
+    'newest' | 'oldest' | 'popular'
+  >('newest');
   const [distractionFreeMode, setDistractionFreeMode] = useState(false);
   const [points, setPoints] = useState(0);
   const [streak, setStreak] = useState(0);
@@ -151,18 +211,22 @@ const Question: React.FC<QuestionProps> = ({
   };
 
   const handleNumericalSubmitLocal = () => {
-    handleNumericalSubmit(question.questionId, numericalAnswer || '', question.correctOption || '');
+    handleNumericalSubmit(
+      question.questionId,
+      numericalAnswer || '',
+      question.correctOption || ''
+    );
     saveProgress(question.questionId, 'completed', true);
     updatePoints(numericalAnswer === question.correctOption);
   };
 
   const updatePoints = (isCorrect: boolean) => {
     if (isCorrect) {
-      setPoints(prevPoints => prevPoints + 10);
-      setStreak(prevStreak => prevStreak + 1);
+      setPoints((prevPoints) => prevPoints + 10);
+      setStreak((prevStreak) => prevStreak + 1);
       if (streak + 1 === 5) {
         toast({
-          title: "Achievement Unlocked!",
+          title: 'Achievement Unlocked!',
           description: "You've answered 5 questions correctly in a row!",
           duration: 5000,
         });
@@ -221,7 +285,11 @@ const Question: React.FC<QuestionProps> = ({
     }
   };
 
-  const saveProgress = async (questionId: string, field: string, value: boolean) => {
+  const saveProgress = async (
+    questionId: string,
+    field: string,
+    value: boolean
+  ) => {
     try {
       const response = await fetch(`/api/user-progress`, {
         method: 'POST',
@@ -241,7 +309,14 @@ const Question: React.FC<QuestionProps> = ({
       title: 'Question Completed',
       description: `You have completed question ${questionId}.`,
       duration: 5000,
-      action: <ToastAction onClick={() => undoMarkComplete(questionId)} altText="Undo">Undo</ToastAction>,
+      action: (
+        <ToastAction
+          onClick={() => undoMarkComplete(questionId)}
+          altText="Undo"
+        >
+          Undo
+        </ToastAction>
+      ),
     });
   };
 
@@ -252,7 +327,14 @@ const Question: React.FC<QuestionProps> = ({
       title: 'Question Bookmarked',
       description: `You have bookmarked question ${questionId}.`,
       duration: 5000,
-      action: <ToastAction onClick={() => undoMarkForReview(questionId)} altText="Undo">Undo</ToastAction>,
+      action: (
+        <ToastAction
+          onClick={() => undoMarkForReview(questionId)}
+          altText="Undo"
+        >
+          Undo
+        </ToastAction>
+      ),
     });
   };
 
@@ -327,7 +409,7 @@ const Question: React.FC<QuestionProps> = ({
   };
 
   const handleReply = (parentId: string, replyContent: string) => {
-    const updatedComments = comments.map(comment => {
+    const updatedComments = comments.map((comment) => {
       if (comment.id === parentId) {
         return {
           ...comment,
@@ -354,13 +436,13 @@ const Question: React.FC<QuestionProps> = ({
   };
 
   const handleEditComment = (commentId: string, newContent: string) => {
-    const updatedComments = comments.map(comment => {
+    const updatedComments = comments.map((comment) => {
       if (comment.id === commentId) {
         return { ...comment, content: newContent, edited: true };
       }
       return {
         ...comment,
-        replies: comment.replies.map(reply => 
+        replies: comment.replies.map((reply) =>
           reply.id === commentId ? { ...reply, content: newContent, edited: true } : reply
         ),
       };
@@ -370,18 +452,18 @@ const Question: React.FC<QuestionProps> = ({
   };
 
   const handleDeleteComment = (commentId: string) => {
-    const updatedComments = comments.filter(comment => {
+    const updatedComments = comments.filter((comment) => {
       if (comment.id === commentId) {
         return false;
       }
-      comment.replies = comment.replies.filter(reply => reply.id !== commentId);
+      comment.replies = comment.replies.filter((reply) => reply.id !== commentId);
       return true;
     });
     setComments(updatedComments);
   };
 
   const handleVote = (commentId: string, voteType: 'upvote' | 'downvote') => {
-    const updatedComments = comments.map(comment => {
+    const updatedComments = comments.map((comment) => {
       if (comment.id === commentId) {
         return {
           ...comment,
@@ -389,7 +471,7 @@ const Question: React.FC<QuestionProps> = ({
           downvotes: voteType === 'downvote' ? comment.downvotes + 1 : comment.downvotes,
         };
       }
-      comment.replies = comment.replies.map(reply => 
+      comment.replies = comment.replies.map((reply) =>
         reply.id === commentId
           ? {
               ...reply,
@@ -409,23 +491,32 @@ const Question: React.FC<QuestionProps> = ({
     } else if (commentSort === 'oldest') {
       return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
     } else {
-      return (b.upvotes - b.downvotes) - (a.upvotes - a.downvotes);
+      return b.upvotes - a.upvotes;
     }
   });
 
   const renderComment = (comment: CommentType, isReply = false, depth = 0) => (
-    <div key={comment.id} className={`${isReply ? 'ml-6' : 'border-t'} pt-4 ${depth > 0 ? 'mt-4' : ''}`}>
+    <div
+      key={comment.id}
+      className={`${isReply ? 'ml-6' : 'border-t'} pt-4 ${depth > 0 ? 'mt-4' : ''}`}
+    >
       <div className="flex items-start space-x-2">
         {isReply && <CornerDownRight className="h-6 w-6 text-gray-400 mt-2" />}
         <div className="flex-grow">
           <div className="flex items-center space-x-2">
             <Avatar>
-              <AvatarImage src={`https://api.dicebear.com/6.x/initials/svg?seed=${comment.username}`} />
-              <AvatarFallback>{comment.username.slice(0, 2).toUpperCase()}</AvatarFallback>
+              <AvatarImage
+                src={`https://api.dicebear.com/6.x/initials/svg?seed=${comment.username}`}
+              />
+              <AvatarFallback>
+                {comment.username.slice(0, 2).toUpperCase()}
+              </AvatarFallback>
             </Avatar>
             <div>
               <p className="font-semibold">{comment.username}</p>
-              <p className="text-sm text-gray-500">{new Date(comment.timestamp).toLocaleString()}</p>
+              <p className="text-sm text-gray-500">
+                {new Date(comment.timestamp).toLocaleString()}
+              </p>
             </div>
           </div>
           {editingCommentId === comment.id ? (
@@ -436,34 +527,53 @@ const Question: React.FC<QuestionProps> = ({
                 className="w-full"
               />
               <div className="mt-2 space-x-2">
-                <Button onClick={() => handleEditComment(comment.id, editedCommentContent)}>Save</Button>
-                <Button variant="outline" onClick={() => setEditingCommentId(null)}>Cancel</Button>
+                <Button onClick={() => handleEditComment(comment.id, editedCommentContent)}>
+                  Save
+                </Button>
+                <Button variant="outline" onClick={() => setEditingCommentId(null)}>
+                  Cancel
+                </Button>
               </div>
             </div>
           ) : (
             <p className="mt-2">{comment.content}</p>
           )}
           <div className="mt-2 flex items-center space-x-4">
-            <button onClick={() => handleVote(comment.id, 'upvote')} className="flex items-center space-x-1 text-gray-500 hover:text-green-500">
+            <button
+              onClick={() => handleVote(comment.id, 'upvote')}
+              className="flex items-center space-x-1 text-gray-500 hover:text-green-500"
+            >
               <ThumbsUp className="h-4 w-4" />
               <span>{comment.upvotes}</span>
             </button>
-            <button onClick={() => handleVote(comment.id, 'downvote')} className="flex items-center space-x-1 text-gray-500 hover:text-red-500">
+            <button
+              onClick={() => handleVote(comment.id, 'downvote')}
+              className="flex items-center space-x-1 text-gray-500 hover:text-red-500"
+            >
               <ThumbsDown className="h-4 w-4" />
               <span>{comment.downvotes}</span>
             </button>
-            <button onClick={() => setReplyingTo(comment.id)} className="text-gray-500 hover:text-blue-500">
+            <button
+              onClick={() => setReplyingTo(comment.id)}
+              className="text-gray-500 hover:text-blue-500"
+            >
               <Reply className="h-4 w-4" />
             </button>
             {comment.userId === userId && (
               <>
-                <button onClick={() => {
-                  setEditingCommentId(comment.id);
-                  setEditedCommentContent(comment.content);
-                }} className="text-gray-500 hover:text-yellow-500">
+                <button
+                  onClick={() => {
+                    setEditingCommentId(comment.id);
+                    setEditedCommentContent(comment.content);
+                  }}
+                  className="text-gray-500 hover:text-yellow-500"
+                >
                   <Edit className="h-4 w-4" />
                 </button>
-                <button onClick={() => handleDeleteComment(comment.id)} className="text-gray-500 hover:text-red-500">
+                <button
+                  onClick={() => handleDeleteComment(comment.id)}
+                  className="text-gray-500 hover:text-red-500"
+                >
                   <Trash2 className="h-4 w-4" />
                 </button>
               </>
@@ -479,20 +589,22 @@ const Question: React.FC<QuestionProps> = ({
               />
               <div className="mt-2 space-x-2">
                 <Button onClick={() => handleReply(comment.id, newComment)}>Reply</Button>
-                <Button variant="outline" onClick={() => setReplyingTo(null)}>Cancel</Button>
+                <Button variant="outline" onClick={() => setReplyingTo(null)}>
+                  Cancel
+                </Button>
               </div>
             </div>
           )}
         </div>
       </div>
-      {comment.replies.map(reply => renderComment(reply, true, depth + 1))}
+      {comment.replies.map((reply) => renderComment(reply, true, depth + 1))}
     </div>
   );
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => onNextQuestion(),
-    onSwipedRight: () => onPreviousQuestion(),
-    trackMouse: true
+    onSwipedLeft: () => onNextQuestion && onNextQuestion(),
+    onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
+    trackMouse: true,
   });
 
   const toggleDistractionFreeMode = () => {
@@ -549,7 +661,11 @@ const Question: React.FC<QuestionProps> = ({
                         size="icon"
                         onClick={() => handleMarkForReviewLocal(question.questionId)}
                       >
-                        <LucideBookmark className={isMarkedForReview ? 'fill-yellow-700' : 'text-yellow-700'} />
+                        <LucideBookmark
+                          className={
+                            isMarkedForReview ? 'fill-yellow-700' : 'text-yellow-700'
+                          }
+                        />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>Bookmark for Review</TooltipContent>
@@ -615,7 +731,11 @@ const Question: React.FC<QuestionProps> = ({
                 {question.options?.map((option: string, index: number) => (
                   <Button
                     key={index}
-                    variant={localSelectedOption === String.fromCharCode(65 + index) ? "default" : "outline"}
+                    variant={
+                      localSelectedOption === String.fromCharCode(65 + index)
+                        ? 'default'
+                        : 'outline'
+                    }
                     className={`w-full justify-start text-left text-base sm:text-lg p-4 ${
                       localSelectedOption === String.fromCharCode(65 + index) && feedback
                         ? feedback === 'correct'
@@ -623,7 +743,9 @@ const Question: React.FC<QuestionProps> = ({
                           : 'bg-red-100 hover:bg-red-200 text-red-700'
                         : ''
                     }`}
-                    onClick={() => handleOptionClickLocal(String.fromCharCode(65 + index))}
+                    onClick={() =>
+                      handleOptionClickLocal(String.fromCharCode(65 + index))
+                    }
                   >
                     <span className="mr-2">{String.fromCharCode(65 + index)}.</span>
                     <MathRenderer text={option} />
@@ -632,10 +754,20 @@ const Question: React.FC<QuestionProps> = ({
               </div>
             )}
             {feedback && (
-              <div className={`mt-4 p-2 rounded ${
-                feedback === 'correct' ? 'bg-green-100 text-green-700' : feedback === 'incorrect' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'
-              }`}>
-                {feedback === 'correct' ? 'Correct!' : feedback === 'incorrect' ? 'Incorrect, try again.' : 'No answer available'}
+              <div
+                className={`mt-4 p-2 rounded ${
+                  feedback === 'correct'
+                    ? 'bg-green-100 text-green-700'
+                    : feedback === 'incorrect'
+                    ? 'bg-red-100 text-red-700'
+                    : 'bg-gray-100 text-gray-700'
+                }`}
+              >
+                {feedback === 'correct'
+                  ? 'Correct!'
+                  : feedback === 'incorrect'
+                  ? 'Incorrect, try again.'
+                  : 'No answer available'}
               </div>
             )}
             {localSelectedOption && markschemeEnabled && !examModeEnabled && (
@@ -656,14 +788,26 @@ const Question: React.FC<QuestionProps> = ({
                   {showComments ? 'Hide Comments' : 'Show Comments'}
                   <MessageSquare className="ml-2 h-4 w-4" />
                 </Button>
-                <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'notes' | 'ai')} className="w-auto">
+                <Tabs
+                  value={activeTab}
+                  onValueChange={(value) => setActiveTab(value as 'notes' | 'ai')}
+                  className="w-auto"
+                >
                   <TabsList>
-                    <TabsTrigger value="notes" disabled={examModeEnabled}>Notes</TabsTrigger>
-                    <TabsTrigger value="ai" disabled={examModeEnabled}>AI Assistant</TabsTrigger>
+                    <TabsTrigger value="notes" disabled={examModeEnabled}>
+                      Notes
+                    </TabsTrigger>
+                    <TabsTrigger value="ai" disabled={examModeEnabled}>
+                      AI Assistant
+                    </TabsTrigger>
                   </TabsList>
                 </Tabs>
               </div>
-              <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'notes' | 'ai')} className="w-full">
+              <Tabs
+                value={activeTab}
+                onValueChange={(value) => setActiveTab(value as 'notes' | 'ai')}
+                className="w-full"
+              >
                 <TabsContent value="notes">
                   <Card>
                     <CardHeader>
@@ -684,7 +828,10 @@ const Question: React.FC<QuestionProps> = ({
                           </SelectContent>
                         </Select>
                       </div>
-                      <Tiptap content={note} onUpdate={(content) => handleNoteChange(question.questionId, content)} />
+                      <Tiptap
+                        content={note}
+                        onUpdate={(content) => handleNoteChange(question.questionId, content)}
+                      />
                     </CardContent>
                     <CardFooter className="flex justify-between">
                       <Button variant="outline" onClick={saveNote}>
@@ -707,7 +854,9 @@ const Question: React.FC<QuestionProps> = ({
                         <DialogContent>
                           <DialogHeader>
                             <DialogTitle>Version History</DialogTitle>
-                            <DialogDescription>View and restore previous versions of your note.</DialogDescription>
+                            <DialogDescription>
+                              View and restore previous versions of your note.
+                            </DialogDescription>
                           </DialogHeader>
                         </DialogContent>
                       </Dialog>
@@ -721,7 +870,9 @@ const Question: React.FC<QuestionProps> = ({
                         <DialogContent>
                           <DialogHeader>
                             <DialogTitle>Data Visualization</DialogTitle>
-                            <DialogDescription>Visualize data from your notes.</DialogDescription>
+                            <DialogDescription>
+                              Visualize data from your notes.
+                            </DialogDescription>
                           </DialogHeader>
                           <canvas ref={canvasRef} width="400" height="200"></canvas>
                         </DialogContent>
@@ -733,7 +884,9 @@ const Question: React.FC<QuestionProps> = ({
                   <Card>
                     <CardHeader>
                       <CardTitle>AI Assistant</CardTitle>
-                      <CardDescription>Ask for help or clarification on this question.</CardDescription>
+                      <CardDescription>
+                        Ask for help or clarification on this question.
+                      </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <Chat questionText={question.text} />
@@ -750,7 +903,12 @@ const Question: React.FC<QuestionProps> = ({
                   <CardContent>
                     <div className="mb-4">
                       <Label htmlFor="comment-sort">Sort by</Label>
-                      <Select value={commentSort} onValueChange={(value: 'newest' | 'oldest' | 'popular') => setCommentSort(value)}>
+                      <Select
+                        value={commentSort}
+                        onValueChange={(value: 'newest' | 'oldest' | 'popular') =>
+                          setCommentSort(value)
+                        }
+                      >
                         <SelectTrigger id="comment-sort">
                           <SelectValue placeholder="Sort comments" />
                         </SelectTrigger>
@@ -763,7 +921,7 @@ const Question: React.FC<QuestionProps> = ({
                     </div>
                     <ScrollArea className="h-[300px]">
                       <div className="space-y-4">
-                        {sortedComments.map(comment => renderComment(comment))}
+                        {sortedComments.map((comment) => renderComment(comment))}
                       </div>
                     </ScrollArea>
                     <div className="mt-4">
@@ -794,14 +952,23 @@ const Question: React.FC<QuestionProps> = ({
               <Card className="w-full max-w-2xl">
                 <CardHeader>
                   <CardTitle>Markscheme</CardTitle>
-                  <Button variant="ghost" size="icon" className="absolute right-4 top-4" onClick={() => setShowMarkschemeModal(false)}>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-4 top-4"
+                    onClick={() => setShowMarkschemeModal(false)}
+                  >
                     <X className="h-4 w-4" />
                   </Button>
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-y-auto max-h-[60vh]">
                     <p className="mb-2">
-                      {question.markscheme ? <MathRenderer text={question.markscheme} /> : 'No answer available'}
+                      {question.markscheme ? (
+                        <MathRenderer text={question.markscheme} />
+                      ) : (
+                        'No answer available'
+                      )}
                     </p>
                   </div>
                 </CardContent>
@@ -830,7 +997,12 @@ const Question: React.FC<QuestionProps> = ({
             <ul className="list-disc pl-5">
               {question.relatedResources.map((resource, index) => (
                 <li key={index}>
-                  <a href={resource.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                  <a
+                    href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
                     {resource.title}
                   </a>
                 </li>
