@@ -36,6 +36,7 @@ import Testimonials from "@/app/components/sections/testimonials";
 import TestimonialsCarousel from "@/app/components/sections/testimonials-carousel";
 import CtaSection from "@/app/components/sections/cta";
 import { FAQ } from "@/components/shared/FAQ";
+import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
 
 
 // Projects array used in HoverEffect
@@ -101,11 +102,11 @@ const Page = () => {
       <div className="z-10 w-full px-5 xl:px-0">
         <div className="text-center px-4">
           <div className="flex flex-col items-center gap-6 pb-8 text-center">
-            <RainbowButton
-              className="bg-white text-black flex items-center space-x-2"
+            <AnimatedGradientText
+              className="bg-white text-black font-light flex items-center space-x-2"
             >
               <span>Now enhanced by ChatGPT 4o</span>
-            </RainbowButton>
+            </AnimatedGradientText>
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
               <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
@@ -271,166 +272,6 @@ const Page = () => {
 
             <FAQ />
 
-            
-
-      <div className="flex min-h-[100dvh] flex-col bg-background">
-        <main className="container mx-auto flex-1 px-4 py-12 md:px-6 lg:py-24">
-          <div className="mx-auto max-w-3xl space-y-8">
-            <div className="space-y-4 text-center">
-              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Support Our Cause</h1>
-              <p className="text-muted-foreground md:text-xl">
-                Your donation will make a real difference in the lives of those we serve. Help us continue our important
-                work.
-              </p>
-            </div>
-            <div className="rounded-lg border bg-card p-6 shadow-sm md:p-8">
-              <div className="space-y-4">
-                <div>
-                  <h2 className="text-2xl font-bold">Donation Options</h2>
-                  <p className="text-muted-foreground">Choose how you&apos;d like to support our cause.</p>
-                </div>
-                <RadioGroup defaultValue="one-time" className="grid gap-4">
-                  <div>
-                    <RadioGroupItem value="one-time" id="one-time" className="peer sr-only" />
-                    <Label
-                      htmlFor="one-time"
-                      className="flex items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-checked:border-primary"
-                    >
-                      <div>
-                        <h3 className="text-lg font-medium">One-Time Donation</h3>
-                        <p className="text-muted-foreground">Make a single donation.</p>
-                      </div>
-                      <CheckIcon className="h-6 w-6 text-primary" />
-                    </Label>
-                  </div>
-                  <div>
-                    <RadioGroupItem value="recurring" id="recurring" className="peer sr-only" />
-                    <Label
-                      htmlFor="recurring"
-                      className="flex items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-checked:border-primary"
-                    >
-                      <div>
-                        <h3 className="text-lg font-medium">Recurring Donation</h3>
-                        <p className="text-muted-foreground">Make a monthly donation.</p>
-                      </div>
-                      <CheckIcon className="h-6 w-6 text-primary" />
-                    </Label>
-                  </div>
-                </RadioGroup>
-                <div>
-                  <h2 className="text-2xl font-bold">Donation Amount</h2>
-                  <p className="text-muted-foreground">Select the amount you&apos;d like to donate.</p>
-                  <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-                    <Button
-                      variant="outline"
-                      className="rounded-md border-muted bg-popover px-4 py-2 text-lg font-medium hover:bg-accent hover:text-accent-foreground"
-                    >
-                      $25
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="rounded-md border-muted bg-popover px-4 py-2 text-lg font-medium hover:bg-accent hover:text-accent-foreground"
-                    >
-                      $50
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="rounded-md border-muted bg-popover px-4 py-2 text-lg font-medium hover:bg-accent hover:text-accent-foreground"
-                    >
-                      $100
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="rounded-md border-muted bg-popover px-4 py-2 text-lg font-medium hover:bg-accent hover:text-accent-foreground"
-                    >
-                      $250
-                    </Button>
-                  </div>
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold">Your Information</h2>
-                  <p className="text-muted-foreground">Please provide your contact details.</p>
-                  <form className="mt-4 space-y-4">
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <div className="grid gap-2">
-                        <Label htmlFor="name">Name</Label>
-                        <Input id="name" placeholder="First Last" />
-                      </div>
-                      <div className="grid gap-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="you@example.com" />
-                      </div>
-                    </div>
-                    <div className="grid gap-2">
-                      <Label htmlFor="address">Address</Label>
-                      <Textarea id="address" placeholder="123 Main St, Anytown USA" />
-                    </div>
-                  </form>
-                </div>
-                <div className="flex justify-end">
-                  <Button className="w-full max-w-[200px]">Donate Now</Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
-
-      <div className="flex flex-col min-h-[100dvh]">
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-blue-500 border rounded-md">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-              <div className="flex flex-col justify-center space-y-4 text-primary-foreground">
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">Support Our Cause</h1>
-                  <p className="max-w-[600px] text-primary-foreground/80 md:text-xl">
-                    Your donation can make a real difference in the lives of those in need. Help us continue our mission
-                    to provide essential services to the community.
-                  </p>
-                </div>
-                <Link
-                  href="#"
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-primary-foreground px-8 text-sm font-medium text-primary shadow transition-colors hover:bg-primary-foreground/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                  prefetch={false}
-                >
-                  Donate Now
-                </Link>
-              </div>
-              <img
-                src="/placeholder.svg"
-                width="550"
-                height="550"
-                alt="Donation"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
-              />
-            </div>
-          </div>
-        </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
-              <div>
-                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Our Mission</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Helping Those in Need</h2>
-                <p className="text-muted-foreground md:text-xl lg:text-base xl:text-xl">
-                  Your donation will help us provide essential services and resources to families and individuals
-                  struggling with poverty, homelessness, and other challenges. We are committed to making a lasting impact
-                  in our community.
-                </p>
-              </div>
-              <div>
-                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">How We Use Donations</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Transparent Allocation</h2>
-                <p className="text-muted-foreground md:text-xl lg:text-base xl:text-xl">
-                  We are committed to using your donations responsibly and transparently. 80% of all donations go directly
-                  to our programs and services, with the remaining 20% used for operational expenses and administrative
-                  costs.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
     </>
   );
 };
