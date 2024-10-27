@@ -261,16 +261,6 @@ const Page = () => {
         </motion.div>
       </div>
             
-          
-            <Problem />
-            
-            <Solution />
-
-            <HowItWorks />
-
-            <CtaSection />
-
-            <FAQ />
 
     </>
   );
