@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSignInModal } from "./sign-in";
 import UserDropdown from "./user-dropdown";
+import { Button } from "../ui/button";
 import NotificationDropdown from "@/components/shared/NotificationDropdown";
 import { Session } from "next-auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

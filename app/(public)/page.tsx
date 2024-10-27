@@ -20,6 +20,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/administrator-ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { RainbowButton } from "@/components/magicui/rainbow-button";
 import Blog from "@/app/components/sections/blog";
 import CTA from "@/app/components/sections/cta";
 import Features from "@/app/components/sections/features";
@@ -97,37 +98,20 @@ const Page = () => {
 
   return (
     <>
-      <div className="z-10 w-full max-w-xl px-5 xl:px-0">
+      <div className="z-10 w-full px-5 xl:px-0">
         <div className="text-center px-4">
           <div className="flex flex-col items-center gap-6 pb-8 text-center">
-            <HoverBorderGradient
-              containerClassName="rounded-full"
-              as="button"
+            <RainbowButton
               className="bg-white text-black flex items-center space-x-2"
             >
               <span>Now enhanced by ChatGPT 4o</span>
-            </HoverBorderGradient>
-
-            <div className="z-10 w-full max-w-xl px-5 xl:px-0 bg-[linear-gradient(to_right,#60606012_1px,transparent_1px),linear-gradient(to_bottom,#60606012_1px,transparent_1px)] bg-[size:48px_48px]">
-              <div className="text-center px-4">
-                <div className="relative">
-                  <div className="absolute top-0 right-20 h-full w-full bg-gradient-to-br from-green-300 via-yellow-200 to-red-500 blur-3xl transform translate-x-1/2"></div>
-                  <div className="relative rounded-lg p-6 max-w-md mx-auto">
-                    <div className="flex items-center mb-4">
-                      <div className="w-6 h-6"></div>
-                      <h1
-                        className="animate-fade-up bg-gradient-to-br from-black to-black bg-clip-text text-center text-3xl tracking-tighter text-transparent opacity-0 drop-shadow-sm sm:text-6xl sm:leading-[5rem]"
-                        style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
-                      >
-                        Study For Your Exams With{" "}
-                        <div className="text-white text-gradient-to-br from-cyan-300 to-white">aspirants</div>
-                      </h1>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p
+            </RainbowButton>
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-2xl text-center">
+              <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
+                 Study Smart With Aspirants
+              </h1>
+              <p
               className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 sm:text-xl"
               style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
             >
@@ -149,10 +133,32 @@ const Page = () => {
                 <ShinyButton text="Browse Resources" />
               </Link>
             </div>
+            </div>
+            <div className="mt-16 flow-root sm:mt-24">
+              <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+                <img
+                  alt="App screenshot"
+                  src="https://i.imghippo.com/files/Zm2044GO.png"
+                  width={2432}
+                  height={1442}
+                  className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+          </div>
+        </div>
 
+        <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
+        Review Your Performance
+      </h4>
+
+      <p className="text-sm mb-8 lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal">
+        Understand your strengths and weaknesses questions by exam, topic, sub-topic, year, difficulty, completed, or marked for review to save time.
+      </p>
+
+    
       <div className="flex justify-between items-center bg-background-image bg-border mt-10 bg-cover bg-center">
         <ContainerScroll titleComponent={<></>}>
           <Dashboard />

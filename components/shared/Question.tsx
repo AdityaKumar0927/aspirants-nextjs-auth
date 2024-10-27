@@ -21,6 +21,12 @@ import {
   Maximize2,
   Minimize2,
   Trophy,
+  Download,
+  Star,
+  Tag,
+  Grid,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import Image from 'next/image';
 import Tiptap from '@/components/layout/Tiptap';
@@ -71,12 +77,14 @@ import { Textarea } from '@/components/ui/textarea';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
+import { Slider } from '@/components/ui/slider';
 
 interface QuestionType {
   questionId: string;
   text: string;
   subject: string;
   difficulty: string;
+  year: string;
   type: 'Multiple Choice' | 'Numerical';
   options?: string[];
   correctOption?: string;
@@ -84,6 +92,7 @@ interface QuestionType {
   notes?: string;
   diagramUrl?: string;
   relatedResources?: { title: string; url: string }[];
+  customTags?: string[];
 }
 
 interface CommentType {
@@ -125,8 +134,11 @@ interface QuestionProps {
   handleNoteChange: (questionId: string, note: string) => void;
   userId: string;
   handleDeleteNote: (questionId: string) => Promise<void>;
-  onNextQuestion?: () => void; // Made optional
-  onPreviousQuestion?: () => void; // Made optional
+  onNextQuestion?: () => void;
+  onPreviousQuestion?: () => void;
+  totalQuestions: number;
+  currentQuestionIndex: number;
+  handleQuestionChange: (index: number) => void;
 }
 
 const Question: React.FC<QuestionProps> = ({
@@ -150,14 +162,15 @@ const Question: React.FC<QuestionProps> = ({
   handleDeleteNote,
   onNextQuestion,
   onPreviousQuestion,
+  totalQuestions,
+  currentQuestionIndex,
+  handleQuestionChange,
 }) => {
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
     selectedOption || null
   );
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
-  const [markschemeEnabled, setMarkschemeEnabled] = useState(
-    !markschemesDisabled
-  );
+  const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
   const [aiEnabled, setAiEnabled] = useState(true);
   const [notesEnabled, setNotesEnabled] = useState(true);
   const [timerEnabled, setTimerEnabled] = useState(false);
@@ -173,20 +186,22 @@ const Question: React.FC<QuestionProps> = ({
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
   const [editedCommentContent, setEditedCommentContent] = useState('');
-  const [commentSort, setCommentSort] = useState<
-    'newest' | 'oldest' | 'popular'
-  >('newest');
+  const [commentSort, setCommentSort] = useState<'newest' | 'oldest' | 'popular'>('newest');
   const [distractionFreeMode, setDistractionFreeMode] = useState(false);
   const [points, setPoints] = useState(0);
   const [streak, setStreak] = useState(0);
   const [showComingSoonModal, setShowComingSoonModal] = useState(false);
   const [comingSoonMessage, setComingSoonMessage] = useState('');
   const [selectedTemplate, setSelectedTemplate] = useState('');
-  const [showVersionHistory, setShowVersionHistory] = useState(false);
-  const [showDataVisualization, setShowDataVisualization] = useState(false);
   const [progress, setProgress] = useState(0);
   const [activeTab, setActiveTab] = useState<'notes' | 'ai'>('notes');
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [language, setLanguage] = useState('en');
+  const [isOffline, setIsOffline] = useState(false);
+  const [userRating, setUserRating] = useState(0);
+  const [userDifficulty, setUserDifficulty] = useState(0);
+  const [newTag, setNewTag] = useState('');
+  const [showQuestionGrid, setShowQuestionGrid] = useState(false);
+  const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || []);
 
   const { toast, dismiss } = useToast();
 
@@ -195,10 +210,16 @@ const Question: React.FC<QuestionProps> = ({
   }, [selectedOption]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setProgress(100);
-    }, 1000);
-    return () => clearTimeout(timer);
+    const handleOnline = () => setIsOffline(false);
+    const handleOffline = () => setIsOffline(true);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
   }, []);
 
   const handleOptionClickLocal = (option: string) => {
@@ -352,7 +373,9 @@ const Question: React.FC<QuestionProps> = ({
 
   const handleTemplateChange = (value: string) => {
     setSelectedTemplate(value);
-    handleNoteChange(question.questionId, `Template: ${value}\n\n${note}`);
+    handleNoteChange(question.questionId, `Template: ${value}
+
+${note}`);
   };
 
   const exportNote = () => {
@@ -363,24 +386,6 @@ const Question: React.FC<QuestionProps> = ({
     document.body.appendChild(element);
     element.click();
   };
-
-  const renderDataVisualization = () => {
-    if (canvasRef.current) {
-      const ctx = canvasRef.current.getContext('2d');
-      if (ctx) {
-        ctx.fillStyle = 'rgb(200, 0, 0)';
-        ctx.fillRect(10, 10, 50, 50);
-        ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
-        ctx.fillRect(30, 30, 50, 50);
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (showDataVisualization) {
-      renderDataVisualization();
-    }
-  }, [showDataVisualization]);
 
   const toggleExamMode = () => {
     setExamModeEnabled(!examModeEnabled);
@@ -395,7 +400,7 @@ const Question: React.FC<QuestionProps> = ({
       const newCommentObj: CommentType = {
         id: Date.now().toString(),
         userId,
-        username: 'Current User', // Replace with actual username
+        username: 'Current User',
         content: newComment,
         timestamp: new Date().toISOString(),
         replies: [],
@@ -418,7 +423,7 @@ const Question: React.FC<QuestionProps> = ({
             {
               id: Date.now().toString(),
               userId,
-              username: 'Current User', // Replace with actual username
+              username: 'Current User',
               content: replyContent,
               timestamp: new Date().toISOString(),
               replies: [],
@@ -539,43 +544,68 @@ const Question: React.FC<QuestionProps> = ({
             <p className="mt-2">{comment.content}</p>
           )}
           <div className="mt-2 flex items-center space-x-4">
-            <button
-              onClick={() => handleVote(comment.id, 'upvote')}
-              className="flex items-center space-x-1 text-gray-500 hover:text-green-500"
-            >
-              <ThumbsUp className="h-4 w-4" />
-              <span>{comment.upvotes}</span>
-            </button>
-            <button
-              onClick={() => handleVote(comment.id, 'downvote')}
-              className="flex items-center space-x-1 text-gray-500 hover:text-red-500"
-            >
-              <ThumbsDown className="h-4 w-4" />
-              <span>{comment.downvotes}</span>
-            </button>
-            <button
-              onClick={() => setReplyingTo(comment.id)}
-              className="text-gray-500 hover:text-blue-500"
-            >
-              <Reply className="h-4 w-4" />
-            </button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={() => handleVote(comment.id, 'upvote')}
+                  className="flex items-center space-x-1 text-gray-500 hover:text-green-500"
+                >
+                  <ThumbsUp className="h-4 w-4" />
+                  <span>{comment.upvotes}</span>
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>Upvote</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={() => handleVote(comment.id, 'downvote')}
+                  className="flex items-center space-x-1 text-gray-500 hover:text-red-500"
+                >
+                  <ThumbsDown className="h-4 w-4" />
+                  <span>{comment.downvotes}</span>
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>Downvote</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={() => setReplyingTo(comment.id)}
+                  className="text-gray-500 hover:text-blue-500"
+                >
+                  <Reply className="h-4 w-4" />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>Reply</TooltipContent>
+            </Tooltip>
             {comment.userId === userId && (
               <>
-                <button
-                  onClick={() => {
-                    setEditingCommentId(comment.id);
-                    setEditedCommentContent(comment.content);
-                  }}
-                  className="text-gray-500 hover:text-yellow-500"
-                >
-                  <Edit className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => handleDeleteComment(comment.id)}
-                  className="text-gray-500 hover:text-red-500"
-                >
-                  <Trash2 className="h-4 w-4" />
-                </button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button
+                      onClick={() => {
+                        setEditingCommentId(comment.id);
+                        setEditedCommentContent(comment.content);
+                      }}
+                      className="text-gray-500 hover:text-yellow-500"
+                    >
+                      <Edit className="h-4 w-4" />
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent>Edit</TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button
+                      onClick={() => handleDeleteComment(comment.id)}
+                      className="text-gray-500 hover:text-red-500"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent>Delete</TooltipContent>
+                </Tooltip>
               </>
             )}
           </div>
@@ -616,20 +646,71 @@ const Question: React.FC<QuestionProps> = ({
     setShowComingSoonModal(true);
   };
 
+  const handleLanguageChange = (newLanguage: string) => {
+    setLanguage(newLanguage);
+    // Here you would typically fetch the translated content for the question
+    // and update the state accordingly
+  };
+
+  const handleDownloadForOffline = () => {
+    // Implement the logic to download the question for offline use
+    toast({
+      title: 'Question Downloaded',
+      description: 'This question is now available offline.',
+    });
+  };
+
+  const handleRatingChange = (newRating: number) => {
+    setUserRating(newRating);
+    // Here you would typically send this rating to your backend
+  };
+
+  const handleDifficultyChange = (newDifficulty: number) => {
+    setUserDifficulty(newDifficulty);
+    // Here you would typically send this difficulty rating to your backend
+  };
+
+  const handleAddTag = () => {
+    if (newTag && !localCustomTags.includes(newTag)) {
+      setLocalCustomTags([...localCustomTags, newTag]);
+      setNewTag('');
+    }
+  };
+
+  const handleRemoveTag = (tagToRemove: string) => {
+    setLocalCustomTags(localCustomTags.filter(tag => tag !== tagToRemove));
+  };
+
+  const renderQuestionGrid = () => {
+    const columns = 5;
+    const rows = Math.ceil(totalQuestions / columns);
+
+    return (
+      <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
+        {Array.from({ length: totalQuestions }).map((_, index) => (
+          <Button
+            key={index}
+            variant={index === currentQuestionIndex ? 'default' : 'outline'}
+            className={`w-full h-12 ${
+              index === currentQuestionIndex ? 'bg-primary text-primary-foreground' : ''
+            }`}
+            onClick={() => handleQuestionChange(index)}
+          >
+            {index + 1}
+          </Button>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <TooltipProvider>
       <div {...handlers} className="relative min-h-screen pb-20">
         <Card className="w-full overflow-hidden mb-6">
           <CardHeader className="relative">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: '100%' }}
-              transition={{ duration: 1, ease: 'easeInOut' }}
-              className="absolute top-0 left-0 h-1 bg-primary"
-            />
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
-                <CardTitle className="text-left font-display font-bold tracking-[-0.02em] drop-shadow-sm text-xl sm:text-2xl md:text-3xl">
+                <CardTitle className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
                   Question {question.questionId}
                 </CardTitle>
                 <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
@@ -639,59 +720,95 @@ const Question: React.FC<QuestionProps> = ({
                   {question.difficulty}
                 </div>
                 <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
+                  {question.year}
+                </div>
+                <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
                   {question.type}
+                </div>
+                {localCustomTags.map((tag) => (
+                  <Badge key={tag} variant="secondary" className="px-2 py-1">
+                    {tag}
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="ml-1 p-0"
+                      onClick={() => handleRemoveTag(tag)}
+                    >
+                      <X className="h-3 w-3" />
+                    </Button>
+                  </Badge>
+                ))}
+                <div className="flex items-center space-x-2">
+                  <Input
+                    type="text"
+                    placeholder="Add a new tag"
+                    value={newTag}
+                    onChange={(e) => setNewTag(e.target.value)}
+                    className="w-32"
+                  />
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button variant="outline" onClick={handleAddTag} size="sm">
+                        <Tag className="mr-2 h-4 w-4" />
+                        Add
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Add new tag</TooltipContent>
+                  </Tooltip>
                 </div>
               </div>
               {!distractionFreeMode && (
-                <div className="flex items-center space-x-2">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Checkbox
-                        id={`complete-${question.questionId}`}
-                        checked={isMarkedComplete}
-                        onCheckedChange={() => handleMarkCompleteLocal(question.questionId)}
+                <div className="flex items-center space-x-4">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Checkbox
+                      id={`complete-${question.questionId}`}
+                      checked={isMarkedComplete}
+                      onCheckedChange={() => handleMarkCompleteLocal(question.questionId)}
+                      className="p-2 transition duration-200 ease-in-out"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>Mark as Complete</TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => handleMarkForReviewLocal(question.questionId)}
+                      className="hover:bg-gray-200 rounded-lg p-2 transition duration-200 ease-in-out"
+                    >
+                      <LucideBookmark
+                        className={
+                          isMarkedForReview ? 'fill-yellow-700' : 'text-yellow-700'
+                        }
                       />
-                    </TooltipTrigger>
-                    <TooltipContent>Mark as Complete</TooltipContent>
-                  </Tooltip>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => handleMarkForReviewLocal(question.questionId)}
-                      >
-                        <LucideBookmark
-                          className={
-                            isMarkedForReview ? 'fill-yellow-700' : 'text-yellow-700'
-                          }
-                        />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Bookmark for Review</TooltipContent>
-                  </Tooltip>
-                  <SettingsPopover
-                    markschemeEnabled={markschemeEnabled}
-                    setMarkschemeEnabled={handleMarkschemeSwitch}
-                    aiEnabled={aiEnabled}
-                    setAiEnabled={setAiEnabled}
-                    notesEnabled={notesEnabled}
-                    setNotesEnabled={setNotesEnabled}
-                    timerEnabled={timerEnabled}
-                    setTimerEnabled={setTimerEnabled}
-                    hintsEnabled={hintsEnabled}
-                    setHintsEnabled={setHintsEnabled}
-                    solutionsEnabled={solutionsEnabled}
-                    setSolutionsEnabled={setSolutionsEnabled}
-                    showStepByStep={showStepByStep}
-                    setShowStepByStep={setShowStepByStep}
-                    darkModeEnabled={darkModeEnabled}
-                    setDarkModeEnabled={setDarkModeEnabled}
-                    progressTrackingEnabled={progressTrackingEnabled}
-                    setProgressTrackingEnabled={setProgressTrackingEnabled}
-                  />
-                  <MorePopover />
-                </div>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Bookmark for Review</TooltipContent>
+                </Tooltip>
+                <SettingsPopover
+                  markschemeEnabled={markschemeEnabled}
+                  setMarkschemeEnabled={handleMarkschemeSwitch}
+                  aiEnabled={aiEnabled}
+                  setAiEnabled={setAiEnabled}
+                  notesEnabled={notesEnabled}
+                  setNotesEnabled={setNotesEnabled}
+                  timerEnabled={timerEnabled}
+                  setTimerEnabled={setTimerEnabled}
+                  hintsEnabled={hintsEnabled}
+                  setHintsEnabled={setHintsEnabled}
+                  solutionsEnabled={solutionsEnabled}
+                  setSolutionsEnabled={setSolutionsEnabled}
+                  showStepByStep={showStepByStep}
+                  setShowStepByStep={setShowStepByStep}
+                  darkModeEnabled={darkModeEnabled}
+                  setDarkModeEnabled={setDarkModeEnabled}
+                  progressTrackingEnabled={progressTrackingEnabled}
+                  setProgressTrackingEnabled={setProgressTrackingEnabled}
+                />
+                <MorePopover />
+              </div>              
               )}
             </div>
           </CardHeader>
@@ -721,35 +838,44 @@ const Question: React.FC<QuestionProps> = ({
                   value={numericalAnswer}
                   onChange={(e) => handleNumericalChange(question.questionId, e.target.value)}
                 />
-                <Button className="mt-2" onClick={handleNumericalSubmitLocal}>
-                  Submit
-                </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button className="mt-2" onClick={handleNumericalSubmitLocal}>
+                      Submit
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Submit your answer</TooltipContent>
+                </Tooltip>
               </div>
             )}
             {question.type === 'Multiple Choice' && (
               <div className="space-y-2 mb-4">
                 {question.options?.map((option: string, index: number) => (
-                  <Button
-                    key={index}
-                    variant={
-                      localSelectedOption === String.fromCharCode(65 + index)
-                        ? 'default'
-                        : 'outline'
-                    }
-                    className={`w-full justify-start text-left text-base sm:text-lg p-4 ${
-                      localSelectedOption === String.fromCharCode(65 + index) && feedback
-                        ? feedback === 'correct'
-                          ? 'bg-green-100 hover:bg-green-200 text-green-700'
-                          : 'bg-red-100 hover:bg-red-200 text-red-700'
-                        : ''
-                    }`}
-                    onClick={() =>
-                      handleOptionClickLocal(String.fromCharCode(65 + index))
-                    }
-                  >
-                    <span className="mr-2">{String.fromCharCode(65 + index)}.</span>
-                    <MathRenderer text={option} />
-                  </Button>
+                  <Tooltip key={index}>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant={
+                          localSelectedOption === String.fromCharCode(65 + index)
+                            ? 'default'
+                            : 'outline'
+                        }
+                        className={`w-full justify-start text-left text-base sm:text-lg p-4 ${
+                          localSelectedOption === String.fromCharCode(65 + index) && feedback
+                            ? feedback === 'correct'
+                              ? 'bg-green-100 hover:bg-green-200 text-green-700'
+                              : 'bg-red-100 hover:bg-red-200 text-red-700'
+                            : ''
+                        }`}
+                        onClick={() =>
+                          handleOptionClickLocal(String.fromCharCode(65 + index))
+                        }
+                      >
+                        <span className="mr-2">{String.fromCharCode(65 + index)}.</span>
+                        <MathRenderer text={option} />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Select this option</TooltipContent>
+                  </Tooltip>
                 ))}
               </div>
             )}
@@ -771,23 +897,19 @@ const Question: React.FC<QuestionProps> = ({
               </div>
             )}
             {localSelectedOption && markschemeEnabled && !examModeEnabled && (
-              <Button className="mt-4" onClick={toggleMarkscheme}>
-                Show Markscheme
-              </Button>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button className="mt-4" onClick={toggleMarkscheme}>
+                    Show Markscheme
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>View the markscheme</TooltipContent>
+              </Tooltip>
             )}
           </CardContent>
           {!distractionFreeMode && (
             <CardFooter className="flex flex-col">
               <div className="w-full flex justify-between items-center mb-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowComments(!showComments)}
-                  className="text-sm"
-                >
-                  {showComments ? 'Hide Comments' : 'Show Comments'}
-                  <MessageSquare className="ml-2 h-4 w-4" />
-                </Button>
                 <Tabs
                   value={activeTab}
                   onValueChange={(value) => setActiveTab(value as 'notes' | 'ai')}
@@ -834,49 +956,31 @@ const Question: React.FC<QuestionProps> = ({
                       />
                     </CardContent>
                     <CardFooter className="flex justify-between">
-                      <Button variant="outline" onClick={saveNote}>
-                        Save Note
-                      </Button>
-                      <Button variant="outline" onClick={deleteNote}>
-                        Delete Note
-                      </Button>
-                      <Button variant="outline" onClick={exportNote}>
-                        <BookOpen className="mr-2 h-4 w-4" />
-                        Export
-                      </Button>
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button variant="outline">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button variant="outline" onClick={saveNote}>
+                            Save Note
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Save your note</TooltipContent>
+                      </Tooltip>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button variant="outline" onClick={deleteNote}>
+                            Delete Note
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Delete your note</TooltipContent>
+                      </Tooltip>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button variant="outline" onClick={exportNote}>
                             <BookOpen className="mr-2 h-4 w-4" />
-                            Version History
+                            Export
                           </Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                          <DialogHeader>
-                            <DialogTitle>Version History</DialogTitle>
-                            <DialogDescription>
-                              View and restore previous versions of your note.
-                            </DialogDescription>
-                          </DialogHeader>
-                        </DialogContent>
-                      </Dialog>
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button variant="outline">
-                            <LucideBot className="mr-2 h-4 w-4" />
-                            Visualize Data
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                          <DialogHeader>
-                            <DialogTitle>Data Visualization</DialogTitle>
-                            <DialogDescription>
-                              Visualize data from your notes.
-                            </DialogDescription>
-                          </DialogHeader>
-                          <canvas ref={canvasRef} width="400" height="200"></canvas>
-                        </DialogContent>
-                      </Dialog>
+                        </TooltipTrigger>
+                        <TooltipContent>Export your note</TooltipContent>
+                      </Tooltip>
                     </CardFooter>
                   </Card>
                 </TabsContent>
@@ -894,6 +998,20 @@ const Question: React.FC<QuestionProps> = ({
                   </Card>
                 </TabsContent>
               </Tabs>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowComments(!showComments)}
+                    className="text-sm mt-4"
+                  >
+                    Comments ({comments.length})
+                    <MessageSquare className="ml-2 h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>View and add comments</TooltipContent>
+              </Tooltip>
               {showComments && (
                 <Card className="mt-4 w-full">
                   <CardHeader>
@@ -930,9 +1048,14 @@ const Question: React.FC<QuestionProps> = ({
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                       />
-                      <Button onClick={handleAddComment} className="mt-2">
-                        Post Comment
-                      </Button>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button onClick={handleAddComment} className="mt-2">
+                            Post Comment
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Post your comment</TooltipContent>
+                      </Tooltip>
                     </div>
                   </CardContent>
                 </Card>
@@ -952,14 +1075,19 @@ const Question: React.FC<QuestionProps> = ({
               <Card className="w-full max-w-2xl">
                 <CardHeader>
                   <CardTitle>Markscheme</CardTitle>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute right-4 top-4"
-                    onClick={() => setShowMarkschemeModal(false)}
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="absolute right-4 top-4"
+                        onClick={() => setShowMarkschemeModal(false)}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Close markscheme</TooltipContent>
+                  </Tooltip>
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-y-auto max-h-[60vh]">
@@ -981,41 +1109,56 @@ const Question: React.FC<QuestionProps> = ({
           <Badge variant="secondary">Streak: {streak}</Badge>
         </div>
         <div className="fixed bottom-20 right-4 space-x-2">
-          <Button variant="outline" size="icon" onClick={() => showComingSoon('Dark Mode')}>
-            <Sun className="h-4 w-4" />
-          </Button>
-          <Button variant="outline" size="icon" onClick={toggleDistractionFreeMode}>
-            {distractionFreeMode ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-          </Button>
-          <Button variant="outline" size="icon" onClick={() => showComingSoon('Leaderboard')}>
-            <Trophy className="h-4 w-4" />
-          </Button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant="outline" size="icon" onClick={() => showComingSoon('Dark Mode')}>
+                <Sun className="h-4 w-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Toggle dark mode (coming soon)</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant="outline" size="icon" onClick={toggleDistractionFreeMode}>
+                {distractionFreeMode ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              {distractionFreeMode ? 'Exit distraction-free mode' : 'Enter distraction-free mode'}
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant="outline" size="icon" onClick={() => showComingSoon('Leaderboard')}>
+                <Trophy className="h-4 w-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>View leaderboard (coming soon)</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant="outline" size="icon" onClick={() => setShowQuestionGrid(true)}>
+                <Grid className="h-4 w-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Show question grid</TooltipContent>
+          </Tooltip>
         </div>
-        {question.relatedResources && (
-          <div className="mt-4">
-            <h3 className="text-lg font-semibold mb-2">Related Resources:</h3>
-            <ul className="list-disc pl-5">
-              {question.relatedResources.map((resource, index) => (
-                <li key={index}>
-                  <a
-                    href={resource.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    {resource.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
         <Dialog open={showComingSoonModal} onOpenChange={setShowComingSoonModal}>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Coming Soon</DialogTitle>
               <DialogDescription>{comingSoonMessage}</DialogDescription>
             </DialogHeader>
+          </DialogContent>
+        </Dialog>
+
+        <Dialog open={showQuestionGrid} onOpenChange={setShowQuestionGrid}>
+          <DialogContent className="sm:max-w-[800px]">
+            <DialogHeader>
+              <DialogTitle>Question Grid</DialogTitle>
+            </DialogHeader>
+            {renderQuestionGrid()}
           </DialogContent>
         </Dialog>
       </div>

@@ -277,35 +277,46 @@ const MainContent: React.FC = () => {
           ))}
         </div>
 
-        {filteredQuestions.length > 0 ? (
-          filteredQuestions.map((question) => (
-            <Question
-              key={question.questionId}
-              question={question}
-              feedback={feedback[question.questionId]}
-              selectedOption={selectedOptions[question.questionId]} // Pass the selected option
-              numericalAnswer={numericalAnswers[question.questionId]}
-              showMarkscheme={showMarkscheme[question.questionId]}
-              handleOptionClick={(questionId, option, correctOption) =>
-                handleOptionClickLocal(questionId, option, correctOption)
-              }
-              handleNumericalSubmit={handleNumericalSubmit}
-              handleNumericalChange={handleNumericalChange}
-              handleMarkschemeToggle={handleMarkschemeToggle}
-              handleMarkForReview={() => handleMarkForReview(question.questionId)}
-              handleMarkComplete={() => handleMarkComplete(question.questionId)}
-              isMarkedForReview={questions.find(q => q.questionId === question.questionId)?.reviewed || false}
-              isMarkedComplete={questions.find(q => q.questionId === question.questionId)?.completed || false}
-              markschemesDisabled={false}
-              note=""
-              handleNoteChange={() => {}}
-              handleDeleteNote={handleDeleteNote}
-              userId="user-id-placeholder" // Replace with actual user ID
-            />
-          ))
-        ) : (
-          <p>No questions found with the selected filters.</p>
-        )}
+       {filteredQuestions.length > 0 ? (
+  filteredQuestions.map((question, index) => (
+    <Question
+      key={question.questionId}
+      question={question}
+      feedback={feedback[question.questionId]}
+      selectedOption={selectedOptions[question.questionId]} 
+      numericalAnswer={numericalAnswers[question.questionId]}
+      showMarkscheme={showMarkscheme[question.questionId]}
+      handleOptionClick={(questionId, option, correctOption) =>
+        handleOptionClickLocal(questionId, option, correctOption)
+      }
+      handleNumericalSubmit={handleNumericalSubmit}
+      handleNumericalChange={handleNumericalChange}
+      handleMarkschemeToggle={handleMarkschemeToggle}
+      handleMarkForReview={() => handleMarkForReview(question.questionId)}
+      handleMarkComplete={() => handleMarkComplete(question.questionId)}
+      isMarkedForReview={
+        questions.find(q => q.questionId === question.questionId)?.reviewed || false
+      }
+      isMarkedComplete={
+        questions.find(q => q.questionId === question.questionId)?.completed || false
+      }
+      markschemesDisabled={false}
+      note=""
+      handleNoteChange={() => {}}
+      handleDeleteNote={handleDeleteNote}
+      userId="user-id-placeholder" 
+      totalQuestions={filteredQuestions.length}  // Add totalQuestions prop
+      currentQuestionIndex={index}  // Add currentQuestionIndex prop
+      handleQuestionChange={(newIndex) => {
+        console.log(`Navigating to question ${newIndex}`);
+        // Logic to handle question navigation (if needed)
+      }}  // Add handleQuestionChange prop
+    />
+  ))
+) : (
+  <p>No questions found with the selected filters.</p>
+)}
+
       </div>
     </div>
   );

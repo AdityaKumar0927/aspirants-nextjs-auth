@@ -9,6 +9,7 @@ import { useSignInModal } from "./sign-in";
 import { useSignUpModal } from "./sign-up"; // Import the sign-up modal hook
 import { Menu } from "lucide-react";
 import useScroll from "@/lib/hooks/use-scroll";
+import { Button } from "../ui/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -108,18 +109,16 @@ export default function SignedOutNavbar() {
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
-              <button
-                className="rounded-lg text-center border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-gray-800"
+              <Button variant="outline"
                 onClick={() => setShowSignInModal(true)}
               >
                 Log In
-              </button>
-              <button
-                className="rounded-lg text-center border border-black p-1.5 px-4 text-sm text-black transition-all hover:bg-gray-200"
+              </Button>
+              <Button variant="secondary"
                 onClick={() => setShowSignUpModal(true)} // Open the sign-up modal
               >
                 Sign Up
-              </button>
+              </Button>
             </div>
             <div className="md:hidden">
               <button

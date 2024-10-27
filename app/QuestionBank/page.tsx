@@ -690,46 +690,52 @@ const QuestionBank: React.FC = () => {
             <>
               {paginatedQuestions.map((question) => (
                 <Question
-                  key={question.questionId}
-                  question={question}
-                  feedback={state.feedback[question.questionId]}
-                  selectedOption={state.selectedOptions[question.questionId]}
-                  numericalAnswer={state.numericalAnswers[question.questionId]}
-                  showMarkscheme={state.showMarkscheme[question.questionId]}
-                  handleOptionClick={handleOptionClick}
-                  handleNumericalSubmit={handleNumericalSubmit}
-                  handleNumericalChange={(questionId, value) => {
-                    dispatch({
-                      type: "SET_NUMERICAL_ANSWERS",
-                      payload: {
-                        ...state.numericalAnswers,
-                        [questionId]: value,
-                      },
-                    });
-                  }}
-                  handleMarkschemeToggle={() =>
-                    dispatch({
-                      type: "SET_SHOW_MARKSCHEME",
-                      payload: {
-                        ...state.showMarkscheme,
-                        [question.questionId]: !state.showMarkscheme[question.questionId],
-                      },
-                    })
+                key={question.questionId}
+                question={question}
+                feedback={state.feedback[question.questionId]}
+                selectedOption={state.selectedOptions[question.questionId]}
+                numericalAnswer={state.numericalAnswers[question.questionId]}
+                showMarkscheme={state.showMarkscheme[question.questionId]}
+                handleOptionClick={handleOptionClick}
+                handleNumericalSubmit={handleNumericalSubmit}
+                handleNumericalChange={(questionId, value) =>
+                  dispatch({
+                    type: "SET_NUMERICAL_ANSWERS",
+                    payload: { ...state.numericalAnswers, [questionId]: value },
+                  })
+                }
+                handleMarkschemeToggle={() =>
+                  dispatch({
+                    type: "SET_SHOW_MARKSCHEME",
+                    payload: {
+                      ...state.showMarkscheme,
+                      [question.questionId]: !state.showMarkscheme[question.questionId],
+                    },
+                  })
+                }
+                handleMarkForReview={() =>
+                  handleMarkForReview(question.questionId, !question.reviewed)
+                }
+                handleMarkComplete={() =>
+                  handleMarkComplete(question.questionId, !question.completed)
+                }
+                isMarkedForReview={question.reviewed}
+                isMarkedComplete={question.completed}
+                markschemesDisabled={false}
+                note={state.notes[question.questionId] || ""}
+                handleNoteChange={handleNoteChange}
+                userId={userId}
+                handleDeleteNote={handleDeleteNote}
+                totalQuestions={filteredQuestions.length} // Add this
+                currentQuestionIndex={paginatedQuestions.indexOf(question)} // Add this
+                handleQuestionChange={(index) => {
+                  // Logic to handle question navigation
+                  const newPage = Math.floor(index / PAGE_SIZE) + 1;
+                  if (newPage !== state.currentPage) {
+                    dispatch({ type: "SET_CURRENT_PAGE", payload: newPage });
                   }
-                  handleMarkForReview={() =>
-                    handleMarkForReview(question.questionId, !question.reviewed)
-                  }
-                  handleMarkComplete={() =>
-                    handleMarkComplete(question.questionId, !question.completed)
-                  }
-                  isMarkedForReview={question.reviewed}
-                  isMarkedComplete={question.completed}
-                  markschemesDisabled={false}
-                  note={state.notes[question.questionId] || ""}
-                  handleNoteChange={handleNoteChange}
-                  userId={userId}
-                  handleDeleteNote={handleDeleteNote}
-                />
+                }}
+              />              
               ))}
               {paginatedQuestions.length < filteredQuestions.length && (
                 <button

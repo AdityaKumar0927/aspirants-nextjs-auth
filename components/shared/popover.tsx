@@ -31,7 +31,7 @@ export default function Popover({
             <div className="sticky top-0 z-20 flex w-full items-center justify-center rounded-t-[10px] bg-inherit">
               <div className="my-3 h-1 w-12 rounded-full bg-gray-300" />
             </div>
-            <div className="flex min-h-[150px] w-full items-center justify-center overflow-hidden bg-white pb-8 align-middle shadow-xl">
+            <div className="flex min-h-[150px] w-full items-center justify-center overflow-hidden bg-white pb-8 align-middle">
               {content}
             </div>
           </Drawer.Content>
@@ -50,7 +50,7 @@ export default function Popover({
         <PopoverPrimitive.Content
           sideOffset={8}
           align={align}
-          className="z-50 hidden animate-slide-up-fade items-center rounded-md border border-gray-200 bg-white drop-shadow-lg sm:block"
+          className="z-50 hidden animate-slide-up-fade items-center rounded-md border border-gray-200 bg-white sm:block"
         >
           {content}
         </PopoverPrimitive.Content>
