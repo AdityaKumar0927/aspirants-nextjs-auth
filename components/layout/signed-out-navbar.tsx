@@ -24,6 +24,11 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const supportLinks = [
   {
+    title: "Survey",
+    href: "/survey",
+    description: "Support our platform by surveying with us.",
+  },
+  {
     title: "Donate",
     href: "/Donate",
     description: "Support our platform with your donations.",

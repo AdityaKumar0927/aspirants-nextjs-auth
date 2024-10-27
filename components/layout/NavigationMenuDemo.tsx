@@ -29,6 +29,7 @@ const automationTools = [
 ];
 
 const support = [
+  { title: "Survey", href: "#survey"},
   { title: "Donate", href: "#" },
   { title: "Report", href: "#" },
   { title: "Contact", href: "#" },
