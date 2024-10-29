@@ -1,9 +1,6 @@
-// app/QuestionBank/page.tsx
-
-"use client"; // Ensure this is a client component
+"use client";
 
 import React, { useReducer, useEffect, useMemo, useCallback } from "react";
-import { useSession } from "next-auth/react"; // Import useSession from next-auth
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Question from "@/components/shared/Question";
@@ -18,9 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 // Define the page size for pagination
-const PAGE_SIZE = 10; // Adjust as needed
-
-// Interface Definitions
+const PAGE_SIZE = 10; // Set the desired page size
 
 interface QuestionType {
   exam: string;
@@ -40,7 +35,6 @@ interface QuestionType {
   notes?: string;
   lastAttempted?: string;
   diagramUrl?: string;
-  performance?: UserPerformance;
 }
 
 interface UserAnswer {
@@ -67,7 +61,6 @@ interface UserPerformance {
   engagementLevel: number;
   completed: boolean;
   reviewed: boolean;
-  lastAttempted?: string;
 }
 
 type FiltersType = {
@@ -101,7 +94,6 @@ type StateType = {
   notes: Record<string, string>;
   loading: boolean;
   currentPage: number;
-  error: string | null; // Add error state
 };
 
 type ActionType =
@@ -115,10 +107,7 @@ type ActionType =
   | { type: "SET_SELECTED_OPTIONS"; payload: Record<string, string> }
   | { type: "SET_NOTES"; payload: Record<string, string> }
   | { type: "SET_LOADING"; payload: boolean }
-  | { type: "SET_CURRENT_PAGE"; payload: number }
-  | { type: "SET_ERROR"; payload: string | null }; // Add error action
-
-// Initial State
+  | { type: "SET_CURRENT_PAGE"; payload: number };
 
 const initialState: StateType = {
   questions: [],
@@ -149,10 +138,7 @@ const initialState: StateType = {
   notes: {},
   loading: true,
   currentPage: 1,
-  error: null,
 };
-
-// Reducer Function
 
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
@@ -181,69 +167,37 @@ function reducer(state: StateType, action: ActionType): StateType {
       return { ...state, loading: action.payload };
     case "SET_CURRENT_PAGE":
       return { ...state, currentPage: action.payload };
-    case "SET_ERROR":
-      return { ...state, error: action.payload };
     default:
       return state;
   }
 }
 
-// Define the type for updated user performance fields
-type UpdateUserPerformanceFields = Partial<Omit<UserPerformance, "questionId">> & {
-  lastAttempted?: string;
-};
-
-// Main Component
-
 const QuestionBank: React.FC = () => {
-  const { data: session, status } = useSession(); // Use useSession hook
-  const userId = session?.user?.id;
-
-  const isLoadingSession = status === "loading";
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // Fetch all necessary data
+  const userId = ""; // Add logic to retrieve user ID if signed in
+
   const fetchAllData = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true });
-    dispatch({ type: "SET_ERROR", payload: null });
 
     try {
-      // Fetch questions
-      const questionsData: QuestionType[] = await fetchData("/api/questions");
+      const [questionsData, userProgressData = [], userAnswersData = [], notesData = [], userPerformanceData = []] =
+        await Promise.all([
+          fetchData("/api/questions"),
+          userId
+            ? Promise.all([
+                fetchData("/api/user-progress"),
+                fetchData("/api/user-answers"),
+                fetchData("/api/notes"),
+                fetchData("/api/user-performance/get"),
+              ])
+            : [],
+        ]).then((results) => (userId ? [results[0], ...results[1]] : [results[0]]));
 
-      // Initialize user-specific data arrays
-      let userProgressData: any[] = [];
-      let userAnswersData: UserAnswer[] = [];
-      let notesData: any[] = [];
-      let userPerformanceData: UserPerformance[] = [];
-
-      // If user is logged in, fetch user-specific data
-      if (userId) {
-        const [
-          progressData,
-          answersData,
-          notesFetchedData,
-          performanceData,
-        ] = await Promise.all([
-          fetchData("/api/user-progress"),
-          fetchData("/api/user-answers"),
-          fetchData("/api/notes"),
-          fetchData("/api/user-performance"), // Ensure there's a GET endpoint for user-performance
-        ]);
-
-        userProgressData = progressData;
-        userAnswersData = answersData;
-        notesData = notesFetchedData;
-        userPerformanceData = performanceData;
-      }
-
-      // Initialize records to store user interactions
       const feedback: Record<string, string> = {};
       const selectedOptions: Record<string, string> = {};
       const notes: Record<string, string> = {};
 
-      // Merge questions with user-specific data
       const mergedQuestions = questionsData.map((question: QuestionType) => {
         const progress = userProgressData.find(
           (p: any) => p.questionId === question.questionId
@@ -256,25 +210,22 @@ const QuestionBank: React.FC = () => {
           (p: UserPerformance) => p.questionId === question.questionId
         );
 
-        // Populate selected options and feedback based on user answers
         if (userAnswer) {
           selectedOptions[question.questionId] = userAnswer.selectedOption;
           feedback[question.questionId] = userAnswer.isCorrect ? "correct" : "incorrect";
         }
 
-        // Populate notes
         if (note) {
           notes[question.questionId] = note.content;
         }
 
-        // Merge statuses
         return {
           ...question,
           reviewed: performance?.reviewed ?? progress?.reviewed ?? false,
           completed: performance?.completed ?? progress?.completed ?? false,
           notes: note ? note.content : "",
-          lastAttempted: progress?.lastAttempted ?? performance?.lastAttempted ?? "",
-          performance: performance || undefined,
+          lastAttempted: progress?.lastAttempted ?? "",
+          performance: performance || {},
         };
       });
 
@@ -284,27 +235,21 @@ const QuestionBank: React.FC = () => {
           parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
       );
 
-      // Update state with fetched and merged data
       dispatch({ type: "SET_QUESTIONS", payload: mergedQuestions });
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: selectedOptions });
       dispatch({ type: "SET_FEEDBACK", payload: feedback });
       dispatch({ type: "SET_NOTES", payload: notes });
     } catch (error) {
       console.error("Error fetching data:", error);
-      dispatch({ type: "SET_ERROR", payload: "Failed to fetch data." });
     } finally {
       dispatch({ type: "SET_LOADING", payload: false });
     }
   }, [userId]);
 
-  // Fetch data on component mount and when userId changes
   useEffect(() => {
-    if (userId || (!isLoadingSession && !userId)) {
-      fetchAllData();
-    }
-  }, [fetchAllData, userId, isLoadingSession]);
+    fetchAllData();
+  }, [fetchAllData]);
 
-  // Memoized filtered questions based on search and filters
   const filteredQuestions = useMemo(() => {
     let filtered = state.questions.filter((question) => {
       const searchQuery = state.searchQuery.toLowerCase();
@@ -316,17 +261,19 @@ const QuestionBank: React.FC = () => {
 
       const matchesFilters =
         (!state.filters.exams.length || state.filters.exams.includes(question.exam)) &&
-        (!state.filters.subjects.length || state.filters.subjects.includes(question.subject)) &&
+        (!state.filters.subjects.length ||
+          state.filters.subjects.includes(question.subject)) &&
         (!state.filters.topics.length || state.filters.topics.includes(question.topic)) &&
-        (!state.filters.subtopics.length || state.filters.subtopics.includes(question.subtopic)) &&
-        (!state.filters.difficulties.length || state.filters.difficulties.includes(question.difficulty)) &&
+        (!state.filters.subtopics.length ||
+          state.filters.subtopics.includes(question.subtopic)) &&
+        (!state.filters.difficulties.length ||
+          state.filters.difficulties.includes(question.difficulty)) &&
         (!state.filters.years.length || state.filters.years.includes(question.year)) &&
         (!state.filters.types.length || state.filters.types.includes(question.type));
 
       return matchesSearch && matchesFilters;
     });
 
-    // Apply status filters
     if (state.filters.status === "review") {
       filtered = filtered.filter((question) => question.reviewed);
     } else if (state.filters.status === "complete") {
@@ -336,18 +283,15 @@ const QuestionBank: React.FC = () => {
     return filtered;
   }, [state.questions, state.filters, state.searchQuery]);
 
-  // Memoized paginated questions based on current page
   const paginatedQuestions = useMemo(() => {
     const endIndex = state.currentPage * PAGE_SIZE;
     return filteredQuestions.slice(0, endIndex);
   }, [filteredQuestions, state.currentPage]);
 
-  // Handler to load more questions
   const handleLoadMore = useCallback(() => {
     dispatch({ type: "SET_CURRENT_PAGE", payload: state.currentPage + 1 });
   }, [state.currentPage]);
 
-  // Handler to change filter values
   const handleFilterChange = useCallback(
     (tag: keyof FiltersType, value: string) => {
       const filterValues = state.filters[tag];
@@ -365,9 +309,11 @@ const QuestionBank: React.FC = () => {
     [state.filters]
   );
 
-  // Function to update user performance in backend
   const updateUserPerformance = useCallback(
-    async (questionId: string, updatedFields: UpdateUserPerformanceFields) => {
+    async (
+      questionId: string,
+      updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>
+    ) => {
       try {
         if (userId) {
           const response = await fetch("/api/user-performance/update", {
@@ -379,13 +325,11 @@ const QuestionBank: React.FC = () => {
         }
       } catch (error) {
         console.error("Error updating user performance:", error);
-        dispatch({ type: "SET_ERROR", payload: "Failed to update performance." });
       }
     },
     [userId]
   );
 
-  // Function to save user answer in backend
   const saveUserAnswer = useCallback(
     async (questionId: string, selectedOption: string, isCorrect: boolean) => {
       try {
@@ -399,57 +343,39 @@ const QuestionBank: React.FC = () => {
         }
       } catch (error) {
         console.error("Error saving user answer:", error);
-        dispatch({ type: "SET_ERROR", payload: "Failed to save answer." });
       }
     },
     [userId]
   );
 
-  // Handler to mark a question as complete/incomplete
   const handleMarkComplete = useCallback(
     async (questionId: string, isComplete: boolean) => {
-      const updatedFields: UpdateUserPerformanceFields = {
-        completed: isComplete,
-        lastAttempted: new Date().toISOString(),
-      };
-
-      await updateUserPerformance(questionId, updatedFields);
+      await updateUserPerformance(questionId, { completed: isComplete });
 
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
-          q.questionId === questionId
-            ? { ...q, completed: isComplete, lastAttempted: updatedFields.lastAttempted }
-            : q
+          q.questionId === questionId ? { ...q, completed: isComplete } : q
         ),
       });
     },
     [updateUserPerformance, state.questions]
   );
 
-  // Handler to mark a question for review/unreviewed
   const handleMarkForReview = useCallback(
     async (questionId: string, isReviewed: boolean) => {
-      const updatedFields: UpdateUserPerformanceFields = {
-        reviewed: isReviewed,
-        lastAttempted: new Date().toISOString(),
-      };
-
-      await updateUserPerformance(questionId, updatedFields);
+      await updateUserPerformance(questionId, { reviewed: isReviewed });
 
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
-          q.questionId === questionId
-            ? { ...q, reviewed: isReviewed, lastAttempted: updatedFields.lastAttempted }
-            : q
+          q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
         ),
       });
     },
     [updateUserPerformance, state.questions]
   );
 
-  // Handler when a user selects an option for a multiple-choice question
   const handleOptionClick = useCallback(
     async (questionId: string, option: string, correctOption: string) => {
       const isCorrect = option === correctOption;
@@ -460,19 +386,16 @@ const QuestionBank: React.FC = () => {
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback });
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions });
 
-      const updatedFields: UpdateUserPerformanceFields = {
+      const updatedFields = {
         correctAnswers: isCorrect ? 1 : 0,
         incorrectAnswers: !isCorrect ? 1 : 0,
         uniqueQuestions: 1,
         questionsAttempted: 1,
-        timeSpent: 0, // TODO: Implement actual time tracking if needed
+        lastAttempted: new Date().toISOString(),
+        completed: true,
         accuracy: isCorrect ? 100 : 0,
         firstAttemptSuccessRate: isCorrect ? 100 : 0,
         reattemptAccuracy: isCorrect ? 100 : 0,
-        attemptRate: 0, // TODO: Implement if needed
-        consistency: 0, // TODO: Implement if needed
-        engagementLevel: 0, // TODO: Implement if needed
-        lastAttempted: new Date().toISOString(),
       };
 
       await updateUserPerformance(questionId, updatedFields);
@@ -481,9 +404,7 @@ const QuestionBank: React.FC = () => {
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
-          q.questionId === questionId
-            ? { ...q, completed: true, lastAttempted: updatedFields.lastAttempted }
-            : q
+          q.questionId === questionId ? { ...q, completed: true } : q
         ),
       });
     },
@@ -496,7 +417,6 @@ const QuestionBank: React.FC = () => {
     ]
   );
 
-  // Handler when a user submits an answer for a numerical question
   const handleNumericalSubmit = useCallback(
     async (questionId: string, userAnswer: string, correctAnswer: string) => {
       const isCorrect = userAnswer === correctAnswer;
@@ -504,31 +424,25 @@ const QuestionBank: React.FC = () => {
       const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" };
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback });
 
-      const updatedFields: UpdateUserPerformanceFields = {
+      await updateUserPerformance(questionId, {
         lastAttempted: new Date().toISOString(),
         completed: true,
         accuracy: isCorrect ? 100 : 0,
         firstAttemptSuccessRate: isCorrect ? 100 : 0,
         reattemptAccuracy: isCorrect ? 100 : 0,
-        // Add other fields as necessary
-      };
-
-      await updateUserPerformance(questionId, updatedFields);
+      });
       await saveUserAnswer(questionId, userAnswer, isCorrect);
 
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
-          q.questionId === questionId
-            ? { ...q, completed: true, lastAttempted: updatedFields.lastAttempted }
-            : q
+          q.questionId === questionId ? { ...q, completed: true } : q
         ),
       });
     },
     [saveUserAnswer, updateUserPerformance, state.feedback, state.questions]
   );
 
-  // Handler to change notes for a question
   const handleNoteChange = useCallback(
     async (questionId: string, note: string) => {
       const newNotes = { ...state.notes, [questionId]: note };
@@ -545,13 +459,11 @@ const QuestionBank: React.FC = () => {
         }
       } catch (error) {
         console.error("Error saving note:", error);
-        dispatch({ type: "SET_ERROR", payload: "Failed to save note." });
       }
     },
     [userId, state.notes]
   );
 
-  // Handler to delete a note for a question
   const handleDeleteNote = useCallback(
     async (questionId: string) => {
       try {
@@ -565,7 +477,6 @@ const QuestionBank: React.FC = () => {
         }
       } catch (error) {
         console.error("Error deleting note:", error);
-        dispatch({ type: "SET_ERROR", payload: "Failed to delete note." });
       }
 
       const newNotes = { ...state.notes, [questionId]: "" };
@@ -574,8 +485,7 @@ const QuestionBank: React.FC = () => {
     [userId, state.notes]
   );
 
-  // Display loading state
-  if (state.loading || isLoadingSession) {
+  if (state.loading) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
@@ -613,21 +523,6 @@ const QuestionBank: React.FC = () => {
     );
   }
 
-  // Display error message if any
-  if (state.error) {
-    return (
-      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-        <div className="max-w-6xl w-full">
-          <h1 className="mb-4 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
-            Question Bank
-          </h1>
-          <p className="text-red-500">{state.error}</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Main Render
   return (
     <TooltipProvider>
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -636,7 +531,6 @@ const QuestionBank: React.FC = () => {
             Question Bank
           </h1>
 
-          {/* Search Bar */}
           <div className="flex space-x-4 mb-6">
             <Tooltip>
               <TooltipTrigger asChild>
@@ -654,7 +548,6 @@ const QuestionBank: React.FC = () => {
             </Tooltip>
           </div>
 
-          {/* Status Filters */}
           <div className="flex space-x-4 mb-2">
             {["all", "complete", "review"].map((status) => (
               <Tooltip key={status}>
@@ -682,7 +575,6 @@ const QuestionBank: React.FC = () => {
             ))}
           </div>
 
-          {/* Dropdown Filters */}
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {[
               "exams",
@@ -728,8 +620,9 @@ const QuestionBank: React.FC = () => {
                               id={`${filterType}-${value}`}
                               className="mr-2"
                               checked={
-                                (state.filters[filterType as keyof FiltersType] as string[] || [])
-                                  .includes(value)
+                                (state.filters[filterType as keyof FiltersType] as string[] ||
+                                  []
+                                ).includes(value)
                               }
                               onChange={() =>
                                 handleFilterChange(filterType as keyof FiltersType, value)
@@ -760,7 +653,9 @@ const QuestionBank: React.FC = () => {
                           type: "SET_DROPDOWN",
                           payload: {
                             tag: filterType as keyof FiltersType,
-                            value: !state.dropdowns[filterType as keyof typeof state.dropdowns],
+                            value: !state.dropdowns[
+                              filterType as keyof typeof state.dropdowns
+                            ],
                           },
                         })
                       }
@@ -792,60 +687,62 @@ const QuestionBank: React.FC = () => {
             ))}
           </div>
 
-          {/* Render Questions or No Results */}
           {paginatedQuestions.length > 0 ? (
             <>
-              {paginatedQuestions.map((question, index) => (
+              {paginatedQuestions.map((question) => (
                 <Question
-                  key={question.questionId}
-                  question={question}
-                  feedback={state.feedback[question.questionId]}
-                  selectedOption={state.selectedOptions[question.questionId]}
-                  numericalAnswer={state.numericalAnswers[question.questionId]}
-                  showMarkscheme={state.showMarkscheme[question.questionId]}
-                  handleOptionClick={handleOptionClick}
-                  handleNumericalSubmit={handleNumericalSubmit}
-                  handleNumericalChange={(questionId, value) =>
-                    dispatch({
-                      type: "SET_NUMERICAL_ANSWERS",
-                      payload: { ...state.numericalAnswers, [questionId]: value },
-                    })
+                key={question.questionId}
+                question={question}
+                feedback={state.feedback[question.questionId]}
+                selectedOption={state.selectedOptions[question.questionId]}
+                numericalAnswer={state.numericalAnswers[question.questionId]}
+                showMarkscheme={state.showMarkscheme[question.questionId]}
+                handleOptionClick={handleOptionClick}
+                handleNumericalSubmit={handleNumericalSubmit}
+                handleNumericalChange={(questionId, value) =>
+                  dispatch({
+                    type: "SET_NUMERICAL_ANSWERS",
+                    payload: { ...state.numericalAnswers, [questionId]: value },
+                  })
+                }
+                handleMarkschemeToggle={() =>
+                  dispatch({
+                    type: "SET_SHOW_MARKSCHEME",
+                    payload: {
+                      ...state.showMarkscheme,
+                      [question.questionId]: !state.showMarkscheme[question.questionId],
+                    },
+                  })
+                }
+                handleMarkForReview={() =>
+                  handleMarkForReview(question.questionId, !question.reviewed)
+                }
+                handleMarkComplete={() =>
+                  handleMarkComplete(question.questionId, !question.completed)
+                }
+                isMarkedForReview={question.reviewed}
+                isMarkedComplete={question.completed}
+                markschemesDisabled={false}
+                note={state.notes[question.questionId] || ""}
+                handleNoteChange={handleNoteChange}
+                userId={userId}
+                handleDeleteNote={handleDeleteNote}
+                totalQuestions={filteredQuestions.length} // Add this
+                currentQuestionIndex={paginatedQuestions.indexOf(question)} // Add this
+                handleQuestionChange={(index) => {
+                  // Logic to handle question navigation
+                  const newPage = Math.floor(index / PAGE_SIZE) + 1;
+                  if (newPage !== state.currentPage) {
+                    dispatch({ type: "SET_CURRENT_PAGE", payload: newPage });
                   }
-                  handleMarkschemeToggle={() =>
-                    dispatch({
-                      type: "SET_SHOW_MARKSCHEME",
-                      payload: {
-                        ...state.showMarkscheme,
-                        [question.questionId]: !state.showMarkscheme[question.questionId],
-                      },
-                    })
-                  }
-                  handleMarkForReview={() =>
-                    handleMarkForReview(question.questionId, !question.reviewed)
-                  }
-                  handleMarkComplete={() =>
-                    handleMarkComplete(question.questionId, !question.completed)
-                  }
-                  isMarkedForReview={question.reviewed}
-                  isMarkedComplete={question.completed}
-                  markschemesDisabled={false}
-                  note={state.notes[question.questionId] || ""}
-                  handleNoteChange={handleNoteChange}
-                  userId={userId}
-                  handleDeleteNote={handleDeleteNote}
-                  totalQuestions={filteredQuestions.length}
-                  currentQuestionIndex={paginatedQuestions.indexOf(question)}
-                  handleQuestionChange={(index) => {
-                    // Logic to handle question navigation
-                    const newPage = Math.floor(index / PAGE_SIZE) + 1;
-                    if (newPage !== state.currentPage) {
-                      dispatch({ type: "SET_CURRENT_PAGE", payload: newPage });
-                    }
-                  }}
-                />
+                }}
+              />              
               ))}
               {paginatedQuestions.length < filteredQuestions.length && (
-                <Button variant="outline" onClick={handleLoadMore}>
+                <Button
+                  variant="outline"
+                  onClick={handleLoadMore}
+                >
                   Load More
                 </Button>
               )}
@@ -859,7 +756,7 @@ const QuestionBank: React.FC = () => {
   );
 };
 
-// Helper Function to Fetch Data
+// Fetch data function moved inside the component
 const fetchData = async (url: string) => {
   try {
     const response = await fetch(url);
