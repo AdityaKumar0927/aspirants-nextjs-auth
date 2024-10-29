@@ -348,14 +348,14 @@ const GuestQuestionBank: React.FC = () => {
           </h1>
 
           <div className="mb-4 p-4 bg-yellow-100 rounded-md">
-            <p className="text-yellow-800">
-              You're browsing as a guest. Your progress won't be saved.
-              <Link href="/QuestionBank" className="text-primary ml-2 hover:underline">
-                Sign in
-              </Link>
-              to save your progress and access all features.
-            </p>
-          </div>
+  <p className="text-yellow-800">
+    You&apos;re browsing as a guest. Your progress won&apos;t be saved.
+    <Link href="/QuestionBank" className="text-primary ml-2 hover:underline">
+      Sign in
+    </Link>
+    to save your progress and access all features.
+  </p>
+</div>
 
           <div className="flex space-x-4 mb-6">
             <Input
