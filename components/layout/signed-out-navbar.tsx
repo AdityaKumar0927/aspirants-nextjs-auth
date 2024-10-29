@@ -7,9 +7,21 @@ import { useSignInModal } from "./sign-in"
 import { useSignUpModal } from "./sign-up"
 import { Menu, X, ChevronDown } from "lucide-react"
 import useScroll from "@/lib/hooks/use-scroll"
+import { Session } from "next-auth"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+  NavigationMenuViewport,
+  NavigationMenuIndicator,
+} from "@/components/ui/navigation-menu"
 
 const supportLinks = [
   {
@@ -157,28 +169,25 @@ function DesktopNavLinks() {
   return (
     <nav>
       <ul className="flex space-x-6">
-        <li>
-          <Link
-            href="/QuestionBank"
-            className="font-display text-sm text-black hover:text-gray-600 transition-colors"
-          >
-            Question Bank
-          </Link>
-        </li>
-        <li className="relative group">
-          <button className="font-display text-sm text-black focus:outline-none group-hover:text-gray-600 transition-colors">
-            Support
-          </button>
-          <div className="absolute hidden group-hover:block bg-white shadow-lg p-4 rounded-md">
-            <ul className="space-y-2">
-              {supportLinks.map((link) => (
-                <ListItem key={link.title} title={link.title} href={link.href}>
-                  {link.description}
-                </ListItem>
-              ))}
-            </ul>
-          </div>
-        </li>
+      <NavigationMenuItem>
+  <Link href={"/QuestionBank/guest"} passHref legacyBehavior>
+    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black")}>
+      Question Bank
+    </NavigationMenuLink>
+  </Link>
+</NavigationMenuItem>
+<NavigationMenuItem>
+                  <NavigationMenuTrigger className="font-display text-sm text-black">Support</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
+                      {supportLinks.map((link) => (
+                        <ListItem key={link.title} title={link.title} href={link.href}>
+                          {link.description}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
       </ul>
     </nav>
   )

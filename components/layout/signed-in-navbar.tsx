@@ -147,13 +147,13 @@ export default function NavBar({ session }: { session: Session | null }) {
           <div className="hidden md:flex items-center justify-center space-x-4 flex-1">
             <NavigationMenu>
               <NavigationMenuList>
-                <NavigationMenuItem>
-                  <Link href="/QuestionBank" passHref legacyBehavior>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black")}>
-                      Question Bank
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
+              <NavigationMenuItem>
+        <Link href={session ? "/QuestionBank" : "/QuestionBank/guest"} passHref legacyBehavior>
+          <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black")}>
+               Question Bank
+         </NavigationMenuLink>
+              </Link>
+          </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="font-display text-sm text-black">Exams</NavigationMenuTrigger>
                   <NavigationMenuContent>
