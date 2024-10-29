@@ -1,4 +1,6 @@
-"use client"; 
+// app/QuestionBank/page.tsx
+
+"use client"; // Ensure this is a client component
 
 import React, { useReducer, useEffect, useMemo, useCallback } from "react";
 import { useSession } from "next-auth/react"; // Import useSession from next-auth
@@ -197,7 +199,7 @@ const QuestionBank: React.FC = () => {
   const { data: session, status } = useSession(); // Use useSession hook
   const userId = session?.user?.id;
 
-  const isLoading = status === "loading";
+  const isLoadingSession = status === "loading";
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -297,10 +299,10 @@ const QuestionBank: React.FC = () => {
 
   // Fetch data on component mount and when userId changes
   useEffect(() => {
-    if (userId || !isLoading) {
+    if (userId || (!isLoadingSession && !userId)) {
       fetchAllData();
     }
-  }, [fetchAllData, userId, isLoading]);
+  }, [fetchAllData, userId, isLoadingSession]);
 
   // Memoized filtered questions based on search and filters
   const filteredQuestions = useMemo(() => {
@@ -573,7 +575,7 @@ const QuestionBank: React.FC = () => {
   );
 
   // Display loading state
-  if (state.loading || isLoading) {
+  if (state.loading || isLoadingSession) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
@@ -611,6 +613,20 @@ const QuestionBank: React.FC = () => {
     );
   }
 
+  // Display error message if any
+  if (state.error) {
+    return (
+      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+        <div className="max-w-6xl w-full">
+          <h1 className="mb-4 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
+            Question Bank
+          </h1>
+          <p className="text-red-500">{state.error}</p>
+        </div>
+      </div>
+    );
+  }
+
   // Main Render
   return (
     <TooltipProvider>
@@ -619,11 +635,6 @@ const QuestionBank: React.FC = () => {
           <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
             Question Bank
           </h1>
-
-          {/* Error Message */}
-          {state.error && (
-            <p className="text-red-500 mb-4">{state.error}</p>
-          )}
 
           {/* Search Bar */}
           <div className="flex space-x-4 mb-6">
