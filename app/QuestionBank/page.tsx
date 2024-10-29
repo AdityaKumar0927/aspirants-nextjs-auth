@@ -13,6 +13,9 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const PAGE_SIZE = 10
 
@@ -107,7 +110,6 @@ type ActionType =
   | { type: "SET_NOTES"; payload: Record<string, string> }
   | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_CURRENT_PAGE"; payload: number }
-  | { type: "UPDATE_QUESTION"; payload: { questionId: string; updates: Partial<QuestionType> } }
 
 const initialState: StateType = {
   questions: [],
@@ -167,15 +169,6 @@ function reducer(state: StateType, action: ActionType): StateType {
       return { ...state, loading: action.payload }
     case "SET_CURRENT_PAGE":
       return { ...state, currentPage: action.payload }
-    case "UPDATE_QUESTION":
-      return {
-        ...state,
-        questions: state.questions.map((q) =>
-          q.questionId === action.payload.questionId
-            ? { ...q, ...action.payload.updates }
-            : q
-        ),
-      }
     default:
       return state
   }
@@ -238,6 +231,7 @@ const QuestionBank: React.FC = () => {
         }
       })
 
+      // Sort questions by questionId numerically in ascending order
       mergedQuestions.sort(
         (a: QuestionType, b: QuestionType) =>
           parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
@@ -330,12 +324,6 @@ const QuestionBank: React.FC = () => {
             body: JSON.stringify({ questionId, ...updatedFields }),
           })
           if (!response.ok) throw new Error("Failed to update user performance")
-          
-          // Update the local state
-          dispatch({
-            type: "UPDATE_QUESTION",
-            payload: { questionId, updates: updatedFields },
-          })
         }
       } catch (error) {
         console.error("Error updating user performance:", error)
@@ -365,15 +353,29 @@ const QuestionBank: React.FC = () => {
   const handleMarkComplete = useCallback(
     async (questionId: string, isComplete: boolean) => {
       await updateUserPerformance(questionId, { completed: isComplete })
+
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: isComplete } : q
+        ),
+      })
     },
-    [updateUserPerformance]
+    [updateUserPerformance, state.questions]
   )
 
   const handleMarkForReview = useCallback(
     async (questionId: string, isReviewed: boolean) => {
       await updateUserPerformance(questionId, { reviewed: isReviewed })
+
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
+        ),
+      })
     },
-    [updateUserPerformance]
+    [updateUserPerformance, state.questions]
   )
 
   const handleOptionClick = useCallback(
@@ -400,27 +402,50 @@ const QuestionBank: React.FC = () => {
 
       await updateUserPerformance(questionId, updatedFields)
       await saveUserAnswer(questionId, option, isCorrect)
+
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: true } : q
+        ),
+      })
     },
-    [saveUserAnswer, updateUserPerformance, state.feedback, state.selectedOptions]
+    [
+      saveUserAnswer,
+      updateUserPerformance,
+      state.feedback,
+      state.selectedOptions,
+      state.questions,
+    ]
   )
 
   const handleNumericalSubmit = useCallback(
     async (questionId: string, userAnswer: string, correctAnswer: string) => {
       const isCorrect = userAnswer === correctAnswer
 
-      const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" }
+      const newFeedback = { 
+        ...state.feedback,
+        [questionId]: isCorrect ? "correct" : "incorrect",
+      }
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
 
       await updateUserPerformance(questionId, {
-        lastAttempted: new  Date().toISOString(),
+        lastAttempted: new Date().toISOString(),
         completed: true,
         accuracy: isCorrect ? 100 : 0,
         firstAttemptSuccessRate: isCorrect ? 100 : 0,
         reattemptAccuracy: isCorrect ? 100 : 0,
       })
       await saveUserAnswer(questionId, userAnswer, isCorrect)
+
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: true } : q
+        ),
+      })
     },
-    [saveUserAnswer, updateUserPerformance, state.feedback]
+    [saveUserAnswer, updateUserPerformance, state.feedback, state.questions]
   )
 
   const handleNoteChange = useCallback(
@@ -514,7 +539,7 @@ const QuestionBank: React.FC = () => {
           <div className="flex space-x-4 mb-6">
             <Tooltip>
               <TooltipTrigger asChild>
-                <input
+                <Input
                   type="text"
                   placeholder="Search questions..."
                   value={state.searchQuery}
@@ -532,21 +557,17 @@ const QuestionBank: React.FC = () => {
             {["all", "complete", "review"].map((status) => (
               <Tooltip key={status}>
                 <TooltipTrigger asChild>
-                  <button
+                  <Button
                     onClick={() =>
                       dispatch({
                         type: "SET_FILTERS",
                         payload: { ...state.filters, status },
                       })
                     }
-                    className={`px-4 py-2 rounded-md ${
-                      state.filters.status === status
-                        ? "bg-white border hover:border-black border-gray-600 text-gray-500"
-                        : "bg-white hover:border-black border border-gray-300 text-gray-500"
-                    }`}
+                    variant={state.filters.status === status ? "default" : "outline"}
                   >
                     {status.charAt(0).toUpperCase() + status.slice(1)}
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent>
                   {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -627,7 +648,7 @@ const QuestionBank: React.FC = () => {
                       })
                     }}
                   >
-                    <button
+                    <Button
                       onClick={() =>
                         dispatch({
                           type: "SET_DROPDOWN",
@@ -639,25 +660,23 @@ const QuestionBank: React.FC = () => {
                           },
                         })
                       }
-                      className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
+                      variant="outline"
+                      className="w-full sm:w-36"
                     >
-                      <p className="text-gray-600">
+                      <span className="mr-2">
+                        {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                      </span>
+                      <Badge variant="secondary" className="ml-auto">
                         {Array.isArray(state.filters[filterType as keyof FiltersType]) &&
                         (state.filters[filterType as keyof FiltersType] as string[]).length
                           ? `${
                               (state.filters[filterType as keyof FiltersType] as string[])
                                 .length
-                            } selected`
-                          : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                      </p>
-                      <ChevronDown
-                        className={`h-4 w-4 text-gray-600 transition-all ${
-                          state.dropdowns[filterType as keyof typeof state.dropdowns]
-                            ? "rotate-180"
-                            : ""
-                        }`}
-                      />
-                    </button>
+                            }`
+                          : "All"}
+                      </Badge>
+                      <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
                   </Popover>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -670,55 +689,61 @@ const QuestionBank: React.FC = () => {
           {paginatedQuestions.length > 0 ? (
             <>
               {paginatedQuestions.map((question) => (
-                <Question
-                  key={question.questionId}
-                  question={question}
-                  feedback={state.feedback[question.questionId]}
-                  selectedOption={state.selectedOptions[question.questionId]}
-                  numericalAnswer={state.numericalAnswers[question.questionId]}
-                  showMarkscheme={state.showMarkscheme[question.questionId]}
-                  handleOptionClick={handleOptionClick}
-                  handleNumericalSubmit={handleNumericalSubmit}
-                  handleNumericalChange={(questionId, value) =>
-                    dispatch({
-                      type: "SET_NUMERICAL_ANSWERS",
-                      payload: { ...state.numericalAnswers, [questionId]: value },
-                    })
-                  }
-                  handleMarkschemeToggle={() =>
-                    dispatch({
-                      type: "SET_SHOW_MARKSCHEME",
-                      payload: {
-                        ...state.showMarkscheme,
-                        [question.questionId]: !state.showMarkscheme[question.questionId],
-                      },
-                    })
-                  }
-                  handleMarkForReview={() =>
-                    handleMarkForReview(question.questionId, !question.reviewed)
-                  }
-                  handleMarkComplete={() =>
-                    handleMarkComplete(question.questionId, !question.completed)
-                  }
-                  isMarkedForReview={question.reviewed}
-                  isMarkedComplete={question.completed}
-                  markschemesDisabled={false}
-                  note={state.notes[question.questionId] || ""}
-                  handleNoteChange={handleNoteChange}
-                  userId={userId}
-                  handleDeleteNote={handleDeleteNote}
-                  totalQuestions={filteredQuestions.length}
-                  currentQuestionIndex={paginatedQuestions.indexOf(question)}
-                  handleQuestionChange={(index) => {
-                    const newPage = Math.floor(index / PAGE_SIZE) + 1
-                    if (newPage !== state.currentPage) {
-                      dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
-                    }
-                  }}
-                />
+                <Card key={question.questionId} className="mb-4">
+                  <CardHeader>
+                    <CardTitle>Question {question.questionId}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Question
+                      question={question}
+                      feedback={state.feedback[question.questionId]}
+                      selectedOption={state.selectedOptions[question.questionId]}
+                      numericalAnswer={state.numericalAnswers[question.questionId]}
+                      showMarkscheme={state.showMarkscheme[question.questionId]}
+                      handleOptionClick={handleOptionClick}
+                      handleNumericalSubmit={handleNumericalSubmit}
+                      handleNumericalChange={(questionId, value) =>
+                        dispatch({
+                          type: "SET_NUMERICAL_ANSWERS",
+                          payload: { ...state.numericalAnswers, [questionId]: value },
+                        })
+                      }
+                      handleMarkschemeToggle={() =>
+                        dispatch({
+                          type: "SET_SHOW_MARKSCHEME",
+                          payload: {
+                            ...state.showMarkscheme,
+                            [question.questionId]: !state.showMarkscheme[question.questionId],
+                          },
+                        })
+                      }
+                      handleMarkForReview={() =>
+                        handleMarkForReview(question.questionId, !question.reviewed)
+                      }
+                      handleMarkComplete={() =>
+                        handleMarkComplete(question.questionId, !question.completed)
+                      }
+                      isMarkedForReview={question.reviewed}
+                      isMarkedComplete={question.completed}
+                      markschemesDisabled={false}
+                      note={state.notes[question.questionId] || ""}
+                      handleNoteChange={handleNoteChange}
+                      userId={userId}
+                      handleDeleteNote={handleDeleteNote}
+                      totalQuestions={filteredQuestions.length}
+                      currentQuestionIndex={paginatedQuestions.indexOf(question)}
+                      handleQuestionChange={(index) => {
+                        const newPage = Math.floor(index / PAGE_SIZE) + 1
+                        if (newPage !== state.currentPage) {
+                          dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
+                        }
+                      }}
+                    />
+                  </CardContent>
+                </Card>
               ))}
               {paginatedQuestions.length < filteredQuestions.length && (
-                <Button variant="outline" onClick={handleLoadMore}>
+                <Button variant="outline" onClick={handleLoadMore} className="mt-4">
                   Load More
                 </Button>
               )}
@@ -732,6 +757,7 @@ const QuestionBank: React.FC = () => {
   )
 }
 
+// Fetch data function moved inside the component
 const fetchData = async (url: string) => {
   try {
     const response = await fetch(url)
