@@ -178,7 +178,7 @@ const BrowseResources: NextPage = () => {
                 <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
                   Exam Resources
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                <h2 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
                   Explore Various Exams and Their Syllabi
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">

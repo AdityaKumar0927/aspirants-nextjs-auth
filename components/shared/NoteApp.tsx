@@ -266,7 +266,7 @@ export default function Component() {
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 overflow-auto">
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <h1 className="text-3xl font-bold mb-4">My Notes</h1>
+            <h1 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">My Notes</h1>
             <Alert>
               <RocketIcon className="h-4 w-4" />
               <AlertTitle>Pro Tip!</AlertTitle>

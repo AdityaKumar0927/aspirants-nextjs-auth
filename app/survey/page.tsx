@@ -95,10 +95,10 @@ export default function IssueReportForm() {
     <div className="w-full max-w-2xl mx-auto py-12 px-4 sm:px-6 lg:px-8 space-y-12">
       <div className="mt-12">
         <iframe
-          data-tally-src="https://tally.so/embed/mZzar0?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          data-tally-src="https://tally.so/r/mZzar0?transparentBackground=1"
           loading="lazy"
           width="100%"
-          height="1752"
+          height="1952"
           title="We're building a free, JEE and CUET exam prep platform! Fill this form to help us out as well as get early access to our site"
         ></iframe>
       </div>

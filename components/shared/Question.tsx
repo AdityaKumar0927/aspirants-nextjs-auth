@@ -765,7 +765,6 @@ ${note}`);
                       id={`complete-${question.questionId}`}
                       checked={isMarkedComplete}
                       onCheckedChange={() => handleMarkCompleteLocal(question.questionId)}
-                      className="p-2 transition duration-200 ease-in-out"
                     />
                   </TooltipTrigger>
                   <TooltipContent>Mark as Complete</TooltipContent>
@@ -776,7 +775,6 @@ ${note}`);
                       variant="ghost"
                       size="icon"
                       onClick={() => handleMarkForReviewLocal(question.questionId)}
-                      className="hover:bg-gray-200 rounded-lg p-2 transition duration-200 ease-in-out"
                     >
                       <LucideBookmark
                         className={
@@ -1108,59 +1106,6 @@ ${note}`);
           <Badge variant="secondary">Points: {points}</Badge>
           <Badge variant="secondary">Streak: {streak}</Badge>
         </div>
-        <div className="fixed bottom-20 right-4 space-x-2">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="outline" size="icon" onClick={() => showComingSoon('Dark Mode')}>
-                <Sun className="h-4 w-4" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Toggle dark mode (coming soon)</TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="outline" size="icon" onClick={toggleDistractionFreeMode}>
-                {distractionFreeMode ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              {distractionFreeMode ? 'Exit distraction-free mode' : 'Enter distraction-free mode'}
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="outline" size="icon" onClick={() => showComingSoon('Leaderboard')}>
-                <Trophy className="h-4 w-4" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>View leaderboard (coming soon)</TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="outline" size="icon" onClick={() => setShowQuestionGrid(true)}>
-                <Grid className="h-4 w-4" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Show question grid</TooltipContent>
-          </Tooltip>
-        </div>
-        <Dialog open={showComingSoonModal} onOpenChange={setShowComingSoonModal}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Coming Soon</DialogTitle>
-              <DialogDescription>{comingSoonMessage}</DialogDescription>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
-
-        <Dialog open={showQuestionGrid} onOpenChange={setShowQuestionGrid}>
-          <DialogContent className="sm:max-w-[800px]">
-            <DialogHeader>
-              <DialogTitle>Question Grid</DialogTitle>
-            </DialogHeader>
-            {renderQuestionGrid()}
-          </DialogContent>
-        </Dialog>
       </div>
     </TooltipProvider>
   );

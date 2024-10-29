@@ -1,5 +1,3 @@
-// app/api/questions/batch-upload/route.ts
-
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../../auth/[...nextauth]/options';
@@ -7,7 +5,6 @@ import prisma from '@/lib/prisma';
 
 // POST method for batch uploading questions
 export async function POST(req: Request) {
-  // Check if the user is authenticated
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -15,14 +12,15 @@ export async function POST(req: Request) {
   }
 
   try {
-    const { questions } = await req.json();
+    const body = await req.json();
+    console.log('Received request body:', body);
 
-    // Check if the questions array is valid
+    const { questions } = body;
+
     if (!Array.isArray(questions) || questions.length === 0) {
       return NextResponse.json({ message: 'Invalid or empty questions data' }, { status: 400 });
     }
 
-    // Format and validate each question object similar to the working API
     const formattedQuestions = questions.map((question: any) => ({
       exam: question.exam || '',
       questionId: question.questionId || '',
@@ -32,28 +30,28 @@ export async function POST(req: Request) {
       subtopic: question.subtopic || '',
       difficulty: question.difficulty || '',
       type: question.type || '',
-      year: parseInt(question.year, 10) || 0, // Parse year as an integer
-      reviewed: Boolean(question.reviewed),
-      completed: Boolean(question.completed),
-      options: question.options || [], // Ensure this is an array
+      year: question.year ? parseInt(question.year, 10) : 0,
+      reviewed: !!question.reviewed,
+      completed: !!question.completed,
+      options: Array.isArray(question.options) ? question.options : [],
       correctOption: question.correctOption || '',
       markscheme: question.markscheme || '',
-      marks: question.marks?.toString() || null, // Convert marks to string or null
-      correctAttempts: question.correctAttempts?.toString() || null, // Convert to string or null
-      wrongAttempts: question.wrongAttempts?.toString() || null, // Convert to string or null
-      averageTimeTaken: question.averageTimeTaken?.toString() || null, // Convert to string or null
+      marks: question.marks ? question.marks.toString() : null,
+      correctAttempts: question.correctAttempts ? question.correctAttempts.toString() : null,
+      wrongAttempts: question.wrongAttempts ? question.wrongAttempts.toString() : null,
+      averageTimeTaken: question.averageTimeTaken ? question.averageTimeTaken.toString() : null,
       lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
       diagramUrl: question.diagramUrl || null,
-      status: question.status || 'ACTIVE', // Default status
+      status: question.status || 'ACTIVE',
     }));
 
-    // Use Prisma to batch create the formatted questions
+    console.log('Formatted Questions:', formattedQuestions);
+
     const result = await prisma.question.createMany({
       data: formattedQuestions,
-      skipDuplicates: true, // Skip duplicate entries based on unique constraints
+      skipDuplicates: true,
     });
 
-    // Respond with a success message and result
     return NextResponse.json({ message: 'Batch upload successful', result });
   } catch (error) {
     console.error('Error during batch upload:', error);

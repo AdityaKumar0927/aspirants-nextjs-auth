@@ -12,6 +12,7 @@ import {
   TooltipContent,
   TooltipProvider,
 } from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 // Define the page size for pagination
 const PAGE_SIZE = 10; // Set the desired page size
@@ -738,12 +739,12 @@ const QuestionBank: React.FC = () => {
               />              
               ))}
               {paginatedQuestions.length < filteredQuestions.length && (
-                <button
+                <Button
+                  variant="outline"
                   onClick={handleLoadMore}
-                  className="mt-4 px-4 py-2 border border-black bg-white hover:bg-gray-200 translate-x-2 rounded-md"
                 >
                   Load More
-                </button>
+                </Button>
               )}
             </>
           ) : (
