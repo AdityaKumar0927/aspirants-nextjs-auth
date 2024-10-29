@@ -1,7 +1,7 @@
-"use client";
+"use client"; 
 
 import React, { useReducer, useEffect, useMemo, useCallback } from "react";
-import { useSession } from "next-auth/react"; // Import useSession
+import { useSession } from "next-auth/react"; // Import useSession from next-auth
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Question from "@/components/shared/Question";
@@ -16,7 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 // Define the page size for pagination
-const PAGE_SIZE = 10; // Set the desired page size
+const PAGE_SIZE = 10; // Adjust as needed
 
 // Interface Definitions
 
@@ -99,6 +99,7 @@ type StateType = {
   notes: Record<string, string>;
   loading: boolean;
   currentPage: number;
+  error: string | null; // Add error state
 };
 
 type ActionType =
@@ -112,7 +113,8 @@ type ActionType =
   | { type: "SET_SELECTED_OPTIONS"; payload: Record<string, string> }
   | { type: "SET_NOTES"; payload: Record<string, string> }
   | { type: "SET_LOADING"; payload: boolean }
-  | { type: "SET_CURRENT_PAGE"; payload: number };
+  | { type: "SET_CURRENT_PAGE"; payload: number }
+  | { type: "SET_ERROR"; payload: string | null }; // Add error action
 
 // Initial State
 
@@ -145,6 +147,7 @@ const initialState: StateType = {
   notes: {},
   loading: true,
   currentPage: 1,
+  error: null,
 };
 
 // Reducer Function
@@ -176,6 +179,8 @@ function reducer(state: StateType, action: ActionType): StateType {
       return { ...state, loading: action.payload };
     case "SET_CURRENT_PAGE":
       return { ...state, currentPage: action.payload };
+    case "SET_ERROR":
+      return { ...state, error: action.payload };
     default:
       return state;
   }
@@ -199,6 +204,7 @@ const QuestionBank: React.FC = () => {
   // Fetch all necessary data
   const fetchAllData = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true });
+    dispatch({ type: "SET_ERROR", payload: null });
 
     try {
       // Fetch questions
@@ -221,7 +227,7 @@ const QuestionBank: React.FC = () => {
           fetchData("/api/user-progress"),
           fetchData("/api/user-answers"),
           fetchData("/api/notes"),
-          fetchData("/api/user-performance/update"), // Ensure correct endpoint
+          fetchData("/api/user-performance"), // Ensure there's a GET endpoint for user-performance
         ]);
 
         userProgressData = progressData;
@@ -265,7 +271,7 @@ const QuestionBank: React.FC = () => {
           reviewed: performance?.reviewed ?? progress?.reviewed ?? false,
           completed: performance?.completed ?? progress?.completed ?? false,
           notes: note ? note.content : "",
-          lastAttempted: progress?.lastAttempted ?? "",
+          lastAttempted: progress?.lastAttempted ?? performance?.lastAttempted ?? "",
           performance: performance || undefined,
         };
       });
@@ -283,6 +289,7 @@ const QuestionBank: React.FC = () => {
       dispatch({ type: "SET_NOTES", payload: notes });
     } catch (error) {
       console.error("Error fetching data:", error);
+      dispatch({ type: "SET_ERROR", payload: "Failed to fetch data." });
     } finally {
       dispatch({ type: "SET_LOADING", payload: false });
     }
@@ -370,6 +377,7 @@ const QuestionBank: React.FC = () => {
         }
       } catch (error) {
         console.error("Error updating user performance:", error);
+        dispatch({ type: "SET_ERROR", payload: "Failed to update performance." });
       }
     },
     [userId]
@@ -389,6 +397,7 @@ const QuestionBank: React.FC = () => {
         }
       } catch (error) {
         console.error("Error saving user answer:", error);
+        dispatch({ type: "SET_ERROR", payload: "Failed to save answer." });
       }
     },
     [userId]
@@ -407,7 +416,9 @@ const QuestionBank: React.FC = () => {
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: isComplete, lastAttempted: updatedFields.lastAttempted } : q
+          q.questionId === questionId
+            ? { ...q, completed: isComplete, lastAttempted: updatedFields.lastAttempted }
+            : q
         ),
       });
     },
@@ -427,7 +438,9 @@ const QuestionBank: React.FC = () => {
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, reviewed: isReviewed, lastAttempted: updatedFields.lastAttempted } : q
+          q.questionId === questionId
+            ? { ...q, reviewed: isReviewed, lastAttempted: updatedFields.lastAttempted }
+            : q
         ),
       });
     },
@@ -466,7 +479,9 @@ const QuestionBank: React.FC = () => {
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: true, lastAttempted: updatedFields.lastAttempted } : q
+          q.questionId === questionId
+            ? { ...q, completed: true, lastAttempted: updatedFields.lastAttempted }
+            : q
         ),
       });
     },
@@ -502,7 +517,9 @@ const QuestionBank: React.FC = () => {
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: true, lastAttempted: updatedFields.lastAttempted } : q
+          q.questionId === questionId
+            ? { ...q, completed: true, lastAttempted: updatedFields.lastAttempted }
+            : q
         ),
       });
     },
@@ -526,6 +543,7 @@ const QuestionBank: React.FC = () => {
         }
       } catch (error) {
         console.error("Error saving note:", error);
+        dispatch({ type: "SET_ERROR", payload: "Failed to save note." });
       }
     },
     [userId, state.notes]
@@ -545,6 +563,7 @@ const QuestionBank: React.FC = () => {
         }
       } catch (error) {
         console.error("Error deleting note:", error);
+        dispatch({ type: "SET_ERROR", payload: "Failed to delete note." });
       }
 
       const newNotes = { ...state.notes, [questionId]: "" };
@@ -600,6 +619,11 @@ const QuestionBank: React.FC = () => {
           <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
             Question Bank
           </h1>
+
+          {/* Error Message */}
+          {state.error && (
+            <p className="text-red-500 mb-4">{state.error}</p>
+          )}
 
           {/* Search Bar */}
           <div className="flex space-x-4 mb-6">
