@@ -13,6 +13,7 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
 
 // Define the page size for pagination
 const PAGE_SIZE = 10; // Set the desired page size
@@ -174,25 +175,20 @@ function reducer(state: StateType, action: ActionType): StateType {
 
 const QuestionBank: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  const userId = ""; // Add logic to retrieve user ID if signed in
+  const { data: session } = useSession();
 
   const fetchAllData = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true });
 
     try {
-      const [questionsData, userProgressData = [], userAnswersData = [], notesData = [], userPerformanceData = []] =
+      const [questionsData, userProgressData, userAnswersData, notesData, userPerformanceData] =
         await Promise.all([
           fetchData("/api/questions"),
-          userId
-            ? Promise.all([
-                fetchData("/api/user-progress"),
-                fetchData("/api/user-answers"),
-                fetchData("/api/notes"),
-                fetchData("/api/user-performance/get"),
-              ])
-            : [],
-        ]).then((results) => (userId ? [results[0], ...results[1]] : [results[0]]));
+          fetchData("/api/user-progress"),
+          fetchData("/api/user-answers"),
+          fetchData("/api/notes"),
+          fetchData("/api/user-performance/get"),
+        ]);
 
       const feedback: Record<string, string> = {};
       const selectedOptions: Record<string, string> = {};
@@ -244,7 +240,7 @@ const QuestionBank: React.FC = () => {
     } finally {
       dispatch({ type: "SET_LOADING", payload: false });
     }
-  }, [userId]);
+  }, []);
 
   useEffect(() => {
     fetchAllData();
@@ -315,63 +311,63 @@ const QuestionBank: React.FC = () => {
       updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>
     ) => {
       try {
-        if (userId) {
-          const response = await fetch("/api/user-performance/update", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ questionId, ...updatedFields }),
-          });
-          if (!response.ok) throw new Error("Failed to update user performance");
-        }
+        const response = await fetch("/api/user-performance/update", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ questionId, ...updatedFields }),
+        });
+        if (!response.ok) throw new Error("Failed to update user performance");
+        return await response.json();
       } catch (error) {
         console.error("Error updating user performance:", error);
       }
     },
-    [userId]
+    []
   );
 
   const saveUserAnswer = useCallback(
     async (questionId: string, selectedOption: string, isCorrect: boolean) => {
       try {
-        if (userId) {
-          const response = await fetch("/api/user-answers", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ questionId, selectedOption, isCorrect }),
-          });
-          if (!response.ok) throw new Error("Failed to save user answer");
-        }
+        const response = await fetch("/api/user-answers", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ questionId, selectedOption, isCorrect }),
+        });
+        if (!response.ok) throw new Error("Failed to save user answer");
+        return await response.json();
       } catch (error) {
         console.error("Error saving user answer:", error);
       }
     },
-    [userId]
+    []
   );
 
   const handleMarkComplete = useCallback(
     async (questionId: string, isComplete: boolean) => {
-      await updateUserPerformance(questionId, { completed: isComplete });
-
-      dispatch({
-        type: "SET_QUESTIONS",
-        payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: isComplete } : q
-        ),
-      });
+      const updatedPerformance = await updateUserPerformance(questionId, { completed: isComplete });
+      if (updatedPerformance) {
+        dispatch({
+          type: "SET_QUESTIONS",
+          payload: state.questions.map((q) =>
+            q.questionId === questionId ? { ...q, completed: isComplete } : q
+          ),
+        });
+      }
     },
     [updateUserPerformance, state.questions]
   );
 
   const handleMarkForReview = useCallback(
     async (questionId: string, isReviewed: boolean) => {
-      await updateUserPerformance(questionId, { reviewed: isReviewed });
-
-      dispatch({
-        type: "SET_QUESTIONS",
-        payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
-        ),
-      });
+      const updatedPerformance = await updateUserPerformance(questionId, { reviewed: isReviewed });
+      if (updatedPerformance) {
+        dispatch({
+          type: "SET_QUESTIONS",
+          payload: state.questions.map((q) =>
+            q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
+          ),
+        });
+      }
     },
     [updateUserPerformance, state.questions]
   );
@@ -398,15 +394,19 @@ const QuestionBank: React.FC = () => {
         reattemptAccuracy: isCorrect ? 100 : 0,
       };
 
-      await updateUserPerformance(questionId, updatedFields);
-      await saveUserAnswer(questionId, option, isCorrect);
+      const [updatedPerformance, savedAnswer] = await Promise.all([
+        updateUserPerformance(questionId, updatedFields),
+        saveUserAnswer(questionId, option, isCorrect),
+      ]);
 
-      dispatch({
-        type: "SET_QUESTIONS",
-        payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: true } : q
-        ),
-      });
+      if (updatedPerformance) {
+        dispatch({
+          type: "SET_QUESTIONS",
+          payload: state.questions.map((q) =>
+            q.questionId === questionId ? { ...q, completed: true } : q
+          ),
+        });
+      }
     },
     [
       saveUserAnswer,
@@ -424,21 +424,27 @@ const QuestionBank: React.FC = () => {
       const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" };
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback });
 
-      await updateUserPerformance(questionId, {
+      const updatedFields = {
         lastAttempted: new Date().toISOString(),
         completed: true,
         accuracy: isCorrect ? 100 : 0,
         firstAttemptSuccessRate: isCorrect ? 100 : 0,
         reattemptAccuracy: isCorrect ? 100 : 0,
-      });
-      await saveUserAnswer(questionId, userAnswer, isCorrect);
+      };
 
-      dispatch({
-        type: "SET_QUESTIONS",
-        payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: true } : q
-        ),
-      });
+      const [updatedPerformance, savedAnswer] = await Promise.all([
+        updateUserPerformance(questionId, updatedFields),
+        saveUserAnswer(questionId, userAnswer, isCorrect),
+      ]);
+
+      if (updatedPerformance) {
+        dispatch({
+          type: "SET_QUESTIONS",
+          payload: state.questions.map((q) =>
+            q.questionId === questionId ? { ...q, completed: true } : q
+          ),
+        });
+      }
     },
     [saveUserAnswer, updateUserPerformance, state.feedback, state.questions]
   );
@@ -449,40 +455,36 @@ const QuestionBank: React.FC = () => {
       dispatch({ type: "SET_NOTES", payload: newNotes });
 
       try {
-        if (userId) {
-          const response = await fetch("/api/notes/save", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ questionId, content: note }),
-          });
-          if (!response.ok) throw new Error("Failed to save note");
-        }
+        const response = await fetch("/api/notes/save", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ questionId, content: note }),
+        });
+        if (!response.ok) throw new Error("Failed to save note");
       } catch (error) {
         console.error("Error saving note:", error);
       }
     },
-    [userId, state.notes]
+    [state.notes]
   );
 
   const handleDeleteNote = useCallback(
     async (questionId: string) => {
       try {
-        if (userId) {
-          const response = await fetch("/api/notes/delete", {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ questionId }),
-          });
-          if (!response.ok) throw new Error("Failed to delete note");
-        }
+        const response = await fetch("/api/notes/delete", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ questionId }),
+        });
+        if (!response.ok) throw new Error("Failed to delete note");
+
+        const newNotes = { ...state.notes, [questionId]: "" };
+        dispatch({ type: "SET_NOTES", payload: newNotes });
       } catch (error) {
         console.error("Error deleting note:", error);
       }
-
-      const newNotes = { ...state.notes, [questionId]: "" };
-      dispatch({ type: "SET_NOTES", payload: newNotes });
     },
-    [userId, state.notes]
+    [state.notes]
   );
 
   if (state.loading) {
@@ -691,58 +693,54 @@ const QuestionBank: React.FC = () => {
             <>
               {paginatedQuestions.map((question) => (
                 <Question
-                key={question.questionId}
-                question={question}
-                feedback={state.feedback[question.questionId]}
-                selectedOption={state.selectedOptions[question.questionId]}
-                numericalAnswer={state.numericalAnswers[question.questionId]}
-                showMarkscheme={state.showMarkscheme[question.questionId]}
-                handleOptionClick={handleOptionClick}
-                handleNumericalSubmit={handleNumericalSubmit}
-                handleNumericalChange={(questionId, value) =>
-                  dispatch({
-                    type: "SET_NUMERICAL_ANSWERS",
-                    payload: { ...state.numericalAnswers, [questionId]: value },
-                  })
-                }
-                handleMarkschemeToggle={() =>
-                  dispatch({
-                    type: "SET_SHOW_MARKSCHEME",
-                    payload: {
-                      ...state.showMarkscheme,
-                      [question.questionId]: !state.showMarkscheme[question.questionId],
-                    },
-                  })
-                }
-                handleMarkForReview={() =>
-                  handleMarkForReview(question.questionId, !question.reviewed)
-                }
-                handleMarkComplete={() =>
-                  handleMarkComplete(question.questionId, !question.completed)
-                }
-                isMarkedForReview={question.reviewed}
-                isMarkedComplete={question.completed}
-                markschemesDisabled={false}
-                note={state.notes[question.questionId] || ""}
-                handleNoteChange={handleNoteChange}
-                userId={userId}
-                handleDeleteNote={handleDeleteNote}
-                totalQuestions={filteredQuestions.length} // Add this
-                currentQuestionIndex={paginatedQuestions.indexOf(question)} // Add this
-                handleQuestionChange={(index) => {
-                  // Logic to handle question navigation
-                  const newPage = Math.floor(index / PAGE_SIZE) + 1;
-                  if (newPage !== state.currentPage) {
-                    dispatch({ type: "SET_CURRENT_PAGE", payload: newPage });
+                  key={question.questionId}
+                  question={question}
+                  feedback={state.feedback[question.questionId]}
+                  selectedOption={state.selectedOptions[question.questionId]}
+                  numericalAnswer={state.numericalAnswers[question.questionId]}
+                  showMarkscheme={state.showMarkscheme[question.questionId]}
+                  handleOptionClick={handleOptionClick}
+                  handleNumericalSubmit={handleNumericalSubmit}
+                  handleNumericalChange={(questionId, value) =>
+                    dispatch({
+                      type: "SET_NUMERICAL_ANSWERS",
+                      payload: { ...state.numericalAnswers, [questionId]: value },
+                    })
                   }
-                }}
-              />              
+                  handleMarkschemeToggle={() =>
+                    dispatch({
+                      type: "SET_SHOW_MARKSCHEME",
+                      payload: {
+                        ...state.showMarkscheme,
+                        [question.questionId]: !state.showMarkscheme[question.questionId],
+                      },
+                    })
+                  }
+                  handleMarkForReview={() =>
+                    handleMarkForReview(question.questionId, !question.reviewed)
+                  }
+                  handleMarkComplete={() =>
+                    handleMarkComplete(question.questionId, !question.completed)
+                  }
+                  isMarkedForReview={question.reviewed}
+                  isMarkedComplete={question.completed}
+                  markschemesDisabled={false}
+                  note={state.notes[question.questionId] || ""}
+                  handleNoteChange={handleNoteChange}
+                  handleDeleteNote={handleDeleteNote}
+                  totalQuestions={filteredQuestions.length}
+                  currentQuestionIndex={paginatedQuestions.indexOf(question)}
+                  handleQuestionChange={(index) => {
+                    const newPage = Math.floor(index / PAGE_SIZE) + 1;
+                    if (newPage !== state.currentPage) {
+                      dispatch({ type: "SET_CURRENT_PAGE", payload: newPage });
+                    }
+                  }}
+                  userId={session?.user?.id || ''}
+                />
               ))}
               {paginatedQuestions.length < filteredQuestions.length && (
-                <Button
-                  variant="outline"
-                  onClick={handleLoadMore}
-                >
+                <Button variant="outline" onClick={handleLoadMore}>
                   Load More
                 </Button>
               )}
@@ -756,7 +754,7 @@ const QuestionBank: React.FC = () => {
   );
 };
 
-// Fetch data function moved inside the component
+// Fetch data function
 const fetchData = async (url: string) => {
   try {
     const response = await fetch(url);
