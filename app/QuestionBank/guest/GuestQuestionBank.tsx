@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useReducer, useEffect, useMemo, useCallback } from "react";
-import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Question from "@/components/shared/Question";
@@ -16,6 +15,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
+import { Card, CardContent } from "@/components/ui/card";
+import { Info, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const PAGE_SIZE = 10;
 
@@ -166,20 +168,7 @@ const GuestQuestionBank: React.FC = () => {
       const response = await fetch("/api/questions");
       if (!response.ok) throw new Error("Failed to fetch questions");
       const questions = await response.json();
-      
-      // Filter for published questions only and initialize with guest values
-      const guestQuestions = questions
-        .filter((q: QuestionType) => q.status === QuestionStatus.PUBLISHED)
-        .map((question: QuestionType) => ({
-          ...question,
-          reviewed: false,
-          completed: false,
-          notes: "",
-          lastAttempted: "",
-          performance: {},
-        }));
-
-      dispatch({ type: "SET_QUESTIONS", payload: guestQuestions });
+      dispatch({ type: "SET_QUESTIONS", payload: questions });
     } catch (error) {
       console.error("Error fetching questions:", error);
       toast({
@@ -230,10 +219,8 @@ const GuestQuestionBank: React.FC = () => {
     dispatch({ type: "SET_CURRENT_PAGE", payload: state.currentPage + 1 });
   }, [state.currentPage]);
 
-
   const handleMarkForReview = useCallback(
     async (questionId: string): Promise<void> => {
-      // No-op for guest mode
       return Promise.resolve();
     },
     []
@@ -241,7 +228,6 @@ const GuestQuestionBank: React.FC = () => {
   
   const handleMarkComplete = useCallback(
     async (questionId: string): Promise<void> => {
-      // No-op for guest mode
       return Promise.resolve();
     },
     []
@@ -249,7 +235,6 @@ const GuestQuestionBank: React.FC = () => {
   
   const handleNoteChange = useCallback(
     async (questionId: string, note: string): Promise<void> => {
-      // No-op for guest mode
       return Promise.resolve();
     },
     []
@@ -295,7 +280,6 @@ const GuestQuestionBank: React.FC = () => {
 
   const handleDeleteNote = useCallback(
     async (questionId: string): Promise<void> => {
-      // For guest mode, we just clear the note in local state
       const newNotes = { ...state.notes };
       delete newNotes[questionId];
       dispatch({ type: "SET_NOTES", payload: newNotes });
@@ -308,6 +292,27 @@ const GuestQuestionBank: React.FC = () => {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
+        <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
+      <CardContent className="p-4 flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
+            <Info className="h-5 w-5 text-blue-700" />
+          </div>
+          <div className="space-y-1">
+            <h3 className="font-medium text-blue-900">Guest Access</h3>
+            <p className="text-sm text-blue-700">
+              Try out the Question Bank features. Sign in to save your progress.
+            </p>
+          </div>
+        </div>
+        <Link href="/QuestionBank" className="hidden sm:block">
+          <Button variant="outline" className="border-blue-200 hover:border-blue-300 hover:bg-blue-50">
+            Sign in
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </Link>
+      </CardContent>
+    </Card>
           <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
             Question Bank
           </h1>
@@ -346,16 +351,6 @@ const GuestQuestionBank: React.FC = () => {
           <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
             Question Bank
           </h1>
-
-          <div className="mb-4 p-4 bg-yellow-100 rounded-md">
-  <p className="text-yellow-800">
-    You&apos;re browsing as a guest. Your progress won&apos;t be saved.
-    <Link href="/QuestionBank" className="text-primary ml-2 hover:underline">
-      Sign in
-    </Link>
-    to save your progress and access all features.
-  </p>
-</div>
 
           <div className="flex space-x-4 mb-6">
             <Input
@@ -431,6 +426,7 @@ const GuestQuestionBank: React.FC = () => {
                 }
                 align="start"
                 openPopover={state.dropdowns[filterType as keyof typeof state.dropdowns]}
+                
                 setOpenPopover={(open) => {
                   dispatch({
                     type: "SET_DROPDOWN",
@@ -476,47 +472,47 @@ const GuestQuestionBank: React.FC = () => {
             <>
               {paginatedQuestions.map((question) => (
                 <Question
-                key={question.questionId}
-                question={question}
-                feedback={state.feedback[question.questionId]}
-                selectedOption={state.selectedOptions[question.questionId]}
-                numericalAnswer={state.numericalAnswers[question.questionId]}
-                showMarkscheme={state.showMarkscheme[question.questionId]}
-                handleOptionClick={handleOptionClick}
-                handleNumericalSubmit={handleNumericalSubmit}
-                handleNumericalChange={(questionId, value) =>
-                  dispatch({
-                    type: "SET_NUMERICAL_ANSWERS",
-                    payload: { ...state.numericalAnswers, [questionId]: value },
-                  })
-                }
-                handleMarkschemeToggle={() =>
-                  dispatch({
-                    type: "SET_SHOW_MARKSCHEME",
-                    payload: {
-                      ...state.showMarkscheme,
-                      [question.questionId]: !state.showMarkscheme[question.questionId],
-                    },
-                  })
-                }
-                handleMarkForReview={handleMarkForReview}
-                handleMarkComplete={handleMarkComplete}
-                isMarkedForReview={false}
-                isMarkedComplete={false}
-                markschemesDisabled={false}
-                note=""
-                handleNoteChange={handleNoteChange}
-                handleDeleteNote={handleDeleteNote}
-                totalQuestions={filteredQuestions.length}
-                currentQuestionIndex={paginatedQuestions.indexOf(question)}
-                handleQuestionChange={(index) => {
-                  const newPage = Math.floor(index / PAGE_SIZE) + 1;
-                  if (newPage !== state.currentPage) {
-                    dispatch({ type: "SET_CURRENT_PAGE", payload: newPage });
+                  key={question.questionId}
+                  question={question}
+                  feedback={state.feedback[question.questionId]}
+                  selectedOption={state.selectedOptions[question.questionId]}
+                  numericalAnswer={state.numericalAnswers[question.questionId]}
+                  showMarkscheme={state.showMarkscheme[question.questionId]}
+                  handleOptionClick={handleOptionClick}
+                  handleNumericalSubmit={handleNumericalSubmit}
+                  handleNumericalChange={(questionId, value) =>
+                    dispatch({
+                      type: "SET_NUMERICAL_ANSWERS",
+                      payload: { ...state.numericalAnswers, [questionId]: value },
+                    })
                   }
-                }}
-                userId="guest"
-              />
+                  handleMarkschemeToggle={() =>
+                    dispatch({
+                      type: "SET_SHOW_MARKSCHEME",
+                      payload: {
+                        ...state.showMarkscheme,
+                        [question.questionId]: !state.showMarkscheme[question.questionId],
+                      },
+                    })
+                  }
+                  handleMarkForReview={handleMarkForReview}
+                  handleMarkComplete={handleMarkComplete}
+                  isMarkedForReview={false}
+                  isMarkedComplete={false}
+                  markschemesDisabled={false}
+                  note=""
+                  handleNoteChange={handleNoteChange}
+                  handleDeleteNote={handleDeleteNote}
+                  totalQuestions={filteredQuestions.length}
+                  currentQuestionIndex={paginatedQuestions.indexOf(question)}
+                  handleQuestionChange={(index) => {
+                    const newPage = Math.floor(index / PAGE_SIZE) + 1;
+                    if (newPage !== state.currentPage) {
+                      dispatch({ type: "SET_CURRENT_PAGE", payload: newPage });
+                    }
+                  }}
+                  userId="guest"
+                />
               ))}
               {paginatedQuestions.length < filteredQuestions.length && (
                 <Button variant="outline" onClick={handleLoadMore} className="mt-4">
