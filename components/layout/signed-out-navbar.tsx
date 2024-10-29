@@ -169,14 +169,16 @@ function DesktopNavLinks() {
   return (
     <nav>
       <ul className="flex space-x-6">
-      <NavigationMenuItem>
-  <Link href={"/QuestionBank/guest"} passHref legacyBehavior>
-    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black")}>
-      Question Bank
-    </NavigationMenuLink>
-  </Link>
-</NavigationMenuItem>
-<NavigationMenuItem>
+      <NavigationMenu>
+              <NavigationMenuList>
+              <NavigationMenuItem>
+        <Link href={"/QuestionBank/guest"} passHref legacyBehavior>
+          <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black")}>
+               Question Bank
+         </NavigationMenuLink>
+              </Link>
+          </NavigationMenuItem>
+                <NavigationMenuItem>
                   <NavigationMenuTrigger className="font-display text-sm text-black">Support</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
@@ -188,6 +190,10 @@ function DesktopNavLinks() {
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
+              </NavigationMenuList>
+              <NavigationMenuIndicator />
+              <NavigationMenuViewport />
+            </NavigationMenu>
       </ul>
     </nav>
   )
