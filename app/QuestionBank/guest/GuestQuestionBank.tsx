@@ -292,27 +292,6 @@ const GuestQuestionBank: React.FC = () => {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
-        <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
-      <CardContent className="p-4 flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
-            <Info className="h-5 w-5 text-blue-700" />
-          </div>
-          <div className="space-y-1">
-            <h3 className="font-medium text-blue-900">Guest Access</h3>
-            <p className="text-sm text-blue-700">
-              Try out the Question Bank features. Sign in to save your progress.
-            </p>
-          </div>
-        </div>
-        <Link href="/QuestionBank" className="hidden sm:block">
-          <Button variant="outline" className="border-blue-200 hover:border-blue-300 hover:bg-blue-50">
-            Sign in
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </Link>
-      </CardContent>
-    </Card>
           <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
             Question Bank
           </h1>
@@ -348,6 +327,27 @@ const GuestQuestionBank: React.FC = () => {
     <TooltipProvider>
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
+        <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
+      <CardContent className="p-4 flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
+            <Info className="h-5 w-5 text-blue-700" />
+          </div>
+          <div className="space-y-1">
+            <h3 className="font-medium text-blue-900">Guest Access</h3>
+            <p className="text-sm text-blue-700">
+              Try out the Question Bank features. Sign in to save your progress.
+            </p>
+          </div>
+        </div>
+        <Link href="/QuestionBank" className="hidden sm:block">
+          <Button variant="outline" className="border-blue-200 hover:border-blue-300 hover:bg-blue-50">
+            Sign in
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </Link>
+      </CardContent>
+    </Card>
           <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
             Question Bank
           </h1>
