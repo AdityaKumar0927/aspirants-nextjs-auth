@@ -1,26 +1,15 @@
-// components/layout/signed-out-navbar.tsx
+"use client"
 
-"use client";
-
-import * as React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useSignInModal } from "./sign-in";
-import { useSignUpModal } from "./sign-up"; // Import the sign-up modal hook
-import { Menu } from "lucide-react";
-import useScroll from "@/lib/hooks/use-scroll";
-import { Button } from "../ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import * as React from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { useSignInModal } from "./sign-in"
+import { useSignUpModal } from "./sign-up"
+import { Menu, X, ChevronDown } from "lucide-react"
+import useScroll from "@/lib/hooks/use-scroll"
+import { Button } from "@/components/ui/button"
+import { motion, AnimatePresence } from "framer-motion"
+import { cn } from "@/lib/utils"
 
 const supportLinks = [
   {
@@ -43,24 +32,52 @@ const supportLinks = [
     href: "/Contact",
     description: "Get in touch with us for support.",
   },
-];
+]
 
 export default function SignedOutNavbar() {
-  const { SignInModal, setShowSignInModal } = useSignInModal();
-  const { SignUpModal, setShowSignUpModal } = useSignUpModal(); // Use the sign-up modal hook
-  const scrolled = useScroll(50);
-  const [menuOpen, setMenuOpen] = React.useState(false);
+  const { SignInModal, setShowSignInModal } = useSignInModal()
+  const { SignUpModal, setShowSignUpModal } = useSignUpModal()
+  const scrolled = useScroll(50)
+  const [menuOpen, setMenuOpen] = React.useState(false)
+  const [supportOpen, setSupportOpen] = React.useState(false)
+  const menuRef = React.useRef<HTMLDivElement>(null)
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+    setSupportOpen(false)
+  }
+
+  const toggleSupport = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setSupportOpen(!supportOpen)
+  }
+
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false)
+        setSupportOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
 
   return (
     <>
       <SignInModal />
       <SignUpModal />
+
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-30 ${
+        className={cn(
+          "fixed top-0 left-0 right-0 z-30",
           scrolled
             ? "bg-white/50 backdrop-blur-sm shadow-sm"
             : "bg-white/90"
-        }`}
+        )}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.3 }}
@@ -79,93 +96,206 @@ export default function SignedOutNavbar() {
                 className="ml-2"
               />
             </Link>
+
             <div className="hidden md:flex items-center space-x-4">
-              <NavigationMenu>
-                <NavigationMenuList>
-                  <NavigationMenuItem>
-                    <Link href="/QuestionBank" passHref legacyBehavior>
-                      <NavigationMenuLink
-                        className={cn(
-                          navigationMenuTriggerStyle(),
-                          "font-display text-sm text-black"
-                        )}
-                      >
-                        Question Bank
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger className="font-display text-sm text-black">
-                      Support
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
-                        {supportLinks.map((link) => (
-                          <ListItem
-                            key={link.title}
-                            title={link.title}
-                            href={link.href}
-                          >
-                            {link.description}
-                          </ListItem>
-                        ))}
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
-              <Button variant="outline"
+              <DesktopNavLinks />
+              <Button
+                variant="outline"
                 onClick={() => setShowSignInModal(true)}
               >
                 Log In
               </Button>
-              <Button variant="secondary"
-                onClick={() => setShowSignUpModal(true)} // Open the sign-up modal
+              <Button
+                variant="secondary"
+                onClick={() => setShowSignUpModal(true)}
               >
                 Sign Up
               </Button>
             </div>
+
             <div className="md:hidden">
-              <button
+              <Button
+                variant="ghost"
+                size="icon"
                 className="text-black focus:outline-none"
-                onClick={() => setMenuOpen(!menuOpen)}
+                onClick={toggleMenu}
+                aria-label={menuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={menuOpen}
               >
-                <Menu />
-              </button>
+                {menuOpen ? <X size={24} /> : <Menu size={24} />}
+              </Button>
             </div>
           </div>
         </div>
+
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              ref={menuRef}
+              className="absolute top-full left-0 right-0 bg-white shadow-lg z-20 md:hidden"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <MobileNavLinks
+                setMenuOpen={setMenuOpen}
+                setShowSignInModal={setShowSignInModal}
+                setShowSignUpModal={setShowSignUpModal}
+                supportOpen={supportOpen}
+                toggleSupport={toggleSupport}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
-      {/* ... rest of your code ... */}
     </>
-  );
+  )
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & {
-    title: string;
-    children: React.ReactNode;
-  }
->(({ className, title, children, ...props }, ref) => {
+function DesktopNavLinks() {
   return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
+    <nav>
+      <ul className="flex space-x-6">
+        <li>
+          <Link
+            href="/QuestionBank"
+            className="font-display text-sm text-black hover:text-gray-600 transition-colors"
+          >
+            Question Bank
+          </Link>
+        </li>
+        <li className="relative group">
+          <button className="font-display text-sm text-black focus:outline-none group-hover:text-gray-600 transition-colors">
+            Support
+          </button>
+          <div className="absolute hidden group-hover:block bg-white shadow-lg p-4 rounded-md">
+            <ul className="space-y-2">
+              {supportLinks.map((link) => (
+                <ListItem key={link.title} title={link.title} href={link.href}>
+                  {link.description}
+                </ListItem>
+              ))}
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  )
+}
+
+interface MobileNavLinksProps {
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setShowSignInModal: React.Dispatch<React.SetStateAction<boolean>>
+  setShowSignUpModal: React.Dispatch<React.SetStateAction<boolean>>
+  supportOpen: boolean
+  toggleSupport: (e: React.MouseEvent) => void
+}
+
+function MobileNavLinks({
+  setMenuOpen,
+  setShowSignInModal,
+  setShowSignUpModal,
+  supportOpen,
+  toggleSupport,
+}: MobileNavLinksProps) {
+  return (
+    <nav className="p-4 space-y-4">
+      <Link
+        href="/QuestionBank"
+        className="block w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
+        onClick={() => setMenuOpen(false)}
+      >
+        Question Bank
+      </Link>
+      <div>
+        <button
+          className="flex items-center justify-between w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
+          onClick={toggleSupport}
+          aria-expanded={supportOpen}
+        >
+          Support
+          <ChevronDown
+            size={20}
+            className={cn("transition-transform", supportOpen && "rotate-180")}
+          />
+        </button>
+        <AnimatePresence>
+          {supportOpen && (
+            <motion.ul
+              className="mt-2 space-y-2 pl-4"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {supportLinks.map((link) => (
+                <ListItem
+                  key={link.title}
+                  title={link.title}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.description}
+                </ListItem>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+      </div>
+      <div className="space-y-2">
+        <Button
+          variant="outline"
+          className="w-full"
+          onClick={() => {
+            setMenuOpen(false)
+            setShowSignInModal(true)
+          }}
+        >
+          Log In
+        </Button>
+        <Button
+          variant="secondary"
+          className="w-full"
+          onClick={() => {
+            setMenuOpen(false)
+            setShowSignUpModal(true)
+          }}
+        >
+          Sign Up
+        </Button>
+      </div>
+    </nav>
+  )
+}
+
+interface ListItemProps {
+  title: string
+  href: string
+  children: React.ReactNode
+  className?: string
+  onClick?: () => void
+}
+
+const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
+  ({ title, href, children, className, onClick, ...props }, ref) => {
+    return (
+      <li>
+        <Link
+          href={href}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 focus:bg-gray-100 font-display text-sm text-black",
+            "block select-none rounded-md p-2 font-display text-sm text-black hover:bg-gray-100 focus:bg-gray-100 transition-colors",
             className
           )}
+          onClick={onClick}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-gray-500">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
-ListItem.displayName = "ListItem";
+          <div className="font-medium">{title}</div>
+          <p className="text-xs text-gray-500">{children}</p>
+        </Link>
+      </li>
+    )
+  }
+)
+
+ListItem.displayName = "ListItem"
