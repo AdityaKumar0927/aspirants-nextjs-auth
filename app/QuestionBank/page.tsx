@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useReducer, useEffect, useMemo, useCallback } from "react";
+import { useSession } from "next-auth/react"; // Import useSession
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Question from "@/components/shared/Question";
@@ -180,13 +181,20 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
+// Define the type for updated user performance fields
+type UpdateUserPerformanceFields = Partial<Omit<UserPerformance, "questionId">> & {
+  lastAttempted?: string;
+};
+
 // Main Component
 
 const QuestionBank: React.FC = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { data: session, status } = useSession(); // Use useSession hook
+  const userId = session?.user?.id;
 
-  // TODO: Replace this with actual logic to retrieve the user ID, e.g., from authentication context or props
-  const userId = ""; // Example: const { userId } = useAuth();
+  const isLoading = status === "loading";
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   // Fetch all necessary data
   const fetchAllData = useCallback(async () => {
@@ -213,7 +221,7 @@ const QuestionBank: React.FC = () => {
           fetchData("/api/user-progress"),
           fetchData("/api/user-answers"),
           fetchData("/api/notes"),
-          fetchData("/api/user-performance/get"),
+          fetchData("/api/user-performance/update"), // Ensure correct endpoint
         ]);
 
         userProgressData = progressData;
@@ -280,10 +288,12 @@ const QuestionBank: React.FC = () => {
     }
   }, [userId]);
 
-  // Fetch data on component mount
+  // Fetch data on component mount and when userId changes
   useEffect(() => {
-    fetchAllData();
-  }, [fetchAllData]);
+    if (userId || !isLoading) {
+      fetchAllData();
+    }
+  }, [fetchAllData, userId, isLoading]);
 
   // Memoized filtered questions based on search and filters
   const filteredQuestions = useMemo(() => {
@@ -348,10 +358,7 @@ const QuestionBank: React.FC = () => {
 
   // Function to update user performance in backend
   const updateUserPerformance = useCallback(
-    async (
-      questionId: string,
-      updatedFields: Partial<Omit<UserPerformance, "questionId">>
-    ) => {
+    async (questionId: string, updatedFields: UpdateUserPerformanceFields) => {
       try {
         if (userId) {
           const response = await fetch("/api/user-performance/update", {
@@ -390,12 +397,17 @@ const QuestionBank: React.FC = () => {
   // Handler to mark a question as complete/incomplete
   const handleMarkComplete = useCallback(
     async (questionId: string, isComplete: boolean) => {
-      await updateUserPerformance(questionId, { completed: isComplete });
+      const updatedFields: UpdateUserPerformanceFields = {
+        completed: isComplete,
+        lastAttempted: new Date().toISOString(),
+      };
+
+      await updateUserPerformance(questionId, updatedFields);
 
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: isComplete } : q
+          q.questionId === questionId ? { ...q, completed: isComplete, lastAttempted: updatedFields.lastAttempted } : q
         ),
       });
     },
@@ -405,12 +417,17 @@ const QuestionBank: React.FC = () => {
   // Handler to mark a question for review/unreviewed
   const handleMarkForReview = useCallback(
     async (questionId: string, isReviewed: boolean) => {
-      await updateUserPerformance(questionId, { reviewed: isReviewed });
+      const updatedFields: UpdateUserPerformanceFields = {
+        reviewed: isReviewed,
+        lastAttempted: new Date().toISOString(),
+      };
+
+      await updateUserPerformance(questionId, updatedFields);
 
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
+          q.questionId === questionId ? { ...q, reviewed: isReviewed, lastAttempted: updatedFields.lastAttempted } : q
         ),
       });
     },
@@ -428,7 +445,7 @@ const QuestionBank: React.FC = () => {
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback });
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions });
 
-      const updatedFields: Partial<Omit<UserPerformance, "questionId">> = {
+      const updatedFields: UpdateUserPerformanceFields = {
         correctAnswers: isCorrect ? 1 : 0,
         incorrectAnswers: !isCorrect ? 1 : 0,
         uniqueQuestions: 1,
@@ -440,6 +457,7 @@ const QuestionBank: React.FC = () => {
         attemptRate: 0, // TODO: Implement if needed
         consistency: 0, // TODO: Implement if needed
         engagementLevel: 0, // TODO: Implement if needed
+        lastAttempted: new Date().toISOString(),
       };
 
       await updateUserPerformance(questionId, updatedFields);
@@ -448,7 +466,7 @@ const QuestionBank: React.FC = () => {
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: true } : q
+          q.questionId === questionId ? { ...q, completed: true, lastAttempted: updatedFields.lastAttempted } : q
         ),
       });
     },
@@ -469,16 +487,13 @@ const QuestionBank: React.FC = () => {
       const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" };
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback });
 
-      const updatedFields: Partial<Omit<UserPerformance, "questionId">> = {
+      const updatedFields: UpdateUserPerformanceFields = {
         lastAttempted: new Date().toISOString(),
         completed: true,
         accuracy: isCorrect ? 100 : 0,
         firstAttemptSuccessRate: isCorrect ? 100 : 0,
         reattemptAccuracy: isCorrect ? 100 : 0,
-        timeSpent: 0, // TODO: Implement actual time tracking if needed
-        attemptRate: 0, // TODO: Implement if needed
-        consistency: 0, // TODO: Implement if needed
-        engagementLevel: 0, // TODO: Implement if needed
+        // Add other fields as necessary
       };
 
       await updateUserPerformance(questionId, updatedFields);
@@ -487,7 +502,7 @@ const QuestionBank: React.FC = () => {
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: true } : q
+          q.questionId === questionId ? { ...q, completed: true, lastAttempted: updatedFields.lastAttempted } : q
         ),
       });
     },
@@ -539,7 +554,7 @@ const QuestionBank: React.FC = () => {
   );
 
   // Display loading state
-  if (state.loading) {
+  if (state.loading || isLoading) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
