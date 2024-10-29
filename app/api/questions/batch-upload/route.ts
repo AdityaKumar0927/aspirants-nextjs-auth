@@ -13,48 +13,48 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
-    console.log('Received request body:', body);
+    console.log('Received Request Body:', body);
 
     const { questions } = body;
 
     if (!Array.isArray(questions) || questions.length === 0) {
+      console.error('Invalid or empty questions array:', questions);
       return NextResponse.json({ message: 'Invalid or empty questions data' }, { status: 400 });
     }
 
     const formattedQuestions = questions.map((question: any, index: number) => ({
-      questionId: question.questionId,
-      text: question.text,
-      subject: question.subject,
-      topic: question.topic,
-      subtopic: question.subtopic,
-      difficulty: question.difficulty,
-      type: question.type,
-      year: parseInt(question.year, 10),
-      reviewed: question.reviewed,
-      completed: question.completed,
-      options: question.options,
-      correctOption: question.correctOption,
-      markscheme: question.markscheme,
-      exam: question.exam,
-      marks: question.marks,
-      correctAttempts: question.correctAttempts,
-      wrongAttempts: question.wrongAttempts,
-      averageTimeTaken: question.averageTimeTaken,
-      lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
-      diagramUrl: question.diagramUrl,
-      status: question.status || 'ACTIVE',
+      questionId: question.questionId || `auto-${index}`,  // Default unique ID
+      text: question.text || '',  // Default to empty string
+      subject: question.subject || 'General',  // Default to 'General'
+      topic: question.topic || 'Miscellaneous',  // Default topic
+      subtopic: question.subtopic || null,  // Optional
+      difficulty: question.difficulty || 'Medium',  // Default difficulty
+      type: question.type || 'Multiple Choice',  // Default type
+      year: question.year ? parseInt(question.year, 10) : new Date().getFullYear(),  // Default to current year
+      reviewed: question.reviewed ?? false,  // Default to false
+      completed: question.completed ?? false,  // Default to false
+      options: question.options || [],  // Default to an empty array
+      correctOption: question.correctOption || null,  // Optional
+      markscheme: question.markscheme || null,  // Optional
+      exam: question.exam || 'Unknown',  // Default exam name
+      marks: question.marks ? question.marks.toString() : '0',  // Default to '0'
+      correctAttempts: question.correctAttempts ? question.correctAttempts.toString() : null,  // Optional
+      wrongAttempts: question.wrongAttempts ? question.wrongAttempts.toString() : null,  // Optional
+      averageTimeTaken: question.averageTimeTaken ? question.averageTimeTaken.toString() : null,  // Optional
+      lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,  // Optional
+      diagramUrl: question.diagramUrl || null,  // Optional
+      status: question.status || 'ACTIVE',  // Default status to ACTIVE
     }));
 
     console.log('Formatted Questions:', formattedQuestions);
 
     const result = await prisma.question.createMany({
       data: formattedQuestions,
-      skipDuplicates: true,
+      skipDuplicates: true,  // Skip duplicates based on unique constraints
     });
 
     return NextResponse.json({ message: 'Batch upload successful', result });
   } catch (error) {
-    // Use a type guard to check if error is an instance of Error
     if (error instanceof Error) {
       console.error('Error during batch upload:', error.message);
       return NextResponse.json(
