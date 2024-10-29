@@ -897,7 +897,7 @@ ${note}`);
             {localSelectedOption && markschemeEnabled && !examModeEnabled && (
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button className="mt-4" onClick={toggleMarkscheme}>
+                  <Button variant="outline" className="mt-4" onClick={toggleMarkscheme}>
                     Show Markscheme
                   </Button>
                 </TooltipTrigger>

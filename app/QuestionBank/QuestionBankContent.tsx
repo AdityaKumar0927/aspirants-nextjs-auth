@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useReducer, useEffect, useMemo, useCallback } from "react";
-import { useSession, SessionProvider } from "next-auth/react";
+import React, { useReducer, useEffect, useMemo, useCallback, useState } from "react";
+import { useSession, signIn } from "next-auth/react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Question from "@/components/shared/Question";
@@ -14,6 +14,7 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 // Define the page size for pagination
 const PAGE_SIZE = 10;
@@ -173,55 +174,76 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
-const ClientQuestionBankContent: React.FC = () => {
+const QuestionBankContent: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { data: session, status } = useSession();
+  const [isGuest, setIsGuest] = useState(false);
 
   const fetchAllData = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true });
 
     try {
-      const [questionsData, userProgressData, userAnswersData, notesData, userPerformanceData] =
-        await Promise.all([
-          fetchData("/api/questions"),
+      // Always fetch questions
+      const questionsData = await fetchData("/api/questions");
+
+      // Only fetch user-specific data if not a guest
+      let userProgressData = [];
+      let userAnswersData = [];
+      let notesData = [];
+      let userPerformanceData = [];
+
+      if (!isGuest && status === "authenticated") {
+        [userProgressData, userAnswersData, notesData, userPerformanceData] = await Promise.all([
           fetchData("/api/user-progress"),
           fetchData("/api/user-answers"),
           fetchData("/api/notes"),
           fetchData("/api/user-performance/get"),
         ]);
+      }
 
       const feedback: Record<string, string> = {};
       const selectedOptions: Record<string, string> = {};
       const notes: Record<string, string> = {};
 
       const mergedQuestions = questionsData.map((question: QuestionType) => {
-        const progress = userProgressData.find(
-          (p: any) => p.questionId === question.questionId
-        );
-        const userAnswer = userAnswersData.find(
-          (a: UserAnswer) => a.questionId === question.questionId
-        );
-        const note = notesData.find((n: any) => n.questionId === question.questionId);
-        const performance = userPerformanceData.find(
-          (p: UserPerformance) => p.questionId === question.questionId
-        );
+        if (!isGuest && status === "authenticated") {
+          const progress = userProgressData.find(
+            (p: any) => p.questionId === question.questionId
+          );
+          const userAnswer = userAnswersData.find(
+            (a: UserAnswer) => a.questionId === question.questionId
+          );
+          const note = notesData.find((n: any) => n.questionId === question.questionId);
+          const performance = userPerformanceData.find(
+            (p: UserPerformance) => p.questionId === question.questionId
+          );
 
-        if (userAnswer) {
-          selectedOptions[question.questionId] = userAnswer.selectedOption;
-          feedback[question.questionId] = userAnswer.isCorrect ? "correct" : "incorrect";
-        }
+          if (userAnswer) {
+            selectedOptions[question.questionId] = userAnswer.selectedOption;
+            feedback[question.questionId] = userAnswer.isCorrect ? "correct" : "incorrect";
+          }
 
-        if (note) {
-          notes[question.questionId] = note.content;
+          if (note) {
+            notes[question.questionId] = note.content;
+          }
+
+          return {
+            ...question,
+            reviewed: performance?.reviewed ?? progress?.reviewed ?? false,
+            completed: performance?.completed ?? progress?.completed ?? false,
+            notes: note ? note.content : "",
+            lastAttempted: progress?.lastAttempted ?? "",
+            performance: performance || {},
+          };
         }
 
         return {
           ...question,
-          reviewed: performance?.reviewed ?? progress?.reviewed ?? false,
-          completed: performance?.completed ?? progress?.completed ?? false,
-          notes: note ? note.content : "",
-          lastAttempted: progress?.lastAttempted ?? "",
-          performance: performance || {},
+          reviewed: false,
+          completed: false,
+          notes: "",
+          lastAttempted: "",
+          performance: {},
         };
       });
 
@@ -239,13 +261,17 @@ const ClientQuestionBankContent: React.FC = () => {
     } finally {
       dispatch({ type: "SET_LOADING", payload: false });
     }
-  }, []);
+  }, [isGuest, status]);
 
   useEffect(() => {
-    if (status === "authenticated") {
+    if (status === "authenticated" || isGuest) {
       fetchAllData();
     }
-  }, [fetchAllData, status]);
+  }, [fetchAllData, status, isGuest]);
+
+  const handleGuestAccess = () => {
+    setIsGuest(true);
+  };
 
   const filteredQuestions = useMemo(() => {
     let filtered = state.questions.filter((question) => {
@@ -306,188 +332,159 @@ const ClientQuestionBankContent: React.FC = () => {
     [state.filters]
   );
 
-  const updateUserPerformance = useCallback(
-    async (
-      questionId: string,
-      updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>
-    ) => {
-      try {
-        const response = await fetch("/api/user-performance/update", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, ...updatedFields }),
-        });
-        if (!response.ok) throw new Error("Failed to update user performance");
-        return await response.json();
-      } catch (error) {
-        console.error("Error updating user performance:", error);
-      }
-    },
-    []
-  );
-
-  const saveUserAnswer = useCallback(
-    async (questionId: string, selectedOption: string, isCorrect: boolean) => {
-      try {
-        const response = await fetch("/api/user-answers", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, selectedOption, isCorrect }),
-        });
-        if (!response.ok) throw new Error("Failed to save user answer");
-        return await response.json();
-      } catch (error) {
-        console.error("Error saving user answer:", error);
-      }
-    },
-    []
-  );
-
-  const handleMarkComplete = useCallback(
-    async (questionId: string, isComplete: boolean) => {
-      const updatedPerformance = await updateUserPerformance(questionId, { completed: isComplete });
-      if (updatedPerformance) {
-        dispatch({
-          type: "SET_QUESTIONS",
-          payload: state.questions.map((q) =>
-            q.questionId === questionId ? { ...q, completed: isComplete } : q
-          ),
-        });
-      }
-    },
-    [updateUserPerformance, state.questions]
-  );
-
-  const handleMarkForReview = useCallback(
-    async (questionId: string, isReviewed: boolean) => {
-      const updatedPerformance = await updateUserPerformance(questionId, { reviewed: isReviewed });
-      if (updatedPerformance) {
-        dispatch({
-          type: "SET_QUESTIONS",
-          payload: state.questions.map((q) =>
-            q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
-          ),
-        });
-      }
-    },
-    [updateUserPerformance, state.questions]
-  );
-
   const handleOptionClick = useCallback(
     async (questionId: string, option: string, correctOption: string) => {
       const isCorrect = option === correctOption;
-
       const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" };
       const newSelectedOptions = { ...state.selectedOptions, [questionId]: option };
 
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback });
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions });
 
-      const updatedFields = {
-        correctAnswers: isCorrect ? 1 : 0,
-        incorrectAnswers: !isCorrect ? 1 : 0,
-        uniqueQuestions: 1,
-        questionsAttempted: 1,
-        lastAttempted: new Date().toISOString(),
-        completed: true,
-        accuracy: isCorrect ? 100 : 0,
-        firstAttemptSuccessRate: isCorrect ? 100 : 0,
-        reattemptAccuracy: isCorrect ? 100 : 0,
-      };
-
-      const [updatedPerformance, savedAnswer] = await Promise.all([
-        updateUserPerformance(questionId, updatedFields),
-        saveUserAnswer(questionId, option, isCorrect),
-      ]);
-
-      if (updatedPerformance) {
-        dispatch({
-          type: "SET_QUESTIONS",
-          payload: state.questions.map((q) =>
-            q.questionId === questionId ? { ...q, completed: true } : q
-          ),
-        });
+      if (!isGuest && status === "authenticated") {
+        try {
+          await Promise.all([
+            fetch("/api/user-answers", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ questionId, selectedOption: option, isCorrect }),
+            }),
+            fetch("/api/user-performance/update", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                questionId,
+                correctAnswers: isCorrect ? 1 : 0,
+                incorrectAnswers: !isCorrect ? 1 : 0,
+                completed: true,
+              }),
+            }),
+          ]);
+        } catch (error) {
+          console.error("Error saving answer:", error);
+        }
       }
     },
-    [
-      saveUserAnswer,
-      updateUserPerformance,
-      state.feedback,
-      state.selectedOptions,
-      state.questions,
-    ]
+    [state.feedback, state.selectedOptions, isGuest, status]
   );
 
   const handleNumericalSubmit = useCallback(
     async (questionId: string, userAnswer: string, correctAnswer: string) => {
       const isCorrect = userAnswer === correctAnswer;
-
-      
-
       const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" };
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback });
 
-      const updatedFields = {
-        lastAttempted: new Date().toISOString(),
-        completed: true,
-        accuracy: isCorrect ? 100 : 0,
-        firstAttemptSuccessRate: isCorrect ? 100 : 0,
-        reattemptAccuracy: isCorrect ? 100 : 0,
-      };
-
-      const [updatedPerformance, savedAnswer] = await Promise.all([
-        updateUserPerformance(questionId, updatedFields),
-        saveUserAnswer(questionId, userAnswer, isCorrect),
-      ]);
-
-      if (updatedPerformance) {
-        dispatch({
-          type: "SET_QUESTIONS",
-          payload: state.questions.map((q) =>
-            q.questionId === questionId ? { ...q, completed: true } : q
-          ),
-        });
+      if (!isGuest && status === "authenticated") {
+        try {
+          await Promise.all([
+            fetch("/api/user-answers", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ questionId, selectedOption: userAnswer, isCorrect }),
+            }),
+            fetch("/api/user-performance/update", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                questionId,
+                correctAnswers: isCorrect ? 1 : 0,
+                incorrectAnswers: !isCorrect ? 1 : 0,
+                completed: true,
+              }),
+            }),
+          ]);
+        } catch (error) {
+          console.error("Error saving answer:", error);
+        }
       }
     },
-    [saveUserAnswer, updateUserPerformance, state.feedback, state.questions]
+    [state.feedback, isGuest, status]
   );
 
   const handleNoteChange = useCallback(
-    async (questionId: string, note: string) => {
-      const newNotes = { ...state.notes, [questionId]: note };
-      dispatch({ type: "SET_NOTES", payload: newNotes });
+    async (questionId: string, 
 
-      try {
-        const response = await fetch("/api/notes/save", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, content: note }),
-        });
-        if (!response.ok) throw new Error("Failed to save note");
-      } catch (error) {
-        console.error("Error saving note:", error);
+ note: string) => {
+      if (!isGuest && status === "authenticated") {
+        try {
+          await fetch("/api/notes/save", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ questionId, content: note }),
+          });
+          dispatch({ type: "SET_NOTES", payload: { ...state.notes, [questionId]: note } });
+        } catch (error) {
+          console.error("Error saving note:", error);
+        }
       }
     },
-    [state.notes]
+    [state.notes, isGuest, status]
   );
 
   const handleDeleteNote = useCallback(
     async (questionId: string) => {
-      try {
-        const response = await fetch("/api/notes/delete", {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId }),
-        });
-        if (!response.ok) throw new Error("Failed to delete note");
-
-        const newNotes = { ...state.notes, [questionId]: "" };
-        dispatch({ type: "SET_NOTES", payload: newNotes });
-      } catch (error) {
-        console.error("Error deleting note:", error);
+      if (!isGuest && status === "authenticated") {
+        try {
+          await fetch("/api/notes/delete", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ questionId }),
+          });
+          const newNotes = { ...state.notes };
+          delete newNotes[questionId];
+          dispatch({ type: "SET_NOTES", payload: newNotes });
+        } catch (error) {
+          console.error("Error deleting note:", error);
+        }
       }
     },
-    [state.notes]
+    [state.notes, isGuest, status]
+  );
+
+  const handleMarkComplete = useCallback(
+    async (questionId: string) => {
+      if (!isGuest && status === "authenticated") {
+        try {
+          await fetch("/api/user-performance/update", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ questionId, completed: true }),
+          });
+          dispatch({
+            type: "SET_QUESTIONS",
+            payload: state.questions.map((q) =>
+              q.questionId === questionId ? { ...q, completed: true } : q
+            ),
+          });
+        } catch (error) {
+          console.error("Error marking complete:", error);
+        }
+      }
+    },
+    [state.questions, isGuest, status]
+  );
+
+  const handleMarkForReview = useCallback(
+    async (questionId: string) => {
+      if (!isGuest && status === "authenticated") {
+        try {
+          await fetch("/api/user-performance/update", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ questionId, reviewed: true }),
+          });
+          dispatch({
+            type: "SET_QUESTIONS",
+            payload: state.questions.map((q) =>
+              q.questionId === questionId ? { ...q, reviewed: true } : q
+            ),
+          });
+        } catch (error) {
+          console.error("Error marking for review:", error);
+        }
+      }
+    },
+    [state.questions, isGuest, status]
   );
 
   if (status === "loading" || state.loading) {
@@ -525,12 +522,30 @@ const ClientQuestionBankContent: React.FC = () => {
     );
   }
 
-  if (status === "unauthenticated") {
+  if (status === "unauthenticated" && !isGuest) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center items-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
-          <p>Please sign in to access the Question Bank.</p>
+        <div className="text-center max-w-md">
+          <h1 className="text-3xl font-bold mb-6">Welcome to Question Bank</h1>
+          <p className="mb-8 text-gray-600">
+            Sign up to track your progress, save notes, and get personalized recommendations.
+            Or continue as a guest to explore the Question Bank.
+          </p>
+          <div className="space-y-4">
+            <Button
+              onClick={() => signIn()}
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              Sign Up / Sign In
+            </Button>
+            <Button
+              onClick={handleGuestAccess}
+              variant="outline"
+              className="w-full"
+            >
+              Continue as Guest
+            </Button>
+          </div>
         </div>
       </div>
     );
@@ -544,47 +559,46 @@ const ClientQuestionBankContent: React.FC = () => {
             Question Bank
           </h1>
 
+          {isGuest && (
+            <div className="mb-4 p-4 bg-yellow-100 rounded-md">
+              <p className="text-yellow-800">
+                You're browsing as a guest. 
+                <Button
+                  onClick={() => signIn()}
+                  variant="link"
+                  className="text-primary ml-2"
+                >
+                  Sign up
+                </Button>
+                to save your progress and access all features.
+              </p>
+            </div>
+          )}
+
           <div className="flex space-x-4 mb-6">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <input
-                  type="text"
-                  placeholder="Search questions..."
-                  value={state.searchQuery}
-                  onChange={(e) =>
-                    dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })
-                  }
-                  className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                />
-              </TooltipTrigger>
-              <TooltipContent>Search Questions</TooltipContent>
-            </Tooltip>
+            <Input
+              type="text"
+              placeholder="Search questions..."
+              value={state.searchQuery}
+              onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
+              className="max-w-sm"
+            />
           </div>
 
           <div className="flex space-x-4 mb-2">
             {["all", "complete", "review"].map((status) => (
-              <Tooltip key={status}>
-                <TooltipTrigger asChild>
-                  <button
-                    onClick={() =>
-                      dispatch({
-                        type: "SET_FILTERS",
-                        payload: { ...state.filters, status },
-                      })
-                    }
-                    className={`px-4 py-2 rounded-md ${
-                      state.filters.status === status
-                        ? "bg-white border hover:border-black border-gray-600 text-gray-500"
-                        : "bg-white hover:border-black border border-gray-300 text-gray-500"
-                    }`}
-                  >
-                    {status.charAt(0).toUpperCase() + status.slice(1)}
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  {status.charAt(0).toUpperCase() + status.slice(1)}
-                </TooltipContent>
-              </Tooltip>
+              <Button
+                key={status}
+                variant={state.filters.status === status ? "default" : "outline"}
+                onClick={() =>
+                  dispatch({
+                    type: "SET_FILTERS",
+                    payload: { ...state.filters, status },
+                  })
+                }
+              >
+                {status.charAt(0).toUpperCase() + status.slice(1)}
+              </Button>
             ))}
           </div>
 
@@ -598,105 +612,98 @@ const ClientQuestionBankContent: React.FC = () => {
               "years",
               "types",
             ].map((filterType) => (
-              <Tooltip key={filterType}>
-                <TooltipTrigger asChild>
-                  <Popover
-                    content={
-                      <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                        {Array.from(
-                          new Set(
-                            state.questions.map((q) => {
-                              switch (filterType) {
-                                case "exams":
-                                  return q.exam;
-                                case "subjects":
-                                  return q.subject;
-                                case "topics":
-                                  return q.topic;
-                                case "subtopics":
-                                  return q.subtopic;
-                                case "difficulties":
-                                  return q.difficulty;
-                                case "years":
-                                  return q.year;
-                                case "types":
-                                  return q.type;
-                                default:
-                                  return "";
-                              }
-                            })
-                          )
-                        ).map((value: string) => (
-                          <div key={value} className="flex items-center">
-                            <input
-                              type="checkbox"
-                              id={`${filterType}-${value}`}
-                              className="mr-2"
-                              checked={
-                                (state.filters[filterType as keyof FiltersType] as string[] ||
-                                  []
-                                ).includes(value)
-                              }
-                              onChange={() =>
-                                handleFilterChange(filterType as keyof FiltersType, value)
-                              }
-                            />
-                            <label
-                              htmlFor={`${filterType}-${value}`}
-                              className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
-                            >
-                              {value}
-                            </label>
-                          </div>
-                        ))}
-                      </div>
-                    }
-                    align="start"
-                    openPopover={state.dropdowns[filterType as keyof typeof state.dropdowns]}
-                    setOpenPopover={(open) => {
-                      dispatch({
-                        type: "SET_DROPDOWN",
-                        payload: { tag: filterType as keyof FiltersType, value: !!open },
-                      });
-                    }}
-                  >
-                    <button
-                      onClick={() =>
-                        dispatch({
-                          type: "SET_DROPDOWN",
-                          payload: {
-                            tag: filterType as keyof FiltersType,
-                            value: !state.dropdowns[
-                              filterType as keyof typeof state.dropdowns
-                            ],
-                          },
+              <Popover
+                key={filterType}
+                content={
+                  <div className="w-full bg-white rounded-md p-2 sm:w-40">
+                    {Array.from(
+                      new Set(
+                        state.questions.map((q) => {
+                          switch (filterType) {
+                            case "exams":
+                              return q.exam;
+                            case "subjects":
+                              return q.subject;
+                            case "topics":
+                              return q.topic;
+                            case "subtopics":
+                              return q.subtopic;
+                            case "difficulties":
+                              return q.difficulty;
+                            case "years":
+                              return q.year;
+                            case "types":
+                              return q.type;
+                            default:
+                              return "";
+                          }
                         })
-                      }
-                      className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
-                    >
-                      <p className="text-gray-600">
-                        {Array.isArray(state.filters[filterType as keyof FiltersType]) &&
-                        (state.filters[filterType as keyof FiltersType] as string[]).length
-                          ? `${
-                              (state.filters[filterType as keyof FiltersType] as string[])
-                                .length
-                            } selected`
-                          : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                      </p>
-                      <ChevronDown
-                        className={`h-4 w-4 text-gray-600 transition-all ${
-                          state.dropdowns[filterType as keyof typeof state.dropdowns]
-                            ? "rotate-180"
-                            : ""
-                        }`}
-                      />
-                    </button>
-                  </Popover>
-                </TooltipTrigger>
-                <TooltipContent>
-                  Select {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                </TooltipContent>
-              </Tooltip>
+                      )
+                    ).map((value: string) => (
+                      <div key={value} className="flex items-center">
+                        <input
+                          type="checkbox"
+                          id={`${filterType}-${value}`}
+                          className="mr-2"
+                          checked={
+                            (state.filters[filterType as keyof FiltersType] as string[] ||
+                              []
+                            ).includes(value)
+                          }
+                          onChange={() =>
+                            handleFilterChange(filterType as keyof FiltersType, value)
+                          }
+                        />
+                        <label
+                          htmlFor={`${filterType}-${value}`}
+                          className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
+                        >
+                          {value}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                }
+                align="start"
+                openPopover={state.dropdowns[filterType as keyof typeof state.dropdowns]}
+                setOpenPopover={(open) => {
+                  dispatch({
+                    type: "SET_DROPDOWN",
+                    payload: { tag: filterType as keyof FiltersType, value: !!open },
+                  });
+                }}
+              >
+                <Button
+                  variant="outline"
+                  onClick={() =>
+                    dispatch({
+                      type: "SET_DROPDOWN",
+                      payload: {
+                        tag: filterType as keyof FiltersType,
+                        value: !state.dropdowns[filterType as keyof typeof state.dropdowns],
+                      },
+                    })
+                  }
+                  className="w-full sm:w-36"
+                >
+                  <span className="mr-2">
+                    {Array.isArray(state.filters[filterType as keyof FiltersType]) &&
+                    (state.filters[filterType as keyof FiltersType] as string[]).length
+                      ? `${
+                          (state.filters[filterType as keyof FiltersType] as string[])
+                            .length
+                        } selected`
+                      : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                  </span>
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${
+                      state.dropdowns[filterType as keyof typeof state.dropdowns]
+                        ? "rotate-180"
+                        : ""
+                    }`}
+                  />
+                </Button>
+              </Popover>
             ))}
           </div>
 
@@ -728,10 +735,10 @@ const ClientQuestionBankContent: React.FC = () => {
                     })
                   }
                   handleMarkForReview={() =>
-                    handleMarkForReview(question.questionId, !question.reviewed)
+                    handleMarkForReview(question.questionId)
                   }
                   handleMarkComplete={() =>
-                    handleMarkComplete(question.questionId, !question.completed)
+                    handleMarkComplete(question.questionId)
                   }
                   isMarkedForReview={question.reviewed}
                   isMarkedComplete={question.completed}
@@ -747,11 +754,11 @@ const ClientQuestionBankContent: React.FC = () => {
                       dispatch({ type: "SET_CURRENT_PAGE", payload: newPage });
                     }
                   }}
-                  userId={session?.user?.id || ''}
+                  userId={session?.user?.id || 'guest'}
                 />
               ))}
               {paginatedQuestions.length < filteredQuestions.length && (
-                <Button variant="outline" onClick={handleLoadMore}>
+                <Button variant="outline" onClick={handleLoadMore} className="mt-4">
                   Load More
                 </Button>
               )}
@@ -778,12 +785,4 @@ const fetchData = async (url: string) => {
   }
 };
 
-const ClientQuestionBank: React.FC = () => {
-  return (
-    <SessionProvider>
-      <ClientQuestionBankContent />
-    </SessionProvider>
-  );
-};
-
-export default ClientQuestionBank;
+export default QuestionBankContent;
