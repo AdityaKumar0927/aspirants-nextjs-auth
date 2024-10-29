@@ -1,13 +1,13 @@
-// components/layout/sign-up.tsx
+'use client'
 
-import { useState, useCallback, useMemo } from "react";
-import Modal2 from "@/components/layout/modal-2"; // Adjust the path if necessary
-import SignUpForm from "../new-ui/sign-up-form"; // Adjust the path if necessary
-import { X } from "lucide-react"; // Icon for the close button
+import { useState, useCallback, useMemo } from "react"
+import Modal2 from "@/components/layout/modal-2"
+import LoginForm from "@/components/new-ui/login-form"
+import { X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
-// Hook to manage the sign-up modal state
 export function useSignUpModal() {
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [showSignUpModal, setShowSignUpModal] = useState(false)
 
   const SignUpModal = useCallback(() => {
     return (
@@ -15,23 +15,28 @@ export function useSignUpModal() {
         showSignUpModal={showSignUpModal}
         setShowSignUpModal={setShowSignUpModal}
       />
-    );
-  }, [showSignUpModal, setShowSignUpModal]);
+    )
+  }, [showSignUpModal, setShowSignUpModal])
 
   return useMemo(
     () => ({ setShowSignUpModal, SignUpModal }),
     [setShowSignUpModal, SignUpModal]
-  );
+  )
 }
 
-// The sign-up modal component
 function SignUpModalComponent({
   showSignUpModal,
   setShowSignUpModal,
 }: {
-  showSignUpModal: boolean;
-  setShowSignUpModal: React.Dispatch<React.SetStateAction<boolean>>;
+  showSignUpModal: boolean
+  setShowSignUpModal: React.Dispatch<React.SetStateAction<boolean>>
 }) {
+  const [skipSetup, setSkipSetup] = useState(false)
+
+  const handleSkipSetup = () => {
+    setSkipSetup(true)
+  }
+
   return (
     <Modal2
       showModal={showSignUpModal}
@@ -39,21 +44,27 @@ function SignUpModalComponent({
       className="p-0"
     >
       <div className="relative h-full w-full">
-        {/* Close button at the top right */}
         <button
-          className="absolute top-4 right-4 text-black"
+          className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 focus:outline-none"
           onClick={() => setShowSignUpModal(false)}
           aria-label="Close"
         >
           <X className="h-6 w-6" />
         </button>
-        {/* Centered sign-up form */}
         <div className="flex h-full items-center justify-center">
-          <SignUpForm />
+          <LoginForm isSignUp={true} skipSetup={skipSetup} />
         </div>
+        {!skipSetup && (
+          <Button
+            onClick={handleSkipSetup}
+            className="absolute bottom-4 right-4"
+          >
+            Skip Setup
+          </Button>
+        )}
       </div>
     </Modal2>
-  );
+  )
 }
 
 export default SignUpModalComponent;

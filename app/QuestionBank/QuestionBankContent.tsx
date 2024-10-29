@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 
 // Define the page size for pagination
 const PAGE_SIZE = 10;
@@ -178,33 +179,54 @@ const QuestionBankContent: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { data: session, status } = useSession();
   const [isGuest, setIsGuest] = useState(false);
+  const { toast } = useToast();
 
   const fetchAllData = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true });
 
     try {
-      // Always fetch questions
-      const questionsData = await fetchData("/api/questions");
+      // Always fetch questions first
+      const questionsResponse = await fetch("/api/questions");
+      if (!questionsResponse.ok) {
+        throw new Error("Failed to fetch questions");
+      }
+      const questionsData = await questionsResponse.json();
 
-      // Only fetch user-specific data if not a guest
+      // Initialize empty data for guest users
       let userProgressData = [];
       let userAnswersData = [];
       let notesData = [];
       let userPerformanceData = [];
 
+      // Only fetch user data if authenticated
       if (!isGuest && status === "authenticated") {
-        [userProgressData, userAnswersData, notesData, userPerformanceData] = await Promise.all([
-          fetchData("/api/user-progress"),
-          fetchData("/api/user-answers"),
-          fetchData("/api/notes"),
-          fetchData("/api/user-performance/get"),
-        ]);
+        try {
+          const [progressRes, answersRes, notesRes, performanceRes] = await Promise.all([
+            fetch("/api/user-progress"),
+            fetch("/api/user-answers"),
+            fetch("/api/notes"),
+            fetch("/api/user-performance/get"),
+          ]);
+
+          if (progressRes.ok) userProgressData = await progressRes.json();
+          if (answersRes.ok) userAnswersData = await answersRes.json();
+          if (notesRes.ok) notesData = await notesRes.json();
+          if (performanceRes.ok) userPerformanceData = await performanceRes.json();
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+          toast({
+            title: "Error",
+            description: "Failed to load your progress. Some features may be limited.",
+            variant: "destructive",
+          });
+        }
       }
 
       const feedback: Record<string, string> = {};
       const selectedOptions: Record<string, string> = {};
       const notes: Record<string, string> = {};
 
+      // Process questions with or without user data
       const mergedQuestions = questionsData.map((question: QuestionType) => {
         if (!isGuest && status === "authenticated") {
           const progress = userProgressData.find(
@@ -237,6 +259,7 @@ const QuestionBankContent: React.FC = () => {
           };
         }
 
+        // Return question without user data for guests
         return {
           ...question,
           reviewed: false,
@@ -247,21 +270,28 @@ const QuestionBankContent: React.FC = () => {
         };
       });
 
+      // Sort questions by ID
       mergedQuestions.sort(
         (a: QuestionType, b: QuestionType) =>
           parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
       );
 
+      // Update state with fetched data
       dispatch({ type: "SET_QUESTIONS", payload: mergedQuestions });
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: selectedOptions });
       dispatch({ type: "SET_FEEDBACK", payload: feedback });
       dispatch({ type: "SET_NOTES", payload: notes });
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching questions:", error);
+      toast({
+        title: "Error",
+        description: "Failed to load questions. Please try again later.",
+        variant: "destructive",
+      });
     } finally {
       dispatch({ type: "SET_LOADING", payload: false });
     }
-  }, [isGuest, status]);
+  }, [isGuest, status, toast]);
 
   useEffect(() => {
     if (status === "authenticated" || isGuest) {
@@ -362,13 +392,19 @@ const QuestionBankContent: React.FC = () => {
           ]);
         } catch (error) {
           console.error("Error saving answer:", error);
+          toast({
+            title: "Error",
+            description: "Failed to save your answer. Please try again.",
+            variant: "destructive",
+          });
         }
       }
     },
-    [state.feedback, state.selectedOptions, isGuest, status]
+    [state.feedback, state.selectedOptions, isGuest, status, toast]
   );
 
   const handleNumericalSubmit = useCallback(
+    
     async (questionId: string, userAnswer: string, correctAnswer: string) => {
       const isCorrect = userAnswer === correctAnswer;
       const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" };
@@ -395,16 +431,19 @@ const QuestionBankContent: React.FC = () => {
           ]);
         } catch (error) {
           console.error("Error saving answer:", error);
+          toast({
+            title: "Error",
+            description: "Failed to save your answer. Please try again.",
+            variant: "destructive",
+          });
         }
       }
     },
-    [state.feedback, isGuest, status]
+    [state.feedback, isGuest, status, toast]
   );
 
   const handleNoteChange = useCallback(
-    async (questionId: string, 
-
- note: string) => {
+    async (questionId: string, note: string) => {
       if (!isGuest && status === "authenticated") {
         try {
           await fetch("/api/notes/save", {
@@ -415,10 +454,15 @@ const QuestionBankContent: React.FC = () => {
           dispatch({ type: "SET_NOTES", payload: { ...state.notes, [questionId]: note } });
         } catch (error) {
           console.error("Error saving note:", error);
+          toast({
+            title: "Error",
+            description: "Failed to save your note. Please try again.",
+            variant: "destructive",
+          });
         }
       }
     },
-    [state.notes, isGuest, status]
+    [state.notes, isGuest, status, toast]
   );
 
   const handleDeleteNote = useCallback(
@@ -433,12 +477,21 @@ const QuestionBankContent: React.FC = () => {
           const newNotes = { ...state.notes };
           delete newNotes[questionId];
           dispatch({ type: "SET_NOTES", payload: newNotes });
+          toast({
+            title: "Success",
+            description: "Note deleted successfully.",
+          });
         } catch (error) {
           console.error("Error deleting note:", error);
+          toast({
+            title: "Error",
+            description: "Failed to delete note. Please try again.",
+            variant: "destructive",
+          });
         }
       }
     },
-    [state.notes, isGuest, status]
+    [state.notes, isGuest, status, toast]
   );
 
   const handleMarkComplete = useCallback(
@@ -456,12 +509,21 @@ const QuestionBankContent: React.FC = () => {
               q.questionId === questionId ? { ...q, completed: true } : q
             ),
           });
+          toast({
+            title: "Success",
+            description: "Question marked as complete.",
+          });
         } catch (error) {
           console.error("Error marking complete:", error);
+          toast({
+            title: "Error",
+            description: "Failed to mark question as complete. Please try again.",
+            variant: "destructive",
+          });
         }
       }
     },
-    [state.questions, isGuest, status]
+    [state.questions, isGuest, status, toast]
   );
 
   const handleMarkForReview = useCallback(
@@ -479,12 +541,21 @@ const QuestionBankContent: React.FC = () => {
               q.questionId === questionId ? { ...q, reviewed: true } : q
             ),
           });
+          toast({
+            title: "Success",
+            description: "Question marked for review.",
+          });
         } catch (error) {
           console.error("Error marking for review:", error);
+          toast({
+            title: "Error",
+            description: "Failed to mark question for review. Please try again.",
+            variant: "destructive",
+          });
         }
       }
     },
-    [state.questions, isGuest, status]
+    [state.questions, isGuest, status, toast]
   );
 
   if (status === "loading" || state.loading) {
@@ -596,6 +667,7 @@ const QuestionBankContent: React.FC = () => {
                     payload: { ...state.filters, status },
                   })
                 }
+                disabled={isGuest && status !== "all"}
               >
                 {status.charAt(0).toUpperCase() + status.slice(1)}
               </Button>
