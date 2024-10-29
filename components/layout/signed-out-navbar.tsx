@@ -115,13 +115,7 @@ export default function SignedOutNavbar() {
                 variant="outline"
                 onClick={() => setShowSignInModal(true)}
               >
-                Log In
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => setShowSignUpModal(true)}
-              >
-                Sign Up
+                sign-in
               </Button>
             </div>
 
@@ -267,17 +261,7 @@ function MobileNavLinks({
             setShowSignInModal(true)
           }}
         >
-          Log In
-        </Button>
-        <Button
-          variant="secondary"
-          className="w-full"
-          onClick={() => {
-            setMenuOpen(false)
-            setShowSignUpModal(true)
-          }}
-        >
-          Sign Up
+          sign-in
         </Button>
       </div>
     </nav>

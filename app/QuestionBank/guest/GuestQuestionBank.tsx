@@ -340,12 +340,6 @@ const GuestQuestionBank: React.FC = () => {
             </p>
           </div>
         </div>
-        <Link href="/QuestionBank" className="hidden sm:block">
-          <Button variant="outline" className="border-blue-200 hover:border-blue-300 hover:bg-blue-50">
-            Sign in
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </Link>
       </CardContent>
     </Card>
           <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
