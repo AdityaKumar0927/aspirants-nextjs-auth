@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import {
@@ -51,7 +51,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Modal from "@/components/shared/modal";
 import MathRenderer from "@/components/layout/MathRenderer";
 import { Button } from "@/components/magicui/button";
-import { Textarea } from "@headlessui/react";
 import Link from "next/link";
 
 // Define Question and Props types directly in the file
@@ -72,12 +71,9 @@ interface Props {
 }
 
 // Error boundary to handle unexpected errors gracefully
-const ErrorBoundary = ({ children }: Props) => {
-  return (
-    <React.Suspense fallback={<Skeleton height={40} count={5} />}>
-      {children}
-    </React.Suspense>
-  );
+const ErrorBoundary: React.FC<Props> = ({ children }) => {
+  // Removed React.Suspense since it's not needed here
+  return <>{children}</>;
 };
 
 // Enhanced Notification Component with dismiss button and stacking
@@ -143,7 +139,7 @@ const QuestionBankDashboard: React.FC = () => {
     null
   );
   const [updatedText, setUpdatedText] = useState("");
-  const [updatedOptions, setUpdatedOptions] = useState<string[]>([]);
+  const [updatedOptions, setUpdatedOptions] = useState<string[]>([]); // Ensure it's always an array
   const [questionStatus, setQuestionStatus] = useState<QuestionStatus>(
     "ACTIVE"
   );
@@ -165,12 +161,16 @@ const QuestionBankDashboard: React.FC = () => {
       setIsLoading(true);
       try {
         const response = await fetch("/api/questions");
+        if (!response.ok) {
+          throw new Error("Failed to fetch questions");
+        }
         const data: Question[] = await response.json();
         data.sort(
           (a, b) => parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
         );
         setQuestions(data);
       } catch (error) {
+        console.error("Error fetching questions:", error);
         addNotification("Error fetching questions", "error");
       } finally {
         setIsLoading(false);
@@ -229,6 +229,7 @@ const QuestionBankDashboard: React.FC = () => {
       setShowPreview(false);
       addNotification("Question updated successfully", "success");
     } catch (error) {
+      console.error("Error updating question:", error);
       addNotification("Error updating question", "error");
     } finally {
       setIsLoading(false);
@@ -258,6 +259,7 @@ const QuestionBankDashboard: React.FC = () => {
         setShowConfirmationModal(false);
         addNotification("Question deleted successfully", "success");
       } catch (error) {
+        console.error("Error deleting question:", error);
         addNotification("Error deleting question", "error");
       } finally {
         setIsLoading(false);
@@ -267,6 +269,11 @@ const QuestionBankDashboard: React.FC = () => {
   };
 
   const handleBulkDelete = () => {
+    if (selectedQuestions.length === 0) {
+      addNotification("No questions selected for deletion", "error");
+      return;
+    }
+
     setConfirmationAction(() => async () => {
       setIsLoading(true);
       try {
@@ -292,6 +299,7 @@ const QuestionBankDashboard: React.FC = () => {
         setShowConfirmationModal(false);
         addNotification("Selected questions deleted successfully", "success");
       } catch (error) {
+        console.error("Error deleting selected questions:", error);
         addNotification("Error deleting selected questions", "error");
       } finally {
         setIsLoading(false);
@@ -331,11 +339,17 @@ const QuestionBankDashboard: React.FC = () => {
       const parsedQuestions: Question[] = JSON.parse(input);
       setBatchUpload(parsedQuestions);
     } catch (error) {
-      addNotification("Invalid JSON input", "error");
+      setBatchUpload([]); // Clear batch upload if parsing fails
+      console.error("Invalid JSON input:", error);
     }
   };
 
   const handleBatchUpload = async () => {
+    if (batchUpload.length === 0) {
+      addNotification("No valid questions to upload", "error");
+      return;
+    }
+
     setIsLoading(true);
     try {
       const response = await fetch("/api/questions/batch-upload", {
@@ -346,14 +360,21 @@ const QuestionBankDashboard: React.FC = () => {
         body: JSON.stringify(batchUpload),
       });
 
-      if (!response.ok) throw new Error("Failed to upload batch of questions");
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.message || "Failed to upload batch of questions"
+        );
+      }
 
-      const newQuestions = await response.json();
-      setQuestions((prev) => [...prev, ...newQuestions]);
+      const result = await response.json();
+      // Assuming the response includes the newly added questions
+      setQuestions((prev) => [...prev, ...batchUpload]);
       setJsonInput("");
       setBatchUpload([]);
       addNotification("Batch upload successful", "success");
     } catch (error) {
+      console.error("Error uploading batch:", error);
       addNotification("Error uploading batch", "error");
     } finally {
       setIsLoading(false);
@@ -507,6 +528,10 @@ const QuestionBankDashboard: React.FC = () => {
                                       : []
                                   )
                                 }
+                                checked={
+                                  selectedQuestions.length === questions.length &&
+                                  questions.length > 0
+                                }
                               />
                             </TableHead>
                             <TableHead>#</TableHead>
@@ -552,9 +577,9 @@ const QuestionBankDashboard: React.FC = () => {
                                     <label className="block text-sm font-medium text-gray-700">
                                       Options (LaTeX Supported)
                                     </label>
-                                    {updatedOptions.map((option, index) => (
+                                    {updatedOptions.map((option, idx) => (
                                       <div
-                                        key={index}
+                                        key={idx}
                                         className="flex items-center mb-2"
                                       >
                                         <input
@@ -563,7 +588,7 @@ const QuestionBankDashboard: React.FC = () => {
                                           value={option}
                                           onChange={(e) =>
                                             handleOptionChange(
-                                              index,
+                                              idx,
                                               e.target.value
                                             )
                                           }
@@ -572,17 +597,14 @@ const QuestionBankDashboard: React.FC = () => {
                                           variant="outline"
                                           size="icon"
                                           onClick={() =>
-                                            handleRemoveOption(index)
+                                            handleRemoveOption(idx)
                                           }
                                         >
                                           ✕
                                         </Button>
                                       </div>
                                     ))}
-                                    <Button
-                                      size="sm"
-                                      onClick={handleAddOption}
-                                    >
+                                    <Button size="sm" onClick={handleAddOption}>
                                       Add Option
                                     </Button>
                                   </div>
@@ -591,8 +613,8 @@ const QuestionBankDashboard: React.FC = () => {
                                       <MathRenderer text={updatedText} />
                                       <div className="mt-2">
                                         <strong>Options:</strong>
-                                        {updatedOptions.map((option, index) => (
-                                          <p key={index}>
+                                        {updatedOptions.map((option, idx) => (
+                                          <p key={idx}>
                                             <MathRenderer text={option} />
                                           </p>
                                         ))}
@@ -625,6 +647,7 @@ const QuestionBankDashboard: React.FC = () => {
                                   <Button
                                     size="sm"
                                     onClick={handleSaveChanges}
+                                    disabled={isLoading}
                                   >
                                     {isLoading ? (
                                       <Loader className="animate-spin" />
@@ -692,7 +715,9 @@ const QuestionBankDashboard: React.FC = () => {
                                       </Button>
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent align="end">
-                                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                                      <DropdownMenuLabel>
+                                        Actions
+                                      </DropdownMenuLabel>
                                       <DropdownMenuItem
                                         onClick={() =>
                                           handleEditClick(question)
@@ -719,7 +744,7 @@ const QuestionBankDashboard: React.FC = () => {
                   </CardContent>
                   <CardFooter>
                     <div className="text-xs text-muted-foreground">
-                      Showing <strong>1-10</strong> of{" "}
+                      Showing <strong>1-{questions.length}</strong> of{" "}
                       <strong>{questions.length}</strong> questions
                     </div>
                   </CardFooter>
@@ -734,7 +759,7 @@ const QuestionBankDashboard: React.FC = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Textarea
+                    <textarea
                       value={jsonInput}
                       onChange={handleJsonInputChange}
                       rows={10}
@@ -746,7 +771,7 @@ const QuestionBankDashboard: React.FC = () => {
                     <Button
                       variant="default"
                       onClick={handleBatchUpload}
-                      disabled={!batchUpload.length}
+                      disabled={isLoading || batchUpload.length === 0}
                     >
                       {isLoading ? (
                         <Loader className="mr-2 h-4 w-4 animate-spin" />
