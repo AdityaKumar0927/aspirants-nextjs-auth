@@ -37,6 +37,7 @@ import TestimonialsCarousel from "@/app/components/sections/testimonials-carouse
 import CtaSection from "@/app/components/sections/cta";
 import { FAQ } from "@/components/shared/FAQ";
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
+import Ripple from "../components/magicui/ripple";
 
 
 // Projects array used in HoverEffect
@@ -102,6 +103,7 @@ const Page = () => {
       <div className="z-10 w-full px-5 xl:px-0">
         <div className="text-center px-4">
           <div className="flex flex-col items-center gap-6 pb-8 text-center">
+            <Ripple className="-z-50 bottom-20"></Ripple>
             <AnimatedGradientText
               className="bg-white text-black font-light flex items-center space-x-2"
             >

@@ -17,7 +17,7 @@ const Ripple = React.memo(function Ripple({
   return (
     <div
       className={cn(
-        "absolute inset-0 bg-white/5 [mask-image:linear-gradient(to_bottom,white,transparent)]",
+        "absolute inset-0 bg-blue-200 [mask-image:linear-gradient(to_bottom,white,transparent)]",
         className
       )}
     >
