@@ -87,8 +87,8 @@ export default function SignedOutNavbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-30",
           scrolled
-            ? "bg-white/50 backdrop-blur-sm shadow-sm"
-            : "bg-white/90"
+            ? "backdrop-blur-sm shadow-sm"
+            : ""
         )}
         initial={{ y: -100 }}
         animate={{ y: 0 }}

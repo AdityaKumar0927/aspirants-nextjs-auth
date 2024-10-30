@@ -127,8 +127,8 @@ export default function NavBar({ session }: { session: Session | null }) {
         className={cn(
           "fixed left-1/2 transform -translate-x-1/2 w-full max-w-screen-{1000px} z-30 transition-all duration-300 ease-in-out",
           scrolled
-            ? "bg-white/50 backdrop-blur-sm shadow-sm"
-            : "bg-white/90"
+            ? "backdrop-blur-sm shadow-sm"
+            : ""
         )}
       >
         <div className="mx-auto flex h-16 items-center justify-between w-11/12 md:w-10/12 lg:w-9/12">
