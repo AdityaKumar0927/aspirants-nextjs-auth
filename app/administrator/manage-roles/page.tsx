@@ -3,13 +3,24 @@
 import React, { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { User, Role } from './types/user'
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Search } from "lucide-react"
+
+// Updated type definitions
+type Role = 'member' | 'volunteer' | 'moderator' | 'administrator';
+
+interface User {
+  id: string;
+  name: string | null;
+  email: string | null;
+  role: {
+    name: Role;
+  } | null;
+}
 
 const validRoles: Role[] = ['member', 'volunteer', 'moderator', 'administrator']
 
@@ -27,10 +38,8 @@ export default function ManageRoles() {
   useEffect(() => {
     if (status === 'unauthenticated') {
       router.push('/login')
-    } else if (session?.user?.role !== 'administrators') {
-      router.push('/unauthorized')
     }
-  }, [session, status, router])
+  }, [status, router])
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -53,21 +62,24 @@ export default function ManageRoles() {
           description: (error as Error).message || "Failed to fetch users. Please try again.",
           variant: "destructive",
         })
+        if ((error as Error).message === 'Unauthorized access') {
+          router.push('/unauthorized')
+        }
       } finally {
         setLoading(false)
       }
     }
 
-    if (status === 'authenticated' && session?.user?.role === 'administrator') {
+    if (status === 'authenticated') {
       fetchUsers()
     }
-  }, [toast, status, session])
+  }, [toast, status, router])
 
   useEffect(() => {
     const lowercasedQuery = searchQuery.toLowerCase()
     const filtered = users.filter(user => 
-      user.name.toLowerCase().includes(lowercasedQuery) || 
-      user.email.toLowerCase().includes(lowercasedQuery)
+      user.name?.toLowerCase().includes(lowercasedQuery) || 
+      user.email?.toLowerCase().includes(lowercasedQuery)
     )
     setFilteredUsers(filtered)
   }, [searchQuery, users])
@@ -106,7 +118,7 @@ export default function ManageRoles() {
 
       setUsers(prevUsers =>
         prevUsers.map(user =>
-          user.id === selectedUser ? { ...user, role: selectedRole } : user
+          user.id === selectedUser ? { ...user, role: { name: selectedRole } } : user
         )
       )
     } catch (error) {
@@ -115,6 +127,9 @@ export default function ManageRoles() {
         description: `Failed to update user role: ${(error as Error).message}`,
         variant: "destructive",
       })
+      if ((error as Error).message === 'Unauthorized access') {
+        router.push('/unauthorized')
+      }
     } finally {
       setLoading(false)
     }
@@ -124,7 +139,7 @@ export default function ManageRoles() {
     return <div>Loading...</div>
   }
 
-  if (status === 'unauthenticated' || session?.user?.role !== 'administrator') {
+  if (status === 'unauthenticated') {
     return null // The useEffect will handle redirection
   }
 
@@ -157,7 +172,7 @@ export default function ManageRoles() {
             <SelectContent>
               {filteredUsers.map((user) => (
                 <SelectItem key={user.id} value={user.id}>
-                  {user.name} ({user.email}) - Current Role: {user.role}
+                  {user.name} ({user.email}) - Current Role: {user.role?.name || 'No role'}
                 </SelectItem>
               ))}
             </SelectContent>

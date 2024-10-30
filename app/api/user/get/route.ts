@@ -10,8 +10,19 @@ export async function GET(req: NextRequest) {
     // Get the session using getServerSession
     const session = await getServerSession(authOptions);
 
-    // Check if the user is authenticated and has the necessary role
-    if (!session || !session.user || session.user.role !== 'administrators') {
+    // Check if the user is authenticated
+    if (!session || !session.user || !session.user.email) {
+      return NextResponse.json({ error: 'Unauthorized access' }, { status: 401 });
+    }
+
+    // Fetch the user with their role
+    const user = await prisma.user.findUnique({
+      where: { email: session.user.email },
+      include: { role: true },
+    });
+
+    // Check if the user has the administrator role
+    if (!user || user.role?.name !== 'administrator') {
       return NextResponse.json({ error: 'Unauthorized access' }, { status: 401 });
     }
 
@@ -21,7 +32,11 @@ export async function GET(req: NextRequest) {
         id: true,
         name: true,
         email: true,
-        role: true,
+        role: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
 
