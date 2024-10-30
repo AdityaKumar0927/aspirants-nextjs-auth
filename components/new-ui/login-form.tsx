@@ -22,7 +22,7 @@ export default function LoginForm() {
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
-        <CardTitle className="text-2xl">Login</CardTitle>
+        <CardTitle className="text-2xl">Sign-In</CardTitle>
         <CardDescription>
           Enter your details below to access your account.
         </CardDescription>
@@ -35,15 +35,7 @@ export default function LoginForm() {
             onClick={() => signIn("google")}
           >
             <Google className="w-4 h-4 mr-2" />
-            Login with Google
-          </Button>
-          <Button
-            variant="outline"
-            className="w-full"
-            onClick={() => signIn("github")}
-          >
-            <Icons.github className="w-4 h-4 mr-2" />
-            Login with GitHub
+            Sign-In with Google
           </Button>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
@@ -79,12 +71,6 @@ export default function LoginForm() {
               </Label>
             </div>
           </form>
-        </div>
-        <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{" "}
-          <Link href="/signup" className="underline">
-            Sign up
-          </Link>
         </div>
       </CardContent>
     </Card>
