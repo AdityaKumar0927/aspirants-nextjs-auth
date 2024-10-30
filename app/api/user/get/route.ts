@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
     const session = await getServerSession(authOptions);
 
     // Check if the user is authenticated and has the necessary role
-    if (!session || !session.user || session.user.role !== 'administrator') {
+    if (!session || !session.user || session.user.role !== 'administrators') {
       return NextResponse.json({ error: 'Unauthorized access' }, { status: 401 });
     }
 

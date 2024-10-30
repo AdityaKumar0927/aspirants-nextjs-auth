@@ -27,7 +27,7 @@ export default function ManageRoles() {
   useEffect(() => {
     if (status === 'unauthenticated') {
       router.push('/login')
-    } else if (session?.user?.role !== 'administrator') {
+    } else if (session?.user?.role !== 'administrators') {
       router.push('/unauthorized')
     }
   }, [session, status, router])
