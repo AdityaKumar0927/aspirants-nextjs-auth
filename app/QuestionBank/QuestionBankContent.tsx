@@ -494,7 +494,7 @@ const ClientQuestionBankContent: React.FC = () => {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
-          <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
+          <h1 className="mb-2 text-left font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
             Question Bank
           </h1>
           <div className="flex space-x-4 mb-6">
@@ -540,7 +540,7 @@ const ClientQuestionBankContent: React.FC = () => {
     <TooltipProvider>
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
-          <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
+          <h1 className="mb-2 text-left font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
             Question Bank
           </h1>
 
