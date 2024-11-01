@@ -6,7 +6,8 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Question from "@/components/shared/Question";
 import Popover from "@/components/shared/popover";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Info } from "lucide-react";
+import Link from "next/link";
 import {
   Tooltip,
   TooltipTrigger,
@@ -14,9 +15,21 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
+import {
+  Card,
+  CardContent,
+} from "@/components/ui/card";
 
-// Define the page size for pagination
 const PAGE_SIZE = 10;
+
+enum QuestionStatus {
+  DRAFT = "DRAFT",
+  PUBLISHED = "PUBLISHED",
+  ARCHIVED = "ARCHIVED",
+  UNDER_REVIEW = "UNDER_REVIEW"
+}
 
 interface QuestionType {
   exam: string;
@@ -36,6 +49,7 @@ interface QuestionType {
   notes?: string;
   lastAttempted?: string;
   diagramUrl?: string;
+  status: QuestionStatus;
 }
 
 interface UserAnswer {
@@ -173,9 +187,119 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
+
+const Pagination: React.FC<PaginationProps> = ({ 
+  currentPage, 
+  totalPages, 
+  onPageChange 
+}) => {
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  return (
+    <nav
+      role="navigation"
+      aria-label="Pagination"
+      className="flex items-center gap-1 justify-center mt-4"
+    >
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => onPageChange(Math.max(1, currentPage - 1))}
+        disabled={currentPage === 1}
+        aria-label="Previous page"
+      >
+        <ChevronLeft className="h-4 w-4" />
+      </Button>
+      
+      {pages.map((page) => (
+        <Button
+          key={page}
+          variant={currentPage === page ? "secondary" : "ghost"}
+          onClick={() => onPageChange(page)}
+          aria-current={currentPage === page ? "page" : undefined}
+          aria-label={`Page ${page}`}
+          className="w-8 h-8"
+        >
+          {page}
+        </Button>
+      ))}
+      
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
+        disabled={currentPage === totalPages}
+        aria-label="Next page"
+      >
+        <ChevronRight className="h-4 w-4" />
+      </Button>
+    </nav>
+  );
+};
+
+const QuestionNavigator: React.FC<{
+  currentIndex: number;
+  totalQuestions: number;
+  onNavigate: (index: number) => void;
+}> = ({ currentIndex, totalQuestions, onNavigate }) => {
+  return (
+    <div className="flex items-center justify-between mb-4">
+      <Button
+        variant="outline"
+        onClick={() => onNavigate(Math.max(0, currentIndex - 1))}
+        disabled={currentIndex === 0}
+      >
+        <ChevronLeft className="mr-2 h-4 w-4" /> Previous
+      </Button>
+      <span>
+        Question {currentIndex + 1} of {totalQuestions}
+      </span>
+      <Button
+        variant="outline"
+        onClick={() => onNavigate(Math.min(totalQuestions - 1, currentIndex + 1))}
+        disabled={currentIndex === totalQuestions - 1}
+      >
+        Next <ChevronRight className="ml-2 h-4 w-4" />
+      </Button>
+    </div>
+  );
+};
+
+const GuestBanner: React.FC = () => {
+  return (
+    <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
+      <CardContent className="p-4 flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
+            <Info className="h-5 w-5 text-blue-700" />
+          </div>
+          <div className="space-y-1">
+            <h3 className="font-medium text-blue-900">Guest Access</h3>
+            <p className="text-sm text-blue-700">
+              Try out the Question Bank features. Sign in to save your progress.
+            </p>
+          </div>
+        </div>
+        <Link href="/QuestionBank" className="hidden sm:block">
+          <Button variant="outline" className="border-blue-200 hover:border-blue-300 hover:bg-blue-50">
+            Sign in
+            <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
+        </Link>
+      </CardContent>
+    </Card>
+  );
+};
+
 const ClientQuestionBankContent: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { data: session, status } = useSession();
+  const { toast } = useToast();
 
   const fetchAllData = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true });
@@ -236,10 +360,15 @@ const ClientQuestionBankContent: React.FC = () => {
       dispatch({ type: "SET_NOTES", payload: notes });
     } catch (error) {
       console.error("Error fetching data:", error);
+      toast({
+        title: "Error",
+        description: "Failed to load questions. Please try again later.",
+        variant: "destructive",
+      });
     } finally {
       dispatch({ type: "SET_LOADING", payload: false });
     }
-  }, []);
+  }, [toast]);
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -248,7 +377,7 @@ const ClientQuestionBankContent: React.FC = () => {
   }, [fetchAllData, status]);
 
   const filteredQuestions = useMemo(() => {
-    let filtered = state.questions.filter((question) => {
+    return state.questions.filter((question) => {
       const searchQuery = state.searchQuery.toLowerCase();
       const matchesSearch =
         question.text.toLowerCase().includes(searchQuery) ||
@@ -268,29 +397,37 @@ const ClientQuestionBankContent: React.FC = () => {
         (!state.filters.years.length || state.filters.years.includes(question.year)) &&
         (!state.filters.types.length || state.filters.types.includes(question.type));
 
+      if (state.filters.status === "review") {
+        return matchesSearch && matchesFilters && question.reviewed;
+      } else if (state.filters.status === "complete") {
+        return matchesSearch && matchesFilters && question.completed;
+      }
+
       return matchesSearch && matchesFilters;
     });
-
-    if (state.filters.status === "review") {
-      filtered = filtered.filter((question) => question.reviewed);
-    } else if (state.filters.status === "complete") {
-      filtered = filtered.filter((question) => question.completed);
-    }
-
-    return filtered;
   }, [state.questions, state.filters, state.searchQuery]);
 
+  const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE);
+
   const paginatedQuestions = useMemo(() => {
-    const endIndex = state.currentPage * PAGE_SIZE;
-    return filteredQuestions.slice(0, endIndex);
+    const startIndex = (state.currentPage - 1) * PAGE_SIZE;
+    const endIndex = startIndex + PAGE_SIZE;
+    return filteredQuestions.slice(startIndex, endIndex);
   }, [filteredQuestions, state.currentPage]);
 
-  const handleLoadMore = useCallback(() => {
-    dispatch({ type: "SET_CURRENT_PAGE", payload: state.currentPage + 1 });
-  }, [state.currentPage]);
+  const handlePageChange = useCallback((page: number) => {
+    dispatch({ type: "SET_CURRENT_PAGE", payload: page });
+  }, []);
+
+  const handleQuestionNavigate = useCallback((index: number) => {
+    const newPage = Math.floor(index / PAGE_SIZE) + 1;
+    dispatch({ type: "SET_CURRENT_PAGE", 
+ payload: newPage });
+  }, []);
 
   const handleFilterChange = useCallback(
-    (tag: keyof FiltersType, value: string) => {
+    (tag: keyof FiltersType, value: string) => 
+    {
       const filterValues = state.filters[tag];
       if (Array.isArray(filterValues)) {
         const isSelected = filterValues.includes(value);
@@ -344,31 +481,33 @@ const ClientQuestionBankContent: React.FC = () => {
   );
 
   const handleMarkComplete = useCallback(
-    async (questionId: string, isComplete: boolean) => {
-      const updatedPerformance = await updateUserPerformance(questionId, { completed: isComplete });
-      if (updatedPerformance) {
-        dispatch({
-          type: "SET_QUESTIONS",
-          payload: state.questions.map((q) =>
-            q.questionId === questionId ? { ...q, completed: isComplete } : q
-          ),
-        });
-      }
+    (questionId: string) => {
+      updateUserPerformance(questionId, { completed: true }).then((updatedPerformance) => {
+        if (updatedPerformance) {
+          dispatch({
+            type: "SET_QUESTIONS",
+            payload: state.questions.map((q) =>
+              q.questionId === questionId ? { ...q, completed: true } : q
+            ),
+          });
+        }
+      });
     },
     [updateUserPerformance, state.questions]
   );
 
   const handleMarkForReview = useCallback(
-    async (questionId: string, isReviewed: boolean) => {
-      const updatedPerformance = await updateUserPerformance(questionId, { reviewed: isReviewed });
-      if (updatedPerformance) {
-        dispatch({
-          type: "SET_QUESTIONS",
-          payload: state.questions.map((q) =>
-            q.questionId === questionId ? { ...q, reviewed: isReviewed } : q
-          ),
-        });
-      }
+    (questionId: string) => {
+      updateUserPerformance(questionId, { reviewed: true }).then((updatedPerformance) => {
+        if (updatedPerformance) {
+          dispatch({
+            type: "SET_QUESTIONS",
+            payload: state.questions.map((q) =>
+              q.questionId === questionId ? { ...q, reviewed: true } : q
+            ),
+          });
+        }
+      });
     },
     [updateUserPerformance, state.questions]
   );
@@ -421,8 +560,6 @@ const ClientQuestionBankContent: React.FC = () => {
   const handleNumericalSubmit = useCallback(
     async (questionId: string, userAnswer: string, correctAnswer: string) => {
       const isCorrect = userAnswer === correctAnswer;
-
-      
 
       const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" };
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback });
@@ -527,10 +664,13 @@ const ClientQuestionBankContent: React.FC = () => {
 
   if (status === "unauthenticated") {
     return (
-      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center items-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
-          <p>Please sign in to access the Question Bank.</p>
+      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+        <div className="max-w-6xl w-full">
+          <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
+            Question Bank
+          </h1>
+          <GuestBanner />
+          {/* Rest of the component for unauthenticated users */}
         </div>
       </div>
     );
@@ -540,25 +680,18 @@ const ClientQuestionBankContent: React.FC = () => {
     <TooltipProvider>
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
-          <h1 className="mb-2 text-left font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+          <h1 className="mb-2 text-left font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm sm:text-5xl sm:leading-[5rem]">
             Question Bank
           </h1>
 
           <div className="flex space-x-4 mb-6">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <input
-                  type="text"
-                  placeholder="Search questions..."
-                  value={state.searchQuery}
-                  onChange={(e) =>
-                    dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })
-                  }
-                  className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                />
-              </TooltipTrigger>
-              <TooltipContent>Search Questions</TooltipContent>
-            </Tooltip>
+            <Input
+              type="text"
+              placeholder="Search questions..."
+              value={state.searchQuery}
+              onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
+              className="max-w-sm"
+            />
           </div>
 
           <div className="flex space-x-4 mb-2">
@@ -700,9 +833,15 @@ const ClientQuestionBankContent: React.FC = () => {
             ))}
           </div>
 
+          <QuestionNavigator
+            currentIndex={(state.currentPage - 1) * PAGE_SIZE}
+            totalQuestions={filteredQuestions.length}
+            onNavigate={handleQuestionNavigate}
+          />
+
           {paginatedQuestions.length > 0 ? (
             <>
-              {paginatedQuestions.map((question) => (
+              {paginatedQuestions.map((question, index) => (
                 <Question
                   key={question.questionId}
                   question={question}
@@ -727,12 +866,8 @@ const ClientQuestionBankContent: React.FC = () => {
                       },
                     })
                   }
-                  handleMarkForReview={() =>
-                    handleMarkForReview(question.questionId, !question.reviewed)
-                  }
-                  handleMarkComplete={() =>
-                    handleMarkComplete(question.questionId, !question.completed)
-                  }
+                  handleMarkForReview={handleMarkForReview}
+                  handleMarkComplete={handleMarkComplete}
                   isMarkedForReview={question.reviewed}
                   isMarkedComplete={question.completed}
                   markschemesDisabled={false}
@@ -740,21 +875,16 @@ const ClientQuestionBankContent: React.FC = () => {
                   handleNoteChange={handleNoteChange}
                   handleDeleteNote={handleDeleteNote}
                   totalQuestions={filteredQuestions.length}
-                  currentQuestionIndex={paginatedQuestions.indexOf(question)}
-                  handleQuestionChange={(index) => {
-                    const newPage = Math.floor(index / PAGE_SIZE) + 1;
-                    if (newPage !== state.currentPage) {
-                      dispatch({ type: "SET_CURRENT_PAGE", payload: newPage });
-                    }
-                  }}
+                  currentQuestionIndex={index + (state.currentPage - 1) * PAGE_SIZE}
+                  handleQuestionChange={handleQuestionNavigate}
                   userId={session?.user?.id || ''}
                 />
               ))}
-              {paginatedQuestions.length < filteredQuestions.length && (
-                <Button variant="outline" onClick={handleLoadMore}>
-                  Load More
-                </Button>
-              )}
+              <Pagination
+                currentPage={state.currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
             </>
           ) : (
             <p className="text-red-400">No questions found with the selected filters.</p>
@@ -766,16 +896,9 @@ const ClientQuestionBankContent: React.FC = () => {
 };
 
 const fetchData = async (url: string) => {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch data from ${url}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    throw error;
-  }
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Failed to fetch data from ${url}`);
+  return await response.json();
 };
 
 const ClientQuestionBank: React.FC = () => {
