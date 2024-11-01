@@ -9,7 +9,6 @@ import { Progress } from "@/components/ui/progress"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { User, Clock, AlertCircle, CheckCircle, HelpCircle, ChevronLeft, ChevronRight } from 'lucide-react'
 import Question from "@/components/shared/Question"
-import Popover from "@/components/shared/popover"
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
 
 interface QuestionType {
@@ -26,6 +25,14 @@ interface QuestionType {
   markscheme?: string
 }
 
+interface FilterOptions {
+  subjects: string[]
+  difficulties: string[]
+  topics: string[]
+  subtopics: string[]
+  years: string[]
+}
+
 interface ExamState {
   currentQuestion: number
   answers: Record<string, string>
@@ -38,8 +45,12 @@ type StateType = {
   filters: {
     subject: string
     difficulty: string
+    topic: string
+    subtopic: string
+    year: string
     questionCount: number
   }
+  filterOptions: FilterOptions
   feedback: Record<string, string>
   numericalAnswers: Record<string, string>
   loading: boolean
@@ -50,6 +61,7 @@ type StateType = {
 type ActionType =
   | { type: "SET_QUESTIONS"; payload: QuestionType[] }
   | { type: "SET_FILTERS"; payload: Partial<StateType['filters']> }
+  | { type: "SET_FILTER_OPTIONS"; payload: FilterOptions }
   | { type: "SET_FEEDBACK"; payload: Record<string, string> }
   | { type: "SET_NUMERICAL_ANSWERS"; payload: Record<string, string> }
   | { type: "SET_LOADING"; payload: boolean }
@@ -61,7 +73,17 @@ const initialState: StateType = {
   filters: {
     subject: '',
     difficulty: '',
+    topic: '',
+    subtopic: '',
+    year: '',
     questionCount: 10,
+  },
+  filterOptions: {
+    subjects: [],
+    difficulties: [],
+    topics: [],
+    subtopics: [],
+    years: [],
   },
   feedback: {},
   numericalAnswers: {},
@@ -81,6 +103,8 @@ function reducer(state: StateType, action: ActionType): StateType {
       return { ...state, questions: action.payload }
     case "SET_FILTERS":
       return { ...state, filters: { ...state.filters, ...action.payload } }
+    case "SET_FILTER_OPTIONS":
+      return { ...state, filterOptions: action.payload }
     case "SET_FEEDBACK":
       return { ...state, feedback: action.payload }
     case "SET_NUMERICAL_ANSWERS":
@@ -99,6 +123,16 @@ function reducer(state: StateType, action: ActionType): StateType {
 const MockExamContent: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { data: session, status } = useSession()
+
+  const fetchFilterOptions = useCallback(async () => {
+    try {
+      const response = await fetch('/api/filter-options')
+      const data = await response.json()
+      dispatch({ type: "SET_FILTER_OPTIONS", payload: data })
+    } catch (error) {
+      console.error("Error fetching filter options:", error)
+    }
+  }, [])
 
   const fetchQuestions = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
@@ -119,9 +153,9 @@ const MockExamContent: React.FC = () => {
 
   useEffect(() => {
     if (status === "authenticated") {
-      fetchQuestions()
+      fetchFilterOptions()
     }
-  }, [fetchQuestions, status])
+  }, [fetchFilterOptions, status])
 
   useEffect(() => {
     if (state.isExamMode) {
@@ -136,6 +170,7 @@ const MockExamContent: React.FC = () => {
   }, [state.isExamMode, state.examState.timeLeft])
 
   const startExam = useCallback(() => {
+    fetchQuestions()
     dispatch({ type: "SET_EXAM_MODE", payload: true })
     dispatch({ 
       type: "SET_EXAM_STATE", 
@@ -146,7 +181,20 @@ const MockExamContent: React.FC = () => {
         timeLeft: 10800 
       } 
     })
-  }, [])
+  }, [fetchQuestions])
+
+  const generateRandomQuestions = useCallback(() => {
+    const randomFilters = {
+      subject: state.filterOptions.subjects[Math.floor(Math.random() * state.filterOptions.subjects.length)],
+      difficulty: state.filterOptions.difficulties[Math.floor(Math.random() * state.filterOptions.difficulties.length)],
+      topic: state.filterOptions.topics[Math.floor(Math.random() * state.filterOptions.topics.length)],
+      subtopic: state.filterOptions.subtopics[Math.floor(Math.random() * state.filterOptions.subtopics.length)],
+      year: state.filterOptions.years[Math.floor(Math.random() * state.filterOptions.years.length)],
+      questionCount: state.filters.questionCount,
+    }
+    dispatch({ type: "SET_FILTERS", payload: randomFilters })
+    startExam()
+  }, [state.filterOptions, state.filters.questionCount, startExam])
 
   const handleAnswer = useCallback((questionId: string, answer: string) => {
     dispatch({ 
@@ -221,9 +269,9 @@ const MockExamContent: React.FC = () => {
                 <SelectValue placeholder="Select subject" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="math">Mathematics</SelectItem>
-                <SelectItem value="science">Science</SelectItem>
-                <SelectItem value="english">English</SelectItem>
+                {state.filterOptions.subjects.map((subject) => (
+                  <SelectItem key={subject} value={subject}>{subject}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
             <Select onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { difficulty: value } })}>
@@ -231,9 +279,39 @@ const MockExamContent: React.FC = () => {
                 <SelectValue placeholder="Select difficulty" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="easy">Easy</SelectItem>
-                <SelectItem value="medium">Medium</SelectItem>
-                <SelectItem value="hard">Hard</SelectItem>
+                {state.filterOptions.difficulties.map((difficulty) => (
+                  <SelectItem key={difficulty} value={difficulty}>{difficulty}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { topic: value } })}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select topic" />
+              </SelectTrigger>
+              <SelectContent>
+                {state.filterOptions.topics.map((topic) => (
+                  <SelectItem key={topic} value={topic}>{topic}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { subtopic: value } })}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select subtopic" />
+              </SelectTrigger>
+              <SelectContent>
+                {state.filterOptions.subtopics.map((subtopic) => (
+                  <SelectItem key={subtopic} value={subtopic}>{subtopic}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { year: value } })}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select year" />
+              </SelectTrigger>
+              <SelectContent>
+                {state.filterOptions.years.map((year) => (
+                  <SelectItem key={year} value={year}>{year}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
             <Select onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { questionCount: parseInt(value) } })}>
@@ -248,9 +326,12 @@ const MockExamContent: React.FC = () => {
             </Select>
           </div>
         </CardContent>
-        <CardFooter>
-          <Button onClick={startExam} className="w-full">
+        <CardFooter className="flex justify-between">
+          <Button onClick={startExam} className="w-1/2 mr-2">
             Start Exam
+          </Button>
+          <Button onClick={generateRandomQuestions} className="w-1/2 ml-2">
+            Random
           </Button>
         </CardFooter>
       </Card>
@@ -275,7 +356,7 @@ const MockExamContent: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-4">
-                <div className="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-3 py-1 rounded-full text-sm font-medium flex items-center">
+                <div className="bg-gray-100 dark:bg-gray-700 text-gray-900  dark:text-gray-100 px-3 py-1 rounded-full text-sm font-medium flex items-center">
                   <Clock className="w-4 h-4 mr-2" />
                   {formatTime(state.examState.timeLeft)}
                 </div>
@@ -350,7 +431,6 @@ const MockExamContent: React.FC = () => {
                       <span className="text-sm">{state.examState.markedForReview.size} Marked for Review</span>
                     </div>
                   </div>
-                
                 </CardContent>
               </Card>
 
@@ -405,4 +485,4 @@ const MockExamContent: React.FC = () => {
   )
 }
 
-export default MockExamContent
+export default MockExamContent;
