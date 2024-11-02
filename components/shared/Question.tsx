@@ -40,7 +40,7 @@ import {
   TooltipContent,
   TooltipProvider,
 } from '@/components/ui/tooltip'
-import { MorePopover } from '@/components/layout/MorePopover'
+import FeedbackPopover from './FeedbackPopover'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -429,13 +429,12 @@ export default function Component({
               downvotes: 0,
               edited: false,
             },
-          
           ],
         }
       }
       return comment
     })
-    
+
     setComments(updatedComments)
     setReplyingTo(null)
   }
@@ -759,54 +758,54 @@ export default function Component({
               </div>
               {!distractionFreeMode && (
                 <div className="flex items-center space-x-4">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Checkbox
-                      id={`complete-${question.questionId}`}
-                      checked={isMarkedComplete}
-                      onCheckedChange={() => handleMarkCompleteLocal(question.questionId)}
-                    />
-                  </TooltipTrigger>
-                  <TooltipContent>Mark as Complete</TooltipContent>
-                </Tooltip>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => handleMarkForReviewLocal(question.questionId)}
-                    >
-                      <LucideBookmark
-                        className={
-                          isMarkedForReview ? 'fill-yellow-700' : 'text-yellow-700'
-                        }
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Checkbox
+                        id={`complete-${question.questionId}`}
+                        checked={isMarkedComplete}
+                        onCheckedChange={() => handleMarkCompleteLocal(question.questionId)}
                       />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Bookmark for Review</TooltipContent>
-                </Tooltip>
-                <SettingsPopover
-                  markschemeEnabled={markschemeEnabled}
-                  setMarkschemeEnabled={handleMarkschemeSwitch}
-                  aiEnabled={aiEnabled}
-                  setAiEnabled={setAiEnabled}
-                  notesEnabled={notesEnabled}
-                  setNotesEnabled={setNotesEnabled}
-                  timerEnabled={timerEnabled}
-                  setTimerEnabled={setTimerEnabled}
-                  hintsEnabled={hintsEnabled}
-                  setHintsEnabled={setHintsEnabled}
-                  solutionsEnabled={solutionsEnabled}
-                  setSolutionsEnabled={setSolutionsEnabled}
-                  showStepByStep={showStepByStep}
-                  setShowStepByStep={setShowStepByStep}
-                  darkModeEnabled={darkModeEnabled}
-                  setDarkModeEnabled={setDarkModeEnabled}
-                  progressTrackingEnabled={progressTrackingEnabled}
-                  setProgressTrackingEnabled={setProgressTrackingEnabled}
-                />
-                <MorePopover />
-              </div>              
+                    </TooltipTrigger>
+                    <TooltipContent>Mark as Complete</TooltipContent>
+                  </Tooltip>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => handleMarkForReviewLocal(question.questionId)}
+                      >
+                        <LucideBookmark
+                          className={
+                            isMarkedForReview ? 'fill-yellow-700' : 'text-yellow-700'
+                          }
+                        />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Bookmark for Review</TooltipContent>
+                  </Tooltip>
+                  <SettingsPopover
+                    markschemeEnabled={markschemeEnabled}
+                    setMarkschemeEnabled={handleMarkschemeSwitch}
+                    aiEnabled={aiEnabled}
+                    setAiEnabled={setAiEnabled}
+                    notesEnabled={notesEnabled}
+                    setNotesEnabled={setNotesEnabled}
+                    timerEnabled={timerEnabled}
+                    setTimerEnabled={setTimerEnabled}
+                    hintsEnabled={hintsEnabled}
+                    setHintsEnabled={setHintsEnabled}
+                    solutionsEnabled={solutionsEnabled}
+                    setSolutionsEnabled={setSolutionsEnabled}
+                    showStepByStep={showStepByStep}
+                    setShowStepByStep={setShowStepByStep}
+                    darkModeEnabled={darkModeEnabled}
+                    setDarkModeEnabled={setDarkModeEnabled}
+                    progressTrackingEnabled={progressTrackingEnabled}
+                    setProgressTrackingEnabled={setProgressTrackingEnabled}
+                  />
+                  <FeedbackPopover questionId={question.questionId} />
+                </div>
               )}
             </div>
           </CardHeader>
