@@ -373,9 +373,7 @@ export default function Component({
 
   const handleTemplateChange = (value: string) => {
     setSelectedTemplate(value)
-    handleNoteChange(question.questionId, `Template: ${value}
-
-${note}`)
+    handleNoteChange(question.questionId, `Template: ${value}\n\n${note}`)
   }
 
   const exportNote = () => {
@@ -431,6 +429,7 @@ ${note}`)
               downvotes: 0,
               edited: false,
             },
+          
           ],
         }
       }
