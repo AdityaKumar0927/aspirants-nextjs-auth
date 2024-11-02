@@ -494,4 +494,4 @@ const MockExamContent: React.FC = () => {
   )
 }
 
-export default MockExamContent
+export default MockExamContent;

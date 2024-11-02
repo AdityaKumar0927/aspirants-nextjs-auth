@@ -424,11 +424,12 @@ const QuestionBankContent: React.FC = () => {
       questionId: string,
       updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>
     ) => {
+      
       try {
         const response = await fetch("/api/user-performance/update", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body:  JSON.stringify({ questionId, ...updatedFields }),
+          body: JSON.stringify({ questionId, ...updatedFields }),
         })
         if (!response.ok) throw new Error("Failed to update user performance")
         return await response.json()
@@ -615,6 +616,29 @@ const QuestionBankContent: React.FC = () => {
     }, 100)
   }, [filteredQuestions])
 
+  const questionStats = useMemo(() => {
+    const stats = {
+      notVisited: 0,
+      notAnswered: 0,
+      answered: 0,
+      markedForReview: 0,
+    }
+
+    filteredQuestions.forEach((question) => {
+      if (question.reviewed) {
+        stats.markedForReview++
+      } else if (question.completed) {
+        stats.answered++
+      } else if (question.lastAttempted) {
+        stats.notAnswered++
+      } else {
+        stats.notVisited++
+      }
+    })
+
+    return stats
+  }, [filteredQuestions])
+
   if (status === "loading" || state.loading) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -702,7 +726,13 @@ const QuestionBankContent: React.FC = () => {
                             variant={question.completed ? "default" : "outline"}
                             size="sm"
                             onClick={() => handleNavigatorClick(index)}
-                            className={`w-10 h-10 ${question.reviewed ? "border-yellow-500" : ""}`}
+                            className={`w-10 h-10 ${
+                              question.completed
+                                ? "bg-green-100 border-green-500 text-green-700"
+                                : question.reviewed
+                                ? "bg-yellow-100 border-yellow-500 text-yellow-700"
+                                : ""
+                            }`}
                           >
                             {index + 1}
                           </Button>
@@ -857,6 +887,28 @@ const QuestionBankContent: React.FC = () => {
             ))}
           </div>
 
+          <div className="mb-6 p-4 bg-gray-100 rounded-md">
+            <h2 className="text-lg font-semibold mb-2">Question Status</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div>
+                <p className="text-sm text-gray-600">Not Visited</p>
+                <p className="text-xl font-bold">{questionStats.notVisited}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">Not Answered</p>
+                <p className="text-xl font-bold">{questionStats.notAnswered}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">Answered</p>
+                <p className="text-xl font-bold">{questionStats.answered}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">Marked for Review</p>
+                <p className="text-xl font-bold">{questionStats.markedForReview}</p>
+              </div>
+            </div>
+          </div>
+
           {paginatedQuestions.length > 0 ? (
             <>
               {paginatedQuestions.map((question, index) => (
@@ -919,4 +971,4 @@ async function fetchData(url: string) {
   return await response.json()
 }
 
-export default QuestionBankContent
+export default QuestionBankContent;
