@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useSwipeable } from 'react-swipeable';
-import { Checkbox } from '@/components/ui/checkbox';
-import MathRenderer from '@/components/layout/MathRenderer';
+import React, { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useSwipeable } from 'react-swipeable'
+import { Checkbox } from '@/components/ui/checkbox'
+import MathRenderer from '@/components/layout/MathRenderer'
 import {
   LucideBookmark,
   BookOpen,
@@ -27,21 +27,21 @@ import {
   Grid,
   ChevronLeft,
   ChevronRight,
-} from 'lucide-react';
-import Image from 'next/image';
-import Tiptap from '@/components/layout/Tiptap';
-import Chat from '@/components/shared/Chat';
-import { ToastAction } from '@/components/ui/toast';
-import { useToast } from '@/components/ui/use-toast';
-import SettingsPopover from '@/components/ui/SettingsPopover';
+} from 'lucide-react'
+import Image from 'next/image'
+import Tiptap from '@/components/layout/Tiptap'
+import Chat from '@/components/shared/Chat'
+import { ToastAction } from '@/components/ui/toast'
+import { useToast } from '@/components/ui/use-toast'
+import SettingsPopover from '@/components/ui/SettingsPopover'
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
   TooltipProvider,
-} from '@/components/ui/tooltip';
-import { MorePopover } from '@/components/layout/MorePopover';
-import { Button } from '@/components/ui/button';
+} from '@/components/ui/tooltip'
+import { MorePopover } from '@/components/layout/MorePopover'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -49,20 +49,20 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+} from '@/components/ui/card'
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@/components/ui/tabs';
+} from '@/components/ui/tabs'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from '@/components/ui/select'
 import {
   Dialog,
   DialogContent,
@@ -70,14 +70,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Badge } from '@/components/ui/badge';
-import { Slider } from '@/components/ui/slider';
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { Badge } from '@/components/ui/badge'
+import { Slider } from '@/components/ui/slider'
 
 interface QuestionType {
   questionId: string;
@@ -141,7 +141,7 @@ interface QuestionProps {
   handleQuestionChange: (index: number) => void;
 }
 
-const Question: React.FC<QuestionProps> = ({
+export default function Component({
   question,
   feedback,
   selectedOption,
@@ -165,106 +165,106 @@ const Question: React.FC<QuestionProps> = ({
   totalQuestions,
   currentQuestionIndex,
   handleQuestionChange,
-}) => {
+}: QuestionProps) {
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
     selectedOption || null
-  );
-  const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false);
-  const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled);
-  const [aiEnabled, setAiEnabled] = useState(true);
-  const [notesEnabled, setNotesEnabled] = useState(true);
-  const [timerEnabled, setTimerEnabled] = useState(false);
-  const [hintsEnabled, setHintsEnabled] = useState(false);
-  const [solutionsEnabled, setSolutionsEnabled] = useState(false);
-  const [showStepByStep, setShowStepByStep] = useState(false);
-  const [darkModeEnabled, setDarkModeEnabled] = useState(false);
-  const [progressTrackingEnabled, setProgressTrackingEnabled] = useState(true);
-  const [examModeEnabled, setExamModeEnabled] = useState(false);
-  const [showComments, setShowComments] = useState(false);
-  const [comments, setComments] = useState<CommentType[]>([]);
-  const [newComment, setNewComment] = useState('');
-  const [replyingTo, setReplyingTo] = useState<string | null>(null);
-  const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
-  const [editedCommentContent, setEditedCommentContent] = useState('');
-  const [commentSort, setCommentSort] = useState<'newest' | 'oldest' | 'popular'>('newest');
-  const [distractionFreeMode, setDistractionFreeMode] = useState(false);
-  const [points, setPoints] = useState(0);
-  const [streak, setStreak] = useState(0);
-  const [showComingSoonModal, setShowComingSoonModal] = useState(false);
-  const [comingSoonMessage, setComingSoonMessage] = useState('');
-  const [selectedTemplate, setSelectedTemplate] = useState('');
-  const [progress, setProgress] = useState(0);
-  const [activeTab, setActiveTab] = useState<'notes' | 'ai'>('notes');
-  const [language, setLanguage] = useState('en');
-  const [isOffline, setIsOffline] = useState(false);
-  const [userRating, setUserRating] = useState(0);
-  const [userDifficulty, setUserDifficulty] = useState(0);
-  const [newTag, setNewTag] = useState('');
-  const [showQuestionGrid, setShowQuestionGrid] = useState(false);
-  const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || []);
+  )
+  const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
+  const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
+  const [aiEnabled, setAiEnabled] = useState(true)
+  const [notesEnabled, setNotesEnabled] = useState(true)
+  const [timerEnabled, setTimerEnabled] = useState(false)
+  const [hintsEnabled, setHintsEnabled] = useState(false)
+  const [solutionsEnabled, setSolutionsEnabled] = useState(false)
+  const [showStepByStep, setShowStepByStep] = useState(false)
+  const [darkModeEnabled, setDarkModeEnabled] = useState(false)
+  const [progressTrackingEnabled, setProgressTrackingEnabled] = useState(true)
+  const [examModeEnabled, setExamModeEnabled] = useState(false)
+  const [showComments, setShowComments] = useState(false)
+  const [comments, setComments] = useState<CommentType[]>([])
+  const [newComment, setNewComment] = useState('')
+  const [replyingTo, setReplyingTo] = useState<string | null>(null)
+  const [editingCommentId, setEditingCommentId] = useState<string | null>(null)
+  const [editedCommentContent, setEditedCommentContent] = useState('')
+  const [commentSort, setCommentSort] = useState<'newest' | 'oldest' | 'popular'>('newest')
+  const [distractionFreeMode, setDistractionFreeMode] = useState(false)
+  const [points, setPoints] = useState(0)
+  const [streak, setStreak] = useState(0)
+  const [showComingSoonModal, setShowComingSoonModal] = useState(false)
+  const [comingSoonMessage, setComingSoonMessage] = useState('')
+  const [selectedTemplate, setSelectedTemplate] = useState('')
+  const [progress, setProgress] = useState(0)
+  const [activeTab, setActiveTab] = useState<'notes' | 'ai'>('notes')
+  const [language, setLanguage] = useState('en')
+  const [isOffline, setIsOffline] = useState(false)
+  const [userRating, setUserRating] = useState(0)
+  const [userDifficulty, setUserDifficulty] = useState(0)
+  const [newTag, setNewTag] = useState('')
+  const [showQuestionGrid, setShowQuestionGrid] = useState(false)
+  const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || [])
 
-  const { toast, dismiss } = useToast();
-
-  useEffect(() => {
-    setLocalSelectedOption(selectedOption || null);
-  }, [selectedOption]);
+  const { toast, dismiss } = useToast()
 
   useEffect(() => {
-    const handleOnline = () => setIsOffline(false);
-    const handleOffline = () => setIsOffline(true);
+    setLocalSelectedOption(selectedOption || null)
+  }, [selectedOption])
 
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
+  useEffect(() => {
+    const handleOnline = () => setIsOffline(false)
+    const handleOffline = () => setIsOffline(true)
+
+    window.addEventListener('online', handleOnline)
+    window.addEventListener('offline', handleOffline)
 
     return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
-    };
-  }, []);
+      window.removeEventListener('online', handleOnline)
+      window.removeEventListener('offline', handleOffline)
+    }
+  }, [])
 
   const handleOptionClickLocal = (option: string) => {
     if (localSelectedOption !== option) {
-      setLocalSelectedOption(option);
-      handleOptionClick(question.questionId, option, question.correctOption || '');
-      saveProgress(question.questionId, 'completed', true);
-      updatePoints(option === question.correctOption);
+      setLocalSelectedOption(option)
+      handleOptionClick(question.questionId, option, question.correctOption || '')
+      saveProgress(question.questionId, 'completed', true)
+      updatePoints(option === question.correctOption)
     }
-  };
+  }
 
   const handleNumericalSubmitLocal = () => {
     handleNumericalSubmit(
       question.questionId,
       numericalAnswer || '',
       question.correctOption || ''
-    );
-    saveProgress(question.questionId, 'completed', true);
-    updatePoints(numericalAnswer === question.correctOption);
-  };
+    )
+    saveProgress(question.questionId, 'completed', true)
+    updatePoints(numericalAnswer === question.correctOption)
+  }
 
   const updatePoints = (isCorrect: boolean) => {
     if (isCorrect) {
-      setPoints((prevPoints) => prevPoints + 10);
-      setStreak((prevStreak) => prevStreak + 1);
+      setPoints((prevPoints) => prevPoints + 10)
+      setStreak((prevStreak) => prevStreak + 1)
       if (streak + 1 === 5) {
         toast({
           title: 'Achievement Unlocked!',
           description: "You've answered 5 questions correctly in a row!",
           duration: 5000,
-        });
+        })
       }
     } else {
-      setStreak(0);
+      setStreak(0)
     }
-  };
+  }
 
   const toggleMarkscheme = () => {
-    setShowMarkschemeModal(!showMarkschemeModal);
-    handleMarkschemeToggle(question.questionId);
-  };
+    setShowMarkschemeModal(!showMarkschemeModal)
+    handleMarkschemeToggle(question.questionId)
+  }
 
   const handleMarkschemeSwitch = () => {
-    setMarkschemeEnabled(!markschemeEnabled);
-  };
+    setMarkschemeEnabled(!markschemeEnabled)
+  }
 
   const saveNote = async () => {
     try {
@@ -272,39 +272,39 @@ const Question: React.FC<QuestionProps> = ({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ questionId: question.questionId, content: note }),
-      });
-      if (!response.ok) throw new Error('Failed to save note');
+      })
+      if (!response.ok) throw new Error('Failed to save note')
       toast({
         title: 'Note Saved',
         description: 'Your note has been saved successfully.',
-      });
+      })
     } catch (error) {
-      console.error('Error saving note:', error);
+      console.error('Error saving note:', error)
       toast({
         title: 'Error',
         description: 'Failed to save note. Please try again.',
         variant: 'destructive',
-      });
+      })
     }
-  };
+  }
 
   const deleteNote = async () => {
     try {
-      await handleDeleteNote(question.questionId);
+      await handleDeleteNote(question.questionId)
       toast({
         title: 'Note Deleted',
         description: 'Your note has been deleted successfully.',
-      });
-      handleNoteChange(question.questionId, '');
+      })
+      handleNoteChange(question.questionId, '')
     } catch (error) {
-      console.error('Error deleting note:', error);
+      console.error('Error deleting note:', error)
       toast({
         title: 'Error',
         description: 'Failed to delete note. Please try again.',
         variant: 'destructive',
-      });
+      })
     }
-  };
+  }
 
   const saveProgress = async (
     questionId: string,
@@ -316,16 +316,16 @@ const Question: React.FC<QuestionProps> = ({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ questionId, [field]: value }),
-      });
-      if (!response.ok) throw new Error('Failed to save progress');
+      })
+      if (!response.ok) throw new Error('Failed to save progress')
     } catch (error) {
-      console.error('Error saving progress:', error);
+      console.error('Error saving progress:', error)
     }
-  };
+  }
 
   const handleMarkCompleteLocal = async (questionId: string) => {
-    await handleMarkComplete(questionId);
-    saveProgress(questionId, 'completed', !isMarkedComplete);
+    await handleMarkComplete(questionId)
+    saveProgress(questionId, 'completed', !isMarkedComplete)
     toast({
       title: 'Question Completed',
       description: `You have completed question ${questionId}.`,
@@ -338,12 +338,12 @@ const Question: React.FC<QuestionProps> = ({
           Undo
         </ToastAction>
       ),
-    });
-  };
+    })
+  }
 
   const handleMarkForReviewLocal = async (questionId: string) => {
-    await handleMarkForReview(questionId);
-    saveProgress(questionId, 'reviewed', !isMarkedForReview);
+    await handleMarkForReview(questionId)
+    saveProgress(questionId, 'reviewed', !isMarkedForReview)
     toast({
       title: 'Question Bookmarked',
       description: `You have bookmarked question ${questionId}.`,
@@ -356,44 +356,44 @@ const Question: React.FC<QuestionProps> = ({
           Undo
         </ToastAction>
       ),
-    });
-  };
+    })
+  }
 
   const undoMarkComplete = async (questionId: string) => {
-    await handleMarkComplete(questionId);
-    saveProgress(questionId, 'completed', false);
-    dismiss();
-  };
+    await handleMarkComplete(questionId)
+    saveProgress(questionId, 'completed', false)
+    dismiss()
+  }
 
   const undoMarkForReview = async (questionId: string) => {
-    await handleMarkForReview(questionId);
-    saveProgress(questionId, 'reviewed', false);
-    dismiss();
-  };
+    await handleMarkForReview(questionId)
+    saveProgress(questionId, 'reviewed', false)
+    dismiss()
+  }
 
   const handleTemplateChange = (value: string) => {
-    setSelectedTemplate(value);
+    setSelectedTemplate(value)
     handleNoteChange(question.questionId, `Template: ${value}
 
-${note}`);
-  };
+${note}`)
+  }
 
   const exportNote = () => {
-    const element = document.createElement('a');
-    const file = new Blob([note], { type: 'text/plain' });
-    element.href = URL.createObjectURL(file);
-    element.download = `note_${question.questionId}.txt`;
-    document.body.appendChild(element);
-    element.click();
-  };
+    const element = document.createElement('a')
+    const file = new Blob([note], { type: 'text/plain' })
+    element.href = URL.createObjectURL(file)
+    element.download = `note_${question.questionId}.txt`
+    document.body.appendChild(element)
+    element.click()
+  }
 
   const toggleExamMode = () => {
-    setExamModeEnabled(!examModeEnabled);
+    setExamModeEnabled(!examModeEnabled)
     if (!examModeEnabled) {
-      setAiEnabled(false);
-      setNotesEnabled(false);
+      setAiEnabled(false)
+      setNotesEnabled(false)
     }
-  };
+  }
 
   const handleAddComment = () => {
     if (newComment.trim()) {
@@ -407,11 +407,11 @@ ${note}`);
         upvotes: 0,
         downvotes: 0,
         edited: false,
-      };
-      setComments([...comments, newCommentObj]);
-      setNewComment('');
+      }
+      setComments([...comments, newCommentObj])
+      setNewComment('')
     }
-  };
+  }
 
   const handleReply = (parentId: string, replyContent: string) => {
     const updatedComments = comments.map((comment) => {
@@ -432,40 +432,41 @@ ${note}`);
               edited: false,
             },
           ],
-        };
+        }
       }
-      return comment;
-    });
-    setComments(updatedComments);
-    setReplyingTo(null);
-  };
+      return comment
+    })
+    
+    setComments(updatedComments)
+    setReplyingTo(null)
+  }
 
   const handleEditComment = (commentId: string, newContent: string) => {
     const updatedComments = comments.map((comment) => {
       if (comment.id === commentId) {
-        return { ...comment, content: newContent, edited: true };
+        return { ...comment, content: newContent, edited: true }
       }
       return {
         ...comment,
         replies: comment.replies.map((reply) =>
           reply.id === commentId ? { ...reply, content: newContent, edited: true } : reply
         ),
-      };
-    });
-    setComments(updatedComments);
-    setEditingCommentId(null);
-  };
+      }
+    })
+    setComments(updatedComments)
+    setEditingCommentId(null)
+  }
 
   const handleDeleteComment = (commentId: string) => {
     const updatedComments = comments.filter((comment) => {
       if (comment.id === commentId) {
-        return false;
+        return false
       }
-      comment.replies = comment.replies.filter((reply) => reply.id !== commentId);
-      return true;
-    });
-    setComments(updatedComments);
-  };
+      comment.replies = comment.replies.filter((reply) => reply.id !== commentId)
+      return true
+    })
+    setComments(updatedComments)
+  }
 
   const handleVote = (commentId: string, voteType: 'upvote' | 'downvote') => {
     const updatedComments = comments.map((comment) => {
@@ -474,7 +475,7 @@ ${note}`);
           ...comment,
           upvotes: voteType === 'upvote' ? comment.upvotes + 1 : comment.upvotes,
           downvotes: voteType === 'downvote' ? comment.downvotes + 1 : comment.downvotes,
-        };
+        }
       }
       comment.replies = comment.replies.map((reply) =>
         reply.id === commentId
@@ -484,21 +485,21 @@ ${note}`);
               downvotes: voteType === 'downvote' ? reply.downvotes + 1 : reply.downvotes,
             }
           : reply
-      );
-      return comment;
-    });
-    setComments(updatedComments);
-  };
+      )
+      return comment
+    })
+    setComments(updatedComments)
+  }
 
   const sortedComments = [...comments].sort((a, b) => {
     if (commentSort === 'newest') {
-      return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
+      return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
     } else if (commentSort === 'oldest') {
-      return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
+      return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
     } else {
-      return b.upvotes - a.upvotes;
+      return b.upvotes - a.upvotes
     }
-  });
+  })
 
   const renderComment = (comment: CommentType, isReply = false, depth = 0) => (
     <div
@@ -585,8 +586,8 @@ ${note}`);
                   <TooltipTrigger asChild>
                     <button
                       onClick={() => {
-                        setEditingCommentId(comment.id);
-                        setEditedCommentContent(comment.content);
+                        setEditingCommentId(comment.id)
+                        setEditedCommentContent(comment.content)
                       }}
                       className="text-gray-500 hover:text-yellow-500"
                     >
@@ -629,61 +630,61 @@ ${note}`);
       </div>
       {comment.replies.map((reply) => renderComment(reply, true, depth + 1))}
     </div>
-  );
+  )
 
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
     trackMouse: true,
-  });
+  })
 
   const toggleDistractionFreeMode = () => {
-    setDistractionFreeMode(!distractionFreeMode);
-  };
+    setDistractionFreeMode(!distractionFreeMode)
+  }
 
   const showComingSoon = (feature: string) => {
-    setComingSoonMessage(`${feature} is coming soon!`);
-    setShowComingSoonModal(true);
-  };
+    setComingSoonMessage(`${feature} is coming soon!`)
+    setShowComingSoonModal(true)
+  }
 
   const handleLanguageChange = (newLanguage: string) => {
-    setLanguage(newLanguage);
+    setLanguage(newLanguage)
     // Here you would typically fetch the translated content for the question
     // and update the state accordingly
-  };
+  }
 
   const handleDownloadForOffline = () => {
     // Implement the logic to download the question for offline use
     toast({
       title: 'Question Downloaded',
       description: 'This question is now available offline.',
-    });
-  };
+    })
+  }
 
   const handleRatingChange = (newRating: number) => {
-    setUserRating(newRating);
+    setUserRating(newRating)
     // Here you would typically send this rating to your backend
-  };
+  }
 
   const handleDifficultyChange = (newDifficulty: number) => {
-    setUserDifficulty(newDifficulty);
+    setUserDifficulty(newDifficulty)
     // Here you would typically send this difficulty rating to your backend
-  };
+  }
 
   const handleAddTag = () => {
     if (newTag && !localCustomTags.includes(newTag)) {
-      setLocalCustomTags([...localCustomTags, newTag]);
-      setNewTag('');
+      setLocalCustomTags([...localCustomTags, newTag])
+      setNewTag('')
     }
-  };
+  }
 
   const handleRemoveTag = (tagToRemove: string) => {
-    setLocalCustomTags(localCustomTags.filter(tag => tag !== tagToRemove));
-  };
+    setLocalCustomTags(localCustomTags.filter(tag => tag !== tagToRemove))
+  }
 
   const renderQuestionGrid = () => {
-    const columns = 5;
-    const rows = Math.ceil(totalQuestions / columns);
+    const columns = 5
+    const rows = Math.ceil(totalQuestions / columns)
 
     return (
       <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
@@ -700,8 +701,8 @@ ${note}`);
           </Button>
         ))}
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <TooltipProvider>
@@ -819,7 +820,7 @@ ${note}`);
                     alt={`Diagram for question ${question.questionId}`}
                     layout="fill"
                     objectFit="cover"
-                    className="rounded-md"
+                    className="rounded-m"
                   />
                 </div>
               )}
@@ -1108,7 +1109,5 @@ ${note}`);
         </div>
       </div>
     </TooltipProvider>
-  );
-};
-
-export default Question;
+  )
+}
