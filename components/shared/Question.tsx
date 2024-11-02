@@ -27,9 +27,6 @@ import {
   Grid,
   ChevronLeft,
   ChevronRight,
-  PenLine,
-  Flag,
-  Check,
 } from 'lucide-react';
 import Image from 'next/image';
 import Tiptap from '@/components/layout/Tiptap';
@@ -53,6 +50,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@/components/ui/tabs';
 import {
   Select,
   SelectContent,
@@ -191,6 +194,7 @@ const Question: React.FC<QuestionProps> = ({
   const [comingSoonMessage, setComingSoonMessage] = useState('');
   const [selectedTemplate, setSelectedTemplate] = useState('');
   const [progress, setProgress] = useState(0);
+  const [activeTab, setActiveTab] = useState<'notes' | 'ai'>('notes');
   const [language, setLanguage] = useState('en');
   const [isOffline, setIsOffline] = useState(false);
   const [userRating, setUserRating] = useState(0);
@@ -198,7 +202,6 @@ const Question: React.FC<QuestionProps> = ({
   const [newTag, setNewTag] = useState('');
   const [showQuestionGrid, setShowQuestionGrid] = useState(false);
   const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || []);
-  const [showNotesOrAI, setShowNotesOrAI] = useState<'notes' | 'ai' | null>(null);
 
   const { toast, dismiss } = useToast();
 
@@ -437,8 +440,7 @@ ${note}`);
     setReplyingTo(null);
   };
 
-  const handleEditComment = (commentId: string, 
-    newContent: string) => {
+  const handleEditComment = (commentId: string, newContent: string) => {
     const updatedComments = comments.map((comment) => {
       if (comment.id === commentId) {
         return { ...comment, content: newContent, edited: true };
@@ -821,112 +823,118 @@ ${note}`);
                   />
                 </div>
               )}
-              <p className="text-gray-700 mb-4">{question.text}</p>
-              <MathRenderer text={question.text} />
+              <p className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl">
+                <MathRenderer text={question.text} />
+              </p>
             </div>
+            {question.type === 'Numerical' && (
+              <div className="mb-4">
+                <Input
+                  type="text"
+                  className="w-full p-2 border rounded text-base sm:text-lg"
+                  placeholder="Write your answer here..."
+                  value={numericalAnswer}
+                  onChange={(e) => handleNumericalChange(question.questionId, e.target.value)}
+                />
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button className="mt-2" onClick={handleNumericalSubmitLocal}>
+                      Submit
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Submit your answer</TooltipContent>
+                </Tooltip>
+              </div>
+            )}
             {question.type === 'Multiple Choice' && (
-              <div className="space-y-2">
-                {question.options?.map((option, index) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      id={`option-${index}`}
-                      name={`question-${question.questionId}`}
-                      value={option}
-                      checked={localSelectedOption === option}
-                      onChange={() => handleOptionClickLocal(option)}
-                      className="form-radio h-4 w-4 text-blue-600"
-                    />
-                    <label htmlFor={`option-${index}`} className="ml-2">
-                      {option}
-                    </label>
-                  </div>
+              <div className="space-y-2 mb-4">
+                {question.options?.map((option: string, index: number) => (
+                  <Tooltip key={index}>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant={
+                          localSelectedOption === String.fromCharCode(65 + index)
+                            ? 'default'
+                            : 'outline'
+                        }
+                        className={`w-full justify-start text-left text-base sm:text-lg p-4 ${
+                          localSelectedOption === String.fromCharCode(65 + index) && feedback
+                            ? feedback === 'correct'
+                              ? 'bg-green-100 hover:bg-green-200 text-green-700'
+                              : 'bg-red-100 hover:bg-red-200 text-red-700'
+                            : ''
+                        }`}
+                        onClick={() =>
+                          handleOptionClickLocal(String.fromCharCode(65 + index))
+                        }
+                      >
+                        <span className="mr-2">{String.fromCharCode(65 + index)}.</span>
+                        <MathRenderer text={option} />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Select this option</TooltipContent>
+                  </Tooltip>
                 ))}
               </div>
             )}
-            {question.type === 'Numerical' && (
-              <div className="flex items-center space-x-2">
-                <Input
-                  type="number"
-                  value={numericalAnswer}
-                  onChange={(e) =>
-                    handleNumericalChange(question.questionId, e.target.value)
-                  }
-                  placeholder="Enter your answer"
-                  className="w-40"
-                />
-                <Button onClick={handleNumericalSubmitLocal}>Submit</Button>
-              </div>
-            )}
             {feedback && (
-              <p
-                className={`mt-4 ${
-                  feedback === 'correct' ? 'text-green-600' : 'text-red-600'
+              <div
+                className={`mt-4 p-2 rounded ${
+                  feedback === 'correct'
+                    ? 'bg-green-100 text-green-700'
+                    : feedback === 'incorrect'
+                    ? 'bg-red-100 text-red-700'
+                    : 'bg-gray-100 text-gray-700'
                 }`}
               >
-                Your answer is {feedback}.
-              </p>
-            )}
-            {showMarkscheme && question.markscheme && (
-              <div className="mt-4">
-                <h3 className="font-bold mb-2">Markscheme:</h3>
-                <p>{question.markscheme}</p>
+                {feedback === 'correct'
+                  ? 'Correct!'
+                  : feedback === 'incorrect'
+                  ? 'Incorrect, try again.'
+                  : 'No answer available'}
               </div>
+            )}
+            {localSelectedOption && markschemeEnabled && !examModeEnabled && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" className="mt-4" onClick={toggleMarkscheme}>
+                    Show Markscheme
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>View the markscheme</TooltipContent>
+              </Tooltip>
             )}
           </CardContent>
-          <CardFooter className="flex flex-col">
-            <div className="w-full flex justify-between items-center mb-4">
-              <div className="flex space-x-2">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="outline"
-                      onClick={() => setShowNotesOrAI(showNotesOrAI === 'notes' ? null : 'notes')}
-                      disabled={examModeEnabled}
-                    >
-                      <PenLine className="mr-2 h-4 w-4" />
-                      Take a Note
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Open note-taking area</TooltipContent>
-                </Tooltip>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="outline"
-                      onClick={() => setShowNotesOrAI(showNotesOrAI === 'ai' ? null : 'ai')}
-                      disabled={examModeEnabled}
-                    >
-                      <MessageSquare className="mr-2 h-4 w-4" />
-                      AI Assistance
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Open AI assistance</TooltipContent>
-                </Tooltip>
+          {!distractionFreeMode && (
+            <CardFooter className="flex flex-col">
+              <div className="w-full flex justify-between items-center mb-4">
+                <Tabs
+                  value={activeTab}
+                  onValueChange={(value) => setActiveTab(value as 'notes' | 'ai')}
+                  className="w-auto"
+                >
+                  <TabsList>
+                    <TabsTrigger value="notes" disabled={examModeEnabled}>
+                      Notes
+                    </TabsTrigger>
+                    <TabsTrigger value="ai" disabled={examModeEnabled}>
+                      AI Assistant
+                    </TabsTrigger>
+                  </TabsList>
+                </Tabs>
               </div>
-              <div className="flex space-x-2">
-                <Button variant="outline" size="sm" onClick={() => handleMarkForReview(question.questionId)}>
-                  <Flag className={`w-4 h-4 mr-2 ${isMarkedForReview ? "text-yellow-500" : ""}`} />
-                  {isMarkedForReview ? "Marked for Review" : "Mark for Review"}
-                </Button>
-                <Button variant="outline" size="sm" onClick={() => handleMarkComplete(question.questionId)}>
-                  <Check className={`w-4 h-4 mr-2 ${isMarkedComplete ? "text-green-500" : ""}`} />
-                  {isMarkedComplete ? "Completed" : "Mark Complete"}
-                </Button>
-                <Button variant="outline" size="sm" onClick={toggleMarkscheme} disabled={markschemesDisabled}>
-                  <BookOpen className="w-4 h-4 mr-2" />
-                  {showMarkscheme ? "Hide Markscheme" : "Show Markscheme"}
-                </Button>
-              </div>
-            </div>
-            {showNotesOrAI && (
-              <Card className="w-full mt-4">
-                <CardHeader>
-                  <CardTitle>{showNotesOrAI === 'notes' ? 'Notes' : 'AI Assistant'}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {showNotesOrAI === 'notes' ? (
-                    <>
+              <Tabs
+                value={activeTab}
+                onValueChange={(value) => setActiveTab(value as 'notes' | 'ai')}
+                className="w-full"
+              >
+                <TabsContent value="notes">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Notes</CardTitle>
+                      <CardDescription>Add your notes for this question here.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
                       <div className="mb-4">
                         <Label htmlFor="template-select">Select Template</Label>
                         <Select onValueChange={handleTemplateChange}>
@@ -944,277 +952,161 @@ ${note}`);
                         content={note}
                         onUpdate={(content) => handleNoteChange(question.questionId, content)}
                       />
-                      <div className="flex justify-between mt-4">
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button variant="outline" onClick={saveNote}>
-                              Save Note
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>Save your note</TooltipContent>
-                        </Tooltip>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button variant="outline" onClick={deleteNote}>
-                              Delete Note
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>Delete your note</TooltipContent>
-                        </Tooltip>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button variant="outline" onClick={exportNote}>
-                              <BookOpen className="mr-2 h-4 w-4" />
-                              Export
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>Export your note</TooltipContent>
-                        </Tooltip>
+                    </CardContent>
+                    <CardFooter className="flex justify-between">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button variant="outline" onClick={saveNote}>
+                            Save Note
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Save your note</TooltipContent>
+                      </Tooltip>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button variant="outline" onClick={deleteNote}>
+                            Delete Note
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Delete your note</TooltipContent>
+                      </Tooltip>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button variant="outline" onClick={exportNote}>
+                            <BookOpen className="mr-2 h-4 w-4" />
+                            Export
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Export your note</TooltipContent>
+                      </Tooltip>
+                    </CardFooter>
+                  </Card>
+                </TabsContent>
+                <TabsContent value="ai">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>AI Assistant</CardTitle>
+                      <CardDescription>
+                        Ask for help or clarification on this question.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Chat questionText={question.text} />
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              </Tabs>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowComments(!showComments)}
+                    className="text-sm mt-4"
+                  >
+                    Comments ({comments.length})
+                    <MessageSquare className="ml-2 h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>View and add comments</TooltipContent>
+              </Tooltip>
+              {showComments && (
+                <Card className="mt-4 w-full">
+                  <CardHeader>
+                    <CardTitle>Comments</CardTitle>
+                    <CardDescription>Discuss this question with others.</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4">
+                      <Label htmlFor="comment-sort">Sort by</Label>
+                      <Select
+                        value={commentSort}
+                        onValueChange={(value: 'newest' | 'oldest' | 'popular') =>
+                          setCommentSort(value)
+                        }
+                      >
+                        <SelectTrigger id="comment-sort">
+                          <SelectValue placeholder="Sort comments" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="newest">Newest</SelectItem>
+                          <SelectItem value="oldest">Oldest</SelectItem>
+                          <SelectItem value="popular">Most Popular</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <ScrollArea className="h-[300px]">
+                      <div className="space-y-4">
+                        {sortedComments.map((comment) => renderComment(comment))}
                       </div>
-                    </>
-                  ) : (
-                    <Chat questionText={question.text} />
-                  )}
+                    </ScrollArea>
+                    <div className="mt-4">
+                      <Textarea
+                        placeholder="Add a comment..."
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                      />
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button onClick={handleAddComment} className="mt-2">
+                            Post Comment
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Post your comment</TooltipContent>
+                      </Tooltip>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+            </CardFooter>
+          )}
+        </Card>
+        <AnimatePresence>
+          {showMarkschemeModal && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
+            >
+              <Card className="w-full max-w-2xl">
+                <CardHeader>
+                  <CardTitle>Markscheme</CardTitle>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="absolute right-4 top-4"
+                        onClick={() => setShowMarkschemeModal(false)}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Close markscheme</TooltipContent>
+                  </Tooltip>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-y-auto max-h-[60vh]">
+                    <p className="mb-2">
+                      {question.markscheme ? (
+                        <MathRenderer text={question.markscheme} />
+                      ) : (
+                        'No answer available'
+                      )}
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
-            )}
-            <div className="w-full flex justify-between items-center mt-4">
-              <Button
-                variant="outline"
-                onClick={onPreviousQuestion}
-                disabled={currentQuestionIndex === 0}
-              >
-                Previous
-              </Button>
-              <span>
-                Question {currentQuestionIndex + 1} of {totalQuestions}
-              </span>
-              <Button
-                variant="outline"
-                onClick={onNextQuestion}
-                disabled={currentQuestionIndex === totalQuestions - 1}
-              >
-                Next
-              </Button>
-            </div>
-          </CardFooter>
-        </Card>
-        <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 p-4 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex justify-between items-center max-w-7xl mx-auto">
-            <div className="flex items-center space-x-4">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline" onClick={toggleExamMode}>
-                    {examModeEnabled ? (
-                      <Sun className="h-4 w-4 mr-2" />
-                    ) : (
-                      <LucideBot className="h-4 w-4 mr-2" />
-                    )}
-                    {examModeEnabled ? 'Exit Exam Mode' : 'Enter Exam Mode'}
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  {examModeEnabled
-                    ? 'Exit exam mode to enable AI and notes'
-                    : 'Enter exam mode to disable AI and notes'}
-                </TooltipContent>
-              </Tooltip>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline" onClick={toggleDistractionFreeMode}>
-                    {distractionFreeMode ? (
-                      <Minimize2 className="h-4 w-4 mr-2" />
-                    ) : (
-                      <Maximize2 className="h-4 w-4 mr-2" />
-                    )}
-                    {distractionFreeMode ? 'Exit Focus Mode' : 'Enter Focus Mode'}
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  {distractionFreeMode
-                    ? 'Exit focus mode to show all UI elements'
-                    : 'Enter focus mode to hide distracting UI elements'}
-                </TooltipContent>
-              </Tooltip>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline" onClick={() => showComingSoon('Leaderboard')}>
-                    <Trophy className="h-4 w-4 mr-2" />
-                    Leaderboard
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>View the leaderboard</TooltipContent>
-              </Tooltip>
-              <div className="flex items-center space-x-2">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <span className="text-sm font-medium">Points: {points}</span>
-                  </TooltipTrigger>
-                  <TooltipContent>Your current points</TooltipContent>
-                </Tooltip>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <span className="text-sm font-medium">Streak: {streak}</span>
-                  </TooltipTrigger>
-                  <TooltipContent>Your current streak</TooltipContent>
-                </Tooltip>
-              </div>
-            </div>
-          </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <div className="fixed top-20 left-4 space-x-2">
+          <Badge variant="secondary">Points: {points}</Badge>
+          <Badge variant="secondary">Streak: {streak}</Badge>
         </div>
       </div>
-      <Dialog open={showComingSoonModal} onOpenChange={setShowComingSoonModal}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Coming Soon</DialogTitle>
-            <DialogDescription>{comingSoonMessage}</DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
-      <Dialog open={showMarkschemeModal} onOpenChange={setShowMarkschemeModal}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Markscheme</DialogTitle>
-          </DialogHeader>
-          <p>{question.markscheme}</p>
-        </DialogContent>
-      </Dialog>
-      <AnimatePresence>
-        {showQuestionGrid && (
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-            onClick={() => setShowQuestionGrid(false)}
-          >
-            <motion.div
-              className="bg-white p-6 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h2 className="text-2xl font-bold mb-4">Question Navigator</h2>
-              {renderQuestionGrid()}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <div className="fixed bottom-4 right-4 z-50">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => setShowQuestionGrid(!showQuestionGrid)}
-            >
-              <Grid className="h-4 w-4" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>Toggle Question Grid</TooltipContent>
-        </Tooltip>
-      </div>
-      {showComments && (
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle>Comments</CardTitle>
-            <div className="flex justify-between items-center">
-              <Select
-                value={commentSort}
-                onValueChange={(value) => setCommentSort(value as 'newest' | 'oldest' | 'popular')}
-              >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Sort comments" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="newest">Newest</SelectItem>
-                  <SelectItem value="oldest">Oldest</SelectItem>
-                  <SelectItem value="popular">Most Popular</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {sortedComments.map((comment) => renderComment(comment))}
-            </div>
-            <div className="mt-4">
-              <Textarea
-                placeholder="Add a comment..."
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-              />
-              <Button onClick={handleAddComment} className="mt-2">
-                Post Comment
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-      {question.relatedResources && question.relatedResources.length > 0 && (
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle>Related Resources</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="list-disc pl-5">
-              {question.relatedResources.map((resource, index) => (
-                <li key={index}>
-                  <a
-                    href={resource.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    {resource.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      )}
-      <Card className="mt-6">
-        <CardHeader>
-          <CardTitle>Question Feedback</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="rating">Rate this question:</Label>
-              <div className="flex items-center space-x-1">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <button
-                    key={star}
-                    onClick={() => handleRatingChange(star)}
-                    className={`text-2xl ${
-                      star <= userRating ? 'text-yellow-400' : 'text-gray-300'
-                    }`}
-                  >
-                    ★
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div>
-              <Label htmlFor="difficulty">Rate the difficulty:</Label>
-              <Slider
-                id="difficulty"
-                min={1}
-                max={10}
-                step={1}
-                value={[userDifficulty]}
-                onValueChange={(value) => handleDifficultyChange(value[0])}
-              />
-              <div className="flex justify-between text-xs text-gray-500">
-                <span>Easy</span>
-                <span>Medium</span>
-                <span>Hard</span>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </TooltipProvider>
   );
 };
