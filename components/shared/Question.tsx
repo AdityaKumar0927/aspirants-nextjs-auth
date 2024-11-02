@@ -202,6 +202,8 @@ export default function Component({
   const [newTag, setNewTag] = useState('')
   const [showQuestionGrid, setShowQuestionGrid] = useState(false)
   const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || [])
+  const [showNotesTab, setShowNotesTab] = useState(false)
+  const [showAITab, setShowAITab] = useState(false)
 
   const { toast, dismiss } = useToast()
 
@@ -905,6 +907,28 @@ export default function Component({
             )}
           </CardContent>
           {!distractionFreeMode && (
+            <div className="flex space-x-2 mt-4">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button onClick={() => setShowNotesTab(!showNotesTab)}>
+                    <BookOpen className="mr-2 h-4 w-4" />
+                    {showNotesTab ? 'Hide Notes' : 'Take Notes'}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>{showNotesTab ? 'Hide note-taking interface' : 'Open note-taking interface'}</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button onClick={() => setShowAITab(!showAITab)}>
+                    <LucideBot className="mr-2 h-4 w-4" />
+                    {showAITab ? 'Hide AI' : 'AI Assistance'}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>{showAITab ? 'Hide AI assistant' : 'Get AI help'}</TooltipContent>
+              </Tooltip>
+            </div>
+          )}
+          {!distractionFreeMode && (showNotesTab || showAITab) && (
             <CardFooter className="flex flex-col">
               <div className="w-full flex justify-between items-center mb-4">
                 <Tabs
@@ -913,12 +937,16 @@ export default function Component({
                   className="w-auto"
                 >
                   <TabsList>
-                    <TabsTrigger value="notes" disabled={examModeEnabled}>
-                      Notes
-                    </TabsTrigger>
-                    <TabsTrigger value="ai" disabled={examModeEnabled}>
-                      AI Assistant
-                    </TabsTrigger>
+                    {showNotesTab && (
+                      <TabsTrigger value="notes" disabled={examModeEnabled}>
+                        Notes
+                      </TabsTrigger>
+                    )}
+                    {showAITab && (
+                      <TabsTrigger value="ai" disabled={examModeEnabled}>
+                        AI Assistant
+                      </TabsTrigger>
+                    )}
                   </TabsList>
                 </Tabs>
               </div>
@@ -927,73 +955,77 @@ export default function Component({
                 onValueChange={(value) => setActiveTab(value as 'notes' | 'ai')}
                 className="w-full"
               >
-                <TabsContent value="notes">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Notes</CardTitle>
-                      <CardDescription>Add your notes for this question here.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="mb-4">
-                        <Label htmlFor="template-select">Select Template</Label>
-                        <Select onValueChange={handleTemplateChange}>
-                          <SelectTrigger id="template-select">
-                            <SelectValue placeholder="Choose a template" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="meeting">Meeting Notes</SelectItem>
-                            <SelectItem value="project">Project Plan</SelectItem>
-                            <SelectItem value="study">Study Notes</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <Tiptap
-                        content={note}
-                        onUpdate={(content) => handleNoteChange(question.questionId, content)}
-                      />
-                    </CardContent>
-                    <CardFooter className="flex justify-between">
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button variant="outline" onClick={saveNote}>
-                            Save Note
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>Save your note</TooltipContent>
-                      </Tooltip>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button variant="outline" onClick={deleteNote}>
-                            Delete Note
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>Delete your note</TooltipContent>
-                      </Tooltip>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button variant="outline" onClick={exportNote}>
-                            <BookOpen className="mr-2 h-4 w-4" />
-                            Export
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>Export your note</TooltipContent>
-                      </Tooltip>
-                    </CardFooter>
-                  </Card>
-                </TabsContent>
-                <TabsContent value="ai">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>AI Assistant</CardTitle>
-                      <CardDescription>
-                        Ask for help or clarification on this question.
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <Chat questionText={question.text} />
-                    </CardContent>
-                  </Card>
-                </TabsContent>
+                {showNotesTab && (
+                  <TabsContent value="notes">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Notes</CardTitle>
+                        <CardDescription>Add your notes for this question here.</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="mb-4">
+                          <Label htmlFor="template-select">Select Template</Label>
+                          <Select onValueChange={handleTemplateChange}>
+                            <SelectTrigger id="template-select">
+                              <SelectValue placeholder="Choose a template" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="meeting">Meeting Notes</SelectItem>
+                              <SelectItem value="project">Project Plan</SelectItem>
+                              <SelectItem value="study">Study Notes</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <Tiptap
+                          content={note}
+                          onUpdate={(content) => handleNoteChange(question.questionId, content)}
+                        />
+                      </CardContent>
+                      <CardFooter className="flex justify-between">
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button variant="outline" onClick={saveNote}>
+                              Save Note
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>Save your note</TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button variant="outline" onClick={deleteNote}>
+                              Delete Note
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>Delete your note</TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button variant="outline" onClick={exportNote}>
+                              <BookOpen className="mr-2 h-4 w-4" />
+                              Export
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>Export your note</TooltipContent>
+                        </Tooltip>
+                      </CardFooter>
+                    </Card>
+                  </TabsContent>
+                )}
+                {showAITab && (
+                  <TabsContent value="ai">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>AI Assistant</CardTitle>
+                        <CardDescription>
+                          Ask for help or clarification on this question.
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <Chat questionText={question.text} />
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+                )}
               </Tabs>
               <Tooltip>
                 <TooltipTrigger asChild>
