@@ -124,28 +124,19 @@ const MockExamContent: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { data: session, status } = useSession()
 
-  const fetchFilterOptions = useCallback(async () => {
-    try {
-      const response = await fetch('/api/filter-options')
-      const data = await response.json()
-      dispatch({ type: "SET_FILTER_OPTIONS", payload: data })
-    } catch (error) {
-      console.error("Error fetching filter options:", error)
-    }
-  }, [])
-
-  const fetchQuestions = useCallback(async () => {
+  const fetchFilterOptionsAndQuestions = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
     try {
-      const response = await fetch('/api/questions', {
+      const response = await fetch('/api/filter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(state.filters),
       })
       const data = await response.json()
-      dispatch({ type: "SET_QUESTIONS", payload: data })
+      dispatch({ type: "SET_FILTER_OPTIONS", payload: data.filterOptions })
+      dispatch({ type: "SET_QUESTIONS", payload: data.questions })
     } catch (error) {
-      console.error("Error fetching questions:", error)
+      console.error("Error fetching filter options and questions:", error)
     } finally {
       dispatch({ type: "SET_LOADING", payload: false })
     }
@@ -153,9 +144,9 @@ const MockExamContent: React.FC = () => {
 
   useEffect(() => {
     if (status === "authenticated") {
-      fetchFilterOptions()
+      fetchFilterOptionsAndQuestions()
     }
-  }, [fetchFilterOptions, status])
+  }, [fetchFilterOptionsAndQuestions, status])
 
   useEffect(() => {
     if (state.isExamMode) {
@@ -170,7 +161,7 @@ const MockExamContent: React.FC = () => {
   }, [state.isExamMode, state.examState.timeLeft])
 
   const startExam = useCallback(() => {
-    fetchQuestions()
+    fetchFilterOptionsAndQuestions()
     dispatch({ type: "SET_EXAM_MODE", payload: true })
     dispatch({ 
       type: "SET_EXAM_STATE", 
@@ -181,7 +172,7 @@ const MockExamContent: React.FC = () => {
         timeLeft: 10800 
       } 
     })
-  }, [fetchQuestions])
+  }, [fetchFilterOptionsAndQuestions])
 
   const generateRandomQuestions = useCallback(() => {
     const randomFilters = {
@@ -264,7 +255,10 @@ const MockExamContent: React.FC = () => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <Select onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { subject: value } })}>
+            <Select 
+              value={state.filters.subject} 
+              onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { subject: value } })}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select subject" />
               </SelectTrigger>
@@ -274,7 +268,10 @@ const MockExamContent: React.FC = () => {
                 ))}
               </SelectContent>
             </Select>
-            <Select onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { difficulty: value } })}>
+            <Select 
+              value={state.filters.difficulty} 
+              onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { difficulty: value } })}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select difficulty" />
               </SelectTrigger>
@@ -284,7 +281,10 @@ const MockExamContent: React.FC = () => {
                 ))}
               </SelectContent>
             </Select>
-            <Select onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { topic: value } })}>
+            <Select 
+              value={state.filters.topic} 
+              onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { topic: value } })}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select topic" />
               </SelectTrigger>
@@ -294,7 +294,10 @@ const MockExamContent: React.FC = () => {
                 ))}
               </SelectContent>
             </Select>
-            <Select onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { subtopic: value } })}>
+            <Select 
+              value={state.filters.subtopic} 
+              onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { subtopic: value } })}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select subtopic" />
               </SelectTrigger>
@@ -304,7 +307,10 @@ const MockExamContent: React.FC = () => {
                 ))}
               </SelectContent>
             </Select>
-            <Select onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { year: value } })}>
+            <Select 
+              value={state.filters.year} 
+              onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { year: value } })}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select year" />
               </SelectTrigger>
@@ -314,7 +320,10 @@ const MockExamContent: React.FC = () => {
                 ))}
               </SelectContent>
             </Select>
-            <Select onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { questionCount: parseInt(value) } })}>
+            <Select 
+              value={state.filters.questionCount.toString()} 
+              onValueChange={(value) => dispatch({ type: "SET_FILTERS", payload: { questionCount: parseInt(value) } })}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Number of questions" />
               </SelectTrigger>
@@ -355,8 +364,8 @@ const MockExamContent: React.FC = () => {
                   <p className="text-xs text-gray-500 dark:text-gray-400">Mock Exam</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-4">
-                <div className="bg-gray-100 dark:bg-gray-700 text-gray-900  dark:text-gray-100 px-3 py-1 rounded-full text-sm font-medium flex items-center">
+              <div  className="flex items-center space-x-4">
+                <div className="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-3 py-1 rounded-full text-sm font-medium flex items-center">
                   <Clock className="w-4 h-4 mr-2" />
                   {formatTime(state.examState.timeLeft)}
                 </div>
@@ -485,4 +494,4 @@ const MockExamContent: React.FC = () => {
   )
 }
 
-export default MockExamContent;
+export default MockExamContent
