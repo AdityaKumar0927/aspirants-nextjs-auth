@@ -6,7 +6,7 @@ import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
 import Question from "@/components/shared/Question"
 import Popover from "@/components/shared/popover"
-import { ChevronDown, ChevronLeft, ChevronRight, Info, List, Search } from "lucide-react"
+import { CheckCheckIcon, ChevronDown, ChevronLeft, ChevronRight, Info, List, Search } from "lucide-react"
 import Link from "next/link"
 import {
   Tooltip,
@@ -29,6 +29,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Circle, CheckCircle2Icon, Flag } from "lucide-react"
 
 const PAGE_SIZE = 10
 
@@ -193,6 +194,19 @@ function reducer(state: StateType, action: ActionType): StateType {
     default:
       return state
   }
+}
+
+
+function StatusCard({ icon, label, value, color }: { icon: React.ReactNode; label: string; value: number; color: string }) {
+    return (
+      <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md">
+        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-50 mb-3">
+          {icon}
+        </div>
+        <span className={`text-2xl font-bold ${color}`}>{value}</span>
+        <p className="text-sm font-medium text-gray-600 mt-1">{label}</p>
+      </div>
+    )
 }
 
 const Pagination: React.FC<{
@@ -887,27 +901,33 @@ const QuestionBankContent: React.FC = () => {
             ))}
           </div>
 
-          <div className="mb-6 p-4 bg-gray-100 rounded-md">
-            <h2 className="text-lg font-semibold mb-2">Question Status</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <div>
-                <p className="text-sm text-gray-600">Not Visited</p>
-                <p className="text-xl font-bold">{questionStats.notVisited}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Not Answered</p>
-                <p className="text-xl font-bold">{questionStats.notAnswered}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Answered</p>
-                <p className="text-xl font-bold">{questionStats.answered}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Marked for Review</p>
-                <p className="text-xl font-bold">{questionStats.markedForReview}</p>
-              </div>
-            </div>
-          </div>
+          <Card className="bg-gradient-to-br from-gray-50 to-white border-gray-100 shadow-sm">
+      <CardContent className="p-6">
+        <h2 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem] mb-4 text-gray-900">
+          Question Progress
+        </h2>
+        <div className="grid grid-cols-3 gap-4">
+          <StatusCard
+            icon={<Circle className="h-6 w-6 text-blue-500" />}
+            label="Not Answered"
+            value={questionStats.notAnswered}
+            color="text-blue-500"
+          />
+          <StatusCard
+            icon={<CheckCheckIcon className="h-6 w-6 text-green-500" />}
+            label="Answered"
+            value={questionStats.answered}
+            color="text-green-500"
+          />
+          <StatusCard
+            icon={<Flag className="h-6 w-6 text-yellow-500" />}
+            label="For Review"
+            value={questionStats.markedForReview}
+            color="text-yellow-500"
+          />
+        </div>
+      </CardContent>
+    </Card>
 
           {paginatedQuestions.length > 0 ? (
             <>

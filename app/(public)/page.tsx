@@ -153,7 +153,7 @@ const Page = () => {
           </div>
         </div>
 
-        <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
+        <h4 className="font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
         Review Your Performance
       </h4>
 
