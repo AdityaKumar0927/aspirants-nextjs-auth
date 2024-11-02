@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSwipeable } from 'react-swipeable';
@@ -51,12 +53,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/components/ui/tabs';
 import {
   Select,
   SelectContent,
@@ -437,12 +433,12 @@ ${note}`);
       }
       return comment;
     });
-    
     setComments(updatedComments);
     setReplyingTo(null);
   };
 
-  const handleEditComment = (commentId: string, newContent: string) => {
+  const handleEditComment = (commentId: string, 
+    newContent: string) => {
     const updatedComments = comments.map((comment) => {
       if (comment.id === commentId) {
         return { ...comment, content: newContent, edited: true };
@@ -825,6 +821,7 @@ ${note}`);
                   />
                 </div>
               )}
+              <p className="text-gray-700 mb-4">{question.text}</p>
               <MathRenderer text={question.text} />
             </div>
             {question.type === 'Multiple Choice' && (
