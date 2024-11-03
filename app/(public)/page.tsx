@@ -144,7 +144,7 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="relative w-11/12 min-h-screen border-4 rounded-2xl overflow-hidden z-50 flex items-center justify-center my-8">
+        <div className="relative w-11/12 min-h-screen border-4 rounded-2xl overflow-hidden z-0 flex items-center justify-center my-8">
       <div className="absolute inset-0 hidden sm:block">
         <Image
           src="/imac.jpg"
@@ -159,7 +159,7 @@ const Page = () => {
       </div>
     </div>
 
-        <h4 className="font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+        <h4 className="font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
         Review Your Performance
       </h4>
 
@@ -175,7 +175,7 @@ const Page = () => {
 
       <div className="container mx-auto px-4 py-12 max-w-6xl">
         <h1 className="text-center text-gray-600 text-sm mb-4">aspirants X ChatGPT 4o</h1>
-        <h2 className="text-center font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+        <h2 className="text-center mb-10 font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-2xl sm:leading-[4rem]">
           Supercharge Your Learning Experience
         </h2>
 
@@ -191,7 +191,7 @@ const Page = () => {
 
      
       <div className="mb-20">
-        <h4 className="text-center font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+        <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
           Never Forget Anything
         </h4>
 
@@ -205,7 +205,7 @@ const Page = () => {
       </div>
 
       <div className="mb-20">
-        <h4 className="text-center font-display text-8xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+        <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-2xl sm:leading-[4rem]">
           A Plethora of Exams
         </h4>
 
@@ -226,20 +226,7 @@ const Page = () => {
             type: "spring",
           }}
         >
-          <a
-            href="#"
-            className={cn(
-              // colors
-              "bg-black text-white shadow hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90",
-              // layout
-              "group relative inline-flex mx-2.5 h-9 w-1/2 items-center justify-center gap-2 overflow-hidden whitespace-pre rounded-md px-4 py-2 text-base font-semibold tracking-tighter focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 md:flex",
-              // animation
-              "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-2"
-            )}
-          >
-            Get Started
-            <ChevronRight className="size-4 translate-x-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
-          </a>
+          
         </motion.div>
       </div>
             

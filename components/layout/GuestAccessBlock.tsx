@@ -32,7 +32,7 @@ export default function GuestAccessBlock({ featureName = "this feature" }: Guest
     <div className="flex items-center justify-center min-h-[50vh] p-4 bg-gradient-to-br from-background to-secondary/20">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">Access Required</CardTitle>
+          <CardTitle className="text-2xl font-light text-red-500 text-center">Access Required</CardTitle>
           <CardDescription className="text-center">
             Sign in to access {featureName}.
           </CardDescription>

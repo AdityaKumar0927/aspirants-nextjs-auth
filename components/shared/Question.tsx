@@ -581,7 +581,7 @@ export default function Component({
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
-                <CardTitle className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+                <CardTitle className="font-normal text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
                   Question {question.questionId}
                 </CardTitle>
                 <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
@@ -738,7 +738,10 @@ export default function Component({
                         }
                       >
                         <span className="mr-2">{String.fromCharCode(65 + index)}.</span>
-                        <MathRenderer text={option} />
+                       <div className="font-serif"> <MathRenderer 
+        text={option} 
+        
+      /></div>
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>Select this option</TooltipContent>
