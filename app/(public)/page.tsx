@@ -111,8 +111,8 @@ const Page = () => {
             </AnimatedGradientText>
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
-            <div className="container mx-auto px-4 py-8">
-      <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.02em] drop-shadow-sm leading-tight sm:leading-[1.2] md:leading-[1.1] lg:leading-[1.1] text-center">
+            <div className="container w-full mx-auto">
+      <h1 className="text-3xl font-light sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.04em] drop-shadow-sm leading-tight sm:leading-[1.2] md:leading-[1.1] lg:leading-[1.1] text-center">
         Study Smart with Aspirants
       </h1>
     </div>
@@ -166,7 +166,6 @@ const Page = () => {
       <p className="text-sm mb-8 lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal">
         Understand your strengths and weaknesses questions by exam, topic, sub-topic, year, difficulty, completed, or marked for review to save time.
       </p>
-
     
       <div className="flex justify-between items-center bg-background-image bg-border mt-10 bg-cover bg-center">
         <ContainerScroll titleComponent={<></>}>

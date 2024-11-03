@@ -1,7 +1,6 @@
-"use client"
+"use client";
 
-import React from 'react'
-import { useUserPerformance } from "@/components/layout/UserPerformanceContext"
+import { useUserPerformance } from "@/components/layout/UserPerformanceContext";
 import {
   Bar,
   BarChart,
@@ -10,202 +9,285 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-  Legend,
-} from "recharts"
-import Skeleton from "react-loading-skeleton"
-import "react-loading-skeleton/dist/skeleton.css"
+  LabelList,
+} from "recharts";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+} from "@/components/ui/card";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 interface UserPerformance {
-  questionId: string
-  correctAnswers: number
-  incorrectAnswers: number
-  uniqueQuestions: number
-  questionsAttempted: number
-  timeSpent: number
-  accuracy: number
-  weaknessBySubtopic: Record<string, number>
-  improvementOverTime: Record<string, number>
-  attemptRate: number
-  firstAttemptSuccessRate: number
-  reattemptAccuracy: number
-  topicPerformance: Record<string, number>
-  consistency: number
-  engagementLevel: number
-  completed: boolean
-  reviewed: boolean
-  createdAt: string
+  questionId: string;
+  correctAnswers: number;
+  incorrectAnswers: number;
+  uniqueQuestions: number;
+  questionsAttempted: number;
+  timeSpent: number;
+  accuracy: number;
+  weaknessBySubtopic: any;
+  improvementOverTime: any;
+  attemptRate: number;
+  firstAttemptSuccessRate: number;
+  reattemptAccuracy: number;
+  topicPerformance: any;
+  consistency: number;
+  engagementLevel: number;
+  completed: boolean;
+  reviewed: boolean;
+  createdAt: string;
 }
 
 const calculateAverage = (data: UserPerformance[], key: keyof UserPerformance): number => {
-  const total = data.reduce((sum, item) => sum + (item[key] as number), 0)
-  return total / data.length
-}
+  const total = data.reduce((sum, item) => sum + (item[key] as number), 0);
+  return total / data.length;
+};
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8']
-
-export default function Stats() {
-  const { userPerformance, loading } = useUserPerformance()
+const Stats: React.FC = () => {
+  const { userPerformance, loading } = useUserPerformance();
 
   if (loading) {
     return (
-      <div className="container mx-auto p-4 space-y-8">
-        <Skeleton height={50} width={300} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Skeleton height={300} />
-          <Skeleton height={300} />
-          <Skeleton height={300} />
-        </div>
+      <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
+        <Skeleton height={300} width="100%" />
+        <Skeleton height={300} width="100%" />
+        <Skeleton height={300} width="100%" />
       </div>
-    )
+    );
   }
 
-  const averageAccuracy = calculateAverage(userPerformance, "accuracy")
-  const totalQuestionsAttempted = userPerformance.reduce((sum, item) => sum + item.questionsAttempted, 0)
-  const averageReattemptAccuracy = calculateAverage(userPerformance, "reattemptAccuracy")
-  const averageEngagementLevel = calculateAverage(userPerformance, "engagementLevel")
-
-  const topicPerformanceData = Object.entries(userPerformance[0].topicPerformance).map(([name, value]) => ({
-    name,
-    value
-  }))
-
-  const weaknessData = Object.entries(userPerformance[0].weaknessBySubtopic).map(([name, value]) => ({
-    name,
-    value
-  }))
+  const averageAccuracy = calculateAverage(userPerformance, "accuracy");
+  const totalQuestionsAttempted = userPerformance.reduce((sum, item) => sum + item.questionsAttempted, 0);
+  const totalCorrectAnswers = userPerformance.reduce((sum, item) => sum + item.correctAnswers, 0);
+  const totalIncorrectAnswers = userPerformance.reduce((sum, item) => sum + item.incorrectAnswers, 0);
+  const averageReattemptAccuracy = calculateAverage(userPerformance, "reattemptAccuracy");
 
   return (
-    <div className="container mx-auto p-4 space-y-8">
-      <h1 className="text-3xl font-bold">Your Performance Dashboard</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Average Accuracy</CardTitle>
+    <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
+      <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
+        <Card className="lg:max-w-md">
+          <CardHeader className="space-y-0 pb-2">
+            <CardDescription>Average Accuracy</CardDescription>
+            <CardTitle className="text-4xl tabular-nums">
+              {averageAccuracy.toFixed(2)}{" "}
+              <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">%</span>
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold mb-4">{averageAccuracy.toFixed(2)}%</div>
-            <ResponsiveContainer width="100%" height={200}>
-              <LineChart data={userPerformance}>
-                <XAxis dataKey="createdAt" />
-                <YAxis />
-                <Tooltip />
-                <Line type="monotone" dataKey="accuracy" stroke="#8884d8" />
-              </LineChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Total Questions Attempted</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-4xl font-bold mb-4">{totalQuestionsAttempted}</div>
-            <ResponsiveContainer width="100%" height={200}>
-              <BarChart data={userPerformance}>
-                <XAxis dataKey="createdAt" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="questionsAttempted" fill="#82ca9d" />
+            <ChartContainer
+              config={{
+                accuracy: {
+                  label: "Accuracy",
+                  color: "hsl(var(--chart-1))",
+                },
+              }}
+            >
+              <BarChart accessibilityLayer margin={{ left: -4, right: -4 }} data={userPerformance}>
+                <Bar dataKey="accuracy" fill="var(--color-accuracy)" radius={5} fillOpacity={0.6} />
+                <XAxis
+                  dataKey="createdAt"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={4}
+                  tickFormatter={(value) =>
+                    new Date(value).toLocaleDateString("en-US", {
+                      weekday: "short",
+                    })
+                  }
+                />
+                <ChartTooltip
+                  content={
+                    <ChartTooltipContent
+                      hideIndicator
+                      labelFormatter={(value) =>
+                        new Date(value).toLocaleDateString("en-US", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })
+                      }
+                    />
+                  }
+                  cursor={false}
+                />
               </BarChart>
-            </ResponsiveContainer>
+            </ChartContainer>
           </CardContent>
+          <CardFooter className="flex-col items-start gap-1">
+            <CardDescription>
+              Your average accuracy across all attempts is{" "}
+              <span className="font-medium text-foreground">{averageAccuracy.toFixed(2)}%</span>.
+            </CardDescription>
+          </CardFooter>
         </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Reattempt Accuracy</CardTitle>
+        <Card className="flex flex-col lg:max-w-md">
+          <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
+            <div>
+              <CardDescription>Total Questions Attempted</CardDescription>
+              <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
+                {totalQuestionsAttempted}
+                <span className="text-sm font-normal tracking-normal text-muted-foreground">questions</span>
+              </CardTitle>
+            </div>
           </CardHeader>
-          <CardContent>
-            <div className="text-4xl font-bold mb-4">{averageReattemptAccuracy.toFixed(2)}%</div>
-            <ResponsiveContainer width="100%" height={200}>
-              <LineChart data={userPerformance}>
-                <XAxis dataKey="createdAt" />
-                <YAxis />
-                <Tooltip />
-                <Line type="monotone" dataKey="reattemptAccuracy" stroke="#ffc658" />
+          <CardContent className="flex flex-1 items-center">
+            <ChartContainer
+              config={{
+                questionsAttempted: {
+                  label: "Questions Attempted",
+                  color: "hsl(var(--chart-1))",
+                },
+              }}
+              className="w-full"
+            >
+              <LineChart accessibilityLayer margin={{ left: 14, right: 14, top: 10 }} data={userPerformance}>
+                <YAxis hide domain={["dataMin - 1", "dataMax + 1"]} />
+                <XAxis
+                  dataKey="createdAt"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  tickFormatter={(value) =>
+                    new Date(value).toLocaleDateString("en-US", {
+                      weekday: "short",
+                    })
+                  }
+                />
+                <Line
+                  dataKey="questionsAttempted"
+                  type="natural"
+                  fill="var(--color-questionsAttempted)"
+                  stroke="var(--color-questionsAttempted)"
+                  strokeWidth={2}
+                  dot={false}
+                />
+                <ChartTooltip
+                  content={
+                    <ChartTooltipContent
+                      indicator="line"
+                      labelFormatter={(value) =>
+                        new Date(value).toLocaleDateString("en-US", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })
+                      }
+                    />
+                  }
+                  cursor={false}
+                />
               </LineChart>
-            </ResponsiveContainer>
+            </ChartContainer>
           </CardContent>
         </Card>
       </div>
-      <Tabs defaultValue="topicPerformance" className="w-full">
-        <TabsList>
-          <TabsTrigger value="topicPerformance">Topic Performance</TabsTrigger>
-          <TabsTrigger value="weaknesses">Weaknesses</TabsTrigger>
-        </TabsList>
-        <TabsContent value="topicPerformance">
-          <Card>
-            <CardHeader>
-              <CardTitle>Topic Performance</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie
-                    data={topicPerformanceData}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                  >
-                    {topicPerformanceData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="weaknesses">
-          <Card>
-            <CardHeader>
-              <CardTitle>Weaknesses by Subtopic</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={weaknessData}>
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Bar dataKey="value" fill="#8884d8">
-                    {weaknessData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
-      <Card>
-        <CardHeader>
-          <CardTitle>Engagement Level</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="text-4xl font-bold mb-4">{(averageEngagementLevel * 100).toFixed(2)}%</div>
-          <p className="text-sm text-muted-foreground">
-            Your engagement level indicates how consistently you're interacting with the platform.
-          </p>
-        </CardContent>
-      </Card>
+      <div className="grid w-full flex-1 gap-6 lg:max-w-[20rem]">
+        <Card className="max-w-xs">
+          <CardHeader>
+            <CardTitle>Correct Answers</CardTitle>
+            <CardDescription>Total correct answers over time</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <ChartContainer
+              config={{
+                correctAnswers: {
+                  label: "Correct Answers",
+                  color: "hsl(var(--chart-1))",
+                },
+              }}
+              className="aspect-auto h-[32px] w-full"
+            >
+              <BarChart
+                accessibilityLayer
+                layout="vertical"
+                margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
+                data={userPerformance}
+              >
+                <Bar dataKey="correctAnswers" fill="var(--color-correctAnswers)" radius={4} barSize={32}>
+                  <LabelList position="insideLeft" dataKey="label" offset={8} fontSize={12} fill="white" />
+                </Bar>
+                <YAxis dataKey="createdAt" type="category" tickCount={1} hide />
+                <XAxis dataKey="correctAnswers" type="number" hide />
+              </BarChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+        <Card className="max-w-xs">
+          <CardHeader>
+            <CardTitle>Incorrect Answers</CardTitle>
+            <CardDescription>Total incorrect answers over time</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <ChartContainer
+              config={{
+                incorrectAnswers: {
+                  label: "Incorrect Answers",
+                  color: "hsl(var(--chart-1))",
+                },
+              }}
+              className="aspect-auto h-[32px] w-full"
+            >
+              <BarChart
+                accessibilityLayer
+                layout="vertical"
+                margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
+                data={userPerformance}
+              >
+                <Bar dataKey="incorrectAnswers" fill="var(--color-incorrectAnswers)" radius={4} barSize={32}>
+                  <LabelList position="insideLeft" dataKey="label" offset={8} fontSize={12} fill="white" />
+                </Bar>
+                <YAxis dataKey="createdAt" type="category" tickCount={1} hide />
+                <XAxis dataKey="incorrectAnswers" type="number" hide />
+              </BarChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+        <Card className="max-w-xs">
+          <CardHeader className="space-y-0 pb-0">
+            <CardDescription>Reattempt Accuracy</CardDescription>
+            <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
+              {averageReattemptAccuracy.toFixed(2)}%
+              <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">reattempt accuracy</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-0">
+            <ChartContainer
+              config={{
+                reattemptAccuracy: {
+                  label: "Reattempt Accuracy",
+                  color: "hsl(var(--chart-2))",
+                },
+              }}
+            >
+              <LineChart accessibilityLayer data={userPerformance} margin={{ left: 0, right: 0, top: 0, bottom: 0 }}>
+                <XAxis dataKey="createdAt" hide />
+                <YAxis domain={["dataMin - 5", "dataMax + 2"]} hide />
+                <Line dataKey="reattemptAccuracy" type="monotone" fill="var(--color-reattemptAccuracy)" stroke="var(--color-reattemptAccuracy)" strokeWidth={2} dot={false} />
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent hideLabel />}
+                  formatter={(value) => (
+                    <div className="flex min-w-[120px] items-center text-xs text-muted-foreground">
+                      Reattempt Accuracy
+                      <div className="ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums text-foreground">
+                        {value}%
+                      </div>
+                    </div>
+                  )}
+                />
+              </LineChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+      </div>
     </div>
-  )
-}
+  );
+};
+
+export default Stats;

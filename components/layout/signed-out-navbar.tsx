@@ -114,8 +114,9 @@ export default function SignedOutNavbar() {
               <Button
                 variant="outline"
                 onClick={() => setShowSignInModal(true)}
+                className="hover:border-blue-400 hover:bg-blue-200 hover:text-blue-500"
               >
-                sign-in
+                <p className="font-display tracking-[-0.02em] sm:leading-[2rem]">sign-in</p>
               </Button>
             </div>
 
