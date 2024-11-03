@@ -205,7 +205,7 @@ const Page = () => {
       </div>
 
       <div className="mb-20">
-        <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
+        <h4 className="text-center font-display text-8xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
           A Plethora of Exams
         </h4>
 
@@ -232,7 +232,7 @@ const Page = () => {
               // colors
               "bg-black text-white shadow hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90",
               // layout
-              "group relative inline-flex h-9 w-full items-center justify-center gap-2 overflow-hidden whitespace-pre rounded-md px-4 py-2 text-base font-semibold tracking-tighter focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 md:flex",
+              "group relative inline-flex mx-2.5 h-9 w-1/2 items-center justify-center gap-2 overflow-hidden whitespace-pre rounded-md px-4 py-2 text-base font-semibold tracking-tighter focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 md:flex",
               // animation
               "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-2"
             )}
