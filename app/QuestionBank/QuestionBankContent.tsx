@@ -6,7 +6,7 @@ import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
 import Question from "@/components/shared/Question"
 import Popover from "@/components/shared/popover"
-import { CheckCheckIcon, ChevronDown, ChevronLeft, ChevronRight, Info, List, Search } from "lucide-react"
+import { CheckCheckIcon, ChevronDown, ChevronLeft, ChevronRight, Info, List, Search, Circle, CheckCircle2, Flag, HelpCircle } from "lucide-react"
 import Link from "next/link"
 import {
   Tooltip,
@@ -29,7 +29,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Circle, CheckCircle2Icon, Flag } from "lucide-react"
+import { Progress } from "@/components/ui/progress"
+import { motion, AnimatePresence } from "framer-motion"
 
 const PAGE_SIZE = 10
 
@@ -196,17 +197,54 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
-
-function StatusCard({ icon, label, value, color }: { icon: React.ReactNode; label: string; value: number; color: string }) {
-    return (
-      <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md">
-        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-50 mb-3">
+const StatusCard = ({ 
+  icon, 
+  label, 
+  value, 
+  color 
+}: { 
+  icon: React.ReactNode
+  label: string
+  value: number
+  color: string
+}) => {
+  return (
+    <motion.div 
+      className="flex items-center p-4 rounded-lg bg-gray-900 transition-all duration-300"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <AnimatePresence>
+        <motion.div 
+          className={`flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 mr-4 ${color}`}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.2 }}
+        >
           {icon}
-        </div>
-        <span className={`text-2xl font-bold ${color}`}>{value}</span>
-        <p className="text-sm font-medium text-gray-600 mt-1">{label}</p>
+        </motion.div>
+      </AnimatePresence>
+      <div>
+        <motion.span 
+          className={`text-2xl font-bold ${color}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+        >
+          {value}
+        </motion.span>
+        <motion.p 
+          className="text-sm font-medium text-gray-400"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          {label}
+        </motion.p>
       </div>
-    )
+    </motion.div>
+  )
 }
 
 const Pagination: React.FC<{
@@ -395,7 +433,7 @@ const QuestionBankContent: React.FC = () => {
         (!state.filters.types.length || state.filters.types.includes(question.type))
 
       if (state.filters.status === "review") {
-        return matchesSearch && matchesFilters && question.reviewed
+        return matchesSearch && matchesFilters  && question.reviewed
       } else if (state.filters.status === "complete") {
         return matchesSearch && matchesFilters && question.completed
       }
@@ -884,7 +922,7 @@ const QuestionBankContent: React.FC = () => {
                             } selected`
                           : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                       </p>
-                      <ChevronDown
+                                            <ChevronDown
                         className={`h-4 w-4 text-gray-600 transition-all ${
                           state.dropdowns[filterType as keyof typeof state.dropdowns]
                             ? "rotate-180"
@@ -901,33 +939,51 @@ const QuestionBankContent: React.FC = () => {
             ))}
           </div>
 
-          <Card className="bg-gradient-to-br from-gray-50 to-white border-gray-100 shadow-sm">
-      <CardContent className="p-6">
-        <h2 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem] mb-4 text-gray-900">
-          Question Progress
-        </h2>
-        <div className="grid grid-cols-3 gap-4">
-          <StatusCard
-            icon={<Circle className="h-6 w-6 text-blue-500" />}
-            label="Not Answered"
-            value={questionStats.notAnswered}
-            color="text-blue-500"
-          />
-          <StatusCard
-            icon={<CheckCheckIcon className="h-6 w-6 text-green-500" />}
-            label="Answered"
-            value={questionStats.answered}
-            color="text-green-500"
-          />
-          <StatusCard
-            icon={<Flag className="h-6 w-6 text-yellow-500" />}
-            label="For Review"
-            value={questionStats.markedForReview}
-            color="text-yellow-500"
-          />
-        </div>
-      </CardContent>
-    </Card>
+          <Card className="bg-black text-white border-gray-800 mb-6">
+            <CardContent className="p-6">
+              <h2 className="text-2xl font-bold tracking-tight mb-6">
+                Question Progress
+              </h2>
+              <div className="space-y-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm font-medium text-gray-400">Overall Progress</span>
+                  <span className="text-sm font-medium text-white">
+                    {Math.round((questionStats.answered / filteredQuestions.length) * 100)}%
+                  </span>
+                </div>
+                <Progress 
+                  value={(questionStats.answered / filteredQuestions.length) * 100} 
+                  className="w-full h-1 bg-gray-700 progress-indicator" 
+                />
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <StatusCard
+                    icon={<HelpCircle className="h-5 w-5" />}
+                    label="Not Visited"
+                    value={questionStats.notVisited}
+                    color="text-gray-400"
+                  />
+                  <StatusCard
+                    icon={<Circle className="h-5 w-5" />}
+                    label="Not Answered"
+                    value={questionStats.notAnswered}
+                    color="text-blue-400"
+                  />
+                  <StatusCard
+                    icon={<CheckCircle2 className="h-5 w-5" />}
+                    label="Answered"
+                    value={questionStats.answered}
+                    color="text-green-400"
+                  />
+                  <StatusCard
+                    icon={<Flag className="h-5 w-5" />}
+                    label="For Review"
+                    value={questionStats.markedForReview}
+                    color="text-yellow-400"
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {paginatedQuestions.length > 0 ? (
             <>
@@ -991,4 +1047,4 @@ async function fetchData(url: string) {
   return await response.json()
 }
 
-export default QuestionBankContent;
+export default QuestionBankContent
