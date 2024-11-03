@@ -111,9 +111,11 @@ const Page = () => {
             </AnimatedGradientText>
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
-              <h1 className="text-balance lg:text-5xl font-display tracking-[-0.07em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-                 Study Smart With Aspirants
-              </h1>
+            <div className="container mx-auto px-4 py-8">
+      <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.02em] drop-shadow-sm leading-tight sm:leading-[1.2] md:leading-[1.1] lg:leading-[1.1] text-center">
+        Study Smart with Aspirants
+      </h1>
+    </div>
               <p
               className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 sm:text-xl"
               style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
@@ -137,23 +139,27 @@ const Page = () => {
               </Link>
             </div>
             </div>
-            <div className="mt-16 flow-root sm:mt-24">
-              <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                <img
-                  alt="App screenshot"
-                  src="https://i.imghippo.com/files/QG3733OZk.png"
-                  width={2432}
-                  height={1442}
-                  className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                />
-              </div>
-            </div>
           </div>
         </div>
           </div>
         </div>
 
-        <h4 className="font-display text-3xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+        <div className="relative w-11/12 min-h-screen border-4 rounded-2xl overflow-hidden z-50 flex items-center justify-center my-8">
+      <div className="absolute inset-0 hidden sm:block">
+        <Image
+          src="/imac.jpg"
+          alt="Background"
+          layout="fill"
+          objectFit="cover"
+          className="blur-md"
+        />
+      </div>
+      <div className="relative w-full h-full bg-white bg-opacity-60 rounded-2xl overflow-auto p-4 flex flex-col">
+        <MainContent />
+      </div>
+    </div>
+
+        <h4 className="font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
         Review Your Performance
       </h4>
 
@@ -170,11 +176,8 @@ const Page = () => {
 
       <div className="container mx-auto px-4 py-12 max-w-6xl">
         <h1 className="text-center text-gray-600 text-sm mb-4">aspirants X ChatGPT 4o</h1>
-        <h2 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
-          Supercharge your
-        </h2>
-        <h2 className="text-sm mb-8 lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal">
-          learning experience
+        <h2 className="text-center font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+          Supercharge Your Learning Experience
         </h2>
 
         <div className="relative w-full h-96 border-4 rounded-2xl overflow-hidden">
@@ -187,31 +190,9 @@ const Page = () => {
         </div>
       </div>
 
-      <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
-        Quality Question Banks
-      </h4>
-
-      <p className="text-sm mb-8 lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal">
-        Filter questions by exam, topic, sub-topic, year, difficulty, completed, or marked for review to save time.
-      </p>
-
-      <div className="relative w-11/12 h-[1300px] border-4 rounded-2xl overflow-hidden">
-        <Image
-          src="/imac.jpg"
-          alt="Background"
-          layout="fill"
-          objectFit="cover"
-          className="absolute inset-0 blur-md hidden sm:block"
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-full h-[1300px] bg-white bg-opacity-60 rounded-2xl overflow-auto p-4">
-            <MainContent />
-          </div>
-        </div>
-      </div>
-
+     
       <div className="mb-20">
-        <h4 className="text-3xl mt-8 lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black">
+        <h4 className="text-center font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
           Never Forget Anything
         </h4>
 
