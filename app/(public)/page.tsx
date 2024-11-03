@@ -144,7 +144,7 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="relative w-11/12 min-h-screen border-4 rounded-2xl overflow-hidden z-0 flex items-center justify-center my-8">
+        <div className="relative w-11/12 h-[800px] border-4 rounded-2xl overflow-hidden flex items-center justify-center my-8">
       <div className="absolute inset-0 hidden sm:block">
         <Image
           src="/imac.jpg"
@@ -154,7 +154,7 @@ const Page = () => {
           className="blur-md"
         />
       </div>
-      <div className="relative w-full h-full bg-white bg-opacity-60 rounded-2xl overflow-auto p-4 flex flex-col">
+      <div className="relative w-full h-full mt-auto bg-white bg-opacity-60 rounded-2xl overflow-hidden flex flex-col">
         <MainContent />
       </div>
     </div>

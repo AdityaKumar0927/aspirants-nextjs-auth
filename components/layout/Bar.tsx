@@ -5,7 +5,7 @@ import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/shared/mode-toggle";
 import { buttonVariants } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { LucidePencil, HomeIcon } from "lucide-react";
+import { LucidePencil, HomeIcon, LucideGitBranchPlus } from "lucide-react";
 import AnimatedModal from "@/components/shared/AnimatedModal";
 import NoteApp from "@/components/shared/NoteApp";
 import Stats from "@/components/shared/Stats";
@@ -13,6 +13,9 @@ import { useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 import DashboardContent from "@/components/home/DashboardContent"; // Import the sample DashboardContent
 import GuestAccessBlock from "./GuestAccessBlock";
+import { IconGraph, IconGraphOff } from "@tabler/icons-react";
+import { MdOutlineAutoGraph } from "react-icons/md";
+import { GoGraph } from "react-icons/go";
 
 // Define the type for the userId prop
 interface BarProps {
@@ -39,11 +42,11 @@ export default function Bar({ userId }: BarProps) {
                     "size-12"
                   )}
                 >
-                  <HomeIcon className="size-4" />
+                  <GoGraph className="size-4" />
                 </button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Home</p>
+                <p>performance</p>
               </TooltipContent>
             </Tooltip>
           </DockIcon>
