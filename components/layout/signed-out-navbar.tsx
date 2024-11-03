@@ -210,7 +210,7 @@ function MobileNavLinks({
   toggleSupport,
 }: MobileNavLinksProps) {
   return (
-    <nav className="p-4 space-y-4">
+    <nav className="p-4 space-y-4 top-0 left-0 right-0 bg-white shadow-md z-[100000000]">
       <Link
         href="/QuestionBank"
         className="block w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
