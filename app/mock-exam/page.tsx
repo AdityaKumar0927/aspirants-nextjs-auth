@@ -1,7 +1,9 @@
-import dynamic from 'next/dynamic'
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "../api/auth/[...nextauth]/options"
+import ClientMockExam from "./client-mock-exam"
 
-const ClientMockExam = dynamic(() => import('./ClientMockExam'), { ssr: false })
+export default async function MockExamPage() {
+  const session = await getServerSession(authOptions)
 
-export default function MockExamPage() {
-  return <ClientMockExam />
+  return <ClientMockExam session={session} />
 }

@@ -33,9 +33,9 @@ export default function AnimatedModal({
           <Dialog.Portal forceMount>
             {/* Backdrop */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               className="fixed inset-0 z-30 flex items-center justify-center backdrop-blur-md"
             >
@@ -46,11 +46,11 @@ export default function AnimatedModal({
                   exit={{ scale: 0.95, opacity: 0 }}
                   transition={{ duration: 0.15 }}
                   className={cn(
-                    "relative max-h-[90%] w-8/12 overflow-hidden border border-gray-200 bg-white shadow-xl rounded-3xl"
+                    "relative w-full max-w-[95%] sm:max-w-[90%] md:max-w-[80%] lg:max-w-[70%] xl:max-w-[60%] h-[90vh] sm:h-[85vh] overflow-hidden border border-gray-200 bg-white shadow-xl rounded-3xl"
                   )}
                 >
                   {/* Scrollable Content */}
-                  <div className="h-full max-h-[80vh] overflow-y-auto p-4">
+                  <div className="h-full overflow-y-auto p-4 sm:p-6 md:p-8">
                     {children}
                   </div>
                 </motion.div>

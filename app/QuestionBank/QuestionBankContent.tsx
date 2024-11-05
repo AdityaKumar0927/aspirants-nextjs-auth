@@ -1047,4 +1047,4 @@ async function fetchData(url: string) {
   return await response.json()
 }
 
-export default QuestionBankContent
+export default QuestionBankContent;
