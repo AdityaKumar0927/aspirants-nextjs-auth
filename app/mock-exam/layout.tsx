@@ -1,36 +1,35 @@
-import "../globals.css";
-import cx from "classnames";
-import { sfPro, inter } from "../fonts";
-import Nav from "@/components/layout/nav";
-import { Footer } from "@/components/layout/footer";
-import { Suspense } from "react";
-import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import { config } from '@fortawesome/fontawesome-svg-core';
-import { TooltipProvider } from '@radix-ui/react-tooltip';
-import Bar from '@/components/layout/Bar';
-import { Toaster } from "@/components/ui/toaster";
-import { LoadingProvider } from "@/components/layout/LoadingContext";
-import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext";
+import "../globals.css"
+import cx from "classnames"
+import { sfPro, inter } from "../fonts"
+import Nav from "@/components/layout/nav"
+import { Footer } from "@/components/layout/footer"
+import { Suspense } from "react"
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { config } from '@fortawesome/fontawesome-svg-core'
+import { TooltipProvider } from '@radix-ui/react-tooltip'
+import Bar from '@/components/layout/Bar'
+import { Toaster } from "@/components/ui/toaster"
+import { LoadingProvider } from "@/components/layout/LoadingContext"
+import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"
 
-config.autoAddCss = false;
+config.autoAddCss = false
 
 export const metadata = {
   title: "aspirants",
   description: "",
   metadataBase: new URL("https://aspirants.tech/"),
-};
+}
 
-// Assuming you get the userId from some authentication context or similar.
 const getUserId = () => {
   // Replace this with actual logic to fetch user ID, e.g., from a session or a context.
   // Return null if user is not signed in.
-  const userId = null; // Simulate unsigned user. Replace with actual authentication logic.
-  return userId;
-};
+  const userId = null // Simulate unsigned user. Replace with actual authentication logic.
+  return userId
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const userId = getUserId(); // Fetch the user ID
+  const userId = getUserId() // Fetch the user ID
 
   return (
     <html lang="en">
@@ -47,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `
               window.MathJax = {
                 tex: {
-                  inlineMath: [['$', '$'], ['\\(', '\\)']],
+                  inlineMath: [['$', '$'], ['\$$', '\$$']],
                   displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 },
                 options: {
@@ -85,27 +84,35 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
+        <style>{`
+          body.exam-mode .hide-during-exam {
+            display: none;
+          }
+        `}</style>
       </head>
-      <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
-        <LoadingProvider> 
-          <UserPerformanceProvider userId={userId}> 
+      <body className={cx(sfPro.variable, inter.variable, "bg-white dark:bg-gray-900")}>
+        <LoadingProvider>
+          <UserPerformanceProvider userId={userId}>
             <TooltipProvider>
               <div className="fixed inset-0 z-[-10]"></div>
               <Suspense fallback="...">
-                <Nav />
+                <div className="hide-during-exam">
+                  <Nav />
+                </div>
               </Suspense>
-              <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+              <main className="flex min-h-screen w-full flex-col items-center justify-center">
                 {children}
               </main>
-              {/* Render the Bar for both signed-in and non-signed-in users */}
-              <Bar userId={userId} />
-              <Footer />
+              <div className="hide-during-exam">
+                <Bar userId={userId} />
+                <Footer />
+              </div>
               <VercelAnalytics />
             </TooltipProvider>
             <Toaster />
-          </UserPerformanceProvider> 
-        </LoadingProvider> 
+          </UserPerformanceProvider>
+        </LoadingProvider>
       </body>
     </html>
-  );
+  )
 }
