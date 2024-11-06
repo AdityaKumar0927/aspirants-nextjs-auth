@@ -227,7 +227,7 @@ function ExamResults({ examResults, onStartNewExam }: { examResults: ExamResults
       transition={{ duration: 0.5 }}
       className="container mx-auto py-8 space-y-8"
     >
-      <h1 className="text-3xl font-normal text-center mb-8 tracking-tight">Exam Results</h1>
+      <h1 className="text-3xl font-bold text-center mb-8 tracking-tight">Exam Results</h1>
       {renderSummaryCard}
       {renderTopicPerformance}
       {renderAnswerReview}
@@ -851,7 +851,7 @@ export default function MockExam() {
                         onClick={() => handleAnswer(String.fromCharCode(65 + index))}
                       >
                         <span className="font-semibold mr-2">{String.fromCharCode(65 + index)}.</span>
-                        <span dangerouslySetInnerHTML={{ __html: optionText }} />
+                        <span dangerouslySetInnerHTML={{ __html: optionText.replace(/"/g, '&quot;') }} />
                       </Button>
                     ))}
                   </div>
