@@ -3,11 +3,11 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from "react"
 import { useSession } from "next-auth/react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useToast } from "@/components/ui/use-toast"
-import { User, Clock, AlertCircle, CheckCircle, Flag, ChevronLeft, ChevronRight, BarChart, PieChart, Zap, X, Pencil, LogOut } from "lucide-react"
+import { User, Clock, AlertCircle, CheckCircle, Flag, ChevronLeft, ChevronRight, BarChart, PieChart, Zap, X, Pencil, LogOut, Target, Award, TrendingUp, BookOpen, Lightbulb, LineChart, Download, ArrowLeft } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
@@ -15,9 +15,16 @@ import { Slider } from "@/components/ui/slider"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Badge } from "@/components/ui/badge"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { Pie, Bar, Radar } from 'react-chartjs-2'
+import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, BarElement, Title, RadialLinearScale, PointElement, LineElement, Filler } from 'chart.js'
+import html2pdf from 'html2pdf.js'
+
+ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, Title, RadialLinearScale, PointElement, LineElement, Filler)
 
 interface QuestionType {
   id: string
@@ -32,6 +39,13 @@ interface QuestionType {
   diagramUrl?: string
   type: "Multiple Choice" | "Numerical"
   markscheme?: string
+  explanation: string
+  difficulty: 'Easy' | 'Medium' | 'Hard'
+}
+
+interface TopicPerformance {
+  correct: number
+  total: number
 }
 
 interface ExamResultsType {
@@ -39,16 +53,17 @@ interface ExamResultsType {
   correctAnswersCount: number
   incorrectAnswers: number
   score: number
-  topicPerformance: Record<string, { correct: number; total: number }>
-  subtopicPerformance: Record<string, { correct: number; total: number }>
-  topStrengths: [string, { correct: number; total: number }][]
-  topWeaknesses: [string, { correct: number; total: number }][]
+  topicPerformance: Record<string, TopicPerformance>
+  subtopicPerformance: Record<string, TopicPerformance>
+  topStrengths: [string, TopicPerformance][]
+  topWeaknesses: [string, TopicPerformance][]
   userAnswers: string[]
   correctAnswers: string[]
   timeSpentPerQuestion: number[]
   averageTimePerQuestion: number
   topicWiseIncorrectAnswers: Record<string, number>
   questions: QuestionType[]
+  skillLevels: Record<string, number>
 }
 
 const HOUR_IN_SECONDS = 3600
@@ -59,183 +74,447 @@ const formatTime = (seconds: number) => {
   return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
 }
 
-function ExamResults({ examResults, onStartNewExam }: { examResults: ExamResultsType; onStartNewExam: () => void }) {
-  const renderSummaryCard = useMemo(() => (
-    <Card className="overflow-hidden">
-      <CardHeader className="bg-primary text-primary-foreground">
-        <CardTitle className="text-lg font-medium tracking-tight">Exam Performance Summary</CardTitle>
+function AdvancedExamResults({ examResults, onStartNewExam, onExit }: { examResults: ExamResultsType; onStartNewExam: () => void; onExit: () => void }) {
+  const [difficultyFilter, setDifficultyFilter] = useState<'Easy' | 'Medium' | 'Hard' | 'All'>('All')
+
+  const filteredQuestions = useMemo(() => {
+    return difficultyFilter === 'All'
+      ? examResults.questions
+      : examResults.questions.filter(q => q.difficulty === difficultyFilter)
+  }, [examResults.questions, difficultyFilter])
+
+  const generatePdfContent = () => {
+    const content = document.createElement('div')
+    content.innerHTML = `
+      <h1>Exam Results</h1>
+      <h2>Summary</h2>
+      <p>Total Questions: ${examResults.totalQuestions}</p>
+      <p>Correct Answers: ${examResults.correctAnswersCount}</p>
+      <p>Incorrect Answers: ${examResults.incorrectAnswers}</p>
+      <p>Score: ${examResults.score.toFixed(2)}%</p>
+      <p>Average Time per Question: ${formatTime(Math.round(examResults.averageTimePerQuestion))}</p>
+      
+      <h2>Topic Performance</h2>
+      ${Object.entries(examResults.topicPerformance).map(([topic, performance]) => `
+        <p>${topic}: ${((performance.correct / performance.total) * 100).toFixed(2)}%</p>
+      `).join('')}
+      
+      <h2>Strengths</h2>
+      ${examResults.topStrengths.map(([topic, performance]) => `
+        <p>${topic}: ${((performance.correct / performance.total) * 100).toFixed(2)}%</p>
+      `).join('')}
+      
+      <h2>Areas for Improvement</h2>
+      ${examResults.topWeaknesses.map(([topic, performance]) => `
+        <p>${topic}: ${((performance.correct / performance.total) * 100).toFixed(2)}%</p>
+      `).join('')}
+      
+      <h2>Question Review</h2>
+      ${examResults.questions.map((question, index) => `
+        <h3>Question ${index + 1}</h3>
+        <p>${question.text}</p>
+        <p>Your Answer: ${examResults.userAnswers[index] || "Not answered"}</p>
+        <p>Correct Answer: ${question.correctOption}</p>
+        <p>Time Spent: ${formatTime(examResults.timeSpentPerQuestion[index])}</p>
+        <p>Explanation: ${question.explanation}</p>
+      `).join('')}
+    `
+    return content
+  }
+
+  const handleDownloadPdf = () => {
+    const content = generatePdfContent()
+    const opt = {
+      margin: 10,
+      filename: 'exam_results.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    }
+    html2pdf().from(content).set(opt).save()
+  }
+
+  const renderSummaryCard = (
+    <Card className="overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5">
+      <CardHeader className="border-b border-primary/10">
+        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-primary">
+          <Target className="w-6 h-6 mr-2" />
+          Exam Performance Summary
+        </CardTitle>
       </CardHeader>
-      <CardContent className="grid gap-4 sm:grid-cols-2 p-6">
-        <div className="space-y-2">
-          <p className="text-sm font-medium tracking-tight">Total Questions: <span className="font-bold">{examResults.totalQuestions}</span></p>
-          <p className="text-sm font-medium tracking-tight">Correct Answers: <span className="font-bold text-green-600">{examResults.correctAnswersCount}</span></p>
-          <p className="text-sm font-medium tracking-tight">Incorrect Answers: <span className="font-bold text-red-600">{examResults.incorrectAnswers}</span></p>
+      <CardContent className="p-6">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-2">
+            <p className="text-sm font-medium">Total Questions: <span className="font-bold text-primary">{examResults.totalQuestions}</span></p>
+            <p className="text-sm font-medium">Correct Answers: <span className="font-bold text-green-600">{examResults.correctAnswersCount}</span></p>
+            <p className="text-sm font-medium">Incorrect Answers: <span className="font-bold text-red-600">{examResults.incorrectAnswers}</span></p>
+          </div>
+          <div className="space-y-2">
+            <p className="text-sm font-medium">Score: <span className="font-bold text-primary">{examResults.score.toFixed(2)}%</span></p>
+            <p className="text-sm font-medium">Average Time per Question: <span className="font-bold">{formatTime(Math.round(examResults.averageTimePerQuestion))}</span></p>
+          </div>
         </div>
-        <div className="space-y-2">
-          <p className="text-sm font-medium tracking-tight">Score: <span className="font-bold text-blue-600">{examResults.score.toFixed(2)}%</span></p>
-          <p className="text-sm font-medium tracking-tight">Average Time per Question: <span className="font-bold">{formatTime(Math.round(examResults.averageTimePerQuestion))}</span></p>
+        <div className="mt-6">
+          <Progress value={examResults.score} className="h-2 w-full" />
+          <p className="text-xs text-muted-foreground mt-2 text-center">Your performance</p>
         </div>
       </CardContent>
     </Card>
-  ), [examResults])
+  )
 
-  const renderTopicPerformance = useMemo(() => (
+  const renderTopicPerformance = (
     <Card>
-      <CardHeader className="bg-secondary text-secondary-foreground">
-        <CardTitle className="flex items-center text-lg font-medium tracking-tight">
-          <PieChart className="w-5 h-5 mr-2" />
+      <CardHeader className="border-b">
+        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
+          <PieChart className="w-6 h-6 mr-2 text-primary" />
           Topic Performance
         </CardTitle>
       </CardHeader>
       <CardContent className="p-6">
-        <ScrollArea className="h-64">
-          <div className="space-y-4">
-            {Object.entries(examResults.topicPerformance).map(([topic, performance]) => (
-              <div key={topic}>
-                <div className="flex justify-between text-sm mb-1">
-                  <span className="font-medium tracking-tight">{topic}</span>
-                  <span className="font-bold tracking-tight">{((performance.correct / performance.total) * 100).toFixed(2)}%</span>
-                </div>
-                <Progress value={(performance.correct / performance.total) * 100} className="h-2" />
-              </div>
-            ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <Pie 
+              data={{
+                labels: Object.keys(examResults.topicPerformance),
+                datasets: [{
+                  data: Object.values(examResults.topicPerformance).map(p => p.correct),
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                  ],
+                }]
+              }}
+              options={{
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: 'bottom',
+                  },
+                  title: {
+                    display: true,
+                    text: 'Correct Answers by Topic'
+                  }
+                }
+              }}
+            />
           </div>
-        </ScrollArea>
+          <ScrollArea className="h-[300px] pr-4">
+            <div className="space-y-6">
+              {Object.entries(examResults.topicPerformance).map(([topic, performance]) => (
+                <div key={topic}>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="font-medium">{topic}</span>
+                    <span className="font-bold">{((performance.correct / performance.total) * 100).toFixed(2)}%</span>
+                  </div>
+                  <Progress value={(performance.correct / performance.total) * 100} className="h-2" />
+                </div>
+              ))}
+            </div>
+          </ScrollArea>
+        </div>
       </CardContent>
     </Card>
-  ), [examResults])
+  )
 
-  const renderAnswerReview = useMemo(() => (
+  const renderAnswerReview = (
     <Card>
-      <CardHeader className="bg-accent text-accent-foreground">
-        <CardTitle className="flex items-center text-lg font-medium tracking-tight">
-          <CheckCircle className="w-5 h-5 mr-2" />
+      <CardHeader className="border-b">
+        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
+          <CheckCircle className="w-6 h-6 mr-2 text-primary" />
           Answer Review
         </CardTitle>
+        <CardDescription>
+          Filter by difficulty:
+          <div className="flex space-x-2 mt-2">
+            {['All', 'Easy', 'Medium', 'Hard'].map((difficulty) => (
+              <Badge
+                key={difficulty}
+                variant={difficultyFilter === difficulty ? "default" : "outline"}
+                className="cursor-pointer"
+                onClick={() => setDifficultyFilter(difficulty as 'All' | 'Easy' | 'Medium' | 'Hard')}
+              >
+                {difficulty}
+              </Badge>
+            ))}
+          </div>
+        </CardDescription>
       </CardHeader>
       <CardContent className="p-6">
         <ScrollArea className="h-[400px]">
-          <table className="w-full">
-            <thead>
-              <tr className="text-left [&>th]:p-2 bg-muted">
-                <th className="font-medium tracking-tight">Question</th>
-                <th className="font-medium tracking-tight">Your Answer</th>
-                <th className="font-medium tracking-tight">Correct Answer</th>
-                <th className="font-medium tracking-tight">Time Spent</th>
-                <th className="font-medium tracking-tight">Result</th>
-              </tr>
-            </thead>
-            <tbody>
-              {examResults.questions.map((question, index) => (
-                <tr key={question.id} className="border-b last:border-b-0 [&>td]:p-2">
-                  <td className="text-sm"><span className="font-medium tracking-tight">Q{index + 1}:</span> {question.text}</td>
-                  <td className="text-sm font-medium tracking-tight">{examResults.userAnswers[index] || "Not answered"}</td>
-                  <td className="text-sm font-medium tracking-tight">{question.correctOption}</td>
-                  <td className="text-sm font-medium tracking-tight">{formatTime(examResults.timeSpentPerQuestion[index])}</td>
-                  <td>
-                    <span className={`text-sm font-bold tracking-tight ${examResults.userAnswers[index] === question.correctOption ? "text-green-600" : "text-red-600"}`}>
-                      {examResults.userAnswers[index] === question.correctOption ? "Correct" : "Incorrect"}
+          <Accordion type="single" collapsible className="w-full">
+            {filteredQuestions.map((question, index) => (
+              <AccordionItem value={`question-${index}`} key={question.id}>
+                <AccordionTrigger>
+                  <div className="flex items-center">
+                    <span className={`w-6 h-6 rounded-full mr-2 flex items-center justify-center text-white ${examResults.userAnswers[index] === question.correctOption ? "bg-green-500" : "bg-red-500"}`}>
+                      {examResults.userAnswers[index] === question.correctOption ? "✓" : "✗"}
                     </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                    <span>Question {index + 1}</span>
+                    <Badge variant="outline" className="ml-2">{question.difficulty}</Badge>
+                    <Badge variant="outline" className="ml-2">{question.topic}</Badge>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="space-y-2">
+                    <p className="font-medium">{question.text}</p>
+                    <p>Your Answer: <span className={examResults.userAnswers[index] === question.correctOption ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}>{examResults.userAnswers[index] || "Not answered"}</span></p>
+                    <p>Correct Answer: <span className="text-green-600 font-semibold">{question.correctOption}</span></p>
+                    <p>Time Spent: <span className="font-semibold">{formatTime(examResults.timeSpentPerQuestion[index])}</span></p>
+                    <p className="text-sm text-muted-foreground">{question.explanation}</p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </ScrollArea>
       </CardContent>
     </Card>
-  ), [examResults])
+  )
 
-  const renderStrengthsAndWeaknesses = useMemo(() => (
+  const renderStrengthsAndWeaknesses = (
     <div className="grid gap-6 md:grid-cols-2">
-      <Card>
-        <CardHeader className="bg-green-100 dark:bg-green-900">
-          <CardTitle className="flex items-center text-lg font-medium tracking-tight text-green-800 dark:text-green-100">
-            <BarChart className="w-5 h-5 mr-2" />
+      <Card className="bg-gradient-to-br from-green-100 to-green-50 dark:from-green-900/20 dark:to-green-800/20">
+        <CardHeader>
+          <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-green-800 dark:text-green-100">
+            <Award className="w-6 h-6 mr-2" />
             Top Strengths
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6">
-          <ul className="space-y-2">
-            {examResults.topStrengths.map(([topic, performance]) => (
-              <li key={topic} className="flex justify-between items-center">
-                <span className="text-sm font-medium tracking-tight">{topic}</span>
-                <span className="text-sm font-bold tracking-tight text-green-600">
-                  {((performance.correct / performance.total) * 100).toFixed(2)}%
-                </span>
+          <ul className="space-y-4">
+            {examResults.topStrengths.map(([topic, performance], index) => (
+              <li key={topic} className="flex items-center">
+                <span className="w-8 h-8 rounded-full bg-green-200 dark:bg-green-800 flex items-center justify-center mr-3 text-green-800 dark:text-green-200 font-bold">{index + 1}</span>
+                <div>
+                  <p className="font-semibold">{topic}</p>
+                  <p className="text-sm text-green-600">
+                    {((performance.correct / performance.total) * 100).toFixed(2)}% correct
+                  </p>
+                </div>
               </li>
             ))}
           </ul>
         </CardContent>
       </Card>
-      <Card>
-        <CardHeader className="bg-yellow-100 dark:bg-yellow-900">
-          <CardTitle className="flex items-center text-lg font-medium tracking-tight text-yellow-800 dark:text-yellow-100">
-            <BarChart className="w-5 h-5 mr-2" />
+      <Card className="bg-gradient-to-br from-yellow-100 to-yellow-50 dark:from-yellow-900/20 dark:to-yellow-800/20">
+        <CardHeader>
+          <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-yellow-800 dark:text-yellow-100">
+            <TrendingUp className="w-6 h-6 mr-2" />
             Areas for Improvement
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6">
-          <ul className="space-y-2">
-            {examResults.topWeaknesses.map(([topic, performance]) => (
-              <li key={topic} className="flex justify-between items-center">
-                <span className="text-sm font-medium tracking-tight">{topic}</span>
-                <span className="text-sm font-bold tracking-tight text-yellow-600">
-                  {((performance.correct / performance.total) * 100).toFixed(2)}%
-                </span>
+          <ul className="space-y-4">
+            {examResults.topWeaknesses.map(([topic, performance], index) => (
+              <li key={topic} className="flex items-center">
+                <span className="w-8 h-8 rounded-full bg-yellow-200 dark:bg-yellow-800 flex items-center justify-center mr-3 text-yellow-800 dark:text-yellow-200 font-bold">{index + 1}</span>
+                <div>
+                  <p className="font-semibold">{topic}</p>
+                  <p className="text-sm text-yellow-600">
+                    {((performance.correct / performance.total) * 100).toFixed(2)}% correct
+                  </p>
+                </div>
               </li>
             ))}
           </ul>
         </CardContent>
       </Card>
     </div>
-  ), [examResults])
+  )
 
-  const renderIncorrectAnswers = useMemo(() => (
-    <Card>
-      <CardHeader className="bg-red-100 dark:bg-red-900">
-        <CardTitle className="flex items-center text-lg font-medium tracking-tight text-red-800 dark:text-red-100">
-          <AlertCircle className="w-5 h-5 mr-2" />
+  const renderIncorrectAnswers = (
+    <Card className="bg-gradient-to-br from-red-100 to-red-50 dark:from-red-900/20 dark:to-red-800/20">
+      <CardHeader>
+        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-red-800 dark:text-red-100">
+          <AlertCircle className="w-6 h-6 mr-2" />
           Topics with Most Incorrect Answers
         </CardTitle>
       </CardHeader>
       <CardContent className="p-6">
-        <ScrollArea className="h-48">
-          <div className="space-y-4">
-            {Object.entries(examResults.topicWiseIncorrectAnswers)
-              .sort((a, b) => b[1] - a[1])
-              .map(([topic, count]) => (
-                <div key={topic}>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span className="font-medium tracking-tight">{topic}</span>
-                    <span className="font-bold tracking-tight text-red-600">{count} incorrect</span>
-                  </div>
-                  <Progress value={(count / examResults.totalQuestions) * 100} className="h-2" />
-                </div>
-              ))}
-          </div>
-        </ScrollArea>
+        <Bar
+          data={{
+            labels: Object.keys(examResults.topicWiseIncorrectAnswers),
+            datasets: [{
+              label: 'Incorrect Answers',
+              data: Object.values(examResults.topicWiseIncorrectAnswers),
+              backgroundColor: 'rgba(255, 99, 132, 0.8)',
+            }]
+          }}
+          options={{
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'top' as const,
+              },
+              title: {
+                display: true,
+                text: 'Incorrect Answers by Topic'
+              }
+            }
+          }}
+        />
       </CardContent>
     </Card>
-  ), [examResults])
+  )
+
+  const renderSkillAssessment = (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
+          <LineChart className="w-6 h-6 mr-2 text-primary" />
+          Skill Assessment
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-6">
+        <div className="w-full max-w-md mx-auto">
+          <Radar
+            data={{
+              labels: Object.keys(examResults.skillLevels),
+              datasets: [{
+                label: 'Skill Level',
+                data: Object.values(examResults.skillLevels),
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgb(54, 162, 235)',
+                pointBackgroundColor: 'rgb(54, 162, 235)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(54, 162, 235)'
+              }]
+            }}
+            options={{
+              scales: {
+                r: {
+                  angleLines: {
+                    display: false
+                  },
+                  suggestedMin: 0,
+                  suggestedMax: 100
+                }
+              }
+            }}
+          />
+        </div>
+      </CardContent>
+    </Card>
+  )
+
+  const renderRecommendations = (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
+          <Lightbulb className="w-6 h-6 mr-2 text-primary" />
+          Personalized Recommendations
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-6">
+        <ul className="space-y-4">
+          {examResults.topWeaknesses.map(([topic, performance]) => (
+            <li key={topic} className="flex items-start">
+              <BookOpen className="w-5 h-5 mr-2 mt-1 text-primary" />
+              <div>
+                <p className="font-semibold">Improve your {topic} skills</p>
+                <p className="text-sm text-muted-foreground">
+                  Focus on studying {topic} concepts. We recommend reviewing chapters related to this topic and practicing more problems.
+                </p>
+              </div>
+            </li>
+          ))}
+          <li className="flex items-start">
+            <Clock className="w-5 h-5 mr-2 mt-1 text-primary" />
+            <div>
+              <p className="font-semibold">Time Management</p>
+              <p className="text-sm text-muted-foreground">
+                Your average time per question is {formatTime(Math.round(examResults.averageTimePerQuestion))}. Try to improve your speed without sacrificing accuracy.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </CardContent>
+    </Card>
+  )
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto py-8 space-y-8"
+      className="container mx-auto py-12 space-y-8 px-4 sm:px-6 lg:px-8"
     >
-      <h1 className="text-3xl font-bold text-center mb-8 tracking-tight">Exam Results</h1>
-      {renderSummaryCard}
-      {renderTopicPerformance}
-      {renderAnswerReview}
-      {renderStrengthsAndWeaknesses}
-      {renderIncorrectAnswers}
-      <Button onClick={onStartNewExam} className="w-full mt-8 font-medium tracking-tight">
-        Start New Exam
-      </Button>
+      <div className="text-center space-y-2">
+        <motion.h1 
+          className="text-4xl font-bold tracking-tight text-primary"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
+          Exam Results
+        </motion.h1>
+        <motion.p 
+          className="text-xl text-muted-foreground"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          Your performance at a glance
+        </motion.p>
+      </div>
+      <Tabs defaultValue="summary" className="w-full">
+        <TabsList className="grid w-full grid-cols-5 mb-8">
+          <TabsTrigger value="summary">Summary</TabsTrigger>
+          <TabsTrigger value="performance">Performance</TabsTrigger>
+          <TabsTrigger value="review">Review</TabsTrigger>
+          <TabsTrigger value="skills">Skills</TabsTrigger>
+          <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
+        </TabsList>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+          >
+            <TabsContent value="summary" className="space-y-8">
+              {renderSummaryCard}
+              {renderStrengthsAndWeaknesses}
+            </TabsContent>
+            <TabsContent value="performance" className="space-y-8">
+              {renderTopicPerformance}
+              {renderIncorrectAnswers}
+            </TabsContent>
+            <TabsContent value="review">
+              {renderAnswerReview}
+            </TabsContent>
+            <TabsContent value="skills">
+              {renderSkillAssessment}
+            </TabsContent>
+            <TabsContent value="recommendations">
+              {renderRecommendations}
+            </TabsContent>
+          </motion.div>
+        </AnimatePresence>
+      </Tabs>
+      <motion.div 
+        className="flex justify-between mt-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+      >
+        <Button size="lg" className="font-semibold tracking-wide" onClick={onExit}>
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Exit to Mock Exam
+        </Button>
+        <Button size="lg" className="font-semibold tracking-wide" onClick={handleDownloadPdf}>
+          <Download className="mr-2 h-4 w-4" />
+          Download Results PDF
+        </Button>
+        <Button size="lg" className="font-semibold tracking-wide" onClick={onStartNewExam}>
+          Start New Exam
+          <ChevronRight className="ml-2 h-4 w-4" />
+        </Button>
+      </motion.div>
     </motion.div>
   )
 }
@@ -268,11 +547,11 @@ export default function MockExam() {
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
   const questionStartTimeRef = useRef<number>(0)
   const [timeSpentPerQuestion, setTimeSpentPerQuestion] = useState<number[]>([])
-  const [darkMode, setDarkMode] = useState(false); // Added state for dark mode
+  const [darkMode, setDarkMode] = useState(false)
 
   const filteredQuestions = useMemo(() => {
     if (examMode === "past") {
-      return  allQuestions.filter(
+      return allQuestions.filter(
         (q) =>
           q.exam === selectedExam &&
           q.subject === selectedSubject &&
@@ -307,8 +586,8 @@ export default function MockExam() {
     const incorrectAnswers = totalQuestions - correctCount
     const score = (correctCount / totalQuestions) * 100
 
-    const topicPerformance: Record<string, { correct: number; total: number }> = {}
-    const subtopicPerformance: Record<string, { correct: number; total: number }> = {}
+    const topicPerformance: Record<string, TopicPerformance> = {}
+    const subtopicPerformance: Record<string, TopicPerformance> = {}
     const topicWiseIncorrectAnswers: Record<string, number> = {}
 
     filteredQuestions.forEach((question, index) => {
@@ -341,6 +620,15 @@ export default function MockExam() {
 
     const averageTimePerQuestion = timeSpentPerQuestion.reduce((a, b) => a + b, 0) / timeSpentPerQuestion.length
 
+    // Mock skill levels (you may want to implement a more sophisticated calculation)
+    const skillLevels: Record<string, number> = {
+      "Problem Solving": Math.random() * 100,
+      "Critical Thinking": Math.random() * 100,
+      "Data Analysis": Math.random() * 100,
+      "Conceptual Understanding": Math.random() * 100,
+      "Application of Knowledge": Math.random() * 100,
+    }
+
     setExamResults({
       totalQuestions,
       correctAnswersCount: correctCount,
@@ -351,11 +639,14 @@ export default function MockExam() {
       topStrengths,
       topWeaknesses,
       userAnswers: answers,
-      correctAnswers: filteredQuestions.map((q) => q.correctOption),
+      correctAnswers: filteredQuestions.map((q) =>
+        q.correctOption
+      ),
       timeSpentPerQuestion,
       averageTimePerQuestion,
       topicWiseIncorrectAnswers,
       questions: filteredQuestions,
+      skillLevels,
     })
 
     setIsExamFinished(true)
@@ -851,7 +1142,7 @@ export default function MockExam() {
                         onClick={() => handleAnswer(String.fromCharCode(65 + index))}
                       >
                         <span className="font-semibold mr-2">{String.fromCharCode(65 + index)}.</span>
-                        <span dangerouslySetInnerHTML={{ __html: optionText.replace(/"/g, '&quot;') }} />
+                        <span dangerouslySetInnerHTML={{ __html: optionText }} />
                       </Button>
                     ))}
                   </div>
@@ -1043,18 +1334,6 @@ export default function MockExam() {
     setExamResults(null)
   }
 
-  const renderExamResults = useMemo(() => {
-    if (!examResults) return null
-
-    return (
-      <ExamResults examResults={examResults} onStartNewExam={() => {
-        setIsExamStarted(false)
-        setIsExamFinished(false)
-        setExamResults(null)
-      }} />
-    )
-  }, [examResults])
-
   if (isLoading) {
     return (
       <div className="min-h-screen w-full flex items-center justify-center bg-background">
@@ -1112,7 +1391,7 @@ export default function MockExam() {
           transition={{ duration: 0.5 }}
           className={darkMode ? 'dark' : ''}
         >
-          {renderExamResults}
+          <AdvancedExamResults examResults={examResults} onStartNewExam={onStartNewExam} onExit={() => setIsExamFinished(false)} />
         </motion.div>
       )}
     </AnimatePresence>
