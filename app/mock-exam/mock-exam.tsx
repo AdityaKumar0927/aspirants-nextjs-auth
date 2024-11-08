@@ -1041,7 +1041,7 @@ export default function MockExam() {
             <div>
               <h3 className="text-2xl font-light mb-4">Instructions</h3>
               <ul className="space-y-3 text-gray-600">
-                <li>The mock exam will start as soon as you click the "Start Exam" button.</li>
+                <li>The mock exam will start as soon as you click the Start Exam button.</li>
                 <li>Show all working whenever possible.</li>
                 <li>Use fully labelled diagrams and references to the text/data where appropriate.</li>
                 <li>Your score and feedback will be compiled into a report at the end of the exam.</li>
