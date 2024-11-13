@@ -40,7 +40,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
@@ -49,57 +55,65 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Badge } from '@/components/ui/badge'
 
 interface QuestionType {
-  questionId: string;
-  text: string;
-  subject: string;
-  difficulty: string;
-  year: string;
-  type: 'Multiple Choice' | 'Numerical';
-  options?: string[];
-  correctOption?: string;
-  markscheme?: string;
-  notes?: string;
-  diagramUrl?: string;
-  relatedResources?: { title: string; url: string }[];
-  customTags?: string[];
+  questionId: string
+  text: string
+  subject: string
+  difficulty: string
+  year: string
+  type: 'Multiple Choice' | 'Numerical'
+  options?: string[]
+  correctOption?: string
+  markscheme?: string
+  notes?: string
+  diagramUrl?: string
+  relatedResources?: { title: string; url: string }[]
+  customTags?: string[]
 }
 
 interface CommentType {
-  id: string;
-  userId: string;
-  username: string;
-  content: string;
-  timestamp: string;
-  replies: CommentType[];
-  upvotes: number;
-  downvotes: number;
-  edited: boolean;
+  id: string
+  userId: string
+  username: string
+  content: string
+  timestamp: string
+  replies: CommentType[]
+  upvotes: number
+  downvotes: number
+  edited: boolean
 }
 
 interface QuestionProps {
-  question: QuestionType;
-  feedback: string | undefined;
-  selectedOption: string | undefined;
-  numericalAnswer: string | undefined;
-  showMarkscheme: boolean | undefined;
-  handleOptionClick: (questionId: string, option: string, correctOption: string) => void;
-  handleNumericalSubmit: (questionId: string, userAnswer: string, correctAnswer: string) => void;
-  handleNumericalChange: (questionId: string, value: string) => void;
-  handleMarkschemeToggle: (questionId: string) => void;
-  handleMarkForReview: (questionId: string) => void;
-  handleMarkComplete: (questionId: string) => void;
-  isMarkedForReview: boolean;
-  isMarkedComplete: boolean;
-  markschemesDisabled: boolean;
-  note: string;
-  handleNoteChange: (questionId: string, note: string) => void;
-  userId: string;
-  handleDeleteNote: (questionId: string) => Promise<void>;
-  onNextQuestion?: () => void;
-  onPreviousQuestion?: () => void;
-  totalQuestions: number;
-  currentQuestionIndex: number;
-  handleQuestionChange: (index: number) => void;
+  question: QuestionType
+  feedback: string | undefined
+  selectedOption: string | undefined
+  numericalAnswer: string | undefined
+  showMarkscheme: boolean | undefined
+  handleOptionClick: (
+    questionId: string,
+    option: string,
+    correctOption: string
+  ) => void
+  handleNumericalSubmit: (
+    questionId: string,
+    userAnswer: string,
+    correctAnswer: string
+  ) => void
+  handleNumericalChange: (questionId: string, value: string) => void
+  handleMarkschemeToggle: (questionId: string) => void
+  handleMarkForReview: (questionId: string) => void
+  handleMarkComplete: (questionId: string) => void
+  isMarkedForReview: boolean
+  isMarkedComplete: boolean
+  markschemesDisabled: boolean
+  note: string
+  handleNoteChange: (questionId: string, note: string) => void
+  userId: string
+  handleDeleteNote: (questionId: string) => Promise<void>
+  onNextQuestion?: () => void
+  onPreviousQuestion?: () => void
+  totalQuestions: number
+  currentQuestionIndex: number
+  handleQuestionChange: (index: number) => void
 }
 
 export default function Component({
@@ -127,7 +141,9 @@ export default function Component({
   currentQuestionIndex,
   handleQuestionChange,
 }: QuestionProps) {
-  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null)
+  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
+    selectedOption || null
+  )
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
   const [showNotes, setShowNotes] = useState(false)
@@ -138,11 +154,15 @@ export default function Component({
   const [replyingTo, setReplyingTo] = useState<string | null>(null)
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null)
   const [editedCommentContent, setEditedCommentContent] = useState('')
-  const [commentSort, setCommentSort] = useState<'newest' | 'oldest' | 'popular'>('newest')
+  const [commentSort, setCommentSort] = useState<'newest' | 'oldest' | 'popular'>(
+    'newest'
+  )
   const [points, setPoints] = useState(0)
   const [streak, setStreak] = useState(0)
   const [newTag, setNewTag] = useState('')
-  const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || [])
+  const [localCustomTags, setLocalCustomTags] = useState<string[]>(
+    question.customTags || []
+  )
   const [aiEnabled, setAiEnabled] = useState(true)
   const [notesEnabled, setNotesEnabled] = useState(true)
   const [timerEnabled, setTimerEnabled] = useState(false)
@@ -418,7 +438,7 @@ export default function Component({
 
   const sortedComments = [...comments].sort((a, b) => {
     if (commentSort === 'newest') {
-      return new  Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+      return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
     } else if (commentSort === 'oldest') {
       return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
     } else {
@@ -571,7 +591,7 @@ export default function Component({
   }
 
   const handleRemoveTag = (tagToRemove: string) => {
-    setLocalCustomTags(localCustomTags.filter(tag => tag !== tagToRemove))
+    setLocalCustomTags(localCustomTags.filter((tag) => tag !== tagToRemove))
   }
 
   return (
@@ -648,7 +668,9 @@ export default function Component({
                     >
                       <Flag
                         className={
-                          isMarkedForReview ? 'fill-yellow-500 text-yellow-500' : 'text-gray-500'
+                          isMarkedForReview
+                            ? 'fill-yellow-500 text-yellow-500'
+                            : 'text-gray-500'
                         }
                       />
                     </Button>
@@ -687,7 +709,7 @@ export default function Component({
                     src={question.diagramUrl}
                     alt={`Diagram for question ${question.questionId}`}
                     layout="fill"
-                    objectFit="cover"
+                    objectFit="contain"
                     className="rounded-md"
                   />
                 </div>
@@ -703,7 +725,9 @@ export default function Component({
                   className="w-full p-2 border rounded text-base sm:text-lg"
                   placeholder="Write your answer here..."
                   value={numericalAnswer}
-                  onChange={(e) => handleNumericalChange(question.questionId, e.target.value)}
+                  onChange={(e) =>
+                    handleNumericalChange(question.questionId, e.target.value)
+                  }
                 />
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -727,7 +751,8 @@ export default function Component({
                             : 'outline'
                         }
                         className={`w-full justify-start text-left text-base sm:text-lg p-4 leading-7 [&:not(:first-child)]:mt-6 ${
-                          localSelectedOption === String.fromCharCode(65 + index) && feedback
+                          localSelectedOption === String.fromCharCode(65 + index) &&
+                          feedback
                             ? feedback === 'correct'
                               ? 'bg-green-100 hover:bg-green-200 text-green-700'
                               : 'bg-red-100 hover:bg-red-200 text-red-700'
@@ -737,11 +762,24 @@ export default function Component({
                           handleOptionClickLocal(String.fromCharCode(65 + index))
                         }
                       >
-                        <span className="mr-2">{String.fromCharCode(65 + index)}.</span>
-                       <div className="font-serif"> <MathRenderer 
-        text={option} 
-        
-      /></div>
+                        <span className="mr-2">
+                          {String.fromCharCode(65 + index)}.
+                        </span>
+                        <div className="font-serif">
+                          {option.startsWith('http') ? (
+                            <div className="relative w-full h-64">
+                              <Image
+                                src={option}
+                                alt={`Option ${String.fromCharCode(65 + index)} image`}
+                                layout="fill"
+                                objectFit="contain"
+                                className="rounded-md"
+                              />
+                            </div>
+                          ) : (
+                            <MathRenderer text={option} />
+                          )}
+                        </div>
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>Select this option</TooltipContent>
@@ -784,7 +822,9 @@ export default function Component({
                     {showNotes ? 'Hide Notes' : 'Take Notes'}
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>{showNotes ? 'Hide note-taking interface' : 'Open note-taking interface'}</TooltipContent>
+                <TooltipContent>
+                  {showNotes ? 'Hide note-taking interface' : 'Open note-taking interface'}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -793,17 +833,21 @@ export default function Component({
                     {showAI ? 'Hide AI' : 'AI Assistance'}
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>{showAI ? 'Hide AI assistant' : 'Get AI help'}</TooltipContent>
+                <TooltipContent>
+                  {showAI ? 'Hide AI assistant' : 'Get AI help'}
+                </TooltipContent>
               </Tooltip>
             </div>
           </CardContent>
-          
+
           {showNotes && (
             <CardContent>
               <Card>
                 <CardHeader>
                   <CardTitle>Notes</CardTitle>
-                  <CardDescription>Add your notes for this question here.</CardDescription>
+                  <CardDescription>
+                    Add your notes for this question here.
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="mb-4">
@@ -821,7 +865,9 @@ export default function Component({
                   </div>
                   <Tiptap
                     content={note}
-                    onUpdate={(content) => handleNoteChange(question.questionId, content)}
+                    onUpdate={(content) =>
+                      handleNoteChange(question.questionId, content)
+                    }
                   />
                 </CardContent>
                 <CardFooter className="flex justify-between">
@@ -854,7 +900,7 @@ export default function Component({
               </Card>
             </CardContent>
           )}
-          
+
           {showAI && (
             <CardContent>
               <Card>
@@ -870,7 +916,7 @@ export default function Component({
               </Card>
             </CardContent>
           )}
-          
+
           <CardFooter>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -887,13 +933,15 @@ export default function Component({
               <TooltipContent>View and add comments</TooltipContent>
             </Tooltip>
           </CardFooter>
-          
+
           {showComments && (
             <CardContent>
               <Card className="mt-4 w-full">
                 <CardHeader>
                   <CardTitle>Comments</CardTitle>
-                  <CardDescription>Discuss this question with others.</CardDescription>
+                  <CardDescription>
+                    Discuss this question with others.
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="mb-4">
@@ -939,7 +987,7 @@ export default function Component({
             </CardContent>
           )}
         </Card>
-        
+
         <AnimatePresence>
           {showMarkschemeModal && (
             <motion.div
@@ -970,7 +1018,19 @@ export default function Component({
                   <div className="overflow-y-auto max-h-[60vh]">
                     <p className="mb-2">
                       {question.markscheme ? (
-                        <MathRenderer text={question.markscheme} />
+                        question.markscheme.startsWith('http') ? (
+                          <div className="relative w-full h-64">
+                            <Image
+                              src={question.markscheme}
+                              alt="Markscheme image"
+                              layout="fill"
+                              objectFit="contain"
+                              className="rounded-md"
+                            />
+                          </div>
+                        ) : (
+                          <MathRenderer text={question.markscheme} />
+                        )
                       ) : (
                         'No answer available'
                       )}
