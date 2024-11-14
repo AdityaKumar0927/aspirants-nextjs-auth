@@ -622,7 +622,7 @@ export default function QuestionBankDashboard() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Edit Question</DialogTitle>
-              <DialogDescription>Make changes to the question here. Click save when you're done.</DialogDescription>
+              <DialogDescription>Make changes to the question here. Click save when you&apos;re done.</DialogDescription>
             </DialogHeader>
             {editingQuestion && (
               <div className="grid gap-4 py-4">
