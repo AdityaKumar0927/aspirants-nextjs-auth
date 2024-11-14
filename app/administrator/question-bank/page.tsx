@@ -1,43 +1,25 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import React, { useState, useEffect, useMemo } from "react"
+import { useSession } from "next-auth/react"
 import {
-  File,
-  Home,
-  LineChart,
-  FilterIcon,
-  MoreHorizontal,
-  Package,
-  Package2,
-  PlusCircle,
+  ChevronDown,
   Search,
-  Users,
+  Edit,
+  Trash2,
+  Eye,
+  Plus,
+  Filter,
+  MoreHorizontal,
+  PlusCircle,
+  File,
   Upload,
-  CheckCircle,
-  XCircle,
   Loader,
-} from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+} from "lucide-react"
+import Link from "next/link"
+import { useToast } from "@/components/ui/use-toast"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
   Table,
   TableBody,
@@ -45,170 +27,267 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import Modal from "@/components/shared/modal";
-import MathRenderer from "@/components/layout/MathRenderer";
-import { Button } from "@/components/magicui/button";
-import Link from "next/link";
+} from "@/components/ui/table"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Badge } from "@/components/ui/badge"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Checkbox } from "@/components/ui/checkbox"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { TooltipProvider } from "@/components/ui/tooltip"
+import MathRenderer from "@/components/layout/MathRenderer"
 
-// Define Question and Props types directly in the file
+type QuestionStatus = "ACTIVE" | "DRAFT" | "ARCHIVED" | "UNDER_REVIEW"
+
 interface Question {
-  questionId: string;
-  text: string;
-  reviewed: boolean;
-  subject: string;
-  difficulty: string;
-  status: QuestionStatus;
-  options?: string[];
+  questionId: string
+  text: string
+  subject: string
+  topic: string
+  subtopic: string
+  difficulty: string
+  type: "Multiple Choice" | "Numerical"
+  exam: string
+  year: string
+  status: QuestionStatus
+  options?: string[]
+  reviewed: boolean
 }
 
-type QuestionStatus = "ACTIVE" | "DRAFT" | "ARCHIVED";
-
-interface Props {
-  children: React.ReactNode;
+interface FiltersType {
+  exams: string[]
+  subjects: string[]
+  topics: string[]
+  subtopics: string[]
+  difficulties: string[]
+  types: string[]
+  years: string[]
+  status: QuestionStatus | "ALL"
 }
 
-// Error boundary to handle unexpected errors gracefully
-const ErrorBoundary: React.FC<Props> = ({ children }) => {
-  // Removed React.Suspense since it's not needed here
-  return <>{children}</>;
-};
+const initialFilters: FiltersType = {
+  exams: [],
+  subjects: [],
+  topics: [],
+  subtopics: [],
+  difficulties: [],
+  types: [],
+  years: [],
+  status: "ALL",
+}
 
-// Enhanced Notification Component with dismiss button and stacking
-const Notification = ({
-  message,
-  type,
-  onClose,
-}: {
-  message: string;
-  type: "success" | "error";
-  onClose: () => void;
-}) => {
-  useEffect(() => {
-    const timer = setTimeout(onClose, 5000);
-    return () => clearTimeout(timer);
-  }, [onClose]);
-
-  return (
-    <div
-      className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 max-w-md p-4 rounded-md shadow-md transition-all flex items-center gap-2 ${
-        type === "success"
-          ? "bg-green-100 text-green-800"
-          : "bg-red-100 text-red-800"
-      }`}
-      style={{ animation: "fadeInOut 0.3s ease-in-out" }}
-    >
-      {type === "success" ? (
-        <CheckCircle className="text-green-500" />
-      ) : (
-        <XCircle className="text-red-500" />
-      )}
-      <span>{message}</span>
-      <button onClick={onClose} className="ml-auto text-xl font-bold">
-        ×
-      </button>
-      <style jsx>{`
-        @keyframes fadeInOut {
-          0% {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          10% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-          90% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-          100% {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-        }
-      `}</style>
-    </div>
-  );
-};
-
-const QuestionBankDashboard: React.FC = () => {
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [editingQuestionId, setEditingQuestionId] = useState<string | null>(
-    null
-  );
-  const [updatedText, setUpdatedText] = useState("");
-  const [updatedOptions, setUpdatedOptions] = useState<string[]>([]); // Ensure it's always an array
-  const [questionStatus, setQuestionStatus] = useState<QuestionStatus>(
-    "ACTIVE"
-  );
-  const [showPreview, setShowPreview] = useState(false);
-  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const [confirmationAction, setConfirmationAction] = useState<() => void>(
-    () => {}
-  );
-  const [jsonInput, setJsonInput] = useState<string>("");
-  const [batchUpload, setBatchUpload] = useState<Question[]>([]);
-  const [notifications, setNotifications] = useState<
-    { message: string; type: "success" | "error" }[]
-  >([]);
-  const [selectedQuestions, setSelectedQuestions] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+export default function QuestionBankDashboard() {
+  const { data: session, status } = useSession()
+  const { toast } = useToast()
+  const [questions, setQuestions] = useState<Question[]>([])
+  const [filters, setFilters] = useState<FiltersType>(initialFilters)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedQuestions, setSelectedQuestions] = useState<string[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [editingQuestion, setEditingQuestion] = useState<Question | null>(null)
+  const [jsonInput, setJsonInput] = useState<string>("")
+  const [batchUpload, setBatchUpload] = useState<Question[]>([])
 
   useEffect(() => {
-    const fetchQuestions = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch("/api/questions");
-        if (!response.ok) {
-          throw new Error("Failed to fetch questions");
-        }
-        const data: Question[] = await response.json();
-        data.sort(
-          (a, b) => parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
-        );
-        setQuestions(data);
-      } catch (error) {
-        console.error("Error fetching questions:", error);
-        addNotification("Error fetching questions", "error");
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    if (status === "authenticated") {
+      fetchQuestions()
+    }
+  }, [status])
 
-    fetchQuestions();
-  }, []);
+  const fetchQuestions = async () => {
+    setIsLoading(true)
+    try {
+      const response = await fetch("/api/questions")
+      if (!response.ok) throw new Error("Failed to fetch questions")
+      const data: Question[] = await response.json()
+      setQuestions(data)
+    } catch (error) {
+      console.error("Error fetching questions:", error)
+      toast({
+        title: "Error",
+        description: "Failed to fetch questions. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
-  const addNotification = (message: string, type: "success" | "error") => {
-    setNotifications((prev) => [...prev, { message, type }]);
-  };
+  const filteredQuestions = useMemo(() => {
+    return questions.filter((question) => {
+      const matchesSearch =
+        question.text.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        question.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        question.topic.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        question.subtopic.toLowerCase().includes(searchQuery.toLowerCase())
 
-  const handleDismissNotification = (index: number) => {
-    setNotifications((prev) => prev.filter((_, i) => i !== index));
-  };
+      const matchesFilters =
+        (filters.exams.length === 0 || filters.exams.includes(question.exam)) &&
+        (filters.subjects.length === 0 || filters.subjects.includes(question.subject)) &&
+        (filters.topics.length === 0 || filters.topics.includes(question.topic)) &&
+        (filters.subtopics.length === 0 || filters.subtopics.includes(question.subtopic)) &&
+        (filters.difficulties.length === 0 || filters.difficulties.includes(question.difficulty)) &&
+        (filters.types.length === 0 || filters.types.includes(question.type)) &&
+        (filters.years.length === 0 || filters.years.includes(question.year)) &&
+        (filters.status === "ALL" || filters.status === question.status)
 
-  const handleEditClick = (question: Question) => {
-    setEditingQuestionId(question.questionId);
-    setUpdatedText(question.text);
-    setUpdatedOptions(question.options || []);
-    setQuestionStatus(question.status);
-  };
+      return matchesSearch && matchesFilters
+    })
+  }, [questions, searchQuery, filters])
 
-  const handleSaveChanges = async () => {
-    if (!editingQuestionId) return;
+  const handleFilterChange = (filterType: keyof FiltersType, value: string) => {
+    setFilters((prevFilters) => {
+      const updatedFilter = prevFilters[filterType] as string[]
+      const newFilter = updatedFilter.includes(value)
+        ? updatedFilter.filter((item) => item !== value)
+        : [...updatedFilter, value]
+      return { ...prevFilters, [filterType]: newFilter }
+    })
+  }
 
-    setIsLoading(true);
-    const updatedQuestion: Question = {
-      questionId: editingQuestionId,
-      text: updatedText,
-      options: updatedOptions,
-      reviewed: true,
-      subject: "Subject",
-      difficulty: "Medium",
-      status: questionStatus,
-    };
+  const handleStatusChange = async (questionId: string, newStatus: QuestionStatus) => {
+    setIsLoading(true)
+    try {
+      const response = await fetch(`/api/questions`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ questionId, status: newStatus }),
+      })
 
+      if (!response.ok) throw new Error("Failed to update question status")
+
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === questionId ? { ...q, status: newStatus } : q
+        )
+      )
+      toast({
+        title: "Status Updated",
+        description: `Question ${questionId} status changed to ${newStatus}`,
+      })
+    } catch (error) {
+      console.error("Error updating question status:", error)
+      toast({
+        title: "Error",
+        description: "Failed to update question status. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleDelete = async (questionId: string) => {
+    setIsLoading(true)
+    try {
+      const response = await fetch(`/api/questions`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ questionId }),
+      })
+
+      if (!response.ok) throw new Error("Failed to delete question")
+
+      setQuestions((prevQuestions) => prevQuestions.filter((q) => q.questionId !== questionId))
+      toast({
+        title: "Question Deleted",
+        description: `Question ${questionId} has been deleted`,
+      })
+    } catch (error) {
+      console.error("Error deleting question:", error)
+      toast({
+        title: "Error",
+        description: "Failed to delete question. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleBulkDelete = async () => {
+    if (selectedQuestions.length === 0) {
+      toast({
+        title: "No Questions Selected",
+        description: "Please select questions to delete.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    setIsLoading(true)
+    try {
+      const response = await fetch(`/api/questions/bulk-delete`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ questionIds: selectedQuestions }),
+      })
+
+      if (!response.ok) throw new Error("Failed to delete questions")
+
+      setQuestions((prevQuestions) =>
+        prevQuestions.filter((q) => !selectedQuestions.includes(q.questionId))
+      )
+      setSelectedQuestions([])
+      toast({
+        title: "Questions Deleted",
+        description: `${selectedQuestions.length} questions have been deleted`,
+      })
+    } catch (error) {
+      console.error("Error deleting questions:", error)
+      toast({
+        title: "Error",
+        description: "Failed to delete questions. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleEdit = (question: Question) => {
+    setEditingQuestion(question)
+  }
+
+  const handleSaveEdit = async (updatedQuestion: Question) => {
+    setIsLoading(true)
     try {
       const response = await fetch(`/api/questions`, {
         method: "PATCH",
@@ -216,141 +295,55 @@ const QuestionBankDashboard: React.FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(updatedQuestion),
-      });
+      })
 
-      if (!response.ok) throw new Error("Failed to update question");
+      if (!response.ok) throw new Error("Failed to update question")
 
-      setQuestions((prev) =>
-        prev.map((q) =>
-          q.questionId === editingQuestionId ? updatedQuestion : q
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((q) =>
+          q.questionId === updatedQuestion.questionId ? updatedQuestion : q
         )
-      );
-      setEditingQuestionId(null);
-      setShowPreview(false);
-      addNotification("Question updated successfully", "success");
+      )
+      setEditingQuestion(null)
+      toast({
+        title: "Question Updated",
+        description: `Question ${updatedQuestion.questionId} has been updated`,
+      })
     } catch (error) {
-      console.error("Error updating question:", error);
-      addNotification("Error updating question", "error");
+      console.error("Error updating question:", error)
+      toast({
+        title: "Error",
+        description: "Failed to update question. Please try again.",
+        variant: "destructive",
+      })
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
-  const handleCancelEdit = () => {
-    setEditingQuestionId(null);
-    setShowPreview(false);
-  };
-
-  const handleDelete = (questionId: string) => {
-    setConfirmationAction(() => async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch(`/api/questions`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ questionId }),
-        });
-
-        if (!response.ok) throw new Error("Failed to delete question");
-
-        setQuestions((prev) => prev.filter((q) => q.questionId !== questionId));
-        setShowConfirmationModal(false);
-        addNotification("Question deleted successfully", "success");
-      } catch (error) {
-        console.error("Error deleting question:", error);
-        addNotification("Error deleting question", "error");
-      } finally {
-        setIsLoading(false);
-      }
-    });
-    setShowConfirmationModal(true);
-  };
-
-  const handleBulkDelete = () => {
-    if (selectedQuestions.length === 0) {
-      addNotification("No questions selected for deletion", "error");
-      return;
-    }
-
-    setConfirmationAction(() => async () => {
-      setIsLoading(true);
-      try {
-        await Promise.all(
-          selectedQuestions.map(async (questionId) => {
-            const response = await fetch(`/api/questions`, {
-              method: "DELETE",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ questionId }),
-            });
-
-            if (!response.ok)
-              throw new Error(`Failed to delete question ${questionId}`);
-          })
-        );
-
-        setQuestions((prev) =>
-          prev.filter((q) => !selectedQuestions.includes(q.questionId))
-        );
-        setSelectedQuestions([]);
-        setShowConfirmationModal(false);
-        addNotification("Selected questions deleted successfully", "success");
-      } catch (error) {
-        console.error("Error deleting selected questions:", error);
-        addNotification("Error deleting selected questions", "error");
-      } finally {
-        setIsLoading(false);
-      }
-    });
-    setShowConfirmationModal(true);
-  };
-
-  const handleSelectQuestion = (questionId: string) => {
-    setSelectedQuestions((prev) =>
-      prev.includes(questionId)
-        ? prev.filter((id) => id !== questionId)
-        : [...prev, questionId]
-    );
-  };
-
-  const handleAddOption = () => {
-    setUpdatedOptions([...updatedOptions, ""]);
-  };
-
-  const handleOptionChange = (index: number, value: string) => {
-    setUpdatedOptions((prev) =>
-      prev.map((opt, i) => (i === index ? value : opt))
-    );
-  };
-
-  const handleRemoveOption = (index: number) => {
-    setUpdatedOptions((prev) => prev.filter((_, i) => i !== index));
-  };
-
-  const handleJsonInputChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    const input = e.target.value;
-    setJsonInput(input);
+  const handleJsonInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const input = e.target.value
+    setJsonInput(input)
     try {
-      const parsedQuestions: Question[] = JSON.parse(input);
-      setBatchUpload(parsedQuestions);
+      const parsedQuestions: Question[] = JSON.parse(input)
+      setBatchUpload(parsedQuestions)
     } catch (error) {
-      setBatchUpload([]); // Clear batch upload if parsing fails
-      console.error("Invalid JSON input:", error);
+      setBatchUpload([])
+      console.error("Invalid JSON input:", error)
     }
-  };
+  }
 
   const handleBatchUpload = async () => {
     if (batchUpload.length === 0) {
-      addNotification("No valid questions to upload", "error");
-      return;
+      toast({
+        title: "No Questions to Upload",
+        description: "Please provide valid JSON data for questions.",
+        variant: "destructive",
+      })
+      return
     }
 
-    setIsLoading(true);
+    setIsLoading(true)
     try {
       const response = await fetch("/api/questions/batch-upload", {
         method: "POST",
@@ -358,459 +351,416 @@ const QuestionBankDashboard: React.FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(batchUpload),
-      });
+      })
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(
-          errorData.message || "Failed to upload batch of questions"
-        );
+        const errorData = await response.json()
+        throw new Error(errorData.message || "Failed to upload batch of questions")
       }
 
-      const result = await response.json();
-      // Assuming the response includes the newly added questions
-      setQuestions((prev) => [...prev, ...batchUpload]);
-      setJsonInput("");
-      setBatchUpload([]);
-      addNotification("Batch upload successful", "success");
+      const result = await response.json()
+      setQuestions((prev) => [...prev, ...batchUpload])
+      setJsonInput("")
+      setBatchUpload([])
+      toast({
+        title: "Batch Upload Successful",
+        description: `${batchUpload.length} questions have been uploaded`,
+      })
     } catch (error) {
-      console.error("Error uploading batch:", error);
-      addNotification("Error uploading batch", "error");
+      console.error("Error uploading batch:", error)
+      toast({
+        title: "Error",
+        description: "Failed to upload questions. Please try again.",
+        variant: "destructive",
+      })
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
+
+  const FilterPopover = ({ filterType, options }: { filterType: keyof FiltersType; options: string[] }) => (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline" className="h-8 border-dashed">
+          <Plus className="mr-2 h-4 w-4" />
+          {filterType}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-80">
+        <ScrollArea className="h-80">
+          <div className="space-y-4">
+            <h4 className="font-medium leading-none">{filterType}</h4>
+            {options.map((option) => (
+              <div key={option} className="flex items-center space-x-2">
+                <Checkbox
+                  id={`${filterType}-${option}`}
+                  checked={filters[filterType].includes(option)}
+                  onCheckedChange={() => handleFilterChange(filterType, option)}
+                />
+                <label
+                  htmlFor={`${filterType}-${option}`}
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  {option}
+                </label>
+              </div>
+            ))}
+          </div>
+        </ScrollArea>
+      </PopoverContent>
+    </Popover>
+  )
+
+  if (status === "loading" || isLoading) {
+    return <div>Loading...</div>
+  }
+
+  if (status === "unauthenticated") {
+    return <div>Access Denied. Please log in to view this page.</div>
+  }
 
   return (
     <TooltipProvider>
-      {notifications.map((notification, index) => (
-        <Notification
-          key={index}
-          message={notification.message}
-          type={notification.type}
-          onClose={() => handleDismissNotification(index)}
-        />
-      ))}
-      <div className="flex min-h-screen w-full flex-col">
-        <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
-          <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button size="icon" variant="outline" className="sm:hidden">
-                  <span className="sr-only">Toggle Menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="sm:max-w-xs">
-                <nav className="grid gap-6 text-lg font-medium">
-                  <Link
-                    href="#"
-                    className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
-                  >
-                    <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
-                    <span className="sr-only">Acme Inc</span>
-                  </Link>
-                  <Link
-                    href="#"
-                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  >
-                    <Home className="h-5 w-5" />
-                    Dashboard
-                  </Link>
-                  <Link
-                    href="#"
-                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  >
-                    <Package className="h-5 w-5" />
-                    Questions
-                  </Link>
-                  <Link
-                    href="#"
-                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  >
-                    <Users className="h-5 w-5" />
-                    Users
-                  </Link>
-                  <Link
-                    href="#"
-                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  >
-                    <LineChart className="h-5 w-5" />
-                    Analytics
-                  </Link>
-                </nav>
-              </SheetContent>
-            </Sheet>
-            <div className="relative ml-auto flex-1 md:grow-0">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search..."
-                className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
-              />
-            </div>
-          </header>
-          <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
-            <Tabs defaultValue="all">
-              <div className="flex items-center">
-                <TabsList>
-                  <TabsTrigger value="all">All</TabsTrigger>
-                  <TabsTrigger value="active">Active</TabsTrigger>
-                  <TabsTrigger value="draft">Draft</TabsTrigger>
-                  <TabsTrigger value="archived" className="hidden sm:flex">
-                    Archived
-                  </TabsTrigger>
-                  <TabsTrigger value="batch-upload">
-                    <PlusCircle className="mr-2 h-4 w-4" />
-                    Batch Upload
-                  </TabsTrigger>
-                </TabsList>
-                <div className="ml-auto flex items-center gap-2">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="sm" className="h-8 gap-1">
-                        <FilterIcon className="h-3.5 w-3.5" />
-                        <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                          Filter
-                        </span>
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuLabel>Filter by</DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>Active</DropdownMenuItem>
-                      <DropdownMenuItem>Draft</DropdownMenuItem>
-                      <DropdownMenuItem>Archived</DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                  <Button size="sm" variant="outline" className="h-8 gap-1">
-                    <File className="h-3.5 w-3.5" />
-                    <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                      Export
-                    </span>
-                  </Button>
-                  <Button size="sm" className="h-8 gap-1">
-                    <PlusCircle className="h-3.5 w-3.5" />
-                    <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                      Add Question
-                    </span>
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="destructive"
-                    onClick={handleBulkDelete}
-                  >
-                    Delete Selected
-                  </Button>
-                </div>
-              </div>
-              <TabsContent value="all">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Questions</CardTitle>
-                    <CardDescription>
-                      Manage your questions and track their performance.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    {isLoading ? (
-                      <Skeleton height={40} count={5} />
-                    ) : (
-                      <Table>
-                        <TableHeader>
-                          <TableRow>
-                            <TableHead>
-                              <input
-                                type="checkbox"
-                                onChange={(e) =>
-                                  setSelectedQuestions(
-                                    e.target.checked
-                                      ? questions.map((q) => q.questionId)
-                                      : []
-                                  )
-                                }
-                                checked={
-                                  selectedQuestions.length === questions.length &&
-                                  questions.length > 0
-                                }
-                              />
-                            </TableHead>
-                            <TableHead>#</TableHead>
-                            <TableHead>Question</TableHead>
-                            <TableHead>Status</TableHead>
-                            <TableHead className="hidden md:table-cell">
-                              Subject
-                            </TableHead>
-                            <TableHead className="hidden md:table-cell">
-                              Difficulty
-                            </TableHead>
-                            <TableHead>
-                              <span className="sr-only">Actions</span>
-                            </TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {questions.map((question, index) =>
-                            editingQuestionId === question.questionId ? (
-                              <TableRow key={question.questionId}>
-                                <TableCell>
-                                  <input
-                                    type="checkbox"
-                                    checked={selectedQuestions.includes(
-                                      question.questionId
-                                    )}
-                                    onChange={() =>
-                                      handleSelectQuestion(question.questionId)
-                                    }
-                                  />
-                                </TableCell>
-                                <TableCell>{index + 1}</TableCell>
-                                <TableCell className="font-medium">
-                                  <textarea
-                                    className="w-full p-2 border rounded"
-                                    value={updatedText}
-                                    onChange={(e) =>
-                                      setUpdatedText(e.target.value)
-                                    }
-                                    rows={4}
-                                  />
-                                  <div className="mt-2">
-                                    <label className="block text-sm font-medium text-gray-700">
-                                      Options (LaTeX Supported)
-                                    </label>
-                                    {updatedOptions.map((option, idx) => (
-                                      <div
-                                        key={idx}
-                                        className="flex items-center mb-2"
-                                      >
-                                        <input
-                                          type="text"
-                                          className="w-full p-2 border rounded mr-2"
-                                          value={option}
-                                          onChange={(e) =>
-                                            handleOptionChange(
-                                              idx,
-                                              e.target.value
-                                            )
-                                          }
-                                        />
-                                        <Button
-                                          variant="outline"
-                                          size="icon"
-                                          onClick={() =>
-                                            handleRemoveOption(idx)
-                                          }
-                                        >
-                                          ✕
-                                        </Button>
-                                      </div>
-                                    ))}
-                                    <Button size="sm" onClick={handleAddOption}>
-                                      Add Option
-                                    </Button>
-                                  </div>
-                                  {showPreview && (
-                                    <div className="mt-4 border p-4 bg-gray-50 rounded-md">
-                                      <MathRenderer text={updatedText} />
-                                      <div className="mt-2">
-                                        <strong>Options:</strong>
-                                        {updatedOptions.map((option, idx) => (
-                                          <p key={idx}>
-                                            <MathRenderer text={option} />
-                                          </p>
-                                        ))}
-                                      </div>
-                                    </div>
-                                  )}
-                                </TableCell>
-                                <TableCell>
-                                  <select
-                                    className="w-full p-2 border rounded"
-                                    value={questionStatus}
-                                    onChange={(e) =>
-                                      setQuestionStatus(
-                                        e.target.value as QuestionStatus
-                                      )
-                                    }
-                                  >
-                                    <option value="ACTIVE">Active</option>
-                                    <option value="DRAFT">Draft</option>
-                                    <option value="ARCHIVED">Archived</option>
-                                  </select>
-                                </TableCell>
-                                <TableCell className="hidden md:table-cell">
-                                  {question.subject}
-                                </TableCell>
-                                <TableCell className="hidden md:table-cell">
-                                  {question.difficulty}
-                                </TableCell>
-                                <TableCell className="flex flex-col gap-2">
-                                  <Button
-                                    size="sm"
-                                    onClick={handleSaveChanges}
-                                    disabled={isLoading}
-                                  >
-                                    {isLoading ? (
-                                      <Loader className="animate-spin" />
-                                    ) : (
-                                      "Save"
-                                    )}
-                                  </Button>
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    onClick={handleCancelEdit}
-                                  >
-                                    Cancel
-                                  </Button>
-                                  <Button
-                                    size="sm"
-                                    onClick={() =>
-                                      setShowPreview((prev) => !prev)
-                                    }
-                                  >
-                                    {showPreview ? "Hide Preview" : "Preview"}
-                                  </Button>
-                                </TableCell>
-                              </TableRow>
-                            ) : (
-                              <TableRow key={question.questionId}>
-                                <TableCell>
-                                  <input
-                                    type="checkbox"
-                                    checked={selectedQuestions.includes(
-                                      question.questionId
-                                    )}
-                                    onChange={() =>
-                                      handleSelectQuestion(question.questionId)
-                                    }
-                                  />
-                                </TableCell>
-                                <TableCell>{index + 1}</TableCell>
-                                <TableCell className="font-medium">
-                                  <MathRenderer text={question.text} />
-                                </TableCell>
-                                <TableCell>
-                                  <Badge variant="outline">
-                                    {question.status}
-                                  </Badge>
-                                </TableCell>
-                                <TableCell className="hidden md:table-cell">
-                                  {question.subject}
-                                </TableCell>
-                                <TableCell className="hidden md:table-cell">
-                                  {question.difficulty}
-                                </TableCell>
-                                <TableCell>
-                                  <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                      <Button
-                                        aria-haspopup="true"
-                                        size="icon"
-                                        variant="ghost"
-                                      >
-                                        <MoreHorizontal className="h-4 w-4" />
-                                        <span className="sr-only">
-                                          Toggle menu
-                                        </span>
-                                      </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end">
-                                      <DropdownMenuLabel>
-                                        Actions
-                                      </DropdownMenuLabel>
-                                      <DropdownMenuItem
-                                        onClick={() =>
-                                          handleEditClick(question)
-                                        }
-                                      >
-                                        Edit
-                                      </DropdownMenuItem>
-                                      <DropdownMenuItem
-                                        onClick={() =>
-                                          handleDelete(question.questionId)
-                                        }
-                                      >
-                                        Delete
-                                      </DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                  </DropdownMenu>
-                                </TableCell>
-                              </TableRow>
-                            )
-                          )}
-                        </TableBody>
-                      </Table>
-                    )}
-                  </CardContent>
-                  <CardFooter>
-                    <div className="text-xs text-muted-foreground">
-                      Showing <strong>1-{questions.length}</strong> of{" "}
-                      <strong>{questions.length}</strong> questions
-                    </div>
-                  </CardFooter>
-                </Card>
-              </TabsContent>
-              <TabsContent value="batch-upload">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Batch Upload Questions</CardTitle>
-                    <CardDescription>
-                      Upload a batch of questions in JSON format.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <textarea
-                      value={jsonInput}
-                      onChange={handleJsonInputChange}
-                      rows={10}
-                      placeholder="Paste JSON of questions here..."
-                      className="w-full p-2 border rounded"
-                    />
-                  </CardContent>
-                  <CardFooter>
-                    <Button
-                      variant="default"
-                      onClick={handleBatchUpload}
-                      disabled={isLoading || batchUpload.length === 0}
-                    >
-                      {isLoading ? (
-                        <Loader className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <>
-                          <Upload className="mr-2 h-4 w-4" />
-                          Upload Batch
-                        </>
-                      )}
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </TabsContent>
-            </Tabs>
-          </main>
+      <div className="container mx-auto py-10">
+        <h1 className="text-2xl font-bold mb-5">Question Bank Dashboard</h1>
+
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-2">
+            <Input
+              placeholder="Search questions..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-[300px]"
+            />
+            <Button variant="outline" className="h-10">
+              <Filter className="mr-2 h-4 w-4" />
+              Filters
+            </Button>
+            <Select
+              value={filters.status}
+              onValueChange={(value) => setFilters({ ...filters, status: value as QuestionStatus | "ALL" })}
+            >
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="ALL">All Statuses</SelectItem>
+                <SelectItem value="ACTIVE">Active</SelectItem>
+                <SelectItem value="DRAFT">Draft</SelectItem>
+                <SelectItem value="ARCHIVED">Archived</SelectItem>
+                <SelectItem value="UNDER_REVIEW">Under Review</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <Button onClick={handleBulkDelete} disabled={selectedQuestions.length === 0}>
+            Delete Selected
+          </Button>
         </div>
 
-        {showConfirmationModal && (
-          <Modal
-            showModal={showConfirmationModal}
-            setShowModal={setShowConfirmationModal}
-          >
-            <div className="text-center backdrop-blur-md p-8 rounded-xl transition-opacity">
-              <p>Are you sure you want to proceed with this action?</p>
-              <div className="flex justify-center mt-4 space-x-2">
+        <div className="flex flex-wrap gap-2 mb-4">
+          <FilterPopover filterType="exams" options={Array.from(new Set(questions.map((q) => q.exam)))} />
+          <FilterPopover filterType="subjects" options={Array.from(new Set(questions.map((q) => q.subject)))} />
+          <FilterPopover filterType="topics" options={Array.from(new Set(questions.map((q) => q.topic)))} />
+          <FilterPopover filterType="subtopics" options={Array.from(new Set(questions.map((q) => q.subtopic)))} />
+          <FilterPopover filterType="difficulties" options={Array.from(new Set(questions.map((q) => q.difficulty)))} />
+          <FilterPopover filterType="types" options={Array.from(new Set(questions.map((q) => q.type)))} />
+          <FilterPopover filterType="years" options={Array.from(new Set(questions.map((q) => q.year)))} />
+        </div>
+
+        <Tabs defaultValue="all">
+          <TabsList>
+            <TabsTrigger value="all">All Questions</TabsTrigger>
+            <TabsTrigger value="batch-upload">Batch Upload</TabsTrigger>
+          </TabsList>
+          <TabsContent value="all">
+            <Card>
+              <CardHeader>
+                <CardTitle>Questions</CardTitle>
+                <CardDescription>Manage your questions and track their performance.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-[50px]">
+                        <Checkbox
+                          checked={selectedQuestions.length === filteredQuestions.length}
+                          onCheckedChange={(checked) => {
+                            setSelectedQuestions(
+                              checked
+                                ? filteredQuestions.map((q) => q.questionId)
+                                : []
+                            )
+                          }}
+                        />
+                      </TableHead>
+                      <TableHead>Question</TableHead>
+                      <TableHead>Subject</TableHead>
+                      <TableHead>Topic</TableHead>
+                      <TableHead>Difficulty</TableHead>
+                      <TableHead>Type</TableHead>
+                      <TableHead>Exam</TableHead>
+                      <TableHead>Year</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="text-right">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredQuestions.map((question) => (
+                      <TableRow key={question.questionId}>
+                        <TableCell>
+                          <Checkbox
+                            checked={selectedQuestions.includes(question.questionId)}
+                            onCheckedChange={(checked) => {
+                              setSelectedQuestions(
+                                checked
+                                  ? [...selectedQuestions, question.questionId]
+                                  : selectedQuestions.filter((id) => id !== question.questionId)
+                              )
+                            }}
+                          />
+                        </TableCell>
+                        <TableCell className="font-medium">
+                          <MathRenderer text={question.text.substring(0, 50) + "..."} />
+                        </TableCell>
+                        <TableCell>{question.subject}</TableCell>
+                        <TableCell>{question.topic}</TableCell>
+                        <TableCell>{question.difficulty}</TableCell>
+                        <TableCell>{question.type}</TableCell>
+                        <TableCell>{question.exam}</TableCell>
+                        <TableCell>{question.year}</TableCell>
+                        <TableCell>
+                          <Badge
+                            variant={
+                              question.status === "ACTIVE"
+                                ? "default"
+                                : question.status === "DRAFT"
+                                ? "secondary"
+                                : question.status === "ARCHIVED"
+                                ? "outline"
+                                : "destructive"
+                            }
+                          >
+                            {question.status}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" className="h-8 w-8 p-0">
+                                <span className="sr-only">Open menu</span>
+                                <MoreHorizontal className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                              <DropdownMenuItem onClick={() => handleEdit(question)}>
+                                <Edit className="mr-2 h-4 w-4" />
+                                Edit
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                <Eye className="mr-2 h-4 w-4" />
+                                View
+                              </DropdownMenuItem>
+                              <DropdownMenuSeparator />
+                              <DropdownMenuItem onClick={() => handleDelete(question.questionId)}>
+                                <Trash2 className="mr-2 h-4 w-4" />
+                                Delete
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+              <CardFooter>
+                <div className="text-xs text-muted-foreground">
+                  Showing <strong>1-{filteredQuestions.length}</strong> of{" "}
+                  <strong>{filteredQuestions.length}</strong> questions
+                </div>
+              </CardFooter>
+            </Card>
+          </TabsContent>
+          <TabsContent value="batch-upload">
+            <Card>
+              <CardHeader>
+                <CardTitle>Batch Upload Questions</CardTitle>
+                <CardDescription>Upload a batch of questions in JSON format.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <textarea
+                  value={jsonInput}
+                  onChange={handleJsonInputChange}
+                  rows={10}
+                  placeholder="Paste JSON of questions here..."
+                  className="w-full p-2 border rounded"
+                />
+              </CardContent>
+              <CardFooter>
                 <Button
-                  variant="outline"
-                  onClick={() => setShowConfirmationModal(false)}
+                  variant="default"
+                  onClick={handleBatchUpload}
+                  disabled={isLoading || batchUpload.length === 0}
                 >
-                  Cancel
+                  {isLoading ? (
+                    <Loader className="mr-2 h-4 w-4 animate-spin" />
+                  ) : (
+                    <>
+                      <Upload className="mr-2 h-4 w-4" />
+                      Upload Batch
+                    </>
+                  )}
                 </Button>
-                <Button onClick={confirmationAction}>Confirm</Button>
+              </CardFooter>
+            </Card>
+          </TabsContent>
+        </Tabs>
+
+        <Dialog open={!!editingQuestion} onOpenChange={() => setEditingQuestion(null)}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Edit Question</DialogTitle>
+              <DialogDescription>Make changes to the question here. Click save when you're done.</DialogDescription>
+            </DialogHeader>
+            {editingQuestion && (
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <label htmlFor="question-text" className="text-right">
+                    Question Text
+                  </label>
+                  <Input
+                    id="question-text"
+                    value={editingQuestion.text}
+                    onChange={(e) =>
+                      setEditingQuestion({ ...editingQuestion, text: e.target.value })
+                    }
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <label htmlFor="question-subject" className="text-right">
+                    Subject
+                  </label>
+                  <Input
+                    id="question-subject"
+                    value={editingQuestion.subject}
+                    onChange={(e) =>
+                      setEditingQuestion({ ...editingQuestion, subject: e.target.value })
+                    }
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <label htmlFor="question-topic" className="text-right">
+                    Topic
+                  </label>
+                  <Input
+                    id="question-topic"
+                    value={editingQuestion.topic}
+                    onChange={(e) =>
+                      setEditingQuestion({ ...editingQuestion, topic: e.target.value })
+                    }
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <label htmlFor="question-difficulty" className="text-right">
+                    Difficulty
+                  </label>
+                  <Select
+                    value={editingQuestion.difficulty}
+                    onValueChange={(value) =>
+                      setEditingQuestion({ ...editingQuestion, difficulty: value })
+                    }
+                  >
+                    <SelectTrigger className="col-span-3">
+                      <SelectValue placeholder="Select difficulty" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Easy">Easy</SelectItem>
+                      <SelectItem value="Medium">Medium</SelectItem>
+                      <SelectItem value="Hard">Hard</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <label htmlFor="question-type" className="text-right">
+                    Type
+                  </label>
+                  <Select
+                    value={editingQuestion.type}
+                    onValueChange={(value) =>
+                      setEditingQuestion({ ...editingQuestion, type: value as "Multiple Choice" | "Numerical" })
+                    }
+                  >
+                    <SelectTrigger className="col-span-3">
+                      <SelectValue placeholder="Select type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Multiple Choice">Multiple Choice</SelectItem>
+                      <SelectItem value="Numerical">Numerical</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <label htmlFor="question-exam" className="text-right">
+                    Exam
+                  </label>
+                  <Input
+                    id="question-exam"
+                    value={editingQuestion.exam}
+                    onChange={(e) =>
+                      setEditingQuestion({ ...editingQuestion, exam: e.target.value })
+                    }
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <label htmlFor="question-year" className="text-right">
+                    Year
+                  </label>
+                  <Input
+                    id="question-year"
+                    value={editingQuestion.year}
+                    onChange={(e) =>
+                      setEditingQuestion({ ...editingQuestion, year: e.target.value })
+                    }
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <label htmlFor="question-status" className="text-right">
+                    Status
+                  </label>
+                  <Select
+                    value={editingQuestion.status}
+                    onValueChange={(value) =>
+                      setEditingQuestion({ ...editingQuestion, status: value as QuestionStatus })
+                    }
+                  >
+                    <SelectTrigger className="col-span-3">
+                      <SelectValue placeholder="Select status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="ACTIVE">Active</SelectItem>
+                      <SelectItem value="DRAFT">Draft</SelectItem>
+                      <SelectItem value="ARCHIVED">Archived</SelectItem>
+                      <SelectItem value="UNDER_REVIEW">Under Review</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-            </div>
-          </Modal>
-        )}
+            )}
+            <DialogFooter>
+              <Button type="submit" onClick={() => editingQuestion && handleSaveEdit(editingQuestion)}>
+                Save changes
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </TooltipProvider>
-  );
-};
-
-export default QuestionBankDashboard;
+  )
+}
