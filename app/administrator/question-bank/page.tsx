@@ -49,7 +49,7 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import Popover from "@/components/shared/popover"
-import { ArrowUpIcon, ArrowDownIcon, ChevronDown, Search, List, Plus, Trash2, Edit, Eye, CheckCircle, XCircle, MoreHorizontal } from 'lucide-react'
+import { ArrowUpIcon, ArrowDownIcon, ChevronDown, Search, Plus, Trash2, Edit, Eye, CheckCircle, XCircle, MoreHorizontal, Upload, FileUp, FileJson } from 'lucide-react'
 
 type Status = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED' | 'UNDER_REVIEW'
 
@@ -82,7 +82,7 @@ type FiltersType = {
   status: string
 }
 
-export default function EnhancedQuestionBankDashboard() {
+export default function QuestionBankDashboard() {
   const [questions, setQuestions] = useState<Question[]>([])
   const [searchQuery, setSearchQuery] = useState("")
   const [filters, setFilters] = useState<FiltersType>({
@@ -104,7 +104,6 @@ export default function EnhancedQuestionBankDashboard() {
     year: false,
     type: false,
   })
-  const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
   const [isAddQuestionOpen, setIsAddQuestionOpen] = useState(false)
   const [editingQuestion, setEditingQuestion] = useState<Question | null>(null)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
@@ -321,7 +320,8 @@ export default function EnhancedQuestionBankDashboard() {
         (!filters.subtopics.length || filters.subtopics.includes(question.subtopic)) &&
         (!filters.difficulties.length || filters.difficulties.includes(question.difficulty)) &&
         (!filters.years.length || filters.years.includes(question.year)) &&
-        (!filters.types.length || filters.types.includes(question.type))
+        (!filters.types.length || filters.types.includes(question.type)) &&
+        (filters.status === 'all' || question.status === filters.status)
 
       return matchesSearch && matchesFilters
     })
@@ -334,13 +334,17 @@ export default function EnhancedQuestionBankDashboard() {
   return (
     <TooltipProvider>
       <div className="space-y-6">
-        <h1 className="text-3xl font-bold tracking-tight">Enhanced Question Bank Dashboard</h1>
+        <h1 className="text-3xl font-light tracking-tight">Question Bank Dashboard</h1>
         
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Questions</CardTitle>
-              <ArrowUpIcon className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium">
+                <div className="flex items-center space-x-2">
+                  <FileUp className="h-4 w-4 text-muted-foreground" />
+                  <span>Total Questions</span>
+                </div>
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{totalQuestions}</div>
@@ -349,8 +353,12 @@ export default function EnhancedQuestionBankDashboard() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Draft Questions</CardTitle>
-              <ArrowUpIcon className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium">
+                <div className="flex items-center space-x-2">
+                  <Edit className="h-4 w-4 text-muted-foreground" />
+                  <span>Draft Questions</span>
+                </div>
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{draftQuestions}</div>
@@ -359,8 +367,12 @@ export default function EnhancedQuestionBankDashboard() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Published Questions</CardTitle>
-              <ArrowUpIcon className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium">
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="h-4 w-4 text-muted-foreground" />
+                  <span>Published Questions</span>
+                </div>
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{publishedQuestions}</div>
@@ -369,8 +381,12 @@ export default function EnhancedQuestionBankDashboard() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Avg. Creation Time</CardTitle>
-              <ArrowDownIcon className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium">
+                <div className="flex items-center space-x-2">
+                  <ArrowDownIcon className="h-4 w-4 text-muted-foreground" />
+                  <span>Avg. Creation Time</span>
+                </div>
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">3 days</div>
@@ -380,7 +396,7 @@ export default function EnhancedQuestionBankDashboard() {
         </div>
 
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold tracking-tight">Questions</h2>
+          <h2 className="text-2xl font-light tracking-tight">Questions</h2>
           <Select defaultValue="all" onValueChange={(value) => setFilters(prev => ({ ...prev, status: value }))}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Filter by status" />
@@ -406,45 +422,6 @@ export default function EnhancedQuestionBankDashboard() {
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
-          <Dialog open={isNavigatorOpen} onOpenChange={setIsNavigatorOpen}>
-            <DialogTrigger asChild>
-              <Button variant="outline">
-                <List className="mr-2 h-4 w-4" />
-                Question Navigator
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[80vw] sm:max-h-[80vh]">
-              <DialogHeader>
-                <DialogTitle>Question Navigator</DialogTitle>
-              </DialogHeader>
-              <ScrollArea className="h-[60vh]">
-                <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
-                  {filteredQuestions.map((question, index) => (
-                    <Tooltip key={question.id}>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant={question.status === 'PUBLISHED' ? "default" : "outline"}
-                          size="sm"
-                          className={`w-10 h-10 ${
-                            question.status === 'PUBLISHED'
-                              ? "bg-green-100 border-green-500 text-green-700"
-                              : question.status === 'UNDER_REVIEW'
-                              ? "bg-yellow-100 border-yellow-500 text-yellow-700"
-                              : ""
-                          }`}
-                        >
-                          {index + 1}
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>{question.text.substring(0, 50)}...</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  ))}
-                </div>
-              </ScrollArea>
-            </DialogContent>
-          </Dialog>
           <Dialog open={isAddQuestionOpen} onOpenChange={setIsAddQuestionOpen}>
             <DialogTrigger asChild>
               <Button>
@@ -452,11 +429,51 @@ export default function EnhancedQuestionBankDashboard() {
                 Add Question
               </Button>
             </DialogTrigger>
+            <DialogContent className="sm:max-w-[625px]">
+              <ScrollArea className="max-h-[80vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle>Add New Question</DialogTitle>
+                </DialogHeader>
+                <QuestionForm onSubmit={handleAddQuestion} />
+              </ScrollArea>
+            </DialogContent>
+          </Dialog>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline">
+                <Upload className="mr-2 h-4 w-4" />
+                Batch Upload
+              </Button>
+            </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Add New Question</DialogTitle>
+                <DialogTitle>Batch Upload Questions</DialogTitle>
               </DialogHeader>
-              <QuestionForm onSubmit={handleAddQuestion} />
+              <Tabs defaultValue="csv" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="csv">CSV Upload</TabsTrigger>
+                  <TabsTrigger value="json">JSON Input</TabsTrigger>
+                </TabsList>
+                <TabsContent value="csv">
+                  <div className="grid w-full max-w-sm items-center gap-1.5">
+                    <Label htmlFor="csvFile">CSV File</Label>
+                    <Input id="csvFile" type="file" accept=".csv" />
+                  </div>
+                </TabsContent>
+                <TabsContent value="json">
+                  <div className="grid w-full items-center gap-1.5">
+                    <Label htmlFor="jsonInput">JSON Input</Label>
+                    <Textarea
+                      id="jsonInput"
+                      placeholder="Paste your JSON here..."
+                      className="min-h-[200px]"
+                    />
+                  </div>
+                </TabsContent>
+              </Tabs>
+              <DialogFooter>
+                <Button type="submit">Upload</Button>
+              </DialogFooter>
             </DialogContent>
           </Dialog>
         </div>
@@ -681,16 +698,18 @@ export default function EnhancedQuestionBankDashboard() {
       </div>
 
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Edit Question</DialogTitle>
-          </DialogHeader>
-          {editingQuestion && (
-            <QuestionForm
-              initialData={editingQuestion}
-              onSubmit={(updatedQuestion) => handleEditQuestion({ ...editingQuestion, ...updatedQuestion })}
-            />
-          )}
+        <DialogContent className="sm:max-w-[625px]">
+          <ScrollArea className="max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Edit Question</DialogTitle>
+            </DialogHeader>
+            {editingQuestion && (
+              <QuestionForm
+                initialData={editingQuestion}
+                onSubmit={(updatedQuestion) => handleEditQuestion({ ...editingQuestion, ...updatedQuestion })}
+              />
+            )}
+          </ScrollArea>
         </DialogContent>
       </Dialog>
     </TooltipProvider>
