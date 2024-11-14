@@ -1,125 +1,157 @@
-"use client"
+"use client";
 
-import React, { useReducer, useEffect, useMemo, useCallback, useState } from "react"
-import { useSession } from "next-auth/react"
-import Skeleton from "react-loading-skeleton"
-import "react-loading-skeleton/dist/skeleton.css"
-import Question from "@/components/shared/Question"
-import Popover from "@/components/shared/popover"
-import { CheckCheckIcon, ChevronDown, ChevronLeft, ChevronRight, Info, List, Search, Circle, CheckCircle2, Flag, HelpCircle } from "lucide-react"
-import Link from "next/link"
+import React, {
+  useReducer,
+  useEffect,
+  useMemo,
+  useCallback,
+  useState,
+} from "react";
+import { useSession } from "next-auth/react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import Question from "@/components/shared/Question";
+import Popover from "@/components/shared/popover";
+import {
+  CheckCheckIcon,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Info,
+  List,
+  Search,
+  Circle,
+  CheckCircle2,
+  Flag,
+  HelpCircle,
+} from "lucide-react";
+import Link from "next/link";
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
   TooltipProvider,
-} from "@/components/ui/tooltip"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { useToast } from "@/components/ui/use-toast"
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card"
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Progress } from "@/components/ui/progress"
-import { motion, AnimatePresence } from "framer-motion"
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Progress } from "@/components/ui/progress";
+import { motion, AnimatePresence } from "framer-motion";
 
-const PAGE_SIZE = 10
+const PAGE_SIZE = 10;
 
 enum QuestionStatus {
   DRAFT = "DRAFT",
   PUBLISHED = "PUBLISHED",
   ARCHIVED = "ARCHIVED",
-  UNDER_REVIEW = "UNDER_REVIEW"
+  UNDER_REVIEW = "UNDER_REVIEW",
 }
 
 interface QuestionType {
-  exam: string
-  questionId: string
-  text: string
-  subject: string
-  topic: string
-  subtopic: string
-  difficulty: string
-  type: "Multiple Choice" | "Numerical"
-  year: string
-  reviewed: boolean
-  completed: boolean
-  options?: string[]
-  correctOption?: string
-  markscheme?: string
-  notes?: string
-  lastAttempted?: string
-  diagramUrl?: string
-  status: QuestionStatus
+  exam: string;
+  questionId: string;
+  text: string;
+  subject: string;
+  topic: string;
+  subtopic: string;
+  difficulty: string;
+  type: "Multiple Choice" | "Numerical";
+  year: string;
+  reviewed: boolean;
+  completed: boolean;
+  options?: string[];
+  correctOption?: string;
+  markscheme?: string;
+  notes?: string;
+  lastAttempted?: string;
+  diagramUrl?: string;
+  status: QuestionStatus;
+  performance?: UserPerformance;
 }
 
 interface UserAnswer {
-  questionId: string
-  selectedOption: string
-  isCorrect: boolean
+  questionId: string;
+  selectedOption: string;
+  isCorrect: boolean;
 }
 
 interface UserPerformance {
-  questionId: string
-  correctAnswers: number
-  incorrectAnswers: number
-  uniqueQuestions: number
-  questionsAttempted: number
-  timeSpent: number
-  accuracy: number
-  weaknessBySubtopic: any
-  improvementOverTime: any
-  attemptRate: number
-  firstAttemptSuccessRate: number
-  reattemptAccuracy: number
-  topicPerformance: any
-  consistency: number
-  engagementLevel: number
-  completed: boolean
-  reviewed: boolean
+  questionId: string;
+  correctAnswers: number;
+  incorrectAnswers: number;
+  uniqueQuestions: number;
+  questionsAttempted: number;
+  timeSpent: number;
+  accuracy: number;
+  weaknessBySubtopic: any;
+  improvementOverTime: any;
+  attemptRate: number;
+  firstAttemptSuccessRate: number;
+  reattemptAccuracy: number;
+  topicPerformance: any;
+  consistency: number;
+  engagementLevel: number;
+  completed: boolean;
+  reviewed: boolean;
 }
 
 type FiltersType = {
-  exams: string[]
-  subjects: string[]
-  topics: string[]
-  subtopics: string[]
-  difficulties: string[]
-  types: string[]
-  years: string[]
-  status: string
+  exams: string[];
+  subjects: string[];
+  topics: string[];
+  subtopics: string[];
+  difficulties: string[];
+  types: string[];
+  years: string[];
+  status: string;
+};
+
+interface AvailableOptionsType {
+  exams: string[];
+  subjects: string[];
+  topics: string[];
+  subtopics: string[];
+  difficulties: string[];
+  years: string[];
+  types: string[];
 }
 
-type StateType = {
-  questions: QuestionType[]
-  filters: FiltersType
-  searchQuery: string
-  dropdowns: {
-    exam: boolean
-    subject: boolean
-    topic: boolean
-    subtopic: boolean
-    difficulty: boolean
-    year: boolean
-    type: boolean
-  }
-  feedback: Record<string, string>
-  numericalAnswers: Record<string, string>
-  showMarkscheme: Record<string, boolean>
-  selectedOptions: Record<string, string>
-  notes: Record<string, string>
-  loading: boolean
-  currentPage: number
+interface FilterSearchQueriesType {
+  exams: string;
+  subjects: string;
+  topics: string;
+  subtopics: string;
+  difficulties: string;
+  years: string;
+  types: string;
 }
+
+type DropdownsType = {
+  [key in keyof FiltersType]: boolean;
+};
+
+type StateType = {
+  questions: QuestionType[];
+  filters: FiltersType;
+  searchQuery: string;
+  dropdowns: DropdownsType;
+  feedback: Record<string, string>;
+  numericalAnswers: Record<string, string>;
+  showMarkscheme: Record<string, boolean>;
+  selectedOptions: Record<string, string>;
+  notes: Record<string, string>;
+  loading: boolean;
+  currentPage: number;
+};
 
 type ActionType =
   | { type: "SET_QUESTIONS"; payload: QuestionType[] }
@@ -132,7 +164,7 @@ type ActionType =
   | { type: "SET_SELECTED_OPTIONS"; payload: Record<string, string> }
   | { type: "SET_NOTES"; payload: Record<string, string> }
   | { type: "SET_LOADING"; payload: boolean }
-  | { type: "SET_CURRENT_PAGE"; payload: number }
+  | { type: "SET_CURRENT_PAGE"; payload: number };
 
 const initialState: StateType = {
   questions: [],
@@ -148,13 +180,14 @@ const initialState: StateType = {
   },
   searchQuery: "",
   dropdowns: {
-    exam: false,
-    subject: false,
-    topic: false,
-    subtopic: false,
-    difficulty: false,
-    year: false,
-    type: false,
+    exams: false,
+    subjects: false,
+    topics: false,
+    subtopics: false,
+    difficulties: false,
+    types: false,
+    years: false,
+    status: false,
   },
   feedback: {},
   numericalAnswers: {},
@@ -163,59 +196,62 @@ const initialState: StateType = {
   notes: {},
   loading: true,
   currentPage: 1,
-}
+};
 
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_QUESTIONS":
-      return { ...state, questions: action.payload }
+      return { ...state, questions: action.payload };
     case "SET_FILTERS":
-      return { ...state, filters: action.payload }
+      return { ...state, filters: action.payload };
     case "SET_SEARCH_QUERY":
-      return { ...state, searchQuery: action.payload }
+      return { ...state, searchQuery: action.payload };
     case "SET_DROPDOWN":
       return {
         ...state,
-        dropdowns: { ...state.dropdowns, [action.payload.tag]: action.payload.value },
-      }
+        dropdowns: {
+          ...state.dropdowns,
+          [action.payload.tag]: action.payload.value,
+        },
+      };
     case "SET_FEEDBACK":
-      return { ...state, feedback: action.payload }
+      return { ...state, feedback: action.payload };
     case "SET_NUMERICAL_ANSWERS":
-      return { ...state, numericalAnswers: action.payload }
+      return { ...state, numericalAnswers: action.payload };
     case "SET_SHOW_MARKSCHEME":
-      return { ...state, showMarkscheme: action.payload }
+      return { ...state, showMarkscheme: action.payload };
     case "SET_SELECTED_OPTIONS":
-      return { ...state, selectedOptions: action.payload }
+      return { ...state, selectedOptions: action.payload };
     case "SET_NOTES":
-      return { ...state, notes: action.payload }
+      return { ...state, notes: action.payload };
     case "SET_LOADING":
-      return { ...state, loading: action.payload }
+      return { ...state, loading: action.payload };
     case "SET_CURRENT_PAGE":
-      return { ...state, currentPage: action.payload }
+      return { ...state, currentPage: action.payload };
     default:
-      return state
+      return state;
   }
 }
 
-const StatusCard = ({ 
-  icon, 
-  label, 
-  value, 
-  color 
-}: { 
-  icon: React.ReactNode
-  label: string
-  value: number
-  color: string
+const StatusCard = ({
+  icon,
+  label,
+  value,
+  color,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: number;
+  color: string;
 }) => {
   return (
-    <motion.div 
+    <motion.div
       className="flex items-center p-4 rounded-lg bg-gray-900 transition-all duration-300"
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
       <AnimatePresence>
-        <motion.div 
+        <motion.div
           className={`flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 mr-4 ${color}`}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -226,7 +262,7 @@ const StatusCard = ({
         </motion.div>
       </AnimatePresence>
       <div>
-        <motion.span 
+        <motion.span
           className={`text-2xl font-bold ${color}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -234,7 +270,7 @@ const StatusCard = ({
         >
           {value}
         </motion.span>
-        <motion.p 
+        <motion.p
           className="text-sm font-medium text-gray-400"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -244,16 +280,19 @@ const StatusCard = ({
         </motion.p>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
 const Pagination: React.FC<{
-  currentPage: number
-  totalPages: number
-  onPageChange: (page: number) => void
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
 }> = ({ currentPage, totalPages, onPageChange }) => {
   return (
-    <nav className="flex items-center justify-center mt-6" aria-label="Pagination">
+    <nav
+      className="flex items-center justify-center mt-6"
+      aria-label="Pagination"
+    >
       <Button
         variant="outline"
         size="icon"
@@ -264,7 +303,7 @@ const Pagination: React.FC<{
         <ChevronLeft className="h-4 w-4" />
       </Button>
       {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-        const pageNumber = currentPage + i - 2
+        const pageNumber = currentPage + i - 2;
         if (pageNumber > 0 && pageNumber <= totalPages) {
           return (
             <Button
@@ -275,9 +314,9 @@ const Pagination: React.FC<{
             >
               {pageNumber}
             </Button>
-          )
+          );
         }
-        return null
+        return null;
       })}
       {totalPages > 5 && currentPage < totalPages - 2 && (
         <>
@@ -301,8 +340,8 @@ const Pagination: React.FC<{
         <ChevronRight className="h-4 w-4" />
       </Button>
     </nav>
-  )
-}
+  );
+};
 
 const GuestBanner: React.FC = () => {
   return (
@@ -320,58 +359,87 @@ const GuestBanner: React.FC = () => {
           </div>
         </div>
         <Link href="/QuestionBank" className="hidden sm:block">
-          <Button variant="outline" className="border-blue-200 hover:border-blue-300 hover:bg-blue-50">
+          <Button
+            variant="outline"
+            className="border-blue-200 hover:border-blue-300 hover:bg-blue-50"
+          >
             Sign in
             <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         </Link>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
 const QuestionBankContent: React.FC = () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
-  const { data: session, status } = useSession()
-  const { toast } = useToast()
-  const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { data: session, status } = useSession();
+  const { toast } = useToast();
+  const [isNavigatorOpen, setIsNavigatorOpen] = useState(false);
+
+  const [availableOptions, setAvailableOptions] = useState<AvailableOptionsType>({
+    exams: [],
+    subjects: [],
+    topics: [],
+    subtopics: [],
+    difficulties: [],
+    years: [],
+    types: [],
+  });
+
+  const [filterSearchQueries, setFilterSearchQueries] =
+    useState<FilterSearchQueriesType>({
+      exams: "",
+      subjects: "",
+      topics: "",
+      subtopics: "",
+      difficulties: "",
+      years: "",
+      types: "",
+    });
 
   const fetchAllData = useCallback(async () => {
-    dispatch({ type: "SET_LOADING", payload: true })
+    dispatch({ type: "SET_LOADING", payload: true });
 
     try {
-      const [questionsData, userProgressData, userAnswersData, notesData, userPerformanceData] =
-        await Promise.all([
-          fetchData("/api/questions"),
-          fetchData("/api/user-progress"),
-          fetchData("/api/user-answers"),
-          fetchData("/api/notes"),
-          fetchData("/api/user-performance/get"),
-        ])
+      const [
+        questionsData,
+        userProgressData,
+        userAnswersData,
+        notesData,
+        userPerformanceData,
+      ] = await Promise.all([
+        fetchData("/api/questions"),
+        fetchData("/api/user-progress"),
+        fetchData("/api/user-answers"),
+        fetchData("/api/notes"),
+        fetchData("/api/user-performance/get"),
+      ]);
 
-      const feedback: Record<string, string> = {}
-      const selectedOptions: Record<string, string> = {}
-      const notes: Record<string, string> = {}
+      const feedback: Record<string, string> = {};
+      const selectedOptions: Record<string, string> = {};
+      const notes: Record<string, string> = {};
 
       const mergedQuestions = questionsData.map((question: QuestionType) => {
         const progress = userProgressData.find(
           (p: any) => p.questionId === question.questionId
-        )
+        );
         const userAnswer = userAnswersData.find(
           (a: UserAnswer) => a.questionId === question.questionId
-        )
-        const note = notesData.find((n: any) => n.questionId === question.questionId)
+        );
+        const note = notesData.find((n: any) => n.questionId === question.questionId);
         const performance = userPerformanceData.find(
           (p: UserPerformance) => p.questionId === question.questionId
-        )
+        );
 
         if (userAnswer) {
-          selectedOptions[question.questionId] = userAnswer.selectedOption
-          feedback[question.questionId] = userAnswer.isCorrect ? "correct" : "incorrect"
+          selectedOptions[question.questionId] = userAnswer.selectedOption;
+          feedback[question.questionId] = userAnswer.isCorrect ? "correct" : "incorrect";
         }
 
         if (note) {
-          notes[question.questionId] = note.content
+          notes[question.questionId] = note.content;
         }
 
         return {
@@ -381,44 +449,69 @@ const QuestionBankContent: React.FC = () => {
           notes: note ? note.content : "",
           lastAttempted: progress?.lastAttempted ?? "",
           performance: performance || {},
-        }
-      })
+        };
+      });
 
       mergedQuestions.sort(
         (a: QuestionType, b: QuestionType) =>
           parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
-      )
+      );
 
-      dispatch({ type: "SET_QUESTIONS", payload: mergedQuestions })
-      dispatch({ type: "SET_SELECTED_OPTIONS", payload: selectedOptions })
-      dispatch({ type: "SET_FEEDBACK", payload: feedback })
-      dispatch({ type: "SET_NOTES", payload: notes })
+      dispatch({ type: "SET_QUESTIONS", payload: mergedQuestions });
+      dispatch({ type: "SET_SELECTED_OPTIONS", payload: selectedOptions });
+      dispatch({ type: "SET_FEEDBACK", payload: feedback });
+      dispatch({ type: "SET_NOTES", payload: notes });
     } catch (error) {
-      console.error("Error fetching data:", error)
+      console.error("Error fetching data:", error);
       toast({
         title: "Error",
         description: "Failed to load questions. Please try again later.",
         variant: "destructive",
-      })
+      });
     } finally {
-      dispatch({ type: "SET_LOADING", payload: false })
+      dispatch({ type: "SET_LOADING", payload: false });
     }
-  }, [toast])
+  }, [toast]);
 
   useEffect(() => {
     if (status === "authenticated") {
-      fetchAllData()
+      fetchAllData();
     }
-  }, [fetchAllData, status])
+  }, [fetchAllData, status]);
+
+  // Update available options when filters change
+  useEffect(() => {
+    const { exams } = state.filters;
+    const filteredQuestions = state.questions.filter((question) =>
+      exams.length ? exams.includes(question.exam) : true
+    );
+
+    const subjects = [...new Set(filteredQuestions.map((q) => q.subject))];
+    const topics = [...new Set(filteredQuestions.map((q) => q.topic))];
+    const subtopics = [...new Set(filteredQuestions.map((q) => q.subtopic))];
+    const difficulties = [...new Set(filteredQuestions.map((q) => q.difficulty))];
+    const years = [...new Set(filteredQuestions.map((q) => q.year))];
+    const types = [...new Set(filteredQuestions.map((q) => q.type))];
+
+    setAvailableOptions({
+      exams: [...new Set(state.questions.map((q) => q.exam))], // All exams
+      subjects,
+      topics,
+      subtopics,
+      difficulties,
+      years,
+      types,
+    });
+  }, [state.filters.exams, state.questions]);
 
   const filteredQuestions = useMemo(() => {
     return state.questions.filter((question) => {
-      const searchQuery = state.searchQuery.toLowerCase()
+      const searchQuery = state.searchQuery.toLowerCase();
       const matchesSearch =
         question.text.toLowerCase().includes(searchQuery) ||
         question.topic.toLowerCase().includes(searchQuery) ||
         question.subtopic.toLowerCase().includes(searchQuery) ||
-        question.subject.toLowerCase().includes(searchQuery)
+        question.subject.toLowerCase().includes(searchQuery);
 
       const matchesFilters =
         (!state.filters.exams.length || state.filters.exams.includes(question.exam)) &&
@@ -430,67 +523,71 @@ const QuestionBankContent: React.FC = () => {
         (!state.filters.difficulties.length ||
           state.filters.difficulties.includes(question.difficulty)) &&
         (!state.filters.years.length || state.filters.years.includes(question.year)) &&
-        (!state.filters.types.length || state.filters.types.includes(question.type))
+        (!state.filters.types.length || state.filters.types.includes(question.type));
 
       if (state.filters.status === "review") {
-        return matchesSearch && matchesFilters  && question.reviewed
+        return matchesSearch && matchesFilters && question.reviewed;
       } else if (state.filters.status === "complete") {
-        return matchesSearch && matchesFilters && question.completed
+        return matchesSearch && matchesFilters && question.completed;
       }
 
-      return matchesSearch && matchesFilters
-    })
-  }, [state.questions, state.filters, state.searchQuery])
+      return matchesSearch && matchesFilters;
+    });
+  }, [state.questions, state.filters, state.searchQuery]);
 
-  const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
+  const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE);
 
   const paginatedQuestions = useMemo(() => {
-    const startIndex = (state.currentPage - 1) * PAGE_SIZE
-    const endIndex = startIndex + PAGE_SIZE
-    return filteredQuestions.slice(startIndex, endIndex)
-  }, [filteredQuestions, state.currentPage])
+    const startIndex = (state.currentPage - 1) * PAGE_SIZE;
+    const endIndex = startIndex + PAGE_SIZE;
+    return filteredQuestions.slice(startIndex, endIndex);
+  }, [filteredQuestions, state.currentPage]);
 
   const handlePageChange = useCallback((page: number) => {
-    dispatch({ type: "SET_CURRENT_PAGE", payload: page })
-  }, [])
+    dispatch({ type: "SET_CURRENT_PAGE", payload: page });
+  }, []);
 
   const handleFilterChange = useCallback(
     (tag: keyof FiltersType, value: string) => {
-      const filterValues = state.filters[tag]
+      const filterValues = state.filters[tag];
       if (Array.isArray(filterValues)) {
-        const isSelected = filterValues.includes(value)
+        const isSelected = filterValues.includes(value);
         const updatedFilter = isSelected
           ? filterValues.filter((v: string) => v !== value)
-          : [...filterValues, value]
+          : [...filterValues, value];
         dispatch({
           type: "SET_FILTERS",
           payload: { ...state.filters, [tag]: updatedFilter },
-        })
+        });
+      } else {
+        dispatch({
+          type: "SET_FILTERS",
+          payload: { ...state.filters, [tag]: value },
+        });
       }
     },
     [state.filters]
-  )
+  );
 
   const updateUserPerformance = useCallback(
     async (
       questionId: string,
       updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>
     ) => {
-      
       try {
         const response = await fetch("/api/user-performance/update", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ questionId, ...updatedFields }),
-        })
-        if (!response.ok) throw new Error("Failed to update user performance")
-        return await response.json()
+        });
+        if (!response.ok) throw new Error("Failed to update user performance");
+        return await response.json();
       } catch (error) {
-        console.error("Error updating user performance:", error)
+        console.error("Error updating user performance:", error);
       }
     },
     []
-  )
+  );
 
   const saveUserAnswer = useCallback(
     async (questionId: string, selectedOption: string, isCorrect: boolean) => {
@@ -499,57 +596,64 @@ const QuestionBankContent: React.FC = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ questionId, selectedOption, isCorrect }),
-        })
-        if (!response.ok) throw new Error("Failed to save user answer")
-        return await response.json()
+        });
+        if (!response.ok) throw new Error("Failed to save user answer");
+        return await response.json();
       } catch (error) {
-        console.error("Error saving user answer:", error)
+        console.error("Error saving user answer:", error);
       }
     },
     []
-  )
+  );
 
   const handleMarkComplete = useCallback(
     (questionId: string) => {
-      updateUserPerformance(questionId, { completed: true }).then((updatedPerformance) => {
-        if (updatedPerformance) {
-          dispatch({
-            type: "SET_QUESTIONS",
-            payload: state.questions.map((q) =>
-              q.questionId === questionId ? { ...q, completed: true } : q
-            ),
-          })
+      updateUserPerformance(questionId, { completed: true }).then(
+        (updatedPerformance) => {
+          if (updatedPerformance) {
+            dispatch({
+              type: "SET_QUESTIONS",
+              payload: state.questions.map((q) =>
+                q.questionId === questionId ? { ...q, completed: true } : q
+              ),
+            });
+          }
         }
-      })
+      );
     },
     [updateUserPerformance, state.questions]
-  )
+  );
 
   const handleMarkForReview = useCallback(
     (questionId: string) => {
-      updateUserPerformance(questionId, { reviewed: true }).then((updatedPerformance) => {
-        if (updatedPerformance) {
-          dispatch({
-            type: "SET_QUESTIONS",
-            payload: state.questions.map((q) =>
-              q.questionId === questionId ? { ...q, reviewed: true } : q
-            ),
-          })
+      updateUserPerformance(questionId, { reviewed: true }).then(
+        (updatedPerformance) => {
+          if (updatedPerformance) {
+            dispatch({
+              type: "SET_QUESTIONS",
+              payload: state.questions.map((q) =>
+                q.questionId === questionId ? { ...q, reviewed: true } : q
+              ),
+            });
+          }
         }
-      })
+      );
     },
     [updateUserPerformance, state.questions]
-  )
+  );
 
   const handleOptionClick = useCallback(
     async (questionId: string, option: string, correctOption: string) => {
-      const isCorrect = option === correctOption
+      const isCorrect = option === correctOption;
 
-      const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" }
-      const newSelectedOptions = { ...state.selectedOptions, [questionId]: option }
+      const newFeedback = {
+        ...state.feedback,
+        [questionId]: isCorrect ? "correct" : "incorrect",
+      };
+      const newSelectedOptions = { ...state.selectedOptions, [questionId]: option };
 
-      dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
-      dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions })
+      dispatch({ type: "SET_FEEDBACK", payload: newFeedback });
+      dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions });
 
       const updatedFields = {
         correctAnswers: isCorrect ? 1 : 0,
@@ -561,12 +665,12 @@ const QuestionBankContent: React.FC = () => {
         accuracy: isCorrect ? 100 : 0,
         firstAttemptSuccessRate: isCorrect ? 100 : 0,
         reattemptAccuracy: isCorrect ? 100 : 0,
-      }
+      };
 
       const [updatedPerformance, savedAnswer] = await Promise.all([
         updateUserPerformance(questionId, updatedFields),
         saveUserAnswer(questionId, option, isCorrect),
-      ])
+      ]);
 
       if (updatedPerformance) {
         dispatch({
@@ -574,7 +678,7 @@ const QuestionBankContent: React.FC = () => {
           payload: state.questions.map((q) =>
             q.questionId === questionId ? { ...q, completed: true } : q
           ),
-        })
+        });
       }
     },
     [
@@ -584,14 +688,17 @@ const QuestionBankContent: React.FC = () => {
       state.selectedOptions,
       state.questions,
     ]
-  )
+  );
 
   const handleNumericalSubmit = useCallback(
     async (questionId: string, userAnswer: string, correctAnswer: string) => {
-      const isCorrect = userAnswer === correctAnswer
+      const isCorrect = userAnswer === correctAnswer;
 
-      const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" }
-      dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
+      const newFeedback = {
+        ...state.feedback,
+        [questionId]: isCorrect ? "correct" : "incorrect",
+      };
+      dispatch({ type: "SET_FEEDBACK", payload: newFeedback });
 
       const updatedFields = {
         lastAttempted: new Date().toISOString(),
@@ -599,12 +706,12 @@ const QuestionBankContent: React.FC = () => {
         accuracy: isCorrect ? 100 : 0,
         firstAttemptSuccessRate: isCorrect ? 100 : 0,
         reattemptAccuracy: isCorrect ? 100 : 0,
-      }
+      };
 
       const [updatedPerformance, savedAnswer] = await Promise.all([
         updateUserPerformance(questionId, updatedFields),
         saveUserAnswer(questionId, userAnswer, isCorrect),
-      ])
+      ]);
 
       if (updatedPerformance) {
         dispatch({
@@ -612,30 +719,30 @@ const QuestionBankContent: React.FC = () => {
           payload: state.questions.map((q) =>
             q.questionId === questionId ? { ...q, completed: true } : q
           ),
-        })
+        });
       }
     },
     [saveUserAnswer, updateUserPerformance, state.feedback, state.questions]
-  )
+  );
 
   const handleNoteChange = useCallback(
     async (questionId: string, note: string) => {
-      const newNotes = { ...state.notes, [questionId]: note }
-      dispatch({ type: "SET_NOTES", payload: newNotes })
+      const newNotes = { ...state.notes, [questionId]: note };
+      dispatch({ type: "SET_NOTES", payload: newNotes });
 
       try {
         const response = await fetch("/api/notes/save", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ questionId, content: note }),
-        })
-        if (!response.ok) throw new Error("Failed to save note")
+        });
+        if (!response.ok) throw new Error("Failed to save note");
       } catch (error) {
-        console.error("Error saving note:", error)
+        console.error("Error saving note:", error);
       }
     },
     [state.notes]
-  )
+  );
 
   const handleDeleteNote = useCallback(
     async (questionId: string) => {
@@ -644,29 +751,34 @@ const QuestionBankContent: React.FC = () => {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ questionId }),
-        })
-        if (!response.ok) throw new Error("Failed to delete note")
+        });
+        if (!response.ok) throw new Error("Failed to delete note");
 
-        const newNotes = { ...state.notes, [questionId]: "" }
-        dispatch({ type: "SET_NOTES", payload: newNotes })
+        const newNotes = { ...state.notes, [questionId]: "" };
+        dispatch({ type: "SET_NOTES", payload: newNotes });
       } catch (error) {
-        console.error("Error deleting note:", error)
+        console.error("Error deleting note:", error);
       }
     },
     [state.notes]
-  )
+  );
 
-  const handleNavigatorClick = useCallback((index: number) => {
-    const newPage = Math.floor(index / PAGE_SIZE) + 1
-    dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
-    setIsNavigatorOpen(false)
-    setTimeout(() => {
-      const questionElement = document.getElementById(`question-${filteredQuestions[index].questionId}`)
-      if (questionElement) {
-        questionElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    }, 100)
-  }, [filteredQuestions])
+  const handleNavigatorClick = useCallback(
+    (index: number) => {
+      const newPage = Math.floor(index / PAGE_SIZE) + 1;
+      dispatch({ type: "SET_CURRENT_PAGE", payload: newPage });
+      setIsNavigatorOpen(false);
+      setTimeout(() => {
+        const questionElement = document.getElementById(
+          `question-${filteredQuestions[index].questionId}`
+        );
+        if (questionElement) {
+          questionElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    },
+    [filteredQuestions]
+  );
 
   const questionStats = useMemo(() => {
     const stats = {
@@ -674,22 +786,22 @@ const QuestionBankContent: React.FC = () => {
       notAnswered: 0,
       answered: 0,
       markedForReview: 0,
-    }
+    };
 
     filteredQuestions.forEach((question) => {
       if (question.reviewed) {
-        stats.markedForReview++
+        stats.markedForReview++;
       } else if (question.completed) {
-        stats.answered++
+        stats.answered++;
       } else if (question.lastAttempted) {
-        stats.notAnswered++
+        stats.notAnswered++;
       } else {
-        stats.notVisited++
+        stats.notVisited++;
       }
-    })
+    });
 
-    return stats
-  }, [filteredQuestions])
+    return stats;
+  }, [filteredQuestions]);
 
   if (status === "loading" || state.loading) {
     return (
@@ -704,13 +816,19 @@ const QuestionBankContent: React.FC = () => {
             <Skeleton height={40} width={120} />
           </div>
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map(
-              (filterType) => (
-                <div key={filterType} className="flex items-center space-x-2">
-                  <Skeleton height={40} width={120} />
-                </div>
-              )
-            )}
+            {[
+              "exam",
+              "subject",
+              "topic",
+              "subtopic",
+              "difficulty",
+              "year",
+              "type",
+            ].map((filterType) => (
+              <div key={filterType} className="flex items-center space-x-2">
+                <Skeleton height={40} width={120} />
+              </div>
+            ))}
           </div>
           <div>
             {[...Array(10)].map((_, i) => (
@@ -723,7 +841,7 @@ const QuestionBankContent: React.FC = () => {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   if (status === "unauthenticated") {
@@ -736,7 +854,7 @@ const QuestionBankContent: React.FC = () => {
           <GuestBanner />
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -753,7 +871,12 @@ const QuestionBankContent: React.FC = () => {
                 type="text"
                 placeholder="Search questions..."
                 value={state.searchQuery}
-                onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
+                onChange={(e) =>
+                  dispatch({
+                    type: "SET_SEARCH_QUERY",
+                    payload: e.target.value,
+                  })
+                }
                 className="pl-10"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -765,12 +888,12 @@ const QuestionBankContent: React.FC = () => {
                   Question Navigator
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
+              <DialogContent className="w-full sm:max-w-2xl lg:max-w-4xl">
                 <DialogHeader>
                   <DialogTitle>Question Navigator</DialogTitle>
                 </DialogHeader>
-                <ScrollArea className="h-[300px]">
-                  <div className="grid grid-cols-5 gap-2 p-4">
+                <ScrollArea className="h-[70vh]">
+                  <div className="grid grid-cols-10 gap-2 p-4">
                     {filteredQuestions.map((question, index) => (
                       <Tooltip key={question.questionId}>
                         <TooltipTrigger asChild>
@@ -828,75 +951,81 @@ const QuestionBankContent: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
+            {/* Filter Buttons */}
             {[
-              "exams",
-              "subjects",
-              "topics",
-              "subtopics",
-              "difficulties",
-              "years",
-              "types",
-            ].map((filterType) => (
-              <Tooltip key={filterType}>
+              { label: "Exams", key: "exams" },
+              { label: "Subjects", key: "subjects" },
+              { label: "Topics", key: "topics" },
+              { label: "Subtopics", key: "subtopics" },
+              { label: "Difficulties", key: "difficulties" },
+              { label: "Years", key: "years" },
+              { label: "Types", key: "types" },
+            ].map(({ label, key: filterKey }) => (
+              <Tooltip key={filterKey}>
                 <TooltipTrigger asChild>
                   <Popover
                     content={
-                      <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                        {Array.from(
-                          new Set(
-                            state.questions.map((q) => {
-                              switch (filterType) {
-                                case "exams":
-                                  return q.exam
-                                case "subjects":
-                                  return q.subject
-                                case "topics":
-                                  return q.topic
-                                case "subtopics":
-                                  return q.subtopic
-                                case "difficulties":
-                                  return q.difficulty
-                                case "years":
-                                  return q.year
-                                case "types":
-                                  return q.type
-                                default:
-                                  return ""
-                              }
+                      <div className="w-full max-w-xl bg-white rounded-md p-4">
+                        <Input
+                          type="text"
+                          placeholder={`Search ${label.toLowerCase()}...`}
+                          value={filterSearchQueries[filterKey as keyof FilterSearchQueriesType]}
+                          onChange={(e) =>
+                            setFilterSearchQueries({
+                              ...filterSearchQueries,
+                              [filterKey]: e.target.value,
                             })
-                          )
-                        ).map((value: string) => (
-                          <div key={value} className="flex items-center">
-                            <input
-                              type="checkbox"
-                              id={`${filterType}-${value}`}
-                              className="mr-2"
-                              checked={
-                                (state.filters[filterType as keyof FiltersType] as string[] ||
-                                  []
-                                ).includes(value)
-                              }
-                              onChange={() =>
-                                handleFilterChange(filterType as keyof FiltersType, value)
-                              }
-                            />
-                            <label
-                              htmlFor={`${filterType}-${value}`}
-                              className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
-                            >
-                              {value}
-                            </label>
-                          </div>
-                        ))}
+                          }
+                          className="mb-2"
+                        />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                          {availableOptions[filterKey as keyof AvailableOptionsType]
+                            .filter((value) =>
+                              value
+                                .toLowerCase()
+                                .includes(
+                                  filterSearchQueries[
+                                    filterKey as keyof FilterSearchQueriesType
+                                  ].toLowerCase()
+                                )
+                            )
+                            .map((value: string) => (
+                              <div key={value} className="flex items-center w-full">
+                                <input
+                                  type="checkbox"
+                                  id={`${filterKey}-${value}`}
+                                  className="mr-2"
+                                  checked={state.filters[filterKey as keyof FiltersType].includes(
+                                    value
+                                  )}
+                                  onChange={() =>
+                                    handleFilterChange(
+                                      filterKey as keyof FiltersType,
+                                      value
+                                    )
+                                  }
+                                />
+                                <label
+                                  htmlFor={`${filterKey}-${value}`}
+                                  className="w-full text-sm"
+                                >
+                                  {value}
+                                </label>
+                              </div>
+                            ))}
+                        </div>
                       </div>
                     }
                     align="start"
-                    openPopover={state.dropdowns[filterType as keyof typeof state.dropdowns]}
+                    openPopover={state.dropdowns[filterKey as keyof FiltersType]}
                     setOpenPopover={(open) => {
                       dispatch({
                         type: "SET_DROPDOWN",
-                        payload: { tag: filterType as keyof FiltersType, value: !!open },
-                      })
+                        payload: {
+                          tag: filterKey as keyof FiltersType,
+                          value: !!open,
+                        },
+                      });
                     }}
                   >
                     <button
@@ -904,37 +1033,27 @@ const QuestionBankContent: React.FC = () => {
                         dispatch({
                           type: "SET_DROPDOWN",
                           payload: {
-                            tag: filterType as keyof FiltersType,
-                            value: !state.dropdowns[
-                              filterType as keyof typeof state.dropdowns
-                            ],
+                            tag: filterKey as keyof FiltersType,
+                            value: !state.dropdowns[filterKey as keyof FiltersType],
                           },
                         })
                       }
                       className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
                     >
                       <p className="text-gray-600">
-                        {Array.isArray(state.filters[filterType as keyof FiltersType]) &&
-                        (state.filters[filterType as keyof FiltersType] as string[]).length
-                          ? `${
-                              (state.filters[filterType as keyof FiltersType] as string[])
-                                .length
-                            } selected`
-                          : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                        {state.filters[filterKey as keyof FiltersType].length
+                          ? `${state.filters[filterKey as keyof FiltersType].length} selected`
+                          : label}
                       </p>
-                                            <ChevronDown
+                      <ChevronDown
                         className={`h-4 w-4 text-gray-600 transition-all ${
-                          state.dropdowns[filterType as keyof typeof state.dropdowns]
-                            ? "rotate-180"
-                            : ""
+                          state.dropdowns[filterKey as keyof FiltersType] ? "rotate-180" : ""
                         }`}
                       />
                     </button>
                   </Popover>
                 </TooltipTrigger>
-                <TooltipContent>
-                  Select {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                </TooltipContent>
+                <TooltipContent>Select {label}</TooltipContent>
               </Tooltip>
             ))}
           </div>
@@ -946,14 +1065,25 @@ const QuestionBankContent: React.FC = () => {
               </h2>
               <div className="space-y-6">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-400">Overall Progress</span>
+                  <span className="text-sm font-medium text-gray-400">
+                    Overall Progress
+                  </span>
                   <span className="text-sm font-medium text-white">
-                    {Math.round((questionStats.answered / filteredQuestions.length) * 100)}%
+                    {filteredQuestions.length > 0
+                      ? Math.round(
+                          (questionStats.answered / filteredQuestions.length) * 100
+                        )
+                      : 0}
+                    %
                   </span>
                 </div>
-                <Progress 
-                  value={(questionStats.answered / filteredQuestions.length) * 100} 
-                  className="w-full h-1 bg-gray-700 progress-indicator" 
+                <Progress
+                  value={
+                    filteredQuestions.length > 0
+                      ? (questionStats.answered / filteredQuestions.length) * 100
+                      : 0
+                  }
+                  className="w-full h-1 bg-gray-700 progress-indicator"
                 />
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   <StatusCard
@@ -1000,7 +1130,10 @@ const QuestionBankContent: React.FC = () => {
                   handleNumericalChange={(questionId, value) =>
                     dispatch({
                       type: "SET_NUMERICAL_ANSWERS",
-                      payload: { ...state.numericalAnswers, [questionId]: value },
+                      payload: {
+                        ...state.numericalAnswers,
+                        [questionId]: value,
+                      },
                     })
                   }
                   handleMarkschemeToggle={() =>
@@ -1008,7 +1141,8 @@ const QuestionBankContent: React.FC = () => {
                       type: "SET_SHOW_MARKSCHEME",
                       payload: {
                         ...state.showMarkscheme,
-                        [question.questionId]: !state.showMarkscheme[question.questionId],
+                        [question.questionId]:
+                          !state.showMarkscheme[question.questionId],
                       },
                     })
                   }
@@ -1020,9 +1154,11 @@ const QuestionBankContent: React.FC = () => {
                   note={state.notes[question.questionId] || ""}
                   handleNoteChange={handleNoteChange}
                   handleDeleteNote={handleDeleteNote}
-                  userId={session?.user?.id || ''}
+                  userId={session?.user?.id || ""}
                   totalQuestions={filteredQuestions.length}
-                  currentQuestionIndex={index + (state.currentPage - 1) * PAGE_SIZE}
+                  currentQuestionIndex={
+                    index + (state.currentPage - 1) * PAGE_SIZE
+                  }
                   handleQuestionChange={handleNavigatorClick}
                 />
               ))}
@@ -1033,18 +1169,20 @@ const QuestionBankContent: React.FC = () => {
               />
             </>
           ) : (
-            <p className="text-red-400">No questions found with the selected filters.</p>
+            <p className="text-red-400">
+              No questions found with the selected filters.
+            </p>
           )}
         </div>
       </div>
     </TooltipProvider>
-  )
-}
+  );
+};
 
 async function fetchData(url: string) {
-  const response = await fetch(url)
-  if (!response.ok) throw new Error(`Failed to fetch data from ${url}`)
-  return await response.json()
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Failed to fetch data from ${url}`);
+  return await response.json();
 }
 
 export default QuestionBankContent;
