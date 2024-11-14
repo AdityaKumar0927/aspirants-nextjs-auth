@@ -13,7 +13,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 import Question from "@/components/shared/Question";
 import Popover from "@/components/shared/popover";
 import {
-  CheckCheckIcon,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -136,7 +135,7 @@ interface FilterSearchQueriesType {
 }
 
 type DropdownsType = {
-  [key in keyof FiltersType]: boolean;
+  [key in keyof Omit<FiltersType, "status">]: boolean;
 };
 
 type StateType = {
@@ -157,7 +156,7 @@ type ActionType =
   | { type: "SET_QUESTIONS"; payload: QuestionType[] }
   | { type: "SET_FILTERS"; payload: FiltersType }
   | { type: "SET_SEARCH_QUERY"; payload: string }
-  | { type: "SET_DROPDOWN"; payload: { tag: keyof FiltersType; value: boolean } }
+  | { type: "SET_DROPDOWN"; payload: { tag: keyof DropdownsType; value: boolean } }
   | { type: "SET_FEEDBACK"; payload: Record<string, string> }
   | { type: "SET_NUMERICAL_ANSWERS"; payload: Record<string, string> }
   | { type: "SET_SHOW_MARKSCHEME"; payload: Record<string, boolean> }
@@ -187,7 +186,6 @@ const initialState: StateType = {
     difficulties: false,
     types: false,
     years: false,
-    status: false,
   },
   feedback: {},
   numericalAnswers: {},
@@ -209,10 +207,7 @@ function reducer(state: StateType, action: ActionType): StateType {
     case "SET_DROPDOWN":
       return {
         ...state,
-        dropdowns: {
-          ...state.dropdowns,
-          [action.payload.tag]: action.payload.value,
-        },
+        dropdowns: { ...state.dropdowns, [action.payload.tag]: action.payload.value },
       };
     case "SET_FEEDBACK":
       return { ...state, feedback: action.payload };
@@ -289,10 +284,7 @@ const Pagination: React.FC<{
   onPageChange: (page: number) => void;
 }> = ({ currentPage, totalPages, onPageChange }) => {
   return (
-    <nav
-      className="flex items-center justify-center mt-6"
-      aria-label="Pagination"
-    >
+    <nav className="flex items-center justify-center mt-6" aria-label="Pagination">
       <Button
         variant="outline"
         size="icon"
@@ -572,7 +564,9 @@ const QuestionBankContent: React.FC = () => {
   const updateUserPerformance = useCallback(
     async (
       questionId: string,
-      updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>
+      updatedFields: Partial<
+        QuestionType & Omit<UserPerformance, "timePerQuestion">
+      >
     ) => {
       try {
         const response = await fetch("/api/user-performance/update", {
@@ -770,7 +764,7 @@ const QuestionBankContent: React.FC = () => {
       setIsNavigatorOpen(false);
       setTimeout(() => {
         const questionElement = document.getElementById(
-          `question-${filteredQuestions[index].questionId}`
+          `question-${filteredQuestions[index]?.questionId}`
         );
         if (questionElement) {
           questionElement.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -817,13 +811,13 @@ const QuestionBankContent: React.FC = () => {
           </div>
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {[
-              "exam",
-              "subject",
-              "topic",
-              "subtopic",
-              "difficulty",
-              "year",
-              "type",
+              "exams",
+              "subjects",
+              "topics",
+              "subtopics",
+              "difficulties",
+              "years",
+              "types",
             ].map((filterType) => (
               <div key={filterType} className="flex items-center space-x-2">
                 <Skeleton height={40} width={120} />
@@ -969,7 +963,11 @@ const QuestionBankContent: React.FC = () => {
                         <Input
                           type="text"
                           placeholder={`Search ${label.toLowerCase()}...`}
-                          value={filterSearchQueries[filterKey as keyof FilterSearchQueriesType]}
+                          value={
+                            filterSearchQueries[
+                              filterKey as keyof FilterSearchQueriesType
+                            ]
+                          }
                           onChange={(e) =>
                             setFilterSearchQueries({
                               ...filterSearchQueries,
@@ -979,7 +977,9 @@ const QuestionBankContent: React.FC = () => {
                           className="mb-2"
                         />
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-                          {availableOptions[filterKey as keyof AvailableOptionsType]
+                          {availableOptions[
+                            filterKey as keyof AvailableOptionsType
+                          ]
                             .filter((value) =>
                               value
                                 .toLowerCase()
@@ -995,9 +995,9 @@ const QuestionBankContent: React.FC = () => {
                                   type="checkbox"
                                   id={`${filterKey}-${value}`}
                                   className="mr-2"
-                                  checked={state.filters[filterKey as keyof FiltersType].includes(
-                                    value
-                                  )}
+                                  checked={state.filters[
+                                    filterKey as keyof FiltersType
+                                  ].includes(value)}
                                   onChange={() =>
                                     handleFilterChange(
                                       filterKey as keyof FiltersType,
@@ -1017,12 +1017,12 @@ const QuestionBankContent: React.FC = () => {
                       </div>
                     }
                     align="start"
-                    openPopover={state.dropdowns[filterKey as keyof FiltersType]}
+                    openPopover={state.dropdowns[filterKey as keyof DropdownsType]}
                     setOpenPopover={(open) => {
                       dispatch({
                         type: "SET_DROPDOWN",
                         payload: {
-                          tag: filterKey as keyof FiltersType,
+                          tag: filterKey as keyof DropdownsType,
                           value: !!open,
                         },
                       });
@@ -1033,8 +1033,8 @@ const QuestionBankContent: React.FC = () => {
                         dispatch({
                           type: "SET_DROPDOWN",
                           payload: {
-                            tag: filterKey as keyof FiltersType,
-                            value: !state.dropdowns[filterKey as keyof FiltersType],
+                            tag: filterKey as keyof DropdownsType,
+                            value: !state.dropdowns[filterKey as keyof DropdownsType],
                           },
                         })
                       }
@@ -1047,7 +1047,9 @@ const QuestionBankContent: React.FC = () => {
                       </p>
                       <ChevronDown
                         className={`h-4 w-4 text-gray-600 transition-all ${
-                          state.dropdowns[filterKey as keyof FiltersType] ? "rotate-180" : ""
+                          state.dropdowns[filterKey as keyof DropdownsType]
+                            ? "rotate-180"
+                            : ""
                         }`}
                       />
                     </button>
