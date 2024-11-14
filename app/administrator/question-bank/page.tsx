@@ -67,8 +67,9 @@ interface Question {
   createdAt: string
   updatedAt: string
   options?: string[]
-  correctAnswer?: string
+  correctAnswer: string
   explanation?: string
+  markScheme?: string
 }
 
 type FiltersType = {
@@ -109,9 +110,11 @@ export default function QuestionBankDashboard() {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([])
   const [bulkAction, setBulkAction] = useState<string>("")
+  const [isLoading, setIsLoading] = useState(true)
   const { toast } = useToast()
 
   const fetchQuestions = useCallback(async () => {
+    setIsLoading(true)
     try {
       const response = await fetch('/api/questions')
       if (!response.ok) throw new Error('Failed to fetch questions')
@@ -123,6 +126,8 @@ export default function QuestionBankDashboard() {
         description: "Failed to fetch questions. Please try again.",
         variant: "destructive",
       })
+    } finally {
+      setIsLoading(false)
     }
   }, [toast])
 
@@ -304,6 +309,33 @@ export default function QuestionBankDashboard() {
     }
   }
 
+  const handleBatchUpload = async (file: File) => {
+    const formData = new FormData()
+    formData.append('file', file)
+
+    try {
+      const response = await fetch('/api/questions/batch-upload', {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (!response.ok) throw new Error('Failed to upload questions')
+
+      const result = await response.json()
+      toast({
+        title: "Success",
+        description: `${result.count} questions uploaded successfully.`,
+      })
+      fetchQuestions()
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to upload questions. Please try again.",
+        variant: "destructive",
+      })
+    }
+  }
+
   const filteredQuestions = useMemo(() => {
     return questions.filter((question) => {
       const lowerSearchQuery = searchQuery.toLowerCase()
@@ -334,7 +366,7 @@ export default function QuestionBankDashboard() {
   return (
     <TooltipProvider>
       <div className="space-y-6">
-        <h1 className="text-3xl font-light tracking-tight">Question Bank Dashboard</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Question Bank Dashboard</h1>
         
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
@@ -396,7 +428,7 @@ export default function QuestionBankDashboard() {
         </div>
 
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-light tracking-tight">Questions</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Questions</h2>
           <Select defaultValue="all" onValueChange={(value) => setFilters(prev => ({ ...prev, status: value }))}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Filter by status" />
@@ -449,28 +481,21 @@ export default function QuestionBankDashboard() {
               <DialogHeader>
                 <DialogTitle>Batch Upload Questions</DialogTitle>
               </DialogHeader>
-              <Tabs defaultValue="csv" className="w-full">
-                <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="csv">CSV Upload</TabsTrigger>
-                  <TabsTrigger value="json">JSON Input</TabsTrigger>
-                </TabsList>
-                <TabsContent value="csv">
-                  <div className="grid w-full max-w-sm items-center gap-1.5">
-                    <Label htmlFor="csvFile">CSV File</Label>
-                    <Input id="csvFile" type="file" accept=".csv" />
-                  </div>
-                </TabsContent>
-                <TabsContent value="json">
-                  <div className="grid w-full items-center gap-1.5">
-                    <Label htmlFor="jsonInput">JSON Input</Label>
-                    <Textarea
-                      id="jsonInput"
-                      placeholder="Paste your JSON here..."
-                      className="min-h-[200px]"
-                    />
-                  </div>
-                </TabsContent>
-              </Tabs>
+              <div className="grid gap-4 py-4">
+                <div className="grid w-full max-w-sm items-center gap-1.5">
+                  <Label htmlFor="file">CSV File</Label>
+                  <Input 
+                    id="file" 
+                    type="file" 
+                    accept=".csv" 
+                    onChange={(e) => {
+                      if (e.target.files && e.target.files[0]) {
+                        handleBatchUpload(e.target.files[0])
+                      }
+                    }}
+                  />
+                </div>
+              </div>
               <DialogFooter>
                 <Button type="submit">Upload</Button>
               </DialogFooter>
@@ -605,96 +630,89 @@ export default function QuestionBankDashboard() {
           </Button>
         </div>
 
-        <div className="rounded-md border">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[50px]">
-                  <Checkbox
-                    checked={selectedQuestions.length === filteredQuestions.length}
-                    onCheckedChange={(checked) => {
-                      setSelectedQuestions(
-                        checked
-                          ? filteredQuestions.map((q) => q.id)
-                          : []
-                      )
-                    }}
-                  />
-                </TableHead>
-                <TableHead>Question ID</TableHead>
-                <TableHead>Text</TableHead>
-                <TableHead>Subject</TableHead>
-                <TableHead>Topic</TableHead>
-                <TableHead>Difficulty</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredQuestions.map((question) => (
-                <TableRow key={question.id}>
-                  <TableCell>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-64">
+            <p>Loading questions...</p>
+          </div>
+        ) : (
+          <div className="rounded-md border">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[50px]">
                     <Checkbox
-                      checked={selectedQuestions.includes(question.id)}
+                      checked={selectedQuestions.length === filteredQuestions.length}
                       onCheckedChange={(checked) => {
                         setSelectedQuestions(
                           checked
-                            ? [...selectedQuestions, question.id]
-                            : selectedQuestions.filter((id) => id !== question.id)
+                            ? filteredQuestions.map((q) => q.id)
+                            : []
                         )
                       }}
                     />
-                  </TableCell>
-                  <TableCell>{question.id}</TableCell>
-                  <TableCell>{question.text.substring(0, 50)}...</TableCell>
-                  <TableCell>{question.subject}</TableCell>
-                  <TableCell>{question.topic}</TableCell>
-                  <TableCell>{question.difficulty}</TableCell>
-                  <TableCell>
-                    <Select
-                      defaultValue={question.status}
-                      onValueChange={(value) => handleStatusUpdate(question.id, value as Status)}
-                    >
-                      <SelectTrigger className="w-[130px]">
-                        <SelectValue placeholder="Select status" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="DRAFT">Draft</SelectItem>
-                        <SelectItem value="PUBLISHED">Published</SelectItem>
-                        <SelectItem value="ARCHIVED">Archived</SelectItem>
-                        <SelectItem value="UNDER_REVIEW">Under Review</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                          <span className="sr-only">Open menu</span>
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem onClick={() => {
-                          setEditingQuestion(question)
-                          setIsEditDialogOpen(true)
-                        }}>
-                          Edit
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => handleDeleteQuestion(question.id)}>
-                          Delete
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>View Details</DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
+                  </TableHead>
+                  <TableHead>Question ID</TableHead>
+                  <TableHead>Text</TableHead>
+                  <TableHead>Subject</TableHead>
+                  <TableHead>Topic</TableHead>
+                  <TableHead>Difficulty</TableHead>
+                  <TableHead>Correct Answer</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
+              </TableHeader>
+              <TableBody>
+                {filteredQuestions.map((question) => (
+                  <TableRow key={question.id}>
+                    <TableCell>
+                      <Checkbox
+                        checked={selectedQuestions.includes(question.id)}
+                        onCheckedChange={(checked) => {
+                          setSelectedQuestions(
+                            checked
+                              ? [...selectedQuestions, question.id]
+                              : selectedQuestions.filter((id) => id !== question.id)
+                          )
+                        }}
+                      />
+                    </TableCell>
+                    <TableCell className="font-medium">{question.id}</TableCell>
+                    <TableCell>{question.text.substring(0, 50)}...</TableCell>
+                    <TableCell>{question.subject}</TableCell>
+                    <TableCell>{question.topic}</TableCell>
+                    <TableCell>{question.difficulty}</TableCell>
+                    <TableCell>{question.correctAnswer}</TableCell>
+                    <TableCell>{question.status}</TableCell>
+                    <TableCell className="text-right">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" className="h-8 w-8 p-0">
+                            <span className="sr-only">Open menu</span>
+                            <MoreHorizontal className="h-4 w-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                          <DropdownMenuItem onClick={() => {
+                            setEditingQuestion(question)
+                            setIsEditDialogOpen(true)
+                          }}>
+                            Edit
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => handleDeleteQuestion(question.id)}>
+                            Delete
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem>View Details</DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        )}
       </div>
 
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
@@ -883,6 +901,15 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
           onChange={handleChange}
         />
       </div>
+      <div>
+        <Label htmlFor="markScheme">Mark Scheme</Label>
+        <Textarea
+          id="markScheme"
+          name="markScheme"
+          value={formData.markScheme || ''}
+          onChange={handleChange}
+        />
+      </div>
       <div className="flex justify-between">
         <Button type="button" variant="outline" onClick={() => setShowPreview(!showPreview)}>
           {showPreview ? 'Hide Preview' : 'Show Preview'}
@@ -948,6 +975,12 @@ function QuestionPreview({ question }: QuestionPreviewProps) {
           <>
             <h4 className="font-semibold mt-2">Explanation:</h4>
             <p>{question.explanation}</p>
+          </>
+        )}
+        {question.markScheme && (
+          <>
+            <h4 className="font-semibold mt-2">Mark Scheme:</h4>
+            <p>{question.markScheme}</p>
           </>
         )}
       </div>
