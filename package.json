@@ -8,7 +8,8 @@
     "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint", 
+    "db:seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
