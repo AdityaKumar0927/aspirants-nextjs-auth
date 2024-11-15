@@ -1,14 +1,13 @@
-"use client";
+"use client"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useFieldArray, useForm } from "react-hook-form";
-import { z } from "zod";
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useFieldArray, useForm } from "react-hook-form"
+import { z } from "zod"
+import Link from "next/link"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -17,19 +16,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/components/ui/use-toast";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Switch } from "@/components/ui/switch";
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
+import { toast } from "@/components/ui/use-toast"
+import { Switch } from "@/components/ui/switch"
 
 const profileFormSchema = z.object({
   username: z.string().min(2, { message: "Username must be at least 2 characters." }).max(30, { message: "Username must not be longer than 30 characters." }),
@@ -44,91 +42,31 @@ const profileFormSchema = z.object({
   privacyPolicyAccepted: z.boolean().default(false),
   cookiePolicyAccepted: z.boolean().default(false),
   role: z.string().optional(),
-});
+})
 
-type ProfileFormValues = z.infer<typeof profileFormSchema>;
+type ProfileFormValues = z.infer<typeof profileFormSchema>
 
-type Role = 'member' | 'volunteer' | 'moderator' | 'administrator';
+type Role = 'member' | 'volunteer' | 'moderator' | 'administrator'
 
-export function ProfileForm() {
-  const [loading, setLoading] = useState(true);
-  const [showResetConfirm, setShowResetConfirm] = useState(false);
-  const { data: session, status } = useSession();
-  const router = useRouter();
+interface ProfileFormProps {
+  initialData: ProfileFormValues
+  userRole: Role
+}
+
+export function ProfileForm({ initialData, userRole }: ProfileFormProps) {
+  const [showResetConfirm, setShowResetConfirm] = useState(false)
+  const router = useRouter()
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues: {
-      username: "",
-      email: "",
-      bio: "",
-      urls: [{ value: "" }],
-      termsAccepted: false,
-      privacyPolicyAccepted: false,
-      cookiePolicyAccepted: false,
-      role: "",
-    },
+    defaultValues: initialData,
     mode: "onChange",
-  });
+  })
 
   const { fields, append } = useFieldArray({
     name: "urls",
     control: form.control,
-  });
-
-  useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/login');
-    } else if (status === 'authenticated') {
-      fetchProfileData();
-    }
-  }, [status, router]);
-
-  const fetchProfileData = async () => {
-    try {
-      const response = await fetch("/api/settings/profile-settings");
-      if (!response.ok) {
-        if (response.status === 401) {
-          throw new Error('Unauthorized access');
-        }
-        throw new Error("Failed to fetch profile settings");
-      }
-
-      const data = await response.json();
-      const policyAgreements: { policyName: string; accepted: boolean }[] = data.policyAgreements || [];
-
-      const updatedData = {
-        username: data.username || "",
-        email: data.email || "",
-        bio: data.bio || "",
-        urls: data.urls || [{ value: "" }],
-        termsAccepted: policyAgreements.some((agreement) =>
-          agreement.policyName === "Terms and Conditions" && agreement.accepted
-        ),
-        privacyPolicyAccepted: policyAgreements.some((agreement) =>
-          agreement.policyName === "Privacy Policy" && agreement.accepted
-        ),
-        cookiePolicyAccepted: policyAgreements.some((agreement) =>
-          agreement.policyName === "Cookie Policy" && agreement.accepted
-        ),
-        role: data.role?.name || "",
-      };
-
-      form.reset(updatedData);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.error("Error fetching profile data:", error);
-      toast({
-        title: "Error",
-        description: (error as Error).message || "Failed to fetch profile data. Please try again.",
-        variant: "destructive",
-      });
-      if ((error as Error).message === 'Unauthorized access') {
-        router.push('/unauthorized');
-      }
-    }
-  };
+  })
 
   async function onSubmit(data: ProfileFormValues) {
     try {
@@ -136,13 +74,13 @@ export function ProfileForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-      });
+      })
 
       if (!response.ok) {
         if (response.status === 401) {
-          throw new Error('Unauthorized access');
+          throw new Error('Unauthorized access')
         }
-        throw new Error("Failed to update profile settings");
+        throw new Error("Failed to update profile settings")
       }
 
       await Promise.all(
@@ -155,14 +93,14 @@ export function ProfileForm() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ policyName, accepted }),
-          });
+          })
 
           if (!policyResponse.ok) {
-            const error = await policyResponse.json();
-            throw new Error(`Failed to accept ${policyName}: ${error.message}`);
+            const error = await policyResponse.json()
+            throw new Error(`Failed to accept ${policyName}: ${error.message}`)
           }
         })
-      );
+      )
 
       toast({
         title: "Profile settings updated successfully",
@@ -171,15 +109,15 @@ export function ProfileForm() {
             <code className="text-white">{JSON.stringify(data, null, 2)}</code>
           </pre>
         ),
-      });
+      })
     } catch (error: any) {
       toast({
         title: "Failed to update profile settings",
         description: error.message,
         variant: "destructive",
-      });
+      })
       if (error.message === 'Unauthorized access') {
-        router.push('/unauthorized');
+        router.push('/unauthorized')
       }
     }
   }
@@ -188,44 +126,30 @@ export function ProfileForm() {
     try {
       const response = await fetch("/api/user/delete", {
         method: "DELETE",
-      });
+      })
 
       if (!response.ok) {
         if (response.status === 401) {
-          throw new Error('Unauthorized access');
+          throw new Error('Unauthorized access')
         }
-        throw new Error("Failed to reset user data");
+        throw new Error("Failed to reset user data")
       }
 
       toast({
         title: "User data reset successfully",
-      });
+      })
 
-      router.push("/");
+      router.push("/")
     } catch (error: any) {
       toast({
         title: "Failed to reset user data",
         description: error.message,
         variant: "destructive",
-      });
+      })
       if (error.message === 'Unauthorized access') {
-        router.push('/unauthorized');
+        router.push('/unauthorized')
       }
     }
-  };
-
-  if (status === 'loading' || loading) {
-    return (
-      <div className="space-y-8 max-w-3xl">
-        <Skeleton className="h-12 w-1/3" />
-        <Skeleton className="h-12 w-2/3" />
-        <Skeleton className="h-12 w-full" />
-      </div>
-    );
-  }
-
-  if (status === 'unauthenticated') {
-    return null; // The useEffect will handle redirection
   }
 
   return (
@@ -282,7 +206,7 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel>Role</FormLabel>
               <FormControl>
-                <Input readOnly {...field} />
+                <Input readOnly value={userRole} />
               </FormControl>
               <FormDescription>
                 Your current role in the system. This cannot be changed here.
@@ -419,5 +343,5 @@ export function ProfileForm() {
         </div>
       )}
     </Form>
-  );
+  )
 }

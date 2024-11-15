@@ -39,6 +39,7 @@ import { format } from "date-fns"
 import { CalendarIcon, ChevronDown, MoreHorizontal, Plus, RefreshCw, Search, ArrowUpDown } from 'lucide-react'
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { useToast } from "@/components/ui/use-toast"
 
 type Role = 'member' | 'volunteer' | 'moderator' | 'administrator'
 
@@ -70,10 +71,15 @@ const priorityColors = {
   CRITICAL: "bg-purple-500/20 text-purple-700",
 }
 
-export default function IssuesPage({ userRole = 'member' }: { userRole?: Role }) {
-  const [issues, setIssues] = useState<Issue[]>([])
-  const [filteredIssues, setFilteredIssues] = useState<Issue[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
+interface IssuesPageProps {
+  initialIssues: Issue[]
+  userRole: Role
+}
+
+export default function IssuesPage({ initialIssues, userRole }: IssuesPageProps) {
+  const [issues, setIssues] = useState<Issue[]>(initialIssues)
+  const [filteredIssues, setFilteredIssues] = useState<Issue[]>(initialIssues)
+  const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState<string>("")
   const [statusFilter, setStatusFilter] = useState<string>("All")
@@ -86,12 +92,9 @@ export default function IssuesPage({ userRole = 'member' }: { userRole?: Role })
   const [isCreateIssueDialogOpen, setIsCreateIssueDialogOpen] = useState(false)
   const [newIssue, setNewIssue] = useState({ title: '', description: '', priority: 'LOW', area: 'OTHER' })
   const router = useRouter()
+  const { toast } = useToast()
 
   const itemsPerPage = 10
-
-  useEffect(() => {
-    fetchIssues()
-  }, [])
 
   useEffect(() => {
     const filtered = issues.filter((issue) => {
@@ -147,9 +150,17 @@ export default function IssuesPage({ userRole = 'member' }: { userRole?: Role })
       setIssues([createdIssue, ...issues])
       setIsCreateIssueDialogOpen(false)
       setNewIssue({ title: '', description: '', priority: 'LOW', area: 'OTHER' })
+      toast({
+        title: "Success",
+        description: "Issue created successfully",
+      })
     } catch (error) {
       console.error("Error creating issue:", error)
-      setError("Failed to create issue. Please try again.")
+      toast({
+        title: "Error",
+        description: "Failed to create issue. Please try again.",
+        variant: "destructive",
+      })
     }
   }
 
