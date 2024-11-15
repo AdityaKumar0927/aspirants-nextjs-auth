@@ -1,13 +1,54 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { checkAuthorization } from '../../auth/middleware/route';
+import { getToken } from 'next-auth/jwt';
 
 const prisma = new PrismaClient();
 
+type AuthResult = {
+  authorized: boolean;
+  user?: {
+    id: string;
+    email: string | null;
+    role: string | null;
+  };
+  error?: string;
+};
+
+async function checkAuthorization(req: NextRequest, allowedRoles: string[]): Promise<AuthResult> {
+  try {
+    const token = await getToken({ req });
+
+    if (!token || !token.email) {
+      return { authorized: false, error: 'Unauthorized access' };
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { email: token.email },
+      include: { role: true },
+    });
+
+    if (!user || !allowedRoles.includes(user.role?.name || '')) {
+      return { authorized: false, error: 'Forbidden: Insufficient permissions' };
+    }
+
+    return { 
+      authorized: true, 
+      user: { 
+        id: user.id, 
+        email: user.email, 
+        role: user.role?.name || null 
+      } 
+    };
+  } catch (error) {
+    console.error('Error in authorization middleware:', error);
+    return { authorized: false, error: 'Internal server error' };
+  }
+}
+
 export async function POST(req: NextRequest) {
   const authResult = await checkAuthorization(req, ['administrator']);
-  if (authResult.status !== 200) {
-    return authResult;
+  if (!authResult.authorized) {
+    return NextResponse.json({ error: authResult.error }, { status: authResult.error === 'Unauthorized access' ? 401 : 403 });
   }
 
   try {

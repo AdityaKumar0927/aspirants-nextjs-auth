@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function checkAuthorization(req: NextRequest, allowedRoles: string[]) {
+async function checkAuthorization(req: NextRequest, allowedRoles: string[]) {
   try {
     const token = await getToken({ req });
 
@@ -31,3 +31,11 @@ export async function checkAuthorization(req: NextRequest, allowedRoles: string[
 export async function GET(req: NextRequest) {
   return checkAuthorization(req, ['administrator', 'moderator']);
 }
+
+export async function POST(req: NextRequest) {
+  return checkAuthorization(req, ['administrator', 'moderator']);
+}
+
+// You can add other HTTP methods as needed
+// export async function PUT(req: NextRequest) { ... }
+// export async function DELETE(req: NextRequest) { ... }
