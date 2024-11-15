@@ -2,26 +2,29 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Switch } from "@/components/ui/switch"
-import { Sun, Moon } from "lucide-react"
+import { Sun, Moon } from 'lucide-react'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useToast } from "@/components/ui/use-toast"
 
 interface FeedbackPopoverProps {
   questionId: string;
 }
 
 export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
-  const [selectedFeedback, setSelectedFeedback] = useState<string[]>([])
-  const [questionDifficulty, setQuestionDifficulty] = useState<string>("")
+  const [area, setArea] = useState<string>("")
+  const [priority, setPriority] = useState<string>("")
+  const [description, setDescription] = useState<string>("")
   const [isDarkTheme, setIsDarkTheme] = useState(false)
+  const { toast } = useToast()
 
   useEffect(() => {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -29,15 +32,43 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
     }
   }, [])
 
-  const handleFeedbackChange = (value: string) => {
-    setSelectedFeedback(prev => 
-      prev.includes(value) ? prev.filter(item => item !== value) : [...prev, value]
-    )
-  }
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch('/api/issues', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: `Feedback for Question ${questionId}`,
+          description,
+          area,
+          priority,
+          questionId,
+        }),
+      })
 
-  const handleSubmit = () => {
-    console.log("Submitted feedback:", { questionId, selectedFeedback, questionDifficulty })
-    // Here you would typically send this data to your backend
+      if (!response.ok) {
+        throw new Error('Failed to submit feedback')
+      }
+
+      toast({
+        title: "Feedback Submitted",
+        description: "Thank you for your feedback!",
+      })
+
+      // Reset form
+      setArea("")
+      setPriority("")
+      setDescription("")
+    } catch (error) {
+      console.error('Error submitting feedback:', error)
+      toast({
+        title: "Error",
+        description: "Failed to submit feedback. Please try again.",
+        variant: "destructive",
+      })
+    }
   }
 
   const toggleTheme = () => {
@@ -69,60 +100,50 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
             </div>
           </div>
 
-          <div className="grid gap-2 sm:gap-3">
-            {[
-              { id: "incorrect", label: "Incorrect answer" },
-              { id: "unclear", label: "Unclear question" },
-              { id: "typo", label: "Typo or grammatical error" },
-              { id: "outdated", label: "Outdated information" },
-              { id: "duplicate", label: "Duplicate question" },
-              { id: "other", label: "Other" }
-            ].map(({ id, label }) => (
-              <div key={id} className={`flex items-center space-x-2 rounded-md border p-2 ${
-                isDarkTheme ? 'border-zinc-800' : 'border-gray-200'
-              }`}>
-                <Checkbox 
-                  id={id} 
-                  checked={selectedFeedback.includes(id)}
-                  onCheckedChange={() => handleFeedbackChange(id)}
-                  className={`${
-                    isDarkTheme 
-                      ? 'border-zinc-700 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600' 
-                      : 'border-gray-300 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600'
-                  }`}
-                />
-                <Label htmlFor={id} className="text-xs sm:text-sm">{label}</Label>
-              </div>
-            ))}
-          </div>
+          <RadioGroup value={area} onValueChange={setArea}>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="CONTENT" id="content" />
+              <Label htmlFor="content">Content</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="UI" id="ui" />
+              <Label htmlFor="ui">User Interface</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="BUG" id="bug" />
+              <Label htmlFor="bug">Bug Report</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="FEATURE" id="feature" />
+              <Label htmlFor="feature">Feature Request</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="OTHER" id="other" />
+              <Label htmlFor="other">Other</Label>
+            </div>
+          </RadioGroup>
 
-          <div className="space-y-2">
-            <Label className={`text-xs sm:text-sm ${isDarkTheme ? 'text-zinc-400' : 'text-gray-600'}`}>Question difficulty</Label>
-            <RadioGroup 
-              value={questionDifficulty} 
-              onValueChange={setQuestionDifficulty}
-              className="flex flex-wrap gap-2 sm:gap-4"
-            >
-              {["easy", "medium", "hard"].map((difficulty) => (
-                <div key={difficulty} className="flex items-center space-x-2">
-                  <RadioGroupItem 
-                    value={difficulty} 
-                    id={difficulty} 
-                    className={`${isDarkTheme ? 'border-zinc-700' : 'border-gray-300'} text-blue-600`} 
-                  />
-                  <Label htmlFor={difficulty} className="capitalize text-xs sm:text-sm">{difficulty}</Label>
-                </div>
-              ))}
-            </RadioGroup>
-          </div>
+          <Select value={priority} onValueChange={setPriority}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select priority" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="LOW">Low</SelectItem>
+              <SelectItem value="MEDIUM">Medium</SelectItem>
+              <SelectItem value="HIGH">High</SelectItem>
+              <SelectItem value="CRITICAL">Critical</SelectItem>
+            </SelectContent>
+          </Select>
 
           <div className="space-y-2">
             <Label htmlFor="feedback" className={`text-xs sm:text-sm ${isDarkTheme ? 'text-zinc-400' : 'text-gray-600'}`}>
-              Additional comments (optional)
+              Description
             </Label>
             <Textarea
               id="feedback"
-              placeholder="Provide any additional feedback about this question..."
+              placeholder="Provide details about your feedback..."
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               className={`h-20 sm:h-24 text-xs sm:text-sm resize-none ${
                 isDarkTheme 
                   ? 'bg-zinc-800 border-zinc-700 placeholder:text-zinc-500' 
