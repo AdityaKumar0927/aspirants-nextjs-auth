@@ -125,6 +125,10 @@ export default function QuestionBankDashboard() {
       if (!response.ok) throw new Error('Failed to fetch questions')
       const data = await response.json()
       setQuestions(data)
+      toast({
+        title: "Questions Loaded",
+        description: `Successfully loaded ${data.length} questions.`,
+      })
     } catch (error) {
       toast({
         title: "Error",
@@ -154,7 +158,7 @@ export default function QuestionBankDashboard() {
 
       const updatedQuestion = await response.json()
       toast({
-        title: "Success",
+        title: "Status Updated",
         description: `Question status updated to ${status}.`,
       })
 
@@ -221,8 +225,8 @@ export default function QuestionBankDashboard() {
       setQuestions((prevQuestions) => [...prevQuestions, addedQuestion])
       setIsAddQuestionOpen(false)
       toast({
-        title: "Success",
-        description: "Question added successfully.",
+        title: "Question Added",
+        description: "New question has been successfully added.",
       })
     } catch (error) {
       toast({
@@ -252,8 +256,8 @@ export default function QuestionBankDashboard() {
       setIsEditDialogOpen(false)
       setEditingQuestion(null)
       toast({
-        title: "Success",
-        description: "Question updated successfully.",
+        title: "Question Updated",
+        description: "Question has been successfully updated.",
       })
     } catch (error) {
       toast({
@@ -278,8 +282,8 @@ export default function QuestionBankDashboard() {
 
       setQuestions((prevQuestions) => prevQuestions.filter((question) => question.questionId !== questionId))
       toast({
-        title: "Success",
-        description: "Question deleted successfully.",
+        title: "Question Deleted",
+        description: "Question has been successfully deleted.",
       })
     } catch (error) {
       toast({
@@ -308,14 +312,14 @@ export default function QuestionBankDashboard() {
 
       const result = await response.json()
       toast({
-        title: "Success",
+        title: "Batch Upload Successful",
         description: `${result.count} questions uploaded successfully.`,
       })
       fetchQuestions()
       setIsBatchUploadDialogOpen(false)
     } catch (error) {
       toast({
-        title: "Error",
+        title: "Batch Upload Error",
         description: error instanceof Error ? error.message : "Failed to upload questions. Please try again.",
         variant: "destructive",
       })
@@ -342,7 +346,7 @@ export default function QuestionBankDashboard() {
 
       const result = await response.json()
       toast({
-        title: "Success",
+        title: "Batch Upload Successful",
         description: `${result.count} questions uploaded successfully.`,
       })
       fetchQuestions()
@@ -350,7 +354,7 @@ export default function QuestionBankDashboard() {
       setIsBatchUploadDialogOpen(false)
     } catch (error) {
       toast({
-        title: "Error",
+        title: "Batch Upload Error",
         description: error instanceof Error ? error.message : "Failed to upload questions. Please try again.",
         variant: "destructive",
       })
