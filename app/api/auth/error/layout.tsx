@@ -1,5 +1,4 @@
 // app/(public)/layout.tsx
-import "../globals.css";
 import cx from "classnames";
 import { sfPro, inter } from "@/app/fonts";
 import { Suspense } from "react";
