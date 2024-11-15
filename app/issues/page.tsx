@@ -2,39 +2,32 @@
 
 import React, { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import {
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  TableHeader,
-} from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
-import { Skeleton } from "@/components/ui/skeleton"
-import { AlertCircle, ChevronDown, Plus, RefreshCw, Search, ArrowUpDown } from 'lucide-react'
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-
-type Role = 'member' | 'volunteer' | 'moderator' | 'administrator'
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { cn } from "@/lib/utils"
+import { format } from "date-fns"
+import { CalendarIcon, ChevronDown, MoreHorizontal, RefreshCw, Search } from 'lucide-react'
 
 interface Issue {
   id: string
@@ -51,32 +44,10 @@ interface Issue {
 }
 
 const statusColors = {
-  OPEN: "bg-yellow-500",
-  IN_PROGRESS: "bg-blue-500",
-  RESOLVED: "bg-green-500",
-  CLOSED: "bg-gray-500",
-}
-
-const priorityColors = {
-  LOW: "bg-gray-500",
-  MEDIUM: "bg-orange-500",
-  HIGH: "bg-red-500",
-  CRITICAL: "bg-purple-500",
-}
-
-const areaColors = {
-  CONTENT: "bg-blue-200 text-blue-800",
-  UI: "bg-green-200 text-green-800",
-  BUG: "bg-red-200 text-red-800",
-  FEATURE: "bg-purple-200 text-purple-800",
-  OTHER: "bg-gray-200 text-gray-800",
-}
-
-const roleColors = {
-  member: "bg-green-200 text-green-800",
-  volunteer: "bg-blue-200 text-blue-800",
-  moderator: "bg-purple-200 text-purple-800",
-  administrator: "bg-red-200 text-red-800",
+  OPEN: "bg-yellow-500/20 text-yellow-700",
+  IN_PROGRESS: "bg-blue-500/20 text-blue-700",
+  RESOLVED: "bg-green-500/20 text-green-700",
+  CLOSED: "bg-gray-500/20 text-gray-700",
 }
 
 export default function IssuesPage() {
@@ -91,6 +62,7 @@ export default function IssuesPage() {
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [selectedIssue, setSelectedIssue] = useState<Issue | null>(null)
   const [sortConfig, setSortConfig] = useState<{ key: keyof Issue | 'createdBy.name', direction: 'asc' | 'desc' } | null>(null)
+  const [date, setDate] = useState<Date>()
   const router = useRouter()
 
   const itemsPerPage = 10
@@ -178,226 +150,177 @@ export default function IssuesPage() {
   const totalPages = Math.ceil(sortedIssues.length / itemsPerPage)
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Issue Tracker</h1>
-      <Card className="w-full">
-        <CardHeader className="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
-          <CardTitle>Reported Issues</CardTitle>
-          <div className="flex space-x-2">
-            <Button onClick={handleRefresh} variant="outline" size="sm">
-              <RefreshCw className="mr-2 h-4 w-4" />
-              Refresh
-            </Button>
-            <Button onClick={handleCreateIssue} size="sm">
-              <Plus className="mr-2 h-4 w-4" />
-              New Issue
-            </Button>
+    <div className="flex min-h-screen flex-col">
+      <header className="border-b">
+        <div className="container flex h-14 items-center gap-4 px-4">
+          <h1 className="text-xl font-semibold">Issues</h1>
+          <p className="text-sm text-muted-foreground">
+            Continuously tracking from your feedback
+          </p>
+        </div>
+      </header>
+      <div className="flex-1 space-y-4 p-4 md:p-8">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-1 items-center gap-2">
+            <div className="relative flex-1 md:max-w-sm">
+              <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search issues..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-8"
+              />
+            </div>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className={cn(
+                    "w-[240px] justify-start text-left font-normal",
+                    !date && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {date ? format(date, "PPP") : "Pick a date"}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  onSelect={setDate}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
           </div>
-        </CardHeader>
-        <CardContent>
+          <div className="flex items-center gap-2">
+            <Select defaultValue={statusFilter} onValueChange={setStatusFilter}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="All Statuses" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="All">All Statuses</SelectItem>
+                <SelectItem value="OPEN">Open</SelectItem>
+                <SelectItem value="IN_PROGRESS">In Progress</SelectItem>
+                <SelectItem value="RESOLVED">Resolved</SelectItem>
+                <SelectItem value="CLOSED">Closed</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select defaultValue="5">
+              <SelectTrigger className="w-[140px]">
+                <SelectValue placeholder="Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="5">Status 5/6</SelectItem>
+                <SelectItem value="4">Status 4/6</SelectItem>
+                <SelectItem value="3">Status 3/6</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+
+        <div className="rounded-lg border">
           {loading ? (
-            <div className="space-y-4">
-              {[...Array(5)].map((_, index) => (
-                <Skeleton key={index} className="h-12 w-full" />
-              ))}
+            <div className="p-8 text-center text-muted-foreground">
+              Loading issues...
             </div>
           ) : error ? (
-            <Alert variant="destructive">
-              <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Error</AlertTitle>
-              <AlertDescription>{error}</AlertDescription>
+            <div className="p-8 text-center text-red-500">
+              {error}
               <Button variant="outline" size="sm" onClick={handleRefresh} className="mt-2">
+                <RefreshCw className="mr-2 h-4 w-4" />
                 Retry
               </Button>
-            </Alert>
+            </div>
           ) : (
-            <>
-              <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 mb-4">
-                <div className="relative flex-grow">
-                  <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Search issues..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-8"
-                  />
-                </div>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="w-full sm:w-[180px]">
-                      {statusFilter} <ChevronDown className="ml-2 h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>Filter by Status</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    {["All", "OPEN", "IN_PROGRESS", "RESOLVED", "CLOSED"].map((status) => (
-                      <DropdownMenuItem key={status} onSelect={() => setStatusFilter(status)}>
-                        {status === "All" ? status : status.charAt(0) + status.slice(1).toLowerCase().replace('_', ' ')}
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="w-full sm:w-[180px]">
-                      {priorityFilter} <ChevronDown className="ml-2 h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>Filter by Priority</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    {["All", "LOW", "MEDIUM", "HIGH", "CRITICAL"].map((priority) => (
-                      <DropdownMenuItem key={priority} onSelect={() => setPriorityFilter(priority)}>
-                        {priority === "All" ? priority : priority.charAt(0) + priority.slice(1).toLowerCase()}
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="w-full sm:w-[180px]">
-                      {areaFilter} <ChevronDown className="ml-2 h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>Filter by Area</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    {["All", "CONTENT", "UI", "BUG", "FEATURE", "OTHER"].map((area) => (
-                      <DropdownMenuItem key={area} onSelect={() => setAreaFilter(area)}>
-                        {area === "All" ? area : area.charAt(0) + area.slice(1).toLowerCase()}
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-              {paginatedIssues.length > 0 ? (
-                <div className="rounded-md border overflow-hidden">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="w-[100px]">
-                          <Button variant="ghost" onClick={() => handleSort('id')}>
-                            ID
-                            <ArrowUpDown className="ml-2 h-4 w-4" />
-                          </Button>
-                        </TableHead>
-                        <TableHead>
-                          <Button variant="ghost" onClick={() => handleSort('title')}>
-                            Title
-                            <ArrowUpDown className="ml-2 h-4 w-4" />
-                          </Button>
-                        </TableHead>
-                        <TableHead>
-                          <Button variant="ghost" onClick={() => handleSort('status')}>
-                            Status
-                            <ArrowUpDown className="ml-2 h-4 w-4" />
-                          </Button>
-                        </TableHead>
-                        <TableHead>
-                          <Button variant="ghost" onClick={() => handleSort('priority')}>
-                            Priority
-                            <ArrowUpDown className="ml-2 h-4 w-4" />
-                          </Button>
-                        </TableHead>
-                        <TableHead>
-                          <Button variant="ghost" onClick={() => handleSort('createdAt')}>
-                            Created At
-                            <ArrowUpDown className="ml-2 h-4 w-4" />
-                          </Button>
-                        </TableHead>
-                        <TableHead>
-                          <Button variant="ghost" onClick={() => handleSort('createdBy.name')}>
-                            Created By
-                            <ArrowUpDown className="ml-2 h-4 w-4" />
-                          </Button>
-                        </TableHead>
-                        <TableHead>Actions</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {paginatedIssues.map((issue) => (
-                        <TableRow key={issue.id}>
-                          <TableCell>{issue.id}</TableCell>
-                          <TableCell>{issue.title}</TableCell>
-                          <TableCell>
-                            <Badge className={statusColors[issue.status]}>{issue.status.charAt(0) + issue.status.slice(1).toLowerCase().replace('_', ' ')}</Badge>
-                          </TableCell>
-                          <TableCell>
-                            <Badge className={priorityColors[issue.priority]}>{issue.priority.charAt(0) + issue.priority.slice(1).toLowerCase()}</Badge>
-                          </TableCell>
-                          <TableCell>{new Date(issue.createdAt).toLocaleDateString()}</TableCell>
-                          <TableCell>
-                            <Badge className={areaColors[issue.area]}>
-                              {issue.area.charAt(0) + issue.area.slice(1).toLowerCase()}
-                            </Badge>
-                          </TableCell>
-                          <TableCell>{issue.createdBy.name}</TableCell>
-                          <TableCell>
-                            <Dialog>
-                              <DialogTrigger asChild>
-                                <Button variant="outline" size="sm" onClick={() => setSelectedIssue(issue)}>
-                                  View Details
-                                </Button>
-                              </DialogTrigger>
-                              <DialogContent>
-                                <DialogHeader>
-                                  <DialogTitle>{selectedIssue?.title}</DialogTitle>
-                                  <DialogDescription>Issue Details</DialogDescription>
-                                </DialogHeader>
-                                <div className="space-y-2">
-                                  <p><strong>ID:</strong> {selectedIssue?.id}</p>
-                                  <p><strong>Description:</strong> {selectedIssue?.description}</p>
-                                  <p><strong>Status:</strong> {selectedIssue?.status}</p>
-                                  <p><strong>Priority:</strong> {selectedIssue?.priority}</p>
-                                  <p><strong>Area:</strong> {selectedIssue?.area}</p>
-                                  <p><strong>Created At:</strong> {selectedIssue?.createdAt}</p>
-                                  <p><strong>Created By:</strong> {selectedIssue?.createdBy.name} ({selectedIssue?.createdBy.email})</p>
-                                </div>
-                              </DialogContent>
-                            </Dialog>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-              ) : (
-                <div className="text-center py-8">
-                  <p className="text-lg text-gray-500">No issues found.</p>
-                </div>
-              )}
-              {paginatedIssues.length > 0 && (
-                <div className="flex justify-between items-center mt-4">
-                  <p className="text-sm text-muted-foreground">
-                    Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
-                    {Math.min(currentPage * itemsPerPage, sortedIssues.length)} of{" "}
-                    {sortedIssues.length} issues
-                  </p>
-                  <div className="space-x-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handlePageChange(currentPage - 1)}
-                      disabled={currentPage === 1}
-                    >
-                      Previous
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handlePageChange(currentPage + 1)}
-                      disabled={currentPage === totalPages}
-                    >
-                      Next
-                    </Button>
+            <div className="divide-y">
+              {paginatedIssues.map((issue) => (
+                <div
+                  key={issue.id}
+                  className="flex items-center gap-4 p-4 hover:bg-muted/50"
+                >
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <Badge
+                        variant="secondary"
+                        className={cn(
+                          "rounded-full px-2 py-0.5 text-xs font-normal",
+                          statusColors[issue.status]
+                        )}
+                      >
+                        {issue.status === "IN_PROGRESS"
+                          ? "In Progress"
+                          : issue.status.charAt(0) +
+                            issue.status.slice(1).toLowerCase()}
+                      </Badge>
+                      <span className="text-sm text-muted-foreground">
+                        {issue.id}
+                      </span>
+                    </div>
+                    <h2 className="mt-1 font-medium">{issue.title}</h2>
+                    <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
+                      <span>{issue.area.toLowerCase()}</span>
+                      <span>•</span>
+                      <span>
+                        {new Date(issue.createdAt).toLocaleString("en-US", {
+                          hour: "numeric",
+                          minute: "numeric",
+                          hour12: true,
+                        })}
+                      </span>
+                      <span>•</span>
+                      <span>by {issue.createdBy.name}</span>
+                    </div>
                   </div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="sm">
+                        <MoreHorizontal className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem>View Details</DropdownMenuItem>
+                      <DropdownMenuItem>Copy ID</DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem className="text-destructive">
+                        Delete
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
-              )}
-            </>
+              ))}
+            </div>
           )}
-        </CardContent>
-      </Card>
+        </div>
+        {paginatedIssues.length > 0 && (
+          <div className="flex justify-between items-center mt-4">
+            <p className="text-sm text-muted-foreground">
+              Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
+              {Math.min(currentPage * itemsPerPage, sortedIssues.length)} of{" "}
+              {sortedIssues.length} issues
+            </p>
+            <div className="space-x-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </Button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

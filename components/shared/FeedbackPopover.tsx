@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -20,6 +21,7 @@ interface FeedbackPopoverProps {
 }
 
 export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
+  const [selectedFeedback, setSelectedFeedback] = useState<string[]>([])
   const [area, setArea] = useState<string>("")
   const [priority, setPriority] = useState<string>("")
   const [description, setDescription] = useState<string>("")
@@ -32,6 +34,12 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
     }
   }, [])
 
+  const handleFeedbackChange = (value: string) => {
+    setSelectedFeedback(prev => 
+      prev.includes(value) ? prev.filter(item => item !== value) : [...prev, value]
+    )
+  }
+
   const handleSubmit = async () => {
     try {
       const response = await fetch('/api/issues', {
@@ -40,8 +48,8 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          title: `Feedback for Question ${questionId}`,
-          description,
+          title: `Feedback for Question ${questionId}: ${selectedFeedback.join(', ')}`,
+          description: `${description}\n\nSelected feedback: ${selectedFeedback.join(', ')}`,
           area,
           priority,
           questionId,
@@ -58,6 +66,7 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
       })
 
       // Reset form
+      setSelectedFeedback([])
       setArea("")
       setPriority("")
       setDescription("")
@@ -100,48 +109,67 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
             </div>
           </div>
 
-          <RadioGroup value={area} onValueChange={setArea}>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="CONTENT" id="content" />
-              <Label htmlFor="content">Content</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="UI" id="ui" />
-              <Label htmlFor="ui">User Interface</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="BUG" id="bug" />
-              <Label htmlFor="bug">Bug Report</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="FEATURE" id="feature" />
-              <Label htmlFor="feature">Feature Request</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="OTHER" id="other" />
-              <Label htmlFor="other">Other</Label>
-            </div>
-          </RadioGroup>
+          <div className="grid gap-2 sm:gap-3">
+            {[
+              { id: "incorrect", label: "Incorrect answer" },
+              { id: "unclear", label: "Unclear question" },
+              { id: "typo", label: "Typo or grammatical error" },
+              { id: "outdated", label: "Outdated information" },
+              { id: "duplicate", label: "Duplicate question" },
+              { id: "other", label: "Other" }
+            ].map(({ id, label }) => (
+              <div key={id} className={`flex items-center space-x-2 rounded-md border p-2 ${
+                isDarkTheme ? 'border-zinc-800' : 'border-gray-200'
+              }`}>
+                <Checkbox 
+                  id={id} 
+                  checked={selectedFeedback.includes(id)}
+                  onCheckedChange={() => handleFeedbackChange(id)}
+                  className={`${
+                    isDarkTheme 
+                      ? 'border-zinc-700 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600' 
+                      : 'border-gray-300 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600'
+                  }`}
+                />
+                <Label htmlFor={id} className="text-xs sm:text-sm">{label}</Label>
+              </div>
+            ))}
+          </div>
 
-          <Select value={priority} onValueChange={setPriority}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select priority" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="LOW">Low</SelectItem>
-              <SelectItem value="MEDIUM">Medium</SelectItem>
-              <SelectItem value="HIGH">High</SelectItem>
-              <SelectItem value="CRITICAL">Critical</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="space-y-2">
+            <Label className={`text-xs sm:text-sm ${isDarkTheme ? 'text-zinc-400' : 'text-gray-600'}`}>Feedback Area</Label>
+            <RadioGroup value={area} onValueChange={setArea} className="flex flex-wrap gap-2 sm:gap-4">
+              {["CONTENT", "UI", "BUG", "FEATURE", "OTHER"].map((value) => (
+                <div key={value} className="flex items-center space-x-2">
+                  <RadioGroupItem value={value} id={value} className={`${isDarkTheme ? 'border-zinc-700' : 'border-gray-300'} text-blue-600`} />
+                  <Label htmlFor={value} className="capitalize text-xs sm:text-sm">{value.toLowerCase()}</Label>
+                </div>
+              ))}
+            </RadioGroup>
+          </div>
+
+          <div className="space-y-2">
+            <Label className={`text-xs sm:text-sm ${isDarkTheme ? 'text-zinc-400' : 'text-gray-600'}`}>Priority</Label>
+            <Select value={priority} onValueChange={setPriority}>
+              <SelectTrigger className={`${isDarkTheme ? 'bg-zinc-800 border-zinc-700' : 'bg-white border-gray-300'}`}>
+                <SelectValue placeholder="Select priority" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="LOW">Low</SelectItem>
+                <SelectItem value="MEDIUM">Medium</SelectItem>
+                <SelectItem value="HIGH">High</SelectItem>
+                <SelectItem value="CRITICAL">Critical</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
           <div className="space-y-2">
             <Label htmlFor="feedback" className={`text-xs sm:text-sm ${isDarkTheme ? 'text-zinc-400' : 'text-gray-600'}`}>
-              Description
+              Additional comments (optional)
             </Label>
             <Textarea
               id="feedback"
-              placeholder="Provide details about your feedback..."
+              placeholder="Provide any additional feedback about this question..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className={`h-20 sm:h-24 text-xs sm:text-sm resize-none ${
