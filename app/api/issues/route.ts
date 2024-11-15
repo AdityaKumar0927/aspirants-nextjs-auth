@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     if (!title?.trim() || !description?.trim() || !area || !priority) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
-
+    //
     const newIssue = await prisma.issue.create({
       data: {
         title,
