@@ -58,7 +58,7 @@ model User {
   customUserAnswers      CustomUserAnswer[]
   customUserPerformances CustomUserPerformance[]
   issues                 Issue[]                 @relation("UserIssues")
-  policyAgreements       UserPolicyAgreement[]   // Relation to policy agreements
+  policyAgreements       UserPolicyAgreement[]
   role                   UserRole?               @relation(fields: [roleId], references: [id], onDelete: Cascade)
 
   roleId                 String?
@@ -66,21 +66,21 @@ model User {
 
 model UserRole {
   id          String   @id @default(cuid())
-  name        String   @unique // Roles: member, volunteer, moderator, administrator
-  permissions Json     // Permissions associated with the role (e.g., { canEdit: true, canDelete: true })
+  name        String   @unique
+  permissions Json
   users       User[]
 }
 
 model UserPolicyAgreement {
   id                  String   @id @default(cuid())
   userId              String
-  policyName          String   // e.g., "Terms and Conditions", "Privacy Policy", etc.
-  accepted            Boolean  @default(false)  // Indicates if the policy is accepted
-  acceptedAt          DateTime?  // Timestamp of when the policy was accepted
+  policyName          String
+  accepted            Boolean  @default(false)
+  acceptedAt          DateTime?
   user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
-  @@unique([userId, policyName])  // Ensures each policy can only be accepted once per user
+  @@unique([userId, policyName])
 }
 
 model VerificationToken {
@@ -131,6 +131,7 @@ model Question {
   answers          UserAnswer[]
   userPerformances UserPerformance[]
   status           QuestionStatus    @default(ACTIVE)
+  issues           Issue[]
 
   @@index([status])
 }
@@ -310,40 +311,26 @@ model CustomQuestion {
 }
 
 model Issue {
-  id          String         @id @default(cuid())
+  id          String       @id @default(cuid())
   title       String
   description String
-  status      IssueStatus    @default(OPEN)
-  priority    IssuePriority  @default(MEDIUM)
-  categoryId  String?
-  category    IssueCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  comments    IssueComment[]
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
+  status      IssueStatus  @default(OPEN)
+  priority    IssuePriority
+  area        IssueArea
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
   createdById String
-  createdBy   User           @relation(fields: [createdById], references: [id], onDelete: Cascade, name: "UserIssues")
+  createdBy   User         @relation(fields: [createdById], references: [id], onDelete: Cascade, name: "UserIssues")
+  questionId  String?
+  question    Question?    @relation(fields: [questionId], references: [questionId], onDelete: SetNull)
 }
 
-model IssueComment {
-  id        String   @id @default(cuid())
-  content   String
-  issueId   String
-  issue     Issue    @relation(fields: [issueId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-  createdBy String
-}
-
-model IssueCategory {
-  id     String  @id @default(cuid())
-  name   String  @unique
-  issues Issue[]
-}
-
-enum IssueStatus {
-  OPEN
-  IN_PROGRESS
-  RESOLVED
-  CLOSED
+enum IssueArea {
+  CONTENT
+  UI
+  BUG
+  FEATURE
+  OTHER
 }
 
 enum IssuePriority {
@@ -351,4 +338,11 @@ enum IssuePriority {
   MEDIUM
   HIGH
   CRITICAL
+}
+
+enum IssueStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
 }

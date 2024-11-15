@@ -155,16 +155,11 @@ export default function NavBar({ session }: { session: Session | null }) {
               </Link>
           </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-display text-sm text-black">Exams</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-2 lg:w-[500px]">
-                      {examsLinks.map((exam) => (
-                        <ListItem key={exam.title} title={exam.title} href={exam.href}>
-                          {exam.title}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
+                <Link href={session ? "/QuestionBank" : "/QuestionBank/guest"} passHref legacyBehavior>
+          <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black")}>
+               Exams
+         </NavigationMenuLink>
+              </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="font-display text-sm text-black">Support</NavigationMenuTrigger>
