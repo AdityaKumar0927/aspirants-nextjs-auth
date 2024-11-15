@@ -21,13 +21,26 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Calendar } from "@/components/ui/calendar"
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from "@/components/ui/dialog"
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
-import { CalendarIcon, ChevronDown, MoreHorizontal, RefreshCw, Search } from 'lucide-react'
+import { CalendarIcon, ChevronDown, MoreHorizontal, Plus, RefreshCw, Search, ArrowUpDown } from 'lucide-react'
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+
+type Role = 'member' | 'volunteer' | 'moderator' | 'administrator'
 
 interface Issue {
   id: string
@@ -50,7 +63,14 @@ const statusColors = {
   CLOSED: "bg-gray-500/20 text-gray-700",
 }
 
-export default function IssuesPage() {
+const priorityColors = {
+  LOW: "bg-gray-500/20 text-gray-700",
+  MEDIUM: "bg-orange-500/20 text-orange-700",
+  HIGH: "bg-red-500/20 text-red-700",
+  CRITICAL: "bg-purple-500/20 text-purple-700",
+}
+
+export default function IssuesPage({ userRole = 'member' }: { userRole?: Role }) {
   const [issues, setIssues] = useState<Issue[]>([])
   const [filteredIssues, setFilteredIssues] = useState<Issue[]>([])
   const [loading, setLoading] = useState<boolean>(true)
@@ -63,6 +83,8 @@ export default function IssuesPage() {
   const [selectedIssue, setSelectedIssue] = useState<Issue | null>(null)
   const [sortConfig, setSortConfig] = useState<{ key: keyof Issue | 'createdBy.name', direction: 'asc' | 'desc' } | null>(null)
   const [date, setDate] = useState<Date>()
+  const [isCreateIssueDialogOpen, setIsCreateIssueDialogOpen] = useState(false)
+  const [newIssue, setNewIssue] = useState({ title: '', description: '', priority: 'LOW', area: 'OTHER' })
   const router = useRouter()
 
   const itemsPerPage = 10
@@ -107,9 +129,28 @@ export default function IssuesPage() {
     fetchIssues()
   }
 
-  const handleCreateIssue = () => {
-    // Implement create issue functionality
-    console.log("Create new issue")
+  const handleCreateIssue = async () => {
+    try {
+      const response = await fetch("/api/issues", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newIssue),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to create issue")
+      }
+
+      const createdIssue = await response.json()
+      setIssues([createdIssue, ...issues])
+      setIsCreateIssueDialogOpen(false)
+      setNewIssue({ title: '', description: '', priority: 'LOW', area: 'OTHER' })
+    } catch (error) {
+      console.error("Error creating issue:", error)
+      setError("Failed to create issue. Please try again.")
+    }
   }
 
   const handlePageChange = (page: number) => {
@@ -148,6 +189,10 @@ export default function IssuesPage() {
   )
 
   const totalPages = Math.ceil(sortedIssues.length / itemsPerPage)
+
+  const canResolveIssues = userRole === 'moderator' || userRole === 'administrator'
+  const canApproveChanges = userRole === 'administrator'
+  const canViewDetailedInfo = userRole === 'moderator' || userRole === 'administrator'
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -207,17 +252,45 @@ export default function IssuesPage() {
                 <SelectItem value="CLOSED">Closed</SelectItem>
               </SelectContent>
             </Select>
-            <Select defaultValue="5">
-              <SelectTrigger className="w-[140px]">
-                <SelectValue placeholder="Status" />
+            <Select defaultValue={priorityFilter} onValueChange={setPriorityFilter}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="All Priorities" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="5">Status 5/6</SelectItem>
-                <SelectItem value="4">Status 4/6</SelectItem>
-                <SelectItem value="3">Status 3/6</SelectItem>
+                <SelectItem value="All">All Priorities</SelectItem>
+                <SelectItem value="LOW">Low</SelectItem>
+                <SelectItem value="MEDIUM">Medium</SelectItem>
+                <SelectItem value="HIGH">High</SelectItem>
+                <SelectItem value="CRITICAL">Critical</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select defaultValue={areaFilter} onValueChange={setAreaFilter}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="All Areas" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="All">All Areas</SelectItem>
+                <SelectItem value="CONTENT">Content</SelectItem>
+                <SelectItem value="UI">UI</SelectItem>
+                <SelectItem value="BUG">Bug</SelectItem>
+                <SelectItem value="FEATURE">Feature</SelectItem>
+                <SelectItem value="OTHER">Other</SelectItem>
               </SelectContent>
             </Select>
           </div>
+        </div>
+
+        <div className="flex justify-between items-center">
+          <Button onClick={handleRefresh} variant="outline" size="sm">
+            <RefreshCw className="mr-2 h-4 w-4" />
+            Refresh
+          </Button>
+          {userRole !== 'administrator' && (
+            <Button onClick={() => setIsCreateIssueDialogOpen(true)} size="sm">
+              <Plus className="mr-2 h-4 w-4" />
+              New Issue
+            </Button>
+          )}
         </div>
 
         <div className="rounded-lg border">
@@ -254,6 +327,15 @@ export default function IssuesPage() {
                           : issue.status.charAt(0) +
                             issue.status.slice(1).toLowerCase()}
                       </Badge>
+                      <Badge
+                        variant="secondary"
+                        className={cn(
+                          "rounded-full px-2 py-0.5 text-xs font-normal",
+                          priorityColors[issue.priority]
+                        )}
+                      >
+                        {issue.priority.charAt(0) + issue.priority.slice(1).toLowerCase()}
+                      </Badge>
                       <span className="text-sm text-muted-foreground">
                         {issue.id}
                       </span>
@@ -273,21 +355,30 @@ export default function IssuesPage() {
                       <span>by {issue.createdBy.name}</span>
                     </div>
                   </div>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="sm">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem>View Details</DropdownMenuItem>
-                      <DropdownMenuItem>Copy ID</DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem className="text-destructive">
-                        Delete
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  {userRole !== 'member' && (
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="sm">
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem onSelect={() => setSelectedIssue(issue)}>View Details</DropdownMenuItem>
+                        {canResolveIssues && (
+                          <DropdownMenuItem>Resolve Issue</DropdownMenuItem>
+                        )}
+                        {canApproveChanges && (
+                          <DropdownMenuItem>Approve Changes</DropdownMenuItem>
+                        )}
+                        <DropdownMenuSeparator />
+                        {canViewDetailedInfo && (
+                          <DropdownMenuItem className="text-destructive">
+                            Delete
+                          </DropdownMenuItem>
+                        )}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  )}
                 </div>
               ))}
             </div>
@@ -321,6 +412,87 @@ export default function IssuesPage() {
           </div>
         )}
       </div>
+      <Dialog open={!!selectedIssue} onOpenChange={() => setSelectedIssue(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{selectedIssue?.title}</DialogTitle>
+            <DialogDescription>Issue Details</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-2">
+            <p><strong>ID:</strong> {selectedIssue?.id}</p>
+            <p><strong>Description:</strong> {selectedIssue?.description}</p>
+            <p><strong>Status:</strong> {selectedIssue?.status}</p>
+            <p><strong>Priority:</strong> {selectedIssue?.priority}</p>
+            <p><strong>Area:</strong> {selectedIssue?.area}</p>
+            <p><strong>Created At:</strong> {selectedIssue?.createdAt}</p>
+            <p><strong>Created By:</strong> {selectedIssue?.createdBy.name} ({selectedIssue?.createdBy.email})</p>
+          </div>
+        </DialogContent>
+      </Dialog>
+      <Dialog open={isCreateIssueDialogOpen} onOpenChange={setIsCreateIssueDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Create New Issue</DialogTitle>
+            <DialogDescription>Fill in the details to create a new issue.</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="title">Title</Label>
+              <Input
+                id="title"
+                value={newIssue.title}
+                onChange={(e) => setNewIssue({ ...newIssue, title: e.target.value })}
+              />
+            </div>
+            <div>
+              <Label htmlFor="description">Description</Label>
+              <Textarea
+                id="description"
+                value={newIssue.description}
+                onChange={(e) => setNewIssue({ ...newIssue, description: e.target.value })}
+              />
+            </div>
+            <div>
+              <Label htmlFor="priority">Priority</Label>
+              <Select
+                value={newIssue.priority}
+                onValueChange={(value) => setNewIssue({ ...newIssue, priority: value as Issue['priority'] })}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select priority" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="LOW">Low</SelectItem>
+                  <SelectItem value="MEDIUM">Medium</SelectItem>
+                  <SelectItem value="HIGH">High</SelectItem>
+                  <SelectItem value="CRITICAL">Critical</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label htmlFor="area">Area</Label>
+              <Select
+                value={newIssue.area}
+                onValueChange={(value) => setNewIssue({ ...newIssue, area: value as Issue['area'] })}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select area" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="CONTENT">Content</SelectItem>
+                  <SelectItem value="UI">UI</SelectItem>
+                  <SelectItem value="BUG">Bug</SelectItem>
+                  <SelectItem value="FEATURE">Feature</SelectItem>
+                  <SelectItem value="OTHER">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button onClick={handleCreateIssue}>Create Issue</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
