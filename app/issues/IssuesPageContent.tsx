@@ -39,7 +39,6 @@ import { CalendarIcon, ChevronDown, MoreHorizontal, Plus, RefreshCw, Search, Arr
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/components/ui/use-toast"
-import { useUserRole } from '@/app/api/hooks/useUserRole'
 
 export type IssueArea = "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
 export type IssueStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
@@ -82,7 +81,7 @@ const priorityColors = {
 }
 
 export default function IssuesPageContent({ initialIssues }: IssuesPageContentProps) {
-  const { userRole, loading: roleLoading, error: roleError } = useUserRole()
+  const [userRole, setUserRole] = useState<Role | null>(null)
   const [issues, setIssues] = useState<Issue[]>(initialIssues)
   const [filteredIssues, setFilteredIssues] = useState<Issue[]>(initialIssues)
   const [loading, setLoading] = useState<boolean>(false)
@@ -108,6 +107,28 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
   const { toast } = useToast()
 
   const itemsPerPage = 10
+
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      try {
+        const response = await fetch('/api/user/role')
+        if (!response.ok) {
+          throw new Error('Failed to fetch user role')
+        }
+        const data = await response.json()
+        setUserRole(data.role)
+      } catch (error) {
+        console.error('Error fetching user role:', error)
+        toast({
+          title: "Error",
+          description: "Failed to fetch user role. Some features may be unavailable.",
+          variant: "destructive",
+        })
+      }
+    }
+
+    fetchUserRole()
+  }, [toast])
 
   useEffect(() => {
     const filtered = issues.filter((issue) => {
@@ -156,7 +177,8 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
       })
 
       if (!response.ok) {
-        throw new Error("Failed to create issue")
+        const errorData = await response.json()
+        throw new Error(errorData.error || "Failed to create issue")
       }
 
       const createdIssue = await response.json()
@@ -225,14 +247,6 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
   )
 
   const totalPages = Math.ceil(sortedIssues.length / itemsPerPage)
-
-  if (roleLoading) {
-    return <div>Loading user role...</div>
-  }
-
-  if (roleError) {
-    return <div>Error: {roleError}</div>
-  }
 
   const canResolveIssues = userRole === 'moderator' || userRole === 'administrator'
   const canApproveChanges = userRole === 'administrator'
@@ -361,7 +375,7 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <Badge
-                variant="secondary"
+                        variant="secondary"
                         className={cn(
                           "rounded-full px-2 py-0.5 text-xs font-normal",
                           statusColors[issue.status]
