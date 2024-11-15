@@ -8,37 +8,37 @@ export function useUserRole() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchUserRole() {
-      if (status === 'authenticated') {
-        try {
-          const response = await fetch('/api/user/role', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-          });
-
-          if (!response.ok) {
-            throw new Error('Failed to fetch user role');
-          }
-
-          const data = await response.json();
-          setUserRole(data.role);
-        } catch (err) {
-          setError('Error fetching user role');
-          console.error('Error fetching user role:', err);
-        } finally {
-          setLoading(false);
-        }
-      } else if (status === 'unauthenticated') {
-        setUserRole(null);
-        setLoading(false);
-      }
+    if (status === 'loading') {
+      return; // Wait for the session to load
     }
 
+    if (!session) {
+      setUserRole(null);
+      setLoading(false);
+      return;
+    }
+
+    const fetchUserRole = async () => {
+      try {
+        const response = await fetch('/api/user/role', {
+          credentials: 'include'
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch user role');
+        }
+
+        const data = await response.json();
+        setUserRole(data.role);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An unknown error occurred');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchUserRole();
-  }, [status]);
+  }, [session, status]);
 
   return { userRole, loading, error };
 }

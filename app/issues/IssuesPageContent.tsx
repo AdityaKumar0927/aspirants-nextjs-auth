@@ -26,7 +26,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog"
 import {
@@ -40,23 +39,29 @@ import { CalendarIcon, ChevronDown, MoreHorizontal, Plus, RefreshCw, Search, Arr
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/components/ui/use-toast"
-import { useUserRole } from "../api/hooks/useUserRole"
+import { useUserRole } from '@/app/api/hooks/useUserRole'
 
-type Role = 'member' | 'volunteer' | 'moderator' | 'administrator'
+export type IssueArea = "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
+export type IssueStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
+export type IssuePriority = "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"
 
-interface Issue {
+export interface Issue {
   id: string
   title: string
   description: string
-  status: "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
-  priority: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"
-  area: "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
+  status: IssueStatus
+  priority: IssuePriority
+  area: IssueArea
   createdAt: string
+  updatedAt: string
   createdBy: {
-    name: string
-    email: string
+    name: string | null
+    email: string | null
   }
+  questionId: string | null
 }
+
+type Role = 'member' | 'volunteer' | 'moderator' | 'administrator'
 
 interface IssuesPageContentProps {
   initialIssues: Issue[]
@@ -91,7 +96,14 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
   const [sortConfig, setSortConfig] = useState<{ key: keyof Issue | 'createdBy.name', direction: 'asc' | 'desc' } | null>(null)
   const [date, setDate] = useState<Date>()
   const [isCreateIssueDialogOpen, setIsCreateIssueDialogOpen] = useState(false)
-  const [newIssue, setNewIssue] = useState({ title: '', description: '', priority: 'LOW', area: 'OTHER' })
+  const [newIssue, setNewIssue] = useState<Omit<Issue, 'id' | 'createdAt' | 'updatedAt' | 'createdBy'>>({
+    title: '',
+    description: '',
+    priority: 'LOW',
+    area: 'OTHER',
+    status: 'OPEN',
+    questionId: null
+  })
   const router = useRouter()
   const { toast } = useToast()
 
@@ -114,12 +126,7 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
   const fetchIssues = async () => {
     setLoading(true)
     try {
-      const response = await fetch("/api/issues", {
-        credentials: 'include'
-      })
-      if (response.status === 401) {
-        throw new Error("Unauthorized: Please log in to view issues")
-      }
+      const response = await fetch("/api/issues")
       if (!response.ok) {
         throw new Error("Failed to fetch issues")
       }
@@ -146,12 +153,7 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newIssue),
-        credentials: 'include'
       })
-
-      if (response.status === 401) {
-        throw new Error("Unauthorized: Please log in to create an issue")
-      }
 
       if (!response.ok) {
         throw new Error("Failed to create issue")
@@ -160,7 +162,7 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
       const createdIssue = await response.json()
       setIssues([createdIssue, ...issues])
       setIsCreateIssueDialogOpen(false)
-      setNewIssue({ title: '', description: '', priority: 'LOW', area: 'OTHER' })
+      setNewIssue({ title: '', description: '', priority: 'LOW', area: 'OTHER', status: 'OPEN', questionId: null })
       toast({
         title: "Success",
         description: "Issue created successfully",
@@ -192,13 +194,25 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
     if (sortConfig !== null) {
       sortableIssues.sort((a, b) => {
         if (sortConfig.key === 'createdBy.name') {
-          if (a.createdBy.name < b.createdBy.name) return sortConfig.direction === 'asc' ? -1 : 1
-          if (a.createdBy.name > b.createdBy.name) return sortConfig.direction === 'asc' ? 1 : -1
-          return 0
+          const nameA = a.createdBy.name ?? ''
+          const nameB = b.createdBy.name ?? ''
+          return sortConfig.direction === 'asc' 
+            ? nameA.localeCompare(nameB)
+            : nameB.localeCompare(nameA)
         } else {
-          if (a[sortConfig.key] < b[sortConfig.key]) return sortConfig.direction === 'asc' ? -1 : 1
-          if (a[sortConfig.key] > b[sortConfig.key]) return sortConfig.direction === 'asc' ? 1 : -1
-          return 0
+          const valueA = a[sortConfig.key]
+          const valueB = b[sortConfig.key]
+          if (valueA === null && valueB === null) return 0
+          if (valueA === null) return sortConfig.direction === 'asc' ? 1 : -1
+          if (valueB === null) return sortConfig.direction === 'asc' ? -1 : 1
+          if (typeof valueA === 'string' && typeof valueB === 'string') {
+            return sortConfig.direction === 'asc' 
+              ? valueA.localeCompare(valueB)
+              : valueB.localeCompare(valueA)
+          }
+          return sortConfig.direction === 'asc' 
+            ? (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
+            : (valueB < valueA ? -1 : valueB > valueA ? 1 : 0)
         }
       })
     }
@@ -223,6 +237,7 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
   const canResolveIssues = userRole === 'moderator' || userRole === 'administrator'
   const canApproveChanges = userRole === 'administrator'
   const canViewDetailedInfo = userRole === 'moderator' || userRole === 'administrator'
+  const canCreateIssue = userRole && userRole !== 'member'
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -315,7 +330,7 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh
           </Button>
-          {userRole !== 'administrator' && (
+          {canCreateIssue && (
             <Button onClick={() => setIsCreateIssueDialogOpen(true)} size="sm">
               <Plus className="mr-2 h-4 w-4" />
               New Issue
@@ -346,7 +361,7 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <Badge
-                        variant="secondary"
+                variant="secondary"
                         className={cn(
                           "rounded-full px-2 py-0.5 text-xs font-normal",
                           statusColors[issue.status]
@@ -382,33 +397,33 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
                         })}
                       </span>
                       <span>•</span>
-                      <span>by {issue.createdBy.name}</span>
+                      <span>by {issue.createdBy.name ?? 'Unknown'}</span>
                     </div>
                   </div>
-                  {userRole !== 'member' && (
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="sm">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem onSelect={() => setSelectedIssue(issue)}>View Details</DropdownMenuItem>
-                        {canResolveIssues && (
-                          <DropdownMenuItem>Resolve Issue</DropdownMenuItem>
-                        )}
-                        {canApproveChanges && (
-                          <DropdownMenuItem>Approve Changes</DropdownMenuItem>
-                        )}
-                        <DropdownMenuSeparator />
-                        {canViewDetailedInfo && (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="sm">
+                        <MoreHorizontal className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem onSelect={() => setSelectedIssue(issue)}>View Details</DropdownMenuItem>
+                      {canResolveIssues && (
+                        <DropdownMenuItem>Resolve Issue</DropdownMenuItem>
+                      )}
+                      {canApproveChanges && (
+                        <DropdownMenuItem>Approve Changes</DropdownMenuItem>
+                      )}
+                      {canViewDetailedInfo && (
+                        <>
+                          <DropdownMenuSeparator />
                           <DropdownMenuItem className="text-destructive">
                             Delete
                           </DropdownMenuItem>
-                        )}
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  )}
+                        </>
+                      )}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               ))}
             </div>
@@ -455,7 +470,9 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
             <p><strong>Priority:</strong> {selectedIssue?.priority}</p>
             <p><strong>Area:</strong> {selectedIssue?.area}</p>
             <p><strong>Created At:</strong> {selectedIssue?.createdAt}</p>
-            <p><strong>Created By:</strong> {selectedIssue?.createdBy.name} ({selectedIssue?.createdBy.email})</p>
+            <p><strong>Updated At:</strong> {selectedIssue?.updatedAt}</p>
+            <p><strong>Created By:</strong> {selectedIssue?.createdBy.name ?? 'Unknown'} ({selectedIssue?.createdBy.email ?? 'No email'})</p>
+            {selectedIssue?.questionId && <p><strong>Related Question ID:</strong> {selectedIssue.questionId}</p>}
           </div>
         </DialogContent>
       </Dialog>
@@ -486,7 +503,7 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
               <Label htmlFor="priority">Priority</Label>
               <Select
                 value={newIssue.priority}
-                onValueChange={(value) => setNewIssue({ ...newIssue, priority: value as Issue['priority'] })}
+                onValueChange={(value) => setNewIssue({ ...newIssue, priority: value as IssuePriority })}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select priority" />
@@ -503,7 +520,7 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
               <Label htmlFor="area">Area</Label>
               <Select
                 value={newIssue.area}
-                onValueChange={(value) => setNewIssue({ ...newIssue, area: value as Issue['area'] })}
+                onValueChange={(value) => setNewIssue({ ...newIssue, area: value as IssueArea })}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select area" />
@@ -516,6 +533,15 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
                   <SelectItem value="OTHER">Other</SelectItem>
                 </SelectContent>
               </Select>
+            </div>
+            <div>
+              <Label htmlFor="questionId">Related Question ID (Optional)</Label>
+              <Input
+                id="questionId"
+                value={newIssue.questionId || ''}
+                onChange={(e) => setNewIssue({ ...newIssue, questionId: e.target.value || null })}
+                placeholder="Enter related question ID if applicable"
+              />
             </div>
           </div>
           <DialogFooter>
