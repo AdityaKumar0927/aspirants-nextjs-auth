@@ -40,6 +40,7 @@ import { CalendarIcon, ChevronDown, MoreHorizontal, Plus, RefreshCw, Search, Arr
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/components/ui/use-toast"
+import { useUserRole } from "../api/hooks/useUserRole"
 
 type Role = 'member' | 'volunteer' | 'moderator' | 'administrator'
 
@@ -57,6 +58,10 @@ interface Issue {
   }
 }
 
+interface IssuesPageContentProps {
+  initialIssues: Issue[]
+}
+
 const statusColors = {
   OPEN: "bg-yellow-500/20 text-yellow-700",
   IN_PROGRESS: "bg-blue-500/20 text-blue-700",
@@ -71,12 +76,8 @@ const priorityColors = {
   CRITICAL: "bg-purple-500/20 text-purple-700",
 }
 
-export interface IssuesPageProps {
-  initialIssues: Issue[]
-  userRole: Role
-}
-
-export default function IssuesPageContent({ initialIssues, userRole }: IssuesPageProps) {
+export default function IssuesPageContent({ initialIssues }: IssuesPageContentProps) {
+  const { userRole, loading: roleLoading, error: roleError } = useUserRole()
   const [issues, setIssues] = useState<Issue[]>(initialIssues)
   const [filteredIssues, setFilteredIssues] = useState<Issue[]>(initialIssues)
   const [loading, setLoading] = useState<boolean>(false)
@@ -113,7 +114,12 @@ export default function IssuesPageContent({ initialIssues, userRole }: IssuesPag
   const fetchIssues = async () => {
     setLoading(true)
     try {
-      const response = await fetch("/api/issues")
+      const response = await fetch("/api/issues", {
+        credentials: 'include'
+      })
+      if (response.status === 401) {
+        throw new Error("Unauthorized: Please log in to view issues")
+      }
       if (!response.ok) {
         throw new Error("Failed to fetch issues")
       }
@@ -122,7 +128,7 @@ export default function IssuesPageContent({ initialIssues, userRole }: IssuesPag
       setFilteredIssues(data)
     } catch (error) {
       console.error("Error fetching issues:", error)
-      setError("Failed to load issues. Please try again.")
+      setError(error instanceof Error ? error.message : "An unknown error occurred")
     } finally {
       setLoading(false)
     }
@@ -140,7 +146,12 @@ export default function IssuesPageContent({ initialIssues, userRole }: IssuesPag
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newIssue),
+        credentials: 'include'
       })
+
+      if (response.status === 401) {
+        throw new Error("Unauthorized: Please log in to create an issue")
+      }
 
       if (!response.ok) {
         throw new Error("Failed to create issue")
@@ -158,7 +169,7 @@ export default function IssuesPageContent({ initialIssues, userRole }: IssuesPag
       console.error("Error creating issue:", error)
       toast({
         title: "Error",
-        description: "Failed to create issue. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to create issue. Please try again.",
         variant: "destructive",
       })
     }
@@ -200,6 +211,14 @@ export default function IssuesPageContent({ initialIssues, userRole }: IssuesPag
   )
 
   const totalPages = Math.ceil(sortedIssues.length / itemsPerPage)
+
+  if (roleLoading) {
+    return <div>Loading user role...</div>
+  }
+
+  if (roleError) {
+    return <div>Error: {roleError}</div>
+  }
 
   const canResolveIssues = userRole === 'moderator' || userRole === 'administrator'
   const canApproveChanges = userRole === 'administrator'

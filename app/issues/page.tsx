@@ -23,5 +23,5 @@ export default async function IssuesPageWrapper() {
     // You might want to add some error handling here, such as setting an error state
   }
 
-  return <IssuesPageContent initialIssues={initialIssues} userRole={userRole} />
+  return <IssuesPageContent initialIssues={initialIssues} />
 }
