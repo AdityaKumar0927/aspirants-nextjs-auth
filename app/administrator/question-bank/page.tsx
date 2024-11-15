@@ -50,6 +50,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Popover from "@/components/shared/popover"
+import { Skeleton } from "@/components/ui/skeleton"
 import { ArrowUpIcon, ArrowDownIcon, ChevronDown, Search, Plus, Trash2, Edit, Eye, CheckCircle, XCircle, MoreHorizontal, Upload, FileUp, FileJson, Loader2 } from 'lucide-react'
 
 type QuestionStatus = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED' | 'UNDER_REVIEW'
@@ -678,8 +679,16 @@ export default function QuestionBankDashboard() {
         </div>
 
         {isLoading ? (
-          <div className="flex justify-center items-center h-64">
-            <p>Loading questions...</p>
+          <div className="space-y-4">
+            {[...Array(5)].map((_, index) => (
+              <div key={index} className="flex items-center space-x-4">
+                <Skeleton className="h-12 w-12 rounded-full" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-[250px]" />
+                  <Skeleton className="h-4 w-[200px]" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <div className="rounded-md border">
@@ -953,15 +962,6 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
         />
       </div>
       <div>
-        <Label htmlFor="explanation">Explanation</Label>
-        <Textarea
-          id="explanation"
-          name="explanation"
-          value={formData.notes || ''}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
         <Label htmlFor="markScheme">Mark Scheme</Label>
         <Textarea
           id="markScheme"
@@ -1031,12 +1031,6 @@ function QuestionPreview({ question }: QuestionPreviewProps) {
         <p><strong>Type:</strong> {question.type}</p>
         <p><strong>Year:</strong> {question.year}</p>
         <p><strong>Correct Answer:</strong> {question.correctOption}</p>
-        {question.notes && (
-          <>
-            <h4 className="font-semibold mt-2">Explanation:</h4>
-            <p>{question.notes}</p>
-          </>
-        )}
         {question.markscheme && (
           <>
             <h4 className="font-semibold mt-2">Mark Scheme:</h4>

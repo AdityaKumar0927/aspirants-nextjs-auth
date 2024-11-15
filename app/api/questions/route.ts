@@ -1,4 +1,4 @@
-import { PrismaClient, QuestionStatus } from '@prisma/client'; // Import the enum
+import { PrismaClient, QuestionStatus } from '@prisma/client';
 import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
@@ -24,7 +24,7 @@ export async function GET() {
         notes: true,
         lastAttempted: true,
         diagramUrl: true,
-        status: true, // Include status
+        status: true,
       },
     });
     return NextResponse.json(questions);
@@ -34,14 +34,28 @@ export async function GET() {
   }
 }
 
+export async function POST(request: Request) {
+  try {
+    const data = await request.json();
+    const newQuestion = await prisma.question.create({
+      data: {
+        ...data,
+        status: data.status || QuestionStatus.DRAFT, // Default to DRAFT if not provided
+      },
+    });
+    return NextResponse.json(newQuestion);
+  } catch (error) {
+    console.error('Error creating question:', error);
+    return NextResponse.json({ error: 'Failed to create question' }, { status: 500 });
+  }
+}
+
 export async function PATCH(request: Request) {
   const { questionId, status, ...updates } = await request.json();
 
   try {
-    // Convert string status to enum
     const validStatus = status as QuestionStatus;
 
-    // Update the question in the database
     const updatedQuestion = await prisma.question.update({
       where: { questionId },
       data: {
@@ -50,7 +64,6 @@ export async function PATCH(request: Request) {
       },
     });
 
-    // Re-fetch the updated question to ensure correct data
     const refreshedQuestion = await prisma.question.findUnique({
       where: { questionId },
       select: {
