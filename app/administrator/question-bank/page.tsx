@@ -24,6 +24,7 @@ import { Textarea } from "@/components/ui/textarea"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -47,8 +48,9 @@ import {
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Popover from "@/components/shared/popover"
-import { ArrowUpIcon, ArrowDownIcon, ChevronDown, Search, Plus, Trash2, Edit, Eye, CheckCircle, XCircle, MoreHorizontal, Upload, FileUp, FileJson } from 'lucide-react'
+import { ArrowUpIcon, ArrowDownIcon, ChevronDown, Search, Plus, Trash2, Edit, Eye, CheckCircle, XCircle, MoreHorizontal, Upload, FileUp, FileJson, Loader2 } from 'lucide-react'
 
 type QuestionStatus = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED' | 'UNDER_REVIEW'
 
@@ -111,6 +113,9 @@ export default function QuestionBankDashboard() {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [batchUploadText, setBatchUploadText] = useState("")
+  const [isBatchUploading, setIsBatchUploading] = useState(false)
+  const [isBatchUploadDialogOpen, setIsBatchUploadDialogOpen] = useState(false)
   const { toast } = useToast()
 
   const fetchQuestions = useCallback(async () => {
@@ -285,7 +290,8 @@ export default function QuestionBankDashboard() {
     }
   }
 
-  const handleBatchUpload = async (file: File) => {
+  const handleBatchUploadFile = async (file: File) => {
+    setIsBatchUploading(true)
     const formData = new FormData()
     formData.append('file', file)
 
@@ -295,7 +301,10 @@ export default function QuestionBankDashboard() {
         body: formData,
       })
 
-      if (!response.ok) throw new Error('Failed to upload questions')
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.message || 'Failed to upload questions')
+      }
 
       const result = await response.json()
       toast({
@@ -303,12 +312,50 @@ export default function QuestionBankDashboard() {
         description: `${result.count} questions uploaded successfully.`,
       })
       fetchQuestions()
+      setIsBatchUploadDialogOpen(false)
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to upload questions. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to upload questions. Please try again.",
         variant: "destructive",
       })
+    } finally {
+      setIsBatchUploading(false)
+    }
+  }
+
+  const handleBatchUploadText = async () => {
+    setIsBatchUploading(true)
+    try {
+      const response = await fetch('/api/questions/batch-upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: batchUploadText }),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.message || 'Failed to upload questions')
+      }
+
+      const result = await response.json()
+      toast({
+        title: "Success",
+        description: `${result.count} questions uploaded successfully.`,
+      })
+      fetchQuestions()
+      setBatchUploadText("")
+      setIsBatchUploadDialogOpen(false)
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to upload questions. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsBatchUploading(false)
     }
   }
 
@@ -446,34 +493,70 @@ export default function QuestionBankDashboard() {
               </ScrollArea>
             </DialogContent>
           </Dialog>
-          <Dialog>
+          <Dialog open={isBatchUploadDialogOpen} onOpenChange={setIsBatchUploadDialogOpen}>
             <DialogTrigger asChild>
               <Button variant="outline">
                 <Upload className="mr-2 h-4 w-4" />
                 Batch Upload
               </Button>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
                 <DialogTitle>Batch Upload Questions</DialogTitle>
+                <DialogDescription>
+                  Upload questions via file or paste text directly.
+                </DialogDescription>
               </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid w-full max-w-sm items-center gap-1.5">
-                  <Label htmlFor="file">CSV File</Label>
-                  <Input 
-                    id="file" 
-                    type="file" 
-                    accept=".csv" 
-                    onChange={(e) => {
-                      if (e.target.files && e.target.files[0]) {
-                        handleBatchUpload(e.target.files[0])
-                      }
-                    }}
-                  />
-                </div>
-              </div>
+              <Tabs defaultValue="file" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="file">File Upload</TabsTrigger>
+                  <TabsTrigger value="text">Text Input</TabsTrigger>
+                </TabsList>
+                <TabsContent value="file">
+                  <div className="grid w-full max-w-sm items-center gap-1.5">
+                    <Label htmlFor="file">File (CSV, JSON, or TXT)</Label>
+                    <Input 
+                      id="file" 
+                      type="file" 
+                      accept=".csv,.json,.txt" 
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files[0]) {
+                          handleBatchUploadFile(e.target.files[0])
+                        }
+                      }}
+                      disabled={isBatchUploading}
+                    />
+                  </div>
+                </TabsContent>
+                <TabsContent value="text">
+                  <div className="grid w-full gap-1.5">
+                    <Label htmlFor="batchText">Paste Questions</Label>
+                    <Textarea 
+                      id="batchText"
+                      placeholder="Paste your questions here..."
+                      value={batchUploadText}
+                      onChange={(e) => setBatchUploadText(e.target.value)}
+                      rows={10}
+                      disabled={isBatchUploading}
+                    />
+                  </div>
+                </TabsContent>
+              </Tabs>
               <DialogFooter>
-                <Button type="submit">Upload</Button>
+                <Button 
+                  type="submit" 
+                  onClick={handleBatchUploadText} 
+                  disabled={isBatchUploading}
+                >
+                  {isBatchUploading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Uploading...
+                    </>
+                  ) : (
+                    'Upload'
+                  )}
+                </Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
