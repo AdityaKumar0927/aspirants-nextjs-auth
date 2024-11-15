@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { PrismaClient } from '@prisma/client';
+import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../../auth/[...nextauth]/options';
 
 const prisma = new PrismaClient();
@@ -10,8 +10,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
     const issue = await prisma.issue.findUnique({
       where: { id: params.id },
       include: {
-        comments: true,
-        category: true,
+        createdBy: true,
+        question: true,
       },
     });
 
@@ -34,21 +34,21 @@ export async function PATCH(request: Request, { params }: { params: { id: string
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { title, description, status, priority, categoryId } = await request.json();
+    const { title, description, status, priority, area } = await request.json();
 
-    const issue = await prisma.issue.update({
+    const updatedIssue = await prisma.issue.update({
       where: { id: params.id },
       data: {
         title,
         description,
         status,
         priority,
-        categoryId,
+        area,
         updatedAt: new Date(),
       },
     });
 
-    return NextResponse.json(issue);
+    return NextResponse.json(updatedIssue);
   } catch (error) {
     console.error('Error updating issue:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
