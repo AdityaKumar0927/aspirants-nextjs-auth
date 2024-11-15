@@ -40,25 +40,36 @@ interface Issue {
   id: string
   title: string
   description: string
-  status: "Open" | "In Progress" | "Closed"
-  priority: "Low" | "Medium" | "High"
+  status: "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
+  priority: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"
+  area: "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
   createdAt: string
-  reportedBy: {
+  createdBy: {
     name: string
-    role: Role
+    email: string
   }
 }
 
 const statusColors = {
-  Open: "bg-yellow-500",
-  "In Progress": "bg-blue-500",
-  Closed: "bg-green-500",
+  OPEN: "bg-yellow-500",
+  IN_PROGRESS: "bg-blue-500",
+  RESOLVED: "bg-green-500",
+  CLOSED: "bg-gray-500",
 }
 
 const priorityColors = {
-  Low: "bg-gray-500",
-  Medium: "bg-orange-500",
-  High: "bg-red-500",
+  LOW: "bg-gray-500",
+  MEDIUM: "bg-orange-500",
+  HIGH: "bg-red-500",
+  CRITICAL: "bg-purple-500",
+}
+
+const areaColors = {
+  CONTENT: "bg-blue-200 text-blue-800",
+  UI: "bg-green-200 text-green-800",
+  BUG: "bg-red-200 text-red-800",
+  FEATURE: "bg-purple-200 text-purple-800",
+  OTHER: "bg-gray-200 text-gray-800",
 }
 
 const roleColors = {
@@ -76,10 +87,10 @@ export default function IssuesPage() {
   const [searchQuery, setSearchQuery] = useState<string>("")
   const [statusFilter, setStatusFilter] = useState<string>("All")
   const [priorityFilter, setPriorityFilter] = useState<string>("All")
-  const [roleFilter, setRoleFilter] = useState<string>("All")
+  const [areaFilter, setAreaFilter] = useState<string>("All")
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [selectedIssue, setSelectedIssue] = useState<Issue | null>(null)
-  const [sortConfig, setSortConfig] = useState<{ key: keyof Issue | 'reportedBy.role', direction: 'asc' | 'desc' } | null>(null)
+  const [sortConfig, setSortConfig] = useState<{ key: keyof Issue | 'createdBy.name', direction: 'asc' | 'desc' } | null>(null)
   const router = useRouter()
 
   const itemsPerPage = 10
@@ -95,12 +106,12 @@ export default function IssuesPage() {
         issue.description.toLowerCase().includes(searchQuery.toLowerCase())
       const matchesStatus = statusFilter === "All" || issue.status === statusFilter
       const matchesPriority = priorityFilter === "All" || issue.priority === priorityFilter
-      const matchesRole = roleFilter === "All" || issue.reportedBy.role === roleFilter
-      return matchesSearch && matchesStatus && matchesPriority && matchesRole
+      const matchesArea = areaFilter === "All" || issue.area === areaFilter
+      return matchesSearch && matchesStatus && matchesPriority && matchesArea
     })
     setFilteredIssues(filtered)
     setCurrentPage(1)
-  }, [issues, searchQuery, statusFilter, priorityFilter, roleFilter])
+  }, [issues, searchQuery, statusFilter, priorityFilter, areaFilter])
 
   const fetchIssues = async () => {
     setLoading(true)
@@ -133,7 +144,7 @@ export default function IssuesPage() {
     setCurrentPage(page)
   }
 
-  const handleSort = (key: keyof Issue | 'reportedBy.role') => {
+  const handleSort = (key: keyof Issue | 'createdBy.name') => {
     let direction: 'asc' | 'desc' = 'asc'
     if (sortConfig && sortConfig.key === key && sortConfig.direction === 'asc') {
       direction = 'desc'
@@ -145,9 +156,9 @@ export default function IssuesPage() {
     let sortableIssues = [...filteredIssues]
     if (sortConfig !== null) {
       sortableIssues.sort((a, b) => {
-        if (sortConfig.key === 'reportedBy.role') {
-          if (a.reportedBy.role < b.reportedBy.role) return sortConfig.direction === 'asc' ? -1 : 1
-          if (a.reportedBy.role > b.reportedBy.role) return sortConfig.direction === 'asc' ? 1 : -1
+        if (sortConfig.key === 'createdBy.name') {
+          if (a.createdBy.name < b.createdBy.name) return sortConfig.direction === 'asc' ? -1 : 1
+          if (a.createdBy.name > b.createdBy.name) return sortConfig.direction === 'asc' ? 1 : -1
           return 0
         } else {
           if (a[sortConfig.key] < b[sortConfig.key]) return sortConfig.direction === 'asc' ? -1 : 1
@@ -220,9 +231,9 @@ export default function IssuesPage() {
                   <DropdownMenuContent>
                     <DropdownMenuLabel>Filter by Status</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    {["All", "Open", "In Progress", "Closed"].map((status) => (
+                    {["All", "OPEN", "IN_PROGRESS", "RESOLVED", "CLOSED"].map((status) => (
                       <DropdownMenuItem key={status} onSelect={() => setStatusFilter(status)}>
-                        {status}
+                        {status === "All" ? status : status.charAt(0) + status.slice(1).toLowerCase().replace('_', ' ')}
                       </DropdownMenuItem>
                     ))}
                   </DropdownMenuContent>
@@ -236,9 +247,9 @@ export default function IssuesPage() {
                   <DropdownMenuContent>
                     <DropdownMenuLabel>Filter by Priority</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    {["All", "Low", "Medium", "High"].map((priority) => (
+                    {["All", "LOW", "MEDIUM", "HIGH", "CRITICAL"].map((priority) => (
                       <DropdownMenuItem key={priority} onSelect={() => setPriorityFilter(priority)}>
-                        {priority}
+                        {priority === "All" ? priority : priority.charAt(0) + priority.slice(1).toLowerCase()}
                       </DropdownMenuItem>
                     ))}
                   </DropdownMenuContent>
@@ -246,15 +257,15 @@ export default function IssuesPage() {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="outline" className="w-full sm:w-[180px]">
-                      {roleFilter} <ChevronDown className="ml-2 h-4 w-4" />
+                      {areaFilter} <ChevronDown className="ml-2 h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuLabel>Filter by Role</DropdownMenuLabel>
+                    <DropdownMenuLabel>Filter by Area</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    {["All", "member", "volunteer", "moderator", "administrator"].map((role) => (
-                      <DropdownMenuItem key={role} onSelect={() => setRoleFilter(role)}>
-                        {role.charAt(0).toUpperCase() + role.slice(1)}
+                    {["All", "CONTENT", "UI", "BUG", "FEATURE", "OTHER"].map((area) => (
+                      <DropdownMenuItem key={area} onSelect={() => setAreaFilter(area)}>
+                        {area === "All" ? area : area.charAt(0) + area.slice(1).toLowerCase()}
                       </DropdownMenuItem>
                     ))}
                   </DropdownMenuContent>
@@ -296,8 +307,8 @@ export default function IssuesPage() {
                           </Button>
                         </TableHead>
                         <TableHead>
-                          <Button variant="ghost" onClick={() => handleSort('reportedBy.role')}>
-                            Reported By
+                          <Button variant="ghost" onClick={() => handleSort('createdBy.name')}>
+                            Created By
                             <ArrowUpDown className="ml-2 h-4 w-4" />
                           </Button>
                         </TableHead>
@@ -310,17 +321,18 @@ export default function IssuesPage() {
                           <TableCell>{issue.id}</TableCell>
                           <TableCell>{issue.title}</TableCell>
                           <TableCell>
-                            <Badge className={statusColors[issue.status]}>{issue.status}</Badge>
+                            <Badge className={statusColors[issue.status]}>{issue.status.charAt(0) + issue.status.slice(1).toLowerCase().replace('_', ' ')}</Badge>
                           </TableCell>
                           <TableCell>
-                            <Badge className={priorityColors[issue.priority]}>{issue.priority}</Badge>
+                            <Badge className={priorityColors[issue.priority]}>{issue.priority.charAt(0) + issue.priority.slice(1).toLowerCase()}</Badge>
                           </TableCell>
                           <TableCell>{new Date(issue.createdAt).toLocaleDateString()}</TableCell>
                           <TableCell>
-                            <Badge className={roleColors[issue.reportedBy.role]}>
-                              {issue.reportedBy.name} ({issue.reportedBy.role})
+                            <Badge className={areaColors[issue.area]}>
+                              {issue.area.charAt(0) + issue.area.slice(1).toLowerCase()}
                             </Badge>
                           </TableCell>
+                          <TableCell>{issue.createdBy.name}</TableCell>
                           <TableCell>
                             <Dialog>
                               <DialogTrigger asChild>
@@ -338,9 +350,9 @@ export default function IssuesPage() {
                                   <p><strong>Description:</strong> {selectedIssue?.description}</p>
                                   <p><strong>Status:</strong> {selectedIssue?.status}</p>
                                   <p><strong>Priority:</strong> {selectedIssue?.priority}</p>
+                                  <p><strong>Area:</strong> {selectedIssue?.area}</p>
                                   <p><strong>Created At:</strong> {selectedIssue?.createdAt}</p>
-                                  <p><strong>Reported By:</strong> {selectedIssue?.reportedBy.name} ({selectedIssue?.reportedBy.role})
-                                  </p>
+                                  <p><strong>Created By:</strong> {selectedIssue?.createdBy.name} ({selectedIssue?.createdBy.email})</p>
                                 </div>
                               </DialogContent>
                             </Dialog>
