@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../api/auth/[...nextauth]/options'
-import IssuesPage from './page'
+import IssuesPage, { IssuesPageProps } from './IssuesPageContent'
 import { Skeleton } from "@/components/ui/skeleton"
 
 async function getInitialIssues() {
@@ -17,9 +17,14 @@ export default async function IssuesPageWrapper() {
   const userRole = session?.user?.role?.name || 'member'
   const initialIssues = await getInitialIssues()
 
+  const props: IssuesPageProps = {
+    userRole,
+    initialIssues
+  }
+
   return (
     <Suspense fallback={<IssuesPageSkeleton />}>
-      <IssuesPage userRole={userRole} initialIssues={initialIssues} />
+      <IssuesPage {...props} />
     </Suspense>
   )
 }
