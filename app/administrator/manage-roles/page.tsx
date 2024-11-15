@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Search } from "lucide-react"
+import { Search, Loader2 } from 'lucide-react'
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
-// Updated type definitions
 type Role = 'member' | 'volunteer' | 'moderator' | 'administrator';
 
 interface User {
@@ -31,6 +31,7 @@ export default function ManageRoles() {
   const [selectedRole, setSelectedRole] = useState<Role | ''>('')
   const [loading, setLoading] = useState<boolean>(false)
   const [searchQuery, setSearchQuery] = useState<string>('')
+  const [error, setError] = useState<string | null>(null)
   const { toast } = useToast()
   const { data: session, status } = useSession()
   const router = useRouter()
@@ -44,6 +45,7 @@ export default function ManageRoles() {
   useEffect(() => {
     const fetchUsers = async () => {
       setLoading(true)
+      setError(null)
       try {
         const response = await fetch('/api/user/get')
         if (!response.ok) {
@@ -57,6 +59,7 @@ export default function ManageRoles() {
         setFilteredUsers(data)
       } catch (error) {
         console.error('Failed to fetch users:', error)
+        setError((error as Error).message || "Failed to fetch users. Please try again.")
         toast({
           title: "Error",
           description: (error as Error).message || "Failed to fetch users. Please try again.",
@@ -95,6 +98,7 @@ export default function ManageRoles() {
     }
 
     setLoading(true)
+    setError(null)
     try {
       const response = await fetch('/api/user/role', {
         method: 'POST',
@@ -103,10 +107,8 @@ export default function ManageRoles() {
       })
 
       if (!response.ok) {
-        if (response.status === 401) {
-          throw new Error('Unauthorized access')
-        }
-        throw new Error('Failed to update user role')
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to update user role')
       }
 
       const data = await response.json()
@@ -122,6 +124,8 @@ export default function ManageRoles() {
         )
       )
     } catch (error) {
+      console.error('Error updating user role:', error)
+      setError((error as Error).message || "Failed to update user role. Please try again.")
       toast({
         title: "Error",
         description: `Failed to update user role: ${(error as Error).message}`,
@@ -136,7 +140,11 @@ export default function ManageRoles() {
   }
 
   if (status === 'loading') {
-    return <div>Loading...</div>
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader2 className="h-8 w-8 animate-spin" />
+      </div>
+    )
   }
 
   if (status === 'unauthenticated') {
@@ -150,6 +158,12 @@ export default function ManageRoles() {
         <CardDescription>Select a user and assign a new role</CardDescription>
       </CardHeader>
       <CardContent>
+        {error && (
+          <Alert variant="destructive" className="mb-4">
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
         <div className="space-y-4">
           <div className="flex items-center space-x-2">
             <Search className="w-4 h-4 text-gray-500" />
@@ -199,7 +213,14 @@ export default function ManageRoles() {
             disabled={loading || !selectedUser || !selectedRole}
             className="w-full"
           >
-            {loading ? "Updating..." : "Update Role"}
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Updating...
+              </>
+            ) : (
+              "Update Role"
+            )}
           </Button>
         </div>
       </CardContent>

@@ -15,8 +15,43 @@ export const authOptions: NextAuthOptions = {
     async session({ session, user }) {
       if (session.user) {
         session.user.id = user.id;
+        // Fetch the user's role and add it to the session
+        const userWithRole = await prisma.user.findUnique({
+          where: { id: user.id },
+          include: { role: true },
+        });
+        session.user.role = userWithRole?.role?.name || 'member';
       }
       return session;
+    },
+    async signIn({ user }) {
+      // Check if the user exists
+      const existingUser = await prisma.user.findUnique({
+        where: { email: user.email! },
+      });
+
+      if (!existingUser) {
+        // If the user doesn't exist, create a new user with the 'member' role
+        const memberRole = await prisma.userRole.findUnique({
+          where: { name: 'member' },
+        });
+
+        if (!memberRole) {
+          console.error('Member role not found');
+          return false;
+        }
+
+        await prisma.user.create({
+          data: {
+            email: user.email!,
+            name: user.name,
+            image: user.image,
+            roleId: memberRole.id,
+          },
+        });
+      }
+
+      return true;
     },
   },
 };

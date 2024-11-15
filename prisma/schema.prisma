@@ -59,9 +59,8 @@ model User {
   customUserPerformances CustomUserPerformance[]
   issues                 Issue[]                 @relation("UserIssues")
   policyAgreements       UserPolicyAgreement[]
-  role                   UserRole?               @relation(fields: [roleId], references: [id], onDelete: Cascade)
-
-  roleId                 String?
+  role                   UserRole                @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  roleId                 String                  @default("member") // Set default role to "member"
 }
 
 model UserRole {
@@ -72,12 +71,12 @@ model UserRole {
 }
 
 model UserPolicyAgreement {
-  id                  String   @id @default(cuid())
-  userId              String
-  policyName          String
-  accepted            Boolean  @default(false)
-  acceptedAt          DateTime?
-  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id         String    @id @default(cuid())
+  userId     String
+  policyName String
+  accepted   Boolean   @default(false)
+  acceptedAt DateTime?
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@unique([userId, policyName])
