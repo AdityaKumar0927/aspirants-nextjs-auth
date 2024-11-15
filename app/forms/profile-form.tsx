@@ -5,6 +5,8 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,7 +30,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
-import { useRouter } from "next/navigation";
 
 const profileFormSchema = z.object({
   username: z.string().min(2, { message: "Username must be at least 2 characters." }).max(30, { message: "Username must not be longer than 30 characters." }),
@@ -42,13 +43,17 @@ const profileFormSchema = z.object({
   termsAccepted: z.boolean().default(false),
   privacyPolicyAccepted: z.boolean().default(false),
   cookiePolicyAccepted: z.boolean().default(false),
+  role: z.string().optional(),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
+type Role = 'member' | 'volunteer' | 'moderator' | 'administrator';
+
 export function ProfileForm() {
   const [loading, setLoading] = useState(true);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   const form = useForm<ProfileFormValues>({
@@ -61,6 +66,7 @@ export function ProfileForm() {
       termsAccepted: false,
       privacyPolicyAccepted: false,
       cookiePolicyAccepted: false,
+      role: "",
     },
     mode: "onChange",
   });
@@ -71,42 +77,58 @@ export function ProfileForm() {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/api/settings/profile-settings");
-        if (!response.ok) throw new Error("Failed to fetch profile settings");
-  
-        const data = await response.json();
-        const policyAgreements: { policyName: string; accepted: boolean }[] = data.policyAgreements || [];
-  
-        // Initialize switches based on policy agreements
-        const updatedData = {
-          username: data.username || "",
-          email: data.email || "",
-          bio: data.bio || "",
-          urls: data.urls || [{ value: "" }],
-          termsAccepted: policyAgreements.some((agreement: { policyName: string; accepted: boolean }) =>
-            agreement.policyName === "Terms and Conditions" && agreement.accepted
-          ),
-          privacyPolicyAccepted: policyAgreements.some((agreement: { policyName: string; accepted: boolean }) =>
-            agreement.policyName === "Privacy Policy" && agreement.accepted
-          ),
-          cookiePolicyAccepted: policyAgreements.some((agreement: { policyName: string; accepted: boolean }) =>
-            agreement.policyName === "Cookie Policy" && agreement.accepted
-          ),
-        };
-  
-        form.reset(updatedData);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error("Error fetching profile data:", error);
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    } else if (status === 'authenticated') {
+      fetchProfileData();
+    }
+  }, [status, router]);
+
+  const fetchProfileData = async () => {
+    try {
+      const response = await fetch("/api/settings/profile-settings");
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error('Unauthorized access');
+        }
+        throw new Error("Failed to fetch profile settings");
       }
-    };
-  
-    fetchData();
-  }, [form]);
-  
+
+      const data = await response.json();
+      const policyAgreements: { policyName: string; accepted: boolean }[] = data.policyAgreements || [];
+
+      const updatedData = {
+        username: data.username || "",
+        email: data.email || "",
+        bio: data.bio || "",
+        urls: data.urls || [{ value: "" }],
+        termsAccepted: policyAgreements.some((agreement) =>
+          agreement.policyName === "Terms and Conditions" && agreement.accepted
+        ),
+        privacyPolicyAccepted: policyAgreements.some((agreement) =>
+          agreement.policyName === "Privacy Policy" && agreement.accepted
+        ),
+        cookiePolicyAccepted: policyAgreements.some((agreement) =>
+          agreement.policyName === "Cookie Policy" && agreement.accepted
+        ),
+        role: data.role?.name || "",
+      };
+
+      form.reset(updatedData);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error("Error fetching profile data:", error);
+      toast({
+        title: "Error",
+        description: (error as Error).message || "Failed to fetch profile data. Please try again.",
+        variant: "destructive",
+      });
+      if ((error as Error).message === 'Unauthorized access') {
+        router.push('/unauthorized');
+      }
+    }
+  };
 
   async function onSubmit(data: ProfileFormValues) {
     try {
@@ -117,6 +139,9 @@ export function ProfileForm() {
       });
 
       if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error('Unauthorized access');
+        }
         throw new Error("Failed to update profile settings");
       }
 
@@ -151,7 +176,11 @@ export function ProfileForm() {
       toast({
         title: "Failed to update profile settings",
         description: error.message,
+        variant: "destructive",
       });
+      if (error.message === 'Unauthorized access') {
+        router.push('/unauthorized');
+      }
     }
   }
 
@@ -162,6 +191,9 @@ export function ProfileForm() {
       });
 
       if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error('Unauthorized access');
+        }
         throw new Error("Failed to reset user data");
       }
 
@@ -174,11 +206,15 @@ export function ProfileForm() {
       toast({
         title: "Failed to reset user data",
         description: error.message,
+        variant: "destructive",
       });
+      if (error.message === 'Unauthorized access') {
+        router.push('/unauthorized');
+      }
     }
   };
 
-  if (loading) {
+  if (status === 'loading' || loading) {
     return (
       <div className="space-y-8 max-w-3xl">
         <Skeleton className="h-12 w-1/3" />
@@ -186,6 +222,10 @@ export function ProfileForm() {
         <Skeleton className="h-12 w-full" />
       </div>
     );
+  }
+
+  if (status === 'unauthenticated') {
+    return null; // The useEffect will handle redirection
   }
 
   return (
@@ -231,6 +271,22 @@ export function ProfileForm() {
                 <Link href="/forms">email settings</Link>.
               </FormDescription>
               <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="role"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Role</FormLabel>
+              <FormControl>
+                <Input readOnly {...field} />
+              </FormControl>
+              <FormDescription>
+                Your current role in the system. This cannot be changed here.
+              </FormDescription>
             </FormItem>
           )}
         />
