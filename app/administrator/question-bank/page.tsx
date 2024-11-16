@@ -812,11 +812,12 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
 
   const handleAddOption = () => {
     setOptions(prev => [...prev, ''])
+    setFormData(prev => ({ ...prev, options: [...(prev.options || []), ''] }))
   }
 
   const handleRemoveOption = (index: number) => {
-    setOptions(prev => prev.filter((_, i) => i !==
- index))
+    setOptions(prev => prev.filter((_, i) => i !== index))
+    setFormData(prev => ({ ...prev, options: prev.options?.filter((_, i) => i !== index) }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
