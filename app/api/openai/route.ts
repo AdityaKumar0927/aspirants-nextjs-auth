@@ -1,12 +1,32 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server'
+import { Configuration, OpenAIApi, ChatCompletionRequestMessage } from 'openai-edge'
+import { OpenAIStream, StreamingTextResponse } from 'ai'
+import { Ratelimit } from '@upstash/ratelimit'
+import { Redis } from '@upstash/redis'
+import { headers } from 'next/headers'
 
-export const runtime = 'edge';
+export const runtime = 'edge'
 
-// In-memory storage for chat history (use a database for persistence)
-const chatHistory: { [sessionId: string]: { role: string; content: string }[] } = {};
+const config = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY
+})
+const openai = new OpenAIApi(config)
 
-// Define the system prompt
-const systemPrompt = `
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN,
+})
+
+const ratelimit = new Ratelimit({
+  redis: redis,
+  limiter: Ratelimit.slidingWindow(5, '1 m'),
+})
+
+const chatHistory: { [sessionId: string]: ChatCompletionRequestMessage[] } = {}
+
+const systemPrompt: ChatCompletionRequestMessage = {
+  role: 'system',
+  content: `
 You are an expert in solving STEM (Science, Technology, Engineering, Mathematics) problems, trained to guide students towards finding accurate, formal, and detailed solutions. Your primary task is to receive STEM-related questions and respond with helpful hints and guidance, enabling students to work their way to the answers.
 
 - Precision: Ensure that every hint you provide is precise and accurate. Pay attention to detail and verify the correctness of your guidance.
@@ -50,70 +70,63 @@ Note:
 Include any additional important information.
 
 For normal text, provide it directly without any specific heading.
-`;
+`
+}
 
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
+  const ip = headers().get('x-forwarded-for') ?? '127.0.0.1'
+  const { success } = await ratelimit.limit(ip)
+  if (!success) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
+  }
+
+  const origin = req.headers.get('origin')
+  if (origin !== process.env.ALLOWED_ORIGIN) {
+    return NextResponse.json({ error: 'CORS error: Origin not allowed' }, { status: 403 })
+  }
+
   try {
-    const body = await request.json();
-    const { question, context, sessionId } = body;
+    const { question, context, sessionId } = await req.json()
 
     if (!process.env.OPENAI_API_KEY) {
-      throw new Error('OPENAI_API_KEY is not set');
+      throw new Error('OPENAI_API_KEY is not set')
     }
 
     if (!question || !context || !sessionId) {
       return NextResponse.json(
         { error: 'Bad Request', details: 'Question, context, and sessionId are required.' },
         { status: 400 }
-      );
+      )
     }
 
-    // Initialize chat history if not present
     if (!chatHistory[sessionId]) {
-      chatHistory[sessionId] = [{ role: 'system', content: `${systemPrompt}\nContext: ${JSON.stringify(context)}` }];
+      chatHistory[sessionId] = [
+        systemPrompt,
+        { role: 'system', content: `Context: ${JSON.stringify(context)}` } as ChatCompletionRequestMessage
+      ]
     }
 
-    // Add user question to chat history
-    chatHistory[sessionId].push({ role: 'user', content: question });
+    chatHistory[sessionId].push({ role: 'user', content: question } as ChatCompletionRequestMessage)
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
-        messages: chatHistory[sessionId],
-        max_tokens: 1500,
-      }),
-    });
+    const response = await openai.createChatCompletion({
+      model: 'gpt-3.5-turbo',
+      messages: chatHistory[sessionId],
+      max_tokens: 1500,
+      temperature: 0.7,
+      stream: true,
+    })
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('OpenAI API Error:', errorData);
-      return NextResponse.json(
-        { error: 'OpenAI API Error', details: errorData },
-        { status: response.status }
-      );
-    }
+    const stream = OpenAIStream(response)
 
-    const data = await response.json();
-    const assistantResponse = data.choices[0].message.content.trim();
+    chatHistory[sessionId].push({ role: 'assistant', content: '[Streaming Response]' } as ChatCompletionRequestMessage)
 
-    // Add assistant response to chat history
-    chatHistory[sessionId].push({ role: 'assistant', content: assistantResponse });
-
-    return NextResponse.json(
-      { response: assistantResponse },
-      { status: 200 }
-    );
+    return new StreamingTextResponse(stream)
   } catch (error) {
-    const typedError = error as Error;
-    console.error('Server Error:', typedError);
+    const typedError = error as Error
+    console.error('Server Error:', typedError)
     return NextResponse.json(
       { error: 'Internal Server Error', details: typedError.message },
       { status: 500 }
-    );
+    )
   }
 }

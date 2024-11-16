@@ -3,9 +3,12 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Session } from 'next-auth'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+import HCaptcha from '@hcaptcha/react-hcaptcha'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import {
   Select,
@@ -15,9 +18,29 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
-import { Loader2 } from 'lucide-react'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Progress } from "@/components/ui/progress"
+
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  role: z.enum(["VOLUNTEER", "MODERATOR"], { required_error: "Please select a role." }),
+  experience: z.string().min(50, { message: "Experience must be at least 50 characters." }),
+  motivation: z.string().min(50, { message: "Motivation must be at least 50 characters." }),
+  captchaToken: z.string().min(1, { message: "Please complete the CAPTCHA." }),
+  honeypot: z.string().max(0, { message: "This field should be left empty." }),
+})
 
 interface ApplicationFormProps {
   session: Session
@@ -27,19 +50,31 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
   const router = useRouter()
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [formErrors, setFormErrors] = useState<Record<string, string>>({})
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: session.user?.name || "",
+      email: session.user?.email || "",
+      role: undefined,
+      experience: "",
+      motivation: "",
+      captchaToken: "",
+      honeypot: "",
+    },
+  })
+
+  const { watch } = form
+  const experienceLength = watch("experience").length
+  const motivationLength = watch("motivation").length
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true)
-    setFormErrors({})
-
-    const formData = new FormData(event.currentTarget)
-
     try {
       const response = await fetch('/api/applications', {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
       })
 
       if (!response.ok) {
@@ -48,20 +83,19 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
       }
 
       toast({
-        title: "Success",
-        description: "Your application has been submitted successfully.",
+        title: "Application Submitted",
+        description: "Your application has been successfully submitted. We'll be in touch soon!",
+        duration: 5000,
       })
       router.push('/application-success')
     } catch (error) {
       console.error('Application submission error:', error)
       toast({
         title: "Error",
-        description: "Failed to submit application. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to submit application. Please try again.",
         variant: "destructive",
+        duration: 5000,
       })
-      if (error instanceof Error) {
-        setFormErrors({ submit: error.message })
-      }
     } finally {
       setIsSubmitting(false)
     }
@@ -70,6 +104,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
   if (!session.user) {
     return (
       <Alert variant="destructive">
+        <AlertCircle className="h-4 w-4" />
         <AlertTitle>Error</AlertTitle>
         <AlertDescription>User data is missing. Please try signing in again.</AlertDescription>
       </Alert>
@@ -79,79 +114,154 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
   return (
     <Card className="max-w-2xl mx-auto">
       <CardHeader>
-        <CardTitle>Volunteer/Moderator Application</CardTitle>
-        <CardDescription>Join our team and help make a difference!</CardDescription>
+        <CardTitle className="text-2xl font-bold">Volunteer/Moderator Application</CardTitle>
+        <CardDescription>Join our team and help make a difference in our community!</CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
               name="name"
-              defaultValue={session.user.name || ''}
-              required
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Your full name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
+            <FormField
+              control={form.control}
               name="email"
-              defaultValue={session.user.email || ''}
-              disabled
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Your email address" {...field} disabled />
+                  </FormControl>
+                  <FormDescription>We'll use this email to contact you about your application.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="role">Role</Label>
-            <Select name="role" required>
-              <SelectTrigger>
-                <SelectValue placeholder="Select a role" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="VOLUNTEER">Volunteer</SelectItem>
-                <SelectItem value="MODERATOR">Moderator</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="experience">Relevant Experience</Label>
-            <Textarea
-              id="experience"
+            <FormField
+              control={form.control}
+              name="role"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Role</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a role" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="VOLUNTEER">Volunteer</SelectItem>
+                      <SelectItem value="MODERATOR">Moderator</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormDescription>Choose the role you're applying for.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="experience"
-              required
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Relevant Experience</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Tell us about your relevant experience..."
+                      className="resize-none"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    Minimum 50 characters. You've written {experienceLength} characters.
+                  </FormDescription>
+                  <Progress value={(experienceLength / 50) * 100} className="w-full" />
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="motivation">Motivation</Label>
-            <Textarea
-              id="motivation"
+            <FormField
+              control={form.control}
               name="motivation"
-              required
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Motivation</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Why do you want to join our team?"
+                      className="resize-none"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    Minimum 50 characters. You've written {motivationLength} characters.
+                  </FormDescription>
+                  <Progress value={(motivationLength / 50) * 100} className="w-full" />
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
-          {formErrors.submit && (
-            <Alert variant="destructive">
-              <AlertTitle>Error</AlertTitle>
-              <AlertDescription>{formErrors.submit}</AlertDescription>
-            </Alert>
-          )}
-          <Button 
-            type="submit"
-            disabled={isSubmitting} 
-            className="w-full"
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Submitting...
-              </>
-            ) : (
-              'Submit Application'
-            )}
-          </Button>
-        </form>
+            <FormField
+              control={form.control}
+              name="captchaToken"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>CAPTCHA Verification</FormLabel>
+                  <FormControl>
+                    <HCaptcha
+                      sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ''}
+                      onVerify={(token) => field.onChange(token)}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="honeypot"
+              render={({ field }) => (
+                <FormItem className="sr-only">
+                  <FormLabel>Leave this field empty</FormLabel>
+                  <FormControl>
+                    <Input {...field} tabIndex={-1} autoComplete="off" />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
       </CardContent>
+      <CardFooter>
+        <Button
+          type="submit"
+          onClick={form.handleSubmit(onSubmit)}
+          disabled={isSubmitting}
+          className="w-full"
+        >
+          {isSubmitting ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Submitting...
+            </>
+          ) : (
+            <>
+              <CheckCircle2 className="mr-2 h-4 w-4" />
+              Submit Application
+            </>
+          )}
+        </Button>
+      </CardFooter>
     </Card>
   )
 }
