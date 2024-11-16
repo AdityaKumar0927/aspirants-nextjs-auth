@@ -60,7 +60,8 @@ model User {
   issues                 Issue[]                 @relation("UserIssues")
   policyAgreements       UserPolicyAgreement[]
   role                   UserRole                @relation(fields: [roleId], references: [id], onDelete: Cascade)
-  roleId                 String                  @default("member") // Set default role to "member"
+  roleId                 String                  @default("member")
+  applications           Application[]
 }
 
 model UserRole {
@@ -344,4 +345,31 @@ enum IssueStatus {
   IN_PROGRESS
   RESOLVED
   CLOSED
+}
+
+model Application {
+  id         String           @id @default(cuid())
+  userId     String
+  name       String
+  email      String
+  role       ApplicationRole
+  experience String
+  motivation String
+  status     ApplicationStatus @default(PENDING)
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+  user       User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+enum ApplicationRole {
+  VOLUNTEER
+  MODERATOR
+}
+
+enum ApplicationStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }
