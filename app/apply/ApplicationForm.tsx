@@ -86,7 +86,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
 
       toast({
         title: "Application Submitted",
-        description: "Your application has been successfully submitted. We'll be in touch soon!",
+        description: "Your application has been successfully submitted. We&apos;ll be in touch soon!",
         duration: 5000,
       })
       router.push('/application-success')
@@ -144,7 +144,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
                   <FormControl>
                     <Input placeholder="Your email address" {...field} disabled />
                   </FormControl>
-                  <FormDescription>We'll use this email to contact you about your application.</FormDescription>
+                  <FormDescription>We&apos;ll use this email to contact you about your application.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -166,7 +166,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
                       <SelectItem value="MODERATOR">Moderator</SelectItem>
                     </SelectContent>
                   </Select>
-                  <FormDescription>Choose the role you're applying for.</FormDescription>
+                  <FormDescription>Choose the role you&apos;re applying for.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -185,7 +185,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
                     />
                   </FormControl>
                   <FormDescription>
-                    Minimum 50 characters. You've written {experienceLength} characters.
+                    Minimum 50 characters. You&apos;ve written {experienceLength} characters.
                   </FormDescription>
                   <Progress value={(experienceLength / 50) * 100} className="w-full" />
                   <FormMessage />
@@ -206,7 +206,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
                     />
                   </FormControl>
                   <FormDescription>
-                    Minimum 50 characters. You've written {motivationLength} characters.
+                    Minimum 50 characters. You&apos;ve written {motivationLength} characters.
                   </FormDescription>
                   <Progress value={(motivationLength / 50) * 100} className="w-full" />
                   <FormMessage />
