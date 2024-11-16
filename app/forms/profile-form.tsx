@@ -72,7 +72,7 @@ export default function ProfileForm({ initialData, userRole }: ProfileFormProps)
 
   async function onSubmit(data: ProfileFormValues) {
     try {
-      const response = await fetch("/api/settings/profile-settings", {
+      const response = await fetch(`${window.location.origin}/api/settings/profile-settings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -91,7 +91,7 @@ export default function ProfileForm({ initialData, userRole }: ProfileFormProps)
           { policyName: "Privacy Policy", accepted: data.privacyPolicyAccepted },
           { policyName: "Cookie Policy", accepted: data.cookiePolicyAccepted },
         ].map(async ({ policyName, accepted }) => {
-          const policyResponse = await fetch("/api/policy/accept", {
+          const policyResponse = await fetch(`${window.location.origin}/api/policy/accept`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ policyName, accepted }),
@@ -126,7 +126,7 @@ export default function ProfileForm({ initialData, userRole }: ProfileFormProps)
 
   const handleReset = async () => {
     try {
-      const response = await fetch("/api/user/delete", {
+      const response = await fetch(`${window.location.origin}/api/user/delete`, {
         method: "DELETE",
       })
 

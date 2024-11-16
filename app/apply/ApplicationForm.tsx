@@ -42,6 +42,8 @@ const formSchema = z.object({
   honeypot: z.string().max(0, { message: "This field should be left empty." }),
 })
 
+type FormValues = z.infer<typeof formSchema>
+
 interface ApplicationFormProps {
   session: Session
 }
@@ -51,7 +53,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: session.user?.name || "",
@@ -68,7 +70,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
   const experienceLength = watch("experience").length
   const motivationLength = watch("motivation").length
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: FormValues) => {
     setIsSubmitting(true)
     try {
       const response = await fetch('/api/applications', {
@@ -220,7 +222,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
                   <FormControl>
                     <HCaptcha
                       sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ''}
-                      onVerify={(token) => field.onChange(token)}
+                      onVerify={(token: string) => field.onChange(token)}
                     />
                   </FormControl>
                   <FormMessage />
