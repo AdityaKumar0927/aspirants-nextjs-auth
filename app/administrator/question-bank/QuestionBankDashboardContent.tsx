@@ -22,6 +22,7 @@ import debounce from 'lodash/debounce'
 import { useQuestionContext } from './QuestionContext'
 import { QuestionForm } from './QuestionForm'
 import type { Question, QuestionStatus } from './types'
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 const fetchQuestions = async (): Promise<Question[]> => {
   const response = await fetch('/api/questions')
@@ -77,8 +78,8 @@ export function QuestionBankDashboardContent() {
     onMutate: async (updatedQuestion) => {
       await queryClient.cancelQueries({ queryKey: ['questions'] })
       const previousQuestions = queryClient.getQueryData<Question[]>(['questions'])
-      queryClient.setQueryData<Question[]>(['questions'], (old) => 
-        old?.map(question => 
+      queryClient.setQueryData<Question[]>(['questions'], (old) =>
+        old?.map(question =>
           question.questionId === updatedQuestion.questionId ? { ...question, ...updatedQuestion } : question
         ) ?? []
       )
@@ -115,25 +116,25 @@ export function QuestionBankDashboardContent() {
           const updatedFilter = isSelected
             ? filterValues.filter((v: string) => v !== value)
             : [...filterValues, value]
-          
+
           const newFilters = { ...prevFilters, [tag]: updatedFilter }
-          
+
           if (tag === 'exams') {
             const selectedExams = newFilters.exams
-            newFilters.subjects = newFilters.subjects.filter(subject => 
+            newFilters.subjects = newFilters.subjects.filter(subject =>
               questions.some(q => selectedExams.includes(q.exam) && q.subject === subject)
             )
-            newFilters.topics = newFilters.topics.filter(topic => 
+            newFilters.topics = newFilters.topics.filter(topic =>
               questions.some(q => selectedExams.includes(q.exam) && q.topic === topic)
             )
-            newFilters.subtopics = newFilters.subtopics.filter(subtopic => 
+            newFilters.subtopics = newFilters.subtopics.filter(subtopic =>
               questions.some(q => selectedExams.includes(q.exam) && q.subtopic === subtopic)
             )
-            newFilters.types = newFilters.types.filter(type => 
+            newFilters.types = newFilters.types.filter(type =>
               questions.some(q => selectedExams.includes(q.exam) && q.type === type)
             )
           }
-          
+
           return newFilters
         }
         return prevFilters
@@ -172,18 +173,7 @@ export function QuestionBankDashboardContent() {
 
   const handleEditQuestion = async (editedQuestion: Question) => {
     try {
-      const response = await fetch(`/api/questions`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(editedQuestion),
-      })
-
-      if (!response.ok) throw new Error('Failed to update question')
-
-      const updatedQuestion = await response.json()
-      setQuestions(prev => prev.map((q) => (q.questionId === editedQuestion.questionId ? updatedQuestion : q)))
+      await updateQuestionMutation.mutateAsync(editedQuestion)
       setIsEditDialogOpen(false)
       setEditingQuestion(null)
       toast({
@@ -311,26 +301,28 @@ export function QuestionBankDashboardContent() {
   };
 
   const filteredQuestions = useMemo(() => {
-    return questions.filter((question) => {
-      const lowerSearchQuery = searchQuery.toLowerCase()
-      const matchesSearch =
-        question.text.toLowerCase().includes(lowerSearchQuery) ||
-        question.topic.toLowerCase().includes(lowerSearchQuery) ||
-        (question.subtopic?.toLowerCase().includes(lowerSearchQuery) ?? false) ||
-        question.subject.toLowerCase().includes(lowerSearchQuery)
+    return questions
+      .filter((question) => {
+        const lowerSearchQuery = searchQuery.toLowerCase()
+        const matchesSearch =
+          question.text.toLowerCase().includes(lowerSearchQuery) ||
+          question.topic.toLowerCase().includes(lowerSearchQuery) ||
+          (question.subtopic?.toLowerCase().includes(lowerSearchQuery) ?? false) ||
+          question.subject.toLowerCase().includes(lowerSearchQuery)
 
-      const matchesFilters =
-        (!filters.exams.length || filters.exams.includes(question.exam)) &&
-        (!filters.subjects.length || filters.subjects.includes(question.subject)) &&
-        (!filters.topics.length || filters.topics.includes(question.topic)) &&
-        (!filters.subtopics.length || (question.subtopic && filters.subtopics.includes(question.subtopic))) &&
-        (!filters.difficulties.length || filters.difficulties.includes(question.difficulty)) &&
-        (!filters.years.length || filters.years.includes(question.year.toString())) &&
-        (!filters.types.length || filters.types.includes(question.type)) &&
-        (filters.status === 'all' || question.status === filters.status)
+        const matchesFilters =
+          (!filters.exams.length || filters.exams.includes(question.exam)) &&
+          (!filters.subjects.length || filters.subjects.includes(question.subject)) &&
+          (!filters.topics.length || filters.topics.includes(question.topic)) &&
+          (!filters.subtopics.length || (question.subtopic && filters.subtopics.includes(question.subtopic))) &&
+          (!filters.difficulties.length || filters.difficulties.includes(question.difficulty)) &&
+          (!filters.years.length || filters.years.includes(question.year.toString())) &&
+          (!filters.types.length || filters.types.includes(question.type)) &&
+          (filters.status === 'all' || question.status === filters.status)
 
-      return matchesSearch && matchesFilters
-    })
+        return matchesSearch && matchesFilters
+      })
+      .sort((a, b) => parseInt(a.questionId) - parseInt(b.questionId));
   }, [questions, filters, searchQuery])
 
   const parentRef = React.useRef<HTMLDivElement>(null)
@@ -354,7 +346,7 @@ export function QuestionBankDashboardContent() {
     <TooltipProvider>
       <div className="space-y-6">
         <h1 className="text-3xl font-bold tracking-tight">Question Bank Dashboard</h1>
-        
+
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -472,7 +464,7 @@ export function QuestionBankDashboardContent() {
               </DialogHeader>
               <div className="grid w-full gap-1.5">
                 <Label htmlFor="batchText">Paste Questions JSON</Label>
-                <Textarea 
+                <Textarea
                   id="batchText"
                   placeholder="Paste your questions JSON here..."
                   value={batchUploadText}
@@ -481,8 +473,8 @@ export function QuestionBankDashboardContent() {
                 />
               </div>
               <DialogFooter>
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   onClick={() => handleBatchUpload(batchUploadText)}
                 >
                   Upload
@@ -490,8 +482,8 @@ export function QuestionBankDashboardContent() {
               </DialogFooter>
             </DialogContent>
           </Dialog>
-          <Button 
-            variant="destructive" 
+          <Button
+            variant="destructive"
             onClick={handleDeleteSelected}
             disabled={selectedQuestions.length === 0}
           >
@@ -511,28 +503,74 @@ export function QuestionBankDashboardContent() {
           ].map((filterType) => (
             <Tooltip key={filterType}>
               <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="w-full sm:w-36"
-                  onClick={() => setDropdowns(prev => ({ ...prev, [filterType]: !prev[filterType as keyof typeof dropdowns] }))}
-                >
-                  <span className="mr-2 truncate">
-                    {Array.isArray(filters[filterType as keyof typeof filters]) &&
-                    (filters[filterType as keyof typeof filters] as string[]).length
-                      ? `${
-                          (filters[filterType as keyof typeof filters] as string[])
-                            .length
-                        } selected`
-                      : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                  </span>
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform ${
-                      dropdowns[filterType as keyof typeof dropdowns]
-                        ? "rotate-180"
-                        : ""
-                    }`}
-                  />
-                </Button>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="w-full sm:w-36"
+                      onClick={() => setDropdowns(prev => ({ ...prev, [filterType]: !prev[filterType as keyof typeof dropdowns] }))}
+                    >
+                      <span className="mr-2 truncate">
+                        {Array.isArray(filters[filterType as keyof typeof filters]) &&
+                          (filters[filterType as keyof typeof filters] as string[]).length
+                          ? `${
+                              (filters[filterType as keyof typeof filters] as string[])
+                                .length
+                            } selected`
+                          : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                      </span>
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          dropdowns[filterType as keyof typeof dropdowns]
+                            ? "rotate-180"
+                            : ""
+                        }`}
+                      />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent align="start">
+                    <div className="w-full bg-white rounded-md p-2 sm:w-40">
+                      {Array.from(
+                        new Set(
+                          questions.map((q) => {
+                            switch (filterType) {
+                              case "exams":
+                                return q.exam
+                              case "subjects":
+                                return q.subject
+                              case "topics":
+                                return q.topic
+                              case "subtopics":
+                                return q.subtopic
+                              case "difficulties":
+                                return q.difficulty
+                              case "years":
+                                return q.year.toString()
+                              case "types":
+                                return q.type
+                              default:
+                                return ""
+                            }
+                          })
+                        )
+                      ).map((value) => (
+                        <div key={value} className="flex items-center">
+                          <Checkbox
+                            id={`${filterType}-${value}`}
+                            checked={(filters[filterType as keyof typeof filters] as string[]).includes(value)}
+                            onCheckedChange={(checked) => handleFilterChange(filterType as keyof typeof filters, value)}
+                          />
+                          <label
+                            htmlFor={`${filterType}-${value}`}
+                            className="ml-2 text-sm"
+                          >
+                            {value}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                  </PopoverContent>
+                </Popover>
               </TooltipTrigger>
               <TooltipContent>
                 Select {filterType.charAt(0).toUpperCase() + filterType.slice(1)}

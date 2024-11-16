@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useFieldArray, useForm } from "react-hook-form"
@@ -33,11 +33,13 @@ const profileFormSchema = z.object({
   username: z.string().min(2, { message: "Username must be at least 2 characters." }).max(30, { message: "Username must not be longer than 30 characters." }),
   email: z.string({ required_error: "Please select an email to display." }).email(),
   bio: z.string().max(160).min(4),
-  urls: z.array(
-    z.object({
-      value: z.string().url({ message: "Please enter a valid URL." }),
-    })
-  ).optional(),
+  urls: z
+    .array(
+      z.object({
+        value: z.string().url({ message: "Please enter a valid URL." }),
+      })
+    )
+    .optional(),
   termsAccepted: z.boolean().default(false),
   privacyPolicyAccepted: z.boolean().default(false),
   cookiePolicyAccepted: z.boolean().default(false),
@@ -53,7 +55,7 @@ interface ProfileFormProps {
   userRole: Role
 }
 
-export function ProfileForm({ initialData, userRole }: ProfileFormProps) {
+export default function ProfileForm({ initialData, userRole }: ProfileFormProps) {
   const [showResetConfirm, setShowResetConfirm] = useState(false)
   const router = useRouter()
 
