@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Session } from 'next-auth'
 import { Button } from "@/components/ui/button"
@@ -30,11 +30,25 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
   const [formErrors, setFormErrors] = useState<Record<string, string>>({})
   const [error, setError] = useState<string | null>(null)
   const [formData, setFormData] = useState({
-    name: session.user?.name || '',
+    name: '',
     role: '',
     experience: '',
     motivation: ''
   })
+
+  useEffect(() => {
+    console.log('ApplicationForm mounted')
+    console.log('Session:', session)
+    if (session.user?.name) {
+      setFormData(prevData => ({
+        ...prevData,
+        name: session.user?.name || ''
+      }))
+    }
+    return () => {
+      console.log('ApplicationForm unmounted')
+    }
+  }, [session])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -136,6 +150,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
   }
 
   if (!session.user) {
+    console.error('User data is missing')
     return (
       <Alert variant="destructive">
         <AlertTitle>Error</AlertTitle>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useSession } from 'next-auth/react'
-import { useSignInModal } from "@/components/layout/sign-in"
+import { useSignInModal } from '@/components/layout/sign-in'
 import ApplicationForm from './ApplicationForm'
 import { Loader2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
@@ -14,10 +14,19 @@ export default function ApplyClientWrapper() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    console.log('ApplyClientWrapper mounted')
+    console.log('Session status:', status)
+    console.log('Session data:', session)
+
     if (status === 'unauthenticated') {
+      console.log('User is unauthenticated, showing sign-in modal')
       setShowSignInModal(true)
     }
-  }, [status, setShowSignInModal])
+
+    return () => {
+      console.log('ApplyClientWrapper unmounted')
+    }
+  }, [status, setShowSignInModal, session])
 
   if (status === 'loading') {
     return <Loader2 className="h-8 w-8 animate-spin" />
@@ -48,6 +57,7 @@ export default function ApplyClientWrapper() {
   }
 
   if (!session || !session.user) {
+    console.error('Session or user data is missing')
     return (
       <Alert variant="destructive">
         <AlertTitle>Error</AlertTitle>
@@ -59,6 +69,7 @@ export default function ApplyClientWrapper() {
     )
   }
 
+  console.log('Rendering ApplicationForm')
   return (
     <>
       <SignInModal />
