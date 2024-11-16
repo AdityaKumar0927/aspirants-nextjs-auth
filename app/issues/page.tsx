@@ -1,7 +1,6 @@
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "../api/auth/[...nextauth]/options"
-import prisma from "@/lib/prisma"
-import { notFound } from "next/navigation"
+"use client"
+
+import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -12,7 +11,15 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { RefreshCw, Search } from 'lucide-react'
+import { RefreshCw, Search, Plus } from 'lucide-react'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Switch } from "@/components/ui/switch"
 
 export type IssueArea = "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
 export type IssueStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
@@ -48,65 +55,78 @@ const priorityColors = {
   CRITICAL: "bg-purple-500/20 text-purple-700",
 }
 
-async function getIssues(): Promise<Issue[]> {
-  const issues = await prisma.issue.findMany({
-    include: {
-      createdBy: {
-        select: {
-          name: true,
-          email: true,
-        },
-      },
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
+export default function UserIssueTracker() {
+  const [issues, setIssues] = useState<Issue[]>([])
+  const [filteredIssues, setFilteredIssues] = useState<Issue[]>([])
+  const [searchQuery, setSearchQuery] = useState('')
+  const [statusFilter, setStatusFilter] = useState<IssueStatus | 'All'>('All')
+  const [priorityFilter, setPriorityFilter] = useState<IssuePriority | 'All'>('All')
+  const [areaFilter, setAreaFilter] = useState<IssueArea | 'All'>('All')
+  const [showAllIssues, setShowAllIssues] = useState(false)
+  const [newIssue, setNewIssue] = useState({
+    title: '',
+    description: '',
+    priority: 'MEDIUM' as IssuePriority,
+    area: 'OTHER' as IssueArea,
   })
 
-  return issues
-}
+  useEffect(() => {
+    fetchIssues()
+  }, [])
 
-async function getUserRole(): Promise<string | null> {
-  const session = await getServerSession(authOptions)
-  if (!session || !session.user) {
-    return null
+  useEffect(() => {
+    filterIssues()
+  }, [issues, searchQuery, statusFilter, priorityFilter, areaFilter, showAllIssues])
+
+  const fetchIssues = async () => {
+    try {
+      const response = await fetch('/api/issues')
+      if (!response.ok) throw new Error('Failed to fetch issues')
+      const data = await response.json()
+      setIssues(data)
+    } catch (error) {
+      console.error('Error fetching issues:', error)
+    }
   }
 
-  const user = await prisma.user.findUnique({
-    where: { email: session.user.email! },
-    include: { role: true },
-  })
+  const filterIssues = () => {
+    const filtered = issues.filter((issue) => {
+      const matchesSearch =
+        issue.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        issue.description.toLowerCase().includes(searchQuery.toLowerCase())
+      const matchesStatus = statusFilter === "All" || issue.status === statusFilter
+      const matchesPriority = priorityFilter === "All" || issue.priority === priorityFilter
+      const matchesArea = areaFilter === "All" || issue.area === areaFilter
+      const matchesUser = showAllIssues || issue.createdBy.email === 'current_user@example.com' // Replace with actual user email
+      return matchesSearch && matchesStatus && matchesPriority && matchesArea && matchesUser
+    })
+    setFilteredIssues(filtered)
+  }
 
-  return user?.role?.name ?? null
-}
+  const handleCreateIssue = async (e: React.FormEvent) => {
+    e.preventDefault()
+    try {
+      const response = await fetch('/api/issues', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newIssue),
+      })
 
-export default async function IssuesPage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
-  const issues = await getIssues()
-  const userRole = await getUserRole()
+      if (!response.ok) throw new Error('Failed to create issue')
 
-  const searchQuery = typeof searchParams.search === 'string' ? searchParams.search : ''
-  const statusFilter = typeof searchParams.status === 'string' ? searchParams.status : 'All'
-  const priorityFilter = typeof searchParams.priority === 'string' ? searchParams.priority : 'All'
-  const areaFilter = typeof searchParams.area === 'string' ? searchParams.area : 'All'
-
-  const filteredIssues = issues.filter((issue) => {
-    const matchesSearch =
-      issue.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      issue.description.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesStatus = statusFilter === "All" || issue.status === statusFilter
-    const matchesPriority = priorityFilter === "All" || issue.priority === priorityFilter
-    const matchesArea = areaFilter === "All" || issue.area === areaFilter
-    return matchesSearch && matchesStatus && matchesPriority && matchesArea
-  })
-
-  const canCreateIssue = userRole && userRole !== 'member'
-
-  if (!userRole) {
-    notFound()
+      const createdIssue = await response.json()
+      setIssues((prevIssues) => [createdIssue, ...prevIssues])
+      setNewIssue({
+        title: '',
+        description: '',
+        priority: 'MEDIUM',
+        area: 'OTHER',
+      })
+    } catch (error) {
+      console.error('Error creating issue:', error)
+    }
   }
 
   return (
@@ -126,14 +146,14 @@ export default async function IssuesPage({
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search issues..."
-                name="search"
-                defaultValue={searchQuery}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-8"
               />
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Select name="status" defaultValue={statusFilter}>
+            <Select value={statusFilter} onValueChange={(value) => setStatusFilter(value as IssueStatus | 'All')}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="All Statuses" />
               </SelectTrigger>
@@ -145,7 +165,7 @@ export default async function IssuesPage({
                 <SelectItem value="CLOSED">Closed</SelectItem>
               </SelectContent>
             </Select>
-            <Select name="priority" defaultValue={priorityFilter}>
+            <Select value={priorityFilter} onValueChange={(value) => setPriorityFilter(value as IssuePriority | 'All')}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="All Priorities" />
               </SelectTrigger>
@@ -157,7 +177,7 @@ export default async function IssuesPage({
                 <SelectItem value="CRITICAL">Critical</SelectItem>
               </SelectContent>
             </Select>
-            <Select name="area" defaultValue={areaFilter}>
+            <Select value={areaFilter} onValueChange={(value) => setAreaFilter(value as IssueArea | 'All')}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="All Areas" />
               </SelectTrigger>
@@ -174,15 +194,90 @@ export default async function IssuesPage({
         </div>
 
         <div className="flex justify-between items-center">
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" onClick={fetchIssues}>
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh
           </Button>
-          {canCreateIssue && (
-            <Button size="sm">
-              Create New Issue
-            </Button>
-          )}
+          <div className="flex items-center space-x-2">
+            <Switch
+              id="show-all-issues"
+              checked={showAllIssues}
+              onCheckedChange={setShowAllIssues}
+            />
+            <Label htmlFor="show-all-issues">Show all issues</Label>
+          </div>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button size="sm">
+                <Plus className="mr-2 h-4 w-4" />
+                Create New Issue
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80">
+              <form onSubmit={handleCreateIssue}>
+                <div className="grid gap-4">
+                  <div className="space-y-2">
+                    <h4 className="font-medium leading-none">Create New Issue</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Fill in the details to create a new issue.
+                    </p>
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="title">Title</Label>
+                    <Input
+                      id="title"
+                      value={newIssue.title}
+                      onChange={(e) => setNewIssue({ ...newIssue, title: e.target.value })}
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="description">Description</Label>
+                    <Textarea
+                      id="description"
+                      value={newIssue.description}
+                      onChange={(e) => setNewIssue({ ...newIssue, description: e.target.value })}
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="priority">Priority</Label>
+                    <Select
+                      value={newIssue.priority}
+                      onValueChange={(value) => setNewIssue({ ...newIssue, priority: value as IssuePriority })}
+                    >
+                      <SelectTrigger id="priority">
+                        <SelectValue placeholder="Select priority" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="LOW">Low</SelectItem>
+                        <SelectItem value="MEDIUM">Medium</SelectItem>
+                        <SelectItem value="HIGH">High</SelectItem>
+                        <SelectItem value="CRITICAL">Critical</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="area">Area</Label>
+                    <Select
+                      value={newIssue.area}
+                      onValueChange={(value) => setNewIssue({ ...newIssue, area: value as IssueArea })}
+                    >
+                      <SelectTrigger id="area">
+                        <SelectValue placeholder="Select area" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="CONTENT">Content</SelectItem>
+                        <SelectItem value="UI">UI</SelectItem>
+                        <SelectItem value="BUG">Bug</SelectItem>
+                        <SelectItem value="FEATURE">Feature</SelectItem>
+                        <SelectItem value="OTHER">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <Button type="submit">Create Issue</Button>
+                </div>
+              </form>
+            </PopoverContent>
+          </Popover>
         </div>
 
         <div className="rounded-lg border">
@@ -222,7 +317,7 @@ export default async function IssuesPage({
                     <span>{issue.area.toLowerCase()}</span>
                     <span>•</span>
                     <span>
-                      {issue.createdAt.toLocaleString("en-US", {
+                      {new Date(issue.createdAt).toLocaleString("en-US", {
                         hour: "numeric",
                         minute: "numeric",
                         hour12: true,
