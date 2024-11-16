@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React, { useState, useCallback, useMemo } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
@@ -99,16 +99,15 @@ export function QuestionBankDashboardContent() {
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([])
   const [batchUploadText, setBatchUploadText] = useState("")
   const [isBatchUploadDialogOpen, setIsBatchUploadDialogOpen] = useState(false)
-  const itemsPerPage = 10
   const { toast } = useToast()
   const queryClient = useQueryClient()
 
-  const { data: questions = [], isLoading, error } = useQuery<Question[], Error>({
+  const { data: questions = [], isLoading, error } = useQuery({
     queryKey: ['questions'],
     queryFn: fetchQuestions
   })
 
-  const updateQuestionMutation = useMutation<Question, Error, Partial<Question>, { previousQuestions: Question[] | undefined }>({
+  const updateQuestionMutation = useMutation({
     mutationFn: updateQuestion,
     onMutate: async (updatedQuestion) => {
       await queryClient.cancelQueries({ queryKey: ['questions'] })
@@ -120,7 +119,7 @@ export function QuestionBankDashboardContent() {
       )
       return { previousQuestions }
     },
-    onError: (err, newQuestion, context) => {
+    onError: (err, newQuestion, context: any) => {
       if (context?.previousQuestions) {
         queryClient.setQueryData(['questions'], context.previousQuestions)
       }
@@ -795,7 +794,7 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
         <Textarea
           id="text"
           name="text"
-          value={formData.text || ''}
+          value={formData.text}
           onChange={handleInputChange}
           required
         />
@@ -806,7 +805,7 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
           <Input
             id="subject"
             name="subject"
-            value={formData.subject || ''}
+            value={formData.subject}
             onChange={handleInputChange}
             required
           />
@@ -816,7 +815,7 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
           <Input
             id="topic"
             name="topic"
-            value={formData.topic || ''}
+            value={formData.topic}
             onChange={handleInputChange}
             required
           />
@@ -825,7 +824,8 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
       <div className="space-y-2">
         <Label htmlFor="difficulty">Difficulty</Label>
         <Select
-          value={formData.difficulty || ''}
+          name="difficulty"
+          value={formData.difficulty}
           onValueChange={(value) => handleSelectChange('difficulty', value)}
         >
           <SelectTrigger>
@@ -859,6 +859,7 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
       <div className="space-y-2">
         <Label htmlFor="correctOption">Correct Option</Label>
         <Select
+          name="correctOption"
           value={formData.correctOption || ''}
           onValueChange={(value) => handleSelectChange('correctOption', value)}
         >
@@ -875,7 +876,7 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
         </Select>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="markscheme">Markscheme</Label>
+        <Label htmlFor="markscheme">Mark Scheme</Label>
         <Textarea
           id="markscheme"
           name="markscheme"
