@@ -1,56 +1,22 @@
-"use client"
+'use client'
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-} from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import Popover from "@/components/shared/popover"
 import { Skeleton } from "@/components/ui/skeleton"
 import { ArrowUpIcon, ArrowDownIcon, ChevronDown, Search, Plus, Trash2, Edit, Eye, CheckCircle, XCircle, MoreHorizontal, Upload, FileUp, FileJson, Loader2 } from 'lucide-react'
+import { useVirtualizer } from '@tanstack/react-virtual'
 
 type QuestionStatus = 'ACTIVE' | 'DRAFT' | 'ARCHIVED'
 
@@ -178,35 +144,38 @@ export default function QuestionBankDashboard() {
 
   const handleFilterChange = useCallback(
     (tag: keyof FiltersType, value: string) => {
-      const filterValues = filters[tag]
-      if (Array.isArray(filterValues)) {
-        const isSelected = filterValues.includes(value)
-        const updatedFilter = isSelected
-          ? filterValues.filter((v: string) => v !== value)
-          : [...filterValues, value]
-        
-        const newFilters = { ...filters, [tag]: updatedFilter }
-        
-        if (tag === 'exams') {
-          const selectedExams = newFilters.exams
-          newFilters.subjects = newFilters.subjects.filter(subject => 
-            questions.some(q => selectedExams.includes(q.exam) && q.subject === subject)
-          )
-          newFilters.topics = newFilters.topics.filter(topic => 
-            questions.some(q => selectedExams.includes(q.exam) && q.topic === topic)
-          )
-          newFilters.subtopics = newFilters.subtopics.filter(subtopic => 
-            questions.some(q => selectedExams.includes(q.exam) && q.subtopic === subtopic)
-          )
-          newFilters.types = newFilters.types.filter(type => 
-            questions.some(q => selectedExams.includes(q.exam) && q.type === type)
-          )
+      setFilters(prevFilters => {
+        const filterValues = prevFilters[tag]
+        if (Array.isArray(filterValues)) {
+          const isSelected = filterValues.includes(value)
+          const updatedFilter = isSelected
+            ? filterValues.filter((v: string) => v !== value)
+            : [...filterValues, value]
+          
+          const newFilters = { ...prevFilters, [tag]: updatedFilter }
+          
+          if (tag === 'exams') {
+            const selectedExams = newFilters.exams
+            newFilters.subjects = newFilters.subjects.filter(subject => 
+              questions.some(q => selectedExams.includes(q.exam) && q.subject === subject)
+            )
+            newFilters.topics = newFilters.topics.filter(topic => 
+              questions.some(q => selectedExams.includes(q.exam) && q.topic === topic)
+            )
+            newFilters.subtopics = newFilters.subtopics.filter(subtopic => 
+              questions.some(q => selectedExams.includes(q.exam) && q.subtopic === subtopic)
+            )
+            newFilters.types = newFilters.types.filter(type => 
+              questions.some(q => selectedExams.includes(q.exam) && q.type === type)
+            )
+          }
+          
+          return newFilters
         }
-        
-        setFilters(newFilters)
-      }
+        return prevFilters
+      })
     },
-    [filters, questions]
+    [questions]
   )
 
   const handleAddQuestion = async (newQuestion: Partial<Question>) => {
@@ -239,6 +208,7 @@ export default function QuestionBankDashboard() {
 
   const handleEditQuestion = async (editedQuestion: Question) => {
     try {
+      setIsLoading(true)
       const response = await fetch(`/api/questions`, {
         method: 'PATCH',
         headers: {
@@ -265,6 +235,8 @@ export default function QuestionBankDashboard() {
         description: "Failed to update question. Please try again.",
         variant: "destructive",
       })
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -364,7 +336,7 @@ export default function QuestionBankDashboard() {
       const result = await response.json();
       toast({
         title: "Batch Upload Successful",
-        description: `Successfully uploaded questions.`,
+        description: `Successfully uploaded ${result.length} questions.`,
       });
       fetchQuestions();
     } catch (error) {
@@ -403,6 +375,15 @@ export default function QuestionBankDashboard() {
       return matchesSearch && matchesFilters
     })
   }, [questions, filters, searchQuery])
+
+  const parentRef = React.useRef<HTMLDivElement>(null)
+
+  const rowVirtualizer = useVirtualizer({
+    count: filteredQuestions.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 35,
+    overscan: 5,
+  })
 
   const totalQuestions = questions.length
   const draftQuestions = useMemo(() => questions.filter((question) => question.status === 'DRAFT').length, [questions])
@@ -578,97 +559,28 @@ export default function QuestionBankDashboard() {
           ].map((filterType) => (
             <Tooltip key={filterType}>
               <TooltipTrigger asChild>
-                <Popover
-                  content={
-                    <div className="w-full bg-white rounded-md p-2 sm:w-80">
-                      <Input
-                        type="text"
-                        placeholder={`Search ${filterType}...`}
-                        className="mb-2"
-                        onChange={(e) => {
-                          // Implement search functionality here
-                        }}
-                      />
-                      <div className="max-h-60 overflow-y-auto">
-                        {Array.from(
-                          new Set(
-                            questions
-                              .filter(q => 
-                                filters.exams.length === 0 || filters.exams.includes(q.exam)
-                              )
-                              .map((q) => {
-                                switch (filterType) {
-                                  case "exams":
-                                    return q.exam
-                                  case "subjects":
-                                    return q.subject
-                                  case "topics":
-                                    return q.topic
-                                  case "subtopics":
-                                    return q.subtopic ?? ''
-                                  case "difficulties":
-                                    return q.difficulty
-                                  case "years":
-                                    return q.year.toString()
-                                  case "types":
-                                    return q.type
-                                  default:
-                                    return ""
-                                }
-                              })
-                          )
-                        ).map((value) => (
-                          <div key={value} className="flex items-center">
-                            <input
-                              type="checkbox"
-                              id={`${filterType}-${value}`}
-                              className="mr-2"
-                              checked={
-                                (filters[filterType as keyof FiltersType] as string[] || []).includes(value)
-                              }
-                              onChange={() =>
-                                handleFilterChange(filterType as keyof FiltersType, value)
-                              }
-                            />
-                            <label
-                              htmlFor={`${filterType}-${value}`}
-                              className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
-                            >
-                              {value || ''}
-                            </label>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  }
-                  align="start"
-                  openPopover={dropdowns[filterType as keyof typeof dropdowns]}
-                  setOpenPopover={(open) => {
-                    setDropdowns(prev => ({ ...prev, [filterType]: open }))
-                  }}
+                <Button
+                  variant="outline"
+                  className="w-full sm:w-36"
+                  onClick={() => setDropdowns(prev => ({ ...prev, [filterType]: !prev[filterType as keyof typeof dropdowns] }))}
                 >
-                  <button
-                    onClick={() => setDropdowns(prev => ({ ...prev, [filterType]: !prev[filterType as keyof typeof dropdowns] }))}
-                    className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
-                  >
-                    <p className="text-gray-600">
-                      {Array.isArray(filters[filterType as keyof FiltersType]) &&
-                      (filters[filterType as keyof FiltersType] as string[]).length
-                        ? `${
-                            (filters[filterType as keyof FiltersType] as string[])
-                              .length
-                          } selected`
-                        : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                    </p>
-                    <ChevronDown
-                      className={`h-4 w-4 text-gray-600 transition-all ${
-                        dropdowns[filterType as keyof typeof dropdowns]
-                          ? "rotate-180"
-                          : ""
-                      }`}
-                    />
-                  </button>
-                </Popover>
+                  <span className="mr-2 truncate">
+                    {Array.isArray(filters[filterType as keyof FiltersType]) &&
+                    (filters[filterType as keyof FiltersType] as string[]).length
+                      ? `${
+                          (filters[filterType as keyof FiltersType] as string[])
+                            .length
+                        } selected`
+                      : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                  </span>
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${
+                      dropdowns[filterType as keyof typeof dropdowns]
+                        ? "rotate-180"
+                        : ""
+                    }`}
+                  />
+                </Button>
               </TooltipTrigger>
               <TooltipContent>
                 Select {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
@@ -691,81 +603,98 @@ export default function QuestionBankDashboard() {
           </div>
         ) : (
           <div className="rounded-md border">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[50px]">
-                    <Checkbox
-                      checked={selectedQuestions.length === filteredQuestions.length}
-                      onCheckedChange={(checked) => {
-                        setSelectedQuestions(
-                          checked
-                            ? filteredQuestions.map((q) => q.questionId)
-                            : []
-                        )
-                      }}
-                    />
-                  </TableHead>
-                  <TableHead>Question ID</TableHead>
-                  <TableHead>Text</TableHead>
-                  <TableHead>Subject</TableHead>
-                  <TableHead>Topic</TableHead>
-                  <TableHead>Difficulty</TableHead>
-                  <TableHead>Correct Answer</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredQuestions.map((question) => (
-                  <TableRow key={question.questionId}>
-                    <TableCell>
-                      <Checkbox
-                        checked={selectedQuestions.includes(question.questionId)}
-                        onCheckedChange={(checked) => {
-                          setSelectedQuestions(
-                            checked
-                              ? [...selectedQuestions, question.questionId]
-                              : selectedQuestions.filter((id) => id !== question.questionId)
-                          )
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell className="font-medium">{question.questionId}</TableCell>
-                    <TableCell>{question.text.substring(0, 50)}...</TableCell>
-                    <TableCell>{question.subject}</TableCell>
-                    <TableCell>{question.topic}</TableCell>
-                    <TableCell>{question.difficulty}</TableCell>
-                    <TableCell>{question.correctOption}</TableCell>
-                    <TableCell>{question.status}</TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                          <DropdownMenuItem onClick={() => {
-                            setEditingQuestion(question)
-                            setIsEditDialogOpen(true)
-                          }}>
-                            Edit
-                          </DropdownMenuItem>
-                          <DropdownMenuItem onClick={() => handleDeleteQuestion(question.questionId)}>
-                            Delete
-                          </DropdownMenuItem>
-                          <DropdownMenuSeparator />
-                          <DropdownMenuItem>View Details</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+            <div ref={parentRef} style={{ height: `500px`, overflow: 'auto' }}>
+              <div
+                style={{
+                  height: `${rowVirtualizer.getTotalSize()}px`,
+                  width: '100%',
+                  position: 'relative',
+                }}
+              >
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-[50px]">
+                        <Checkbox
+                          checked={selectedQuestions.length === filteredQuestions.length}
+                          onCheckedChange={(checked) => {
+                            setSelectedQuestions(
+                              checked
+                                ? filteredQuestions.map((q) => q.questionId)
+                                : []
+                            )
+                          }}
+                        />
+                      </TableHead>
+                      <TableHead>Question ID</TableHead>
+                      <TableHead>Text</TableHead>
+                      <TableHead>Subject</TableHead>
+                      <TableHead>Topic</TableHead>
+                      <TableHead>Difficulty</TableHead>
+                      <TableHead>Correct Answer</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="text-right">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+                      const question = filteredQuestions[virtualRow.index]
+                      return (
+                        <TableRow
+                          key={question.questionId}
+                          data-index={virtualRow.index}
+                          ref={rowVirtualizer.measureElement}
+                        >
+                          <TableCell>
+                            <Checkbox
+                              checked={selectedQuestions.includes(question.questionId)}
+                              onCheckedChange={(checked) => {
+                                setSelectedQuestions(
+                                  checked
+                                    ? [...selectedQuestions, question.questionId]
+                                    : selectedQuestions.filter((id) => id !== question.questionId)
+                                )
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell className="font-medium">{question.questionId}</TableCell>
+                          <TableCell>{question.text.substring(0, 50)}...</TableCell>
+                          <TableCell>{question.subject}</TableCell>
+                          <TableCell>{question.topic}</TableCell>
+                          <TableCell>{question.difficulty}</TableCell>
+                          <TableCell>{question.correctOption}</TableCell>
+                          <TableCell>{question.status}</TableCell>
+                          <TableCell className="text-right">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" className="h-8 w-8 p-0">
+                                  <span className="sr-only">Open menu</span>
+                                  <MoreHorizontal className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                                <DropdownMenuItem onClick={() => {
+                                  setEditingQuestion(question)
+                                  setIsEditDialogOpen(true)
+                                }}>
+                                  Edit
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => handleDeleteQuestion(question.questionId)}>
+                                  Delete
+                                </DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem>View Details</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </TableCell>
+                        </TableRow>
+                      )
+                    })}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
           </div>
         )}
       </div>
@@ -780,6 +709,7 @@ export default function QuestionBankDashboard() {
               <QuestionForm
                 initialData={editingQuestion}
                 onSubmit={(updatedQuestion) => handleEditQuestion({ ...editingQuestion, ...updatedQuestion })}
+                isLoading={isLoading}
               />
             )}
           </ScrollArea>
@@ -792,9 +722,10 @@ export default function QuestionBankDashboard() {
 interface QuestionFormProps {
   initialData?: Partial<Question>
   onSubmit: (question: Partial<Question>) => void
+  isLoading?: boolean
 }
 
-function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
+function QuestionForm({ initialData, onSubmit, isLoading }: QuestionFormProps) {
   const [formData, setFormData] = useState<Partial<Question>>(() => ({
     text: '',
     subject: '',
@@ -922,7 +853,7 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
             <SelectValue placeholder="Select correct option" />
           </SelectTrigger>
           <SelectContent>
-            {formData.options?.filter(option => option.trim() !== '').map((option, index) => (
+            {formData.options?.map((option, index) => (
               <SelectItem key={index} value={option}>
                 {option}
               </SelectItem>
@@ -931,7 +862,7 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
         </Select>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="markscheme">Mark Scheme</Label>
+        <Label htmlFor="markscheme">Markscheme</Label>
         <Textarea
           id="markscheme"
           name="markscheme"
@@ -939,9 +870,18 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
           onChange={handleInputChange}
         />
       </div>
-      <Button type="submit">
-        {initialData ? 'Update Question' : 'Add Question'}
-      </Button>
+      <DialogFooter>
+        <Button type="submit" disabled={isLoading}>
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Saving...
+            </>
+          ) : (
+            'Save Question'
+          )}
+        </Button>
+      </DialogFooter>
     </form>
   )
 }

@@ -267,7 +267,7 @@ export default function IssueTracker() {
     <div className="flex min-h-screen flex-col">
       <header className="border-b">
         <div className="container flex h-14 items-center gap-4 px-4">
-          <h1 className="text-xl font-semibold">Issues and Feedback</h1>
+          <h1 className="text-xl font-semibold">Issues</h1>
           <p className="text-sm text-muted-foreground">
             Comprehensive view of user feedback and reported issues
           </p>
