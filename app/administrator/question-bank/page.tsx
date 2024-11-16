@@ -295,74 +295,65 @@ export default function QuestionBankDashboard() {
     }
   }
 
-  const handleBatchUploadFile = async (file: File) => {
-    setIsBatchUploading(true)
-    const formData = new FormData()
-    formData.append('file', file)
-
-    try {
-      const response = await fetch('/api/questions/batch-upload', {
-        method: 'POST',
-        body: formData,
-      })
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.message || 'Failed to upload questions')
-      }
-
-      const result = await response.json()
-      toast({
-        title: "Batch Upload Successful",
-        description: `${result.count} questions uploaded successfully.`,
-      })
-      fetchQuestions()
-      setIsBatchUploadDialogOpen(false)
-    } catch (error) {
-      toast({
-        title: "Batch Upload Error",
-        description: error instanceof Error ? error.message : "Failed to upload questions. Please try again.",
-        variant: "destructive",
-      })
-    } finally {
-      setIsBatchUploading(false)
-    }
-  }
-
-  const handleBatchUploadText = async () => {
-    setIsBatchUploading(true)
+  const handleBatchUpload = async (questions: string) => {
+    setIsBatchUploading(true);
     try {
       const response = await fetch('/api/questions/batch-upload', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text: batchUploadText }),
-      })
+        body: JSON.stringify({ text: questions }),
+      });
 
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.message || 'Failed to upload questions')
+      const reader = response.body?.getReader();
+      if (!reader) {
+        throw new Error('No response stream available');
       }
 
-      const result = await response.json()
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = new TextDecoder().decode(value);
+        const updates = chunk.split('\n').filter(Boolean).map(line => JSON.parse(line));
+        
+        for (const update of updates) {
+          if (!update.success) {
+            console.error('Batch upload error:', update.error);
+            toast({
+              title: "Upload Error",
+              description: update.error,
+              variant: "destructive",
+            });
+          } else {
+            toast({
+              title: "Upload Progress",
+              description: `Processed ${update.processed} of ${update.total} questions`,
+            });
+          }
+        }
+      }
+
       toast({
-        title: "Batch Upload Successful",
-        description: `${result.count} questions uploaded successfully.`,
-      })
-      fetchQuestions()
-      setBatchUploadText("")
-      setIsBatchUploadDialogOpen(false)
+        title: "Upload Complete",
+        description: "All questions have been processed",
+      });
+
+      fetchQuestions();
     } catch (error) {
+      console.error('Upload error:', error);
       toast({
-        title: "Batch Upload Error",
-        description: error instanceof Error ? error.message : "Failed to upload questions. Please try again.",
+        title: "Upload Error",
+        description: error instanceof Error ? error.message : "Failed to upload questions",
         variant: "destructive",
-      })
+      });
     } finally {
-      setIsBatchUploading(false)
+      setIsBatchUploading(false);
+      setIsBatchUploadDialogOpen(false);
+      setBatchUploadText("");
     }
-  }
+  };
 
   const filteredQuestions = useMemo(() => {
     return questions.filter((question) => {
@@ -526,7 +517,14 @@ export default function QuestionBankDashboard() {
                       accept=".csv,.json,.txt" 
                       onChange={(e) => {
                         if (e.target.files && e.target.files[0]) {
-                          handleBatchUploadFile(e.target.files[0])
+                          const file = e.target.files[0];
+                          const reader = new FileReader();
+                          reader.onload = (event) => {
+                            if (event.target && typeof event.target.result === 'string') {
+                              handleBatchUpload(event.target.result);
+                            }
+                          };
+                          reader.readAsText(file);
                         }
                       }}
                       disabled={isBatchUploading}
@@ -550,7 +548,7 @@ export default function QuestionBankDashboard() {
               <DialogFooter>
                 <Button 
                   type="submit" 
-                  onClick={handleBatchUploadText} 
+                  onClick={() => handleBatchUpload(batchUploadText)} 
                   disabled={isBatchUploading}
                 >
                   {isBatchUploading ? (
@@ -813,80 +811,79 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
   }
 
   const handleRemoveOption = (index: number) => {
-    const newOptions = options.filter((_, i) => i !== index)
-    setOptions(newOptions)
-    setFormData(prev => ({ ...prev, options: newOptions }))
+    setOptions(prev => prev.filter((_, i) => i !== index))
+    setFormData(prev => ({ ...prev, options: prev.options?.filter((_, i) => i !== index) }))
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    setFormData(prev => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSubmit(formData)
+    onSubmit({ ...formData, options })
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
+      <div className="space-y-2">
         <Label htmlFor="text">Question Text</Label>
         <Textarea
           id="text"
           name="text"
           value={formData.text || ''}
-          onChange={handleChange}
+          onChange={handleInputChange}
           required
         />
       </div>
       <div className="grid grid-cols-2 gap-4">
-        <div>
+        <div className="space-y-2">
           <Label htmlFor="exam">Exam</Label>
           <Input
             id="exam"
             name="exam"
             value={formData.exam || ''}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required
           />
         </div>
-        <div>
+        <div className="space-y-2">
           <Label htmlFor="subject">Subject</Label>
           <Input
             id="subject"
             name="subject"
             value={formData.subject || ''}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required
           />
         </div>
       </div>
       <div className="grid grid-cols-2 gap-4">
-        <div>
+        <div className="space-y-2">
           <Label htmlFor="topic">Topic</Label>
           <Input
             id="topic"
             name="topic"
             value={formData.topic || ''}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required
           />
         </div>
-        <div>
+        <div className="space-y-2">
           <Label htmlFor="subtopic">Subtopic</Label>
           <Input
             id="subtopic"
             name="subtopic"
             value={formData.subtopic || ''}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4">
-        <div>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
           <Label htmlFor="difficulty">Difficulty</Label>
-          <Select name="difficulty" value={formData.difficulty} onValueChange={(value) => handleChange({ target: { name: 'difficulty', value } } as any)}>
+          <Select name="difficulty" value={formData.difficulty} onValueChange={(value) => setFormData(prev => ({ ...prev, difficulty: value }))}>
             <SelectTrigger>
               <SelectValue placeholder="Select difficulty" />
             </SelectTrigger>
@@ -897,9 +894,9 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
             </SelectContent>
           </Select>
         </div>
-        <div>
-          <Label htmlFor="type">Type</Label>
-          <Select name="type" value={formData.type} onValueChange={(value) => handleChange({ target: { name: 'type', value } } as any)}>
+        <div className="space-y-2">
+          <Label htmlFor="type">Question Type</Label>
+          <Select name="type" value={formData.type} onValueChange={(value) => setFormData(prev => ({ ...prev, type: value }))}>
             <SelectTrigger>
               <SelectValue placeholder="Select type" />
             </SelectTrigger>
@@ -907,137 +904,95 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
               <SelectItem value="Multiple Choice">Multiple Choice</SelectItem>
               <SelectItem value="True/False">True/False</SelectItem>
               <SelectItem value="Short Answer">Short Answer</SelectItem>
+              <SelectItem value="Essay">Essay</SelectItem>
             </SelectContent>
           </Select>
         </div>
-        <div>
-          <Label htmlFor="year">Year</Label>
-          <Input
-            id="year"
-            name="year"
-            type="number"
-            value={formData.year || ''}
-            onChange={handleChange}
-            required
-          />
-        </div>
       </div>
-      {formData.type === 'Multiple Choice' && (
-        <div>
-          <Label>Options</Label>
-          {options.map((option, index) => (
-            <div key={index} className="flex items-center space-x-2 mt-2">
-              <Input
-                value={option || ''}
-                onChange={(e) => handleOptionChange(index, e.target.value)}
-              />
-              <Button
-                type="button"
-                variant="outline"
-                size="icon"
-                onClick={() => handleRemoveOption(index)}
-              >
-                <Trash2 className="h-4 w-4" />
-              </Button>
-            </div>
-          ))}
-          <Button
-            type="button"
-            variant="outline"
-            onClick={handleAddOption}
-            className="mt-2"
-          >
-            Add Option
-          </Button>
-        </div>
-      )}
-      <div>
-        <Label htmlFor="correctOption">Correct Answer</Label>
-        <Input
-          id="correctOption"
-          name="correctOption"
-          value={formData.correctOption || ''}
-          onChange={handleChange}
-          required
-        />
+      <div className="space-y-2">
+        <Label>Options</Label>
+        {options.map((option, index) => (
+          <div key={index} className="flex items-center space-x-2">
+            <Input
+              value={option || ''}
+              onChange={(e) => handleOptionChange(index, e.target.value)}
+              placeholder={`Option ${index + 1}`}
+            />
+            <Button type="button" variant="outline" size="icon" onClick={() => handleRemoveOption(index)}>
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          </div>
+        ))}
+        <Button type="button" variant="outline" onClick={handleAddOption}>
+          Add Option
+        </Button>
       </div>
-      <div>
-        <Label htmlFor="markScheme">Mark Scheme</Label>
+      <div className="space-y-2">
+        <Label htmlFor="correctOption">Correct Option</Label>
+        <Select name="correctOption" value={formData.correctOption || ''} onValueChange={(value) => setFormData(prev => ({ ...prev, correctOption: value }))}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select correct option" />
+          </SelectTrigger>
+          <SelectContent>
+            {options.map((option, index) => (
+              <SelectItem key={index} value={option || ''}>
+                {option}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="markscheme">Mark Scheme</Label>
         <Textarea
-          id="markScheme"
+          id="markscheme"
           name="markscheme"
           value={formData.markscheme || ''}
-          onChange={handleChange}
+          onChange={handleInputChange}
         />
       </div>
       <div className="flex justify-between">
+        <Button type="submit">
+          {initialData ? 'Update Question' : 'Add Question'}
+        </Button>
         <Button type="button" variant="outline" onClick={() => setShowPreview(!showPreview)}>
           {showPreview ? 'Hide Preview' : 'Show Preview'}
         </Button>
-        <Button type="submit">Save Question</Button>
       </div>
-      {showPreview && (
-        <div className="mt-4 border-t pt-4">
-          <h3 className="text-lg font-semibold mb-2">Preview</h3>
-          <QuestionPreview question={formData as Question} />
-        </div>
-      )}
+      {showPreview && <QuestionPreview question={formData as Question} />}
     </form>
   )
 }
 
-interface QuestionPreviewProps {
-  question: Question
-}
-
-function QuestionPreview({ question }: QuestionPreviewProps) {
+function QuestionPreview({ question }: { question: Question }) {
   return (
-    <div className="space-y-4">
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-xl font-semibold mb-4">{question.text}</h2>
-        {question.type === 'Multiple Choice' && (
-          <RadioGroup>
-            {question.options?.map((option, index) => (
-              <div key={index} className="flex items-center space-x-2">
-                <RadioGroupItem value={option || ''} id={`option-${index}`} />
-                <Label htmlFor={`option-${index}`}>{option || ''}</Label>
-              </div>
-            ))}
-          </RadioGroup>
-        )}
-        {question.type === 'True/False' && (
-          <RadioGroup>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="true" id="true" />
-              <Label htmlFor="true">True</Label>
+    <div className="mt-4 p-4 border rounded-md">
+      <h3 className="text-lg font-semibold mb-2">Question Preview</h3>
+      <p className="mb-2">{question.text}</p>
+      {question.options && (
+        <div className="space-y-2">
+          {question.options.map((option, index) => (
+            <div key={index} className="flex items-center space-x-2">
+              <input
+                type="radio"
+                id={`option-${index}`}
+                name="preview-options"
+                disabled
+              />
+              <label htmlFor={`option-${index}`}>{option}</label>
             </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="false" id="false" />
-              <Label htmlFor="false">False</Label>
-            </div>
-          </RadioGroup>
-        )}
-        {question.type === 'Short Answer' && (
-          <Textarea placeholder="Enter your answer here" className="mt-2" />
-        )}
-      </div>
-      <div className="bg-gray-100 rounded-lg p-4">
-        <h3 className="font-semibold mb-2">Question Details:</h3>
-        <p><strong>Exam:</strong> {question.exam}</p>
-        <p><strong>Subject:</strong> {question.subject}</p>
-        <p><strong>Topic:</strong> {question.topic}</p>
-        <p><strong>Subtopic:</strong> {question.subtopic}</p>
-        <p><strong>Difficulty:</strong> {question.difficulty}</p>
-        <p><strong>Type:</strong> {question.type}</p>
-        <p><strong>Year:</strong> {question.year}</p>
-        <p><strong>Correct Answer:</strong> {question.correctOption}</p>
-        {question.markscheme && (
-          <>
-            <h4 className="font-semibold mt-2">Mark Scheme:</h4>
-            <p>{question.markscheme}</p>
-          </>
-        )}
-      </div>
+          ))}
+        </div>
+      )}
+      <p className="mt-2">
+        <strong>Correct Answer:</strong> {question.correctOption}
+      </p>
+      {question.markscheme && (
+        <div className="mt-2">
+          <strong>Mark Scheme:</strong>
+          <p>{question.markscheme}</p>
+        </div>
+      )}
     </div>
   )
 }

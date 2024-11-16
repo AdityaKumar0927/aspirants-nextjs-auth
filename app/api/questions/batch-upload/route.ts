@@ -2,14 +2,12 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../../auth/[...nextauth]/options';
 import prisma from '@/lib/prisma';
-import { Prisma } from '@prisma/client';
+import { Prisma, QuestionStatus } from '@prisma/client';
 
-// New configuration method for Next.js 13 App Router
-export const runtime = 'nodejs';
+export const maxDuration = 300; // 5 minutes
 export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 
-const BATCH_SIZE = 25; // Process questions in smaller batches
+const BATCH_SIZE = 10; // Smaller batch size for better handling
 
 type QuestionInput = {
   exam: string;
@@ -32,13 +30,9 @@ type QuestionInput = {
   averageTimeTaken?: string | number;
   lastAttempted?: string | null;
   diagramUrl?: string;
-  [key: string]: any;
 };
 
-type ProcessedQuestion = Omit<Prisma.QuestionCreateManyInput, 'id' | 'options'> & {
-  questionId: string;
-  options: string[];
-};
+type ProcessedQuestion = Prisma.QuestionCreateManyInput;
 
 function validateAndFormatQuestion(question: QuestionInput): ProcessedQuestion {
   const currentYear = new Date().getFullYear();
@@ -64,7 +58,7 @@ function validateAndFormatQuestion(question: QuestionInput): ProcessedQuestion {
     averageTimeTaken: question.averageTimeTaken ? question.averageTimeTaken.toString() : '0',
     lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
     diagramUrl: question.diagramUrl || '',
-    status: 'ACTIVE'
+    status: 'ACTIVE' as QuestionStatus
   };
 
   if (!processedQuestion.text) {
@@ -78,30 +72,35 @@ function validateAndFormatQuestion(question: QuestionInput): ProcessedQuestion {
   return processedQuestion;
 }
 
-async function processBatch(questions: QuestionInput[]) {
-  const processedQuestions: ProcessedQuestion[] = [];
-  const failures: { question: QuestionInput; error: string }[] = [];
+async function* processQuestionsInBatches(questions: QuestionInput[]) {
+  for (let i = 0; i < questions.length; i += BATCH_SIZE) {
+    const batch = questions.slice(i, i + BATCH_SIZE);
+    const processedBatch = batch.map(validateAndFormatQuestion);
 
-  for (const question of questions) {
     try {
-      const processedQuestion = validateAndFormatQuestion(question);
-      processedQuestions.push(processedQuestion);
-    } catch (error) {
-      failures.push({
-        question,
-        error: error instanceof Error ? error.message : 'Failed to process question'
+      await prisma.question.createMany({
+        data: processedBatch,
+        skipDuplicates: true,
       });
+      yield {
+        success: true,
+        processed: i + batch.length,
+        total: questions.length,
+        batch: processedBatch.length
+      };
+    } catch (error) {
+      yield {
+        success: false,
+        processed: i,
+        total: questions.length,
+        error: error instanceof Error ? error.message : 'Unknown error',
+        batch: processedBatch.length
+      };
     }
-  }
 
-  if (processedQuestions.length > 0) {
-    await prisma.question.createMany({
-      data: processedQuestions,
-      skipDuplicates: true,
-    });
+    // Small delay between batches
+    await new Promise(resolve => setTimeout(resolve, 100));
   }
-
-  return { successes: processedQuestions, failures };
 }
 
 export async function POST(req: Request) {
@@ -111,11 +110,14 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
+  const encoder = new TextEncoder();
+  const stream = new TransformStream();
+  const writer = stream.writable.getWriter();
+
   try {
     const body = await req.json();
     let questionsInput: QuestionInput[];
 
-    // Parse the input data
     try {
       if (Array.isArray(body)) {
         questionsInput = body;
@@ -130,54 +132,57 @@ export async function POST(req: Request) {
         throw new Error('Invalid questions data format');
       }
     } catch (parseError) {
-      console.error('Error parsing questions:', parseError);
-      return NextResponse.json({ 
-        message: 'Invalid questions data format', 
-        error: parseError instanceof Error ? parseError.message : 'Unknown parsing error' 
-      }, { status: 400 });
+      await writer.write(encoder.encode(JSON.stringify({
+        success: false,
+        error: 'Invalid data format',
+        details: parseError instanceof Error ? parseError.message : 'Unknown parsing error'
+      })));
+      await writer.close();
+      return new Response(stream.readable, {
+        headers: { 'Content-Type': 'application/json' },
+        status: 400
+      });
     }
 
     if (questionsInput.length === 0) {
-      return NextResponse.json({ message: 'No questions provided' }, { status: 400 });
+      await writer.write(encoder.encode(JSON.stringify({
+        success: false,
+        error: 'No questions provided'
+      })));
+      await writer.close();
+      return new Response(stream.readable, {
+        headers: { 'Content-Type': 'application/json' },
+        status: 400
+      });
     }
 
-    // Process questions in batches
-    const results = {
-      totalProcessed: questionsInput.length,
-      successCount: 0,
-      failureCount: 0,
-      failures: [] as { question: QuestionInput; error: string }[]
-    };
-
-    // Split questions into batches
-    for (let i = 0; i < questionsInput.length; i += BATCH_SIZE) {
-      const batch = questionsInput.slice(i, i + BATCH_SIZE);
-      const batchResult = await processBatch(batch);
-      
-      results.successCount += batchResult.successes.length;
-      results.failures.push(...batchResult.failures);
-      results.failureCount += batchResult.failures.length;
-
-      // Add a small delay between batches to prevent overwhelming the database
-      if (i + BATCH_SIZE < questionsInput.length) {
-        await new Promise(resolve => setTimeout(resolve, 100));
-      }
+    const processGenerator = processQuestionsInBatches(questionsInput);
+    
+    for await (const result of processGenerator) {
+      await writer.write(encoder.encode(JSON.stringify(result) + '\n'));
     }
 
-    return NextResponse.json({
-      message: 'Batch upload completed',
-      ...results
+    await writer.write(encoder.encode(JSON.stringify({
+      success: true,
+      message: 'Upload completed',
+      total: questionsInput.length
+    })));
+    
+    await writer.close();
+    return new Response(stream.readable, {
+      headers: { 'Content-Type': 'application/json' }
     });
 
   } catch (error) {
-    console.error('Error during batch upload:', error);
-    return NextResponse.json(
-      { 
-        message: 'An error occurred during batch upload', 
-        error: error instanceof Error ? error.message : 'Unknown error',
-        stack: error instanceof Error ? error.stack : undefined
-      },
-      { status: 500 }
-    );
+    await writer.write(encoder.encode(JSON.stringify({
+      success: false,
+      error: 'Upload failed',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    })));
+    await writer.close();
+    return new Response(stream.readable, {
+      headers: { 'Content-Type': 'application/json' },
+      status: 500
+    });
   }
 }
