@@ -20,7 +20,6 @@ import { ArrowUpIcon, ArrowDownIcon, ChevronDown, Search, Plus, Trash2, Edit, Ey
 import { useVirtualizer } from '@tanstack/react-virtual'
 import debounce from 'lodash/debounce'
 
-// Types and interfaces
 type QuestionStatus = 'ACTIVE' | 'DRAFT' | 'ARCHIVED'
 
 interface Question {
@@ -55,7 +54,6 @@ type FiltersType = {
   status: string
 }
 
-// API functions
 const fetchQuestions = async (): Promise<Question[]> => {
   const response = await fetch('/api/questions')
   if (!response.ok) throw new Error('Failed to fetch questions')
