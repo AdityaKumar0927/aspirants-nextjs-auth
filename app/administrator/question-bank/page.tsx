@@ -880,7 +880,7 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
         <Label htmlFor="difficulty">Difficulty</Label>
         <Select 
           name="difficulty" 
-          value={formData.difficulty} 
+          value={formData.difficulty || undefined} 
           onValueChange={(value) => handleSelectChange('difficulty', value)}
         >
           <SelectTrigger>
@@ -915,14 +915,14 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
         <Label htmlFor="correctOption">Correct Option</Label>
         <Select 
           name="correctOption" 
-          value={formData.correctOption || ''} 
+          value={formData.correctOption || undefined} 
           onValueChange={(value) => handleSelectChange('correctOption', value)}
         >
           <SelectTrigger>
             <SelectValue placeholder="Select correct option" />
           </SelectTrigger>
           <SelectContent>
-            {formData.options?.map((option, index) => (
+            {formData.options?.filter(option => option.trim() !== '').map((option, index) => (
               <SelectItem key={index} value={option}>
                 {option}
               </SelectItem>
