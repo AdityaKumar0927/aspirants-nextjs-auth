@@ -1,26 +1,26 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
-import 'katex/dist/katex.min.css';
-import katex from 'katex';
+import React, { useEffect, useState } from "react";
+import "katex/dist/katex.min.css";
+import katex from "katex";
 
 interface MathRendererProps {
   text: string;
 }
 
 const MathRenderer: React.FC<MathRendererProps> = ({ text }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const [renderedHTML, setRenderedHTML] = useState<string>("");
 
   useEffect(() => {
-    if (ref.current) {
-      katex.render(text, ref.current, {
-        throwOnError: false,
-        displayMode: true,
-      });
-    }
+    const html = text
+      .replace(/\\\((.*?)\\\)/g, (_, math) => katex.renderToString(math, { throwOnError: false }))
+      .replace(/\\\[(.*?)\\\]/g, (_, math) => `<div class="katex-block">${katex.renderToString(math, { throwOnError: false, displayMode: true })}</div>`)
+      .replace(/\\n/g, "<br />");
+
+    setRenderedHTML(html);
   }, [text]);
 
-  return <div ref={ref} />;
+  return <span dangerouslySetInnerHTML={{ __html: renderedHTML }} />;
 };
 
 export default MathRenderer;

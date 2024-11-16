@@ -18,7 +18,7 @@ import { useToast } from "@/components/ui/use-toast"
 import { Loader2 } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import Form from 'next/form'
+import { Form } from 'react-hook-form'
 
 interface ApplicationFormProps {
   session: Session

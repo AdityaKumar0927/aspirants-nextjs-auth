@@ -187,6 +187,10 @@ export default function Component({
     }
   }
 
+  const MotionDiv = motion.div as React.ComponentType<
+  React.HTMLAttributes<HTMLDivElement>
+>;
+
   const handleNumericalSubmitLocal = () => {
     handleNumericalSubmit(
       question.questionId,
