@@ -47,13 +47,12 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Popover from "@/components/shared/popover"
 import { Skeleton } from "@/components/ui/skeleton"
 import { ArrowUpIcon, ArrowDownIcon, ChevronDown, Search, Plus, Trash2, Edit, Eye, CheckCircle, XCircle, MoreHorizontal, Upload, FileUp, FileJson, Loader2 } from 'lucide-react'
 
-type QuestionStatus = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED' | 'UNDER_REVIEW'
+type QuestionStatus = 'ACTIVE' | 'DRAFT' | 'ARCHIVED'
 
 interface Question {
   questionId: string
@@ -67,7 +66,7 @@ interface Question {
   year: number
   reviewed: boolean
   completed: boolean
-  options: (string | null)[]
+  options: string[]
   correctOption: string | null
   markscheme: string | null
   notes: string | null
@@ -306,22 +305,37 @@ export default function QuestionBankDashboard() {
     }
 
     try {
-      const response = await fetch(`/api/questions/batch-delete`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ questionIds: selectedQuestions }),
-      })
+      const deletePromises = selectedQuestions.map(questionId =>
+        fetch(`/api/questions`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ questionId }),
+        })
+      )
 
-      if (!response.ok) throw new Error('Failed to delete selected questions')
+      const results = await Promise.allSettled(deletePromises)
+      const successfulDeletes = results.filter(result => result.status === 'fulfilled').length
+      const failedDeletes = results.filter(result => result.status === 'rejected').length
 
       setQuestions((prevQuestions) => prevQuestions.filter((question) => !selectedQuestions.includes(question.questionId)))
       setSelectedQuestions([])
-      toast({
-        title: "Questions Deleted",
-        description: `Successfully deleted ${selectedQuestions.length} questions.`,
-      })
+
+      if (successfulDeletes > 0) {
+        toast({
+          title: "Questions Deleted",
+          description: `Successfully deleted ${successfulDeletes} question${successfulDeletes > 1 ? 's' : ''}.`,
+        })
+      }
+
+      if (failedDeletes > 0) {
+        toast({
+          title: "Deletion Partially Failed",
+          description: `Failed to delete ${failedDeletes} question${failedDeletes > 1 ? 's' : ''}.`,
+          variant: "destructive",
+        })
+      }
     } catch (error) {
       toast({
         title: "Error",
@@ -339,43 +353,19 @@ export default function QuestionBankDashboard() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text: questions }),
+        body: JSON.stringify(JSON.parse(questions)),
       });
 
-      const reader = response.body?.getReader();
-      if (!reader) {
-        throw new Error('No response stream available');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to upload batch of questions');
       }
 
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        const chunk = new TextDecoder().decode(value);
-        const updates = chunk.split('\n').filter(Boolean).map(line => JSON.parse(line));
-        
-        for (const update of updates) {
-          if (!update.success) {
-            console.error('Batch upload error:', update.error);
-            toast({
-              title: "Upload Error",
-              description: update.error,
-              variant: "destructive",
-            });
-          } else {
-            toast({
-              title: "Upload Progress",
-              description: `Processed ${update.processed} of ${update.total} questions`,
-            });
-          }
-        }
-      }
-
+      const result = await response.json();
       toast({
-        title: "Upload Complete",
-        description: "All questions have been processed",
+        title: "Batch Upload Successful",
+        description: `Successfully uploaded questions.`,
       });
-
       fetchQuestions();
     } catch (error) {
       console.error('Upload error:', error);
@@ -416,7 +406,7 @@ export default function QuestionBankDashboard() {
 
   const totalQuestions = questions.length
   const draftQuestions = useMemo(() => questions.filter((question) => question.status === 'DRAFT').length, [questions])
-  const publishedQuestions = useMemo(() => questions.filter((question) => question.status === 'PUBLISHED').length, [questions])
+  const activeQuestions = useMemo(() => questions.filter((question) => question.status === 'ACTIVE').length, [questions])
 
   return (
     <TooltipProvider>
@@ -457,12 +447,12 @@ export default function QuestionBankDashboard() {
               <CardTitle className="text-sm font-medium">
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="h-4 w-4 text-muted-foreground" />
-                  <span>Published Questions</span>
+                  <span>Active Questions</span>
                 </div>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{publishedQuestions}</div>
+              <div className="text-2xl font-bold">{activeQuestions}</div>
               <p className="text-xs text-muted-foreground">+10% from last month</p>
             </CardContent>
           </Card>
@@ -490,10 +480,9 @@ export default function QuestionBankDashboard() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Questions</SelectItem>
+              <SelectItem value="ACTIVE">Active</SelectItem>
               <SelectItem value="DRAFT">Draft</SelectItem>
-              <SelectItem value="PUBLISHED">Published</SelectItem>
               <SelectItem value="ARCHIVED">Archived</SelectItem>
-              <SelectItem value="UNDER_REVIEW">Under Review</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -536,51 +525,20 @@ export default function QuestionBankDashboard() {
               <DialogHeader>
                 <DialogTitle>Batch Upload Questions</DialogTitle>
                 <DialogDescription>
-                  Upload questions via file or paste text directly.
+                  Upload questions via JSON format.
                 </DialogDescription>
               </DialogHeader>
-              <Tabs defaultValue="file" className="w-full">
-                <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="file">File Upload</TabsTrigger>
-                  <TabsTrigger value="text">Text Input</TabsTrigger>
-                </TabsList>
-                <TabsContent value="file">
-                  <div className="grid w-full max-w-sm items-center gap-1.5">
-                    <Label htmlFor="file">File (CSV, JSON, or TXT)</Label>
-                    <Input 
-                      id="file" 
-                      type="file" 
-                      accept=".csv,.json,.txt" 
-                      onChange={(e) => {
-                        if (e.target.files && e.target.files[0]) {
-                          const file = e.target.files[0];
-                          const reader = new FileReader();
-                          reader.onload = (event) => {
-                            if (event.target && typeof event.target.result === 'string') {
-                              handleBatchUpload(event.target.result);
-                            }
-                          };
-                          reader.readAsText(file);
-                        }
-                      }}
-                      disabled={isBatchUploading}
-                    />
-                  </div>
-                </TabsContent>
-                <TabsContent value="text">
-                  <div className="grid w-full gap-1.5">
-                    <Label htmlFor="batchText">Paste Questions</Label>
-                    <Textarea 
-                      id="batchText"
-                      placeholder="Paste your questions here..."
-                      value={batchUploadText}
-                      onChange={(e) => setBatchUploadText(e.target.value)}
-                      rows={10}
-                      disabled={isBatchUploading}
-                    />
-                  </div>
-                </TabsContent>
-              </Tabs>
+              <div className="grid w-full gap-1.5">
+                <Label htmlFor="batchText">Paste Questions JSON</Label>
+                <Textarea 
+                  id="batchText"
+                  placeholder="Paste your questions JSON here..."
+                  value={batchUploadText}
+                  onChange={(e) => setBatchUploadText(e.target.value)}
+                  rows={10}
+                  disabled={isBatchUploading}
+                />
+              </div>
               <DialogFooter>
                 <Button 
                   type="submit" 
@@ -838,8 +796,12 @@ interface QuestionFormProps {
 
 function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
   const [formData, setFormData] = useState<Partial<Question>>(initialData || {})
-  const [showPreview, setShowPreview] = useState(false)
-  const [options, setOptions] = useState<(string | null)[]>(initialData?.options || [])
+  const [options, setOptions] = useState<string[]>(initialData?.options || [])
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
 
   const handleOptionChange = (index: number, value: string) => {
     const newOptions = [...options]
@@ -850,17 +812,11 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
 
   const handleAddOption = () => {
     setOptions(prev => [...prev, ''])
-    setFormData(prev => ({ ...prev, options: [...prev.options || [], ''] }))
   }
 
   const handleRemoveOption = (index: number) => {
-    setOptions(prev => prev.filter((_, i) => i !== index))
-    setFormData(prev => ({ ...prev, options: prev.options?.filter((_, i) => i !== index) }))
-  }
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
+    setOptions(prev => prev.filter((_, i) => i !==
+ index))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -882,16 +838,6 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="exam">Exam</Label>
-          <Input
-            id="exam"
-            name="exam"
-            value={formData.exam || ''}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="space-y-2">
           <Label htmlFor="subject">Subject</Label>
           <Input
             id="subject"
@@ -901,8 +847,6 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
             required
           />
         </div>
-      </div>
-      <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="topic">Topic</Label>
           <Input
@@ -913,51 +857,26 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
             required
           />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="subtopic">Subtopic</Label>
-          <Input
-            id="subtopic"
-            name="subtopic"
-            value={formData.subtopic || ''}
-            onChange={handleInputChange}
-          />
-        </div>
       </div>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="difficulty">Difficulty</Label>
-          <Select name="difficulty" value={formData.difficulty} onValueChange={(value) => setFormData(prev => ({ ...prev, difficulty: value }))}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select difficulty" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Easy">Easy</SelectItem>
-              <SelectItem value="Medium">Medium</SelectItem>
-              <SelectItem value="Hard">Hard</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="type">Question Type</Label>
-          <Select name="type" value={formData.type} onValueChange={(value) => setFormData(prev => ({ ...prev, type: value }))}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select type" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Multiple Choice">Multiple Choice</SelectItem>
-              <SelectItem value="True/False">True/False</SelectItem>
-              <SelectItem value="Short Answer">Short Answer</SelectItem>
-              <SelectItem value="Essay">Essay</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+      <div className="space-y-2">
+        <Label htmlFor="difficulty">Difficulty</Label>
+        <Select name="difficulty" value={formData.difficulty} onValueChange={(value) => setFormData(prev => ({ ...prev, difficulty: value }))}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select difficulty" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Easy">Easy</SelectItem>
+            <SelectItem value="Medium">Medium</SelectItem>
+            <SelectItem value="Hard">Hard</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       <div className="space-y-2">
         <Label>Options</Label>
         {options.map((option, index) => (
           <div key={index} className="flex items-center space-x-2">
             <Input
-              value={option || ''}
+              value={option}
               onChange={(e) => handleOptionChange(index, e.target.value)}
               placeholder={`Option ${index + 1}`}
             />
@@ -978,7 +897,7 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
           </SelectTrigger>
           <SelectContent>
             {options.map((option, index) => (
-              <SelectItem key={index} value={option || ''}>
+              <SelectItem key={index} value={option}>
                 {option}
               </SelectItem>
             ))}
@@ -994,48 +913,9 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
           onChange={handleInputChange}
         />
       </div>
-      <div className="flex justify-between">
-        <Button type="submit">
-          {initialData ? 'Update Question' : 'Add Question'}
-        </Button>
-        <Button type="button" variant="outline" onClick={() => setShowPreview(!showPreview)}>
-          {showPreview ? 'Hide Preview' : 'Show Preview'}
-        </Button>
-      </div>
-      {showPreview && <QuestionPreview question={formData as Question} />}
+      <Button type="submit">
+        {initialData ? 'Update Question' : 'Add Question'}
+      </Button>
     </form>
-  )
-}
-
-function QuestionPreview({ question }: { question: Question }) {
-  return (
-    <div className="mt-4 p-4 border rounded-md">
-      <h3 className="text-lg font-semibold mb-2">Question Preview</h3>
-      <p className="mb-2">{question.text}</p>
-      {question.options && (
-        <div className="space-y-2">
-          {question.options.map((option, index) => (
-            <div key={index} className="flex items-center space-x-2">
-              <input
-                type="radio"
-                id={`option-${index}`}
-                name="preview-options"
-                disabled
-              />
-              <label htmlFor={`option-${index}`}>{option}</label>
-            </div>
-          ))}
-        </div>
-      )}
-      <p className="mt-2">
-        <strong>Correct Answer:</strong> {question.correctOption}
-      </p>
-      {question.markscheme && (
-        <div className="mt-2">
-          <strong>Mark Scheme:</strong>
-          <p>{question.markscheme}</p>
-        </div>
-      )}
-    </div>
   )
 }
