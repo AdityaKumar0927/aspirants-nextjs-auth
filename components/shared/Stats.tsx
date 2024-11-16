@@ -15,10 +15,6 @@ interface UserPerformance {
   createdAt: string
 }
 
-interface StatsProps {
-  userId: string | null
-}
-
 const calculateAverage = (data: UserPerformance[], key: keyof UserPerformance): number => {
   const total = data.reduce((sum, item) => sum + (item[key] as number), 0)
   return total / data.length
@@ -28,7 +24,7 @@ const EscapedNumber = ({ value = 0, decimals = 0 }) => (
   <span dangerouslySetInnerHTML={{ __html: Number(value).toFixed(decimals).replace(/"/g, "&quot;") }} />
 );
 
-export default function Stats({ userId }: StatsProps) {
+export default function Stats() {
   const { userPerformance, loading } = useUserPerformance()
 
   if (loading) {
