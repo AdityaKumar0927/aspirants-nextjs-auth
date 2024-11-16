@@ -4,8 +4,8 @@ import { X } from 'lucide-react';
 import { signIn } from 'next-auth/react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { Google } from "@/components/shared/icons";
 
-// Hook to manage the sign-in modal state
 export function useSignInModal() {
   const [showSignInModal, setShowSignInModal] = useState(false);
 
@@ -24,7 +24,6 @@ export function useSignInModal() {
   );
 }
 
-// The sign-in modal component
 function SignInModalComponent({
   showSignInModal,
   setShowSignInModal,
@@ -35,14 +34,13 @@ function SignInModalComponent({
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSignIn = async () => {
+  const handleSignIn = async (provider: string) => {
     setIsLoading(true);
     try {
-      const result = await signIn('google', { callbackUrl: '/' });
+      const result = await signIn(provider, { callbackUrl: '/' });
       if (result?.error) {
         throw new Error(result.error);
       }
-      // Close the modal on successful sign-in
       setShowSignInModal(false);
     } catch (error) {
       console.error('Sign-in error:', error);
@@ -73,9 +71,30 @@ function SignInModalComponent({
         <div className="flex h-full items-center justify-center">
           <div className="text-center">
             <h2 className="mb-4 text-2xl font-bold">Sign In</h2>
-            <Button onClick={handleSignIn} disabled={isLoading}>
+            <Button
+              variant="outline"
+              className="w-full mb-4"
+              onClick={() => handleSignIn('google')}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <span className="loading loading-spinner loading-sm mr-2"></span>
+              ) : (
+                <Google className="w-4 h-4 mr-2" />
+              )}
               {isLoading ? 'Signing in...' : 'Sign in with Google'}
             </Button>
+            <p className="text-sm text-gray-500">
+              By signing in, you agree to our{' '}
+              <a href="/terms" className="underline">
+                Terms of Service
+              </a>{' '}
+              and{' '}
+              <a href="/privacy" className="underline">
+                Privacy Policy
+              </a>
+              .
+            </p>
           </div>
         </div>
       </div>
