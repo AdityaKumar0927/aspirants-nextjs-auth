@@ -1,11 +1,12 @@
 "use client"
 
 import React, { useReducer, useEffect, useMemo, useCallback, useState } from "react"
+import { useQuery } from "react-query"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
 import Question from "@/components/shared/Question"
 import Popover from "@/components/shared/popover"
-import { ChevronDown, Search, List, Info, Circle, CheckCircle2, Flag, HelpCircle } from "lucide-react"
+import { ChevronDown, ChevronLeft, ChevronRight, Search, List, Info, Circle, CheckCircle2, Flag, HelpCircle } from 'lucide-react'
 import {
   Tooltip,
   TooltipTrigger,
@@ -217,33 +218,82 @@ const StatusCard = ({
   )
 }
 
-const GuestQuestionBank: React.FC = () => {
+const Pagination: React.FC<{
+  currentPage: number
+  totalPages: number
+  onPageChange: (page: number) => void
+}> = ({ currentPage, totalPages, onPageChange }) => {
+  return (
+    <nav className="flex items-center justify-center mt-6" aria-label="Pagination">
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => onPageChange(Math.max(1, currentPage - 1))}
+        disabled={currentPage === 1}
+      >
+        <span className="sr-only">Previous page</span>
+        <ChevronLeft className="h-4 w-4" />
+      </Button>
+      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+        const pageNumber = currentPage + i - 2
+        if (pageNumber > 0 && pageNumber <= totalPages) {
+          return (
+            <Button
+              key={pageNumber}
+              variant={currentPage === pageNumber ? "default" : "outline"}
+              size="icon"
+              onClick={() => onPageChange(pageNumber)}
+            >
+              {pageNumber}
+            </Button>
+          )
+        }
+        return null
+      })}
+      {totalPages > 5 && currentPage < totalPages - 2 && (
+        <>
+          <span className="text-gray-500">...</span>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => onPageChange(totalPages)}
+          >
+            {totalPages}
+          </Button>
+        </>
+      )}
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
+        disabled={currentPage === totalPages}
+      >
+        <span className="sr-only">Next page</span>
+        <ChevronRight className="h-4 w-4" />
+      </Button>
+    </nav>
+  )
+}
+
+const fetchQuestions = async (): Promise<QuestionType[]> => {
+  const response = await fetch("/api/questions")
+  if (!response.ok) throw new Error("Failed to fetch questions")
+  return response.json()
+}
+
+export default function GuestQuestionBank() {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { toast } = useToast()
   const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
 
-  const fetchQuestions = useCallback(async () => {
-    dispatch({ type: "SET_LOADING", payload: true })
-    try {
-      const response = await fetch("/api/questions")
-      if (!response.ok) throw new Error("Failed to fetch questions")
-      const questions = await response.json()
-      dispatch({ type: "SET_QUESTIONS", payload: questions })
-    } catch (error) {
-      console.error("Error fetching questions:", error)
-      toast({
-        title: "Error",
-        description: "Failed to load questions. Please try again later.",
-        variant: "destructive",
-      })
-    } finally {
-      dispatch({ type: "SET_LOADING", payload: false })
-    }
-  }, [toast])
+  const { data: questions = [], isLoading, error } = useQuery<QuestionType[]>("questions", fetchQuestions)
 
   useEffect(() => {
-    fetchQuestions()
-  }, [fetchQuestions])
+    if (questions.length > 0) {
+      dispatch({ type: "SET_QUESTIONS", payload: questions })
+      dispatch({ type: "SET_LOADING", payload: false })
+    }
+  }, [questions])
 
   const filteredQuestions = useMemo(() => {
     return state.questions.filter((question) => {
@@ -276,6 +326,8 @@ const GuestQuestionBank: React.FC = () => {
     })
   }, [state.questions, state.filters, state.searchQuery])
 
+  const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
+
   const paginatedQuestions = useMemo(() => {
     const startIndex = (state.currentPage - 1) * PAGE_SIZE
     const endIndex = startIndex + PAGE_SIZE
@@ -294,13 +346,31 @@ const GuestQuestionBank: React.FC = () => {
         const updatedFilter = isSelected
           ? filterValues.filter((v: string) => v !== value)
           : [...filterValues, value]
-        dispatch({
-          type: "SET_FILTERS",
-          payload: { ...state.filters, [tag]: updatedFilter },
-        })
+        
+        // Update filters
+        const newFilters = { ...state.filters, [tag]: updatedFilter }
+        
+        // If an exam is selected, filter other dropdowns
+        if (tag === 'exams') {
+          const selectedExams = newFilters.exams
+          newFilters.subjects = newFilters.subjects.filter(subject => 
+            state.questions.some(q => selectedExams.includes(q.exam) && q.subject === subject)
+          )
+          newFilters.topics = newFilters.topics.filter(topic => 
+            state.questions.some(q => selectedExams.includes(q.exam) && q.topic === topic)
+          )
+          newFilters.subtopics = newFilters.subtopics.filter(subtopic => 
+            state.questions.some(q => selectedExams.includes(q.exam) && q.subtopic === subtopic)
+          )
+          newFilters.types = newFilters.types.filter(type => 
+            state.questions.some(q => selectedExams.includes(q.exam) && q.type === type)
+          )
+        }
+        
+        dispatch({ type: "SET_FILTERS", payload: newFilters })
       }
     },
-    [state.filters]
+    [state.filters, state.questions]
   )
 
   const handleOptionClick = useCallback(
@@ -311,38 +381,81 @@ const GuestQuestionBank: React.FC = () => {
 
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions })
+
+      // Update question completion status
+      const updatedQuestions = state.questions.map(q =>
+        q.questionId === questionId ? { ...q, completed: true } : q
+      )
+      dispatch({ type: "SET_QUESTIONS", payload: updatedQuestions })
+
+      toast({
+        title: isCorrect ? "Correct!" : "Incorrect",
+        description: isCorrect ? "Well done!" : `The correct answer was ${correctOption}.`,
+        variant: isCorrect ? "default" : "destructive",
+      })
     },
-    [state.feedback, state.selectedOptions]
+    [state.feedback, state.selectedOptions, state.questions, toast]
   )
 
   const handleNumericalSubmit = useCallback(
     (questionId: string, userAnswer: string, correctAnswer: string) => {
-      const isCorrect = userAnswer === correctAnswer
+      const isCorrect = parseFloat(userAnswer).toFixed(2) === parseFloat(correctAnswer).toFixed(2)
       const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" }
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
+
+      // Update question completion status
+      const updatedQuestions = state.questions.map(q =>
+        q.questionId === questionId ? { ...q, completed: true } : q
+      )
+      dispatch({ type: "SET_QUESTIONS", payload: updatedQuestions })
+
+      toast({
+        title: isCorrect ? "Correct!" : "Incorrect",
+        description: isCorrect ? "Well done!" : `The correct answer was ${correctAnswer}.`,
+        variant: isCorrect ? "default" : "destructive",
+      })
     },
-    [state.feedback]
+    [state.feedback, state.questions, toast]
   )
 
   const handleMarkForReview = useCallback(
     async (questionId: string): Promise<void> => {
-      return Promise.resolve()
+      const updatedQuestions = state.questions.map(q =>
+        q.questionId === questionId ? { ...q, reviewed: true } : q
+      )
+      dispatch({ type: "SET_QUESTIONS", payload: updatedQuestions })
+      toast({
+        title: "Marked for review",
+        description: "This question has been marked for review.",
+      })
+      // Simulating an asynchronous operation
+      await new Promise(resolve => setTimeout(resolve, 100))
     },
-    []
+    [state.questions, toast]
   )
-  
+
   const handleMarkComplete = useCallback(
     async (questionId: string): Promise<void> => {
-      return Promise.resolve()
+      const updatedQuestions = state.questions.map(q =>
+        q.questionId === questionId ? { ...q, completed: true } : q
+      )
+      dispatch({ type: "SET_QUESTIONS", payload: updatedQuestions })
+      toast({
+        title: "Marked as complete",
+        description: "This question has been marked as complete.",
+      })
+      // Simulating an asynchronous operation
+      await new Promise(resolve => setTimeout(resolve, 100))
     },
-    []
+    [state.questions, toast]
   )
-  
+
   const handleNoteChange = useCallback(
-    async (questionId: string, note: string): Promise<void> => {
-      return Promise.resolve()
+    (questionId: string, note: string) => {
+      const newNotes = { ...state.notes, [questionId]: note }
+      dispatch({ type: "SET_NOTES", payload: newNotes })
     },
-    []
+    [state.notes]
   )
 
   const handleDeleteNote = useCallback(
@@ -350,9 +463,14 @@ const GuestQuestionBank: React.FC = () => {
       const newNotes = { ...state.notes }
       delete newNotes[questionId]
       dispatch({ type: "SET_NOTES", payload: newNotes })
-      return Promise.resolve()
+      toast({
+        title: "Note deleted",
+        description: "The note has been removed.",
+      })
+      // Simulating an asynchronous operation
+      await new Promise(resolve => setTimeout(resolve, 100))
     },
-    [state.notes]
+    [state.notes, toast]
   )
 
   const handleNavigatorClick = useCallback((index: number) => {
@@ -374,10 +492,24 @@ const GuestQuestionBank: React.FC = () => {
       answered: 0,
       markedForReview: 0,
     }
-    return stats
-  }, [filteredQuestions])
 
-  if (state.loading) {
+    filteredQuestions.forEach((question) => {
+      if (question.reviewed) {
+        stats.markedForReview++
+        stats.notVisited--
+      } else if (question.completed) {
+        stats.answered++
+        stats.notVisited--
+      } else if (state.selectedOptions[question.questionId] || state.numericalAnswers[question.questionId]) {
+        stats.notAnswered++
+        stats.notVisited--
+      }
+    })
+
+    return stats
+  }, [filteredQuestions, state.selectedOptions, state.numericalAnswers])
+
+  if (isLoading || state.loading) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
@@ -412,10 +544,21 @@ const GuestQuestionBank: React.FC = () => {
     )
   }
 
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-center">
+          <p className="text-xl font-semibold text-red-600 mb-4">Error loading questions</p>
+          <p className="text-gray-600">Please try again later or contact support if the problem persists.</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <TooltipProvider>
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-        <div  className="max-w-6xl w-full">
+        <div className="max-w-6xl w-full">
           <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
             Question Bank
           </h1>
@@ -436,7 +579,7 @@ const GuestQuestionBank: React.FC = () => {
               <Link href="/QuestionBank" className="hidden sm:block">
                 <Button variant="outline" className="border-blue-200 hover:border-blue-300 hover:bg-blue-50">
                   Sign in
-                  <ChevronDown className="ml-2 h-4 w-4" />
+                  <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
             </CardContent>
@@ -637,11 +780,11 @@ const GuestQuestionBank: React.FC = () => {
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-medium text-gray-400">Overall Progress</span>
                   <span className="text-sm font-medium text-white">
-                    0%
+                    {Math.round((questionStats.answered / filteredQuestions.length) * 100)}%
                   </span>
                 </div>
                 <Progress 
-                  value={0} 
+                  value={(questionStats.answered / filteredQuestions.length) * 100} 
                   className="w-full h-1 bg-gray-700 progress-indicator" 
                 />
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -703,10 +846,10 @@ const GuestQuestionBank: React.FC = () => {
                   }
                   handleMarkForReview={handleMarkForReview}
                   handleMarkComplete={handleMarkComplete}
-                  isMarkedForReview={false}
-                  isMarkedComplete={false}
+                  isMarkedForReview={question.reviewed}
+                  isMarkedComplete={question.completed}
                   markschemesDisabled={false}
-                  note=""
+                  note={state.notes[question.questionId] || ""}
                   handleNoteChange={handleNoteChange}
                   handleDeleteNote={handleDeleteNote}
                   userId="guest"
@@ -715,15 +858,11 @@ const GuestQuestionBank: React.FC = () => {
                   handleQuestionChange={handleNavigatorClick}
                 />
               ))}
-              <div className="mt-6 flex justify-center">
-                <Button
-                  variant="outline"
-                  onClick={() => handlePageChange(state.currentPage + 1)}
-                  disabled={paginatedQuestions.length >= filteredQuestions.length}
-                >
-                  Load More
-                </Button>
-              </div>
+              <Pagination
+                currentPage={state.currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
             </>
           ) : (
             <p className="text-red-400">No questions found with the selected filters.</p>
@@ -733,5 +872,3 @@ const GuestQuestionBank: React.FC = () => {
     </TooltipProvider>
   )
 }
-
-export default GuestQuestionBank
