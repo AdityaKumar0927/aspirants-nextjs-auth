@@ -1,52 +1,53 @@
 import "../globals.css";
+import cx from "classnames";
 import { sfPro, inter } from "../fonts";
+import Nav from "@/components/layout/nav";
+import { Footer } from "@/components/layout/footer";
 import { Suspense } from "react";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
-import Script from 'next/script';
-import ClientLayout from './ClientLayout';
+import { TooltipProvider } from '@radix-ui/react-tooltip';
+import Bar from '@/components/layout/Bar';
+import { Toaster } from "@/components/ui/toaster";
+import { LoadingProvider } from "@/components/layout/LoadingContext";
+import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext";
 
 config.autoAddCss = false;
 
 export const metadata = {
-  title: "aspirants - Issues",
-  description: "Track and manage issues efficiently",
+  title: "aspirants",
+  description: "",
   metadataBase: new URL("https://aspirants.tech/"),
 };
 
-async function getUserId() {
-  // Replace this with actual server-side logic to fetch user ID
-  // For example, you might use getServerSession from next-auth
-  return null; // Simulate unsigned user. Replace with actual authentication logic.
-}
+// Assuming you get the userId from some authentication context or similar.
+const getUserId = () => {
+  // Replace this with actual logic to fetch user ID, e.g., from a session or a context.
+  // Return null if user is not signed in.
+  const userId = null; // Simulate unsigned user. Replace with actual authentication logic.
+  return userId;
+};
 
-export default async function IssuesLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const userId = await getUserId();
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const userId = getUserId(); // Fetch the user ID
 
   return (
-    <html lang="en" className={`${sfPro.variable} ${inter.variable}`}>
-      <body className="bg-white">
-        <ClientLayout userId={userId}>
-          <Suspense fallback={<div>Loading...</div>}>
-            {children}
-          </Suspense>
-        </ClientLayout>
-
-        <VercelAnalytics />
-
-        <Script
-          id="mathjax-config"
-          strategy="beforeInteractive"
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://rsms.me/" />
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+        <script
+          async
+          id="MathJax-script"
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        ></script>
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               window.MathJax = {
                 tex: {
-                  inlineMath: [['$', '$'], ['\$$', '\$$']],
+                  inlineMath: [['$', '$'], ['\\(', '\\)']],
                   displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 },
                 options: {
@@ -64,16 +65,46 @@ export default async function IssuesLayout({
             `,
           }}
         />
-        <Script
-          id="mathjax-script"
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-          strategy="lazyOnload"
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMGd8V0ER0VgLRW3UppZWW1tBgFO7VVHAb7FZk5"
+          crossOrigin="anonymous"
         />
-        <Script
-          id="font-awesome-cdn"
-          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-          strategy="lazyOnload"
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+                link.integrity = 'sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMGd8V0ER0VgLRW3UppZWW1tBgFO7VVHAb7FZk5';
+                link.crossOrigin = 'anonymous';
+                document.head.appendChild(link);
+              })();
+            `,
+          }}
         />
+      </head>
+      <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
+        <LoadingProvider> 
+          <UserPerformanceProvider userId={userId}> 
+            <TooltipProvider>
+              <div className="fixed inset-0 z-[-10]"></div>
+              <Suspense fallback="...">
+                <Nav />
+              </Suspense>
+              <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+                {children}
+              </main>
+              {/* Render the Bar for both signed-in and non-signed-in users */}
+              <Bar userId={userId} />
+              <Footer />
+              <VercelAnalytics />
+            </TooltipProvider>
+            <Toaster />
+          </UserPerformanceProvider> 
+        </LoadingProvider> 
       </body>
     </html>
   );
