@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import { useQuery, useMutation, useQueryClient } from 'react-query'
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -17,6 +18,7 @@ import { Label } from "@/components/ui/label"
 import { Skeleton } from "@/components/ui/skeleton"
 import { ArrowUpIcon, ArrowDownIcon, ChevronDown, Search, Plus, Trash2, Edit, Eye, CheckCircle, XCircle, MoreHorizontal, Upload, FileUp, FileJson, Loader2 } from 'lucide-react'
 import { useVirtualizer } from '@tanstack/react-virtual'
+import debounce from 'lodash/debounce'
 
 type QuestionStatus = 'ACTIVE' | 'DRAFT' | 'ARCHIVED'
 
@@ -35,7 +37,7 @@ interface Question {
   options: string[]
   correctOption: string | null
   markscheme: string | null
-  notes: string | null
+  notes: { id: string; content: string }[]
   lastAttempted: string | null
   diagramUrl: string | null
   status: QuestionStatus
@@ -52,8 +54,25 @@ type FiltersType = {
   status: string
 }
 
+const fetchQuestions = async (): Promise<Question[]> => {
+  const response = await fetch('/api/questions')
+  if (!response.ok) throw new Error('Failed to fetch questions')
+  return response.json()
+}
+
+const updateQuestion = async (question: Partial<Question>): Promise<Question> => {
+  const response = await fetch('/api/questions', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(question),
+  })
+  if (!response.ok) throw new Error('Failed to update question')
+  return response.json()
+}
+
 export default function QuestionBankDashboard() {
-  const [questions, setQuestions] = useState<Question[]>([])
   const [searchQuery, setSearchQuery] = useState("")
   const [filters, setFilters] = useState<FiltersType>({
     exams: [],
@@ -78,69 +97,44 @@ export default function QuestionBankDashboard() {
   const [editingQuestion, setEditingQuestion] = useState<Question | null>(null)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([])
-  const [isLoading, setIsLoading] = useState(true)
   const [batchUploadText, setBatchUploadText] = useState("")
-  const [isBatchUploading, setIsBatchUploading] = useState(false)
   const [isBatchUploadDialogOpen, setIsBatchUploadDialogOpen] = useState(false)
+  const itemsPerPage = 10
   const { toast } = useToast()
+  const queryClient = useQueryClient()
 
-  const fetchQuestions = useCallback(async () => {
-    setIsLoading(true)
-    try {
-      const response = await fetch('/api/questions')
-      if (!response.ok) throw new Error('Failed to fetch questions')
-      const data = await response.json()
-      setQuestions(data)
-      toast({
-        title: "Questions Loaded",
-        description: `Successfully loaded ${data.length} questions.`,
-      })
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to fetch questions. Please try again.",
-        variant: "destructive",
-      })
-    } finally {
-      setIsLoading(false)
-    }
-  }, [toast])
+  const { data: questions = [], isLoading, error } = useQuery('questions', fetchQuestions)
 
-  useEffect(() => {
-    fetchQuestions()
-  }, [fetchQuestions])
-
-  const handleStatusUpdate = useCallback(async (questionId: string, status: QuestionStatus) => {
-    try {
-      const response = await fetch(`/api/questions`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ questionId, status }),
-      })
-
-      if (!response.ok) throw new Error('Failed to update question status')
-
-      const updatedQuestion = await response.json()
-      toast({
-        title: "Status Updated",
-        description: `Question status updated to ${status}.`,
-      })
-
-      setQuestions((prevQuestions) =>
-        prevQuestions.map((question) =>
-          question.questionId === questionId ? updatedQuestion : question
-        )
+  const updateQuestionMutation = useMutation(updateQuestion, {
+    onMutate: async (updatedQuestion) => {
+      await queryClient.cancelQueries('questions')
+      const previousQuestions = queryClient.getQueryData<Question[]>('questions')
+      queryClient.setQueryData<Question[]>('questions', (old) => 
+        old?.map(question => 
+          question.questionId === updatedQuestion.questionId ? { ...question, ...updatedQuestion } : question
+        ) ?? []
       )
-    } catch (error) {
+      return { previousQuestions }
+    },
+    onError: (err, newQuestion, context) => {
+      queryClient.setQueryData('questions', context?.previousQuestions)
       toast({
         title: "Error",
-        description: "Unable to update question status.",
+        description: "Failed to update question. Please try again.",
         variant: "destructive",
       })
-    }
-  }, [toast])
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries('questions')
+    },
+  })
+
+  const handleStatusUpdate = useCallback(
+    debounce(async (questionId: string, status: QuestionStatus) => {
+      updateQuestionMutation.mutate({ questionId, status })
+    }, 300),
+    [updateQuestionMutation]
+  )
 
   const handleFilterChange = useCallback(
     (tag: keyof FiltersType, value: string) => {
@@ -191,7 +185,7 @@ export default function QuestionBankDashboard() {
       if (!response.ok) throw new Error('Failed to add question')
 
       const addedQuestion = await response.json()
-      setQuestions((prevQuestions) => [...prevQuestions, addedQuestion])
+      queryClient.setQueryData<Question[]>('questions', (old) => [...(old ?? []), addedQuestion])
       setIsAddQuestionOpen(false)
       toast({
         title: "Question Added",
@@ -208,7 +202,6 @@ export default function QuestionBankDashboard() {
 
   const handleEditQuestion = async (editedQuestion: Question) => {
     try {
-      setIsLoading(true)
       const response = await fetch(`/api/questions`, {
         method: 'PATCH',
         headers: {
@@ -220,8 +213,8 @@ export default function QuestionBankDashboard() {
       if (!response.ok) throw new Error('Failed to update question')
 
       const updatedQuestion = await response.json()
-      setQuestions((prevQuestions) =>
-        prevQuestions.map((q) => (q.questionId === editedQuestion.questionId ? updatedQuestion : q))
+      queryClient.setQueryData<Question[]>('questions', (old) => 
+        old?.map((q) => (q.questionId === editedQuestion.questionId ? updatedQuestion : q)) ?? []
       )
       setIsEditDialogOpen(false)
       setEditingQuestion(null)
@@ -235,8 +228,6 @@ export default function QuestionBankDashboard() {
         description: "Failed to update question. Please try again.",
         variant: "destructive",
       })
-    } finally {
-      setIsLoading(false)
     }
   }
 
@@ -252,7 +243,9 @@ export default function QuestionBankDashboard() {
 
       if (!response.ok) throw new Error('Failed to delete question')
 
-      setQuestions((prevQuestions) => prevQuestions.filter((question) => question.questionId !== questionId))
+      queryClient.setQueryData<Question[]>('questions', (old) => 
+        old?.filter((question) => question.questionId !== questionId) ?? []
+      )
       toast({
         title: "Question Deleted",
         description: "Question has been successfully deleted.",
@@ -291,7 +284,9 @@ export default function QuestionBankDashboard() {
       const successfulDeletes = results.filter(result => result.status === 'fulfilled').length
       const failedDeletes = results.filter(result => result.status === 'rejected').length
 
-      setQuestions((prevQuestions) => prevQuestions.filter((question) => !selectedQuestions.includes(question.questionId)))
+      queryClient.setQueryData<Question[]>('questions', (old) => 
+        old?.filter((question) => !selectedQuestions.includes(question.questionId)) ?? []
+      )
       setSelectedQuestions([])
 
       if (successfulDeletes > 0) {
@@ -318,14 +313,13 @@ export default function QuestionBankDashboard() {
   }
 
   const handleBatchUpload = async (questions: string) => {
-    setIsBatchUploading(true);
     try {
       const response = await fetch('/api/questions/batch-upload', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(JSON.parse(questions)),
+        body: questions,
       });
 
       if (!response.ok) {
@@ -334,11 +328,11 @@ export default function QuestionBankDashboard() {
       }
 
       const result = await response.json();
+      queryClient.invalidateQueries('questions')
       toast({
         title: "Batch Upload Successful",
         description: `Successfully uploaded ${result.length} questions.`,
       });
-      fetchQuestions();
     } catch (error) {
       console.error('Upload error:', error);
       toast({
@@ -347,7 +341,6 @@ export default function QuestionBankDashboard() {
         variant: "destructive",
       });
     } finally {
-      setIsBatchUploading(false);
       setIsBatchUploadDialogOpen(false);
       setBatchUploadText("");
     }
@@ -388,6 +381,10 @@ export default function QuestionBankDashboard() {
   const totalQuestions = questions.length
   const draftQuestions = useMemo(() => questions.filter((question) => question.status === 'DRAFT').length, [questions])
   const activeQuestions = useMemo(() => questions.filter((question) => question.status === 'ACTIVE').length, [questions])
+
+  if (error) {
+    return <div>Error loading questions. Please try again later.</div>
+  }
 
   return (
     <TooltipProvider>
@@ -517,23 +514,14 @@ export default function QuestionBankDashboard() {
                   value={batchUploadText}
                   onChange={(e) => setBatchUploadText(e.target.value)}
                   rows={10}
-                  disabled={isBatchUploading}
                 />
               </div>
               <DialogFooter>
                 <Button 
                   type="submit" 
-                  onClick={() => handleBatchUpload(batchUploadText)} 
-                  disabled={isBatchUploading}
+                  onClick={() => handleBatchUpload(batchUploadText)}
                 >
-                  {isBatchUploading ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Uploading...
-                    </>
-                  ) : (
-                    'Upload'
-                  )}
+                  Upload
                 </Button>
               </DialogFooter>
             </DialogContent>
@@ -709,7 +697,6 @@ export default function QuestionBankDashboard() {
               <QuestionForm
                 initialData={editingQuestion}
                 onSubmit={(updatedQuestion) => handleEditQuestion({ ...editingQuestion, ...updatedQuestion })}
-                isLoading={isLoading}
               />
             )}
           </ScrollArea>
@@ -722,10 +709,9 @@ export default function QuestionBankDashboard() {
 interface QuestionFormProps {
   initialData?: Partial<Question>
   onSubmit: (question: Partial<Question>) => void
-  isLoading?: boolean
 }
 
-function QuestionForm({ initialData, onSubmit, isLoading }: QuestionFormProps) {
+function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
   const [formData, setFormData] = useState<Partial<Question>>(() => ({
     text: '',
     subject: '',
@@ -734,6 +720,7 @@ function QuestionForm({ initialData, onSubmit, isLoading }: QuestionFormProps) {
     options: [],
     correctOption: '',
     markscheme: '',
+    notes: [],
     ...initialData
   }))
 
@@ -765,6 +752,28 @@ function QuestionForm({ initialData, onSubmit, isLoading }: QuestionFormProps) {
     setFormData(prev => ({
       ...prev,
       options: prev.options?.filter((_, i) => i !== index) || []
+    }))
+  }
+
+  const handleNoteChange = (index: number, value: string) => {
+    setFormData(prev => {
+      const newNotes = [...(prev.notes || [])]
+      newNotes[index] = { ...newNotes[index], content: value }
+      return { ...prev, notes: newNotes }
+    })
+  }
+
+  const handleAddNote = () => {
+    setFormData(prev => ({
+      ...prev,
+      notes: [...(prev.notes || []), { id: Date.now().toString(), content: '' }]
+    }))
+  }
+
+  const handleRemoveNote = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      notes: prev.notes?.filter((_, i) => i !== index) || []
     }))
   }
 
@@ -809,9 +818,8 @@ function QuestionForm({ initialData, onSubmit, isLoading }: QuestionFormProps) {
       </div>
       <div className="space-y-2">
         <Label htmlFor="difficulty">Difficulty</Label>
-        <Select 
-          name="difficulty" 
-          value={formData.difficulty || undefined} 
+        <Select
+          value={formData.difficulty || ''}
           onValueChange={(value) => handleSelectChange('difficulty', value)}
         >
           <SelectTrigger>
@@ -844,9 +852,8 @@ function QuestionForm({ initialData, onSubmit, isLoading }: QuestionFormProps) {
       </div>
       <div className="space-y-2">
         <Label htmlFor="correctOption">Correct Option</Label>
-        <Select 
-          name="correctOption" 
-          value={formData.correctOption || undefined} 
+        <Select
+          value={formData.correctOption || ''}
           onValueChange={(value) => handleSelectChange('correctOption', value)}
         >
           <SelectTrigger>
@@ -870,17 +877,26 @@ function QuestionForm({ initialData, onSubmit, isLoading }: QuestionFormProps) {
           onChange={handleInputChange}
         />
       </div>
-      <DialogFooter>
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Saving...
-            </>
-          ) : (
-            'Save Question'
-          )}
+      <div className="space-y-2">
+        <Label>Notes</Label>
+        {formData.notes?.map((note, index) => (
+          <div key={index} className="flex items-center space-x-2">
+            <Textarea
+              value={note.content}
+              onChange={(e) => handleNoteChange(index, e.target.value)}
+              placeholder={`Note ${index + 1}`}
+            />
+            <Button type="button" variant="outline" size="icon" onClick={() => handleRemoveNote(index)}>
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          </div>
+        ))}
+        <Button type="button" variant="outline" onClick={handleAddNote}>
+          Add Note
         </Button>
+      </div>
+      <DialogFooter>
+        <Button type="submit">Save Question</Button>
       </DialogFooter>
     </form>
   )

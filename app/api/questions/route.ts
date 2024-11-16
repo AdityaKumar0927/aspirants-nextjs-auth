@@ -1,4 +1,4 @@
-import { PrismaClient, QuestionStatus } from '@prisma/client';
+import { PrismaClient, QuestionStatus, Prisma } from '@prisma/client';
 import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
@@ -40,7 +40,8 @@ export async function POST(request: Request) {
     const newQuestion = await prisma.question.create({
       data: {
         ...data,
-        status: data.status || QuestionStatus.DRAFT, // Default to DRAFT if not provided
+        status: data.status || QuestionStatus.DRAFT,
+        notes: Array.isArray(data.notes) ? { create: data.notes } : undefined,
       },
     });
     return NextResponse.json(newQuestion);
@@ -51,16 +52,25 @@ export async function POST(request: Request) {
 }
 
 export async function PATCH(request: Request) {
-  const { questionId, status, ...updates } = await request.json();
+  const { questionId, status, notes, ...updates } = await request.json();
 
   try {
     const validStatus = status as QuestionStatus;
+
+    let notesUpdate: Prisma.NoteUpdateManyWithoutQuestionNestedInput | undefined;
+    if (Array.isArray(notes)) {
+      notesUpdate = {
+        deleteMany: {},
+        create: notes,
+      };
+    }
 
     const updatedQuestion = await prisma.question.update({
       where: { questionId },
       data: {
         ...updates,
         status: validStatus,
+        notes: notesUpdate,
       },
     });
 
