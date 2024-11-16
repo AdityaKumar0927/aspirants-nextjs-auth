@@ -484,7 +484,7 @@ export default function GuestQuestionBank() {
   )
 
   const handleDeleteNote = useCallback(
-    (questionId: string) => {
+    async (questionId: string): Promise<void> => {
       const newNotes = { ...state.notes }
       delete newNotes[questionId]
       dispatch({ type: "SET_NOTES", payload: newNotes })
