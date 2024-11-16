@@ -1,10 +1,5 @@
-import { QuestionProvider } from './QuestionContext'
-import { QuestionBankDashboardContent } from './QuestionBankDashboardContent'
+import { QuestionBankDashboardWrapper } from './QuestionBankDashboardWrapper'
 
 export default function QuestionBankPage() {
-  return (
-    <QuestionProvider>
-      <QuestionBankDashboardContent />
-    </QuestionProvider>
-  )
+  return <QuestionBankDashboardWrapper />
 }

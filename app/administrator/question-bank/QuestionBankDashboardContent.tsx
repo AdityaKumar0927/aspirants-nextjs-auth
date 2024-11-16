@@ -77,8 +77,8 @@ export function QuestionBankDashboardContent() {
     onMutate: async (updatedQuestion) => {
       await queryClient.cancelQueries({ queryKey: ['questions'] })
       const previousQuestions = queryClient.getQueryData<Question[]>(['questions'])
-      queryClient.setQueryData<Question[]>(['questions'], (old) =>
-        old?.map(question =>
+      queryClient.setQueryData<Question[]>(['questions'], (old) => 
+        old?.map(question => 
           question.questionId === updatedQuestion.questionId ? { ...question, ...updatedQuestion } : question
         ) ?? []
       )
@@ -115,25 +115,25 @@ export function QuestionBankDashboardContent() {
           const updatedFilter = isSelected
             ? filterValues.filter((v: string) => v !== value)
             : [...filterValues, value]
-
+          
           const newFilters = { ...prevFilters, [tag]: updatedFilter }
-
+          
           if (tag === 'exams') {
             const selectedExams = newFilters.exams
-            newFilters.subjects = newFilters.subjects.filter(subject =>
+            newFilters.subjects = newFilters.subjects.filter(subject => 
               questions.some(q => selectedExams.includes(q.exam) && q.subject === subject)
             )
-            newFilters.topics = newFilters.topics.filter(topic =>
+            newFilters.topics = newFilters.topics.filter(topic => 
               questions.some(q => selectedExams.includes(q.exam) && q.topic === topic)
             )
-            newFilters.subtopics = newFilters.subtopics.filter(subtopic =>
+            newFilters.subtopics = newFilters.subtopics.filter(subtopic => 
               questions.some(q => selectedExams.includes(q.exam) && q.subtopic === subtopic)
             )
-            newFilters.types = newFilters.types.filter(type =>
+            newFilters.types = newFilters.types.filter(type => 
               questions.some(q => selectedExams.includes(q.exam) && q.type === type)
             )
           }
-
+          
           return newFilters
         }
         return prevFilters
@@ -354,7 +354,7 @@ export function QuestionBankDashboardContent() {
     <TooltipProvider>
       <div className="space-y-6">
         <h1 className="text-3xl font-bold tracking-tight">Question Bank Dashboard</h1>
-
+        
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -472,7 +472,7 @@ export function QuestionBankDashboardContent() {
               </DialogHeader>
               <div className="grid w-full gap-1.5">
                 <Label htmlFor="batchText">Paste Questions JSON</Label>
-                <Textarea
+                <Textarea 
                   id="batchText"
                   placeholder="Paste your questions JSON here..."
                   value={batchUploadText}
@@ -481,8 +481,8 @@ export function QuestionBankDashboardContent() {
                 />
               </div>
               <DialogFooter>
-                <Button
-                  type="submit"
+                <Button 
+                  type="submit" 
                   onClick={() => handleBatchUpload(batchUploadText)}
                 >
                   Upload
@@ -490,8 +490,8 @@ export function QuestionBankDashboardContent() {
               </DialogFooter>
             </DialogContent>
           </Dialog>
-          <Button
-            variant="destructive"
+          <Button 
+            variant="destructive" 
             onClick={handleDeleteSelected}
             disabled={selectedQuestions.length === 0}
           >
@@ -518,12 +518,12 @@ export function QuestionBankDashboardContent() {
                 >
                   <span className="mr-2 truncate">
                     {Array.isArray(filters[filterType as keyof typeof filters]) &&
-                      (filters[filterType as keyof typeof filters] as string[]).length
-                        ? `${
-                            (filters[filterType as keyof typeof filters] as string[])
-                              .length
-                          } selected`
-                        : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                    (filters[filterType as keyof typeof filters] as string[]).length
+                      ? `${
+                          (filters[filterType as keyof typeof filters] as string[])
+                            .length
+                        } selected`
+                      : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                   </span>
                   <ChevronDown
                     className={`h-4 w-4 transition-transform ${
