@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator"
-import { ProfileForm } from "@/app/forms/profile-form"
+import ProfileForm from "./profile-form"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "../api/auth/[...nextauth]/options"
 import { redirect } from "next/navigation"
