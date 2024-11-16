@@ -88,11 +88,14 @@ export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
 
   if (!session) {
+    console.error('Unauthorized access attempt');
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   try {
     const body = await req.json();
+    console.log('Received body:', JSON.stringify(body, null, 2));
+
     let questionsInput: QuestionInput[];
 
     if (Array.isArray(body)) {
@@ -100,10 +103,12 @@ export async function POST(req: Request) {
     } else if (body.questions && Array.isArray(body.questions)) {
       questionsInput = body.questions;
     } else {
-      return NextResponse.json({ message: 'Invalid questions data format' }, { status: 400 });
+      console.error('Invalid questions data format:', body);
+      return NextResponse.json({ message: 'Invalid questions data format', receivedData: body }, { status: 400 });
     }
 
     if (questionsInput.length === 0) {
+      console.error('No questions provided');
       return NextResponse.json({ message: 'No questions provided' }, { status: 400 });
     }
 
@@ -117,6 +122,7 @@ export async function POST(req: Request) {
         const processedQuestion = validateAndFormatQuestion(questionInput);
         uploadResult.success.push(processedQuestion);
       } catch (error) {
+        console.error('Error processing question:', error);
         uploadResult.failures.push({ 
           question: questionInput, 
           error: error instanceof Error ? error.message : 'Failed to process question'
@@ -124,11 +130,24 @@ export async function POST(req: Request) {
       }
     }
 
+    console.log(`Processed ${uploadResult.success.length} questions successfully, ${uploadResult.failures.length} failures`);
+
     if (uploadResult.success.length > 0) {
-      await prisma.question.createMany({
-        data: uploadResult.success,
-        skipDuplicates: true,
-      });
+      try {
+        await prisma.question.createMany({
+          data: uploadResult.success,
+          skipDuplicates: true,
+        });
+        console.log(`Successfully inserted ${uploadResult.success.length} questions`);
+      } catch (dbError) {
+        console.error('Database error:', dbError);
+        return NextResponse.json({ 
+          message: 'Error inserting questions into database', 
+          error: dbError instanceof Error ? dbError.message : 'Unknown database error',
+          successfullyProcessed: uploadResult.success.length,
+          failedToProcess: uploadResult.failures.length
+        }, { status: 500 });
+      }
     }
 
     return NextResponse.json({
@@ -142,7 +161,11 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error('Error during batch upload:', error);
     return NextResponse.json(
-      { message: 'An error occurred during batch upload', error: error instanceof Error ? error.message : 'Unknown error' },
+      { 
+        message: 'An error occurred during batch upload', 
+        error: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined
+      },
       { status: 500 }
     );
   }
