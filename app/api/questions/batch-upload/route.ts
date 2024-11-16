@@ -102,6 +102,16 @@ export async function POST(req: Request) {
       questionsInput = body;
     } else if (body.questions && Array.isArray(body.questions)) {
       questionsInput = body.questions;
+    } else if (typeof body.text === 'string') {
+      try {
+        questionsInput = JSON.parse(body.text);
+        if (!Array.isArray(questionsInput)) {
+          throw new Error('Parsed text is not an array');
+        }
+      } catch (parseError) {
+        console.error('Error parsing questions from text:', parseError);
+        return NextResponse.json({ message: 'Invalid questions data format in text field', error: parseError instanceof Error ? parseError.message : 'Unknown parsing error' }, { status: 400 });
+      }
     } else {
       console.error('Invalid questions data format:', body);
       return NextResponse.json({ message: 'Invalid questions data format', receivedData: body }, { status: 400 });
