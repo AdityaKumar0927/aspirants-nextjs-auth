@@ -1,12 +1,12 @@
 "use client"
 
 import React, { useReducer, useEffect, useMemo, useCallback, useState } from "react"
-import { useQuery } from "@tanstack/react-query"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
 import Question from "@/components/shared/Question"
 import Popover from "@/components/shared/popover"
 import { ChevronDown, ChevronLeft, ChevronRight, Search, List, Info, Circle, CheckCircle2, Flag, HelpCircle } from 'lucide-react'
+import Link from "next/link"
 import {
   Tooltip,
   TooltipTrigger,
@@ -16,8 +16,10 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
-import { Card, CardContent } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
+import {
+  Card,
+  CardContent,
+} from "@/components/ui/card"
 import {
   Dialog,
   DialogContent,
@@ -26,9 +28,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Progress } from "@/components/ui/progress"
 import { motion, AnimatePresence } from "framer-motion"
-import Link from "next/link"
-import { useVirtualizer } from "@tanstack/react-virtual"
 
 const PAGE_SIZE = 10
 
@@ -89,6 +90,7 @@ type StateType = {
   showMarkscheme: Record<string, boolean>
   selectedOptions: Record<string, string>
   notes: Record<string, string>
+  loading: boolean
   currentPage: number
 }
 
@@ -102,6 +104,7 @@ type ActionType =
   | { type: "SET_SHOW_MARKSCHEME"; payload: Record<string, boolean> }
   | { type: "SET_SELECTED_OPTIONS"; payload: Record<string, string> }
   | { type: "SET_NOTES"; payload: Record<string, string> }
+  | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_CURRENT_PAGE"; payload: number }
 
 const initialState: StateType = {
@@ -131,6 +134,7 @@ const initialState: StateType = {
   showMarkscheme: {},
   selectedOptions: {},
   notes: {},
+  loading: true,
   currentPage: 1,
 }
 
@@ -157,6 +161,8 @@ function reducer(state: StateType, action: ActionType): StateType {
       return { ...state, selectedOptions: action.payload }
     case "SET_NOTES":
       return { ...state, notes: action.payload }
+    case "SET_LOADING":
+      return { ...state, loading: action.payload }
     case "SET_CURRENT_PAGE":
       return { ...state, currentPage: action.payload }
     default:
@@ -226,8 +232,8 @@ const Pagination: React.FC<{
         size="icon"
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
-        aria-label="Previous page"
       >
+        <span className="sr-only">Previous page</span>
         <ChevronLeft className="h-4 w-4" />
       </Button>
       {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
@@ -239,8 +245,6 @@ const Pagination: React.FC<{
               variant={currentPage === pageNumber ? "default" : "outline"}
               size="icon"
               onClick={() => onPageChange(pageNumber)}
-              aria-label={`Page ${pageNumber}`}
-              aria-current={currentPage === pageNumber ? "page" : undefined}
             >
               {pageNumber}
             </Button>
@@ -255,7 +259,6 @@ const Pagination: React.FC<{
             variant="outline"
             size="icon"
             onClick={() => onPageChange(totalPages)}
-            aria-label={`Page ${totalPages}`}
           >
             {totalPages}
           </Button>
@@ -266,18 +269,38 @@ const Pagination: React.FC<{
         size="icon"
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
-        aria-label="Next page"
       >
+        <span className="sr-only">Next page</span>
         <ChevronRight className="h-4 w-4" />
       </Button>
     </nav>
   )
 }
 
-const fetchQuestions = async (): Promise<QuestionType[]> => {
-  const response = await fetch("/api/questions")
-  if (!response.ok) throw new Error("Failed to fetch questions")
-  return response.json()
+const GuestBanner: React.FC = () => {
+  return (
+    <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
+      <CardContent className="p-4 flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
+            <Info className="h-5 w-5 text-blue-700" />
+          </div>
+          <div className="space-y-1">
+            <h3 className="font-medium text-blue-900">Guest Access</h3>
+            <p className="text-sm text-blue-700">
+              Try out the Question Bank features. Sign in to save your progress.
+            </p>
+          </div>
+        </div>
+        <Link href="/QuestionBank" className="hidden sm:block">
+          <Button variant="outline" className="border-blue-200 hover:border-blue-300 hover:bg-blue-50">
+            Sign in
+            <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
+        </Link>
+      </CardContent>
+    </Card>
+  )
 }
 
 export default function GuestQuestionBank() {
@@ -285,18 +308,28 @@ export default function GuestQuestionBank() {
   const { toast } = useToast()
   const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
 
-  const { data: questions = [], isLoading, error } = useQuery<QuestionType[], Error>({
-    queryKey: ["questions"],
-    queryFn: fetchQuestions,
-    retry: 3,
-    refetchOnWindowFocus: false,
-  })
-
   useEffect(() => {
-    if (questions.length > 0) {
-      dispatch({ type: "SET_QUESTIONS", payload: questions as QuestionType[] })
+    const fetchQuestions = async () => {
+      dispatch({ type: "SET_LOADING", payload: true })
+      try {
+        const response = await fetch("/api/questions")
+        if (!response.ok) throw new Error("Failed to fetch questions")
+        const questions = await response.json()
+        dispatch({ type: "SET_QUESTIONS", payload: questions })
+      } catch (error) {
+        console.error("Error fetching questions:", error)
+        toast({
+          title: "Error",
+          description: "Failed to load questions. Please try again later.",
+          variant: "destructive",
+        })
+      } finally {
+        dispatch({ type: "SET_LOADING", payload: false })
+      }
     }
-  }, [questions])
+
+    fetchQuestions()
+  }, [toast])
 
   const filteredQuestions = useMemo(() => {
     return state.questions.filter((question) => {
@@ -415,7 +448,7 @@ export default function GuestQuestionBank() {
   )
 
   const handleMarkForReview = useCallback(
-    async (questionId: string): Promise<void> => {
+    (questionId: string) => {
       const updatedQuestions = state.questions.map(q =>
         q.questionId === questionId ? { ...q, reviewed: true } : q
       )
@@ -429,7 +462,7 @@ export default function GuestQuestionBank() {
   )
 
   const handleMarkComplete = useCallback(
-    async (questionId: string): Promise<void> => {
+    (questionId: string) => {
       const updatedQuestions = state.questions.map(q =>
         q.questionId === questionId ? { ...q, completed: true } : q
       )
@@ -451,7 +484,7 @@ export default function GuestQuestionBank() {
   )
 
   const handleDeleteNote = useCallback(
-    async (questionId: string): Promise<void> => {
+    (questionId: string) => {
       const newNotes = { ...state.notes }
       delete newNotes[questionId]
       dispatch({ type: "SET_NOTES", payload: newNotes })
@@ -499,16 +532,7 @@ export default function GuestQuestionBank() {
     return stats
   }, [filteredQuestions, state.selectedOptions, state.numericalAnswers])
 
-  const parentRef = React.useRef<HTMLDivElement>(null)
-
-  const rowVirtualizer = useVirtualizer({
-    count: paginatedQuestions.length,
-    getScrollElement: () => parentRef.current,
-    estimateSize: () => 200,
-    overscan: 5,
-  })
-
-  if (isLoading) {
+  if (state.loading) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
@@ -543,17 +567,6 @@ export default function GuestQuestionBank() {
     )
   }
 
-  if (error) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="text-center">
-          <p className="text-xl font-semibold text-red-600 mb-4">Error loading questions</p>
-          <p className="text-gray-600">Please try again later or contact support if the problem persists.</p>
-        </div>
-      </div>
-    )
-  }
-
   return (
     <TooltipProvider>
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -562,27 +575,7 @@ export default function GuestQuestionBank() {
             Question Bank
           </h1>
 
-          <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
-            <CardContent className="p-4 flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
-                  <Info className="h-5 w-5 text-blue-700" />
-                </div>
-                <div className="space-y-1">
-                  <h3 className="font-medium text-blue-900">Guest Access</h3>
-                  <p className="text-sm text-blue-700">
-                    Try out the Question Bank features. Sign in to save your progress.
-                  </p>
-                </div>
-              </div>
-              <Link href="/QuestionBank" className="hidden sm:block">
-                <Button variant="outline" className="border-blue-200 hover:border-blue-300 hover:bg-blue-50">
-                  Sign in
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
+          <GuestBanner />
 
           <div className="mb-6 flex items-center space-x-4">
             <div className="relative flex-grow">
@@ -592,7 +585,6 @@ export default function GuestQuestionBank() {
                 value={state.searchQuery}
                 onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
                 className="pl-10"
-                aria-label="Search questions"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
@@ -648,7 +640,6 @@ export default function GuestQuestionBank() {
                         ? "bg-white border hover:border-black border-gray-600 text-gray-500"
                         : "bg-white hover:border-black border border-gray-300 text-gray-500"
                     }`}
-                    aria-pressed={state.filters.status === status}
                   >
                     {status.charAt(0).toUpperCase() + status.slice(1)}
                   </button>
@@ -745,8 +736,6 @@ export default function GuestQuestionBank() {
                         })
                       }
                       className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
-                      aria-haspopup="true"
-                      aria-expanded={state.dropdowns[filterType as keyof typeof state.dropdowns]}
                     >
                       <p className="text-gray-600">
                         {Array.isArray(state.filters[filterType as keyof FiltersType]) &&
@@ -820,70 +809,45 @@ export default function GuestQuestionBank() {
             </CardContent>
           </Card>
 
-          <div ref={parentRef} style={{ height: `500px`, overflow: 'auto' }}>
-            <div
-              style={{
-                height: `${rowVirtualizer.getTotalSize()}px`,
-                width: '100%',
-                position: 'relative',
-              }}
-            >
-              {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-                const question = paginatedQuestions[virtualRow.index]
-                return (
-                  <div
-                    key={question.questionId}
-                    data-index={virtualRow.index}
-                    ref={rowVirtualizer.measureElement}
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      transform: `translateY(${virtualRow.start}px)`,
-                    }}
-                  >
-                    <Question
-                      question={question}
-                      feedback={state.feedback[question.questionId]}
-                      selectedOption={state.selectedOptions[question.questionId]}
-                      numericalAnswer={state.numericalAnswers[question.questionId]}
-                      showMarkscheme={state.showMarkscheme[question.questionId]}
-                      handleOptionClick={handleOptionClick}
-                      handleNumericalSubmit={handleNumericalSubmit}
-                      handleNumericalChange={(questionId, value) =>
-                        dispatch({
-                          type: "SET_NUMERICAL_ANSWERS",
-                          payload: { ...state.numericalAnswers, [questionId]: value },
-                        })
-                      }
-                      handleMarkschemeToggle={() =>
-                        dispatch({
-                          type: "SET_SHOW_MARKSCHEME",
-                          payload: {
-                            ...state.showMarkscheme,
-                            [question.questionId]: !state.showMarkscheme[question.questionId],
-                          },
-                        })
-                      }
-                      handleMarkForReview={handleMarkForReview}
-                      handleMarkComplete={handleMarkComplete}
-                      isMarkedForReview={question.reviewed}
-                      isMarkedComplete={question.completed}
-                      markschemesDisabled={false}
-                      note={state.notes[question.questionId] || ""}
-                      handleNoteChange={handleNoteChange}
-                      handleDeleteNote={handleDeleteNote}
-                      userId="guest"
-                      totalQuestions={filteredQuestions.length}
-                      currentQuestionIndex={virtualRow.index + (state.currentPage - 1) * PAGE_SIZE}
-                      handleQuestionChange={handleNavigatorClick}
-                    />
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+          {paginatedQuestions.map((question) => (
+            <Question
+              key={question.questionId}
+              question={question}
+              feedback={state.feedback[question.questionId]}
+              selectedOption={state.selectedOptions[question.questionId]}
+              numericalAnswer={state.numericalAnswers[question.questionId]}
+              showMarkscheme={state.showMarkscheme[question.questionId]}
+              handleOptionClick={handleOptionClick}
+              handleNumericalSubmit={handleNumericalSubmit}
+              handleNumericalChange={(questionId, value) =>
+                dispatch({
+                  type: "SET_NUMERICAL_ANSWERS",
+                  payload: { ...state.numericalAnswers, [questionId]: value },
+                })
+              }
+              handleMarkschemeToggle={() =>
+                dispatch({
+                  type: "SET_SHOW_MARKSCHEME",
+                  payload: {
+                    ...state.showMarkscheme,
+                    [question.questionId]: !state.showMarkscheme[question.questionId],
+                  },
+                })
+              }
+              handleMarkForReview={handleMarkForReview}
+              handleMarkComplete={handleMarkComplete}
+              isMarkedForReview={question.reviewed}
+              isMarkedComplete={question.completed}
+              markschemesDisabled={false}
+              note={state.notes[question.questionId] || ""}
+              handleNoteChange={handleNoteChange}
+              handleDeleteNote={handleDeleteNote}
+              userId="guest"
+              totalQuestions={filteredQuestions.length}
+              currentQuestionIndex={paginatedQuestions.indexOf(question)}
+              handleQuestionChange={handleNavigatorClick}
+            />
+          ))}
           <Pagination
             currentPage={state.currentPage}
             totalPages={totalPages}
