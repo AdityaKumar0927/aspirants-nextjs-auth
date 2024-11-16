@@ -32,6 +32,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export type IssueArea = "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
 export type IssueStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
@@ -95,6 +97,7 @@ export default function IssueTracker() {
     },
   })
   const [userRole, setUserRole] = useState<string>('')
+  const [isLoading, setIsLoading] = useState(true)
   const itemsPerPage = 10
   const { toast } = useToast()
   const router = useRouter()
@@ -109,17 +112,20 @@ export default function IssueTracker() {
       const data = await response.json()
       setIssues(data)
     } catch (error) {
+      console.error('Error fetching issues:', error)
       toast({
         title: "Error",
         description: "Failed to fetch issues. Please try again.",
         variant: "destructive",
       })
+    } finally {
+      setIsLoading(false)
     }
   }, [toast])
 
   const fetchUserRole = useCallback(async () => {
     try {
-      const response = await fetch('/api/user/role')
+      const response = await fetch('/api/user/role', { method: 'GET' })
       if (!response.ok) throw new Error('Failed to fetch user role')
       const data = await response.json()
       setUserRole(data.role)
@@ -149,6 +155,7 @@ export default function IssueTracker() {
   }, [issues, searchQuery, statusFilter, priorityFilter, areaFilter])
 
   const refreshIssues = useCallback(async () => {
+    setIsLoading(true)
     try {
       await fetchIssues()
       toast({
@@ -161,6 +168,8 @@ export default function IssueTracker() {
         description: "Failed to refresh issues. Please try again.",
         variant: "destructive",
       })
+    } finally {
+      setIsLoading(false)
     }
   }, [fetchIssues, toast])
 
@@ -242,6 +251,22 @@ export default function IssueTracker() {
   const paginatedIssues = filteredIssues.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
+  )
+
+  const LoadingSkeleton = () => (
+    <div className="space-y-4">
+      {[...Array(5)].map((_, index) => (
+        <Card key={index}>
+          <CardHeader>
+            <Skeleton width={200} height={24} />
+            <Skeleton width={150} height={20} />
+          </CardHeader>
+          <CardContent>
+            <Skeleton count={3} />
+          </CardContent>
+        </Card>
+      ))}
+    </div>
   )
 
   return (
@@ -358,7 +383,9 @@ export default function IssueTracker() {
                       </Label>
                       <Select
                         value={newIssue.priority}
-                        onValueChange={(value) => setNewIssue({ ...newIssue, priority: value as IssuePriority })}
+                        onValueChange={(value) => setNewIssue({ ...newIssue,
+                          priority: value as IssuePriority
+                        })}
                       >
                         <SelectTrigger className="w-[180px]">
                           <SelectValue placeholder="Select priority" />
@@ -426,96 +453,100 @@ export default function IssueTracker() {
           )}
         </div>
 
-        <div className="space-y-4">
-          {paginatedIssues.map((issue) => (
-            <Accordion type="single" collapsible key={issue.id}>
-              <AccordionItem value={issue.id}>
-                <AccordionTrigger>
-                  <div className="flex items-center gap-4 w-full">
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center gap-2">
-                        <Badge
-                          variant="secondary"
-                          className={`rounded-full px-2 py-0.5 text-xs font-normal ${
-                            statusColors[issue.status]
-                          }`}
-                        >
-                          {issue.status === "IN_PROGRESS"
-                            ? "In Progress"
-                            : issue.status.charAt(0) +
-                              issue.status.slice(1).toLowerCase()}
-                        </Badge>
-                        <Badge
-                          variant="secondary"
-                          className={`rounded-full px-2 py-0.5 text-xs font-normal ${
-                            priorityColors[issue.priority]
-                          }`}
-                        >
-                          {issue.priority.charAt(0) + issue.priority.slice(1).toLowerCase()}
-                        </Badge>
-                        <span className="text-sm text-muted-foreground">
-                          {issue.id}
-                        </span>
+        {isLoading ? (
+          <LoadingSkeleton />
+        ) : (
+          <div className="space-y-4">
+            {paginatedIssues.map((issue) => (
+              <Accordion type="single" collapsible key={issue.id}>
+                <AccordionItem value={issue.id}>
+                  <AccordionTrigger>
+                    <div className="flex items-center gap-4 w-full">
+                      <div className="flex-1 text-left">
+                        <div className="flex items-center gap-2">
+                          <Badge
+                            variant="secondary"
+                            className={`rounded-full px-2 py-0.5 text-xs font-normal ${
+                              statusColors[issue.status]
+                            }`}
+                          >
+                            {issue.status === "IN_PROGRESS"
+                              ? "In Progress"
+                              : issue.status.charAt(0) +
+                                issue.status.slice(1).toLowerCase()}
+                          </Badge>
+                          <Badge
+                            variant="secondary"
+                            className={`rounded-full px-2 py-0.5 text-xs font-normal ${
+                              priorityColors[issue.priority]
+                            }`}
+                          >
+                            {issue.priority.charAt(0) + issue.priority.slice(1).toLowerCase()}
+                          </Badge>
+                          <span className="text-sm text-muted-foreground">
+                            {issue.id}
+                          </span>
+                        </div>
+                        <h2 className="text-lg font-medium mt-1">{issue.title}</h2>
                       </div>
-                      <h2 className="text-lg font-medium mt-1">{issue.title}</h2>
+                      <Select
+                        value={issue.status}
+                        onValueChange={(value) => handleStatusUpdate(issue.id, value as IssueStatus)}
+                      >
+                        <SelectTrigger className="w-[140px]">
+                          <SelectValue placeholder="Update status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="OPEN">Open</SelectItem>
+                          <SelectItem value="IN_PROGRESS">In Progress</SelectItem>
+                          <SelectItem value="RESOLVED">Resolved</SelectItem>
+                          <SelectItem value="CLOSED">Closed</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
-                    <Select
-                      value={issue.status}
-                      onValueChange={(value) => handleStatusUpdate(issue.id, value as IssueStatus)}
-                    >
-                      <SelectTrigger className="w-[140px]">
-                        <SelectValue placeholder="Update status" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="OPEN">Open</SelectItem>
-                        <SelectItem value="IN_PROGRESS">In Progress</SelectItem>
-                        <SelectItem value="RESOLVED">Resolved</SelectItem>
-                        <SelectItem value="CLOSED">Closed</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Issue Details</CardTitle>
-                      <CardDescription>
-                        Created on {new Date(issue.createdAt).toLocaleString()} by {issue.createdBy.name ?? 'Unknown'}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div>
-                        <h3 className="font-semibold">Description</h3>
-                        <p>{issue.description}</p>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold">Feedback Details</h3>
-                        <p><strong>Type:</strong> {issue.feedbackDetails.type}</p>
-                        <p><strong>Full Text:</strong> {issue.feedbackDetails.fullText}</p>
-                        {issue.feedbackDetails.additionalInfo && (
-                          <p><strong>Additional Info:</strong> {issue.feedbackDetails.additionalInfo}</p>
-                        )}
-                      </div>
-                      {issue.questionId && (
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Issue Details</CardTitle>
+                        <CardDescription>
+                          Created on {new Date(issue.createdAt).toLocaleString()} by {issue.createdBy.name ?? 'Unknown'}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
                         <div>
-                          <h3 className="font-semibold">Related Question</h3>
-                          <p><strong>Question ID:</strong> {issue.questionId}</p>
-                          {issue.questionContent && (
-                            <p><strong>Question Content:</strong> {issue.questionContent}</p>
+                          <h3 className="font-semibold">Description</h3>
+                          <p>{issue.description}</p>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold">Feedback Details</h3>
+                          <p><strong>Type:</strong> {issue.feedbackDetails.type}</p>
+                          <p><strong>Full Text:</strong> {issue.feedbackDetails.fullText}</p>
+                          {issue.feedbackDetails.additionalInfo && (
+                            <p><strong>Additional Info:</strong> {issue.feedbackDetails.additionalInfo}</p>
                           )}
                         </div>
-                      )}
-                      <div>
-                        <h3 className="font-semibold">Area</h3>
-                        <p>{issue.area}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          ))}
-        </div>
+                        {issue.questionId && (
+                          <div>
+                            <h3 className="font-semibold">Related Question</h3>
+                            <p><strong>Question ID:</strong> {issue.questionId}</p>
+                            {issue.questionContent && (
+                              <p><strong>Question Content:</strong> {issue.questionContent}</p>
+                            )}
+                          </div>
+                        )}
+                        <div>
+                          <h3 className="font-semibold">Area</h3>
+                          <p>{issue.area}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            ))}
+          </div>
+        )}
 
         {totalPages > 1 && (
           <div className="flex items-center justify-between mt-4">
