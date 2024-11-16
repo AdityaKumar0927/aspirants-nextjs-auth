@@ -60,9 +60,9 @@ const priorityColors = {
   CRITICAL: "bg-purple-500/20 text-purple-700",
 }
 
-export default function IssueTracker({ initialIssues, userRole }: { initialIssues: Issue[], userRole: string }) {
-  const [issues, setIssues] = useState<Issue[]>(initialIssues)
-  const [filteredIssues, setFilteredIssues] = useState<Issue[]>(initialIssues)
+export default function IssueTracker() {
+  const [issues, setIssues] = useState<Issue[]>([])
+  const [filteredIssues, setFilteredIssues] = useState<Issue[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState<IssueStatus | 'All'>('All')
   const [priorityFilter, setPriorityFilter] = useState<IssuePriority | 'All'>('All')
@@ -76,12 +76,44 @@ export default function IssueTracker({ initialIssues, userRole }: { initialIssue
     priority: 'MEDIUM',
     area: 'OTHER',
   })
+  const [userRole, setUserRole] = useState<string>('')
   const itemsPerPage = 10
   const { toast } = useToast()
   const router = useRouter()
   const searchParams = useSearchParams()
 
   const canCreateIssue = userRole && userRole !== 'member'
+
+  const fetchIssues = useCallback(async () => {
+    try {
+      const response = await fetch('/api/issues')
+      if (!response.ok) throw new Error('Failed to fetch issues')
+      const data = await response.json()
+      setIssues(data)
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to fetch issues. Please try again.",
+        variant: "destructive",
+      })
+    }
+  }, [toast])
+
+  const fetchUserRole = useCallback(async () => {
+    try {
+      const response = await fetch('/api/user/role')
+      if (!response.ok) throw new Error('Failed to fetch user role')
+      const data = await response.json()
+      setUserRole(data.role)
+    } catch (error) {
+      console.error('Failed to fetch user role:', error)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchIssues()
+    fetchUserRole()
+  }, [fetchIssues, fetchUserRole])
 
   useEffect(() => {
     const filtered = issues.filter((issue) => {
