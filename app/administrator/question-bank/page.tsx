@@ -795,34 +795,51 @@ interface QuestionFormProps {
 }
 
 function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
-  const [formData, setFormData] = useState<Partial<Question>>(initialData || {})
-  const [options, setOptions] = useState<string[]>(initialData?.options || [])
+  const [formData, setFormData] = useState<Partial<Question>>(() => ({
+    text: '',
+    subject: '',
+    topic: '',
+    difficulty: '',
+    options: [],
+    correctOption: '',
+    markscheme: '',
+    ...initialData
+  }))
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
   const handleOptionChange = (index: number, value: string) => {
-    const newOptions = [...options]
-    newOptions[index] = value
-    setOptions(newOptions)
-    setFormData(prev => ({ ...prev, options: newOptions }))
+    setFormData(prev => {
+      const newOptions = [...(prev.options || [])]
+      newOptions[index] = value
+      return { ...prev, options: newOptions }
+    })
   }
 
   const handleAddOption = () => {
-    setOptions(prev => [...prev, ''])
-    setFormData(prev => ({ ...prev, options: [...(prev.options || []), ''] }))
+    setFormData(prev => ({
+      ...prev,
+      options: [...(prev.options || []), '']
+    }))
   }
 
   const handleRemoveOption = (index: number) => {
-    setOptions(prev => prev.filter((_, i) => i !== index))
-    setFormData(prev => ({ ...prev, options: prev.options?.filter((_, i) => i !== index) }))
+    setFormData(prev => ({
+      ...prev,
+      options: prev.options?.filter((_, i) => i !== index) || []
+    }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSubmit({ ...formData, options })
+    onSubmit(formData)
   }
 
   return (
@@ -861,7 +878,11 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
       </div>
       <div className="space-y-2">
         <Label htmlFor="difficulty">Difficulty</Label>
-        <Select name="difficulty" value={formData.difficulty} onValueChange={(value) => setFormData(prev => ({ ...prev, difficulty: value }))}>
+        <Select 
+          name="difficulty" 
+          value={formData.difficulty} 
+          onValueChange={(value) => handleSelectChange('difficulty', value)}
+        >
           <SelectTrigger>
             <SelectValue placeholder="Select difficulty" />
           </SelectTrigger>
@@ -874,7 +895,7 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
       </div>
       <div className="space-y-2">
         <Label>Options</Label>
-        {options.map((option, index) => (
+        {formData.options?.map((option, index) => (
           <div key={index} className="flex items-center space-x-2">
             <Input
               value={option}
@@ -892,12 +913,16 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
       </div>
       <div className="space-y-2">
         <Label htmlFor="correctOption">Correct Option</Label>
-        <Select name="correctOption" value={formData.correctOption || ''} onValueChange={(value) => setFormData(prev => ({ ...prev, correctOption: value }))}>
+        <Select 
+          name="correctOption" 
+          value={formData.correctOption || ''} 
+          onValueChange={(value) => handleSelectChange('correctOption', value)}
+        >
           <SelectTrigger>
             <SelectValue placeholder="Select correct option" />
           </SelectTrigger>
           <SelectContent>
-            {options.map((option, index) => (
+            {formData.options?.map((option, index) => (
               <SelectItem key={index} value={option}>
                 {option}
               </SelectItem>
