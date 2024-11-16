@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../api/auth/[...nextauth]/options'
-import { ProfileForm } from './profile-form'
+import ProfileForm from './profile-form'
 import { Skeleton } from "@/components/ui/skeleton"
 import { redirect } from 'next/navigation'
 
