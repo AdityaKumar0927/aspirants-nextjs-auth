@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -14,28 +15,93 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
+import { useSignInModal } from '@/components/layout/sign-in'
+import { Loader2 } from 'lucide-react'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 
 export default function ApplicationForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    role: '',
-    experience: '',
-    motivation: '',
-  })
+  const { data: session, status } = useSession()
   const router = useRouter()
   const { toast } = useToast()
+  const { SignInModal, setShowSignInModal } = useSignInModal()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({})
+  const [formData, setFormData] = useState({
+    name: '',
+    role: '',
+    experience: '',
+    motivation: ''
+  })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      setShowSignInModal(true)
+    } else if (status === 'authenticated' && session?.user) {
+      setFormData(prevData => ({
+        ...prevData,
+        name: session.user.name || ''
+      }))
+    }
+  }, [status, session, setShowSignInModal])
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }))
+    // Clear error when user starts typing
+    if (formErrors[name]) {
+      setFormErrors(prevErrors => ({
+        ...prevErrors,
+        [name]: ''
+      }))
+    }
   }
 
-  const handleRoleChange = (value: string) => {
-    setFormData({ ...formData, role: value })
+  const handleSelectChange = (value: string) => {
+    setFormData(prevData => ({
+      ...prevData,
+      role: value
+    }))
+    // Clear error when user selects a role
+    if (formErrors.role) {
+      setFormErrors(prevErrors => ({
+        ...prevErrors,
+        role: ''
+      }))
+    }
+  }
+
+  const validateForm = () => {
+    const errors: Record<string, string> = {}
+    if (!formData.name.trim()) errors.name = "Name is required"
+    if (!formData.role) errors.role = "Role selection is required"
+    if (!formData.experience.trim()) errors.experience = "Experience is required"
+    if (!formData.motivation.trim()) errors.motivation = "Motivation is required"
+    return errors
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!session?.user?.email) {
+      setShowSignInModal(true)
+      return
+    }
+
+    const errors = validateForm()
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors)
+      toast({
+        title: "Validation Error",
+        description: "Please fill in all required fields correctly.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    setIsSubmitting(true)
+
     try {
       const response = await fetch('/api/applications', {
         method: 'POST',
@@ -45,83 +111,122 @@ export default function ApplicationForm() {
         body: JSON.stringify(formData),
       })
 
-      if (!response.ok) {
-        throw new Error('Failed to submit application')
+      if (response.ok) {
+        toast({
+          title: "Success",
+          description: "Your application has been submitted successfully.",
+        })
+        router.push('/application-success')
+      } else {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to submit application')
       }
-
-      toast({
-        title: "Application Submitted",
-        description: "Your application has been successfully submitted.",
-      })
-      router.push('/application-success')
     } catch (error) {
       toast({
         title: "Error",
-        description: "There was an error submitting your application. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to submit application. Please try again.",
         variant: "destructive",
       })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
+  if (status === 'loading') {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader2 className="h-8 w-8 animate-spin" />
+      </div>
+    )
+  }
+
   return (
-    <div className="container mx-auto max-w-2xl py-8">
-      <h1 className="text-3xl font-bold mb-6">Volunteer/Moderator Application</h1>
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <Label htmlFor="name">Name</Label>
-          <Input
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <Label htmlFor="role">Role</Label>
-          <Select onValueChange={handleRoleChange} required>
-            <SelectTrigger>
-              <SelectValue placeholder="Select a role" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="volunteer">Volunteer</SelectItem>
-              <SelectItem value="moderator">Moderator</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div>
-          <Label htmlFor="experience">Relevant Experience</Label>
-          <Textarea
-            id="experience"
-            name="experience"
-            value={formData.experience}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <Label htmlFor="motivation">Motivation</Label>
-          <Textarea
-            id="motivation"
-            name="motivation"
-            value={formData.motivation}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <Button type="submit">Submit Application</Button>
-      </form>
+    <div className="container mx-auto p-4">
+      <SignInModal />
+      <Card className="max-w-2xl mx-auto">
+        <CardHeader>
+          <CardTitle>Volunteer/Moderator Application</CardTitle>
+          <CardDescription>Join our team and help make a difference!</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+                className={formErrors.name ? "border-red-500" : ""}
+              />
+              {formErrors.name && <p className="text-red-500 text-sm">{formErrors.name}</p>}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                name="email"
+                value={session?.user?.email || ''}
+                disabled
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="role">Role</Label>
+              <Select onValueChange={handleSelectChange} value={formData.role}>
+                <SelectTrigger className={formErrors.role ? "border-red-500" : ""}>
+                  <SelectValue placeholder="Select a role" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="VOLUNTEER">Volunteer</SelectItem>
+                  <SelectItem value="MODERATOR">Moderator</SelectItem>
+                </SelectContent>
+              </Select>
+              {formErrors.role && <p className="text-red-500 text-sm">{formErrors.role}</p>}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="experience">Relevant Experience</Label>
+              <Textarea
+                id="experience"
+                name="experience"
+                value={formData.experience}
+                onChange={handleInputChange}
+                required
+                className={formErrors.experience ? "border-red-500" : ""}
+              />
+              {formErrors.experience && <p className="text-red-500 text-sm">{formErrors.experience}</p>}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="motivation">Motivation</Label>
+              <Textarea
+                id="motivation"
+                name="motivation"
+                value={formData.motivation}
+                onChange={handleInputChange}
+                required
+                className={formErrors.motivation ? "border-red-500" : ""}
+              />
+              {formErrors.motivation && <p className="text-red-500 text-sm">{formErrors.motivation}</p>}
+            </div>
+          </form>
+        </CardContent>
+        <CardFooter>
+          <Button 
+            onClick={handleSubmit} 
+            disabled={isSubmitting} 
+            className="w-full"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Submitting...
+              </>
+            ) : (
+              'Submit Application'
+            )}
+          </Button>
+        </CardFooter>
+      </Card>
     </div>
   )
 }
