@@ -1,7 +1,7 @@
 "use client"
 
-import React, { useState, useEffect, useCallback, useMemo } from 'react'
-import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider } from 'react-query'
+import React, { useState, useCallback, useMemo } from 'react'
+import { QueryClient, QueryClientProvider, useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -105,13 +105,17 @@ function QuestionBankDashboardContent() {
   const { toast } = useToast()
   const queryClient = useQueryClient()
 
-  const { data: questions = [], isLoading, error } = useQuery('questions', fetchQuestions)
+  const { data: questions = [], isLoading, error } = useQuery<Question[], Error>({
+    queryKey: ['questions'],
+    queryFn: fetchQuestions
+  })
 
-  const updateQuestionMutation = useMutation(updateQuestion, {
+  const updateQuestionMutation = useMutation<Question, Error, Partial<Question>, { previousQuestions: Question[] | undefined }>({
+    mutationFn: updateQuestion,
     onMutate: async (updatedQuestion) => {
-      await queryClient.cancelQueries('questions')
-      const previousQuestions = queryClient.getQueryData<Question[]>('questions')
-      queryClient.setQueryData<Question[]>('questions', (old) => 
+      await queryClient.cancelQueries({ queryKey: ['questions'] })
+      const previousQuestions = queryClient.getQueryData<Question[]>(['questions'])
+      queryClient.setQueryData<Question[]>(['questions'], (old) => 
         old?.map(question => 
           question.questionId === updatedQuestion.questionId ? { ...question, ...updatedQuestion } : question
         ) ?? []
@@ -119,7 +123,9 @@ function QuestionBankDashboardContent() {
       return { previousQuestions }
     },
     onError: (err, newQuestion, context) => {
-      queryClient.setQueryData('questions', context?.previousQuestions)
+      if (context?.previousQuestions) {
+        queryClient.setQueryData(['questions'], context.previousQuestions)
+      }
       toast({
         title: "Error",
         description: "Failed to update question. Please try again.",
@@ -127,7 +133,7 @@ function QuestionBankDashboardContent() {
       })
     },
     onSettled: () => {
-      queryClient.invalidateQueries('questions')
+      queryClient.invalidateQueries({ queryKey: ['questions'] })
     },
   })
 
@@ -187,7 +193,7 @@ function QuestionBankDashboardContent() {
       if (!response.ok) throw new Error('Failed to add question')
 
       const addedQuestion = await response.json()
-      queryClient.setQueryData<Question[]>('questions', (old) => [...(old ?? []), addedQuestion])
+      queryClient.setQueryData<Question[]>(['questions'], (old) => [...(old ?? []), addedQuestion])
       setIsAddQuestionOpen(false)
       toast({
         title: "Question Added",
@@ -215,7 +221,7 @@ function QuestionBankDashboardContent() {
       if (!response.ok) throw new Error('Failed to update question')
 
       const updatedQuestion = await response.json()
-      queryClient.setQueryData<Question[]>('questions', (old) => 
+      queryClient.setQueryData<Question[]>(['questions'], (old) => 
         old?.map((q) => (q.questionId === editedQuestion.questionId ? updatedQuestion : q)) ?? []
       )
       setIsEditDialogOpen(false)
@@ -245,7 +251,7 @@ function QuestionBankDashboardContent() {
 
       if (!response.ok) throw new Error('Failed to delete question')
 
-      queryClient.setQueryData<Question[]>('questions', (old) => 
+      queryClient.setQueryData<Question[]>(['questions'], (old) => 
         old?.filter((question) => question.questionId !== questionId) ?? []
       )
       toast({
@@ -286,7 +292,7 @@ function QuestionBankDashboardContent() {
       const successfulDeletes = results.filter(result => result.status === 'fulfilled').length
       const failedDeletes = results.filter(result => result.status === 'rejected').length
 
-      queryClient.setQueryData<Question[]>('questions', (old) => 
+      queryClient.setQueryData<Question[]>(['questions'], (old) => 
         old?.filter((question) => !selectedQuestions.includes(question.questionId)) ?? []
       )
       setSelectedQuestions([])
@@ -330,7 +336,7 @@ function QuestionBankDashboardContent() {
       }
 
       const result = await response.json();
-      queryClient.invalidateQueries('questions')
+      queryClient.invalidateQueries({ queryKey: ['questions'] })
       toast({
         title: "Batch Upload Successful",
         description: `Successfully uploaded ${result.length} questions.`,
