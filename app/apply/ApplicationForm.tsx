@@ -16,9 +16,8 @@ import {
 } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
 import { Loader2 } from 'lucide-react'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Form } from 'react-hook-form'
 
 interface ApplicationFormProps {
   session: Session
@@ -30,9 +29,12 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formErrors, setFormErrors] = useState<Record<string, string>>({})
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     setIsSubmitting(true)
     setFormErrors({})
+
+    const formData = new FormData(event.currentTarget)
 
     try {
       const response = await fetch('/api/applications', {
@@ -81,7 +83,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
         <CardDescription>Join our team and help make a difference!</CardDescription>
       </CardHeader>
       <CardContent>
-        <Form action={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
             <Input
@@ -148,7 +150,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
               'Submit Application'
             )}
           </Button>
-        </Form>
+        </form>
       </CardContent>
     </Card>
   )

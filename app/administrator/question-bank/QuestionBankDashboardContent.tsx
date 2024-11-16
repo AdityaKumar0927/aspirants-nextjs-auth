@@ -112,10 +112,10 @@ export function QuestionBankDashboardContent() {
       setFilters(prevFilters => {
         const filterValues = prevFilters[tag]
         if (Array.isArray(filterValues)) {
-          const isSelected = filterValues.includes(value)
+          const isSelected = filterValues.includes(value ?? '')
           const updatedFilter = isSelected
-            ? filterValues.filter((v: string) => v !== value)
-            : [...filterValues, value]
+            ? filterValues.filter((v: string) => v !== (value ?? ''))
+            : [...filterValues, value ?? '']
 
           const newFilters = { ...prevFilters, [tag]: updatedFilter }
 
@@ -541,11 +541,11 @@ export function QuestionBankDashboardContent() {
                               case "topics":
                                 return q.topic
                               case "subtopics":
-                                return q.subtopic
+                                return q.subtopic ?? ''
                               case "difficulties":
                                 return q.difficulty
                               case "years":
-                                return q.year.toString()
+                                return q.year?.toString() ?? ''
                               case "types":
                                 return q.type
                               default:
@@ -557,7 +557,7 @@ export function QuestionBankDashboardContent() {
                         <div key={value} className="flex items-center">
                           <Checkbox
                             id={`${filterType}-${value}`}
-                            checked={(filters[filterType as keyof typeof filters] as string[]).includes(value)}
+                            checked={(filters[filterType as keyof typeof filters] as string[]).includes(value ?? '')}
                             onCheckedChange={(checked) => handleFilterChange(filterType as keyof typeof filters, value)}
                           />
                           <label
