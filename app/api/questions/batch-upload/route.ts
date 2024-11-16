@@ -4,15 +4,10 @@ import { authOptions } from '../../auth/[...nextauth]/options';
 import prisma from '@/lib/prisma';
 import { Prisma } from '@prisma/client';
 
-// Increase the response timeout and body size limit
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '10mb',
-    },
-    responseLimit: '8mb',
-  },
-};
+// New configuration method for Next.js 13 App Router
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 const BATCH_SIZE = 25; // Process questions in smaller batches
 
