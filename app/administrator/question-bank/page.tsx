@@ -1,7 +1,7 @@
-'use client'
+"use client"
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
-import { useQuery, useMutation, useQueryClient } from 'react-query'
+import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider } from 'react-query'
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -72,7 +72,9 @@ const updateQuestion = async (question: Partial<Question>): Promise<Question> =>
   return response.json()
 }
 
-export default function QuestionBankDashboard() {
+const queryClient = new QueryClient()
+
+function QuestionBankDashboardContent() {
   const [searchQuery, setSearchQuery] = useState("")
   const [filters, setFilters] = useState<FiltersType>({
     exams: [],
@@ -880,7 +882,7 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
       <div className="space-y-2">
         <Label>Notes</Label>
         {formData.notes?.map((note, index) => (
-          <div key={index} className="flex items-center space-x-2">
+          <div key={note.id} className="flex items-center space-x-2">
             <Textarea
               value={note.content}
               onChange={(e) => handleNoteChange(index, e.target.value)}
@@ -899,5 +901,13 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
         <Button type="submit">Save Question</Button>
       </DialogFooter>
     </form>
+  )
+}
+
+export default function QuestionBankDashboard() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <QuestionBankDashboardContent />
+    </QueryClientProvider>
   )
 }
