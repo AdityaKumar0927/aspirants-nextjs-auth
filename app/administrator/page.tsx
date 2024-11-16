@@ -25,6 +25,13 @@ import {
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export type IssueArea = "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
 export type IssueStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
@@ -44,6 +51,12 @@ interface Issue {
     email: string | null
   }
   questionId: string | null
+  questionContent?: string
+  feedbackDetails: {
+    type: string
+    fullText: string
+    additionalInfo?: string
+  }
 }
 
 const statusColors = {
@@ -69,12 +82,17 @@ export default function IssueTracker() {
   const [areaFilter, setAreaFilter] = useState<IssueArea | 'All'>('All')
   const [currentPage, setCurrentPage] = useState(1)
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
-  const [newIssue, setNewIssue] = useState<Partial<Issue>>({
+  const [newIssue, setNewIssue] = useState<Omit<Issue, 'id' | 'createdAt' | 'updatedAt' | 'createdBy'>>({
     title: '',
     description: '',
     status: 'OPEN',
     priority: 'MEDIUM',
     area: 'OTHER',
+    questionId: null,
+    feedbackDetails: {
+      type: 'OTHER',
+      fullText: '',
+    },
   })
   const [userRole, setUserRole] = useState<string>('')
   const itemsPerPage = 10
@@ -119,7 +137,8 @@ export default function IssueTracker() {
     const filtered = issues.filter((issue) => {
       const matchesSearch =
         issue.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        issue.description.toLowerCase().includes(searchQuery.toLowerCase())
+        issue.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        issue.feedbackDetails.fullText.toLowerCase().includes(searchQuery.toLowerCase())
       const matchesStatus = statusFilter === "All" || issue.status === statusFilter
       const matchesPriority = priorityFilter === "All" || issue.priority === priorityFilter
       const matchesArea = areaFilter === "All" || issue.area === areaFilter
@@ -131,10 +150,7 @@ export default function IssueTracker() {
 
   const refreshIssues = useCallback(async () => {
     try {
-      const response = await fetch('/api/issues')
-      if (!response.ok) throw new Error('Failed to fetch issues')
-      const data = await response.json()
-      setIssues(data)
+      await fetchIssues()
       toast({
         title: "Success",
         description: "Issues refreshed successfully.",
@@ -146,7 +162,7 @@ export default function IssueTracker() {
         variant: "destructive",
       })
     }
-  }, [toast])
+  }, [fetchIssues, toast])
 
   const handleStatusUpdate = useCallback(async (id: string, status: IssueStatus) => {
     try {
@@ -202,6 +218,11 @@ export default function IssueTracker() {
         status: 'OPEN',
         priority: 'MEDIUM',
         area: 'OTHER',
+        questionId: null,
+        feedbackDetails: {
+          type: 'OTHER',
+          fullText: '',
+        },
       })
 
       toast({
@@ -227,9 +248,9 @@ export default function IssueTracker() {
     <div className="flex min-h-screen flex-col">
       <header className="border-b">
         <div className="container flex h-14 items-center gap-4 px-4">
-          <h1 className="text-xl font-semibold">Issues</h1>
+          <h1 className="text-xl font-semibold">Issues and Feedback</h1>
           <p className="text-sm text-muted-foreground">
-            Continuously tracking from your feedback
+            Comprehensive view of user feedback and reported issues
           </p>
         </div>
       </header>
@@ -239,7 +260,7 @@ export default function IssueTracker() {
             <div className="relative flex-1 md:max-w-sm">
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search issues..."
+                placeholder="Search issues and feedback..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-8"
@@ -356,7 +377,14 @@ export default function IssueTracker() {
                       </Label>
                       <Select
                         value={newIssue.area}
-                        onValueChange={(value) => setNewIssue({ ...newIssue, area: value as IssueArea })}
+                        onValueChange={(value) => setNewIssue({
+                          ...newIssue,
+                          area: value as IssueArea,
+                          feedbackDetails: {
+                            ...newIssue.feedbackDetails,
+                            type: value,
+                          },
+                        })}
                       >
                         <SelectTrigger className="w-[180px]">
                           <SelectValue placeholder="Select area" />
@@ -370,6 +398,24 @@ export default function IssueTracker() {
                         </SelectContent>
                       </Select>
                     </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="feedbackFullText" className="text-right">
+                        Feedback Details
+                      </Label>
+                      <Textarea
+                        id="feedbackFullText"
+                        value={newIssue.feedbackDetails.fullText}
+                        onChange={(e) => setNewIssue({
+                          ...newIssue,
+                          feedbackDetails: {
+                            ...newIssue.feedbackDetails,
+                            fullText: e.target.value,
+                          },
+                        })}
+                        className="col-span-3"
+                        placeholder="Enter full feedback text here..."
+                      />
+                    </div>
                   </div>
                   <DialogFooter>
                     <Button type="submit">Create Issue</Button>
@@ -380,74 +426,99 @@ export default function IssueTracker() {
           )}
         </div>
 
-        <div className="rounded-lg border">
-          <div className="divide-y">
-            {paginatedIssues.map((issue) => (
-              <div
-                key={issue.id}
-                className="flex items-center gap-4 p-4 hover:bg-muted/50"
-              >
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <Badge
-                      variant="secondary"
-                      className={`rounded-full px-2 py-0.5 text-xs font-normal ${
-                        statusColors[issue.status]
-                      }`}
+        <div className="space-y-4">
+          {paginatedIssues.map((issue) => (
+            <Accordion type="single" collapsible key={issue.id}>
+              <AccordionItem value={issue.id}>
+                <AccordionTrigger>
+                  <div className="flex items-center gap-4 w-full">
+                    <div className="flex-1 text-left">
+                      <div className="flex items-center gap-2">
+                        <Badge
+                          variant="secondary"
+                          className={`rounded-full px-2 py-0.5 text-xs font-normal ${
+                            statusColors[issue.status]
+                          }`}
+                        >
+                          {issue.status === "IN_PROGRESS"
+                            ? "In Progress"
+                            : issue.status.charAt(0) +
+                              issue.status.slice(1).toLowerCase()}
+                        </Badge>
+                        <Badge
+                          variant="secondary"
+                          className={`rounded-full px-2 py-0.5 text-xs font-normal ${
+                            priorityColors[issue.priority]
+                          }`}
+                        >
+                          {issue.priority.charAt(0) + issue.priority.slice(1).toLowerCase()}
+                        </Badge>
+                        <span className="text-sm text-muted-foreground">
+                          {issue.id}
+                        </span>
+                      </div>
+                      <h2 className="text-lg font-medium mt-1">{issue.title}</h2>
+                    </div>
+                    <Select
+                      value={issue.status}
+                      onValueChange={(value) => handleStatusUpdate(issue.id, value as IssueStatus)}
                     >
-                      {issue.status === "IN_PROGRESS"
-                        ? "In Progress"
-                        : issue.status.charAt(0) +
-                          issue.status.slice(1).toLowerCase()}
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className={`rounded-full px-2 py-0.5 text-xs font-normal ${
-                        priorityColors[issue.priority]
-                      }`}
-                    >
-                      {issue.priority.charAt(0) + issue.priority.slice(1).toLowerCase()}
-                    </Badge>
-                    <span className="text-sm text-muted-foreground">
-                      {issue.id}
-                    </span>
+                      <SelectTrigger className="w-[140px]">
+                        <SelectValue placeholder="Update status" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="OPEN">Open</SelectItem>
+                        <SelectItem value="IN_PROGRESS">In Progress</SelectItem>
+                        <SelectItem value="RESOLVED">Resolved</SelectItem>
+                        <SelectItem value="CLOSED">Closed</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
-                  <h2 className="mt-1 font-medium">{issue.title}</h2>
-                  <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
-                    <span>{issue.area.toLowerCase()}</span>
-                    <span>•</span>
-                    <span>
-                      {new Date(issue.createdAt).toLocaleString("en-US", {
-                        hour: "numeric",
-                        minute: "numeric",
-                        hour12: true,
-                      })}
-                    </span>
-                    <span>•</span>
-                    <span>by {issue.createdBy.name ?? 'Unknown'}</span>
-                  </div>
-                </div>
-                <Select
-                  value={issue.status}
-                  onValueChange={(value) => handleStatusUpdate(issue.id, value as IssueStatus)}
-                >
-                  <SelectTrigger className="w-[140px]">
-                    <SelectValue placeholder="Update status" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="OPEN">Open</SelectItem>
-                    <SelectItem value="IN_PROGRESS">In Progress</SelectItem>
-                    <SelectItem value="RESOLVED">Resolved</SelectItem>
-                    <SelectItem value="CLOSED">Closed</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            ))}
-          </div>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Issue Details</CardTitle>
+                      <CardDescription>
+                        Created on {new Date(issue.createdAt).toLocaleString()} by {issue.createdBy.name ?? 'Unknown'}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div>
+                        <h3 className="font-semibold">Description</h3>
+                        <p>{issue.description}</p>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold">Feedback Details</h3>
+                        <p><strong>Type:</strong> {issue.feedbackDetails.type}</p>
+                        <p><strong>Full Text:</strong> {issue.feedbackDetails.fullText}</p>
+                        {issue.feedbackDetails.additionalInfo && (
+                          <p><strong>Additional Info:</strong> {issue.feedbackDetails.additionalInfo}</p>
+                        )}
+                      </div>
+                      {issue.questionId && (
+                        <div>
+                          <h3 className="font-semibold">Related Question</h3>
+                          <p><strong>Question ID:</strong> {issue.questionId}</p>
+                          {issue.questionContent && (
+                            <p><strong>Question Content:</strong> {issue.questionContent}</p>
+                          )}
+                        </div>
+                      )}
+                      <div>
+                        <h3 className="font-semibold">Area</h3>
+                        <p>{issue.area}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          ))}
         </div>
 
         {totalPages > 1 && (
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mt-4">
             <Button
               variant="outline"
               size="sm"
