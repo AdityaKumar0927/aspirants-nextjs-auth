@@ -1,23 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/shared/mode-toggle";
 import { buttonVariants } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { LucidePencil, HomeIcon, LucideGitBranchPlus } from "lucide-react";
+import { LucidePencil } from "lucide-react";
 import AnimatedModal from "@/components/shared/AnimatedModal";
 import NoteApp from "@/components/shared/NoteApp";
 import Stats from "@/components/shared/Stats";
 import { useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
-import DashboardContent from "@/components/home/DashboardContent"; // Import the sample DashboardContent
 import GuestAccessBlock from "./GuestAccessBlock";
-import { IconGraph, IconGraphOff } from "@tabler/icons-react";
-import { MdOutlineAutoGraph } from "react-icons/md";
 import { GoGraph } from "react-icons/go";
+import { useRouter } from "next/router";
 
-// Define the type for the userId prop
 interface BarProps {
   userId: string | null;
 }
@@ -25,7 +22,28 @@ interface BarProps {
 export default function Bar({ userId }: BarProps) {
   const [showNoteModal, setShowNoteModal] = useState(false);
   const [showDashboardModal, setShowDashboardModal] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(!!userId);
   const mouseX = useMotionValue(Infinity);
+  const router = useRouter();
+
+  useEffect(() => {
+    // Update authentication status whenever userId changes
+    setIsAuthenticated(!!userId);
+  }, [userId]);
+
+  useEffect(() => {
+    // Close modals when route changes
+    const handleRouteChange = () => {
+      setShowNoteModal(false);
+      setShowDashboardModal(false);
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [router]);
 
   return (
     <>
@@ -46,7 +64,7 @@ export default function Bar({ userId }: BarProps) {
                 </button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>performance</p>
+                <p>Performance</p>
               </TooltipContent>
             </Tooltip>
           </DockIcon>
@@ -86,8 +104,8 @@ export default function Bar({ userId }: BarProps) {
       </AnimatedModal>
 
       <AnimatedModal showModal={showDashboardModal} setShowModal={setShowDashboardModal}>
-        {userId ? (
-          <Stats />  // For signed-in users, show the Stats component with their data
+        {isAuthenticated ? (
+          <Stats userId={userId} />
         ) : (
           <GuestAccessBlock />
         )}

@@ -6,7 +6,6 @@ import { Session } from 'next-auth'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
-import HCaptcha from '@hcaptcha/react-hcaptcha'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -38,7 +37,6 @@ const formSchema = z.object({
   role: z.enum(["VOLUNTEER", "MODERATOR"], { required_error: "Please select a role." }),
   experience: z.string().min(50, { message: "Experience must be at least 50 characters." }),
   motivation: z.string().min(50, { message: "Motivation must be at least 50 characters." }),
-  captchaToken: z.string().min(1, { message: "Please complete the CAPTCHA." }),
   honeypot: z.string().max(0, { message: "This field should be left empty." }),
 })
 
@@ -61,7 +59,6 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
       role: undefined,
       experience: "",
       motivation: "",
-      captchaToken: "",
       honeypot: "",
     },
   })
@@ -209,22 +206,6 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
                     Minimum 50 characters. You&apos;ve written {motivationLength} characters.
                   </FormDescription>
                   <Progress value={(motivationLength / 50) * 100} className="w-full" />
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="captchaToken"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>CAPTCHA Verification</FormLabel>
-                  <FormControl>
-                    <HCaptcha
-                      sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ''}
-                      onVerify={(token: string) => field.onChange(token)}
-                    />
-                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
