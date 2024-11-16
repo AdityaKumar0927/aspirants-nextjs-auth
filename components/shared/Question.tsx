@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, HTMLMotionProps } from 'framer-motion'
 import { useSwipeable } from 'react-swipeable'
 import { Checkbox } from '@/components/ui/checkbox'
 import MathRenderer from '@/components/layout/MathRenderer'
@@ -994,13 +994,13 @@ export default function Component({
 
         <AnimatePresence>
           {showMarkschemeModal && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
-            >
+         <motion.div
+         initial={{ opacity: 0, scale: 0.9 }}
+         animate={{ opacity: 1, scale: 1 }}
+         exit={{ opacity: 0, scale: 0.9 }}
+         transition={{ duration: 0.2 }}
+         className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
+       >
               <Card className="w-full max-w-2xl">
                 <CardHeader>
                   <CardTitle>Markscheme</CardTitle>
