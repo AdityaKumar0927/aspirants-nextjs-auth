@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useReducer, useEffect, useMemo, useCallback, useState } from "react"
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
 import Question from "@/components/shared/Question"
@@ -28,6 +28,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
+import { useVirtualizer } from "@tanstack/react-virtual"
 
 const PAGE_SIZE = 10
 
@@ -88,7 +89,6 @@ type StateType = {
   showMarkscheme: Record<string, boolean>
   selectedOptions: Record<string, string>
   notes: Record<string, string>
-  loading: boolean
   currentPage: number
 }
 
@@ -102,7 +102,6 @@ type ActionType =
   | { type: "SET_SHOW_MARKSCHEME"; payload: Record<string, boolean> }
   | { type: "SET_SELECTED_OPTIONS"; payload: Record<string, string> }
   | { type: "SET_NOTES"; payload: Record<string, string> }
-  | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_CURRENT_PAGE"; payload: number }
 
 const initialState: StateType = {
@@ -132,7 +131,6 @@ const initialState: StateType = {
   showMarkscheme: {},
   selectedOptions: {},
   notes: {},
-  loading: true,
   currentPage: 1,
 }
 
@@ -159,8 +157,6 @@ function reducer(state: StateType, action: ActionType): StateType {
       return { ...state, selectedOptions: action.payload }
     case "SET_NOTES":
       return { ...state, notes: action.payload }
-    case "SET_LOADING":
-      return { ...state, loading: action.payload }
     case "SET_CURRENT_PAGE":
       return { ...state, currentPage: action.payload }
     default:
@@ -230,8 +226,8 @@ const Pagination: React.FC<{
         size="icon"
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
+        aria-label="Previous page"
       >
-        <span className="sr-only">Previous page</span>
         <ChevronLeft className="h-4 w-4" />
       </Button>
       {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
@@ -243,6 +239,8 @@ const Pagination: React.FC<{
               variant={currentPage === pageNumber ? "default" : "outline"}
               size="icon"
               onClick={() => onPageChange(pageNumber)}
+              aria-label={`Page ${pageNumber}`}
+              aria-current={currentPage === pageNumber ? "page" : undefined}
             >
               {pageNumber}
             </Button>
@@ -257,6 +255,7 @@ const Pagination: React.FC<{
             variant="outline"
             size="icon"
             onClick={() => onPageChange(totalPages)}
+            aria-label={`Page ${totalPages}`}
           >
             {totalPages}
           </Button>
@@ -267,8 +266,8 @@ const Pagination: React.FC<{
         size="icon"
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
+        aria-label="Next page"
       >
-        <span className="sr-only">Next page</span>
         <ChevronRight className="h-4 w-4" />
       </Button>
     </nav>
@@ -286,12 +285,16 @@ export default function GuestQuestionBank() {
   const { toast } = useToast()
   const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
 
-  const { data: questions = [], isLoading, error } = useQuery<QuestionType[]>("questions", fetchQuestions)
+  const { data: questions = [], isLoading, error } = useQuery<QuestionType[], Error>({
+    queryKey: ["questions"],
+    queryFn: fetchQuestions,
+    retry: 3,
+    refetchOnWindowFocus: false,
+  })
 
   useEffect(() => {
     if (questions.length > 0) {
-      dispatch({ type: "SET_QUESTIONS", payload: questions })
-      dispatch({ type: "SET_LOADING", payload: false })
+      dispatch({ type: "SET_QUESTIONS", payload: questions as QuestionType[] })
     }
   }, [questions])
 
@@ -306,13 +309,10 @@ export default function GuestQuestionBank() {
 
       const matchesFilters =
         (!state.filters.exams.length || state.filters.exams.includes(question.exam)) &&
-        (!state.filters.subjects.length ||
-          state.filters.subjects.includes(question.subject)) &&
+        (!state.filters.subjects.length || state.filters.subjects.includes(question.subject)) &&
         (!state.filters.topics.length || state.filters.topics.includes(question.topic)) &&
-        (!state.filters.subtopics.length ||
-          state.filters.subtopics.includes(question.subtopic)) &&
-        (!state.filters.difficulties.length ||
-          state.filters.difficulties.includes(question.difficulty)) &&
+        (!state.filters.subtopics.length || state.filters.subtopics.includes(question.subtopic)) &&
+        (!state.filters.difficulties.length || state.filters.difficulties.includes(question.difficulty)) &&
         (!state.filters.years.length || state.filters.years.includes(question.year)) &&
         (!state.filters.types.length || state.filters.types.includes(question.type))
 
@@ -347,10 +347,8 @@ export default function GuestQuestionBank() {
           ? filterValues.filter((v: string) => v !== value)
           : [...filterValues, value]
         
-        // Update filters
         const newFilters = { ...state.filters, [tag]: updatedFilter }
         
-        // If an exam is selected, filter other dropdowns
         if (tag === 'exams') {
           const selectedExams = newFilters.exams
           newFilters.subjects = newFilters.subjects.filter(subject => 
@@ -382,7 +380,6 @@ export default function GuestQuestionBank() {
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions })
 
-      // Update question completion status
       const updatedQuestions = state.questions.map(q =>
         q.questionId === questionId ? { ...q, completed: true } : q
       )
@@ -403,7 +400,6 @@ export default function GuestQuestionBank() {
       const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" }
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
 
-      // Update question completion status
       const updatedQuestions = state.questions.map(q =>
         q.questionId === questionId ? { ...q, completed: true } : q
       )
@@ -428,8 +424,6 @@ export default function GuestQuestionBank() {
         title: "Marked for review",
         description: "This question has been marked for review.",
       })
-      // Simulating an asynchronous operation
-      await new Promise(resolve => setTimeout(resolve, 100))
     },
     [state.questions, toast]
   )
@@ -444,8 +438,6 @@ export default function GuestQuestionBank() {
         title: "Marked as complete",
         description: "This question has been marked as complete.",
       })
-      // Simulating an asynchronous operation
-      await new Promise(resolve => setTimeout(resolve, 100))
     },
     [state.questions, toast]
   )
@@ -467,8 +459,6 @@ export default function GuestQuestionBank() {
         title: "Note deleted",
         description: "The note has been removed.",
       })
-      // Simulating an asynchronous operation
-      await new Promise(resolve => setTimeout(resolve, 100))
     },
     [state.notes, toast]
   )
@@ -509,7 +499,16 @@ export default function GuestQuestionBank() {
     return stats
   }, [filteredQuestions, state.selectedOptions, state.numericalAnswers])
 
-  if (isLoading || state.loading) {
+  const parentRef = React.useRef<HTMLDivElement>(null)
+
+  const rowVirtualizer = useVirtualizer({
+    count: paginatedQuestions.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 200,
+    overscan: 5,
+  })
+
+  if (isLoading) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
@@ -593,6 +592,7 @@ export default function GuestQuestionBank() {
                 value={state.searchQuery}
                 onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
                 className="pl-10"
+                aria-label="Search questions"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
@@ -648,6 +648,7 @@ export default function GuestQuestionBank() {
                         ? "bg-white border hover:border-black border-gray-600 text-gray-500"
                         : "bg-white hover:border-black border border-gray-300 text-gray-500"
                     }`}
+                    aria-pressed={state.filters.status === status}
                   >
                     {status.charAt(0).toUpperCase() + status.slice(1)}
                   </button>
@@ -744,6 +745,8 @@ export default function GuestQuestionBank() {
                         })
                       }
                       className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
+                      aria-haspopup="true"
+                      aria-expanded={state.dropdowns[filterType as keyof typeof state.dropdowns]}
                     >
                       <p className="text-gray-600">
                         {Array.isArray(state.filters[filterType as keyof FiltersType]) &&
@@ -787,86 +790,105 @@ export default function GuestQuestionBank() {
                   value={(questionStats.answered / filteredQuestions.length) * 100} 
                   className="w-full h-1 bg-gray-700 progress-indicator" 
                 />
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                   <StatusCard
-                    icon={<HelpCircle className="h-5 w-5" />}
+                    icon={<Circle className="h-6 w-6 text-gray-400" />}
                     label="Not Visited"
                     value={questionStats.notVisited}
                     color="text-gray-400"
                   />
                   <StatusCard
-                    icon={<Circle className="h-5 w-5" />}
+                    icon={<HelpCircle className="h-6 w-6 text-yellow-400" />}
                     label="Not Answered"
                     value={questionStats.notAnswered}
-                    color="text-blue-400"
+                    color="text-yellow-400"
                   />
                   <StatusCard
-                    icon={<CheckCircle2 className="h-5 w-5" />}
+                    icon={<CheckCircle2 className="h-6 w-6 text-green-400" />}
                     label="Answered"
                     value={questionStats.answered}
                     color="text-green-400"
                   />
                   <StatusCard
-                    icon={<Flag className="h-5 w-5" />}
-                    label="For Review"
+                    icon={<Flag className="h-6 w-6 text-red-400" />}
+                    label="Marked for Review"
                     value={questionStats.markedForReview}
-                    color="text-yellow-400"
+                    color="text-red-400"
                   />
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {paginatedQuestions.length > 0 ? (
-            <>
-              {paginatedQuestions.map((question, index) => (
-                <Question
-                  key={question.questionId}
-                  question={question}
-                  feedback={state.feedback[question.questionId]}
-                  selectedOption={state.selectedOptions[question.questionId]}
-                  numericalAnswer={state.numericalAnswers[question.questionId]}
-                  showMarkscheme={state.showMarkscheme[question.questionId]}
-                  handleOptionClick={handleOptionClick}
-                  handleNumericalSubmit={handleNumericalSubmit}
-                  handleNumericalChange={(questionId, value) =>
-                    dispatch({
-                      type: "SET_NUMERICAL_ANSWERS",
-                      payload: { ...state.numericalAnswers, [questionId]: value },
-                    })
-                  }
-                  handleMarkschemeToggle={() =>
-                    dispatch({
-                      type: "SET_SHOW_MARKSCHEME",
-                      payload: {
-                        ...state.showMarkscheme,
-                        [question.questionId]: !state.showMarkscheme[question.questionId],
-                      },
-                    })
-                  }
-                  handleMarkForReview={handleMarkForReview}
-                  handleMarkComplete={handleMarkComplete}
-                  isMarkedForReview={question.reviewed}
-                  isMarkedComplete={question.completed}
-                  markschemesDisabled={false}
-                  note={state.notes[question.questionId] || ""}
-                  handleNoteChange={handleNoteChange}
-                  handleDeleteNote={handleDeleteNote}
-                  userId="guest"
-                  totalQuestions={filteredQuestions.length}
-                  currentQuestionIndex={index + (state.currentPage - 1) * PAGE_SIZE}
-                  handleQuestionChange={handleNavigatorClick}
-                />
-              ))}
-              <Pagination
-                currentPage={state.currentPage}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-              />
-            </>
-          ) : (
-            <p className="text-red-400">No questions found with the selected filters.</p>
-          )}
+          <div ref={parentRef} style={{ height: `500px`, overflow: 'auto' }}>
+            <div
+              style={{
+                height: `${rowVirtualizer.getTotalSize()}px`,
+                width: '100%',
+                position: 'relative',
+              }}
+            >
+              {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+                const question = paginatedQuestions[virtualRow.index]
+                return (
+                  <div
+                    key={question.questionId}
+                    data-index={virtualRow.index}
+                    ref={rowVirtualizer.measureElement}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      transform: `translateY(${virtualRow.start}px)`,
+                    }}
+                  >
+                    <Question
+                      question={question}
+                      feedback={state.feedback[question.questionId]}
+                      selectedOption={state.selectedOptions[question.questionId]}
+                      numericalAnswer={state.numericalAnswers[question.questionId]}
+                      showMarkscheme={state.showMarkscheme[question.questionId]}
+                      handleOptionClick={handleOptionClick}
+                      handleNumericalSubmit={handleNumericalSubmit}
+                      handleNumericalChange={(questionId, value) =>
+                        dispatch({
+                          type: "SET_NUMERICAL_ANSWERS",
+                          payload: { ...state.numericalAnswers, [questionId]: value },
+                        })
+                      }
+                      handleMarkschemeToggle={() =>
+                        dispatch({
+                          type: "SET_SHOW_MARKSCHEME",
+                          payload: {
+                            ...state.showMarkscheme,
+                            [question.questionId]: !state.showMarkscheme[question.questionId],
+                          },
+                        })
+                      }
+                      handleMarkForReview={handleMarkForReview}
+                      handleMarkComplete={handleMarkComplete}
+                      isMarkedForReview={question.reviewed}
+                      isMarkedComplete={question.completed}
+                      markschemesDisabled={false}
+                      note={state.notes[question.questionId] || ""}
+                      handleNoteChange={handleNoteChange}
+                      handleDeleteNote={handleDeleteNote}
+                      userId="guest"
+                      totalQuestions={filteredQuestions.length}
+                      currentQuestionIndex={virtualRow.index + (state.currentPage - 1) * PAGE_SIZE}
+                      handleQuestionChange={handleNavigatorClick}
+                    />
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+          <Pagination
+            currentPage={state.currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </div>
       </div>
     </TooltipProvider>
