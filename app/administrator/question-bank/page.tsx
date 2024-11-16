@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -47,11 +47,13 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import Popover from "@/components/shared/popover"
 import { Skeleton } from "@/components/ui/skeleton"
 import { ArrowUpIcon, ArrowDownIcon, ChevronDown, Search, Plus, Trash2, Edit, Eye, CheckCircle, XCircle, MoreHorizontal, Upload, FileUp, FileJson, Loader2 } from 'lucide-react'
 
-type QuestionStatus = 'ACTIVE' | 'DRAFT' | 'ARCHIVED'
+type QuestionStatus = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED' | 'UNDER_REVIEW'
 
 interface Question {
   questionId: string
@@ -65,7 +67,7 @@ interface Question {
   year: number
   reviewed: boolean
   completed: boolean
-  options: string[]
+  options: (string | null)[]
   correctOption: string | null
   markscheme: string | null
   notes: string | null
@@ -74,9 +76,39 @@ interface Question {
   status: QuestionStatus
 }
 
+type FiltersType = {
+  exams: string[]
+  subjects: string[]
+  topics: string[]
+  subtopics: string[]
+  difficulties: string[]
+  types: string[]
+  years: string[]
+  status: string
+}
+
 export default function QuestionBankDashboard() {
   const [questions, setQuestions] = useState<Question[]>([])
   const [searchQuery, setSearchQuery] = useState("")
+  const [filters, setFilters] = useState<FiltersType>({
+    exams: [],
+    subjects: [],
+    topics: [],
+    subtopics: [],
+    difficulties: [],
+    types: [],
+    years: [],
+    status: 'all',
+  })
+  const [dropdowns, setDropdowns] = useState({
+    exam: false,
+    subject: false,
+    topic: false,
+    subtopic: false,
+    difficulty: false,
+    year: false,
+    type: false,
+  })
   const [isAddQuestionOpen, setIsAddQuestionOpen] = useState(false)
   const [editingQuestion, setEditingQuestion] = useState<Question | null>(null)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
@@ -112,6 +144,71 @@ export default function QuestionBankDashboard() {
   useEffect(() => {
     fetchQuestions()
   }, [fetchQuestions])
+
+  const handleStatusUpdate = useCallback(async (questionId: string, status: QuestionStatus) => {
+    try {
+      const response = await fetch(`/api/questions`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ questionId, status }),
+      })
+
+      if (!response.ok) throw new Error('Failed to update question status')
+
+      const updatedQuestion = await response.json()
+      toast({
+        title: "Status Updated",
+        description: `Question status updated to ${status}.`,
+      })
+
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((question) =>
+          question.questionId === questionId ? updatedQuestion : question
+        )
+      )
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Unable to update question status.",
+        variant: "destructive",
+      })
+    }
+  }, [toast])
+
+  const handleFilterChange = useCallback(
+    (tag: keyof FiltersType, value: string) => {
+      const filterValues = filters[tag]
+      if (Array.isArray(filterValues)) {
+        const isSelected = filterValues.includes(value)
+        const updatedFilter = isSelected
+          ? filterValues.filter((v: string) => v !== value)
+          : [...filterValues, value]
+        
+        const newFilters = { ...filters, [tag]: updatedFilter }
+        
+        if (tag === 'exams') {
+          const selectedExams = newFilters.exams
+          newFilters.subjects = newFilters.subjects.filter(subject => 
+            questions.some(q => selectedExams.includes(q.exam) && q.subject === subject)
+          )
+          newFilters.topics = newFilters.topics.filter(topic => 
+            questions.some(q => selectedExams.includes(q.exam) && q.topic === topic)
+          )
+          newFilters.subtopics = newFilters.subtopics.filter(subtopic => 
+            questions.some(q => selectedExams.includes(q.exam) && q.subtopic === subtopic)
+          )
+          newFilters.types = newFilters.types.filter(type => 
+            questions.some(q => selectedExams.includes(q.exam) && q.type === type)
+          )
+        }
+        
+        setFilters(newFilters)
+      }
+    },
+    [filters, questions]
+  )
 
   const handleAddQuestion = async (newQuestion: Partial<Question>) => {
     try {
@@ -198,54 +295,88 @@ export default function QuestionBankDashboard() {
     }
   }
 
+  const handleDeleteSelected = async () => {
+    if (selectedQuestions.length === 0) {
+      toast({
+        title: "No Questions Selected",
+        description: "Please select questions to delete.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    try {
+      const response = await fetch(`/api/questions/batch-delete`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ questionIds: selectedQuestions }),
+      })
+
+      if (!response.ok) throw new Error('Failed to delete selected questions')
+
+      setQuestions((prevQuestions) => prevQuestions.filter((question) => !selectedQuestions.includes(question.questionId)))
+      setSelectedQuestions([])
+      toast({
+        title: "Questions Deleted",
+        description: `Successfully deleted ${selectedQuestions.length} questions.`,
+      })
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to delete selected questions. Please try again.",
+        variant: "destructive",
+      })
+    }
+  }
+
   const handleBatchUpload = async (questions: string) => {
     setIsBatchUploading(true);
     try {
-      const parsedQuestions = JSON.parse(questions);
-      if (!Array.isArray(parsedQuestions) || parsedQuestions.length === 0) {
-        throw new Error('Invalid or empty questions data');
-      }
-  
-      const formattedQuestions: Question[] = parsedQuestions.map((question: any, index: number) => ({
-        questionId: question.questionId || `auto-${index}`,
-        exam: question.exam || 'Unknown',
-        text: question.text || '',
-        subject: question.subject || 'General',
-        topic: question.topic || 'Miscellaneous',
-        subtopic: question.subtopic || null,
-        difficulty: question.difficulty || 'Medium',
-        type: question.type || 'Multiple Choice',
-        year: question.year ? parseInt(question.year, 10) : new Date().getFullYear(),
-        reviewed: question.reviewed ?? false,
-        completed: question.completed ?? false,
-        options: question.options || [],
-        correctOption: question.correctOption || null,
-        markscheme: question.markscheme || null,
-        notes: question.notes || null, // Add this line to include the 'notes' property
-        lastAttempted: question.lastAttempted ? new Date(question.lastAttempted).toISOString() : null,
-        diagramUrl: question.diagramUrl || null,
-        status: (question.status as QuestionStatus) || 'ACTIVE',
-      }));
-  
       const response = await fetch('/api/questions/batch-upload', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formattedQuestions),
+        body: JSON.stringify({ text: questions }),
       });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to upload batch of questions');
+
+      const reader = response.body?.getReader();
+      if (!reader) {
+        throw new Error('No response stream available');
       }
-  
-      const result = await response.json();
-      setQuestions(prevQuestions => [...prevQuestions, ...formattedQuestions]);
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = new TextDecoder().decode(value);
+        const updates = chunk.split('\n').filter(Boolean).map(line => JSON.parse(line));
+        
+        for (const update of updates) {
+          if (!update.success) {
+            console.error('Batch upload error:', update.error);
+            toast({
+              title: "Upload Error",
+              description: update.error,
+              variant: "destructive",
+            });
+          } else {
+            toast({
+              title: "Upload Progress",
+              description: `Processed ${update.processed} of ${update.total} questions`,
+            });
+          }
+        }
+      }
+
       toast({
-        title: "Batch Upload Successful",
-        description: `Successfully uploaded ${formattedQuestions.length} questions.`,
+        title: "Upload Complete",
+        description: "All questions have been processed",
       });
+
+      fetchQuestions();
     } catch (error) {
       console.error('Upload error:', error);
       toast({
@@ -260,22 +391,109 @@ export default function QuestionBankDashboard() {
     }
   };
 
+  const filteredQuestions = useMemo(() => {
+    return questions.filter((question) => {
+      const lowerSearchQuery = searchQuery.toLowerCase()
+      const matchesSearch =
+        question.text.toLowerCase().includes(lowerSearchQuery) ||
+        question.topic.toLowerCase().includes(lowerSearchQuery) ||
+        (question.subtopic?.toLowerCase().includes(lowerSearchQuery) ?? false) ||
+        question.subject.toLowerCase().includes(lowerSearchQuery)
+
+      const matchesFilters =
+        (!filters.exams.length || filters.exams.includes(question.exam)) &&
+        (!filters.subjects.length || filters.subjects.includes(question.subject)) &&
+        (!filters.topics.length || filters.topics.includes(question.topic)) &&
+        (!filters.subtopics.length || (question.subtopic && filters.subtopics.includes(question.subtopic))) &&
+        (!filters.difficulties.length || filters.difficulties.includes(question.difficulty)) &&
+        (!filters.years.length || filters.years.includes(question.year.toString())) &&
+        (!filters.types.length || filters.types.includes(question.type)) &&
+        (filters.status === 'all' || question.status === filters.status)
+
+      return matchesSearch && matchesFilters
+    })
+  }, [questions, filters, searchQuery])
+
+  const totalQuestions = questions.length
+  const draftQuestions = useMemo(() => questions.filter((question) => question.status === 'DRAFT').length, [questions])
+  const publishedQuestions = useMemo(() => questions.filter((question) => question.status === 'PUBLISHED').length, [questions])
+
   return (
     <TooltipProvider>
       <div className="space-y-6">
         <h1 className="text-3xl font-bold tracking-tight">Question Bank Dashboard</h1>
         
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                <div className="flex items-center space-x-2">
+                  <FileUp className="h-4 w-4 text-muted-foreground" />
+                  <span>Total Questions</span>
+                </div>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{totalQuestions}</div>
+              <p className="text-xs text-muted-foreground">+20% from last month</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                <div className="flex items-center space-x-2">
+                  <Edit className="h-4 w-4 text-muted-foreground" />
+                  <span>Draft Questions</span>
+                </div>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{draftQuestions}</div>
+              <p className="text-xs text-muted-foreground">+15% from last month</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="h-4 w-4 text-muted-foreground" />
+                  <span>Published Questions</span>
+                </div>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{publishedQuestions}</div>
+              <p className="text-xs text-muted-foreground">+10% from last month</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                <div className="flex items-center space-x-2">
+                  <ArrowDownIcon className="h-4 w-4 text-muted-foreground" />
+                  <span>Avg. Creation Time</span>
+                </div>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">3 days</div>
+              <p className="text-xs text-muted-foreground">-10% from last month</p>
+            </CardContent>
+          </Card>
+        </div>
+
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold tracking-tight">Questions</h2>
-          <Select defaultValue="all" onValueChange={(value) => {/* Implement filter logic */}}>
+          <Select defaultValue="all" onValueChange={(value) => setFilters(prev => ({ ...prev, status: value as QuestionStatus }))}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Filter by status" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Questions</SelectItem>
-              <SelectItem value="ACTIVE">Active</SelectItem>
               <SelectItem value="DRAFT">Draft</SelectItem>
+              <SelectItem value="PUBLISHED">Published</SelectItem>
               <SelectItem value="ARCHIVED">Archived</SelectItem>
+              <SelectItem value="UNDER_REVIEW">Under Review</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -318,20 +536,51 @@ export default function QuestionBankDashboard() {
               <DialogHeader>
                 <DialogTitle>Batch Upload Questions</DialogTitle>
                 <DialogDescription>
-                  Upload questions via JSON format.
+                  Upload questions via file or paste text directly.
                 </DialogDescription>
               </DialogHeader>
-              <div className="grid w-full gap-1.5">
-                <Label htmlFor="batchText">Paste Questions JSON</Label>
-                <Textarea 
-                  id="batchText"
-                  placeholder="Paste your questions JSON here..."
-                  value={batchUploadText}
-                  onChange={(e) => setBatchUploadText(e.target.value)}
-                  rows={10}
-                  disabled={isBatchUploading}
-                />
-              </div>
+              <Tabs defaultValue="file" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="file">File Upload</TabsTrigger>
+                  <TabsTrigger value="text">Text Input</TabsTrigger>
+                </TabsList>
+                <TabsContent value="file">
+                  <div className="grid w-full max-w-sm items-center gap-1.5">
+                    <Label htmlFor="file">File (CSV, JSON, or TXT)</Label>
+                    <Input 
+                      id="file" 
+                      type="file" 
+                      accept=".csv,.json,.txt" 
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files[0]) {
+                          const file = e.target.files[0];
+                          const reader = new FileReader();
+                          reader.onload = (event) => {
+                            if (event.target && typeof event.target.result === 'string') {
+                              handleBatchUpload(event.target.result);
+                            }
+                          };
+                          reader.readAsText(file);
+                        }
+                      }}
+                      disabled={isBatchUploading}
+                    />
+                  </div>
+                </TabsContent>
+                <TabsContent value="text">
+                  <div className="grid w-full gap-1.5">
+                    <Label htmlFor="batchText">Paste Questions</Label>
+                    <Textarea 
+                      id="batchText"
+                      placeholder="Paste your questions here..."
+                      value={batchUploadText}
+                      onChange={(e) => setBatchUploadText(e.target.value)}
+                      rows={10}
+                      disabled={isBatchUploading}
+                    />
+                  </div>
+                </TabsContent>
+              </Tabs>
               <DialogFooter>
                 <Button 
                   type="submit" 
@@ -350,6 +599,124 @@ export default function QuestionBankDashboard() {
               </DialogFooter>
             </DialogContent>
           </Dialog>
+          <Button 
+            variant="destructive" 
+            onClick={handleDeleteSelected}
+            disabled={selectedQuestions.length === 0}
+          >
+            Delete Selected
+          </Button>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
+          {[
+            "exams",
+            "subjects",
+            "topics",
+            "subtopics",
+            "difficulties",
+            "years",
+            "types",
+          ].map((filterType) => (
+            <Tooltip key={filterType}>
+              <TooltipTrigger asChild>
+                <Popover
+                  content={
+                    <div className="w-full bg-white rounded-md p-2 sm:w-80">
+                      <Input
+                        type="text"
+                        placeholder={`Search ${filterType}...`}
+                        className="mb-2"
+                        onChange={(e) => {
+                          // Implement search functionality here
+                        }}
+                      />
+                      <div className="max-h-60 overflow-y-auto">
+                        {Array.from(
+                          new Set(
+                            questions
+                              .filter(q => 
+                                filters.exams.length === 0 || filters.exams.includes(q.exam)
+                              )
+                              .map((q) => {
+                                switch (filterType) {
+                                  case "exams":
+                                    return q.exam
+                                  case "subjects":
+                                    return q.subject
+                                  case "topics":
+                                    return q.topic
+                                  case "subtopics":
+                                    return q.subtopic ?? ''
+                                  case "difficulties":
+                                    return q.difficulty
+                                  case "years":
+                                    return q.year.toString()
+                                  case "types":
+                                    return q.type
+                                  default:
+                                    return ""
+                                }
+                              })
+                          )
+                        ).map((value) => (
+                          <div key={value} className="flex items-center">
+                            <input
+                              type="checkbox"
+                              id={`${filterType}-${value}`}
+                              className="mr-2"
+                              checked={
+                                (filters[filterType as keyof FiltersType] as string[] || []).includes(value)
+                              }
+                              onChange={() =>
+                                handleFilterChange(filterType as keyof FiltersType, value)
+                              }
+                            />
+                            <label
+                              htmlFor={`${filterType}-${value}`}
+                              className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
+                            >
+                              {value || ''}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  }
+                  align="start"
+                  openPopover={dropdowns[filterType as keyof typeof dropdowns]}
+                  setOpenPopover={(open) => {
+                    setDropdowns(prev => ({ ...prev, [filterType]: open }))
+                  }}
+                >
+                  <button
+                    onClick={() => setDropdowns(prev => ({ ...prev, [filterType]: !prev[filterType as keyof typeof dropdowns] }))}
+                    className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
+                  >
+                    <p className="text-gray-600">
+                      {Array.isArray(filters[filterType as keyof FiltersType]) &&
+                      (filters[filterType as keyof FiltersType] as string[]).length
+                        ? `${
+                            (filters[filterType as keyof FiltersType] as string[])
+                              .length
+                          } selected`
+                        : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                    </p>
+                    <ChevronDown
+                      className={`h-4 w-4 text-gray-600 transition-all ${
+                        dropdowns[filterType as keyof typeof dropdowns]
+                          ? "rotate-180"
+                          : ""
+                      }`}
+                    />
+                  </button>
+                </Popover>
+              </TooltipTrigger>
+              <TooltipContent>
+                Select {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+              </TooltipContent>
+            </Tooltip>
+          ))}
         </div>
 
         {isLoading ? (
@@ -371,11 +738,11 @@ export default function QuestionBankDashboard() {
                 <TableRow>
                   <TableHead className="w-[50px]">
                     <Checkbox
-                      checked={selectedQuestions.length === questions.length}
+                      checked={selectedQuestions.length === filteredQuestions.length}
                       onCheckedChange={(checked) => {
                         setSelectedQuestions(
                           checked
-                            ? questions.map((q) => q.questionId)
+                            ? filteredQuestions.map((q) => q.questionId)
                             : []
                         )
                       }}
@@ -392,7 +759,7 @@ export default function QuestionBankDashboard() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {questions.map((question) => (
+                {filteredQuestions.map((question) => (
                   <TableRow key={question.questionId}>
                     <TableCell>
                       <Checkbox
@@ -471,12 +838,8 @@ interface QuestionFormProps {
 
 function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
   const [formData, setFormData] = useState<Partial<Question>>(initialData || {})
-  const [options, setOptions] = useState<string[]>(initialData?.options || [])
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
+  const [showPreview, setShowPreview] = useState(false)
+  const [options, setOptions] = useState<(string | null)[]>(initialData?.options || [])
 
   const handleOptionChange = (index: number, value: string) => {
     const newOptions = [...options]
@@ -487,10 +850,17 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
 
   const handleAddOption = () => {
     setOptions(prev => [...prev, ''])
+    setFormData(prev => ({ ...prev, options: [...prev.options || [], ''] }))
   }
 
   const handleRemoveOption = (index: number) => {
     setOptions(prev => prev.filter((_, i) => i !== index))
+    setFormData(prev => ({ ...prev, options: prev.options?.filter((_, i) => i !== index) }))
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -512,6 +882,16 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
+          <Label htmlFor="exam">Exam</Label>
+          <Input
+            id="exam"
+            name="exam"
+            value={formData.exam || ''}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="space-y-2">
           <Label htmlFor="subject">Subject</Label>
           <Input
             id="subject"
@@ -521,6 +901,8 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
             required
           />
         </div>
+      </div>
+      <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="topic">Topic</Label>
           <Input
@@ -531,26 +913,51 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
             required
           />
         </div>
+        <div className="space-y-2">
+          <Label htmlFor="subtopic">Subtopic</Label>
+          <Input
+            id="subtopic"
+            name="subtopic"
+            value={formData.subtopic || ''}
+            onChange={handleInputChange}
+          />
+        </div>
       </div>
-      <div className="space-y-2">
-        <Label htmlFor="difficulty">Difficulty</Label>
-        <Select name="difficulty" value={formData.difficulty} onValueChange={(value) => setFormData(prev => ({ ...prev, difficulty: value }))}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select difficulty" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="Easy">Easy</SelectItem>
-            <SelectItem value="Medium">Medium</SelectItem>
-            <SelectItem value="Hard">Hard</SelectItem>
-          </SelectContent>
-        </Select>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="difficulty">Difficulty</Label>
+          <Select name="difficulty" value={formData.difficulty} onValueChange={(value) => setFormData(prev => ({ ...prev, difficulty: value }))}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select difficulty" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Easy">Easy</SelectItem>
+              <SelectItem value="Medium">Medium</SelectItem>
+              <SelectItem value="Hard">Hard</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="type">Question Type</Label>
+          <Select name="type" value={formData.type} onValueChange={(value) => setFormData(prev => ({ ...prev, type: value }))}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Multiple Choice">Multiple Choice</SelectItem>
+              <SelectItem value="True/False">True/False</SelectItem>
+              <SelectItem value="Short Answer">Short Answer</SelectItem>
+              <SelectItem value="Essay">Essay</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
       <div className="space-y-2">
         <Label>Options</Label>
         {options.map((option, index) => (
           <div key={index} className="flex items-center space-x-2">
             <Input
-              value={option}
+              value={option || ''}
               onChange={(e) => handleOptionChange(index, e.target.value)}
               placeholder={`Option ${index + 1}`}
             />
@@ -571,16 +978,64 @@ function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
           </SelectTrigger>
           <SelectContent>
             {options.map((option, index) => (
-              <SelectItem key={index} value={option}>
+              <SelectItem key={index} value={option || ''}>
                 {option}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
       </div>
-      <Button type="submit">
-        {initialData ? 'Update Question' : 'Add Question'}
-      </Button>
+      <div className="space-y-2">
+        <Label htmlFor="markscheme">Mark Scheme</Label>
+        <Textarea
+          id="markscheme"
+          name="markscheme"
+          value={formData.markscheme || ''}
+          onChange={handleInputChange}
+        />
+      </div>
+      <div className="flex justify-between">
+        <Button type="submit">
+          {initialData ? 'Update Question' : 'Add Question'}
+        </Button>
+        <Button type="button" variant="outline" onClick={() => setShowPreview(!showPreview)}>
+          {showPreview ? 'Hide Preview' : 'Show Preview'}
+        </Button>
+      </div>
+      {showPreview && <QuestionPreview question={formData as Question} />}
     </form>
+  )
+}
+
+function QuestionPreview({ question }: { question: Question }) {
+  return (
+    <div className="mt-4 p-4 border rounded-md">
+      <h3 className="text-lg font-semibold mb-2">Question Preview</h3>
+      <p className="mb-2">{question.text}</p>
+      {question.options && (
+        <div className="space-y-2">
+          {question.options.map((option, index) => (
+            <div key={index} className="flex items-center space-x-2">
+              <input
+                type="radio"
+                id={`option-${index}`}
+                name="preview-options"
+                disabled
+              />
+              <label htmlFor={`option-${index}`}>{option}</label>
+            </div>
+          ))}
+        </div>
+      )}
+      <p className="mt-2">
+        <strong>Correct Answer:</strong> {question.correctOption}
+      </p>
+      {question.markscheme && (
+        <div className="mt-2">
+          <strong>Mark Scheme:</strong>
+          <p>{question.markscheme}</p>
+        </div>
+      )}
+    </div>
   )
 }
