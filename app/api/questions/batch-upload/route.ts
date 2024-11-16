@@ -2,8 +2,88 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../../auth/[...nextauth]/options';
 import prisma from '@/lib/prisma';
+import { Prisma } from '@prisma/client';
 
-// POST method for batch uploading questions
+type QuestionInput = {
+  exam: string;
+  questionId?: string;
+  text: string;
+  subject: string;
+  topic: string;
+  subtopic?: string;
+  difficulty: string;
+  type: string;
+  year: number | string;
+  options: string[];
+  correctOption: string;
+  markscheme?: string;
+  marks?: string;
+  reviewed?: boolean;
+  completed?: boolean;
+  correctAttempts?: string | number;
+  wrongAttempts?: string | number;
+  averageTimeTaken?: string | number;
+  lastAttempted?: string | null;
+  diagramUrl?: string;
+  [key: string]: any;
+};
+
+type ProcessedQuestion = Omit<Prisma.QuestionCreateManyInput, 'id' | 'options'> & {
+  questionId: string;
+  options: string[];
+};
+
+function validateAndFormatQuestion(question: QuestionInput): ProcessedQuestion {
+  const currentYear = new Date().getFullYear();
+  
+  const processedQuestion: ProcessedQuestion = {
+    exam: question.exam || 'Unknown',
+    questionId: question.questionId || `auto-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+    text: question.text,
+    subject: question.subject || 'General',
+    topic: question.topic || 'Miscellaneous',
+    subtopic: question.subtopic || '',
+    difficulty: ['Easy', 'Medium', 'Hard'].includes(question.difficulty) ? question.difficulty : 'Medium',
+    type: question.type || 'Multiple Choice',
+    year: typeof question.year === 'string' ? parseInt(question.year, 10) : question.year,
+    options: Array.isArray(question.options) ? question.options : [],
+    correctOption: question.correctOption,
+    markscheme: question.markscheme || '',
+    marks: question.marks ? question.marks.toString() : '0',
+    reviewed: question.reviewed || false,
+    completed: question.completed || false,
+    correctAttempts: question.correctAttempts ? question.correctAttempts.toString() : '0',
+    wrongAttempts: question.wrongAttempts ? question.wrongAttempts.toString() : '0',
+    averageTimeTaken: question.averageTimeTaken ? question.averageTimeTaken.toString() : '0',
+    lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
+    diagramUrl: question.diagramUrl || '',
+    status: 'ACTIVE'
+  };
+
+  if (!processedQuestion.text) {
+    throw new Error('Question text is required');
+  }
+
+  if (isNaN(processedQuestion.year) || processedQuestion.year < 1900 || processedQuestion.year > currentYear) {
+    processedQuestion.year = currentYear;
+  }
+
+  if (processedQuestion.type === 'Multiple Choice' && processedQuestion.options.length < 2) {
+    throw new Error('Multiple choice questions must have at least two options');
+  }
+
+  if (typeof processedQuestion.correctOption === 'string' && processedQuestion.correctOption.length === 1) {
+    const index = processedQuestion.correctOption.toUpperCase().charCodeAt(0) - 65;
+    if (index >= 0 && index < processedQuestion.options.length) {
+      processedQuestion.correctOption = processedQuestion.options[index];
+    } else {
+      throw new Error('Invalid correct option');
+    }
+  }
+
+  return processedQuestion;
+}
+
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
 
@@ -12,60 +92,58 @@ export async function POST(req: Request) {
   }
 
   try {
-    const questions = await req.json(); // Expecting a raw array of questions
-    console.log('Received Questions:', questions);
+    const body = await req.json();
+    let questionsInput: QuestionInput[];
 
-    if (!Array.isArray(questions) || questions.length === 0) {
-      console.error('Invalid questions array:', questions);
-      return NextResponse.json({ message: 'Invalid or empty questions data' }, { status: 400 });
+    if (Array.isArray(body)) {
+      questionsInput = body;
+    } else if (body.questions && Array.isArray(body.questions)) {
+      questionsInput = body.questions;
+    } else {
+      return NextResponse.json({ message: 'Invalid questions data format' }, { status: 400 });
     }
 
-    const formattedQuestions = questions.map((question: any, index: number) => ({
-      questionId: question.questionId || `auto-${index}`,
-      text: question.text || '',
-      subject: question.subject || 'General',
-      topic: question.topic || 'Miscellaneous',
-      subtopic: question.subtopic || null,
-      difficulty: question.difficulty || 'Medium',
-      type: question.type || 'Multiple Choice',
-      year: question.year ? parseInt(question.year, 10) : new Date().getFullYear(),
-      reviewed: question.reviewed ?? false,
-      completed: question.completed ?? false,
-      options: question.options || [],
-      correctOption: question.correctOption || null,
-      markscheme: question.markscheme || null,
-      exam: question.exam || 'Unknown',
-      marks: question.marks ? question.marks.toString() : '0',
-      correctAttempts: question.correctAttempts || null,
-      wrongAttempts: question.wrongAttempts || null,
-      averageTimeTaken: question.averageTimeTaken || null,
-      lastAttempted: question.lastAttempted ? new Date(question.lastAttempted) : null,
-      diagramUrl: question.diagramUrl || null,
-      status: question.status || 'ACTIVE',
-    }));
+    if (questionsInput.length === 0) {
+      return NextResponse.json({ message: 'No questions provided' }, { status: 400 });
+    }
 
-    console.log('Formatted Questions:', formattedQuestions);
+    const uploadResult = {
+      success: [] as ProcessedQuestion[],
+      failures: [] as { question: QuestionInput; error: string }[]
+    };
 
-    const result = await prisma.question.createMany({
-      data: formattedQuestions,
-      skipDuplicates: true,
+    for (const questionInput of questionsInput) {
+      try {
+        const processedQuestion = validateAndFormatQuestion(questionInput);
+        uploadResult.success.push(processedQuestion);
+      } catch (error) {
+        uploadResult.failures.push({ 
+          question: questionInput, 
+          error: error instanceof Error ? error.message : 'Failed to process question'
+        });
+      }
+    }
+
+    if (uploadResult.success.length > 0) {
+      await prisma.question.createMany({
+        data: uploadResult.success,
+        skipDuplicates: true,
+      });
+    }
+
+    return NextResponse.json({
+      message: 'Batch upload completed',
+      totalProcessed: questionsInput.length,
+      successCount: uploadResult.success.length,
+      failureCount: uploadResult.failures.length,
+      failures: uploadResult.failures
     });
 
-    return NextResponse.json({ message: 'Batch upload successful', result });
   } catch (error) {
-    // Use a type guard to check if the error is an instance of Error
-    if (error instanceof Error) {
-      console.error('Error during batch upload:', error.message);
-      return NextResponse.json(
-        { message: 'An error occurred during batch upload', error: error.message },
-        { status: 500 }
-      );
-    } else {
-      console.error('Unknown error during batch upload:', error);
-      return NextResponse.json(
-        { message: 'An unknown error occurred during batch upload' },
-        { status: 500 }
-      );
-    }
+    console.error('Error during batch upload:', error);
+    return NextResponse.json(
+      { message: 'An error occurred during batch upload', error: error instanceof Error ? error.message : 'Unknown error' },
+      { status: 500 }
+    );
   }
 }
