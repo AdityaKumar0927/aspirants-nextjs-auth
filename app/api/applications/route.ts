@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, ApplicationRole } from '@prisma/client'
 import { getServerSession } from 'next-auth/next'
 import authOptions from '../auth/[...nextauth]/options'
 
@@ -19,6 +19,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
+    // Validate and convert role to enum
+    let applicationRole: ApplicationRole
+    if (role.toUpperCase() === 'VOLUNTEER') {
+      applicationRole = ApplicationRole.VOLUNTEER
+    } else if (role.toUpperCase() === 'MODERATOR') {
+      applicationRole = ApplicationRole.MODERATOR
+    } else {
+      return NextResponse.json({ error: 'Invalid role' }, { status: 400 })
+    }
+
     // Get the user ID from the session
     const userId = session.user.id
 
@@ -27,7 +37,7 @@ export async function POST(request: Request) {
       data: {
         name,
         email,
-        role,
+        role: applicationRole,
         experience,
         motivation,
         status: 'PENDING',
