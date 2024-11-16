@@ -4,6 +4,18 @@ import { authOptions } from '../../auth/[...nextauth]/options';
 import prisma from '@/lib/prisma';
 import { Prisma } from '@prisma/client';
 
+// Increase the response timeout and body size limit
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb',
+    },
+    responseLimit: '8mb',
+  },
+};
+
+const BATCH_SIZE = 25; // Process questions in smaller batches
+
 type QuestionInput = {
   exam: string;
   questionId?: string;
@@ -68,104 +80,98 @@ function validateAndFormatQuestion(question: QuestionInput): ProcessedQuestion {
     processedQuestion.year = currentYear;
   }
 
-  if (processedQuestion.type === 'Multiple Choice' && processedQuestion.options.length < 2) {
-    throw new Error('Multiple choice questions must have at least two options');
-  }
+  return processedQuestion;
+}
 
-  if (typeof processedQuestion.correctOption === 'string' && processedQuestion.correctOption.length === 1) {
-    const index = processedQuestion.correctOption.toUpperCase().charCodeAt(0) - 65;
-    if (index >= 0 && index < processedQuestion.options.length) {
-      processedQuestion.correctOption = processedQuestion.options[index];
-    } else {
-      throw new Error('Invalid correct option');
+async function processBatch(questions: QuestionInput[]) {
+  const processedQuestions: ProcessedQuestion[] = [];
+  const failures: { question: QuestionInput; error: string }[] = [];
+
+  for (const question of questions) {
+    try {
+      const processedQuestion = validateAndFormatQuestion(question);
+      processedQuestions.push(processedQuestion);
+    } catch (error) {
+      failures.push({
+        question,
+        error: error instanceof Error ? error.message : 'Failed to process question'
+      });
     }
   }
 
-  return processedQuestion;
+  if (processedQuestions.length > 0) {
+    await prisma.question.createMany({
+      data: processedQuestions,
+      skipDuplicates: true,
+    });
+  }
+
+  return { successes: processedQuestions, failures };
 }
 
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    console.error('Unauthorized access attempt');
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   try {
     const body = await req.json();
-    console.log('Received body:', JSON.stringify(body, null, 2));
-
     let questionsInput: QuestionInput[];
 
-    if (Array.isArray(body)) {
-      questionsInput = body;
-    } else if (body.questions && Array.isArray(body.questions)) {
-      questionsInput = body.questions;
-    } else if (typeof body.text === 'string') {
-      try {
+    // Parse the input data
+    try {
+      if (Array.isArray(body)) {
+        questionsInput = body;
+      } else if (body.questions && Array.isArray(body.questions)) {
+        questionsInput = body.questions;
+      } else if (typeof body.text === 'string') {
         questionsInput = JSON.parse(body.text);
         if (!Array.isArray(questionsInput)) {
           throw new Error('Parsed text is not an array');
         }
-      } catch (parseError) {
-        console.error('Error parsing questions from text:', parseError);
-        return NextResponse.json({ message: 'Invalid questions data format in text field', error: parseError instanceof Error ? parseError.message : 'Unknown parsing error' }, { status: 400 });
+      } else {
+        throw new Error('Invalid questions data format');
       }
-    } else {
-      console.error('Invalid questions data format:', body);
-      return NextResponse.json({ message: 'Invalid questions data format', receivedData: body }, { status: 400 });
+    } catch (parseError) {
+      console.error('Error parsing questions:', parseError);
+      return NextResponse.json({ 
+        message: 'Invalid questions data format', 
+        error: parseError instanceof Error ? parseError.message : 'Unknown parsing error' 
+      }, { status: 400 });
     }
 
     if (questionsInput.length === 0) {
-      console.error('No questions provided');
       return NextResponse.json({ message: 'No questions provided' }, { status: 400 });
     }
 
-    const uploadResult = {
-      success: [] as ProcessedQuestion[],
+    // Process questions in batches
+    const results = {
+      totalProcessed: questionsInput.length,
+      successCount: 0,
+      failureCount: 0,
       failures: [] as { question: QuestionInput; error: string }[]
     };
 
-    for (const questionInput of questionsInput) {
-      try {
-        const processedQuestion = validateAndFormatQuestion(questionInput);
-        uploadResult.success.push(processedQuestion);
-      } catch (error) {
-        console.error('Error processing question:', error);
-        uploadResult.failures.push({ 
-          question: questionInput, 
-          error: error instanceof Error ? error.message : 'Failed to process question'
-        });
-      }
-    }
+    // Split questions into batches
+    for (let i = 0; i < questionsInput.length; i += BATCH_SIZE) {
+      const batch = questionsInput.slice(i, i + BATCH_SIZE);
+      const batchResult = await processBatch(batch);
+      
+      results.successCount += batchResult.successes.length;
+      results.failures.push(...batchResult.failures);
+      results.failureCount += batchResult.failures.length;
 
-    console.log(`Processed ${uploadResult.success.length} questions successfully, ${uploadResult.failures.length} failures`);
-
-    if (uploadResult.success.length > 0) {
-      try {
-        await prisma.question.createMany({
-          data: uploadResult.success,
-          skipDuplicates: true,
-        });
-        console.log(`Successfully inserted ${uploadResult.success.length} questions`);
-      } catch (dbError) {
-        console.error('Database error:', dbError);
-        return NextResponse.json({ 
-          message: 'Error inserting questions into database', 
-          error: dbError instanceof Error ? dbError.message : 'Unknown database error',
-          successfullyProcessed: uploadResult.success.length,
-          failedToProcess: uploadResult.failures.length
-        }, { status: 500 });
+      // Add a small delay between batches to prevent overwhelming the database
+      if (i + BATCH_SIZE < questionsInput.length) {
+        await new Promise(resolve => setTimeout(resolve, 100));
       }
     }
 
     return NextResponse.json({
       message: 'Batch upload completed',
-      totalProcessed: questionsInput.length,
-      successCount: uploadResult.success.length,
-      failureCount: uploadResult.failures.length,
-      failures: uploadResult.failures
+      ...results
     });
 
   } catch (error) {
