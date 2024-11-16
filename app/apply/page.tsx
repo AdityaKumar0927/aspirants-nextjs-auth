@@ -1,26 +1,22 @@
 import { Suspense } from 'react'
 import { Loader2 } from 'lucide-react'
-import dynamic from 'next/dynamic'
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import ErrorBoundary from '../components/ErrorBoundary'
+import { getServerSession } from 'next-auth/next'
+import { redirect } from 'next/navigation'
+import ApplicationForm from './ApplicationForm'
 
-const ApplyClientWrapper = dynamic(() => import('./ApplyClientWrapper'), {
-  ssr: false,
-  loading: () => <Loader2 className="h-8 w-8 animate-spin" />
-})
+export default async function ApplyPage() {
+  const session = await getServerSession()
 
-export default function ApplyPage() {
+  if (!session) {
+    redirect('/api/auth/signin?callbackUrl=/apply')
+  }
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Volunteer/Moderator Application</h1>
-      <ErrorBoundary fallback={<Alert variant="destructive">
-        <AlertTitle>Error</AlertTitle>
-        <AlertDescription>An unexpected error occurred. Please try refreshing the page.</AlertDescription>
-      </Alert>}>
-        <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin" />}>
-          <ApplyClientWrapper />
-        </Suspense>
-      </ErrorBoundary>
+      <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin" />}>
+        <ApplicationForm session={session} />
+      </Suspense>
     </div>
   )
 }

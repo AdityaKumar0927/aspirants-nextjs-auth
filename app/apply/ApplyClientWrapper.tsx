@@ -14,19 +14,10 @@ export default function ApplyClientWrapper() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    console.log('ApplyClientWrapper mounted')
-    console.log('Session status:', status)
-    console.log('Session data:', session)
-
     if (status === 'unauthenticated') {
-      console.log('User is unauthenticated, showing sign-in modal')
       setShowSignInModal(true)
     }
-
-    return () => {
-      console.log('ApplyClientWrapper unmounted')
-    }
-  }, [status, setShowSignInModal, session])
+  }, [status, setShowSignInModal])
 
   if (status === 'loading') {
     return <Loader2 className="h-8 w-8 animate-spin" />
@@ -57,7 +48,6 @@ export default function ApplyClientWrapper() {
   }
 
   if (!session || !session.user) {
-    console.error('Session or user data is missing')
     return (
       <Alert variant="destructive">
         <AlertTitle>Error</AlertTitle>
@@ -69,7 +59,6 @@ export default function ApplyClientWrapper() {
     )
   }
 
-  console.log('Rendering ApplicationForm')
   return (
     <>
       <SignInModal />

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Session } from 'next-auth'
 import { Button } from "@/components/ui/button"
@@ -18,6 +18,7 @@ import { useToast } from "@/components/ui/use-toast"
 import { Loader2 } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import Form from 'next/form'
 
 interface ApplicationFormProps {
   session: Session
@@ -28,136 +29,47 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formErrors, setFormErrors] = useState<Record<string, string>>({})
-  const [error, setError] = useState<string | null>(null)
-  const [formData, setFormData] = useState({
-    name: '',
-    role: '',
-    experience: '',
-    motivation: ''
-  })
 
-  useEffect(() => {
-    console.log('ApplicationForm mounted')
-    console.log('Session:', session)
-    if (session.user?.name) {
-      setFormData(prevData => ({
-        ...prevData,
-        name: session.user?.name || ''
-      }))
-    }
-    return () => {
-      console.log('ApplicationForm unmounted')
-    }
-  }, [session])
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value
-    }))
-    if (formErrors[name]) {
-      setFormErrors(prevErrors => ({
-        ...prevErrors,
-        [name]: ''
-      }))
-    }
-  }
-
-  const handleSelectChange = (value: string) => {
-    setFormData(prevData => ({
-      ...prevData,
-      role: value
-    }))
-    if (formErrors.role) {
-      setFormErrors(prevErrors => ({
-        ...prevErrors,
-        role: ''
-      }))
-    }
-  }
-
-  const validateForm = () => {
-    const errors: Record<string, string> = {}
-    if (!formData.name.trim()) errors.name = "Name is required"
-    if (!formData.role) errors.role = "Role selection is required"
-    if (!formData.experience.trim()) errors.experience = "Experience is required"
-    if (!formData.motivation.trim()) errors.motivation = "Motivation is required"
-    return errors
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const errors = validateForm()
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors)
-      toast({
-        title: "Validation Error",
-        description: "Please fill in all required fields correctly.",
-        variant: "destructive",
-      })
-      return
-    }
-
+  const handleSubmit = async (formData: FormData) => {
     setIsSubmitting(true)
-    setError(null)
+    setFormErrors({})
 
     try {
       const response = await fetch('/api/applications', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          email: session.user?.email
-        }),
+        body: formData,
       })
 
-      if (response.ok) {
-        toast({
-          title: "Success",
-          description: "Your application has been submitted successfully.",
-        })
-        router.push('/application-success')
-      } else {
+      if (!response.ok) {
         const errorData = await response.json()
         throw new Error(errorData.error || 'Failed to submit application')
       }
+
+      toast({
+        title: "Success",
+        description: "Your application has been submitted successfully.",
+      })
+      router.push('/application-success')
     } catch (error) {
       console.error('Application submission error:', error)
-      setError(error instanceof Error ? error.message : "An unexpected error occurred. Please try again.")
       toast({
         title: "Error",
         description: "Failed to submit application. Please try again.",
         variant: "destructive",
       })
+      if (error instanceof Error) {
+        setFormErrors({ submit: error.message })
+      }
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  if (error) {
-    return (
-      <Alert variant="destructive">
-        <AlertTitle>Error</AlertTitle>
-        <AlertDescription>{error}</AlertDescription>
-        <Button className="mt-4" onClick={() => setError(null)}>
-          Try Again
-        </Button>
-      </Alert>
-    )
-  }
-
   if (!session.user) {
-    console.error('User data is missing')
     return (
       <Alert variant="destructive">
         <AlertTitle>Error</AlertTitle>
         <AlertDescription>User data is missing. Please try signing in again.</AlertDescription>
-        <Button className="mt-4" onClick={() => window.location.reload()}>
-          Refresh Page
-        </Button>
       </Alert>
     )
   }
@@ -169,32 +81,29 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
         <CardDescription>Join our team and help make a difference!</CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <Form action={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
             <Input
               id="name"
               name="name"
-              value={formData.name}
-              onChange={handleInputChange}
+              defaultValue={session.user.name || ''}
               required
-              className={formErrors.name ? "border-red-500" : ""}
             />
-            {formErrors.name && <p className="text-red-500 text-sm">{formErrors.name}</p>}
           </div>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               name="email"
-              value={session.user.email || ''}
+              defaultValue={session.user.email || ''}
               disabled
             />
           </div>
           <div className="space-y-2">
             <Label htmlFor="role">Role</Label>
-            <Select onValueChange={handleSelectChange} value={formData.role}>
-              <SelectTrigger className={formErrors.role ? "border-red-500" : ""}>
+            <Select name="role" required>
+              <SelectTrigger>
                 <SelectValue placeholder="Select a role" />
               </SelectTrigger>
               <SelectContent>
@@ -202,50 +111,45 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
                 <SelectItem value="MODERATOR">Moderator</SelectItem>
               </SelectContent>
             </Select>
-            {formErrors.role && <p className="text-red-500 text-sm">{formErrors.role}</p>}
           </div>
           <div className="space-y-2">
             <Label htmlFor="experience">Relevant Experience</Label>
             <Textarea
               id="experience"
               name="experience"
-              value={formData.experience}
-              onChange={handleInputChange}
               required
-              className={formErrors.experience ? "border-red-500" : ""}
             />
-            {formErrors.experience && <p className="text-red-500 text-sm">{formErrors.experience}</p>}
           </div>
           <div className="space-y-2">
             <Label htmlFor="motivation">Motivation</Label>
             <Textarea
               id="motivation"
               name="motivation"
-              value={formData.motivation}
-              onChange={handleInputChange}
               required
-              className={formErrors.motivation ? "border-red-500" : ""}
             />
-            {formErrors.motivation && <p className="text-red-500 text-sm">{formErrors.motivation}</p>}
           </div>
-        </form>
-      </CardContent>
-      <CardFooter>
-        <Button 
-          onClick={handleSubmit} 
-          disabled={isSubmitting} 
-          className="w-full"
-        >
-          {isSubmitting ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Submitting...
-            </>
-          ) : (
-            'Submit Application'
+          {formErrors.submit && (
+            <Alert variant="destructive">
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{formErrors.submit}</AlertDescription>
+            </Alert>
           )}
-        </Button>
-      </CardFooter>
+          <Button 
+            type="submit"
+            disabled={isSubmitting} 
+            className="w-full"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Submitting...
+              </>
+            ) : (
+              'Submit Application'
+            )}
+          </Button>
+        </Form>
+      </CardContent>
     </Card>
   )
 }
