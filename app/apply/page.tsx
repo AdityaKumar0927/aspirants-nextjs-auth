@@ -1,6 +1,12 @@
 import { Suspense } from 'react'
-import ApplyClientWrapper from './ApplyClientWrapper'
 import { Loader2 } from 'lucide-react'
+import dynamic from 'next/dynamic'
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+
+const ApplyClientWrapper = dynamic(() => import('./ApplyClientWrapper'), {
+  ssr: false,
+  loading: () => <Loader2 className="h-8 w-8 animate-spin" />
+})
 
 export default function ApplyPage() {
   return (

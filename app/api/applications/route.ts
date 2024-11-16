@@ -5,6 +5,8 @@ import authOptions from '../auth/[...nextauth]/options'
 
 const prisma = new PrismaClient()
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions)
@@ -12,10 +14,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const { name, email, role, experience, motivation } = await request.json()
+    const { name, role, experience, motivation } = await request.json()
 
     // Validate input
-    if (!name || !email || !role || !experience || !motivation) {
+    if (!name || !role || !experience || !motivation) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
@@ -29,21 +31,18 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid role' }, { status: 400 })
     }
 
-    // Get the user ID from the session
-    const userId = session.user.id
-
     // Create new application
     const newApplication = await prisma.application.create({
       data: {
         name,
-        email,
+        email: session.user.email!,
         role: applicationRole,
         experience,
         motivation,
         status: 'PENDING',
         user: {
           connect: {
-            id: userId
+            email: session.user.email!
           }
         }
       },

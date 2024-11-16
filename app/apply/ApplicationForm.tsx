@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -17,9 +17,10 @@ import {
 import { useToast } from "@/components/ui/use-toast"
 import { Loader2 } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 interface ApplicationFormProps {
-  session: Session | null
+  session: Session
 }
 
 export default function ApplicationForm({ session }: ApplicationFormProps) {
@@ -27,8 +28,9 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formErrors, setFormErrors] = useState<Record<string, string>>({})
+  const [error, setError] = useState<string | null>(null)
   const [formData, setFormData] = useState({
-    name: session?.user?.name || '',
+    name: session.user?.name || '',
     role: '',
     experience: '',
     motivation: ''
@@ -84,6 +86,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
     }
 
     setIsSubmitting(true)
+    setError(null)
 
     try {
       const response = await fetch('/api/applications', {
@@ -91,7 +94,10 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          email: session.user?.email
+        }),
       })
 
       if (response.ok) {
@@ -105,14 +111,40 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
         throw new Error(errorData.error || 'Failed to submit application')
       }
     } catch (error) {
+      console.error('Application submission error:', error)
+      setError(error instanceof Error ? error.message : "An unexpected error occurred. Please try again.")
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to submit application. Please try again.",
+        description: "Failed to submit application. Please try again.",
         variant: "destructive",
       })
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  if (error) {
+    return (
+      <Alert variant="destructive">
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>{error}</AlertDescription>
+        <Button className="mt-4" onClick={() => setError(null)}>
+          Try Again
+        </Button>
+      </Alert>
+    )
+  }
+
+  if (!session.user) {
+    return (
+      <Alert variant="destructive">
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>User data is missing. Please try signing in again.</AlertDescription>
+        <Button className="mt-4" onClick={() => window.location.reload()}>
+          Refresh Page
+        </Button>
+      </Alert>
+    )
   }
 
   return (
@@ -140,7 +172,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
             <Input
               id="email"
               name="email"
-              value={session?.user?.email || ''}
+              value={session.user.email || ''}
               disabled
             />
           </div>
