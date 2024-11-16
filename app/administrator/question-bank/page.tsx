@@ -1,16 +1,10 @@
-"use client"
-
-import React, { useState, useCallback, useMemo } from 'react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QuestionProvider } from './QuestionContext'
 import { QuestionBankDashboardContent } from './QuestionBankDashboardContent'
 
-// Create a client
-const queryClient = new QueryClient()
-
-export default function QuestionBankDashboard() {
+export default function QuestionBankPage() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <QuestionProvider>
       <QuestionBankDashboardContent />
-    </QueryClientProvider>
+    </QuestionProvider>
   )
 }

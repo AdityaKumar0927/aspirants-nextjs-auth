@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useCallback, useMemo } from 'react'
+import React, { useState, useCallback, useMemo, useEffect } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
@@ -19,40 +19,9 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { ArrowUpIcon, ArrowDownIcon, ChevronDown, Search, Plus, Trash2, Edit, Eye, CheckCircle, XCircle, MoreHorizontal, Upload, FileUp, FileJson, Loader2 } from 'lucide-react'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import debounce from 'lodash/debounce'
-
-type QuestionStatus = 'ACTIVE' | 'DRAFT' | 'ARCHIVED'
-
-interface Question {
-  questionId: string
-  exam: string
-  text: string
-  subject: string
-  topic: string
-  subtopic: string | null
-  difficulty: string
-  type: string
-  year: number
-  reviewed: boolean
-  completed: boolean
-  options: string[]
-  correctOption: string | null
-  markscheme: string | null
-  notes: { id: string; content: string }[]
-  lastAttempted: string | null
-  diagramUrl: string | null
-  status: QuestionStatus
-}
-
-type FiltersType = {
-  exams: string[]
-  subjects: string[]
-  topics: string[]
-  subtopics: string[]
-  difficulties: string[]
-  types: string[]
-  years: string[]
-  status: string
-}
+import { useQuestionContext } from './QuestionContext'
+import { QuestionForm } from './QuestionForm'
+import type { Question, QuestionStatus } from './types'
 
 const fetchQuestions = async (): Promise<Question[]> => {
   const response = await fetch('/api/questions')
@@ -73,17 +42,7 @@ const updateQuestion = async (question: Partial<Question>): Promise<Question> =>
 }
 
 export function QuestionBankDashboardContent() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [filters, setFilters] = useState<FiltersType>({
-    exams: [],
-    subjects: [],
-    topics: [],
-    subtopics: [],
-    difficulties: [],
-    types: [],
-    years: [],
-    status: 'all',
-  })
+  const { questions: contextQuestions, setQuestions, filters, setFilters, searchQuery, setSearchQuery } = useQuestionContext()
   const [dropdowns, setDropdowns] = useState({
     exam: false,
     subject: false,
@@ -102,18 +61,24 @@ export function QuestionBankDashboardContent() {
   const { toast } = useToast()
   const queryClient = useQueryClient()
 
-  const { data: questions = [], isLoading, error } = useQuery({
+  const { data: questions = [], isLoading, error } = useQuery<Question[]>({
     queryKey: ['questions'],
-    queryFn: fetchQuestions
+    queryFn: fetchQuestions,
   })
+
+  useEffect(() => {
+    if (questions.length > 0) {
+      setQuestions(questions)
+    }
+  }, [questions, setQuestions])
 
   const updateQuestionMutation = useMutation({
     mutationFn: updateQuestion,
     onMutate: async (updatedQuestion) => {
       await queryClient.cancelQueries({ queryKey: ['questions'] })
       const previousQuestions = queryClient.getQueryData<Question[]>(['questions'])
-      queryClient.setQueryData<Question[]>(['questions'], (old) => 
-        old?.map(question => 
+      queryClient.setQueryData<Question[]>(['questions'], (old) =>
+        old?.map(question =>
           question.questionId === updatedQuestion.questionId ? { ...question, ...updatedQuestion } : question
         ) ?? []
       )
@@ -142,7 +107,7 @@ export function QuestionBankDashboardContent() {
   )
 
   const handleFilterChange = useCallback(
-    (tag: keyof FiltersType, value: string) => {
+    (tag: keyof typeof filters, value: string) => {
       setFilters(prevFilters => {
         const filterValues = prevFilters[tag]
         if (Array.isArray(filterValues)) {
@@ -150,31 +115,31 @@ export function QuestionBankDashboardContent() {
           const updatedFilter = isSelected
             ? filterValues.filter((v: string) => v !== value)
             : [...filterValues, value]
-          
+
           const newFilters = { ...prevFilters, [tag]: updatedFilter }
-          
+
           if (tag === 'exams') {
             const selectedExams = newFilters.exams
-            newFilters.subjects = newFilters.subjects.filter(subject => 
+            newFilters.subjects = newFilters.subjects.filter(subject =>
               questions.some(q => selectedExams.includes(q.exam) && q.subject === subject)
             )
-            newFilters.topics = newFilters.topics.filter(topic => 
+            newFilters.topics = newFilters.topics.filter(topic =>
               questions.some(q => selectedExams.includes(q.exam) && q.topic === topic)
             )
-            newFilters.subtopics = newFilters.subtopics.filter(subtopic => 
+            newFilters.subtopics = newFilters.subtopics.filter(subtopic =>
               questions.some(q => selectedExams.includes(q.exam) && q.subtopic === subtopic)
             )
-            newFilters.types = newFilters.types.filter(type => 
+            newFilters.types = newFilters.types.filter(type =>
               questions.some(q => selectedExams.includes(q.exam) && q.type === type)
             )
           }
-          
+
           return newFilters
         }
         return prevFilters
       })
     },
-    [questions]
+    [questions, setFilters]
   )
 
   const handleAddQuestion = async (newQuestion: Partial<Question>) => {
@@ -190,7 +155,7 @@ export function QuestionBankDashboardContent() {
       if (!response.ok) throw new Error('Failed to add question')
 
       const addedQuestion = await response.json()
-      queryClient.setQueryData<Question[]>(['questions'], (old) => [...(old ?? []), addedQuestion])
+      setQuestions(prev => [...prev, addedQuestion])
       setIsAddQuestionOpen(false)
       toast({
         title: "Question Added",
@@ -218,9 +183,7 @@ export function QuestionBankDashboardContent() {
       if (!response.ok) throw new Error('Failed to update question')
 
       const updatedQuestion = await response.json()
-      queryClient.setQueryData<Question[]>(['questions'], (old) => 
-        old?.map((q) => (q.questionId === editedQuestion.questionId ? updatedQuestion : q)) ?? []
-      )
+      setQuestions(prev => prev.map((q) => (q.questionId === editedQuestion.questionId ? updatedQuestion : q)))
       setIsEditDialogOpen(false)
       setEditingQuestion(null)
       toast({
@@ -248,9 +211,7 @@ export function QuestionBankDashboardContent() {
 
       if (!response.ok) throw new Error('Failed to delete question')
 
-      queryClient.setQueryData<Question[]>(['questions'], (old) => 
-        old?.filter((question) => question.questionId !== questionId) ?? []
-      )
+      setQuestions(prev => prev.filter((question) => question.questionId !== questionId))
       toast({
         title: "Question Deleted",
         description: "Question has been successfully deleted.",
@@ -289,9 +250,7 @@ export function QuestionBankDashboardContent() {
       const successfulDeletes = results.filter(result => result.status === 'fulfilled').length
       const failedDeletes = results.filter(result => result.status === 'rejected').length
 
-      queryClient.setQueryData<Question[]>(['questions'], (old) => 
-        old?.filter((question) => !selectedQuestions.includes(question.questionId)) ?? []
-      )
+      setQuestions(prev => prev.filter((question) => !selectedQuestions.includes(question.questionId)))
       setSelectedQuestions([])
 
       if (successfulDeletes > 0) {
@@ -333,7 +292,7 @@ export function QuestionBankDashboardContent() {
       }
 
       const result = await response.json();
-      queryClient.invalidateQueries({ queryKey: ['questions'] })
+      setQuestions(prev => [...prev, ...result])
       toast({
         title: "Batch Upload Successful",
         description: `Successfully uploaded ${result.length} questions.`,
@@ -395,7 +354,7 @@ export function QuestionBankDashboardContent() {
     <TooltipProvider>
       <div className="space-y-6">
         <h1 className="text-3xl font-bold tracking-tight">Question Bank Dashboard</h1>
-        
+
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -513,7 +472,7 @@ export function QuestionBankDashboardContent() {
               </DialogHeader>
               <div className="grid w-full gap-1.5">
                 <Label htmlFor="batchText">Paste Questions JSON</Label>
-                <Textarea 
+                <Textarea
                   id="batchText"
                   placeholder="Paste your questions JSON here..."
                   value={batchUploadText}
@@ -522,8 +481,8 @@ export function QuestionBankDashboardContent() {
                 />
               </div>
               <DialogFooter>
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   onClick={() => handleBatchUpload(batchUploadText)}
                 >
                   Upload
@@ -531,8 +490,8 @@ export function QuestionBankDashboardContent() {
               </DialogFooter>
             </DialogContent>
           </Dialog>
-          <Button 
-            variant="destructive" 
+          <Button
+            variant="destructive"
             onClick={handleDeleteSelected}
             disabled={selectedQuestions.length === 0}
           >
@@ -558,13 +517,13 @@ export function QuestionBankDashboardContent() {
                   onClick={() => setDropdowns(prev => ({ ...prev, [filterType]: !prev[filterType as keyof typeof dropdowns] }))}
                 >
                   <span className="mr-2 truncate">
-                    {Array.isArray(filters[filterType as keyof FiltersType]) &&
-                    (filters[filterType as keyof FiltersType] as string[]).length
-                      ? `${
-                          (filters[filterType as keyof FiltersType] as string[])
-                            .length
-                        } selected`
-                      : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                    {Array.isArray(filters[filterType as keyof typeof filters]) &&
+                      (filters[filterType as keyof typeof filters] as string[]).length
+                        ? `${
+                            (filters[filterType as keyof typeof filters] as string[])
+                              .length
+                          } selected`
+                        : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                   </span>
                   <ChevronDown
                     className={`h-4 w-4 transition-transform ${
@@ -708,203 +667,5 @@ export function QuestionBankDashboardContent() {
         </DialogContent>
       </Dialog>
     </TooltipProvider>
-  )
-}
-
-interface QuestionFormProps {
-  initialData?: Partial<Question>
-  onSubmit: (question: Partial<Question>) => void
-}
-
-function QuestionForm({ initialData, onSubmit }: QuestionFormProps) {
-  const [formData, setFormData] = useState<Partial<Question>>(() => ({
-    text: '',
-    subject: '',
-    topic: '',
-    difficulty: '',
-    options: [],
-    correctOption: '',
-    markscheme: '',
-    notes: [],
-    ...initialData
-  }))
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSelectChange = (name: string, value: string) => {
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleOptionChange = (index: number, value: string) => {
-    setFormData(prev => {
-      const newOptions = [...(prev.options || [])]
-      newOptions[index] = value
-      return { ...prev, options: newOptions }
-    })
-  }
-
-  const handleAddOption = () => {
-    setFormData(prev => ({
-      ...prev,
-      options: [...(prev.options || []), '']
-    }))
-  }
-
-  const handleRemoveOption = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      options: prev.options?.filter((_, i) => i !== index) || []
-    }))
-  }
-
-  const handleNoteChange = (index: number, value: string) => {
-    setFormData(prev => {
-      const newNotes = [...(prev.notes || [])]
-      newNotes[index] = { ...newNotes[index], content: value }
-      return { ...prev, notes: newNotes }
-    })
-  }
-
-  const handleAddNote = () => {
-    setFormData(prev => ({
-      ...prev,
-      notes: [...(prev.notes || []), { id: Date.now().toString(), content: '' }]
-    }))
-  }
-
-  const handleRemoveNote = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      notes: prev.notes?.filter((_, i) => i !== index) || []
-    }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    onSubmit(formData)
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="space-y-2">
-        <Label htmlFor="text">Question Text</Label>
-        <Textarea
-          id="text"
-          name="text"
-          value={formData.text}
-          onChange={handleInputChange}
-          required
-        />
-      </div>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="subject">Subject</Label>
-          <Input
-            id="subject"
-            name="subject"
-            value={formData.subject}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="topic">Topic</Label>
-          <Input
-            id="topic"
-            name="topic"
-            value={formData.topic}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="difficulty">Difficulty</Label>
-        <Select
-          name="difficulty"
-          value={formData.difficulty}
-          onValueChange={(value) => handleSelectChange('difficulty', value)}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Select difficulty" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="Easy">Easy</SelectItem>
-            <SelectItem value="Medium">Medium</SelectItem>
-            <SelectItem value="Hard">Hard</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="space-y-2">
-        <Label>Options</Label>
-        {formData.options?.map((option, index) => (
-          <div key={index} className="flex items-center space-x-2">
-            <Input
-              value={option}
-              onChange={(e) => handleOptionChange(index, e.target.value)}
-              placeholder={`Option ${index + 1}`}
-            />
-            <Button type="button" variant="outline" size="icon" onClick={() => handleRemoveOption(index)}>
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          </div>
-        ))}
-        <Button type="button" variant="outline" onClick={handleAddOption}>
-          Add Option
-        </Button>
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="correctOption">Correct Option</Label>
-        <Select
-          name="correctOption"
-          value={formData.correctOption || ''}
-          onValueChange={(value) => handleSelectChange('correctOption', value)}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Select correct option" />
-          </SelectTrigger>
-          <SelectContent>
-            {formData.options?.map((option, index) => (
-              <SelectItem key={index} value={option}>
-                {option}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="markscheme">Mark Scheme</Label>
-        <Textarea
-          id="markscheme"
-          name="markscheme"
-          value={formData.markscheme || ''}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className="space-y-2">
-        <Label>Notes</Label>
-        {formData.notes?.map((note, index) => (
-          <div key={note.id} className="flex items-center space-x-2">
-            <Textarea
-              value={note.content}
-              onChange={(e) => handleNoteChange(index, e.target.value)}
-              placeholder={`Note ${index + 1}`}
-            />
-            <Button type="button" variant="outline" size="icon" onClick={() => handleRemoveNote(index)}>
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          </div>
-        ))}
-        <Button type="button" variant="outline" onClick={handleAddNote}>
-          Add Note
-        </Button>
-      </div>
-      <DialogFooter>
-        <Button type="submit">Save Question</Button>
-      </DialogFooter>
-    </form>
   )
 }
