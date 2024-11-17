@@ -9,7 +9,7 @@ import UserDropdown from "@/components/layout/user-dropdown"
 import { Button } from "@/components/ui/button"
 import NotificationDropdown from "@/components/shared/NotificationDropdown"
 import { Session } from "next-auth"
-import { Menu, X, ChevronDown, Bell } from 'lucide-react'
+import { Menu, X, ChevronDown, Bell, LogOut } from 'lucide-react'
 import useScroll from "@/lib/hooks/use-scroll"
 import {
   NavigationMenu,
@@ -97,6 +97,7 @@ export default function NavBar({ session }: { session: Session | null }) {
       router.push('/') // Redirect to home page after logout
     } finally {
       setShowLogoutLoader(false)
+      setMenuOpen(false) // Close the mobile menu after logout
     }
   }
 
@@ -274,6 +275,13 @@ function MobileNavLinks({
             </Button>
             <UserDropdown session={session} />
           </div>
+          <Button
+            variant="outline"
+            className="w-full mt-4 flex items-center justify-center"
+            onClick={handleLogout}
+          >
+            <LogOut className="mr-2 h-4 w-4" /> Log Out
+          </Button>
         </>
       ) : (
         <Button
