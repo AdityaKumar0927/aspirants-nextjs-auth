@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { motion, AnimatePresence } from "framer-motion"
 import { toast, Toaster } from "sonner"
-import { RocketIcon, Search, PlusIcon, ImageIcon, FileIcon, Loader2Icon, PencilIcon, Square, Circle, Edit2Icon, EraserIcon, BoldIcon, ItalicIcon, UnderlineIcon, ListIcon, ListOrderedIcon } from "lucide-react"
+import { RocketIcon, Search, PlusIcon, ImageIcon, Loader2Icon, PencilIcon, Square, Circle, Edit2Icon, EraserIcon, BoldIcon, ItalicIcon, UnderlineIcon, ListIcon, ListOrderedIcon, Mic, MicOff } from 'lucide-react'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
@@ -21,14 +21,64 @@ import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 
-type NoteType = "text" | "image" | "file" | "stylus"
+type NoteType = "TEXT" | "IMAGE" | "STYLUS" | "VOICE"
 
 type Note = {
-  id: number
+  id: string
   title: string
   content: string
-  date: Date
+  createdAt: string
+  updatedAt: string
   type: NoteType
+}
+
+// Custom hook for speech recognition
+const useSpeechRecognition = () => {
+  const [transcript, setTranscript] = useState('')
+  const [listening, setListening] = useState(false)
+  const recognitionRef = useRef<SpeechRecognition | null>(null)
+
+  const startListening = useCallback(() => {
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+      recognitionRef.current = new SpeechRecognition()
+      recognitionRef.current.continuous = true
+      recognitionRef.current.interimResults = true
+
+      recognitionRef.current.onresult = (event) => {
+        const transcript = Array.from(event.results)
+          .map(result => result[0].transcript)
+          .join('')
+        setTranscript(transcript)
+      }
+
+      recognitionRef.current.onstart = () => setListening(true)
+      recognitionRef.current.onend = () => setListening(false)
+
+      recognitionRef.current.start()
+    } else {
+      console.error('Speech recognition not supported')
+    }
+  }, [])
+
+  const stopListening = useCallback(() => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop()
+    }
+  }, [])
+
+  const resetTranscript = useCallback(() => {
+    setTranscript('')
+  }, [])
+
+  return {
+    transcript,
+    listening,
+    startListening,
+    stopListening,
+    resetTranscript,
+    browserSupportsSpeechRecognition: 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window
+  }
 }
 
 const MenuBar = ({ editor }: { editor: any }) => {
@@ -72,7 +122,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
   )
 }
 
-export default function Component() {
+export default function NoteApp() {
   const [notes, setNotes] = useState<Note[]>([])
   const [editingNote, setEditingNote] = useState<Note | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -81,9 +131,10 @@ export default function Component() {
   const [penColor, setPenColor] = useState("#000000")
   const [penSize, setPenSize] = useState(2)
   const [currentShape, setCurrentShape] = useState<"pen" | "square" | "circle">("pen")
+  const [isClient, setIsClient] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { control, handleSubmit, reset, watch } = useForm<{ title: string; content: string; type: NoteType }>({
-    defaultValues: { title: "", content: "", type: "text" },
+    defaultValues: { title: "", content: "", type: "TEXT" },
   })
 
   const noteType = watch("type")
@@ -97,67 +148,100 @@ export default function Component() {
   })
 
   useEffect(() => {
-    setIsLoading(true)
-    setTimeout(() => {
-      setNotes([
-        { id: 1, title: "Welcome", content: "Welcome to your new note-taking app!", date: new Date(), type: "text" },
-      ])
-      setIsLoading(false)
-    }, 1000)
+    setIsClient(true)
+    fetchNotes()
   }, [])
 
-  const onSubmit = (data: { title: string; content: string; type: NoteType }) => {
+  const fetchNotes = async () => {
     setIsLoading(true)
-    setTimeout(() => {
-      const newNote: Note = {
+    try {
+      const response = await fetch('/api/notes')
+      if (!response.ok) throw new Error('Failed to fetch notes')
+      const data = await response.json()
+      setNotes(data)
+    } catch (error) {
+      console.error('Error fetching notes:', error)
+      toast.error("Failed to load notes")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const onSubmit = async (data: { title: string; content: string; type: NoteType }) => {
+    setIsLoading(true)
+    try {
+      const noteContent = data.type === 'STYLUS' ? canvasRef.current?.toDataURL() || '' : 
+                          data.type === 'TEXT' ? editor?.getHTML() || '' : data.content
+
+      const noteData = {
         ...data,
-        id: editingNote ? editingNote.id : Date.now(),
-        date: new Date(),
-        content: data.type === 'stylus' ? canvasRef.current?.toDataURL() || '' : 
-                 data.type === 'text' ? editor?.getHTML() || '' : data.content,
+        content: noteContent,
       }
 
+      const url = editingNote ? `/api/notes/${editingNote.id}` : '/api/notes'
+      const method = editingNote ? 'PUT' : 'POST'
+
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(noteData),
+      })
+
+      if (!response.ok) throw new Error('Failed to save note')
+
+      const savedNote = await response.json()
+
       if (editingNote) {
-        setNotes(notes.map((note) => (note.id === editingNote.id ? newNote : note)))
+        setNotes(notes.map((note) => (note.id === savedNote.id ? savedNote : note)))
         setEditingNote(null)
       } else {
-        setNotes([newNote, ...notes])
+        setNotes([savedNote, ...notes])
       }
 
       toast.success(editingNote ? "Note updated" : "Note added", {
-        description: `Your ${data.type} note has been ${editingNote ? "updated" : "added"}.`,
+        description: `Your ${data.type.toLowerCase()} note has been ${editingNote ? "updated" : "added"}.`,
       })
-      reset({ title: "", content: "", type: "text" })
+      reset({ title: "", content: "", type: "TEXT" })
       editor?.commands.setContent('')
+    } catch (error) {
+      console.error('Error saving note:', error)
+      toast.error("Failed to save note")
+    } finally {
       setIsLoading(false)
-    }, 500)
+    }
   }
 
-  const deleteNote = (id: number) => {
-    const noteToDelete = notes.find((note) => note.id === id)
-    if (noteToDelete) {
+  const deleteNote = async (id: string) => {
+    try {
+      const response = await fetch(`/api/notes/${id}`, {
+        method: 'DELETE',
+      })
+
+      if (!response.ok) throw new Error('Failed to delete note')
+
       setNotes(notes.filter((note) => note.id !== id))
       toast.success("Note deleted", {
         description: "Your note has been deleted.",
-        action: {
-          label: "Undo",
-          onClick: () => setNotes((prevNotes) => [noteToDelete, ...prevNotes]),
-        },
       })
+    } catch (error) {
+      console.error('Error deleting note:', error)
+      toast.error("Failed to delete note")
     }
   }
 
   const handleEdit = (note: Note) => {
     setEditingNote(note)
     reset({ title: note.title, content: note.content, type: note.type })
-    if (note.type === 'stylus' && canvasRef.current) {
+    if (note.type === 'STYLUS' && canvasRef.current) {
       const ctx = canvasRef.current.getContext('2d')
       const img = new Image()
       img.onload = () => {
         ctx?.drawImage(img, 0, 0)
       }
       img.src = note.content
-    } else if (note.type === 'text') {
+    } else if (note.type === 'TEXT') {
       editor?.commands.setContent(note.content)
     }
   }
@@ -224,6 +308,56 @@ export default function Component() {
     }
   }
 
+  const VoiceToTextContent = () => {
+    const {
+      transcript,
+      listening,
+      startListening,
+      stopListening,
+      resetTranscript,
+      browserSupportsSpeechRecognition
+    } = useSpeechRecognition()
+
+    useEffect(() => {
+      if (typeof browserSupportsSpeechRecognition === 'boolean') {
+        setIsClient(browserSupportsSpeechRecognition)
+      }
+    }, [browserSupportsSpeechRecognition])
+
+    if (!isClient) {
+      return <span>Loading speech recognition...</span>
+    }
+
+    if (!browserSupportsSpeechRecognition) {
+      return <span>Browser doesn't support speech recognition.</span>
+    }
+
+    return (
+      <div className="space-y-4">
+        <div className="flex justify-center space-x-2">
+          <Button
+            onClick={startListening}
+            disabled={listening}
+          >
+            <Mic className="mr-2 h-4 w-4" />
+            Start Recording
+          </Button>
+          <Button
+            onClick={stopListening}
+            disabled={!listening}
+            variant="secondary"
+          >
+            <MicOff className="mr-2 h-4 w-4" />
+            Stop Recording
+          </Button>
+        </div>
+        <div className="p-4 border rounded-md min-h-[100px]">
+          {transcript || "Your note will appear here..."}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <>
       <Toaster />
@@ -239,7 +373,7 @@ export default function Component() {
                 <CommandList>
                   <CommandEmpty>No results found.</CommandEmpty>
                   <CommandGroup heading="Actions">
-                    <CommandItem onSelect={() => reset({ title: "", content: "", type: "text" })}>
+                    <CommandItem onSelect={() => reset({ title: "", content: "", type: "TEXT" })}>
                       <PlusIcon className="mr-2 h-4 w-4" />
                       <span>New Note</span>
                     </CommandItem>
@@ -290,24 +424,21 @@ export default function Component() {
                     <Label>Note Type</Label>
                     <Tabs value={noteType} onValueChange={(value) => reset({ ...watch(), type: value as NoteType })}>
                       <TabsList>
-                        <TabsTrigger value="text">Text</TabsTrigger>
-                        <TabsTrigger value="image">Image</TabsTrigger>
-                        <TabsTrigger value="file">File</TabsTrigger>
-                        <TabsTrigger value="stylus">Stylus</TabsTrigger>
+                        <TabsTrigger value="TEXT">Text</TabsTrigger>
+                        <TabsTrigger value="IMAGE">Image</TabsTrigger>
+                        <TabsTrigger value="STYLUS">Stylus</TabsTrigger>
+                        <TabsTrigger value="VOICE">Voice</TabsTrigger>
                       </TabsList>
-                      <TabsContent value="text">
+                      <TabsContent value="TEXT">
                         <div className="border rounded-md p-4">
                           <MenuBar editor={editor} />
                           <EditorContent editor={editor} className="prose max-w-none" />
                         </div>
                       </TabsContent>
-                      <TabsContent value="image">
+                      <TabsContent value="IMAGE">
                         <Input id="picture" type="file" accept="image/*" />
                       </TabsContent>
-                      <TabsContent value="file">
-                        <Input id="file" type="file" />
-                      </TabsContent>
-                      <TabsContent value="stylus">
+                      <TabsContent value="STYLUS">
                         <Dialog>
                           <DialogTrigger asChild>
                             <Button variant="outline">Open Drawing Canvas</Button>
@@ -365,6 +496,9 @@ export default function Component() {
                             </div>
                           </DialogContent>
                         </Dialog>
+                      </TabsContent>
+                      <TabsContent value="VOICE">
+                        {isClient && <VoiceToTextContent />}
                       </TabsContent>
                     </Tabs>
                   </div>
@@ -433,20 +567,20 @@ export default function Component() {
                     <Card>
                       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">{note.title || "Untitled Note"}</CardTitle>
-                        {note.type === "text" && <Edit2Icon className="h-4 w-4 text-muted-foreground" />}
-                        {note.type === "image" && <ImageIcon className="h-4 w-4 text-muted-foreground" />}
-                        {note.type === "file" && <FileIcon className="h-4 w-4 text-muted-foreground" />}
-                        {note.type === "stylus" && <PencilIcon className="h-4 w-4 text-muted-foreground" />}
+                        {note.type === "TEXT" && <Edit2Icon className="h-4 w-4 text-muted-foreground" />}
+                        {note.type === "IMAGE" && <ImageIcon className="h-4 w-4 text-muted-foreground" />}
+                        {note.type === "STYLUS" && <PencilIcon className="h-4 w-4 text-muted-foreground" />}
+                        {note.type === "VOICE" && <Mic className="h-4 w-4 text-muted-foreground" />}
                       </CardHeader>
                       <CardContent>
-                        {note.type === 'stylus' ? (
+                        {note.type === 'STYLUS' ? (
                           <img src={note.content} alt="Stylus note" className="w-full h-auto" />
-                        ) : note.type === 'text' ? (
+                        ) : note.type === 'TEXT' ? (
                           <div dangerouslySetInnerHTML={{ __html: note.content }} className="prose max-w-none" />
                         ) : (
                           <p className="text-sm">{note.content}</p>
                         )}
-                        <p className="text-xs text-muted-foreground mt-2">{note.date.toLocaleString()}</p>
+                        <p className="text-xs text-muted-foreground mt-2">{new Date(note.updatedAt).toLocaleString()}</p>
                       </CardContent>
                       <CardFooter className="flex justify-between">
                         <Button variant="outline" size="sm" onClick={() => handleEdit(note)}>
