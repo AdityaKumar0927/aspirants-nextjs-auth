@@ -8,7 +8,7 @@ import UserDropdown from "./user-dropdown"
 import { Button } from "@/components/ui/button"
 import NotificationDropdown from "@/components/shared/NotificationDropdown"
 import { Session } from "next-auth"
-import { Menu, X, ChevronDown } from "lucide-react"
+import { Menu, X, ChevronDown } from 'lucide-react'
 import useScroll from "@/lib/hooks/use-scroll"
 import {
   NavigationMenu,
@@ -236,16 +236,10 @@ function MobileNavLinks({
         )}
       </div>
       {session ? (
-        <Button
-          variant="outline"
-          className="w-full"
-          onClick={() => {
-            signOut()
-            setMenuOpen(false)
-          }}
-        >
-          Log Out
-        </Button>
+        <>
+          <NotificationDropdown />
+          <UserDropdown session={session} />
+        </>
       ) : (
         <Button
           variant="outline"

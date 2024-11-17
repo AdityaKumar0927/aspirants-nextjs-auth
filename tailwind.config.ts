@@ -1,11 +1,9 @@
-/** @type {import('tailwindcss').Config} */
-import { Config } from 'tailwindcss';
-import defaultTheme from 'tailwindcss/defaultTheme';
-import colors from 'tailwindcss/colors';
-import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette';
-import plugin from 'tailwindcss/plugin';
+import type { Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme'
+import colors from 'tailwindcss/colors'
+import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
+import plugin from 'tailwindcss/plugin'
 
-// Tailwind CSS configuration
 const config: Config = {
   darkMode: ['class'],
   content: [
@@ -22,9 +20,9 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: '2rem', // Ensure padding is a string
+      padding: '2rem',
       screens: {
-        '2xl': '1400px', // Ensure screen sizes are strings
+        '2xl': '1400px',
       },
     },
     extend: {
@@ -62,7 +60,6 @@ const config: Config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-        // Custom colors
         'color-1': 'hsl(var(--color-1))',
         'color-2': 'hsl(var(--color-2))',
         'color-3': 'hsl(var(--color-3))',
@@ -71,7 +68,7 @@ const config: Config = {
       },
       borderRadius: {
         lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)', // Ensure values are strings
+        md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
@@ -98,7 +95,6 @@ const config: Config = {
         'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
         'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
         ripple: 'ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite',
-        // Custom animation added here
         rainbow: 'rainbow var(--speed, 2s) infinite linear',
       },
       keyframes: {
@@ -224,7 +220,6 @@ const config: Config = {
             transform: 'translate(-50%, -50%) scale(0.9)',
           },
         },
-        // Custom keyframes for rainbow animation
         rainbow: {
           '0%': { 'background-position': '0%' },
           '100%': { 'background-position': '200%' },
@@ -237,29 +232,28 @@ const config: Config = {
     require('@tailwindcss/typography'),
     require('tailwindcss-animate'),
     plugin(function ({ addVariant }: { addVariant: (name: string, definition: string) => void }) {
-      addVariant('radix-side-top', '&[data-side="top"]');
-      addVariant('radix-side-bottom', '&[data-side="bottom"]');
+      addVariant('radix-side-top', '&[data-side="top"]')
+      addVariant('radix-side-bottom', '&[data-side="bottom"]')
     }),
     addVariablesForColors,
   ],
-};
+}
 
-// Fixing the TypeScript errors by adding explicit types
 function addVariablesForColors({
   addBase,
   theme,
 }: {
-  addBase: (base: Record<string, any>) => void;
-  theme: (path: string) => any;
+  addBase: (base: Record<string, any>) => void
+  theme: (path: string) => any
 }) {
-  const allColors = flattenColorPalette(theme('colors'));
-  const newVars = Object.fromEntries(
+  let allColors = flattenColorPalette(theme('colors'))
+  let newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-  );
+  )
 
   addBase({
     ':root': newVars,
-  });
+  })
 }
 
-export default config;
+export default config
