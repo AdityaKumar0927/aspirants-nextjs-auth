@@ -2,7 +2,6 @@
 
 import { useState, useCallback, useMemo, useEffect } from "react"
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import { X } from 'lucide-react'
 import { Google } from "@/components/shared/icons"
 import Modal2 from "@/components/layout/modal-2"
@@ -195,7 +194,6 @@ function SignInModalComponent({
   setShowLoader: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   const { toast } = useToast()
-  const router = useRouter()
 
   const handleSignIn = async (provider: string) => {
     setShowSignInModal(false)
@@ -205,10 +203,10 @@ function SignInModalComponent({
     const minDuration = 5000 // Minimum duration for the loader to be visible
 
     try {
-      const [signInResult] = await Promise.all([
-        signIn(provider, { redirect: false }),
-        new Promise(resolve => setTimeout(resolve, minDuration))
-      ])
+      const signInPromise = signIn(provider, { redirect: false })
+      const timerPromise = new Promise(resolve => setTimeout(resolve, minDuration))
+
+      const [signInResult] = await Promise.all([signInPromise, timerPromise])
 
       if (signInResult?.error) {
         throw new Error(signInResult.error)
@@ -220,7 +218,8 @@ function SignInModalComponent({
         await new Promise(resolve => setTimeout(resolve, minDuration - elapsedTime))
       }
 
-      router.push('/dashboard') // Redirect to dashboard after successful sign-in
+      // Refresh the page to reflect the signed-in state
+      window.location.reload()
     } catch (error) {
       console.error('Sign-in error:', error)
       toast({
@@ -228,7 +227,6 @@ function SignInModalComponent({
         description: 'An error occurred during sign-in. Please try again.',
         variant: 'destructive',
       })
-    } finally {
       setShowLoader(false)
     }
   }
