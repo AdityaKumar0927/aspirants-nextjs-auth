@@ -15,6 +15,8 @@ import Chat from '@/components/shared/Chat';
 import { AnimatedGradientText } from '@/components/magicui/animated-gradient-text';
 import Ripple from '../components/magicui/ripple';
 import { SmileIcon } from 'lucide-react';
+import { Session } from "next-auth"
+
 
 const projects = [
   {
@@ -94,7 +96,8 @@ export default function Page() {
                 className="mx-auto mt-6 flex flex-col sm:flex-row animate-fade-up items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5 opacity-0"
                 style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}
               >
-                <Link className="group flex max-w-fit items-center" href="QuestionBank">
+                <Link
+        href={XRSession ? "/QuestionBank" : "/QuestionBank/guest"}>
                   <ShimmerButton className="shadow-2xl">
                     <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
                       Try Now
