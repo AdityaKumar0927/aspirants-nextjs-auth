@@ -224,7 +224,13 @@ export default function GuestQuestionBank() {
       const response = await fetch("/api/questions")
       if (!response.ok) throw new Error("Failed to fetch questions")
       const questions: QuestionType[] = await response.json()
-      const sortedQuestions = questions.sort((a, b) => a.questionId.localeCompare(b.questionId))
+      const sortedQuestions = questions.sort((a, b) => {
+        const aMatch = a.questionId.match(/\d+/);
+        const bMatch = b.questionId.match(/\d+/);
+        const aNum = aMatch ? parseInt(aMatch[0], 10) : 0;
+        const bNum = bMatch ? parseInt(bMatch[0], 10) : 0;
+        return aNum - bNum;
+      });
       dispatch({ type: "SET_QUESTIONS", payload: sortedQuestions })
     } catch (error) {
       console.error("Error fetching questions:", error)
