@@ -61,9 +61,9 @@ const fadeUpVariants = {
 };
 
 export default function Page() {
-  const { data: session } = useSession();
   const fadeInRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(fadeInRef as React.RefObject<HTMLDivElement>, { once: true });
+  const { data: session } = useSession();
 
   return (
     <div className="z-10 w-full px-5 xl:px-0">
@@ -95,7 +95,10 @@ export default function Page() {
                 className="mx-auto mt-6 flex flex-col sm:flex-row animate-fade-up items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5 opacity-0"
                 style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}
               >
-                <Link href={session ? "/QuestionBank" : "/QuestionBank/guest"}>
+                <Link 
+                  className="group flex max-w-fit items-center" 
+                  href={session ? "/QuestionBank" : "/QuestionBank/guest"}
+                >
                   <ShimmerButton className="shadow-2xl">
                     <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
                       Try Now
