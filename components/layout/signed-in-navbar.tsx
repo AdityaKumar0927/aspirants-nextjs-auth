@@ -274,16 +274,6 @@ function MobileNavLinks({
             </Button>
             <UserDropdown session={session} />
           </div>
-          <Button
-            variant="outline"
-            className="w-full mt-4"
-            onClick={() => {
-              handleLogout()
-              setMenuOpen(false)
-            }}
-          >
-            Log Out
-          </Button>
         </>
       ) : (
         <Button
