@@ -1,9 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
-import { getServerSession } from 'next-auth/next'
-import authOptions from '@/app/api/auth/[...nextauth]/options'
+import { NextRequest, NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+import { getServerSession } from 'next-auth/next';
+import authOptions from '../../../auth/[...nextauth]/options';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
+
+export const dynamic = 'force-dynamic';
 
 export async function PATCH(
   request: NextRequest,
@@ -11,33 +13,66 @@ export async function PATCH(
 ) {
   try {
     // Check if the user is authenticated and is an admin
-    const session = await getServerSession(authOptions)
+    const session = await getServerSession(authOptions);
+    
     if (!session || !session.user || session.user.role !== 'administrator') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { id } = params
-    const { status } = await request.json()
+    const { id } = params;
+    const data = await request.json();
 
-    // Validate input
-    if (!status || !['approved', 'rejected'].includes(status)) {
-      return NextResponse.json({ error: 'Invalid status' }, { status: 400 })
+    // Validate the request body
+    if (!data || Object.keys(data).length === 0) {
+      return NextResponse.json({ error: 'No data provided' }, { status: 400 });
     }
 
-    // Update application status
+    // Update the application
     const updatedApplication = await prisma.application.update({
-      where: { id },
-      data: { status },
-    })
+      where: {
+        id: id
+      },
+      data: data
+    });
 
-    return NextResponse.json(updatedApplication)
+    return NextResponse.json(updatedApplication);
   } catch (error) {
-    console.error('Error updating application:', error)
-    if (error instanceof Error && error.name === 'PrismaClientKnownRequestError') {
-      return NextResponse.json({ error: 'Application not found' }, { status: 404 })
-    }
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+    console.error('Error updating application:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   } finally {
-    await prisma.$disconnect()
+    await prisma.$disconnect();
+  }
+}
+
+// Keep the existing GET handler
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const session = await getServerSession(authOptions);
+    
+    if (!session || !session.user || session.user.role !== 'administrator') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { id } = params;
+
+    const application = await prisma.application.findUnique({
+      where: {
+        id: id
+      }
+    });
+
+    if (!application) {
+      return NextResponse.json({ error: 'Application not found' }, { status: 404 });
+    }
+
+    return NextResponse.json(application);
+  } catch (error) {
+    console.error('Error fetching application:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
   }
 }
