@@ -1,328 +1,287 @@
 "use client"
 
-import * as React from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { useSignInModal } from "./sign-in"
-import UserDropdown from "@/components/layout/user-dropdown"
+import { useState, useCallback, useMemo, useEffect } from "react"
+import { signIn } from 'next-auth/react'
+import { X } from 'lucide-react'
+import { Google } from "@/components/shared/icons"
+import Modal2 from "@/components/layout/modal-2"
 import { Button } from "@/components/ui/button"
-import NotificationDropdown from "@/components/shared/NotificationDropdown"
-import { Session } from "next-auth"
-import { Menu, X, ChevronDown, Bell } from 'lucide-react'
-import useScroll from "@/lib/hooks/use-scroll"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-  NavigationMenuViewport,
-  NavigationMenuIndicator,
-} from "@/components/ui/navigation-menu"
+import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
-import { signOut } from "next-auth/react"
-import { MultiStepLoader } from "@/components/aceternity-ui/multi-step-loader"
+import { AnimatePresence, motion } from "framer-motion"
 
-const supportLinks = [
-  {
-    title: "Survey",
-    href: "/survey",
-    description: "Support our platform by surveying with us.",
-  },
-  {
-    title: "Donate",
-    href: "/Donate",
-    description: "Support our platform with your donations.",
-  },
-  {
-    title: "Report",
-    href: "/Report",
-    description: "Report issues or provide feedback.",
-  },
-  {
-    title: "Contact",
-    href: "/Contact",
-    description: "Get in touch with us for support.",
-  },
+const CheckIcon = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className={cn("w-6 h-6", className)}
+    >
+      <path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+    </svg>
+  )
+}
+
+const CheckFilled = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={cn("w-6 h-6", className)}
+    >
+      <path
+        fillRule="evenodd"
+        d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+        clipRule="evenodd"
+      />
+    </svg>
+  )
+}
+
+type LoadingState = {
+  text: string
+}
+
+const loadingStates: LoadingState[] = [
+  { text: "Initiating sign-in process" },
+  { text: "Verifying credentials" },
+  { text: "Checking account status" },
+  { text: "Setting up your session" },
+  { text: "Almost there!" },
 ]
 
-const logoutSteps = [
-  { text: "Saving your progress" },
-  { text: "Clearing session data" },
-  { text: "Securing your account" },
-  { text: "Logging you out" },
-  { text: "See you soon!" },
-]
+const LoaderCore = ({
+  loadingStates,
+  value = 0,
+}: {
+  loadingStates: LoadingState[]
+  value?: number
+}) => {
+  return (
+    <div className="flex relative justify-start max-w-xl mx-auto flex-col mt-40">
+      {loadingStates.map((loadingState, index) => {
+        const distance = Math.abs(index - value)
+        const opacity = Math.max(1 - distance * 0.2, 0)
 
-export default function NavBar({ session }: { session: Session | null }) {
-  const router = useRouter()
-  const { SignInModal, setShowSignInModal } = useSignInModal()
-  const scrolled = useScroll(50)
-  const [menuOpen, setMenuOpen] = React.useState(false)
-  const [supportOpen, setSupportOpen] = React.useState(false)
-  const [showLogoutLoader, setShowLogoutLoader] = React.useState(false)
-  const menuRef = React.useRef<HTMLDivElement>(null)
+        return (
+          <motion.div
+            key={index}
+            className={cn("text-left flex gap-2 mb-4")}
+            initial={{ opacity: 0, y: -(value * 40) }}
+            animate={{ opacity: opacity, y: -(value * 40) }}
+            transition={{ duration: 0.5 }}
+          >
+            <div>
+              {index > value && (
+                <CheckIcon className="text-black dark:text-white" />
+              )}
+              {index <= value && (
+                <CheckFilled
+                  className={cn(
+                    "text-black dark:text-white",
+                    value === index &&
+                      "text-black dark:text-lime-500 opacity-100"
+                  )}
+                />
+              )}
+            </div>
+            <span
+              className={cn(
+                "text-black dark:text-white",
+                value === index && "text-black dark:text-lime-500 opacity-100"
+              )}
+            >
+              {loadingState.text}
+            </span>
+          </motion.div>
+        )
+      })}
+    </div>
+  )
+}
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen)
-    setSupportOpen(false)
-  }
+const MultiStepLoader = ({
+  loadingStates,
+  loading,
+  duration = 2000,
+  loop = true,
+}: {
+  loadingStates: LoadingState[]
+  loading?: boolean
+  duration?: number
+  loop?: boolean
+}) => {
+  const [currentState, setCurrentState] = useState(0)
 
-  const toggleSupport = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setSupportOpen(!supportOpen)
-  }
-
-  React.useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setMenuOpen(false)
-        setSupportOpen(false)
-      }
+  useEffect(() => {
+    if (!loading) {
+      setCurrentState(0)
+      return
     }
+    const timeout = setTimeout(() => {
+      setCurrentState((prevState) =>
+        loop
+          ? prevState === loadingStates.length - 1
+            ? 0
+            : prevState + 1
+          : Math.min(prevState + 1, loadingStates.length - 1)
+      )
+    }, duration)
 
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [])
+    return () => clearTimeout(timeout)
+  }, [currentState, loading, loop, loadingStates.length, duration])
 
-  const handleLogout = async () => {
-    setShowLogoutLoader(true)
+  return (
+    <AnimatePresence mode="wait">
+      {loading && (
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          exit={{
+            opacity: 0,
+          }}
+          className="w-full h-full fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-2xl"
+        >
+          <div className="h-96 relative">
+            <LoaderCore value={currentState} loadingStates={loadingStates} />
+          </div>
+
+          <div className="bg-gradient-to-t inset-x-0 z-20 bottom-0 bg-white dark:bg-black h-full absolute [mask-image:radial-gradient(900px_at_center,transparent_30%,white)]" />
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
+
+export function useSignInModal() {
+  const [showSignInModal, setShowSignInModal] = useState(false)
+  const [showLoader, setShowLoader] = useState(false)
+
+  const SignInModal = useCallback(() => {
+    return (
+      <SignInModalComponent
+        showSignInModal={showSignInModal}
+        setShowSignInModal={setShowSignInModal}
+        showLoader={showLoader}
+        setShowLoader={setShowLoader}
+      />
+    )
+  }, [showSignInModal, setShowSignInModal, showLoader, setShowLoader])
+
+  return useMemo(
+    () => ({ setShowSignInModal, SignInModal }),
+    [setShowSignInModal, SignInModal]
+  )
+}
+
+function SignInModalComponent({
+  showSignInModal,
+  setShowSignInModal,
+  showLoader,
+  setShowLoader,
+}: {
+  showSignInModal: boolean
+  setShowSignInModal: React.Dispatch<React.SetStateAction<boolean>>
+  showLoader: boolean
+  setShowLoader: React.Dispatch<React.SetStateAction<boolean>>
+}) {
+  const { toast } = useToast()
+
+  const handleSignIn = async (provider: string) => {
+    setShowSignInModal(false)
+    setShowLoader(true)
+
+    const startTime = Date.now()
+    const minDuration = 5000 // Minimum duration for the loader to be visible
+
     try {
-      await signOut({ redirect: false })
-      router.push('/') // Redirect to home page after logout
-    } finally {
-      setShowLogoutLoader(false)
+      const signInPromise = signIn(provider, { redirect: false })
+      const timerPromise = new Promise(resolve => setTimeout(resolve, minDuration))
+
+      const [signInResult] = await Promise.all([signInPromise, timerPromise])
+
+      if (signInResult?.error) {
+        throw new Error(signInResult.error)
+      }
+
+      // Ensure the loader stays visible for at least the minimum duration
+      const elapsedTime = Date.now() - startTime
+      if (elapsedTime < minDuration) {
+        await new Promise(resolve => setTimeout(resolve, minDuration - elapsedTime))
+      }
+
+      // Refresh the page to reflect the signed-in state
+      window.location.reload()
+    } catch (error) {
+      console.error('Sign-in error:', error)
+      toast({
+        title: 'Sign-in Error',
+        description: 'An error occurred during sign-in. Please try again.',
+        variant: 'destructive',
+      })
+      setShowLoader(false)
     }
   }
 
   return (
     <>
-      <SignInModal />
-      <nav
-        className={cn(
-          "fixed left-1/2 transform -translate-x-1/2 w-full max-w-screen-{1000px} z-30 transition-all duration-300 ease-in-out",
-          scrolled
-            ? "backdrop-blur-sm shadow-sm"
-            : ""
-        )}
+      <Modal2
+        showModal={showSignInModal}
+        setShowModal={setShowSignInModal}
+        className="p-0"
       >
-        <div className="mx-auto flex h-16 items-center justify-between w-11/12 md:w-10/12 lg:w-9/12">
-          <Link href="/" className="flex items-center font-display text-2xl">
-            <p className="text-left font-display text-2xl tracking-[-0.07em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-              aspirants
-            </p>
-            <Image
-              src="/bulb.svg"
-              alt="aspirants logo"
-              width={30}
-              height={30}
-              className="ml-2"
-            />
-          </Link>
-          <div className="hidden md:flex items-center justify-center space-x-4 flex-1">
-            <DesktopNavLinks session={session} />
-          </div>
-          <div className="hidden md:flex items-center space-x-4">
-            {session ? (
-              <>
-                <NotificationDropdown />
-                <UserDropdown session={session} />
-              </>
-            ) : (
+        <div className="relative h-full w-full">
+          <button
+            className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 focus:outline-none"
+            onClick={() => setShowSignInModal(false)}
+            aria-label="Close"
+          >
+            <X className="h-6 w-6" />
+          </button>
+          <div className="flex h-full items-center justify-center">
+            <div className="text-center">
+              <h2 className="mb-4 text-2xl font-bold">Sign In</h2>
               <Button
                 variant="outline"
-                onClick={() => setShowSignInModal(true)}
+                className="w-full mb-4"
+                onClick={() => handleSignIn('google')}
               >
-                Sign In
+                <Google className="w-4 h-4 mr-2" />
+                Sign in with Google
               </Button>
-            )}
-          </div>
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-black focus:outline-none"
-              onClick={toggleMenu}
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={menuOpen}
-            >
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
-            </Button>
+              <p className="text-sm text-gray-500">
+                By signing in, you agree to our{' '}
+                <a href="/terms-of-service" className="underline">
+                  Terms of Service
+                </a>
+                ,{' '}
+                <a href="/privacy-policy" className="underline">
+                  Privacy Policy
+                </a>
+                {' '}
+                and 
+                {' '}
+                <a href="/cookie-policy" className="underline">
+                  Cookie Policy
+                </a>
+                .
+              </p>
+            </div>
           </div>
         </div>
+      </Modal2>
 
-        {menuOpen && (
-          <div
-            ref={menuRef}
-            className="absolute top-full left-0 right-0 bg-white shadow-lg z-20 md:hidden"
-          >
-            <MobileNavLinks
-              session={session}
-              setMenuOpen={setMenuOpen}
-              setShowSignInModal={setShowSignInModal}
-              supportOpen={supportOpen}
-              toggleSupport={toggleSupport}
-              handleLogout={handleLogout}
-            />
-          </div>
-        )}
-      </nav>
-      <MultiStepLoader loadingStates={logoutSteps} loading={showLogoutLoader} duration={1000} loop={false} />
+      <MultiStepLoader loadingStates={loadingStates} loading={showLoader} duration={1000} loop={false} />
     </>
   )
 }
 
-function DesktopNavLinks({ session }: { session: Session | null }) {
-  return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <Link href={session ? "/QuestionBank" : "/QuestionBank/guest"} passHref legacyBehavior>
-            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black")}>
-              Question Bank
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger className="font-display text-sm text-black">Support</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
-              {supportLinks.map((link) => (
-                <ListItem key={link.title} title={link.title} href={link.href}>
-                  {link.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-      <NavigationMenuIndicator />
-      <NavigationMenuViewport />
-    </NavigationMenu>
-  )
-}
-
-interface MobileNavLinksProps {
-  session: Session | null
-  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
-  setShowSignInModal: React.Dispatch<React.SetStateAction<boolean>>
-  supportOpen: boolean
-  toggleSupport: (e: React.MouseEvent) => void
-  handleLogout: () => Promise<void>
-}
-
-function MobileNavLinks({
-  session,
-  setMenuOpen,
-  setShowSignInModal,
-  supportOpen,
-  toggleSupport,
-  handleLogout,
-}: MobileNavLinksProps) {
-  return (
-    <nav className="p-4 space-y-4">
-      <Link
-        href={session ? "/QuestionBank" : "/QuestionBank/guest"}
-        className="block w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
-        onClick={() => setMenuOpen(false)}
-      >
-        Question Bank
-      </Link>
-      <div>
-        <button
-          className="flex items-center justify-between w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
-          onClick={toggleSupport}
-          aria-expanded={supportOpen}
-        >
-          Support
-          <ChevronDown
-            size={20}
-            className={cn("transition-transform", supportOpen && "rotate-180")}
-          />
-        </button>
-        {supportOpen && (
-          <ul className="mt-2 space-y-2 pl-4">
-            {supportLinks.map((link) => (
-              <li key={link.title}>
-                <Link
-                  href={link.href}
-                  className="block text-sm text-gray-600 hover:text-black transition-colors"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      {session ? (
-        <>
-          <div className="flex items-center justify-between py-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="rounded-full"
-              onClick={() => setMenuOpen(false)}
-            >
-              <Bell size={24} />
-            </Button>
-            <UserDropdown session={session} />
-          </div>
-          <Button
-            variant="outline"
-            className="w-full mt-4"
-            onClick={() => {
-              handleLogout()
-              setMenuOpen(false)
-            }}
-          >
-            Log Out
-          </Button>
-        </>
-      ) : (
-        <Button
-          variant="outline"
-          className="w-full mt-4"
-          onClick={() => {
-            setShowSignInModal(true)
-            setMenuOpen(false)
-          }}
-        >
-          Sign In
-        </Button>
-      )}
-    </nav>
-  )
-}
-
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground font-display text-sm text-black",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  )
-})
-ListItem.displayName = "ListItem"
+export default SignInModalComponent
