@@ -47,11 +47,11 @@ type LoadingState = {
 }
 
 const loadingStates: LoadingState[] = [
-  { text: "Initiating sign-in process" },
-  { text: "Verifying credentials" },
-  { text: "Checking account status" },
-  { text: "Setting up your session" },
-  { text: "Almost there!" },
+  { text: "Preparing your account" },
+  { text: "Checking credentials" },
+  { text: "Securing your session" },
+  { text: "Almost there" },
+  { text: "Welcome aboard!" },
 ]
 
 const LoaderCore = ({
@@ -199,27 +199,12 @@ function SignInModalComponent({
     setShowSignInModal(false)
     setShowLoader(true)
 
-    const startTime = Date.now()
-    const minDuration = 5000 // Minimum duration for the loader to be visible
-
     try {
-      const signInResult = await signIn(provider, { redirect: false })
-
-      if (signInResult?.error) {
-        throw new Error(signInResult.error)
-      }
-
-      if (signInResult?.ok) {
-        // Sign-in successful, wait for the minimum duration if needed
-        const elapsedTime = Date.now() - startTime
-        if (elapsedTime < minDuration) {
-          await new Promise(resolve => setTimeout(resolve, minDuration - elapsedTime))
-        }
-        
-        // Refresh the page to reflect the signed-in state
-        window.location.reload()
-      } else {
-        throw new Error('Sign-in failed')
+      // Simulate sign-in process
+      await new Promise(resolve => setTimeout(resolve, 25000)) // Increased to 25 seconds
+      const result = await signIn(provider, { callbackUrl: '/', redirect: false })
+      if (result?.error) {
+        throw new Error(result.error)
       }
     } catch (error) {
       console.error('Sign-in error:', error)
@@ -281,7 +266,7 @@ function SignInModalComponent({
         </div>
       </Modal2>
 
-      <MultiStepLoader loadingStates={loadingStates} loading={showLoader} duration={1000} loop={false} />
+      <MultiStepLoader loadingStates={loadingStates} loading={showLoader} duration={5000} loop={true} />
     </>
   )
 }
