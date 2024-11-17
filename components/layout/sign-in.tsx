@@ -203,23 +203,24 @@ function SignInModalComponent({
     const minDuration = 5000 // Minimum duration for the loader to be visible
 
     try {
-      const signInPromise = signIn(provider, { redirect: false })
-      const timerPromise = new Promise(resolve => setTimeout(resolve, minDuration))
-
-      const [signInResult] = await Promise.all([signInPromise, timerPromise])
+      const signInResult = await signIn(provider, { redirect: false })
 
       if (signInResult?.error) {
         throw new Error(signInResult.error)
       }
 
-      // Ensure the loader stays visible for at least the minimum duration
-      const elapsedTime = Date.now() - startTime
-      if (elapsedTime < minDuration) {
-        await new Promise(resolve => setTimeout(resolve, minDuration - elapsedTime))
+      if (signInResult?.ok) {
+        // Sign-in successful, wait for the minimum duration if needed
+        const elapsedTime = Date.now() - startTime
+        if (elapsedTime < minDuration) {
+          await new Promise(resolve => setTimeout(resolve, minDuration - elapsedTime))
+        }
+        
+        // Refresh the page to reflect the signed-in state
+        window.location.reload()
+      } else {
+        throw new Error('Sign-in failed')
       }
-
-      // Refresh the page to reflect the signed-in state
-      window.location.reload()
     } catch (error) {
       console.error('Sign-in error:', error)
       toast({
@@ -227,6 +228,7 @@ function SignInModalComponent({
         description: 'An error occurred during sign-in. Please try again.',
         variant: 'destructive',
       })
+    } finally {
       setShowLoader(false)
     }
   }
