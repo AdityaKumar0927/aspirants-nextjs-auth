@@ -9,47 +9,107 @@ export default async function SettingsProfilePage() {
   const session = await getServerSession(authOptions)
 
   if (!session) {
-    redirect('/aspirants.tech')
+    redirect('/login')
   }
 
   const userId = session.user.id
 
-  const userSettings = await prisma.userSettings.findUnique({
-    where: { userId: userId },
-  })
+  try {
+    const userSettings = await prisma.userSettings.findUnique({
+      where: { userId: userId },
+    })
 
-  if (!userSettings) {
-    // Handle the case where user settings don't exist
-    // You might want to create default settings here
-    return <div>Error: User settings not found</div>
-  }
+    if (!userSettings) {
+      // Create default settings if they don't exist
+      const defaultSettings = {
+        userId: userId,
+        username: session.user.name || '',
+        email: session.user.email || '',
+        bio: '',
+        urls: [],
+        name: session.user.name || '',
+        language: 'English',
+      }
 
-  const initialData = {
-    id: userSettings.id,
-    username: userSettings.username,
-    email: userSettings.email,
-    bio: userSettings.bio,
-    urls: userSettings.urls as { value: string }[],
-    name: userSettings.name,
-    language: userSettings.language,
-  }
+      const createdSettings = await prisma.userSettings.create({
+        data: defaultSettings,
+      })
 
-  const userRole = session.user?.role?.name || 'member'
+      const initialData = {
+        id: createdSettings.id,
+        username: createdSettings.username,
+        email: createdSettings.email,
+        bio: createdSettings.bio,
+        urls: createdSettings.urls as { value: string }[],
+        name: createdSettings.name,
+        language: createdSettings.language,
+        termsAccepted: false,
+        privacyPolicyAccepted: false,
+        cookiePolicyAccepted: false,
+      }
 
-  return (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-lg font-medium">Profile</h3>
-        <p className="text-sm text-muted-foreground">
-          Manage your profile information and settings
-        </p>
+      const userRole = session.user?.role?.name || 'member'
+
+      return (
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-lg font-medium">Profile</h3>
+            <p className="text-sm text-muted-foreground">
+              Manage your profile information and settings
+            </p>
+          </div>
+          <Separator />
+          <ProfileForm 
+            initialData={initialData} 
+            userRole={userRole} 
+            userId={userId}
+          />
+        </div>
+      )
+    }
+
+    const initialData = {
+      id: userSettings.id,
+      username: userSettings.username,
+      email: userSettings.email,
+      bio: userSettings.bio,
+      urls: userSettings.urls as { value: string }[],
+      name: userSettings.name,
+      language: userSettings.language,
+      termsAccepted: false, // You may want to fetch this from the database
+      privacyPolicyAccepted: false, // You may want to fetch this from the database
+      cookiePolicyAccepted: false, // You may want to fetch this from the database
+    }
+
+    const userRole = session.user?.role?.name || 'member'
+
+    return (
+      <div className="space-y-6">
+        <div>
+          <h3 className="text-lg font-medium">Profile</h3>
+          <p className="text-sm text-muted-foreground">
+            Manage your profile information and settings
+          </p>
+        </div>
+        <Separator />
+        <ProfileForm 
+          initialData={initialData} 
+          userRole={userRole} 
+          userId={userId}
+        />
       </div>
-      <Separator />
-      <ProfileForm 
-        initialData={initialData} 
-        userRole={userRole} 
-        userId={userId}
-      />
-    </div>
-  )
+    )
+  } catch (error) {
+    console.error('Error fetching user settings:', error)
+    return (
+      <div className="space-y-6">
+        <div>
+          <h3 className="text-lg font-medium">Error</h3>
+          <p className="text-sm text-muted-foreground">
+            An error occurred while fetching your profile information. Please try again later.
+          </p>
+        </div>
+      </div>
+    )
+  }
 }

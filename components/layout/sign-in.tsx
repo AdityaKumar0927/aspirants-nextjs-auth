@@ -201,7 +201,7 @@ function SignInModalComponent({
 
     try {
       // Simulate sign-in process
-      await new Promise(resolve => setTimeout(resolve, 10000))
+      await new Promise(resolve => setTimeout(resolve, 25000)) // Increased to 25 seconds
       const result = await signIn(provider, { callbackUrl: '/', redirect: false })
       if (result?.error) {
         throw new Error(result.error)
@@ -266,7 +266,7 @@ function SignInModalComponent({
         </div>
       </Modal2>
 
-      <MultiStepLoader loadingStates={loadingStates} loading={showLoader} duration={2000} loop={false} />
+      <MultiStepLoader loadingStates={loadingStates} loading={showLoader} duration={5000} loop={true} />
     </>
   )
 }
