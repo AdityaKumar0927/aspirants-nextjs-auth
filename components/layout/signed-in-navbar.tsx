@@ -3,6 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { useSignInModal } from "./sign-in"
 import UserDropdown from "@/components/layout/user-dropdown"
 import { Button } from "@/components/ui/button"
@@ -57,6 +58,7 @@ const logoutSteps = [
 ]
 
 export default function NavBar({ session }: { session: Session | null }) {
+  const router = useRouter()
   const { SignInModal, setShowSignInModal } = useSignInModal()
   const scrolled = useScroll(50)
   const [menuOpen, setMenuOpen] = React.useState(false)
@@ -90,10 +92,12 @@ export default function NavBar({ session }: { session: Session | null }) {
 
   const handleLogout = async () => {
     setShowLogoutLoader(true)
-    // Simulate logout process
-    await new Promise(resolve => setTimeout(resolve, 5000))
-    await signOut({ callbackUrl: '/' })
-    setShowLogoutLoader(false)
+    try {
+      await signOut({ redirect: false })
+      router.push('/') // Redirect to home page after logout
+    } finally {
+      setShowLogoutLoader(false)
+    }
   }
 
   return (
@@ -270,6 +274,16 @@ function MobileNavLinks({
             </Button>
             <UserDropdown session={session} />
           </div>
+          <Button
+            variant="outline"
+            className="w-full mt-4"
+            onClick={() => {
+              handleLogout()
+              setMenuOpen(false)
+            }}
+          >
+            Log Out
+          </Button>
         </>
       ) : (
         <Button
