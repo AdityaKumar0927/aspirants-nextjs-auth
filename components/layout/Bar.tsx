@@ -1,18 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from 'next/router';
+import { useState } from "react";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/shared/mode-toggle";
 import { buttonVariants } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { LucidePencil } from 'lucide-react';
+import { LucidePencil, HomeIcon, LucideGitBranchPlus } from "lucide-react";
 import AnimatedModal from "@/components/shared/AnimatedModal";
 import NoteApp from "@/components/shared/NoteApp";
 import Stats from "@/components/shared/Stats";
 import { useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
+import DashboardContent from "@/components/home/DashboardContent"; // Import the sample DashboardContent
 import GuestAccessBlock from "./GuestAccessBlock";
+import { IconGraph, IconGraphOff } from "@tabler/icons-react";
+import { MdOutlineAutoGraph } from "react-icons/md";
 import { GoGraph } from "react-icons/go";
 
 // Define the type for the userId prop
@@ -24,21 +26,6 @@ export default function Bar({ userId }: BarProps) {
   const [showNoteModal, setShowNoteModal] = useState(false);
   const [showDashboardModal, setShowDashboardModal] = useState(false);
   const mouseX = useMotionValue(Infinity);
-  const router = useRouter();
-
-  useEffect(() => {
-    const handleRouteChange = () => {
-      // Re-check authentication status when route changes
-      // This will cause the component to re-render
-      setShowDashboardModal(false);
-    };
-
-    router.events.on('routeChangeComplete', handleRouteChange);
-
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router]);
 
   return (
     <>
@@ -99,7 +86,11 @@ export default function Bar({ userId }: BarProps) {
       </AnimatedModal>
 
       <AnimatedModal showModal={showDashboardModal} setShowModal={setShowDashboardModal}>
-        {userId ? <Stats /> : <GuestAccessBlock />}
+        {userId ? (
+          <Stats />  // For signed-in users, show the Stats component with their data
+        ) : (
+          <GuestAccessBlock />
+        )}
       </AnimatedModal>
     </>
   );
