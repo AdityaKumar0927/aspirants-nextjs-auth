@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -8,57 +8,39 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import { toast } from '@/components/ui/use-toast'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog'
 
 const profileFormSchema = z.object({
-  username: z.string().min(2).max(30),
-  email: z.string().email(),
+  username: z.string().min(2, { message: "Username must be at least 2 characters." }).max(30, { message: "Username must not be longer than 30 characters." }),
+  email: z.string({ required_error: "Please select an email to display." }).email(),
   bio: z.string().max(160).min(4),
-  urls: z.array(z.object({ value: z.string().url() })).optional(),
+  urls: z.array(z.object({ value: z.string().url({ message: "Please enter a valid URL." }) })).optional(),
 })
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>
 
-export default function ProfileForm({ userId }: { userId: string }) {
+interface ProfileFormProps {
+  userId: string
+  initialData: ProfileFormValues
+  userRole: string
+}
+
+export default function ProfileForm({ userId, initialData, userRole }: ProfileFormProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [showResetConfirm, setShowResetConfirm] = useState(false)
   const router = useRouter()
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues: {
-      username: '',
-      email: '',
-      bio: '',
-      urls: [],
-    },
+    defaultValues: initialData,
   })
 
   const { fields, append } = useFieldArray({
     name: 'urls',
     control: form.control,
   })
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await fetch(`/api/profile/${userId}`)
-        if (!response.ok) throw new Error('Failed to fetch profile')
-        const data = await response.json()
-        form.reset(data)
-      } catch (error) {
-        console.error('Error fetching profile:', error)
-        toast({
-          title: 'Error',
-          description: 'Failed to load profile data',
-          variant: 'destructive',
-        })
-      }
-    }
-
-    fetchProfile()
-  }, [userId, form])
 
   const onSubmit = async (data: ProfileFormValues) => {
     setIsLoading(true)
@@ -122,7 +104,9 @@ export default function ProfileForm({ userId }: { userId: string }) {
               <FormControl>
                 <Input {...field} />
               </FormControl>
-              <FormDescription>This is your public display name.</FormDescription>
+              <FormDescription>
+                This is your public display name. It can be your real name or a pseudonym. You can only change this once every 30 days.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -137,7 +121,9 @@ export default function ProfileForm({ userId }: { userId: string }) {
               <FormControl>
                 <Input {...field} type="email" />
               </FormControl>
-              <FormDescription>This is your contact email.</FormDescription>
+              <FormDescription>
+                You can manage verified email addresses in your email settings.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -150,54 +136,83 @@ export default function ProfileForm({ userId }: { userId: string }) {
             <FormItem>
               <FormLabel>Bio</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Textarea
+                  placeholder="Tell us a little bit about yourself"
+                  className="resize-none"
+                  {...field}
+                />
               </FormControl>
-              <FormDescription>Tell us about yourself in a few words.</FormDescription>
+              <FormDescription>
+                You can @mention other users and organizations to link to them.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {fields.map((field, index) => (
-          <FormField
-            key={field.id}
-            control={form.control}
-            name={`urls.${index}.value`}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>URL {index + 1}</FormLabel>
-                <FormControl>
-                  <Input {...field} type="url" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        ))}
+        <div>
+          <FormLabel>URLs</FormLabel>
+          {fields.map((field, index) => (
+            <FormField
+              key={field.id}
+              control={form.control}
+              name={`urls.${index}.value`}
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input {...field} type="url" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          ))}
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="mt-2"
+            onClick={() => append({ value: '' })}
+          >
+            Add URL
+          </Button>
+        </div>
 
-        <Button type="button" variant="outline" onClick={() => append({ value: '' })}>
-          Add URL
-        </Button>
+        <FormItem>
+          <FormLabel>Role</FormLabel>
+          <FormControl>
+            <Input readOnly value={userRole} />
+          </FormControl>
+          <FormDescription>
+            Your current role in the system. This cannot be changed here.
+          </FormDescription>
+        </FormItem>
 
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? 'Updating...' : 'Update Profile'}
-        </Button>
-        <Button type="button" variant="destructive" onClick={() => setShowResetConfirm(true)}>
-          Reset Profile
-        </Button>
+        <div className="space-x-4 mt-6">
+          <Button type="submit" disabled={isLoading}>
+            {isLoading ? 'Updating...' : 'Update profile'}
+          </Button>
+          <Button
+            type="button"
+            variant="destructive"
+            onClick={() => setShowResetConfirm(true)}
+          >
+            Reset Account
+          </Button>
+        </div>
       </form>
 
       <AlertDialog open={showResetConfirm} onOpenChange={setShowResetConfirm}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you sure you want to reset your profile?</AlertDialogTitle>
+            <AlertDialogTitle>Are you sure you want to reset your account?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. All of your data will be permanently deleted.
+              This action will delete all your data and cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleReset}>Reset Profile</AlertDialogAction>
+            <AlertDialogAction onClick={handleReset}>Reset</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

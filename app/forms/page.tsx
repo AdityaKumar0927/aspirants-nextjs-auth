@@ -31,7 +31,7 @@ export default async function SettingsProfilePage() {
         </p>
       </div>
       <Separator />
-      <ProfileForm initialData={initialData} userRole={userRole} />
+      <ProfileForm userId={session.user.id} initialData={initialData} userRole={userRole} />
     </div>
   )
 }
