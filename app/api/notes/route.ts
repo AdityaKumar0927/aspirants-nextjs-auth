@@ -33,17 +33,25 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { content, questionId } = await req.json();
+    const { content, questionId, title, type } = await req.json();
 
-    if (!content || !questionId) {
+    if (!content || !questionId || !title || !type) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     const note = await prisma.note.create({
       data: {
         content,
+        title,
+        type,
         userId: session.user.id,
         questionId,
+        user: {
+          connect: { id: session.user.id }
+        },
+        question: {
+          connect: { id: questionId }
+        }
       },
       include: { question: true },
     });
@@ -63,7 +71,7 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { id, content } = await req.json();
+    const { id, content, title, type } = await req.json();
 
     if (!id || !content) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -74,7 +82,11 @@ export async function PUT(req: NextRequest) {
         id,
         userId: session.user.id,
       },
-      data: { content },
+      data: { 
+        content,
+        title,
+        type
+      },
     });
 
     if (note.count === 0) {
