@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from "react"
+import React, { useState, useEffect, useRef, useCallback } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { motion, AnimatePresence } from "framer-motion"
 import { toast, Toaster } from "sonner"
@@ -191,7 +191,10 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
         body: JSON.stringify(editingNote ? { ...noteData, id: editingNote.id } : noteData),
       })
 
-      if (!response.ok) throw new Error('Failed to save note')
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to save note')
+      }
 
       const savedNote = await response.json()
 
@@ -209,7 +212,9 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
       editor?.commands.setContent('')
     } catch (error) {
       console.error('Error saving note:', error)
-      toast.error("Failed to save note")
+      toast.error("Failed to save note", {
+        description: error instanceof Error ? error.message : "An unexpected error occurred",
+      })
     } finally {
       setIsLoading(false)
     }
