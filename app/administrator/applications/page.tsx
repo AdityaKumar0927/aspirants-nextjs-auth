@@ -66,9 +66,9 @@ export default function ApplicationManagement() {
   const applicationsPerPage = 10
 
   useEffect(() => {
-    if (status === 'unauthenticated' || (session?.user?.role !== 'ADMIN')) {
+    if (status === 'unauthenticated' || (session?.user?.role !== 'administrator')) {
       router.push('/unauthorized')
-    } else if (status === 'authenticated' && session?.user?.role === 'ADMIN') {
+    } else if (status === 'authenticated' && session?.user?.role === 'administrator') {
       fetchApplications()
     }
   }, [status, session, router])
@@ -173,7 +173,7 @@ export default function ApplicationManagement() {
     return <div className="flex justify-center items-center h-screen">Loading...</div>
   }
 
-  if (status === 'unauthenticated' || (session?.user?.role !== 'ADMIN')) {
+  if (status === 'unauthenticated' || (session?.user?.role !== 'administrator')) {
     return null
   }
 

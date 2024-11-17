@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     
     console.log('Session:', session); // Keep this line for debugging
 
-    if (!session || !session.user || session.user.role !== 'ADMIN') {
+    if (!session || !session.user || session.user.role !== 'administrator') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     })
 
     // Ensure the current user is an administrator
-    if (!currentUser?.role || currentUser.role.name !== 'ADMIN') {
+    if (!currentUser?.role || currentUser.role.name !== 'administrator') {
       return NextResponse.json({ error: 'Forbidden: Only administrators can update user roles' }, { status: 403 })
     }
 
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
 
     // Find the role ID for the given role name
     const role = await prisma.userRole.findUnique({
-      where: { name: roleName.toUpperCase() },
+      where: { name: roleName.toLowerCase() },
     })
 
     if (!role) {
