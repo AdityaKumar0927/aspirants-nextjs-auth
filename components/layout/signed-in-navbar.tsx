@@ -22,30 +22,7 @@ import {
   NavigationMenuIndicator,
 } from "@/components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion"
-
-const components = [
-  {
-    title: "PDF to Mock Exam",
-    href: "/#",
-    description: "Convert your PDF files into a mock exam format.",
-  },
-  {
-    title: "Develop",
-    href: "/#",
-    description: "Tools to help you develop your skills and knowledge.",
-  },
-  {
-    title: "Productivity",
-    href: "/#",
-    description: "Increase your productivity with our tools.",
-  },
-]
+import { signOut } from "next-auth/react"
 
 const supportLinks = [
   {
@@ -70,46 +47,27 @@ const supportLinks = [
   },
 ]
 
-const examsLinks = [
-  { title: "JEE", href: "/#" },
-  { title: "CUET", href: "/#" },
-  { title: "CBSE", href: "/#" },
-  { title: "A Levels", href: "/#" },
-  { title: "CAT", href: "/#" },
-  { title: "UPSC", href: "/#" },
-]
-
 export default function NavBar({ session }: { session: Session | null }) {
   const { SignInModal, setShowSignInModal } = useSignInModal()
   const scrolled = useScroll(50)
   const [menuOpen, setMenuOpen] = React.useState(false)
-  const [examsOpen, setExamsOpen] = React.useState(false)
   const [supportOpen, setSupportOpen] = React.useState(false)
   const menuRef = React.useRef<HTMLDivElement>(null)
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen)
-    setExamsOpen(false)
-    setSupportOpen(false)
-  }
-
-  const toggleExams = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setExamsOpen(!examsOpen)
     setSupportOpen(false)
   }
 
   const toggleSupport = (e: React.MouseEvent) => {
     e.stopPropagation()
     setSupportOpen(!supportOpen)
-    setExamsOpen(false)
   }
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setMenuOpen(false)
-        setExamsOpen(false)
         setSupportOpen(false)
       }
     }
@@ -145,38 +103,7 @@ export default function NavBar({ session }: { session: Session | null }) {
             />
           </Link>
           <div className="hidden md:flex items-center justify-center space-x-4 flex-1">
-            <NavigationMenu>
-              <NavigationMenuList>
-              <NavigationMenuItem>
-        <Link href={session ? "/QuestionBank" : "/QuestionBank/guest"} passHref legacyBehavior>
-          <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black")}>
-               Question Bank
-         </NavigationMenuLink>
-              </Link>
-          </NavigationMenuItem>
-                <NavigationMenuItem>
-                <Link href={session ? "/QuestionBank" : "/QuestionBank/guest"} passHref legacyBehavior>
-          <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black")}>
-               Exams
-         </NavigationMenuLink>
-              </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-display text-sm text-black">Support</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
-                      {supportLinks.map((link) => (
-                        <ListItem key={link.title} title={link.title} href={link.href}>
-                          {link.description}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-              <NavigationMenuIndicator />
-              <NavigationMenuViewport />
-            </NavigationMenu>
+            <DesktopNavLinks session={session} />
           </div>
           <div className="hidden md:flex items-center space-x-4">
             {session ? (
@@ -212,89 +139,126 @@ export default function NavBar({ session }: { session: Session | null }) {
             ref={menuRef}
             className="absolute top-full left-0 right-0 bg-white shadow-lg z-20 md:hidden"
           >
-            <div className="p-4 space-y-4">
-              <Link
-                href="/QuestionBank"
-                className="block w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
-                onClick={() => setMenuOpen(false)}
-              >
-                Question Bank
-              </Link>
-              <div>
-                <button
-                  className="flex items-center justify-between w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
-                  onClick={toggleExams}
-                  aria-expanded={examsOpen}
-                >
-                  Exams
-                  <ChevronDown
-                    size={20}
-                    className={cn("transition-transform", examsOpen && "rotate-180")}
-                  />
-                </button>
-                {examsOpen && (
-                  <ul className="mt-2 space-y-2 pl-4">
-                    {examsLinks.map((exam) => (
-                      <li key={exam.title}>
-                        <Link
-                          href={exam.href}
-                          className="block text-sm text-gray-600 hover:text-black transition-colors"
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          {exam.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-              <div>
-                <button
-                  className="flex items-center justify-between w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
-                  onClick={toggleSupport}
-                  aria-expanded={supportOpen}
-                >
-                  Support
-                  <ChevronDown
-                    size={20}
-                    className={cn("transition-transform", supportOpen && "rotate-180")}
-                  />
-                </button>
-                {supportOpen && (
-                  <ul className="mt-2 space-y-2 pl-4">
-                    {supportLinks.map((link) => (
-                      <li key={link.title}>
-                        <Link
-                          href={link.href}
-                          className="block text-sm text-gray-600 hover:text-black transition-colors"
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          {link.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-              {session ? (
-                <UserDropdown session={session} />
-              ) : (
-                <Button
-                  variant="outline"
-                  className="w-full"
-                  onClick={() => {
-                    setShowSignInModal(true)
-                    setMenuOpen(false)
-                  }}
-                >
-                  Sign In
-                </Button>
-              )}
-            </div>
+            <MobileNavLinks
+              session={session}
+              setMenuOpen={setMenuOpen}
+              setShowSignInModal={setShowSignInModal}
+              supportOpen={supportOpen}
+              toggleSupport={toggleSupport}
+            />
           </div>
         )}
       </nav>
     </>
+  )
+}
+
+function DesktopNavLinks({ session }: { session: Session | null }) {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <Link href={session ? "/QuestionBank" : "/QuestionBank/guest"} passHref legacyBehavior>
+            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black")}>
+              Question Bank
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className="font-display text-sm text-black">Support</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
+              {supportLinks.map((link) => (
+                <ListItem key={link.title} title={link.title} href={link.href}>
+                  {link.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+      <NavigationMenuIndicator />
+      <NavigationMenuViewport />
+    </NavigationMenu>
+  )
+}
+
+interface MobileNavLinksProps {
+  session: Session | null
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setShowSignInModal: React.Dispatch<React.SetStateAction<boolean>>
+  supportOpen: boolean
+  toggleSupport: (e: React.MouseEvent) => void
+}
+
+function MobileNavLinks({
+  session,
+  setMenuOpen,
+  setShowSignInModal,
+  supportOpen,
+  toggleSupport,
+}: MobileNavLinksProps) {
+  return (
+    <nav className="p-4 space-y-4">
+      <Link
+        href={session ? "/QuestionBank" : "/QuestionBank/guest"}
+        className="block w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
+        onClick={() => setMenuOpen(false)}
+      >
+        Question Bank
+      </Link>
+      <div>
+        <button
+          className="flex items-center justify-between w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
+          onClick={toggleSupport}
+          aria-expanded={supportOpen}
+        >
+          Support
+          <ChevronDown
+            size={20}
+            className={cn("transition-transform", supportOpen && "rotate-180")}
+          />
+        </button>
+        {supportOpen && (
+          <ul className="mt-2 space-y-2 pl-4">
+            {supportLinks.map((link) => (
+              <li key={link.title}>
+                <Link
+                  href={link.href}
+                  className="block text-sm text-gray-600 hover:text-black transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      {session ? (
+        <Button
+          variant="outline"
+          className="w-full"
+          onClick={() => {
+            signOut()
+            setMenuOpen(false)
+          }}
+        >
+          Log Out
+        </Button>
+      ) : (
+        <Button
+          variant="outline"
+          className="w-full"
+          onClick={() => {
+            setShowSignInModal(true)
+            setMenuOpen(false)
+          }}
+        >
+          Sign In
+        </Button>
+      )}
+    </nav>
   )
 }
 

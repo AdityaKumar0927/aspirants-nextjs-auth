@@ -28,6 +28,7 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/use-toast"
 import { Switch } from "@/components/ui/switch"
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog"
 
 const profileFormSchema = z.object({
   username: z.string().min(2, { message: "Username must be at least 2 characters." }).max(30, { message: "Username must not be longer than 30 characters." }),
@@ -72,7 +73,7 @@ export default function ProfileForm({ initialData, userRole }: ProfileFormProps)
 
   async function onSubmit(data: ProfileFormValues) {
     try {
-      const response = await fetch(`${window.location.origin}/api/settings/profile-settings`, {
+      const response = await fetch(`/api/settings/profile-settings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -91,7 +92,7 @@ export default function ProfileForm({ initialData, userRole }: ProfileFormProps)
           { policyName: "Privacy Policy", accepted: data.privacyPolicyAccepted },
           { policyName: "Cookie Policy", accepted: data.cookiePolicyAccepted },
         ].map(async ({ policyName, accepted }) => {
-          const policyResponse = await fetch(`${window.location.origin}/api/policy/accept`, {
+          const policyResponse = await fetch(`/api/policy/accept`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ policyName, accepted }),
@@ -106,11 +107,7 @@ export default function ProfileForm({ initialData, userRole }: ProfileFormProps)
 
       toast({
         title: "Profile settings updated successfully",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-          </pre>
-        ),
+        description: "Your profile has been updated.",
       })
     } catch (error: any) {
       toast({
@@ -126,7 +123,7 @@ export default function ProfileForm({ initialData, userRole }: ProfileFormProps)
 
   const handleReset = async () => {
     try {
-      const response = await fetch(`${window.location.origin}/api/user/delete`, {
+      const response = await fetch(`/api/user/delete`, {
         method: "DELETE",
       })
 
@@ -324,26 +321,20 @@ export default function ProfileForm({ initialData, userRole }: ProfileFormProps)
         </div>
       </form>
 
-      {showResetConfirm && (
-        <div className="fixed inset-0 backdrop-blur-md flex items-center justify-center">
-          <div className="bg-white p-6 rounded-md shadow-md">
-            <h3 className="text-lg font-semibold">
-              Are you sure you want to reset your account?
-            </h3>
-            <p className="text-sm text-gray-600">
+      <AlertDialog open={showResetConfirm} onOpenChange={setShowResetConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure you want to reset your account?</AlertDialogTitle>
+            <AlertDialogDescription>
               This action will delete all your data and cannot be undone.
-            </p>
-            <div className="mt-4 flex space-x-4">
-              <Button variant="destructive" onClick={handleReset}>
-                Reset
-              </Button>
-              <Button variant="outline" onClick={() => setShowResetConfirm(false)}>
-                Cancel
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleReset}>Reset</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Form>
   )
 }
