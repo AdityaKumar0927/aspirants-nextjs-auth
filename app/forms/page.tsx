@@ -9,7 +9,7 @@ export default async function SettingsProfilePage() {
   const session = await getServerSession(authOptions)
 
   if (!session) {
-    redirect('/login')
+    redirect('/')
   }
 
   const userId = session.user.id

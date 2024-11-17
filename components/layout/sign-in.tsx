@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo, useEffect } from "react"
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import { X } from 'lucide-react'
 import { Google } from "@/components/shared/icons"
 import Modal2 from "@/components/layout/modal-2"
@@ -47,11 +48,11 @@ type LoadingState = {
 }
 
 const loadingStates: LoadingState[] = [
-  { text: "Preparing your account" },
-  { text: "Checking credentials" },
-  { text: "Securing your session" },
-  { text: "Almost there" },
-  { text: "Welcome aboard!" },
+  { text: "Initiating sign-in process" },
+  { text: "Verifying credentials" },
+  { text: "Checking account status" },
+  { text: "Setting up your session" },
+  { text: "Almost there!" },
 ]
 
 const LoaderCore = ({
@@ -194,18 +195,32 @@ function SignInModalComponent({
   setShowLoader: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   const { toast } = useToast()
+  const router = useRouter()
 
   const handleSignIn = async (provider: string) => {
     setShowSignInModal(false)
     setShowLoader(true)
 
+    const startTime = Date.now()
+    const minDuration = 5000 // Minimum duration for the loader to be visible
+
     try {
-      // Simulate sign-in process
-      await new Promise(resolve => setTimeout(resolve, 25000)) // Increased to 25 seconds
-      const result = await signIn(provider, { callbackUrl: '/', redirect: false })
-      if (result?.error) {
-        throw new Error(result.error)
+      const [signInResult] = await Promise.all([
+        signIn(provider, { redirect: false }),
+        new Promise(resolve => setTimeout(resolve, minDuration))
+      ])
+
+      if (signInResult?.error) {
+        throw new Error(signInResult.error)
       }
+
+      // Ensure the loader stays visible for at least the minimum duration
+      const elapsedTime = Date.now() - startTime
+      if (elapsedTime < minDuration) {
+        await new Promise(resolve => setTimeout(resolve, minDuration - elapsedTime))
+      }
+
+      router.push('/dashboard') // Redirect to dashboard after successful sign-in
     } catch (error) {
       console.error('Sign-in error:', error)
       toast({
@@ -266,7 +281,7 @@ function SignInModalComponent({
         </div>
       </Modal2>
 
-      <MultiStepLoader loadingStates={loadingStates} loading={showLoader} duration={5000} loop={true} />
+      <MultiStepLoader loadingStates={loadingStates} loading={showLoader} duration={1000} loop={false} />
     </>
   )
 }
