@@ -1,49 +1,35 @@
-"use client";
+import { Metadata } from "next"
+import Script from "next/script"
 
-import React, { useEffect } from "react";
+export const metadata: Metadata = {
+  title: "Contact Us - Everything AI",
+  description:
+    "Everything AI is a platform that provides a wide range of AI tools and services to help you stay on top of your business. Generate images, text and everything else that you need to get your business off the ground.",
+  openGraph: {
+    images: ["https://ai-saas-template-aceternity.vercel.app/banner.png"],
+  },
+}
 
-export default function TallyForm() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://tally.so/widgets/embed.js";
-    script.async = true;
-    script.onload = () => {
-      const iframes = document.querySelectorAll<HTMLIFrameElement>(
-        'iframe[data-tally-src]:not([src])'
-      );
-      iframes.forEach((iframe) => {
-        const src = iframe.getAttribute("data-tally-src");
-        if (src) {
-          iframe.setAttribute("src", src);
-        }
-      });
-    };
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
+export default function ContactPage() {
   return (
-    <div className="fixed inset-0 w-full h-full">
-      <iframe
-        data-tally-src="https://tally.so/r/mZzar0?transparentBackground=1"
-        width="100%"
-        height="100%"
-        title="We're building a free, JEE and CUET exam prep platform! Fill this form to help us out as well as get early access to our site"
-        style={{
-          border: "none",
-          margin: 0,
-          padding: 0,
-          overflow: "hidden",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%"
-        }}
-      ></iframe>
-    </div>
-  );
+    <>
+      <Script src="https://tally.so/widgets/embed.js" strategy="afterInteractive" />
+      <div className="w-full h-screen overflow-hidden">
+        <iframe
+          data-tally-src="https://tally.so/r/mZzar0?transparentBackground=1"
+          width="100%"
+          height="100%"
+          title="Contact us"
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            border: 0,
+          }}
+        />
+      </div>
+    </>
+  )
 }
