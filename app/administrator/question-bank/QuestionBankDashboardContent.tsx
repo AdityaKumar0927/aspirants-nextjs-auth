@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useCallback, useMemo, useEffect } from 'react'
+import { useVirtualizer } from '@tanstack/react-virtual'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
@@ -17,12 +18,22 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Skeleton } from "@/components/ui/skeleton"
 import { ArrowUpIcon, ArrowDownIcon, ChevronDown, Search, Plus, Trash2, Edit, Eye, CheckCircle, XCircle, MoreHorizontal, Upload, FileUp, FileJson, Loader2 } from 'lucide-react'
-import { useVirtualizer } from '@tanstack/react-virtual'
 import debounce from 'lodash/debounce'
-import { useQuestionContext } from './QuestionContext'
-import { QuestionForm } from './QuestionForm'
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import type { Question, QuestionStatus } from './types'
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+
+const PAGE_SIZE = 20
+
+type FiltersType = {
+  exams: string[];
+  subjects: string[];
+  topics: string[];
+  subtopics: string[];
+  difficulties: string[];
+  types: string[];
+  years: string[];
+  status: QuestionStatus | 'all';
+}
 
 const fetchQuestions = async (): Promise<Question[]> => {
   const response = await fetch('/api/questions')
@@ -43,22 +54,22 @@ const updateQuestion = async (question: Partial<Question>): Promise<Question> =>
 }
 
 export function QuestionBankDashboardContent() {
-  const { questions: contextQuestions, setQuestions, filters, setFilters, searchQuery, setSearchQuery } = useQuestionContext()
-  const [dropdowns, setDropdowns] = useState({
-    exam: false,
-    subject: false,
-    topic: false,
-    subtopic: false,
-    difficulty: false,
-    year: false,
-    type: false,
+  const [filters, setFilters] = useState<FiltersType>({
+    exams: [],
+    subjects: [],
+    topics: [],
+    subtopics: [],
+    difficulties: [],
+    types: [],
+    years: [],
+    status: 'all',
   })
-  const [isAddQuestionOpen, setIsAddQuestionOpen] = useState(false)
-  const [editingQuestion, setEditingQuestion] = useState<Question | null>(null)
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [currentPage, setCurrentPage] = useState(1)
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([])
-  const [batchUploadText, setBatchUploadText] = useState("")
+  const [isAddQuestionOpen, setIsAddQuestionOpen] = useState(false)
   const [isBatchUploadDialogOpen, setIsBatchUploadDialogOpen] = useState(false)
+  const [batchUploadText, setBatchUploadText] = useState("")
   const { toast } = useToast()
   const queryClient = useQueryClient()
 
@@ -66,12 +77,6 @@ export function QuestionBankDashboardContent() {
     queryKey: ['questions'],
     queryFn: fetchQuestions,
   })
-
-  useEffect(() => {
-    if (questions.length > 0) {
-      setQuestions(questions)
-    }
-  }, [questions, setQuestions])
 
   const updateQuestionMutation = useMutation({
     mutationFn: updateQuestion,
@@ -100,22 +105,55 @@ export function QuestionBankDashboardContent() {
     },
   })
 
-  const handleStatusUpdate = useCallback(
-    debounce(async (questionId: string, status: QuestionStatus) => {
-      updateQuestionMutation.mutate({ questionId, status })
-    }, 300),
-    [updateQuestionMutation]
-  )
+  const filteredQuestions = useMemo(() => {
+    return questions.filter((question) => {
+      const lowerSearchQuery = searchQuery.toLowerCase()
+      const matchesSearch =
+        question.text.toLowerCase().includes(lowerSearchQuery) ||
+        question.topic.toLowerCase().includes(lowerSearchQuery) ||
+        (question.subtopic?.toLowerCase().includes(lowerSearchQuery) ?? false) ||
+        question.subject.toLowerCase().includes(lowerSearchQuery)
+
+      const matchesFilters =
+        (!filters.exams.length || filters.exams.includes(question.exam)) &&
+        (!filters.subjects.length || filters.subjects.includes(question.subject)) &&
+        (!filters.topics.length || filters.topics.includes(question.topic)) &&
+        (!filters.subtopics.length || (question.subtopic && filters.subtopics.includes(question.subtopic))) &&
+        (!filters.difficulties.length || filters.difficulties.includes(question.difficulty)) &&
+        (!filters.years.length || filters.years.includes(question.year.toString())) &&
+        (!filters.types.length || filters.types.includes(question.type)) &&
+        (filters.status === 'all' || question.status === filters.status)
+
+      return matchesSearch && matchesFilters
+    }).sort((a, b) => parseInt(a.questionId) - parseInt(b.questionId))
+  }, [questions, filters, searchQuery])
+
+  const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
+
+  const paginatedQuestions = useMemo(() => {
+    const startIndex = (currentPage - 1) * PAGE_SIZE
+    const endIndex = startIndex + PAGE_SIZE
+    return filteredQuestions.slice(startIndex, endIndex)
+  }, [filteredQuestions, currentPage])
+
+  const parentRef = React.useRef<HTMLDivElement>(null)
+
+  const rowVirtualizer = useVirtualizer({
+    count: paginatedQuestions.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 50,
+    overscan: 5,
+  })
 
   const handleFilterChange = useCallback(
-    (tag: keyof typeof filters, value: string) => {
+    (tag: keyof FiltersType, value: string) => {
       setFilters(prevFilters => {
         const filterValues = prevFilters[tag]
         if (Array.isArray(filterValues)) {
-          const isSelected = filterValues.includes(value ?? '')
+          const isSelected = filterValues.includes(value)
           const updatedFilter = isSelected
-            ? filterValues.filter((v: string) => v !== (value ?? ''))
-            : [...filterValues, value ?? '']
+            ? filterValues.filter((v: string) => v !== value)
+            : [...filterValues, value]
 
           const newFilters = { ...prevFilters, [tag]: updatedFilter }
 
@@ -140,56 +178,19 @@ export function QuestionBankDashboardContent() {
         return prevFilters
       })
     },
-    [questions, setFilters]
+    [questions]
   )
 
-  const handleAddQuestion = async (newQuestion: Partial<Question>) => {
-    try {
-      const response = await fetch('/api/questions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newQuestion),
-      })
+  const handleSearchChange = useCallback(debounce((value: string) => {
+    setSearchQuery(value)
+    setCurrentPage(1)
+  }, 300), [])
 
-      if (!response.ok) throw new Error('Failed to add question')
+  const handlePageChange = useCallback((page: number) => {
+    setCurrentPage(page)
+  }, [])
 
-      const addedQuestion = await response.json()
-      setQuestions(prev => [...prev, addedQuestion])
-      setIsAddQuestionOpen(false)
-      toast({
-        title: "Question Added",
-        description: "New question has been successfully added.",
-      })
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to add question. Please try again.",
-        variant: "destructive",
-      })
-    }
-  }
-
-  const handleEditQuestion = async (editedQuestion: Question) => {
-    try {
-      await updateQuestionMutation.mutateAsync(editedQuestion)
-      setIsEditDialogOpen(false)
-      setEditingQuestion(null)
-      toast({
-        title: "Question Updated",
-        description: "Question has been successfully updated.",
-      })
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to update question. Please try again.",
-        variant: "destructive",
-      })
-    }
-  }
-
-  const handleDeleteQuestion = async (questionId: string) => {
+  const handleDeleteQuestion = useCallback(async (questionId: string) => {
     try {
       const response = await fetch(`/api/questions`, {
         method: 'DELETE',
@@ -201,7 +202,10 @@ export function QuestionBankDashboardContent() {
 
       if (!response.ok) throw new Error('Failed to delete question')
 
-      setQuestions(prev => prev.filter((question) => question.questionId !== questionId))
+      queryClient.setQueryData<Question[]>(['questions'], (oldQuestions) => 
+        oldQuestions?.filter((q) => q.questionId !== questionId) ?? []
+      )
+
       toast({
         title: "Question Deleted",
         description: "Question has been successfully deleted.",
@@ -213,9 +217,9 @@ export function QuestionBankDashboardContent() {
         variant: "destructive",
       })
     }
-  }
+  }, [queryClient, toast])
 
-  const handleDeleteSelected = async () => {
+  const handleDeleteSelected = useCallback(async () => {
     if (selectedQuestions.length === 0) {
       toast({
         title: "No Questions Selected",
@@ -240,7 +244,10 @@ export function QuestionBankDashboardContent() {
       const successfulDeletes = results.filter(result => result.status === 'fulfilled').length
       const failedDeletes = results.filter(result => result.status === 'rejected').length
 
-      setQuestions(prev => prev.filter((question) => !selectedQuestions.includes(question.questionId)))
+      queryClient.setQueryData<Question[]>(['questions'], (oldQuestions) => 
+        oldQuestions?.filter((q) => !selectedQuestions.includes(q.questionId)) ?? []
+      )
+
       setSelectedQuestions([])
 
       if (successfulDeletes > 0) {
@@ -264,9 +271,9 @@ export function QuestionBankDashboardContent() {
         variant: "destructive",
       })
     }
-  }
+  }, [selectedQuestions, queryClient, toast])
 
-  const handleBatchUpload = async (questions: string) => {
+  const handleBatchUpload = useCallback(async (questions: string) => {
     try {
       const response = await fetch('/api/questions/batch-upload', {
         method: 'POST',
@@ -282,7 +289,9 @@ export function QuestionBankDashboardContent() {
       }
 
       const result = await response.json();
-      setQuestions(prev => [...prev, ...result])
+      queryClient.setQueryData<Question[]>(['questions'], (oldQuestions) => 
+        [...(oldQuestions ?? []), ...result]
+      )
       toast({
         title: "Batch Upload Successful",
         description: `Successfully uploaded ${result.length} questions.`,
@@ -298,45 +307,7 @@ export function QuestionBankDashboardContent() {
       setIsBatchUploadDialogOpen(false);
       setBatchUploadText("");
     }
-  };
-
-  const filteredQuestions = useMemo(() => {
-    return questions
-      .filter((question) => {
-        const lowerSearchQuery = searchQuery.toLowerCase()
-        const matchesSearch =
-          question.text.toLowerCase().includes(lowerSearchQuery) ||
-          question.topic.toLowerCase().includes(lowerSearchQuery) ||
-          (question.subtopic?.toLowerCase().includes(lowerSearchQuery) ?? false) ||
-          question.subject.toLowerCase().includes(lowerSearchQuery)
-
-        const matchesFilters =
-          (!filters.exams.length || filters.exams.includes(question.exam)) &&
-          (!filters.subjects.length || filters.subjects.includes(question.subject)) &&
-          (!filters.topics.length || filters.topics.includes(question.topic)) &&
-          (!filters.subtopics.length || (question.subtopic && filters.subtopics.includes(question.subtopic))) &&
-          (!filters.difficulties.length || filters.difficulties.includes(question.difficulty)) &&
-          (!filters.years.length || filters.years.includes(question.year.toString())) &&
-          (!filters.types.length || filters.types.includes(question.type)) &&
-          (filters.status === 'all' || question.status === filters.status)
-
-        return matchesSearch && matchesFilters
-      })
-      .sort((a, b) => parseInt(a.questionId) - parseInt(b.questionId));
-  }, [questions, filters, searchQuery])
-
-  const parentRef = React.useRef<HTMLDivElement>(null)
-
-  const rowVirtualizer = useVirtualizer({
-    count: filteredQuestions.length,
-    getScrollElement: () => parentRef.current,
-    estimateSize: () => 35,
-    overscan: 5,
-  })
-
-  const totalQuestions = questions.length
-  const draftQuestions = useMemo(() => questions.filter((question) => question.status === 'DRAFT').length, [questions])
-  const activeQuestions = useMemo(() => questions.filter((question) => question.status === 'ACTIVE').length, [questions])
+  }, [queryClient, toast]);
 
   if (error) {
     return <div>Error loading questions. Please try again later.</div>
@@ -358,57 +329,18 @@ export function QuestionBankDashboardContent() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{totalQuestions}</div>
+              <div className="text-2xl font-bold">{questions.length}</div>
               <p className="text-xs text-muted-foreground">+20% from last month</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                <div className="flex items-center space-x-2">
-                  <Edit className="h-4 w-4 text-muted-foreground" />
-                  <span>Draft Questions</span>
-                </div>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{draftQuestions}</div>
-              <p className="text-xs text-muted-foreground">+15% from last month</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-4 w-4 text-muted-foreground" />
-                  <span>Active Questions</span>
-                </div>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{activeQuestions}</div>
-              <p className="text-xs text-muted-foreground">+10% from last month</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                <div className="flex items-center space-x-2">
-                  <ArrowDownIcon className="h-4 w-4 text-muted-foreground" />
-                  <span>Avg. Creation Time</span>
-                </div>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">3 days</div>
-              <p className="text-xs text-muted-foreground">-10% from last month</p>
             </CardContent>
           </Card>
         </div>
 
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold tracking-tight">Questions</h2>
-          <Select defaultValue="all" onValueChange={(value) => setFilters(prev => ({ ...prev, status: value as QuestionStatus }))}>
+          <Select 
+            value={filters.status} 
+            onValueChange={(value) => setFilters(prev => ({ ...prev, status: value as QuestionStatus | 'all' }))}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Filter by status" />
             </SelectTrigger>
@@ -426,8 +358,7 @@ export function QuestionBankDashboardContent() {
             <Input
               type="text"
               placeholder="Search questions..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => handleSearchChange(e.target.value)}
               className="pl-10"
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -444,7 +375,7 @@ export function QuestionBankDashboardContent() {
                 <DialogHeader>
                   <DialogTitle>Add New Question</DialogTitle>
                 </DialogHeader>
-                <QuestionForm onSubmit={handleAddQuestion} />
+                {/* Add QuestionForm component here */}
               </ScrollArea>
             </DialogContent>
           </Dialog>
@@ -505,70 +436,48 @@ export function QuestionBankDashboardContent() {
               <TooltipTrigger asChild>
                 <Popover>
                   <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className="w-full sm:w-36"
-                      onClick={() => setDropdowns(prev => ({ ...prev, [filterType]: !prev[filterType as keyof typeof dropdowns] }))}
-                    >
+                    <Button variant="outline" className="w-full sm:w-36">
                       <span className="mr-2 truncate">
-                        {Array.isArray(filters[filterType as keyof typeof filters]) &&
-                          (filters[filterType as keyof typeof filters] as string[]).length
-                          ? `${
-                              (filters[filterType as keyof typeof filters] as string[])
-                                .length
-                            } selected`
+                        {filters[filterType as keyof FiltersType].length
+                          ? `${filters[filterType as keyof FiltersType].length} selected`
                           : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                       </span>
-                      <ChevronDown
-                        className={`h-4 w-4 transition-transform ${
-                          dropdowns[filterType as keyof typeof dropdowns]
-                            ? "rotate-180"
-                            : ""
-                        }`}
-                      />
+                      <ChevronDown className="h-4 w-4" />
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent align="start">
-                    <div className="w-full bg-white rounded-md p-2 sm:w-40">
+                  <PopoverContent align="start" className="w-[200px]">
+                    <ScrollArea className="h-[300px]">
                       {Array.from(
                         new Set(
                           questions.map((q) => {
                             switch (filterType) {
-                              case "exams":
-                                return q.exam
-                              case "subjects":
-                                return q.subject
-                              case "topics":
-                                return q.topic
-                              case "subtopics":
-                                return q.subtopic ?? ''
-                              case "difficulties":
-                                return q.difficulty
-                              case "years":
-                                return q.year?.toString() ?? ''
-                              case "types":
-                                return q.type
-                              default:
-                                return ""
+                              case "exams": return q.exam
+                              case "subjects": return q.subject
+                              case "topics": return q.topic
+                              case "subtopics": return q.subtopic ?? ''
+                              case "difficulties": return q.difficulty
+                              case "years": return q.year?.toString() ?? ''
+                              case "types": return q.type
+                              default: return ""
                             }
                           })
                         )
                       ).map((value) => (
-                        <div key={value} className="flex items-center">
+                        <div key={value} className="flex items-center space-x-2 p-2">
                           <Checkbox
                             id={`${filterType}-${value}`}
-                            checked={(filters[filterType as keyof typeof filters] as string[]).includes(value ?? '')}
-                            onCheckedChange={(checked) => handleFilterChange(filterType as keyof typeof filters, value)}
+                            checked={filters[filterType as keyof FiltersType].includes(value)}
+                            onCheckedChange={() => handleFilterChange(filterType as keyof FiltersType, value)}
                           />
                           <label
                             htmlFor={`${filterType}-${value}`}
-                            className="ml-2 text-sm"
+                            className="text-sm cursor-pointer"
                           >
                             {value}
                           </label>
                         </div>
                       ))}
-                    </div>
+                    </ScrollArea>
                   </PopoverContent>
                 </Popover>
               </TooltipTrigger>
@@ -606,11 +515,11 @@ export function QuestionBankDashboardContent() {
                     <TableRow>
                       <TableHead className="w-[50px]">
                         <Checkbox
-                          checked={selectedQuestions.length === filteredQuestions.length}
+                          checked={selectedQuestions.length === paginatedQuestions.length}
                           onCheckedChange={(checked) => {
                             setSelectedQuestions(
                               checked
-                                ? filteredQuestions.map((q) => q.questionId)
+                                ? paginatedQuestions.map((q) => q.questionId)
                                 : []
                             )
                           }}
@@ -628,7 +537,7 @@ export function QuestionBankDashboardContent() {
                   </TableHeader>
                   <TableBody>
                     {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-                      const question = filteredQuestions[virtualRow.index]
+                      const question = paginatedQuestions[virtualRow.index]
                       return (
                         <TableRow
                           key={question.questionId}
@@ -665,8 +574,7 @@ export function QuestionBankDashboardContent() {
                               <DropdownMenuContent align="end">
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                 <DropdownMenuItem onClick={() => {
-                                  setEditingQuestion(question)
-                                  setIsEditDialogOpen(true)
+                                  // Implement edit functionality
                                 }}>
                                   Edit
                                 </DropdownMenuItem>
@@ -687,23 +595,26 @@ export function QuestionBankDashboardContent() {
             </div>
           </div>
         )}
+        <div className="flex justify-center mt-4">
+          <Button
+            variant="outline"
+            onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </Button>
+          <span className="mx-4">
+            Page {currentPage} of {totalPages}
+          </span>
+          <Button
+            variant="outline"
+            onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </Button>
+        </div>
       </div>
-
-      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="sm:max-w-[625px]">
-          <ScrollArea className="max-h-[80vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle>Edit Question</DialogTitle>
-            </DialogHeader>
-            {editingQuestion && (
-              <QuestionForm
-                initialData={editingQuestion}
-                onSubmit={(updatedQuestion) => handleEditQuestion({ ...editingQuestion, ...updatedQuestion })}
-              />
-            )}
-          </ScrollArea>
-        </DialogContent>
-      </Dialog>
     </TooltipProvider>
   )
 }
