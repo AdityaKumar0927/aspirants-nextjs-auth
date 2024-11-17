@@ -88,7 +88,7 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: '/',
+    signIn: '/QuestionBank',
     error: '/auth/error',
   },
   session: {
