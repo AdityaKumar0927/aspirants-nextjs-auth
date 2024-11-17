@@ -55,6 +55,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Badge } from '@/components/ui/badge'
 
 interface QuestionType {
+  exam: String
   questionId: string
   text: string
   subject: string
@@ -619,6 +620,9 @@ export default function Component({
                 </div>
                 <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
                   {question.type}
+                </div>
+                <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
+                  {question.exam}
                 </div>
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
