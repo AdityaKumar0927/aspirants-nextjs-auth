@@ -1,47 +1,24 @@
 "use client"
 
-import React, { useReducer, useEffect, useMemo, useCallback, useState } from "react"
-import Skeleton from "react-loading-skeleton"
-import "react-loading-skeleton/dist/skeleton.css"
-import Question from "@/components/shared/Question"
-import Popover from "@/components/shared/popover"
-import { ChevronDown, ChevronLeft, ChevronRight, Search, List, Info, Circle, CheckCircle2, Flag, HelpCircle } from 'lucide-react'
-import Link from "next/link"
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider,
-} from "@/components/ui/tooltip"
+import React, { useReducer, useEffect, useMemo, useCallback, useState, Dispatch, SetStateAction } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { useToast } from "@/components/ui/use-toast"
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card"
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { motion, AnimatePresence } from "framer-motion"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
+import { ChevronDown, ChevronLeft, ChevronRight, Search, List, Circle, CheckCircle2, HelpCircle, Flag } from 'lucide-react'
+import Link from "next/link"
+import { useToast } from "@/components/ui/use-toast"
+import Question from "@/components/shared/Question"
+import Popover from "@/components/shared/popover"
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const PAGE_SIZE = 10
 
-enum QuestionStatus {
-  DRAFT = "DRAFT",
-  PUBLISHED = "PUBLISHED",
-  ARCHIVED = "ARCHIVED",
-  UNDER_REVIEW = "UNDER_REVIEW"
-}
-
-interface QuestionType {
-  exam: string
+type QuestionType = {
   questionId: string
   text: string
   subject: string
@@ -50,15 +27,11 @@ interface QuestionType {
   difficulty: string
   type: "Multiple Choice" | "Numerical"
   year: string
-  reviewed: boolean
-  completed: boolean
   options?: string[]
   correctOption?: string
-  markscheme?: string
-  notes?: string
-  lastAttempted?: string
-  diagramUrl?: string
-  status: QuestionStatus
+  exam: string
+  reviewed: boolean
+  completed: boolean
 }
 
 type FiltersType = {
@@ -76,36 +49,30 @@ type StateType = {
   questions: QuestionType[]
   filters: FiltersType
   searchQuery: string
-  dropdowns: {
-    exam: boolean
-    subject: boolean
-    topic: boolean
-    subtopic: boolean
-    difficulty: boolean
-    year: boolean
-    type: boolean
-  }
+  dropdowns: Record<string, boolean>
   feedback: Record<string, string>
-  numericalAnswers: Record<string, string>
-  showMarkscheme: Record<string, boolean>
   selectedOptions: Record<string, string>
   notes: Record<string, string>
-  loading: boolean
   currentPage: number
+  loading: boolean
+  reviewed: Record<string, boolean>
+  completed: Record<string, boolean>
+  showMarkscheme: Record<string, boolean>
 }
 
 type ActionType =
   | { type: "SET_QUESTIONS"; payload: QuestionType[] }
   | { type: "SET_FILTERS"; payload: FiltersType }
   | { type: "SET_SEARCH_QUERY"; payload: string }
-  | { type: "SET_DROPDOWN"; payload: { tag: keyof FiltersType; value: boolean } }
+  | { type: "SET_DROPDOWN"; payload: { tag: string; value: boolean } }
   | { type: "SET_FEEDBACK"; payload: Record<string, string> }
-  | { type: "SET_NUMERICAL_ANSWERS"; payload: Record<string, string> }
-  | { type: "SET_SHOW_MARKSCHEME"; payload: Record<string, boolean> }
   | { type: "SET_SELECTED_OPTIONS"; payload: Record<string, string> }
   | { type: "SET_NOTES"; payload: Record<string, string> }
-  | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_CURRENT_PAGE"; payload: number }
+  | { type: "SET_LOADING"; payload: boolean }
+  | { type: "SET_REVIEWED"; payload: Record<string, boolean> }
+  | { type: "SET_COMPLETED"; payload: Record<string, boolean> }
+  | { type: "SET_SHOW_MARKSCHEME"; payload: Record<string, boolean> }
 
 const initialState: StateType = {
   questions: [],
@@ -120,22 +87,15 @@ const initialState: StateType = {
     status: "all",
   },
   searchQuery: "",
-  dropdowns: {
-    exam: false,
-    subject: false,
-    topic: false,
-    subtopic: false,
-    difficulty: false,
-    year: false,
-    type: false,
-  },
+  dropdowns: {},
   feedback: {},
-  numericalAnswers: {},
-  showMarkscheme: {},
   selectedOptions: {},
   notes: {},
-  loading: true,
   currentPage: 1,
+  loading: true,
+  reviewed: {},
+  completed: {},
+  showMarkscheme: {},
 }
 
 function reducer(state: StateType, action: ActionType): StateType {
@@ -153,18 +113,20 @@ function reducer(state: StateType, action: ActionType): StateType {
       }
     case "SET_FEEDBACK":
       return { ...state, feedback: action.payload }
-    case "SET_NUMERICAL_ANSWERS":
-      return { ...state, numericalAnswers: action.payload }
-    case "SET_SHOW_MARKSCHEME":
-      return { ...state, showMarkscheme: action.payload }
     case "SET_SELECTED_OPTIONS":
       return { ...state, selectedOptions: action.payload }
     case "SET_NOTES":
       return { ...state, notes: action.payload }
-    case "SET_LOADING":
-      return { ...state, loading: action.payload }
     case "SET_CURRENT_PAGE":
       return { ...state, currentPage: action.payload }
+    case "SET_LOADING":
+      return { ...state, loading: action.payload }
+    case "SET_REVIEWED":
+      return { ...state, reviewed: action.payload }
+    case "SET_COMPLETED":
+      return { ...state, completed: action.payload }
+    case "SET_SHOW_MARKSCHEME":
+      return { ...state, showMarkscheme: action.payload }
     default:
       return state
   }
@@ -182,41 +144,15 @@ const StatusCard = ({
   color: string
 }) => {
   return (
-    <motion.div 
-      className="flex items-center p-4 rounded-lg bg-gray-900 transition-all duration-300"
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-    >
-      <AnimatePresence>
-        <motion.div 
-          className={`flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 mr-4 ${color}`}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.2 }}
-        >
-          {icon}
-        </motion.div>
-      </AnimatePresence>
-      <div>
-        <motion.span 
-          className={`text-2xl font-bold ${color}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
-        >
-          {value}
-        </motion.span>
-        <motion.p 
-          className="text-sm font-medium text-gray-400"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          {label}
-        </motion.p>
+    <div className={`flex items-center p-4 rounded-lg bg-gray-900 transition-all duration-300`}>
+      <div className={`flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 mr-4 ${color}`}>
+        {icon}
       </div>
-    </motion.div>
+      <div>
+        <span className={`text-2xl font-bold ${color}`}>{value}</span>
+        <p className="text-sm font-medium text-gray-400">{label}</p>
+      </div>
+    </div>
   )
 }
 
@@ -277,59 +213,58 @@ const Pagination: React.FC<{
   )
 }
 
-const GuestBanner: React.FC = () => {
-  return (
-    <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
-      <CardContent className="p-4 flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
-            <Info className="h-5 w-5 text-blue-700" />
-          </div>
-          <div className="space-y-1">
-            <h3 className="font-medium text-blue-900">Guest Access</h3>
-            <p className="text-sm text-blue-700">
-              Try out the Question Bank features. Sign in to save your progress.
-            </p>
-          </div>
-        </div>
-        <Link href="/QuestionBank" className="hidden sm:block">
-          <Button variant="outline" className="border-blue-200 hover:border-blue-300 hover:bg-blue-50">
-            Sign in
-            <ChevronRight className="ml-2 h-4 w-4" />
-          </Button>
-        </Link>
-      </CardContent>
-    </Card>
-  )
-}
-
 export default function GuestQuestionBank() {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { toast } = useToast()
   const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
+  const { toast } = useToast()
+
+  const fetchQuestions = useCallback(async () => {
+    dispatch({ type: "SET_LOADING", payload: true })
+    try {
+      const response = await fetch("/api/questions")
+      if (!response.ok) throw new Error("Failed to fetch questions")
+      const questions: QuestionType[] = await response.json()
+      const sortedQuestions = questions.sort((a, b) => a.questionId.localeCompare(b.questionId))
+      dispatch({ type: "SET_QUESTIONS", payload: sortedQuestions })
+    } catch (error) {
+      console.error("Error fetching questions:", error)
+      toast({
+        title: "Error",
+        description: "Failed to load questions. Please try again later.",
+        variant: "destructive",
+      })
+    } finally {
+      dispatch({ type: "SET_LOADING", payload: false })
+    }
+  }, [toast])
 
   useEffect(() => {
-    const fetchQuestions = async () => {
-      dispatch({ type: "SET_LOADING", payload: true })
-      try {
-        const response = await fetch("/api/questions")
-        if (!response.ok) throw new Error("Failed to fetch questions")
-        const questions = await response.json()
-        dispatch({ type: "SET_QUESTIONS", payload: questions })
-      } catch (error) {
-        console.error("Error fetching questions:", error)
-        toast({
-          title: "Error",
-          description: "Failed to load questions. Please try again later.",
-          variant: "destructive",
-        })
-      } finally {
-        dispatch({ type: "SET_LOADING", payload: false })
-      }
-    }
-
     fetchQuestions()
-  }, [toast])
+
+    // Load progress from localStorage
+    const savedProgress = localStorage.getItem('guestProgress')
+    if (savedProgress) {
+      const progress = JSON.parse(savedProgress)
+      dispatch({ type: "SET_FEEDBACK", payload: progress.feedback || {} })
+      dispatch({ type: "SET_SELECTED_OPTIONS", payload: progress.selectedOptions || {} })
+      dispatch({ type: "SET_NOTES", payload: progress.notes || {} })
+      dispatch({ type: "SET_REVIEWED", payload: progress.reviewed || {} })
+      dispatch({ type: "SET_COMPLETED", payload: progress.completed || {} })
+      dispatch({ type: "SET_SHOW_MARKSCHEME", payload: progress.showMarkscheme || {} })
+    }
+  }, [fetchQuestions])
+
+  useEffect(() => {
+    // Save progress to localStorage whenever it changes
+    localStorage.setItem('guestProgress', JSON.stringify({
+      feedback: state.feedback,
+      selectedOptions: state.selectedOptions,
+      notes: state.notes,
+      reviewed: state.reviewed,
+      completed: state.completed,
+      showMarkscheme: state.showMarkscheme
+    }))
+  }, [state.feedback, state.selectedOptions, state.notes, state.reviewed, state.completed, state.showMarkscheme])
 
   const filteredQuestions = useMemo(() => {
     return state.questions.filter((question) => {
@@ -349,15 +284,15 @@ export default function GuestQuestionBank() {
         (!state.filters.years.length || state.filters.years.includes(question.year)) &&
         (!state.filters.types.length || state.filters.types.includes(question.type))
 
-      if (state.filters.status === "review") {
-        return matchesSearch && matchesFilters && question.reviewed
-      } else if (state.filters.status === "complete") {
-        return matchesSearch && matchesFilters && question.completed
+      if (state.filters.status === "complete") {
+        return matchesSearch && matchesFilters && state.feedback[question.questionId] === "correct"
+      } else if (state.filters.status === "review") {
+        return matchesSearch && matchesFilters && state.reviewed[question.questionId]
       }
 
       return matchesSearch && matchesFilters
     })
-  }, [state.questions, state.filters, state.searchQuery])
+  }, [state.questions, state.filters, state.searchQuery, state.feedback, state.reviewed])
 
   const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
 
@@ -381,27 +316,10 @@ export default function GuestQuestionBank() {
           : [...filterValues, value]
         
         const newFilters = { ...state.filters, [tag]: updatedFilter }
-        
-        if (tag === 'exams') {
-          const selectedExams = newFilters.exams
-          newFilters.subjects = newFilters.subjects.filter(subject => 
-            state.questions.some(q => selectedExams.includes(q.exam) && q.subject === subject)
-          )
-          newFilters.topics = newFilters.topics.filter(topic => 
-            state.questions.some(q => selectedExams.includes(q.exam) && q.topic === topic)
-          )
-          newFilters.subtopics = newFilters.subtopics.filter(subtopic => 
-            state.questions.some(q => selectedExams.includes(q.exam) && q.subtopic === subtopic)
-          )
-          newFilters.types = newFilters.types.filter(type => 
-            state.questions.some(q => selectedExams.includes(q.exam) && q.type === type)
-          )
-        }
-        
         dispatch({ type: "SET_FILTERS", payload: newFilters })
       }
     },
-    [state.filters, state.questions]
+    [state.filters]
   )
 
   const handleOptionClick = useCallback(
@@ -409,70 +327,10 @@ export default function GuestQuestionBank() {
       const isCorrect = option === correctOption
       const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" }
       const newSelectedOptions = { ...state.selectedOptions, [questionId]: option }
-
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions })
-
-      const updatedQuestions = state.questions.map(q =>
-        q.questionId === questionId ? { ...q, completed: true } : q
-      )
-      dispatch({ type: "SET_QUESTIONS", payload: updatedQuestions })
-
-      toast({
-        title: isCorrect ? "Correct!" : "Incorrect",
-        description: isCorrect ? "Well done!" : `The correct answer was ${correctOption}.`,
-        variant: isCorrect ? "default" : "destructive",
-      })
     },
-    [state.feedback, state.selectedOptions, state.questions, toast]
-  )
-
-  const handleNumericalSubmit = useCallback(
-    (questionId: string, userAnswer: string, correctAnswer: string) => {
-      const isCorrect = parseFloat(userAnswer).toFixed(2) === parseFloat(correctAnswer).toFixed(2)
-      const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" }
-      dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
-
-      const updatedQuestions = state.questions.map(q =>
-        q.questionId === questionId ? { ...q, completed: true } : q
-      )
-      dispatch({ type: "SET_QUESTIONS", payload: updatedQuestions })
-
-      toast({
-        title: isCorrect ? "Correct!" : "Incorrect",
-        description: isCorrect ? "Well done!" : `The correct answer was ${correctAnswer}.`,
-        variant: isCorrect ? "default" : "destructive",
-      })
-    },
-    [state.feedback, state.questions, toast]
-  )
-
-  const handleMarkForReview = useCallback(
-    (questionId: string) => {
-      const updatedQuestions = state.questions.map(q =>
-        q.questionId === questionId ? { ...q, reviewed: true } : q
-      )
-      dispatch({ type: "SET_QUESTIONS", payload: updatedQuestions })
-      toast({
-        title: "Marked for review",
-        description: "This question has been marked for review.",
-      })
-    },
-    [state.questions, toast]
-  )
-
-  const handleMarkComplete = useCallback(
-    (questionId: string) => {
-      const updatedQuestions = state.questions.map(q =>
-        q.questionId === questionId ? { ...q, completed: true } : q
-      )
-      dispatch({ type: "SET_QUESTIONS", payload: updatedQuestions })
-      toast({
-        title: "Marked as complete",
-        description: "This question has been marked as complete.",
-      })
-    },
-    [state.questions, toast]
+    [state.feedback, state.selectedOptions]
   )
 
   const handleNoteChange = useCallback(
@@ -483,85 +341,74 @@ export default function GuestQuestionBank() {
     [state.notes]
   )
 
-  const handleDeleteNote = useCallback(
-    async (questionId: string): Promise<void> => {
-      const newNotes = { ...state.notes }
-      delete newNotes[questionId]
-      dispatch({ type: "SET_NOTES", payload: newNotes })
-      toast({
-        title: "Note deleted",
-        description: "The note has been removed.",
-      })
-    },
-    [state.notes, toast]
-  )
-
   const handleNavigatorClick = useCallback((index: number) => {
     const newPage = Math.floor(index / PAGE_SIZE) + 1
     dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
     setIsNavigatorOpen(false)
-    setTimeout(() => {
-      const questionElement = document.getElementById(`question-${filteredQuestions[index].questionId}`)
-      if (questionElement) {
-        questionElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    }, 100)
-  }, [filteredQuestions])
+  }, [])
+
+  const handleMarkForReview = useCallback(
+    (questionId: string) => {
+      const newReviewed = { ...state.reviewed, [questionId]: true }
+      dispatch({ type: "SET_REVIEWED", payload: newReviewed })
+    },
+    [state.reviewed]
+  )
+
+  const handleMarkComplete = useCallback(
+    (questionId: string) => {
+      const newCompleted = { ...state.completed, [questionId]: true }
+      dispatch({ type: "SET_COMPLETED", payload: newCompleted })
+    },
+    [state.completed]
+  )
+
+  const handleSetDropdown = useCallback((filterType: string) => {
+    return (value: SetStateAction<boolean>) => {
+      const newValue = typeof value === 'function' ? value(state.dropdowns[filterType] || false) : value;
+      dispatch({
+        type: "SET_DROPDOWN",
+        payload: { tag: filterType, value: newValue },
+      });
+    };
+  }, [state.dropdowns]);
+
+  const handleMarkschemeToggle = useCallback((questionId: string) => {
+    const newShowMarkscheme = { ...state.showMarkscheme, [questionId]: !state.showMarkscheme[questionId] }
+    dispatch({ type: "SET_SHOW_MARKSCHEME", payload: newShowMarkscheme })
+  }, [state.showMarkscheme])
 
   const questionStats = useMemo(() => {
     const stats = {
-      notVisited: filteredQuestions.length,
+      notVisited: 0,
       notAnswered: 0,
       answered: 0,
       markedForReview: 0,
     }
 
     filteredQuestions.forEach((question) => {
-      if (question.reviewed) {
+      if (state.reviewed[question.questionId]) {
         stats.markedForReview++
-        stats.notVisited--
-      } else if (question.completed) {
+      } else if (state.feedback[question.questionId] === "correct") {
         stats.answered++
-        stats.notVisited--
-      } else if (state.selectedOptions[question.questionId] || state.numericalAnswers[question.questionId]) {
+      } else if (state.selectedOptions[question.questionId]) {
         stats.notAnswered++
-        stats.notVisited--
+      } else {
+        stats.notVisited++
       }
     })
 
     return stats
-  }, [filteredQuestions, state.selectedOptions, state.numericalAnswers])
+  }, [filteredQuestions, state.feedback, state.selectedOptions, state.reviewed])
 
   if (state.loading) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
           <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-            Question Bank
+            Guest Question Bank
           </h1>
-          <div className="flex space-x-4 mb-6">
-            <Skeleton height={40} width={120} />
-            <Skeleton height={40} width={120} />
-            <Skeleton height={40} width={120} />
-          </div>
-          <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map(
-              (filterType) => (
-                <div key={filterType} className="flex items-center space-x-2">
-                  <Skeleton height={40} width={120} />
-                </div>
-              )
-            )}
-          </div>
-          <div>
-            {[...Array(10)].map((_, i) => (
-              <div key={i} className="mb-4 p-4 border rounded-md">
-                <Skeleton height={20} width={"80%"} />
-                <Skeleton height={20} width={"90%"} />
-                <Skeleton height={20} width={"60%"} />
-              </div>
-            ))}
-          </div>
+          <Skeleton count={5} height={100} className="mb-4" />
         </div>
       </div>
     )
@@ -572,10 +419,30 @@ export default function GuestQuestionBank() {
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
           <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-            Question Bank
+            Guest Question Bank
           </h1>
 
-          <GuestBanner />
+          <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
+            <CardContent className="p-4 flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
+                  <HelpCircle className="h-5 w-5 text-blue-700" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-medium text-blue-900">Guest Access</h3>
+                  <p className="text-sm text-blue-700">
+                    Try out the Question Bank features. Sign in to save your progress across devices.
+                  </p>
+                </div>
+              </div>
+              <Link href="/QuestionBank" className="hidden sm:block">
+                <Button variant="outline" className="border-blue-200 hover:border-blue-300 hover:bg-blue-50">
+                  Sign in
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
 
           <div className="mb-6 flex items-center space-x-4">
             <div className="relative flex-grow">
@@ -595,20 +462,24 @@ export default function GuestQuestionBank() {
                   Question Navigator
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
+              <DialogContent className="sm:max-w-[80vw] sm:max-h-[80vh]">
                 <DialogHeader>
                   <DialogTitle>Question Navigator</DialogTitle>
                 </DialogHeader>
-                <ScrollArea className="h-[300px]">
-                  <div className="grid grid-cols-5 gap-2 p-4">
+                <ScrollArea className="h-[60vh]">
+                  <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
                     {filteredQuestions.map((question, index) => (
                       <Tooltip key={question.questionId}>
                         <TooltipTrigger asChild>
                           <Button
-                            variant="outline"
+                            variant={state.feedback[question.questionId] === "correct" ? "default" : "outline"}
                             size="sm"
                             onClick={() => handleNavigatorClick(index)}
-                            className="w-10 h-10"
+                            className={`w-10 h-10 ${
+                              state.feedback[question.questionId] === "correct"
+                                ? "bg-green-100 border-green-500 text-green-700"
+                                : ""
+                            }`}
                           >
                             {index + 1}
                           </Button>
@@ -665,76 +536,68 @@ export default function GuestQuestionBank() {
                 <TooltipTrigger asChild>
                   <Popover
                     content={
-                      <div className="w-full bg-white rounded-md p-2 sm:w-40">
-                        {Array.from(
-                          new Set(
-                            state.questions.map((q) => {
-                              switch (filterType) {
-                                case "exams":
-                                  return q.exam
-                                case "subjects":
-                                  return q.subject
-                                case "topics":
-                                  return q.topic
-                                case "subtopics":
-                                  return q.subtopic
-                                case "difficulties":
-                                  return q.difficulty
-                                case "years":
-                                  return q.year
-                                case "types":
-                                  return q.type
-                                default:
-                                  return ""
-                              }
-                            })
-                          )
-                        ).map((value: string) => (
-                          <div key={value} className="flex items-center">
-                            <input
-                              type="checkbox"
-                              id={`${filterType}-${value}`}
-                              className="mr-2"
-                              checked={
-                                (state.filters[filterType as keyof FiltersType] as string[] ||
-                                  []
-                                ).includes(value)
-                              }
-                              onChange={() =>
-                                handleFilterChange(filterType as keyof FiltersType, value)
-                              }
-                            />
-                            <label
-                              htmlFor={`${filterType}-${value}`}
-                              className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
-                            >
-                              {value}
-                            </label>
-                          </div>
-                        ))}
+                      <div className="w-full bg-white rounded-md p-2 sm:w-80">
+                        <Input
+                          type="text"
+                          placeholder={`Search ${filterType}...`}
+                          className="mb-2"
+                        />
+                        <div className="max-h-60 overflow-y-auto">
+                          {Array.from(
+                            new Set(
+                              state.questions.map((q) => {
+                                switch (filterType) {
+                                  case "exams":
+                                    return q.exam
+                                  case "subjects":
+                                    return q.subject
+                                  case "topics":
+                                    return q.topic
+                                  case "subtopics":
+                                    return q.subtopic
+                                  case "difficulties":
+                                    return q.difficulty
+                                  case "years":
+                                    return q.year
+                                  case "types":
+                                    return q.type
+                                  default:
+                                    return ""
+                                }
+                              })
+                            )
+                          ).map((value: string) => (
+                            <div key={value} className="flex items-center">
+                              <input
+                                type="checkbox"
+                                id={`${filterType}-${value}`}
+                                className="mr-2"
+                                checked={
+                                  (state.filters[filterType as keyof FiltersType] as string[] ||
+                                    []
+                                  ).includes(value)
+                                }
+                                onChange={() =>
+                                  handleFilterChange(filterType as keyof FiltersType, value)
+                                }
+                              />
+                              <label
+                                htmlFor={`${filterType}-${value}`}
+                                className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
+                              >
+                                {value}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     }
                     align="start"
-                    openPopover={state.dropdowns[filterType as keyof typeof state.dropdowns]}
-                    setOpenPopover={(open) => {
-                      dispatch({
-                        type: "SET_DROPDOWN",
-                        payload: { tag: filterType as keyof FiltersType, value: !!open },
-                      })
-                    }}
+                    openPopover={state.dropdowns[filterType]}
+                    setOpenPopover={handleSetDropdown(filterType)}
                   >
                     <button
-                      onClick={() =>
-                        dispatch({
-                          type: "SET_DROPDOWN",
-                          payload: {
-                            tag: filterType as keyof FiltersType,
-                            value: !state.dropdowns[
-                              filterType as keyof typeof state.dropdowns
-                            ],
-                          },
-                        })
-                      }
+                      onClick={() => handleSetDropdown(filterType)((prev) => !prev)}
                       className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
                     >
                       <p className="text-gray-600">
@@ -748,9 +611,7 @@ export default function GuestQuestionBank() {
                       </p>
                       <ChevronDown
                         className={`h-4 w-4 text-gray-600 transition-all ${
-                          state.dropdowns[filterType as keyof typeof state.dropdowns]
-                            ? "rotate-180"
-                            : ""
+                          state.dropdowns[filterType] ? "rotate-180" : ""
                         }`}
                       />
                     </button>
@@ -777,82 +638,79 @@ export default function GuestQuestionBank() {
                 </div>
                 <Progress 
                   value={(questionStats.answered / filteredQuestions.length) * 100} 
-                  className="w-full h-1 bg-gray-700 progress-indicator" 
+                  className="w-full h-1 bg-gray-700" 
                 />
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   <StatusCard
-                    icon={<Circle className="h-6 w-6 text-gray-400" />}
+                    icon={<HelpCircle className="h-5 w-5" />}
                     label="Not Visited"
                     value={questionStats.notVisited}
                     color="text-gray-400"
                   />
                   <StatusCard
-                    icon={<HelpCircle className="h-6 w-6 text-yellow-400" />}
+                    icon={<Circle className="h-5 w-5" />}
                     label="Not Answered"
                     value={questionStats.notAnswered}
-                    color="text-yellow-400"
+                    color="text-blue-400"
                   />
                   <StatusCard
-                    icon={<CheckCircle2 className="h-6 w-6 text-green-400" />}
+                    icon={<CheckCircle2 className="h-5 w-5" />}
                     label="Answered"
                     value={questionStats.answered}
                     color="text-green-400"
                   />
                   <StatusCard
-                    icon={<Flag className="h-6 w-6 text-red-400" />}
-                    label="Marked for Review"
+                    icon={<Flag className="h-5 w-5" />}
+                    label="For Review"
                     value={questionStats.markedForReview}
-                    color="text-red-400"
+                    color="text-yellow-400"
                   />
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {paginatedQuestions.map((question) => (
-            <Question
-              key={question.questionId}
-              question={question}
-              feedback={state.feedback[question.questionId]}
-              selectedOption={state.selectedOptions[question.questionId]}
-              numericalAnswer={state.numericalAnswers[question.questionId]}
-              showMarkscheme={state.showMarkscheme[question.questionId]}
-              handleOptionClick={handleOptionClick}
-              handleNumericalSubmit={handleNumericalSubmit}
-              handleNumericalChange={(questionId, value) =>
-                dispatch({
-                  type: "SET_NUMERICAL_ANSWERS",
-                  payload: { ...state.numericalAnswers, [questionId]: value },
-                })
-              }
-              handleMarkschemeToggle={() =>
-                dispatch({
-                  type: "SET_SHOW_MARKSCHEME",
-                  payload: {
-                    ...state.showMarkscheme,
-                    [question.questionId]: !state.showMarkscheme[question.questionId],
-                  },
-                })
-              }
-              handleMarkForReview={handleMarkForReview}
-              handleMarkComplete={handleMarkComplete}
-              isMarkedForReview={question.reviewed}
-              isMarkedComplete={question.completed}
-              markschemesDisabled={false}
-              note={state.notes[question.questionId] || ""}
-              handleNoteChange={handleNoteChange}
-              handleDeleteNote={handleDeleteNote}
-              userId="guest"
-              totalQuestions={filteredQuestions.length}
-              currentQuestionIndex={paginatedQuestions.indexOf(question)}
-              handleQuestionChange={handleNavigatorClick}
-            />
-          ))}
-          <Pagination
-            currentPage={state.currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
+          {paginatedQuestions.length > 0 ? (
+            <>
+              {paginatedQuestions.map((question, index) => (
+                <Question
+                  key={question.questionId}
+                  question={question}
+                  feedback={state.feedback[question.questionId]}
+                  selectedOption={state.selectedOptions[question.questionId]}
+                  handleOptionClick={handleOptionClick}
+                  handleMarkForReview={handleMarkForReview}
+                  handleMarkComplete={handleMarkComplete}
+                  isMarkedForReview={state.reviewed[question.questionId]}
+                  isMarkedComplete={state.completed[question.questionId]}
+                  note={state.notes[question.questionId] || ""}
+                  handleNoteChange={handleNoteChange}
+                  totalQuestions={filteredQuestions.length}
+                  currentQuestionIndex={index + (state.currentPage - 1) * PAGE_SIZE}
+                  handleQuestionChange={handleNavigatorClick}
+                  numericalAnswer=""
+                  showMarkscheme={state.showMarkscheme[question.questionId] || false}
+                  handleNumericalSubmit={() => {}}
+                  handleNumericalChange={() => {}}
+                  handleMarkschemeToggle={() => handleMarkschemeToggle(question.questionId)}
+                  markschemesDisabled={false}
+                  userId=""
+                  handleDeleteNote={async (questionId: string) => {
+                    const newNotes = { ...state.notes }
+                    delete newNotes[questionId]
+                    dispatch({ type: "SET_NOTES", payload: newNotes })
+                  }}
+                />
+              ))}
+              <Pagination
+                currentPage={state.currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            </>
+          ) : (
+            <p className="text-red-400">No questions found with the selected filters.</p>
+          )}
         </div>
       </div>
     </TooltipProvider>

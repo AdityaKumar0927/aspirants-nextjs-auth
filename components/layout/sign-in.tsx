@@ -86,12 +86,18 @@ function SignInModalComponent({
             </Button>
             <p className="text-sm text-gray-500">
               By signing in, you agree to our{' '}
-              <a href="/terms" className="underline">
+              <a href="/terms-of-service" className="underline">
                 Terms of Service
               </a>{' '}
-              and{' '}
-              <a href="/privacy" className="underline">
+              ,{' '}
+              <a href="/privacy-policy" className="underline">
                 Privacy Policy
+              </a>
+              {' '}
+              and 
+              {' '}
+              <a href="/cookie-policy" className="underline">
+                Cookie Policy
               </a>
               .
             </p>

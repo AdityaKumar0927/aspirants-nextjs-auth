@@ -14,6 +14,7 @@ import { HoverEffect } from '@/components/ui/card-hover-effect';
 import Chat from '@/components/shared/Chat';
 import { AnimatedGradientText } from '@/components/magicui/animated-gradient-text';
 import Ripple from '../components/magicui/ripple';
+import { SmileIcon } from 'lucide-react';
 
 const projects = [
   {
@@ -84,6 +85,11 @@ export default function Page() {
               >
                 Thousands of practice questions, study notes, and flashcards, all in one place.
               </p>
+              <div className="flex items-center justify-center mt-5">
+      <p className="text-xl font-light">
+        PS: It's free. 😊
+      </p>
+    </div>
               <div
                 className="mx-auto mt-6 flex flex-col sm:flex-row animate-fade-up items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5 opacity-0"
                 style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}
@@ -127,12 +133,14 @@ export default function Page() {
         Understand your strengths and weaknesses questions by exam, topic, sub-topic, year, difficulty, completed, or marked for review to save time.
       </p>
 
-      <div className="flex justify-between items-center bg-background-image bg-border mt-10 bg-cover bg-center">
+      <div className="flex justify-center items-center min-h-screen bg-background-image bg-border bg-cover bg-center">
+      <div className="w-full max-w-7xl">
         <ContainerScroll titleComponent={<></>}>
           <Dashboard />
         </ContainerScroll>
       </div>
-
+    </div>
+    
       <div className="container mx-auto px-4 py-12 max-w-6xl">
         <h1 className="text-center text-gray-600 text-sm mb-4">aspirants X ChatGPT 4o</h1>
         <h2 className="text-center mb-10 font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-2xl sm:leading-[4rem]">
@@ -149,19 +157,21 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="mb-20">
-        <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-          Never Forget Anything
-        </h4>
+      <div className="container mx-auto px-4 mb-20">
+      <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+        Never Forget Anything
+      </h4>
 
-        <p className="text-sm lg:text-base mb-12 max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal">
-          View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill.
-        </p>
+      <p className="text-sm lg:text-base mb-12 max-w-2xl mx-auto text-neutral-500 text-center font-normal">
+        View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill.
+      </p>
 
-        <div className="relative z-20 p-4">
+      <div className="flex justify-center">
+        <div className="relative z-20 p-4 w-full max-w-4xl">
           <NoteApp />
         </div>
       </div>
+    </div>
 
       <div className="mb-20">
         <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-2xl sm:leading-[4rem]">
