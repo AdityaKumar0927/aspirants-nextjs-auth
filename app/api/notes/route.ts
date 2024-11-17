@@ -46,12 +46,6 @@ export async function POST(req: NextRequest) {
         type,
         userId: session.user.id,
         questionId,
-        user: {
-          connect: { id: session.user.id }
-        },
-        question: {
-          connect: { id: questionId }
-        }
       },
       include: { question: true },
     });
@@ -73,7 +67,7 @@ export async function PUT(req: NextRequest) {
 
     const { id, content, title, type } = await req.json();
 
-    if (!id || !content) {
+    if (!id || !content || !title || !type) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
@@ -85,7 +79,7 @@ export async function PUT(req: NextRequest) {
       data: { 
         content,
         title,
-        type
+        type,
       },
     });
 
@@ -136,5 +130,3 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
-
-console.log('Notes API routes have been updated.');

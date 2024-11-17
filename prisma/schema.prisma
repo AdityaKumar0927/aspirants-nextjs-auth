@@ -156,7 +156,6 @@ model Note {
 
   @@index([userId])
   @@index([questionId])
-  @@unique([userId, questionId])
 }
 
 enum NoteType {

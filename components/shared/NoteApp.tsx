@@ -27,12 +27,13 @@ type Note = {
   id: string
   title: string
   content: string
+  type: NoteType
   createdAt: string
   updatedAt: string
-  type: NoteType
+  userId: string
+  questionId: string | null
 }
 
-// Custom hook for speech recognition
 const useSpeechRecognition = () => {
   const [transcript, setTranscript] = useState('')
   const [listening, setListening] = useState(false)
@@ -122,7 +123,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
   )
 }
 
-export default function NoteApp() {
+export default function NoteApp({ questionId }: { questionId?: string }) {
   const [notes, setNotes] = useState<Note[]>([])
   const [editingNote, setEditingNote] = useState<Note | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -176,9 +177,10 @@ export default function NoteApp() {
       const noteData = {
         ...data,
         content: noteContent,
+        questionId: questionId || null,
       }
 
-      const url = editingNote ? `/api/notes/${editingNote.id}` : '/api/notes'
+      const url = editingNote ? `/api/notes` : '/api/notes'
       const method = editingNote ? 'PUT' : 'POST'
 
       const response = await fetch(url, {
@@ -186,7 +188,7 @@ export default function NoteApp() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(noteData),
+        body: JSON.stringify(editingNote ? { ...noteData, id: editingNote.id } : noteData),
       })
 
       if (!response.ok) throw new Error('Failed to save note')
@@ -215,8 +217,12 @@ export default function NoteApp() {
 
   const deleteNote = async (id: string) => {
     try {
-      const response = await fetch(`/api/notes/${id}`, {
+      const response = await fetch(`/api/notes`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
       })
 
       if (!response.ok) throw new Error('Failed to delete note')
