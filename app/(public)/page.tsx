@@ -1,20 +1,15 @@
-'use client';
-
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSession } from "next-auth/react";
 import { ContainerScroll } from '@/components/ui/container-scroll-animation';
 import Dashboard from '@/components/home/DashboardContent';
 import NoteApp from '@/components/shared/NoteApp';
 import MainContent from '@/components/home/MainContent';
 import ShinyButton from '@/components/magicui/shiny-button';
-import ShimmerButton from '@/components/magicui/shimmer-button';
 import { HoverEffect } from '@/components/ui/card-hover-effect';
 import Chat from '@/components/shared/Chat';
 import { AnimatedGradientText } from '@/components/magicui/animated-gradient-text';
 import Ripple from '../components/magicui/ripple';
+import TryNowButton from './TryNowButton';
 
 const projects = [
   {
@@ -49,22 +44,7 @@ const projects = [
   },
 ];
 
-const fadeUpVariants = {
-  initial: {
-    opacity: 0,
-    y: 24,
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-  },
-};
-
 export default function Page() {
-  const fadeInRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(fadeInRef as React.RefObject<HTMLDivElement>, { once: true });
-  const { data: session } = useSession();
-
   return (
     <div className="z-10 w-full px-5 xl:px-0">
       <div className="text-center px-4">
@@ -95,16 +75,7 @@ export default function Page() {
                 className="mx-auto mt-6 flex flex-col sm:flex-row animate-fade-up items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5 opacity-0"
                 style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}
               >
-                <Link 
-                  className="group flex max-w-fit items-center" 
-                  href={session ? "/QuestionBank" : "/QuestionBank/guest"}
-                >
-                  <ShimmerButton className="shadow-2xl">
-                    <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-                      Try Now
-                    </span>
-                  </ShimmerButton>
-                </Link>
+                <TryNowButton />
                 <Link className="flex items-center justify-center space-x-2" href="BrowseResources">
                   <ShinyButton text="Browse Resources" />
                 </Link>
@@ -184,20 +155,6 @@ export default function Page() {
 
         <div className="max-w-5xl mx-auto px-8">
           <HoverEffect items={projects} />
-        </div>
-
-        <div ref={fadeInRef}>
-          <motion.div
-            initial="initial"
-            animate={isInView ? "animate" : "initial"}
-            variants={fadeUpVariants}
-            transition={{
-              duration: 0.6,
-              delay: 0.3,
-              ease: [0.21, 0.47, 0.32, 0.98],
-            }}
-          >
-          </motion.div>
         </div>
       </div>
     </div>
