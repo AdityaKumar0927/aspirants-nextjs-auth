@@ -178,6 +178,7 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
         ...data,
         content: noteContent,
         questionId: questionId || null,
+        type: 'TEXT' as NoteType, // Ensure type is 'TEXT' in uppercase
       }
 
       const url = editingNote ? `/api/notes` : '/api/notes'
