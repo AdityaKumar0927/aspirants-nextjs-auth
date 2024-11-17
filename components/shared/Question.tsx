@@ -821,6 +821,116 @@ export default function Question({
                 </div>
               </div>
             )}
+            {showNotes && (
+              <Card className="mt-6">
+                <CardHeader>
+                  <CardTitle>Notes</CardTitle>
+                  <CardDescription>Add your notes for this question here</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="mb-4">
+                    <Label htmlFor="note-template">Note Template</Label>
+                    <Select onValueChange={handleTemplateChange}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a template" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="cornell">Cornell Method</SelectItem>
+                        <SelectItem value="outline">Outline Method</SelectItem>
+                        <SelectItem value="mindmap">Mind Mapping</SelectItem>
+                        <SelectItem value="sq3r">SQ3R Method</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <Textarea
+                    placeholder="Write your notes here..."
+                    value={note}
+                    onChange={(e) => handleNoteChange(question.questionId, e.target.value)}
+                    rows={5}
+                  />
+                </CardContent>
+                <CardFooter className="flex justify-between">
+                  <div>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button variant="outline" onClick={saveNote}>
+                          Save Note
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>Save your note</TooltipContent>
+                    </Tooltip>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button variant="outline" onClick={deleteNote} className="ml-2">
+                          Delete Note
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>Delete your note</TooltipContent>
+                    </Tooltip>
+                  </div>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button variant="outline" onClick={exportNote}>
+                        Export Note
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Export your note</TooltipContent>
+                  </Tooltip>
+                </CardFooter>
+              </Card>
+            )}
+            {showAI && (
+              <Card className="mt-6">
+                <CardHeader>
+                  <CardTitle>AI Assistant</CardTitle>
+                  <CardDescription>Get help from our AI assistant</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Chat questionText={question.text} />
+                </CardContent>
+              </Card>
+            )}
+            {showComments && (
+              <Card className="mt-6">
+                <CardHeader>
+                  <CardTitle>Comments</CardTitle>
+                  <CardDescription>Discuss this question with others</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="mb-4">
+                    <Label htmlFor="comment-sort">Sort by</Label>
+                    <Select
+                      value={commentSort}
+                      onValueChange={(value) =>
+                        setCommentSort(value as 'newest' | 'oldest' | 'popular')
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Sort comments" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="newest">Newest</SelectItem>
+                        <SelectItem value="oldest">Oldest</SelectItem>
+                        <SelectItem value="popular">Most Popular</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <ScrollArea className="h-[300px] rounded-md border p-4">
+                    {sortedComments.map((comment) => renderComment(comment))}
+                  </ScrollArea>
+                  <div className="mt-4">
+                    <Textarea
+                      placeholder="Write a comment..."
+                      value={newComment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                    />
+                    <Button onClick={handleAddComment} className="mt-2">
+                      Add Comment
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </CardContent>
           <CardFooter className="flex justify-between">
             <div className="flex space-x-2">
@@ -904,143 +1014,6 @@ export default function Question({
             </div>
           </CardFooter>
         </Card>
-        <AnimatePresence>
-          {showNotes && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Card className="mb-6">
-                <CardHeader>
-                  <CardTitle>Notes</CardTitle>
-                  <CardDescription>Add your notes for this question here</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="mb-4">
-                    <Label htmlFor="note-template">Note Template</Label>
-                    <Select onValueChange={handleTemplateChange}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a template" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="cornell">Cornell Method</SelectItem>
-                        <SelectItem value="outline">Outline Method</SelectItem>
-                        <SelectItem value="mindmap">Mind Mapping</SelectItem>
-                        <SelectItem value="sq3r">SQ3R Method</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <Textarea
-                    placeholder="Write your notes here..."
-                    value={note}
-                    onChange={(e) => handleNoteChange(question.questionId, e.target.value)}
-                    rows={5}
-                  />
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                  <div>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button variant="outline" onClick={saveNote}>
-                          Save Note
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Save your note</TooltipContent>
-                    </Tooltip>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button variant="outline" onClick={deleteNote} className="ml-2">
-                          Delete Note
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Delete your note</TooltipContent>
-                    </Tooltip>
-                  </div>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button variant="outline" onClick={exportNote}>
-                        Export Note
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Export your note</TooltipContent>
-                  </Tooltip>
-                </CardFooter>
-              </Card>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <AnimatePresence>
-          {showAI && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Card className="mb-6">
-                <CardHeader>
-                  <CardTitle>AI Assistant</CardTitle>
-                  <CardDescription>Get help from our AI assistant</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Chat questionText={question.text} />
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <AnimatePresence>
-          {showComments && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Card className="mb-6">
-                <CardHeader>
-                  <CardTitle>Comments</CardTitle>
-                  <CardDescription>Discuss this question with others</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="mb-4">
-                    <Label htmlFor="comment-sort">Sort by</Label>
-                    <Select
-                      value={commentSort}
-                      onValueChange={(value) =>
-                        setCommentSort(value as 'newest' | 'oldest' | 'popular')
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Sort comments" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="newest">Newest</SelectItem>
-                        <SelectItem value="oldest">Oldest</SelectItem>
-                        <SelectItem value="popular">Most Popular</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <ScrollArea className="h-[300px] rounded-md border p-4">
-                    {sortedComments.map((comment) => renderComment(comment))}
-                  </ScrollArea>
-                  <div className="mt-4">
-                    <Textarea
-                      placeholder="Write a comment..."
-                      value={newComment}
-                      onChange={(e) => setNewComment(e.target.value)}
-                    />
-                    <Button onClick={handleAddComment} className="mt-2">
-                      Add Comment
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </TooltipProvider>
   )
