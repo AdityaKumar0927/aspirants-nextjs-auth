@@ -12,17 +12,21 @@ export default async function ProfilePageWrapper() {
     redirect('/login')
   }
 
+  const userId = session.user.id
   const userRole = session.user?.role?.name || 'member'
 
   return (
     <Suspense fallback={<ProfileFormSkeleton />}>
-      <ProfileForm initialData={await fetchProfileData(session.user.id)} userRole={userRole} />
+      <ProfileForm 
+        userId={userId}
+        initialData={await fetchProfileData(userId)} 
+        userRole={userRole} 
+      />
     </Suspense>
   )
 }
 
 async function fetchProfileData(userId: string) {
-  // Fetch profile data from your API
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/profile/${userId}`, { cache: 'no-store' })
   if (!response.ok) {
     throw new Error('Failed to fetch profile data')
