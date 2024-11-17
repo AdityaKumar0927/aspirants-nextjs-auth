@@ -4,8 +4,9 @@ import { authOptions } from '../api/auth/[...nextauth]/options'
 import ProfileForm from './profile-form'
 import { Skeleton } from "@/components/ui/skeleton"
 import { redirect } from 'next/navigation'
+import prisma from "@/lib/prisma"
 
-export default async function ProfilePageWrapper() {
+export default async function ProfileFormWrapper() {
   const session = await getServerSession(authOptions)
 
   if (!session) {
@@ -15,23 +16,35 @@ export default async function ProfilePageWrapper() {
   const userId = session.user.id
   const userRole = session.user?.role?.name || 'member'
 
+  const userSettings = await prisma.userSettings.findUnique({
+    where: { userId: userId },
+  })
+
+  if (!userSettings) {
+    // Handle the case where user settings don't exist
+    // You might want to create default settings here
+    return <div>Error: User settings not found</div>
+  }
+
+  const initialData = {
+    id: userSettings.id,
+    username: userSettings.username,
+    email: userSettings.email,
+    bio: userSettings.bio,
+    urls: userSettings.urls as { value: string }[],
+    name: userSettings.name,
+    language: userSettings.language,
+  }
+
   return (
     <Suspense fallback={<ProfileFormSkeleton />}>
       <ProfileForm 
         userId={userId}
-        initialData={await fetchProfileData(userId)} 
+        initialData={initialData} 
         userRole={userRole} 
       />
     </Suspense>
   )
-}
-
-async function fetchProfileData(userId: string) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/profile/${userId}`, { cache: 'no-store' })
-  if (!response.ok) {
-    throw new Error('Failed to fetch profile data')
-  }
-  return response.json()
 }
 
 function ProfileFormSkeleton() {

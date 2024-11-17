@@ -4,6 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useSignInModal } from "./sign-in"
+import UserDropdown from "@/components/layout/user-dropdown"
 import { Button } from "@/components/ui/button"
 import NotificationDropdown from "@/components/shared/NotificationDropdown"
 import { Session } from "next-auth"
@@ -127,9 +128,6 @@ export default function NavBar({ session }: { session: Session | null }) {
               <>
                 <NotificationDropdown />
                 <UserDropdown session={session} />
-                <Button variant="outline" onClick={handleLogout}>
-                  Log Out
-                </Button>
               </>
             ) : (
               <Button
@@ -272,16 +270,6 @@ function MobileNavLinks({
             </Button>
             <UserDropdown session={session} />
           </div>
-          <Button
-            variant="outline"
-            className="w-full mt-4"
-            onClick={() => {
-              handleLogout()
-              setMenuOpen(false)
-            }}
-          >
-            Log Out
-          </Button>
         </>
       ) : (
         <Button
@@ -296,21 +284,6 @@ function MobileNavLinks({
         </Button>
       )}
     </nav>
-  )
-}
-
-function UserDropdown({ session }: { session: Session }) {
-  return (
-    <Button variant="ghost" className="flex items-center space-x-2 rounded-full">
-      <Image
-        src={session.user.image || "https://avatar.vercel.sh/fallback.png"}
-        width={32}
-        height={32}
-        alt={session.user.name || "User avatar"}
-        className="rounded-full"
-      />
-      <span className="md:inline hidden">{session.user.name}</span>
-    </Button>
   )
 }
 

@@ -1,37 +1,55 @@
 import { Separator } from "@/components/ui/separator"
 import ProfileForm from "./profile-form"
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "../api/auth/[...nextauth]/options"
+import { authOptions } from "@/app/api/auth/[...nextauth]/options"
 import { redirect } from "next/navigation"
-
-async function getProfileData(userId: string) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/profile/${userId}`, { cache: 'no-store' })
-  if (!response.ok) {
-    throw new Error('Failed to fetch profile data')
-  }
-  return response.json()
-}
+import prisma from "@/lib/prisma"
 
 export default async function SettingsProfilePage() {
   const session = await getServerSession(authOptions)
 
   if (!session) {
-    redirect('/login')
+    redirect('/aspirants.tech')
+  }
+
+  const userId = session.user.id
+
+  const userSettings = await prisma.userSettings.findUnique({
+    where: { userId: userId },
+  })
+
+  if (!userSettings) {
+    // Handle the case where user settings don't exist
+    // You might want to create default settings here
+    return <div>Error: User settings not found</div>
+  }
+
+  const initialData = {
+    id: userSettings.id,
+    username: userSettings.username,
+    email: userSettings.email,
+    bio: userSettings.bio,
+    urls: userSettings.urls as { value: string }[],
+    name: userSettings.name,
+    language: userSettings.language,
   }
 
   const userRole = session.user?.role?.name || 'member'
-  const initialData = await getProfileData(session.user.id)
 
   return (
-    <div className="space-y-6 max-w-3xl">
+    <div className="space-y-6">
       <div>
         <h3 className="text-lg font-medium">Profile</h3>
         <p className="text-sm text-muted-foreground">
-          This is how others will see you on the site.
+          Manage your profile information and settings
         </p>
       </div>
       <Separator />
-      <ProfileForm userId={session.user.id} initialData={initialData} userRole={userRole} />
+      <ProfileForm 
+        initialData={initialData} 
+        userRole={userRole} 
+        userId={userId}
+      />
     </div>
   )
 }
