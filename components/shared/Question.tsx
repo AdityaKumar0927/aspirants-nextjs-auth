@@ -601,7 +601,7 @@ export default function Component({
 
   return (
     <TooltipProvider>
-      <div {...handlers} className="relative min-h-screen pb-20">
+      <div {...handlers} className="relative pb-20">
         <Card className="w-full overflow-hidden mb-6">
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
