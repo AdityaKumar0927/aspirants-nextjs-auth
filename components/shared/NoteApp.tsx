@@ -578,7 +578,7 @@ export default function NoteApp() {
                         ) : note.type === 'TEXT' ? (
                           <div dangerouslySetInnerHTML={{ __html: note.content }} className="prose max-w-none" />
                         ) : (
-                          <p className="text-sm">{note.content}</p>
+                          <p className="text-sm">{note.content.replace(/'/g, "&apos;")}</p>
                         )}
                         <p className="text-xs text-muted-foreground mt-2">{new Date(note.updatedAt).toLocaleString()}</p>
                       </CardContent>
