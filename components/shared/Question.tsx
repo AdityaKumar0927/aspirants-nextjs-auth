@@ -822,86 +822,45 @@ export default function Question({
             )}
           </CardContent>
           <CardFooter className="flex justify-between">
-            <div className="flex space-x-2">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="outline"
-                    onClick={() => setShowNotes(!showNotes)}
-                  >
-                    <BookOpen className="h-4 w-4 mr-2" />
-                    Take a note
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Toggle Notes</TooltipContent>
-              </Tooltip>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="outline"
-                    onClick={() => setShowAI(!showAI)}
-                  >
-                    <LucideBot className="h-4 w-4 mr-2" />
-                    AI Assistant
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Toggle AI Assistant</TooltipContent>
-              </Tooltip>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="outline"
-                    onClick={() => setShowComments(!showComments)}
-                  >
-                    <MessageSquare className="h-4 w-4 mr-2" />
-                    Comments
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Toggle Comments</TooltipContent>
-              </Tooltip>
-            </div>
-            <div className="flex space-x-2">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="outline"
-                    onClick={onPreviousQuestion}
-                    disabled={currentQuestionIndex === 0}
-                  >
-                    Previous
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Go to previous question</TooltipContent>
-              </Tooltip>
-              <Select
-                value={currentQuestionIndex.toString()}
-                onValueChange={(value) => handleQuestionChange(parseInt(value))}
-              >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Select a question" />
-                </SelectTrigger>
-                <SelectContent>
-                  {Array.from({ length: totalQuestions }, (_, i) => (
-                    <SelectItem key={i} value={i.toString()}>
-                      Question {i + 1}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="outline"
-                    onClick={onNextQuestion}
-                    disabled={currentQuestionIndex === totalQuestions - 1}
-                  >
-                    Next
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Go to next question</TooltipContent>
-              </Tooltip>
-            </div>
-          </CardFooter>
+  <div className="flex space-x-2">
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="outline"
+          onClick={() => setShowNotes(!showNotes)}
+        >
+          <BookOpen className="h-4 w-4 mr-2" />
+          Take a note
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>Toggle Notes</TooltipContent>
+    </Tooltip>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="outline"
+          onClick={() => setShowAI(!showAI)}
+        >
+          <LucideBot className="h-4 w-4 mr-2" />
+          AI Assistant
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>Toggle AI Assistant</TooltipContent>
+    </Tooltip>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="outline"
+          onClick={() => setShowComments(!showComments)}
+        >
+          <MessageSquare className="h-4 w-4 mr-2" />
+          Comments
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>Toggle Comments</TooltipContent>
+    </Tooltip>
+  </div>
+</CardFooter>
         </Card>
         {showNotes && (
           <Card className="mb-6">
