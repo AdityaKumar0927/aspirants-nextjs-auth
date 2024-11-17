@@ -1,159 +1,118 @@
 'use client'
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useFieldArray, useForm } from "react-hook-form"
-import { z } from "zod"
-import Link from "next/link"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/components/ui/use-toast"
-import { Switch } from "@/components/ui/switch"
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog"
+import { useState, useEffect } from 'react'
+import { useForm, useFieldArray } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
+import { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { toast } from '@/components/ui/use-toast'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog'
 
 const profileFormSchema = z.object({
-  username: z.string().min(2, { message: "Username must be at least 2 characters." }).max(30, { message: "Username must not be longer than 30 characters." }),
-  email: z.string({ required_error: "Please select an email to display." }).email(),
+  username: z.string().min(2).max(30),
+  email: z.string().email(),
   bio: z.string().max(160).min(4),
-  urls: z
-    .array(
-      z.object({
-        value: z.string().url({ message: "Please enter a valid URL." }),
-      })
-    )
-    .optional(),
-  termsAccepted: z.boolean().default(false),
-  privacyPolicyAccepted: z.boolean().default(false),
-  cookiePolicyAccepted: z.boolean().default(false),
-  role: z.string().optional(),
+  urls: z.array(z.object({ value: z.string().url() })).optional(),
 })
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>
 
-type Role = 'member' | 'volunteer' | 'moderator' | 'administrator'
-
-interface ProfileFormProps {
-  initialData: ProfileFormValues
-  userRole: Role
-}
-
-export default function ProfileForm({ initialData, userRole }: ProfileFormProps) {
+export default function ProfileForm({ userId }: { userId: string }) {
+  const [isLoading, setIsLoading] = useState(false)
   const [showResetConfirm, setShowResetConfirm] = useState(false)
   const router = useRouter()
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues: initialData,
-    mode: "onChange",
+    defaultValues: {
+      username: '',
+      email: '',
+      bio: '',
+      urls: [],
+    },
   })
 
   const { fields, append } = useFieldArray({
-    name: "urls",
+    name: 'urls',
     control: form.control,
   })
 
-  async function onSubmit(data: ProfileFormValues) {
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch(`/api/profile/${userId}`)
+        if (!response.ok) throw new Error('Failed to fetch profile')
+        const data = await response.json()
+        form.reset(data)
+      } catch (error) {
+        console.error('Error fetching profile:', error)
+        toast({
+          title: 'Error',
+          description: 'Failed to load profile data',
+          variant: 'destructive',
+        })
+      }
+    }
+
+    fetchProfile()
+  }, [userId, form])
+
+  const onSubmit = async (data: ProfileFormValues) => {
+    setIsLoading(true)
     try {
-      const response = await fetch(`/api/settings/profile-settings`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch(`/api/profile/${userId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
 
-      if (!response.ok) {
-        if (response.status === 401) {
-          throw new Error('Unauthorized access')
-        }
-        throw new Error("Failed to update profile settings")
-      }
-
-      await Promise.all(
-        [
-          { policyName: "Terms and Conditions", accepted: data.termsAccepted },
-          { policyName: "Privacy Policy", accepted: data.privacyPolicyAccepted },
-          { policyName: "Cookie Policy", accepted: data.cookiePolicyAccepted },
-        ].map(async ({ policyName, accepted }) => {
-          const policyResponse = await fetch(`/api/policy/accept`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ policyName, accepted }),
-          })
-
-          if (!policyResponse.ok) {
-            const error = await policyResponse.json()
-            throw new Error(`Failed to accept ${policyName}: ${error.message}`)
-          }
-        })
-      )
+      if (!response.ok) throw new Error('Failed to update profile')
 
       toast({
-        title: "Profile settings updated successfully",
-        description: "Your profile has been updated.",
+        title: 'Success',
+        description: 'Profile updated successfully',
       })
-    } catch (error: any) {
+    } catch (error) {
+      console.error('Error updating profile:', error)
       toast({
-        title: "Failed to update profile settings",
-        description: error.message,
-        variant: "destructive",
+        title: 'Error',
+        description: 'Failed to update profile',
+        variant: 'destructive',
       })
-      if (error.message === 'Unauthorized access') {
-        router.push('/unauthorized')
-      }
+    } finally {
+      setIsLoading(false)
     }
   }
 
   const handleReset = async () => {
     try {
-      const response = await fetch(`/api/user/delete`, {
-        method: "DELETE",
+      const response = await fetch(`/api/profile/${userId}`, {
+        method: 'DELETE',
       })
 
-      if (!response.ok) {
-        if (response.status === 401) {
-          throw new Error('Unauthorized access')
-        }
-        throw new Error("Failed to reset user data")
-      }
+      if (!response.ok) throw new Error('Failed to reset profile')
 
       toast({
-        title: "User data reset successfully",
+        title: 'Success',
+        description: 'Profile reset successfully',
       })
-
-      router.push("/")
-    } catch (error: any) {
+      router.push('/')
+    } catch (error) {
+      console.error('Error resetting profile:', error)
       toast({
-        title: "Failed to reset user data",
-        description: error.message,
-        variant: "destructive",
+        title: 'Error',
+        description: 'Failed to reset profile',
+        variant: 'destructive',
       })
-      if (error.message === 'Unauthorized access') {
-        router.push('/unauthorized')
-      }
     }
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-3xl">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
           name="username"
@@ -161,11 +120,9 @@ export default function ProfileForm({ initialData, userRole }: ProfileFormProps)
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="Your username" {...field} />
+                <Input {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name. It can be your real name or a pseudonym. You can only change this once every 30 days.
-              </FormDescription>
+              <FormDescription>This is your public display name.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -177,39 +134,11 @@ export default function ProfileForm({ initialData, userRole }: ProfileFormProps)
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a verified email to display" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormDescription>
-                You can manage verified email addresses in your{" "}
-                <Link href="/forms">email settings</Link>.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="role"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Role</FormLabel>
               <FormControl>
-                <Input readOnly value={userRole} />
+                <Input {...field} type="email" />
               </FormControl>
-              <FormDescription>
-                Your current role in the system. This cannot be changed here.
-              </FormDescription>
+              <FormDescription>This is your contact email.</FormDescription>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -221,117 +150,54 @@ export default function ProfileForm({ initialData, userRole }: ProfileFormProps)
             <FormItem>
               <FormLabel>Bio</FormLabel>
               <FormControl>
-                <Textarea
-                  placeholder="Tell us a little bit about yourself"
-                  className="resize-none"
-                  {...field}
-                />
+                <Input {...field} />
               </FormControl>
-              <FormDescription>
-                You can <span>@mention</span> other users and organizations to link to them.
-              </FormDescription>
+              <FormDescription>Tell us about yourself in a few words.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <div className="space-y-4">
-          {fields.map((field, index) => (
-            <FormField
-              control={form.control}
-              key={field.id}
-              name={`urls.${index}.value`}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className={cn(index !== 0 && "sr-only")}>
-                    URLs
-                  </FormLabel>
-                  <FormDescription className={cn(index !== 0 && "sr-only")}>
-                    Add links to your website, blog, or social media profiles.
-                  </FormDescription>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          ))}
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            className="mt-2"
-            onClick={() => append({ value: "" })}
-          >
-            Add URL
-          </Button>
-        </div>
-
-        <div className="space-y-4">
+        {fields.map((field, index) => (
           <FormField
+            key={field.id}
             control={form.control}
-            name="termsAccepted"
+            name={`urls.${index}.value`}
             render={({ field }) => (
-              <FormItem className="flex justify-between items-center">
-                <FormLabel>Terms and Conditions</FormLabel>
+              <FormItem>
+                <FormLabel>URL {index + 1}</FormLabel>
                 <FormControl>
-                  <Switch checked={field.value} onCheckedChange={field.onChange} />
+                  <Input {...field} type="url" />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
+        ))}
 
-          <FormField
-            control={form.control}
-            name="privacyPolicyAccepted"
-            render={({ field }) => (
-              <FormItem className="flex justify-between items-center">
-                <FormLabel>Privacy Policy</FormLabel>
-                <FormControl>
-                  <Switch checked={field.value} onCheckedChange={field.onChange} />
-                </FormControl>
-              </FormItem>
-            )}
-          />
+        <Button type="button" variant="outline" onClick={() => append({ value: '' })}>
+          Add URL
+        </Button>
 
-          <FormField
-            control={form.control}
-            name="cookiePolicyAccepted"
-            render={({ field }) => (
-              <FormItem className="flex justify-between items-center">
-                <FormLabel>Cookie Policy</FormLabel>
-                <FormControl>
-                  <Switch checked={field.value} onCheckedChange={field.onChange} />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-        </div>
-
-        <div className="space-x-4 mt-6">
-          <Button type="submit">Update profile</Button>
-          <Button
-            type="button"
-            variant="destructive"
-            onClick={() => setShowResetConfirm(true)}
-          >
-            Reset Account
-          </Button>
-        </div>
+        <Button type="submit" disabled={isLoading}>
+          {isLoading ? 'Updating...' : 'Update Profile'}
+        </Button>
+        <Button type="button" variant="destructive" onClick={() => setShowResetConfirm(true)}>
+          Reset Profile
+        </Button>
       </form>
 
       <AlertDialog open={showResetConfirm} onOpenChange={setShowResetConfirm}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you sure you want to reset your account?</AlertDialogTitle>
+            <AlertDialogTitle>Are you sure you want to reset your profile?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action will delete all your data and cannot be undone.
+              This action cannot be undone. All of your data will be permanently deleted.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleReset}>Reset</AlertDialogAction>
+            <AlertDialogAction onClick={handleReset}>Reset Profile</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

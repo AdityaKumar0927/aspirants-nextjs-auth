@@ -4,11 +4,10 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useSignInModal } from "./sign-in"
-import UserDropdown from "./user-dropdown"
 import { Button } from "@/components/ui/button"
 import NotificationDropdown from "@/components/shared/NotificationDropdown"
 import { Session } from "next-auth"
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, Bell } from 'lucide-react'
 import useScroll from "@/lib/hooks/use-scroll"
 import {
   NavigationMenu,
@@ -23,6 +22,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
 import { signOut } from "next-auth/react"
+import { MultiStepLoader } from "@/components/aceternity-ui/multi-step-loader"
 
 const supportLinks = [
   {
@@ -47,11 +47,20 @@ const supportLinks = [
   },
 ]
 
+const logoutSteps = [
+  { text: "Saving your progress" },
+  { text: "Clearing session data" },
+  { text: "Securing your account" },
+  { text: "Logging you out" },
+  { text: "See you soon!" },
+]
+
 export default function NavBar({ session }: { session: Session | null }) {
   const { SignInModal, setShowSignInModal } = useSignInModal()
   const scrolled = useScroll(50)
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [supportOpen, setSupportOpen] = React.useState(false)
+  const [showLogoutLoader, setShowLogoutLoader] = React.useState(false)
   const menuRef = React.useRef<HTMLDivElement>(null)
 
   const toggleMenu = () => {
@@ -77,6 +86,14 @@ export default function NavBar({ session }: { session: Session | null }) {
       document.removeEventListener("mousedown", handleClickOutside)
     }
   }, [])
+
+  const handleLogout = async () => {
+    setShowLogoutLoader(true)
+    // Simulate logout process
+    await new Promise(resolve => setTimeout(resolve, 5000))
+    await signOut({ callbackUrl: '/' })
+    setShowLogoutLoader(false)
+  }
 
   return (
     <>
@@ -110,6 +127,9 @@ export default function NavBar({ session }: { session: Session | null }) {
               <>
                 <NotificationDropdown />
                 <UserDropdown session={session} />
+                <Button variant="outline" onClick={handleLogout}>
+                  Log Out
+                </Button>
               </>
             ) : (
               <Button
@@ -145,10 +165,12 @@ export default function NavBar({ session }: { session: Session | null }) {
               setShowSignInModal={setShowSignInModal}
               supportOpen={supportOpen}
               toggleSupport={toggleSupport}
+              handleLogout={handleLogout}
             />
           </div>
         )}
       </nav>
+      <MultiStepLoader loadingStates={logoutSteps} loading={showLogoutLoader} duration={1000} loop={false} />
     </>
   )
 }
@@ -189,6 +211,7 @@ interface MobileNavLinksProps {
   setShowSignInModal: React.Dispatch<React.SetStateAction<boolean>>
   supportOpen: boolean
   toggleSupport: (e: React.MouseEvent) => void
+  handleLogout: () => Promise<void>
 }
 
 function MobileNavLinks({
@@ -197,6 +220,7 @@ function MobileNavLinks({
   setShowSignInModal,
   supportOpen,
   toggleSupport,
+  handleLogout,
 }: MobileNavLinksProps) {
   return (
     <nav className="p-4 space-y-4">
@@ -237,13 +261,32 @@ function MobileNavLinks({
       </div>
       {session ? (
         <>
-          <NotificationDropdown />
-          <UserDropdown session={session} />
+          <div className="flex items-center justify-between py-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full"
+              onClick={() => setMenuOpen(false)}
+            >
+              <Bell size={24} />
+            </Button>
+            <UserDropdown session={session} />
+          </div>
+          <Button
+            variant="outline"
+            className="w-full mt-4"
+            onClick={() => {
+              handleLogout()
+              setMenuOpen(false)
+            }}
+          >
+            Log Out
+          </Button>
         </>
       ) : (
         <Button
           variant="outline"
-          className="w-full"
+          className="w-full mt-4"
           onClick={() => {
             setShowSignInModal(true)
             setMenuOpen(false)
@@ -253,6 +296,21 @@ function MobileNavLinks({
         </Button>
       )}
     </nav>
+  )
+}
+
+function UserDropdown({ session }: { session: Session }) {
+  return (
+    <Button variant="ghost" className="flex items-center space-x-2 rounded-full">
+      <Image
+        src={session.user.image || "https://avatar.vercel.sh/fallback.png"}
+        width={32}
+        height={32}
+        alt={session.user.name || "User avatar"}
+        className="rounded-full"
+      />
+      <span className="md:inline hidden">{session.user.name}</span>
+    </Button>
   )
 }
 
