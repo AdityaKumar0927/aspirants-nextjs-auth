@@ -140,22 +140,7 @@ export default function Page() {
         </ContainerScroll>
       </div>
     </div>
-    
-      <div className="container mx-auto px-4 py-12 max-w-6xl">
-        <h1 className="text-center text-gray-600 text-sm mb-4">aspirants X ChatGPT 4o</h1>
-        <h2 className="text-center mb-10 font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-2xl sm:leading-[4rem]">
-          Supercharge Your Learning Experience
-        </h2>
-
-        <div className="relative w-full h-96 border-4 rounded-2xl overflow-hidden">
-          <Image src="/ventura.jpg" alt="Background" layout="fill" objectFit="cover" />
-          <div className="absolute inset-0 bg-opacity-100 p-6 rounded-2xl flex items-center justify-center overflow-auto">
-            <div className="w-full h-full overflow-auto p-4 bg-white bg-opacity-80 rounded-2xl">
-              <Chat questionText="" />
-            </div>
-          </div>
-        </div>
-      </div>
+  
 
       <div className="container mx-auto px-4 mb-20">
       <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">

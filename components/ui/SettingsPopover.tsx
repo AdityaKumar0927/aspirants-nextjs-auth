@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Settings2 } from "lucide-react";
+import { Settings2 } from 'lucide-react';
 
 interface SettingsPopoverProps {
   markschemeEnabled: boolean;
@@ -22,40 +22,16 @@ interface SettingsPopoverProps {
   setAiEnabled: Dispatch<SetStateAction<boolean>>;
   notesEnabled: boolean;
   setNotesEnabled: Dispatch<SetStateAction<boolean>>;
-  timerEnabled: boolean;
-  setTimerEnabled: Dispatch<SetStateAction<boolean>>;
-  hintsEnabled: boolean;
-  setHintsEnabled: Dispatch<SetStateAction<boolean>>;
-  solutionsEnabled: boolean;
-  setSolutionsEnabled: Dispatch<SetStateAction<boolean>>;
-  showStepByStep: boolean;
-  setShowStepByStep: Dispatch<SetStateAction<boolean>>;
-  darkModeEnabled: boolean;
-  setDarkModeEnabled: Dispatch<SetStateAction<boolean>>;
-  progressTrackingEnabled: boolean;
-  setProgressTrackingEnabled: Dispatch<SetStateAction<boolean>>;
 }
 
-const SettingsPopover: React.FC<SettingsPopoverProps> = ({
+export default function SettingsPopover({
   markschemeEnabled,
   setMarkschemeEnabled,
   aiEnabled,
   setAiEnabled,
   notesEnabled,
   setNotesEnabled,
-  timerEnabled,
-  setTimerEnabled,
-  hintsEnabled,
-  setHintsEnabled,
-  solutionsEnabled,
-  setSolutionsEnabled,
-  showStepByStep,
-  setShowStepByStep,
-  darkModeEnabled,
-  setDarkModeEnabled,
-  progressTrackingEnabled,
-  setProgressTrackingEnabled,
-}) => {
+}: SettingsPopoverProps) {
   const [openPopover, setOpenPopover] = useState(false);
 
   return (
@@ -116,84 +92,6 @@ const SettingsPopover: React.FC<SettingsPopoverProps> = ({
                 onCheckedChange={setNotesEnabled}
               />
             </div>
-            <div className="flex items-center justify-between space-x-2">
-              <Label htmlFor="timer" className="flex flex-col space-y-1">
-                <span>Enable Timer</span>
-                <span className="font-normal leading-snug text-muted-foreground">
-                  Show timer during sessions.
-                </span>
-              </Label>
-              <Switch
-                id="timer"
-                checked={timerEnabled}
-                onCheckedChange={setTimerEnabled}
-              />
-            </div>
-            <div className="flex items-center justify-between space-x-2">
-              <Label htmlFor="hints" className="flex flex-col space-y-1">
-                <span>Enable Hints</span>
-                <span className="font-normal leading-snug text-muted-foreground">
-                  Show hints during sessions.
-                </span>
-              </Label>
-              <Switch
-                id="hints"
-                checked={hintsEnabled}
-                onCheckedChange={setHintsEnabled}
-              />
-            </div>
-            <div className="flex items-center justify-between space-x-2">
-              <Label htmlFor="solutions" className="flex flex-col space-y-1">
-                <span>Enable Solutions</span>
-                <span className="font-normal leading-snug text-muted-foreground">
-                  Allow display of solutions.
-                </span>
-              </Label>
-              <Switch
-                id="solutions"
-                checked={solutionsEnabled}
-                onCheckedChange={setSolutionsEnabled}
-              />
-            </div>
-            <div className="flex items-center justify-between space-x-2">
-              <Label htmlFor="step-by-step" className="flex flex-col space-y-1">
-                <span>Enable Step-by-Step</span>
-                <span className="font-normal leading-snug text-muted-foreground">
-                  Show step-by-step solutions.
-                </span>
-              </Label>
-              <Switch
-                id="step-by-step"
-                checked={showStepByStep}
-                onCheckedChange={setShowStepByStep}
-              />
-            </div>
-            <div className="flex items-center justify-between space-x-2">
-              <Label htmlFor="dark-mode" className="flex flex-col space-y-1">
-                <span>Enable Dark Mode</span>
-                <span className="font-normal leading-snug text-muted-foreground">
-                  Use dark mode during sessions.
-                </span>
-              </Label>
-              <Switch
-                id="dark-mode"
-                checked={darkModeEnabled}
-                onCheckedChange={setDarkModeEnabled}
-              />
-            </div>
-            <div className="flex items-center justify-between space-x-2">
-              <Label htmlFor="progress-tracking" className="flex flex-col space-y-1">
-                <span>Enable Progress Tracking</span>
-                <span className="font-normal leading-snug text-muted-foreground">
-                  Track your progress during sessions.
-                </span>
-              </Label>
-              <Switch
-                id="progress-tracking"
-                checked={progressTrackingEnabled}
-                onCheckedChange={setProgressTrackingEnabled}
-              />
-            </div>
           </CardContent>
           <CardFooter>
             <Button
@@ -208,6 +106,4 @@ const SettingsPopover: React.FC<SettingsPopoverProps> = ({
       </PopoverPrimitive.Content>
     </PopoverPrimitive.Root>
   );
-};
-
-export default SettingsPopover;
+}

@@ -1,23 +1,11 @@
-'use client'
+"use client"
 
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence, HTMLMotionProps } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useSwipeable } from 'react-swipeable'
 import { Checkbox } from '@/components/ui/checkbox'
 import MathRenderer from '@/components/layout/MathRenderer'
-import {
-  BookOpen,
-  LucideBot,
-  X,
-  MessageSquare,
-  ThumbsUp,
-  ThumbsDown,
-  Edit,
-  Trash2,
-  Reply,
-  CornerDownRight,
-  Flag,
-} from 'lucide-react'
+import { BookOpen, LucideBot, X, MessageSquare, ThumbsUp, ThumbsDown, Edit, Trash2, Reply, CornerDownRight, Flag } from 'lucide-react'
 import Image from 'next/image'
 import Tiptap from '@/components/layout/Tiptap'
 import Chat from '@/components/shared/Chat'
@@ -117,7 +105,7 @@ interface QuestionProps {
   handleQuestionChange: (index: number) => void
 }
 
-export default function Component({
+export default function Question({
   question,
   feedback,
   selectedOption,
@@ -166,12 +154,6 @@ export default function Component({
   )
   const [aiEnabled, setAiEnabled] = useState(true)
   const [notesEnabled, setNotesEnabled] = useState(true)
-  const [timerEnabled, setTimerEnabled] = useState(false)
-  const [hintsEnabled, setHintsEnabled] = useState(false)
-  const [solutionsEnabled, setSolutionsEnabled] = useState(false)
-  const [showStepByStep, setShowStepByStep] = useState(false)
-  const [darkModeEnabled, setDarkModeEnabled] = useState(false)
-  const [progressTrackingEnabled, setProgressTrackingEnabled] = useState(true)
 
   const { toast, dismiss } = useToast()
 
@@ -187,10 +169,6 @@ export default function Component({
       updatePoints(option === question.correctOption)
     }
   }
-
-  const MotionDiv = motion.div as React.ComponentType<
-  React.HTMLAttributes<HTMLDivElement>
->;
 
   const handleNumericalSubmitLocal = () => {
     handleNumericalSubmit(
@@ -229,10 +207,15 @@ export default function Component({
 
   const saveNote = async () => {
     try {
-      const response = await fetch('/api/notes/save', {
+      const response = await fetch(`/api/notes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId: question.questionId, content: note }),
+        body: JSON.stringify({ 
+          questionId: question.questionId, 
+          content: note,
+          title: `Note for Question ${question.questionId}`,
+          type: 'text'
+        }),
       })
       if (!response.ok) throw new Error('Failed to save note')
       toast({
@@ -251,7 +234,10 @@ export default function Component({
 
   const deleteNote = async () => {
     try {
-      await handleDeleteNote(question.questionId)
+      const response = await fetch(`/api/notes/${question.questionId}`, {
+        method: 'DELETE',
+      })
+      if (!response.ok) throw new Error('Failed to delete note')
       toast({
         title: 'Note Deleted',
         description: 'Your note has been deleted successfully.',
@@ -330,19 +316,6 @@ export default function Component({
     await handleMarkForReview(questionId)
     saveProgress(questionId, 'reviewed', false)
     dismiss()
-  }
-
-  const handleTemplateChange = (value: string) => {
-    handleNoteChange(question.questionId, `Template: ${value}\n\n${note}`)
-  }
-
-  const exportNote = () => {
-    const element = document.createElement('a')
-    const file = new Blob([note], { type: 'text/plain' })
-    element.href = URL.createObjectURL(file)
-    element.download = `note_${question.questionId}.txt`
-    document.body.appendChild(element)
-    element.click()
   }
 
   const handleAddComment = () => {
@@ -692,18 +665,6 @@ export default function Component({
                   setAiEnabled={setAiEnabled}
                   notesEnabled={notesEnabled}
                   setNotesEnabled={setNotesEnabled}
-                  timerEnabled={timerEnabled}
-                  setTimerEnabled={setTimerEnabled}
-                  hintsEnabled={hintsEnabled}
-                  setHintsEnabled={setHintsEnabled}
-                  solutionsEnabled={solutionsEnabled}
-                  setSolutionsEnabled={setSolutionsEnabled}
-                  showStepByStep={showStepByStep}
-                  setShowStepByStep={setShowStepByStep}
-                  darkModeEnabled={darkModeEnabled}
-                  setDarkModeEnabled={setDarkModeEnabled}
-                  progressTrackingEnabled={progressTrackingEnabled}
-                  setProgressTrackingEnabled={setProgressTrackingEnabled}
                 />
                 <FeedbackPopover questionId={question.questionId} />
               </div>
@@ -858,19 +819,6 @@ export default function Component({
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="mb-4">
-                    <Label htmlFor="template-select">Select Template</Label>
-                    <Select onValueChange={handleTemplateChange}>
-                      <SelectTrigger id="template-select">
-                        <SelectValue placeholder="Choose a template" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="meeting">Meeting Notes</SelectItem>
-                        <SelectItem value="project">Project Plan</SelectItem>
-                        <SelectItem value="study">Study Notes</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
                   <Tiptap
                     content={note}
                     onUpdate={(content) =>
@@ -895,15 +843,6 @@ export default function Component({
                     </TooltipTrigger>
                     <TooltipContent>Delete your note</TooltipContent>
                   </Tooltip>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button variant="outline" onClick={exportNote}>
-                        <BookOpen className="mr-2 h-4 w-4" />
-                        Export
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Export your note</TooltipContent>
-                  </Tooltip>
                 </CardFooter>
               </Card>
             </CardContent>
@@ -919,140 +858,100 @@ export default function Component({
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Chat questionText={question.text} />
+                <Chat 
+                    questionId={question.questionId}
+                    questionText={question.text}
+                    options={question.options}
+                    markscheme={question.markscheme}
+                  />
                 </CardContent>
               </Card>
             </CardContent>
           )}
 
-          <CardFooter>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowComments(!showComments)}
-                  className="text-sm mt-4"
+          <CardContent>
+            <div className="flex justify-between items-center mb-4">
+              <Button variant="outline" onClick={() => setShowComments(!showComments)}>
+                <MessageSquare className="mr-2 h-4 w-4" />
+                {showComments ? 'Hide Comments' : 'Show Comments'}
+              </Button>
+              {showComments && (
+                <Select
+                  value={commentSort}
+                  onValueChange={(value) =>
+                    setCommentSort(value as 'newest' | 'oldest' | 'popular')
+                  }
                 >
-                  Comments ({comments.length})
-                  <MessageSquare className="ml-2 h-4 w-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>View and add comments</TooltipContent>
-            </Tooltip>
-          </CardFooter>
-
-          {showComments && (
-            <CardContent>
-              <Card className="mt-4 w-full">
-                <CardHeader>
-                  <CardTitle>Comments</CardTitle>
-                  <CardDescription>
-                    Discuss this question with others.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="mb-4">
-                    <Label htmlFor="comment-sort">Sort by</Label>
-                    <Select
-                      value={commentSort}
-                      onValueChange={(value: 'newest' | 'oldest' | 'popular') =>
-                        setCommentSort(value)
-                      }
-                    >
-                      <SelectTrigger id="comment-sort">
-                        <SelectValue placeholder="Sort comments" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="newest">Newest</SelectItem>
-                        <SelectItem value="oldest">Oldest</SelectItem>
-                        <SelectItem value="popular">Most Popular</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <ScrollArea className="h-[300px]">
-                    <div className="space-y-4">
-                      {sortedComments.map((comment) => renderComment(comment))}
-                    </div>
-                  </ScrollArea>
-                  <div className="mt-4">
-                    <Textarea
-                      placeholder="Add a comment..."
-                      value={newComment}
-                      onChange={(e) => setNewComment(e.target.value)}
-                    />
-                    <Tooltip>
-                      <TooltipTrigger asChild>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Sort comments" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="newest">Newest</SelectItem>
+                    <SelectItem value="oldest">Oldest</SelectItem>
+                    <SelectItem value="popular">Most Popular</SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
+            </div>
+            <AnimatePresence>
+              {showComments && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Card>
+                    <CardContent className="pt-6">
+                      <div className="mb-4">
+                        <Label htmlFor="newComment">Add a comment</Label>
+                        <Textarea
+                          id="newComment"
+                          placeholder="Write your comment here..."
+                          value={newComment}
+                          onChange={(e) => setNewComment(e.target.value)}
+                          className="w-full mt-2"
+                        />
                         <Button onClick={handleAddComment} className="mt-2">
                           Post Comment
                         </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Post your comment</TooltipContent>
-                    </Tooltip>
-                  </div>
-                </CardContent>
-              </Card>
-            </CardContent>
-          )}
+                      </div>
+                      <ScrollArea className="h-[300px]">
+                        {sortedComments.map((comment) => renderComment(comment))}
+                      </ScrollArea>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </CardContent>
         </Card>
 
         <AnimatePresence>
           {showMarkschemeModal && (
-         <motion.div
-         initial={{ opacity: 0, scale: 0.9 }}
-         animate={{ opacity: 1, scale: 1 }}
-         exit={{ opacity: 0, scale: 0.9 }}
-         transition={{ duration: 0.2 }}
-         className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
-       >
-              <Card className="w-full max-w-2xl">
-                <CardHeader>
-                  <CardTitle>Markscheme</CardTitle>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="absolute right-4 top-4"
-                        onClick={() => setShowMarkschemeModal(false)}
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Close markscheme</TooltipContent>
-                  </Tooltip>
-                </CardHeader>
-                <CardContent>
-                  <div className="overflow-y-auto max-h-[60vh]">
-                    <p className="mb-2">
-                      {question.markscheme ? (
-                        question.markscheme.startsWith('http') ? (
-                          <div className="relative w-full h-64">
-                            <Image
-                              src={question.markscheme}
-                              alt="Markscheme image"
-                              layout="fill"
-                              objectFit="contain"
-                              className="rounded-md"
-                            />
-                          </div>
-                        ) : (
-                          <MathRenderer text={question.markscheme} />
-                        )
-                      ) : (
-                        'No answer available'
-                      )}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            >
+              <motion.div
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.9 }}
+                className="bg-white p-6 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+              >
+                <h2 className="text-2xl font-bold mb-4">Markscheme</h2>
+                <div className="prose max-w-none">
+                  <MathRenderer text={question.markscheme || ''} />
+                </div>
+                <Button onClick={toggleMarkscheme} className="mt-4">
+                  Close
+                </Button>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
-        <div className="fixed top-20 left-4 space-x-2">
-          <Badge variant="secondary">Points: {points}</Badge>
-          <Badge variant="secondary">Streak: {streak}</Badge>
-        </div>
       </div>
     </TooltipProvider>
   )
