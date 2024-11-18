@@ -3,8 +3,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
-import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Loader2, PlusCircle, X } from 'lucide-react';
+
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,18 +19,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
-import { useRouter } from "next/navigation";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -40,11 +34,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Loader2 } from 'lucide-react';
 
 const profileFormSchema = z.object({
   username: z.string().min(2, { message: "Username must be at least 2 characters." }).max(30, { message: "Username must not be longer than 30 characters." }),
-  email: z.string({ required_error: "Please select an email to display." }).email(),
+  email: z.string().email(),
   bio: z.string().max(160).min(4),
   urls: z.array(
     z.object({
@@ -91,7 +84,7 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
   async function onSubmit(data: ProfileFormValues) {
     setSubmitting(true);
     try {
-      const response = await fetch(`/api/settings/profile-settings/${userId}`, {
+      const response = await fetch(`/api/settings/${userId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -180,21 +173,11 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a verified email to display" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
-                </SelectContent>
-              </Select>
+              <FormControl>
+                <Input {...field} disabled />
+              </FormControl>
               <FormDescription>
-                You can manage verified email addresses in your{" "}
-                <Link href="/forms" className="underline">email settings</Link>.
+                This is your verified email address. Contact support if you need to change it.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -222,7 +205,8 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
           )}
         />
 
-        <div className="space-y-4">
+        <div>
+          <h3 className="mb-4 font-medium">URLs</h3>
           {fields.map((field, index) => (
             <FormField
               control={form.control}
@@ -230,40 +214,18 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
               name={`urls.${index}.value`}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={cn(index !== 0 && "sr-only")}>
-                    URLs
-                  </FormLabel>
-                  <FormDescription className={cn(index !== 0 && "sr-only")}>
-                    Add links to your website, blog, or social media profiles.
-                  </FormDescription>
                   <FormControl>
-                    <div className="flex items-center space-x-2">
-                      <Input {...field} />
-                      {index > 0 && (
-                        <Button
-                          type="button"
-                          variant="outline"
-                          size="icon"
-                          onClick={() => remove(index)}
-                        >
-                          <span className="sr-only">Remove URL</span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="h-4 w-4"
-                          >
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                          </svg>
-                        </Button>
-                      )}
+                    <div className="flex items-center space-x-2 mb-2">
+                      <Input {...field} placeholder="https://example.com" />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="icon"
+                        onClick={() => remove(index)}
+                      >
+                        <X className="h-4 w-4" />
+                        <span className="sr-only">Remove URL</span>
+                      </Button>
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -278,6 +240,7 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
             className="mt-2"
             onClick={() => append({ value: "" })}
           >
+            <PlusCircle className="h-4 w-4 mr-2" />
             Add URL
           </Button>
         </div>
@@ -344,6 +307,40 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
             )}
           />
         </div>
+
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Full Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Your full name" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is your full name as it appears on official documents.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="language"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Preferred Language</FormLabel>
+              <FormControl>
+                <Input placeholder="e.g., English, Spanish, French" {...field} />
+              </FormControl>
+              <FormDescription>
+                Enter your preferred language for communications and content.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <div className="flex items-center justify-between pt-6">
           <Button type="submit" disabled={submitting}>
