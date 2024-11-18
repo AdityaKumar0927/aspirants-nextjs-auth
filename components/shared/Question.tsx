@@ -214,7 +214,7 @@ export default function Question({
           questionId: question.questionId, 
           content: note,
           title: `Note for Question ${question.questionId}`,
-          type: 'text'
+          type: 'TEXT'
         }),
       })
       if (!response.ok) throw new Error('Failed to save note')
@@ -234,10 +234,7 @@ export default function Question({
 
   const deleteNote = async () => {
     try {
-      const response = await fetch(`/api/notes/${question.questionId}`, {
-        method: 'DELETE',
-      })
-      if (!response.ok) throw new Error('Failed to delete note')
+      await handleDeleteNote(question.questionId)
       toast({
         title: 'Note Deleted',
         description: 'Your note has been deleted successfully.',
@@ -810,43 +807,31 @@ export default function Question({
           </CardContent>
 
           {showNotes && (
+        <CardContent>
+          <Card>
+            <CardHeader>
+              <CardTitle>Notes</CardTitle>
+              <CardDescription>
+                Add your notes for this question here.
+              </CardDescription>
+            </CardHeader>
             <CardContent>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Notes</CardTitle>
-                  <CardDescription>
-                    Add your notes for this question here.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Tiptap
-                    content={note}
-                    onUpdate={(content) =>
-                      handleNoteChange(question.questionId, content)
-                    }
-                  />
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button variant="outline" onClick={saveNote}>
-                        Save Note
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Save your note</TooltipContent>
-                  </Tooltip>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button variant="outline" onClick={deleteNote}>
-                        Delete Note
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Delete your note</TooltipContent>
-                  </Tooltip>
-                </CardFooter>
-              </Card>
+              <Tiptap
+                content={note}
+                onUpdate={(content) => handleNoteChange(question.questionId, content)}
+              />
             </CardContent>
-          )}
+            <CardFooter className="flex justify-between">
+              <Button variant="outline" onClick={saveNote}>
+                Save Note
+              </Button>
+              <Button variant="destructive" onClick={deleteNote}>
+                Delete Note
+              </Button>
+            </CardFooter>
+          </Card>
+        </CardContent>
+      )}
 
           {showAI && (
             <CardContent>
@@ -858,7 +843,7 @@ export default function Question({
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                <Chat 
+                  <Chat 
                     questionId={question.questionId}
                     questionText={question.text}
                     options={question.options}
@@ -869,63 +854,119 @@ export default function Question({
             </CardContent>
           )}
 
-          <CardContent>
-            <div className="flex justify-between items-center mb-4">
-              <Button variant="outline" onClick={() => setShowComments(!showComments)}>
-                <MessageSquare className="mr-2 h-4 w-4" />
-                {showComments ? 'Hide Comments' : 'Show Comments'}
-              </Button>
-              {showComments && (
-                <Select
-                  value={commentSort}
-                  onValueChange={(value) =>
-                    setCommentSort(value as 'newest' | 'oldest' | 'popular')
-                  }
-                >
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Sort comments" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="newest">Newest</SelectItem>
-                    <SelectItem value="oldest">Oldest</SelectItem>
-                    <SelectItem value="popular">Most Popular</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
+          <CardFooter className="flex justify-between">
+            <div className="flex items-center space-x-2">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowComments(!showComments)}
+                  >
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    {showComments ? 'Hide Comments' : 'Show Comments'}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  {showComments ? 'Hide comments' : 'View and add comments'}
+                </TooltipContent>
+              </Tooltip>
+              <span className="text-sm text-gray-500">
+                {comments.length} comment{comments.length !== 1 && 's'}
+              </span>
             </div>
-            <AnimatePresence>
-              {showComments && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Card>
-                    <CardContent className="pt-6">
-                      <div className="mb-4">
-                        <Label htmlFor="newComment">Add a comment</Label>
-                        <Textarea
-                          id="newComment"
-                          placeholder="Write your comment here..."
-                          value={newComment}
-                          onChange={(e) => setNewComment(e.target.value)}
-                          className="w-full mt-2"
-                        />
-                        <Button onClick={handleAddComment} className="mt-2">
-                          Post Comment
-                        </Button>
-                      </div>
-                      <ScrollArea className="h-[300px]">
-                        {sortedComments.map((comment) => renderComment(comment))}
-                      </ScrollArea>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </CardContent>
+            <div className="flex items-center space-x-4">
+              <span className="text-sm font-medium">
+                Question {currentQuestionIndex + 1} of {totalQuestions}
+              </span>
+              <Select
+                value={(currentQuestionIndex + 1).toString()}
+                onValueChange={(value) => handleQuestionChange(parseInt(value) - 1)}
+              >
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select a question" />
+                </SelectTrigger>
+                <SelectContent>
+                  {Array.from({ length: totalQuestions }, (_, i) => (
+                    <SelectItem key={i} value={(i + 1).toString()}>
+                      Question {i + 1}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <div>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="outline"
+                      onClick={onPreviousQuestion}
+                      disabled={currentQuestionIndex === 0}
+                    >
+                      Previous
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Go to previous question</TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="outline"
+                      onClick={onNextQuestion}
+                      disabled={currentQuestionIndex === totalQuestions - 1}
+                    >
+                      Next
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Go to next question</TooltipContent>
+                </Tooltip>
+              </div>
+            </div>
+          </CardFooter>
         </Card>
+
+        {showComments && (
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle>Comments</CardTitle>
+              <CardDescription>
+                Discuss this question with other users.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <Label htmlFor="comment-sort">Sort by</Label>
+                  <Select
+                    value={commentSort}
+                    onValueChange={(value: 'newest' | 'oldest' | 'popular') =>
+                      setCommentSort(value)
+                    }
+                  >
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Sort comments" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="newest">Newest</SelectItem>
+                      <SelectItem value="oldest">Oldest</SelectItem>
+                      <SelectItem value="popular">Most Popular</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-4">
+                  <Textarea
+                    id="comment"
+                    placeholder="Write a comment..."
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                  />
+                  <Button onClick={handleAddComment}>Add Comment</Button>
+                </div>
+                <ScrollArea className="h-[300px]">
+                  {sortedComments.map((comment) => renderComment(comment))}
+                </ScrollArea>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         <AnimatePresence>
           {showMarkschemeModal && (
@@ -934,18 +975,23 @@ export default function Question({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+              onClick={() => setShowMarkschemeModal(false)}
             >
               <motion.div
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.9 }}
-                className="bg-white p-6 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+                className="bg-white p-6 rounded-lg max-w-2xl w-full m-4"
+                onClick={(e) => e.stopPropagation()}
               >
                 <h2 className="text-2xl font-bold mb-4">Markscheme</h2>
                 <div className="prose max-w-none">
                   <MathRenderer text={question.markscheme || ''} />
                 </div>
-                <Button onClick={toggleMarkscheme} className="mt-4">
+                <Button
+                  className="mt-4"
+                  onClick={() => setShowMarkschemeModal(false)}
+                >
                   Close
                 </Button>
               </motion.div>
