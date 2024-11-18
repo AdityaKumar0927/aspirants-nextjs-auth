@@ -165,6 +165,7 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
       if (!response.ok) throw new Error('Failed to fetch notes')
       const data = await response.json()
       setNotes(data)
+      toast.success("Notes loaded successfully")
     } catch (error) {
       console.error('Error fetching notes:', error)
       toast.error("Failed to load notes", {
@@ -222,7 +223,7 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
         }
       })
 
-      toast.success(editingNote ? "Note updated" : "Note added", {
+      toast.success(editingNote ? "Note updated successfully" : "Note added successfully", {
         description: `Your ${data.type.toLowerCase()} note has been ${editingNote ? "updated" : "saved"}.`,
       })
 
@@ -248,8 +249,8 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
       if (!response.ok) throw new Error('Failed to delete note')
 
       setNotes(notes.filter((note) => note.id !== id))
-      toast.success("Note deleted", {
-        description: "Your note has been successfully removed.",
+      toast.success("Note deleted successfully", {
+        description: "Your note has been permanently removed.",
       })
     } catch (error) {
       console.error('Error deleting note:', error)
@@ -272,6 +273,9 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
     } else if (note.type === 'TEXT') {
       editor?.commands.setContent(note.content)
     }
+    toast.info("Editing note", {
+      description: "You are now editing an existing note. Make your changes and click 'Update Note' to save.",
+    })
   }
 
   const filteredNotes = notes.filter(
@@ -429,7 +433,13 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
                   <Controller 
                     name="title" 
                     control={control} 
-                    render={({ field }) => <Input id="title" {...field} placeholder="Enter a title" />} 
+                    rules={{ required: "Title is required" }}
+                    render={({ field, fieldState: { error } }) => (
+                      <>
+                        <Input id="title" {...field} placeholder="Enter a title" />
+                        {error && <span className="text-red-500 text-sm">{error.message}</span>}
+                      </>
+                    )}
                   />
                 </div>
                 <div className="flex flex-col space-y-1.5">
@@ -543,11 +553,16 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
                   )}
                 </Button>
                 {editingNote && (
-                  <Button type="button" variant="outline" onClick={() => {
-                    setEditingNote(null)
-                    reset({ title: "", content: "", type: "TEXT" })
-                    editor?.commands.setContent('')
-                  }}>
+                  <Button type="button" variant="outline"
+                    onClick={() => {
+                      setEditingNote(null)
+                      reset({ title: "", content: "", type: "TEXT" })
+                      editor?.commands.setContent('')
+                      toast.info("Cancelled editing", {
+                        description: "You've cancelled editing. The note remains unchanged.",
+                      })
+                    }}
+                  >
                     Cancel Edit
                   </Button>
                 )}

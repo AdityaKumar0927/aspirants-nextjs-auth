@@ -114,7 +114,8 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { id } = await req.json();
+    const url = new URL(req.url);
+    const id = url.pathname.split('/').pop();
 
     if (!id) {
       return NextResponse.json({ error: 'Missing note id' }, { status: 400 });
