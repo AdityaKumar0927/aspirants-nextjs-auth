@@ -874,52 +874,6 @@ export default function Question({
                 {comments.length} comment{comments.length !== 1 && 's'}
               </span>
             </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-sm font-medium">
-                Question {currentQuestionIndex + 1} of {totalQuestions}
-              </span>
-              <Select
-                value={(currentQuestionIndex + 1).toString()}
-                onValueChange={(value) => handleQuestionChange(parseInt(value) - 1)}
-              >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Select a question" />
-                </SelectTrigger>
-                <SelectContent>
-                  {Array.from({ length: totalQuestions }, (_, i) => (
-                    <SelectItem key={i} value={(i + 1).toString()}>
-                      Question {i + 1}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <div>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="outline"
-                      onClick={onPreviousQuestion}
-                      disabled={currentQuestionIndex === 0}
-                    >
-                      Previous
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Go to previous question</TooltipContent>
-                </Tooltip>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="outline"
-                      onClick={onNextQuestion}
-                      disabled={currentQuestionIndex === totalQuestions - 1}
-                    >
-                      Next
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Go to next question</TooltipContent>
-                </Tooltip>
-              </div>
-            </div>
           </CardFooter>
         </Card>
 
