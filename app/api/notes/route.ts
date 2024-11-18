@@ -13,9 +13,16 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    const url = new URL(req.url);
+    const questionId = url.searchParams.get('questionId');
+
     const notes = await prisma.note.findMany({
-      where: { userId: session.user.id },
+      where: { 
+        userId: session.user.id,
+        questionId: questionId ? questionId : null
+      },
       include: { question: true },
+      orderBy: { createdAt: 'desc' },
     });
 
     return NextResponse.json(notes);
@@ -35,7 +42,7 @@ export async function POST(req: NextRequest) {
 
     const { content, questionId, title, type } = await req.json();
 
-    if (!content || !questionId || !title || !type) {
+    if (!content || !title || !type) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
@@ -45,7 +52,7 @@ export async function POST(req: NextRequest) {
         title,
         type,
         userId: session.user.id,
-        questionId,
+        questionId: questionId || null,
       },
       include: { question: true },
     });

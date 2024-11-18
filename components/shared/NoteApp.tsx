@@ -155,12 +155,13 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
   useEffect(() => {
     setIsClient(true)
     fetchNotes()
-  }, [])
+  }, [questionId])
 
   const fetchNotes = async () => {
     setIsLoading(true)
     try {
-      const response = await fetch('/api/notes')
+      const url = questionId ? `/api/notes?questionId=${questionId}` : '/api/notes'
+      const response = await fetch(url)
       if (!response.ok) throw new Error('Failed to fetch notes')
       const data = await response.json()
       setNotes(data)
@@ -192,7 +193,7 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
         title: data.title.trim() || `Note for ${questionId ? `Question ${questionId}` : 'General'}`,
         content: noteContent,
         type: data.type,
-        questionId: questionId || '0',
+        questionId: questionId || null,
       }
 
       const url = editingNote ? `/api/notes/${editingNote.id}` : '/api/notes'
@@ -398,33 +399,9 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
   return (
     <div className="flex min-h-screen w-full flex-col">
       <header className="flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="outline">Menu</Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-56">
-            <Command>
-              <CommandInput placeholder="Type a command or search..." />
-              <CommandList>
-                <CommandEmpty>No results found.</CommandEmpty>
-                <CommandGroup heading="Actions">
-                  <CommandItem onSelect={() => reset({ title: "", content: "", type: "TEXT" })}>
-                    <PlusIcon className="mr-2 h-4 w-4" />
-                    <span>New Note</span>
-                  </CommandItem>
-                </CommandGroup>
-                <CommandSeparator />
-                <CommandGroup heading="Settings">
-                  <CommandItem>
-                    <Search className="mr-2 h-4 w-4" />
-                    <span>Search</span>
-                    <CommandShortcut>⌘K</CommandShortcut>
-                  </CommandItem>
-                </CommandGroup>
-              </CommandList>
-            </Command>
-          </PopoverContent>
-        </Popover>
+        <h1 className="text-lg font-semibold">
+          {questionId ? `Notes for Question ${questionId}` : 'General Notes'}
+        </h1>
         <div className="flex-1" />
         <Input
           className="w-[200px] md:w-[300px]"
@@ -434,19 +411,15 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
         />
       </header>
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 overflow-auto">
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <h1 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">My Notes</h1>
-          <Alert>
-            <RocketIcon className="h-4 w-4" />
-            <AlertTitle>Pro Tip!</AlertTitle>
-            <AlertDescription>Use keyboard shortcuts to quickly create new notes. Press ⌘+K to open the command menu.</AlertDescription>
-          </Alert>
-        </motion.div>
-
         <Card className="w-full md:w-[700px]">
           <CardHeader>
             <CardTitle>{editingNote ? "Edit Note" : "Create Note"}</CardTitle>
-            <CardDescription>Capture your thoughts, ideas, and more.</CardDescription>
+            <CardDescription>
+              {questionId 
+                ? `Add a note for Question ${questionId}`
+                : 'Add a general note'
+              }
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit(onSubmit)}>
