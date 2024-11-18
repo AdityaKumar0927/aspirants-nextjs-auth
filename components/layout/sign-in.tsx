@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useCallback, useMemo, useEffect } from "react"
+import { useState, useCallback, useMemo } from "react"
 import { signIn } from 'next-auth/react'
-import { X } from 'lucide-react'
+import { X, Loader2 } from 'lucide-react'
 import { Google } from "@/components/shared/icons"
 import Modal2 from "@/components/layout/modal-2"
 import { Button } from "@/components/ui/button"
@@ -42,11 +42,7 @@ const CheckFilled = ({ className }: { className?: string }) => {
   )
 }
 
-type LoadingState = {
-  text: string
-}
-
-const loadingStates: LoadingState[] = [
+const loadingStates = [
   { text: "Preparing your account" },
   { text: "Checking credentials" },
   { text: "Securing your session" },
@@ -54,13 +50,7 @@ const loadingStates: LoadingState[] = [
   { text: "Welcome aboard!" },
 ]
 
-const LoaderCore = ({
-  loadingStates,
-  value = 0,
-}: {
-  loadingStates: LoadingState[]
-  value?: number
-}) => {
+const LoaderCore = ({ value = 0 }: { value?: number }) => {
   return (
     <div className="flex relative justify-start max-w-xl mx-auto flex-col mt-40">
       {loadingStates.map((loadingState, index) => {
@@ -105,55 +95,24 @@ const LoaderCore = ({
 }
 
 const MultiStepLoader = ({
-  loadingStates,
   loading,
-  duration = 2000,
-  loop = true,
+  currentState,
 }: {
-  loadingStates: LoadingState[]
-  loading?: boolean
-  duration?: number
-  loop?: boolean
+  loading: boolean
+  currentState: number
 }) => {
-  const [currentState, setCurrentState] = useState(0)
-
-  useEffect(() => {
-    if (!loading) {
-      setCurrentState(0)
-      return
-    }
-    const timeout = setTimeout(() => {
-      setCurrentState((prevState) =>
-        loop
-          ? prevState === loadingStates.length - 1
-            ? 0
-            : prevState + 1
-          : Math.min(prevState + 1, loadingStates.length - 1)
-      )
-    }, duration)
-
-    return () => clearTimeout(timeout)
-  }, [currentState, loading, loop, loadingStates.length, duration])
-
   return (
     <AnimatePresence mode="wait">
       {loading && (
         <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-          }}
-          exit={{
-            opacity: 0,
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           className="w-full h-full fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-2xl"
         >
           <div className="h-96 relative">
-            <LoaderCore value={currentState} loadingStates={loadingStates} />
+            <LoaderCore value={currentState} />
           </div>
-
           <div className="bg-gradient-to-t inset-x-0 z-20 bottom-0 bg-white dark:bg-black h-full absolute [mask-image:radial-gradient(900px_at_center,transparent_30%,white)]" />
         </motion.div>
       )}
@@ -163,18 +122,15 @@ const MultiStepLoader = ({
 
 export function useSignInModal() {
   const [showSignInModal, setShowSignInModal] = useState(false)
-  const [showLoader, setShowLoader] = useState(false)
 
   const SignInModal = useCallback(() => {
     return (
       <SignInModalComponent
         showSignInModal={showSignInModal}
         setShowSignInModal={setShowSignInModal}
-        showLoader={showLoader}
-        setShowLoader={setShowLoader}
       />
     )
-  }, [showSignInModal, setShowSignInModal, showLoader, setShowLoader])
+  }, [showSignInModal, setShowSignInModal])
 
   return useMemo(
     () => ({ setShowSignInModal, SignInModal }),
@@ -185,27 +141,33 @@ export function useSignInModal() {
 function SignInModalComponent({
   showSignInModal,
   setShowSignInModal,
-  showLoader,
-  setShowLoader,
 }: {
   showSignInModal: boolean
   setShowSignInModal: React.Dispatch<React.SetStateAction<boolean>>
-  showLoader: boolean
-  setShowLoader: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   const { toast } = useToast()
+  const [loading, setLoading] = useState(false)
+  const [currentState, setCurrentState] = useState(0)
 
   const handleSignIn = async (provider: string) => {
     setShowSignInModal(false)
-    setShowLoader(true)
+    setLoading(true)
 
     try {
-      // Simulate sign-in process
-      await new Promise(resolve => setTimeout(resolve, 25000)) // Increased to 25 seconds
       const result = await signIn(provider, { callbackUrl: '/', redirect: false })
+      
       if (result?.error) {
         throw new Error(result.error)
       }
+
+      // Simulate the sign-in process with state updates
+      for (let i = 0; i < loadingStates.length; i++) {
+        setCurrentState(i)
+        await new Promise(resolve => setTimeout(resolve, 2000))
+      }
+
+      // Redirect or update UI after successful sign-in
+      window.location.href = result?.url || '/'
     } catch (error) {
       console.error('Sign-in error:', error)
       toast({
@@ -213,8 +175,7 @@ function SignInModalComponent({
         description: 'An error occurred during sign-in. Please try again.',
         variant: 'destructive',
       })
-    } finally {
-      setShowLoader(false)
+      setLoading(false)
     }
   }
 
@@ -240,9 +201,14 @@ function SignInModalComponent({
                 variant="outline"
                 className="w-full mb-4"
                 onClick={() => handleSignIn('google')}
+                disabled={loading}
               >
-                <Google className="w-4 h-4 mr-2" />
-                Sign in with Google
+                {loading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Google className="w-4 h-4 mr-2" />
+                )}
+                {loading ? 'Signing in...' : 'Sign in with Google'}
               </Button>
               <p className="text-sm text-gray-500">
                 By signing in, you agree to our{' '}
@@ -266,7 +232,7 @@ function SignInModalComponent({
         </div>
       </Modal2>
 
-      <MultiStepLoader loadingStates={loadingStates} loading={showLoader} duration={5000} loop={true} />
+      <MultiStepLoader loading={loading} currentState={currentState} />
     </>
   )
 }
