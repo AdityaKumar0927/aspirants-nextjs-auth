@@ -112,12 +112,12 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
   const handleReset = async () => {
     setResetting(true);
     try {
-      const response = await fetch(`/api/user/delete/${userId}`, {
-        method: "DELETE",
+      const response = await fetch('/api/user/delete', {
+        method: 'DELETE',
       });
 
       if (!response.ok) {
-        throw new Error("Failed to reset user data");
+        throw new Error('Failed to reset user data');
       }
 
       toast({
@@ -125,7 +125,9 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
         description: "Your account has been successfully reset.",
       });
 
-      router.push("/");
+      // Sign out the user and redirect to home page
+      await fetch('/api/auth/signout', { method: 'POST' });
+      router.push('/');
     } catch (error: any) {
       toast({
         title: "Error",
