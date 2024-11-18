@@ -162,7 +162,7 @@ export default function Page() {
         Never Forget Anything
       </h4>
 
-      <p className="text-sm lg:text-base mb-12 max-w-2xl mx-auto text-neutral-500 text-center font-normal">
+      <p className="text-sm lg:text-base mt-5 max-w-2xl mx-auto text-neutral-500 text-center font-normal">
         View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill.
       </p>
 

@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { motion, AnimatePresence } from "framer-motion"
-import { toast, Toaster } from "sonner"
+import { toast } from "sonner"
 import { RocketIcon, Search, PlusIcon, ImageIcon, Loader2Icon, PencilIcon, Square, Circle, Edit2Icon, EraserIcon, BoldIcon, ItalicIcon, UnderlineIcon, ListIcon, ListOrderedIcon, Mic, MicOff } from 'lucide-react'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
@@ -59,6 +59,7 @@ const useSpeechRecognition = () => {
       recognitionRef.current.start()
     } else {
       console.error('Speech recognition not supported')
+      toast.error("Speech recognition is not supported in this browser.")
     }
   }, [])
 
@@ -134,7 +135,7 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
   const [currentShape, setCurrentShape] = useState<"pen" | "square" | "circle">("pen")
   const [isClient, setIsClient] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const { control, handleSubmit, reset, watch } = useForm<{ title: string; content: string; type: NoteType }>({
+  const { control, handleSubmit, reset, watch, setValue } = useForm<{ title: string; content: string; type: NoteType }>({
     defaultValues: { title: "", content: "", type: "TEXT" },
   })
 
@@ -146,6 +147,9 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
       Underline,
     ],
     content: '',
+    onUpdate: ({ editor }) => {
+      setValue('content', editor.getHTML())
+    }
   })
 
   useEffect(() => {
@@ -162,7 +166,9 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
       setNotes(data)
     } catch (error) {
       console.error('Error fetching notes:', error)
-      toast.error("Failed to load notes")
+      toast.error("Failed to load notes", {
+        description: "Please try again later. Your existing notes are still available.",
+      })
     } finally {
       setIsLoading(false)
     }
@@ -171,17 +177,25 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
   const onSubmit = async (data: { title: string; content: string; type: NoteType }) => {
     setIsLoading(true)
     try {
-      const noteContent = data.type === 'STYLUS' ? canvasRef.current?.toDataURL() || '' : 
-                          data.type === 'TEXT' ? editor?.getHTML() || '' : data.content
-
-      const noteData = {
-        ...data,
-        content: noteContent,
-        questionId: questionId || null,
-        type: 'TEXT' as NoteType, // Ensure type is 'TEXT' in uppercase
+      let noteContent = data.content
+      if (data.type === 'STYLUS') {
+        noteContent = canvasRef.current?.toDataURL() || ''
+      } else if (data.type === 'TEXT') {
+        noteContent = editor?.getHTML() || ''
       }
 
-      const url = editingNote ? `/api/notes` : '/api/notes'
+      if (!noteContent.trim()) {
+        throw new Error('Note content cannot be empty')
+      }
+
+      const noteData = {
+        title: data.title.trim() || `Note for ${questionId ? `Question ${questionId}` : 'General'}`,
+        content: noteContent,
+        type: data.type,
+        questionId: questionId || '0',
+      }
+
+      const url = editingNote ? `/api/notes/${editingNote.id}` : '/api/notes'
       const method = editingNote ? 'PUT' : 'POST'
 
       const response = await fetch(url, {
@@ -189,7 +203,7 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(editingNote ? { ...noteData, id: editingNote.id } : noteData),
+        body: JSON.stringify(noteData),
       })
 
       if (!response.ok) {
@@ -199,22 +213,25 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
 
       const savedNote = await response.json()
 
-      if (editingNote) {
-        setNotes(notes.map((note) => (note.id === savedNote.id ? savedNote : note)))
-        setEditingNote(null)
-      } else {
-        setNotes([savedNote, ...notes])
-      }
+      setNotes(prevNotes => {
+        if (editingNote) {
+          return prevNotes.map(note => note.id === savedNote.id ? savedNote : note)
+        } else {
+          return [savedNote, ...prevNotes]
+        }
+      })
 
       toast.success(editingNote ? "Note updated" : "Note added", {
-        description: `Your ${data.type.toLowerCase()} note has been ${editingNote ? "updated" : "added"}.`,
+        description: `Your ${data.type.toLowerCase()} note has been ${editingNote ? "updated" : "saved"}.`,
       })
+
       reset({ title: "", content: "", type: "TEXT" })
       editor?.commands.setContent('')
+      setEditingNote(null)
     } catch (error) {
       console.error('Error saving note:', error)
       toast.error("Failed to save note", {
-        description: error instanceof Error ? error.message : "An unexpected error occurred",
+        description: error instanceof Error ? error.message : "An unexpected error occurred. Please try again.",
       })
     } finally {
       setIsLoading(false)
@@ -223,23 +240,21 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
 
   const deleteNote = async (id: string) => {
     try {
-      const response = await fetch(`/api/notes`, {
+      const response = await fetch(`/api/notes/${id}`, {
         method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id }),
       })
 
       if (!response.ok) throw new Error('Failed to delete note')
 
       setNotes(notes.filter((note) => note.id !== id))
       toast.success("Note deleted", {
-        description: "Your note has been deleted.",
+        description: "Your note has been successfully removed.",
       })
     } catch (error) {
       console.error('Error deleting note:', error)
-      toast.error("Failed to delete note")
+      toast.error("Failed to delete note", {
+        description: "The note couldn't be deleted. Please try again later.",
+      })
     }
   }
 
@@ -336,6 +351,10 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
       }
     }, [browserSupportsSpeechRecognition])
 
+    useEffect(() => {
+      setValue('content', transcript)
+    }, [transcript, setValue])
+
     if (!isClient) {
       return <span>Loading speech recognition...</span>
     }
@@ -362,6 +381,12 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
             <MicOff className="mr-2 h-4 w-4" />
             Stop Recording
           </Button>
+          <Button
+            onClick={resetTranscript}
+            variant="outline"
+          >
+            Reset
+          </Button>
         </div>
         <div className="p-4 border rounded-md min-h-[100px]">
           {transcript || "Your note will appear here..."}
@@ -371,259 +396,280 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
   }
 
   return (
-    <>
-      <Toaster />
-      <div className="flex min-h-screen w-full flex-col">
-        <header className="flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button variant="outline">Menu</Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-56">
-              <Command>
-                <CommandInput placeholder="Type a command or search..." />
-                <CommandList>
-                  <CommandEmpty>No results found.</CommandEmpty>
-                  <CommandGroup heading="Actions">
-                    <CommandItem onSelect={() => reset({ title: "", content: "", type: "TEXT" })}>
-                      <PlusIcon className="mr-2 h-4 w-4" />
-                      <span>New Note</span>
-                    </CommandItem>
-                  </CommandGroup>
-                  <CommandSeparator />
-                  <CommandGroup heading="Settings">
-                    <CommandItem>
-                      <Search className="mr-2 h-4 w-4" />
-                      <span>Search</span>
-                      <CommandShortcut>⌘K</CommandShortcut>
-                    </CommandItem>
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
-          <div className="flex-1" />
-          <Input
-            className="w-[200px] md:w-[300px]"
-            placeholder="Search notes..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 overflow-auto">
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <h1 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">My Notes</h1>
-            <Alert>
-              <RocketIcon className="h-4 w-4" />
-              <AlertTitle>Pro Tip!</AlertTitle>
-              <AlertDescription>Use keyboard shortcuts to quickly create new notes. Press ⌘+K to open the command menu.</AlertDescription>
-            </Alert>
-          </motion.div>
+    <div className="flex min-h-screen w-full flex-col">
+      <header className="flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="outline">Menu</Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-56">
+            <Command>
+              <CommandInput placeholder="Type a command or search..." />
+              <CommandList>
+                <CommandEmpty>No results found.</CommandEmpty>
+                <CommandGroup heading="Actions">
+                  <CommandItem onSelect={() => reset({ title: "", content: "", type: "TEXT" })}>
+                    <PlusIcon className="mr-2 h-4 w-4" />
+                    <span>New Note</span>
+                  </CommandItem>
+                </CommandGroup>
+                <CommandSeparator />
+                <CommandGroup heading="Settings">
+                  <CommandItem>
+                    <Search className="mr-2 h-4 w-4" />
+                    <span>Search</span>
+                    <CommandShortcut>⌘K</CommandShortcut>
+                  </CommandItem>
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </PopoverContent>
+        </Popover>
+        <div className="flex-1" />
+        <Input
+          className="w-[200px] md:w-[300px]"
+          placeholder="Search notes..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </header>
+      <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 overflow-auto">
+        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+          <h1 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">My Notes</h1>
+          <Alert>
+            <RocketIcon className="h-4 w-4" />
+            <AlertTitle>Pro Tip!</AlertTitle>
+            <AlertDescription>Use keyboard shortcuts to quickly create new notes. Press ⌘+K to open the command menu.</AlertDescription>
+          </Alert>
+        </motion.div>
 
-          <Card className="w-full md:w-[700px]">
-            <CardHeader>
-              <CardTitle>{editingNote ? "Edit Note" : "Create Note"}</CardTitle>
-              <CardDescription>Capture your thoughts, ideas, and more.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="grid w-full items-center gap-4">
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="title">Title</Label>
-                    <Controller name="title" control={control} render={({ field }) => <Input id="title" {...field} placeholder="Enter a title" />} />
-                  </div>
-                  <div className="flex flex-col space-y-1.5">
-                    <Label>Note Type</Label>
-                    <Tabs value={noteType} onValueChange={(value) => reset({ ...watch(), type: value as NoteType })}>
-                      <TabsList>
-                        <TabsTrigger value="TEXT">Text</TabsTrigger>
-                        <TabsTrigger value="IMAGE">Image</TabsTrigger>
-                        <TabsTrigger value="STYLUS">Stylus</TabsTrigger>
-                        <TabsTrigger value="VOICE">Voice</TabsTrigger>
-                      </TabsList>
-                      <TabsContent value="TEXT">
-                        <div className="border rounded-md p-4">
-                          <MenuBar editor={editor} />
-                          <EditorContent editor={editor} className="prose max-w-none" />
-                        </div>
-                      </TabsContent>
-                      <TabsContent value="IMAGE">
-                        <Input id="picture" type="file" accept="image/*" />
-                      </TabsContent>
-                      <TabsContent value="STYLUS">
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button variant="outline">Open Drawing Canvas</Button>
-                          </DialogTrigger>
-                          <DialogContent className="sm:max-w-[800px] backdrop-blur-sm bg-opacity-50">
-                            <DialogHeader>
-                              <DialogTitle>Drawing Canvas</DialogTitle>
-                              <DialogDescription>Use your stylus or mouse to draw a note.</DialogDescription>
-                            </DialogHeader>
-                            <div className="flex flex-col space-y-4">
-                              <div className="flex justify-between items-center">
-                                <div className="flex space-x-2">
-                                  <Toggle pressed={currentShape === 'pen'} onPressedChange={() => setCurrentShape('pen')}>
-                                    <PencilIcon className="h-4 w-4"  />
-                                  </Toggle>
-                                  <Toggle pressed={currentShape === 'square'} onPressedChange={() => setCurrentShape('square')}>
-                                    <Square className="h-4 w-4" />
-                                  </Toggle>
-                                  <Toggle pressed={currentShape === 'circle'} onPressedChange={() => setCurrentShape('circle')}>
-                                    <Circle className="h-4 w-4" />
-                                  </Toggle>
-                                </div>
-                                <Input
-                                  type="color"
-                                  value={penColor}
-                                  onChange={(e) => setPenColor(e.target.value)}
-                                  className="w-10 h-10 p-0 border-0"
-                                />
-                                <Input
-                                  type="range"
-                                  min="1"
-                                  max="20"
-                                  value={penSize}
-                                  onChange={(e) => setPenSize(parseInt(e.target.value))}
-                                  className="w-32"
-                                />
-                                <Button variant="outline" onClick={clearCanvas}>
-                                  <EraserIcon className="h-4 w-4 mr-2" />
-                                  Clear
-                                </Button>
+        <Card className="w-full md:w-[700px]">
+          <CardHeader>
+            <CardTitle>{editingNote ? "Edit Note" : "Create Note"}</CardTitle>
+            <CardDescription>Capture your thoughts, ideas, and more.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="grid w-full items-center gap-4">
+                <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="title">Title</Label>
+                  <Controller 
+                    name="title" 
+                    control={control} 
+                    render={({ field }) => <Input id="title" {...field} placeholder="Enter a title" />} 
+                  />
+                </div>
+                <div className="flex flex-col space-y-1.5">
+                  <Label>Note Type</Label>
+                  <Tabs value={noteType} onValueChange={(value) => setValue("type", value as NoteType)}>
+                    <TabsList>
+                      <TabsTrigger value="TEXT">Text</TabsTrigger>
+                      <TabsTrigger value="IMAGE">Image</TabsTrigger>
+                      <TabsTrigger value="STYLUS">Stylus</TabsTrigger>
+                      <TabsTrigger value="VOICE">Voice</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="TEXT">
+                      <div className="border rounded-md p-4">
+                        <MenuBar editor={editor} />
+                        <EditorContent editor={editor} className="prose max-w-none" />
+                      </div>
+                    </TabsContent>
+                    <TabsContent value="IMAGE">
+                      <Input 
+                        id="picture" 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={(e) => {
+                          const file = e.target.files?.[0]
+                          if (file) {
+                            const reader = new FileReader()
+                            reader.onloadend = () => {
+                              setValue('content', reader.result as string)
+                            }
+                            reader.readAsDataURL(file)
+                          }
+                        }}
+                      />
+                    </TabsContent>
+                    <TabsContent value="STYLUS">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="outline">Open Drawing Canvas</Button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[800px] backdrop-blur-sm bg-opacity-50">
+                          <DialogHeader>
+                            <DialogTitle>Drawing Canvas</DialogTitle>
+                            <DialogDescription>Use your stylus or mouse to draw a note.</DialogDescription>
+                          </DialogHeader>
+                          <div className="flex flex-col space-y-4">
+                            <div className="flex justify-between items-center">
+                              <div className="flex space-x-2">
+                                <Toggle pressed={currentShape === 'pen'} onPressedChange={() => setCurrentShape('pen')}>
+                                  <PencilIcon className="h-4 w-4"  />
+                                </Toggle>
+                                <Toggle pressed={currentShape === 'square'} onPressedChange={() => setCurrentShape('square')}>
+                                  <Square className="h-4 w-4" />
+                                </Toggle>
+                                <Toggle pressed={currentShape === 'circle'} onPressedChange={() => setCurrentShape('circle')}>
+                                  <Circle className="h-4 w-4" />
+                                </Toggle>
                               </div>
-                              <canvas
-                                ref={canvasRef}
-                                width={700}
-                                height={400}
-                                onMouseDown={startDrawing}
-                                onMouseUp={stopDrawing}
-                                onMouseOut={stopDrawing}
-                                onMouseMove={draw}
-                                onTouchStart={startDrawing}
-                                onTouchEnd={stopDrawing}
-                                onTouchMove={draw}
-                                className="border border-gray-300 rounded-lg touch-none"
+                              <Input
+                                type="color"
+                                value={penColor}
+                                onChange={(e) => setPenColor(e.target.value)}
+                                className="w-10 h-10 p-0 border-0"
                               />
+                              <Input
+                                type="range"
+                                min="1"
+                                max="20"
+                                value={penSize}
+                                onChange={(e) => setPenSize(parseInt(e.target.value))}
+                                className="w-32"
+                              />
+                              <Button variant="outline" onClick={clearCanvas}>
+                                <EraserIcon className="h-4 w-4 mr-2" />
+                                Clear
+                              </Button>
                             </div>
-                          </DialogContent>
-                        </Dialog>
-                      </TabsContent>
-                      <TabsContent value="VOICE">
-                        {isClient && <VoiceToTextContent />}
-                      </TabsContent>
-                    </Tabs>
-                  </div>
+                            <canvas
+                              ref={canvasRef}
+                              width={700}
+                              height={400}
+                              onMouseDown={startDrawing}
+                              onMouseUp={stopDrawing}
+                              onMouseOut={stopDrawing}
+                              onMouseMove={draw}
+                              onTouchStart={startDrawing}
+                              onTouchEnd={stopDrawing}
+                              onTouchMove={draw}
+                              className="border border-gray-300 rounded-lg touch-none"
+                            />
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                    </TabsContent>
+                    <TabsContent value="VOICE">
+                      {isClient && <VoiceToTextContent />}
+                    </TabsContent>
+                  </Tabs>
                 </div>
-                <div className="mt-4 flex justify-between">
-                  <Button type="submit" disabled={isLoading}>
-                    {isLoading ? (
-                      <>
-                        <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                        Please wait
-                      </>
-                    ) : editingNote ? (
-                      "Update Note"
-                    ) : (
-                      "Add Note"
-                    )}
-                  </Button>
-                  {editingNote && (
-                    <Button type="button" variant="outline" onClick={() => setEditingNote(null)}>
-                      Cancel Edit
-                    </Button>
+              </div>
+              <div className="mt-4 flex justify-between">
+                <Button type="submit" disabled={isLoading}>
+                  {isLoading ? (
+                    <>
+                      <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                      Please wait
+                    </>
+                  ) : editingNote ? (
+                    "Update Note"
+                  ) : (
+                    "Add Note"
                   )}
-                </div>
-              </form>
-            </CardContent>
-          </Card>
+                </Button>
+                {editingNote && (
+                  <Button type="button" variant="outline" onClick={() => {
+                    setEditingNote(null)
+                    reset({ title: "", content: "", type: "TEXT" })
+                    editor?.commands.setContent('')
+                  }}>
+                    Cancel Edit
+                  </Button>
+                )}
+              </div>
+            </form>
+          </CardContent>
+        </Card>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <AnimatePresence>
-              {isLoading ? (
-                Array.from({ length: 3 }).map((_, index) => (
-                  <motion.div
-                    key={`skeleton-${index}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <Card>
-                      <CardHeader>
-                        <Skeleton className="h-5 w-1/2" />
-                      </CardHeader>
-                      <CardContent>
-                        <Skeleton className="h-4 w-full mb-2" />
-                        <Skeleton className="h-4 w-2/3" />
-                      </CardContent>
-                      <CardFooter>
-                        <Skeleton className="h-9 w-20 mr-2" />
-                        <Skeleton className="h-9 w-20" />
-                      </CardFooter>
-                    </Card>
-                  </motion.div>
-                ))
-              ) : filteredNotes.length === 0 ? (
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence>
+            {isLoading ? (
+              Array.from({ length: 3 }).map((_, index) => (
                 <motion.div
-                  key="no-notes"
+                  key={`skeleton-${index}`}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="col-span-full text-center text-muted-foreground"
                 >
-                  No notes found. Start by creating a new note!
+                  <Card>
+                    <CardHeader>
+                      <Skeleton className="h-5 w-1/2" />
+                    </CardHeader>
+                    <CardContent>
+                      <Skeleton className="h-4 w-full mb-2" />
+                      <Skeleton className="h-4 w-2/3" />
+                    </CardContent>
+                    <CardFooter>
+                      <Skeleton className="h-9 w-20 mr-2" />
+                      <Skeleton className="h-9 w-20" />
+                    </CardFooter>
+                  </Card>
                 </motion.div>
-              ) : (
-                filteredNotes.map((note) => (
-                  <motion.div key={note.id} layout initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}>
-                    <Card>
-                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">{note.title || "Untitled Note"}</CardTitle>
-                        {note.type === "TEXT" && <Edit2Icon className="h-4 w-4 text-muted-foreground" />}
-                        {note.type === "IMAGE" && <ImageIcon className="h-4 w-4 text-muted-foreground" />}
-                        {note.type === "STYLUS" && <PencilIcon className="h-4 w-4 text-muted-foreground" />}
-                        {note.type === "VOICE" && <Mic className="h-4 w-4 text-muted-foreground" />}
-                      </CardHeader>
-                      <CardContent>
-                        {note.type === 'STYLUS' ? (
-                          <img src={note.content} alt="Stylus note" className="w-full h-auto" />
-                        ) : note.type === 'TEXT' ? (
-                          <div dangerouslySetInnerHTML={{ __html: note.content }} className="prose max-w-none" />
-                        ) : (
-                          <p className="text-sm">{note.content.replace(/'/g, "&apos;")}</p>
-                        )}
-                        <p className="text-xs text-muted-foreground mt-2">{new Date(note.updatedAt).toLocaleString()}</p>
-                      </CardContent>
-                      <CardFooter className="flex justify-between">
-                        <Button variant="outline" size="sm" onClick={() => handleEdit(note)}>
-                          Edit
-                        </Button>
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <Button variant="outline" size="sm">
-                              Delete
-                            </Button>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent>
-                            <AlertDialogHeader>
-                              <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                              <AlertDialogDescription>This action cannot be undone. This will permanently delete your note.</AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                              <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction onClick={() => deleteNote(note.id)}>Delete</AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
-                      </CardFooter>
-                    </Card>
-                  </motion.div>
-                ))
-              )}
-            </AnimatePresence>
-          </div>
-        </main>
-      </div>
-    </>
+              ))
+            ) : filteredNotes.length === 0 ? (
+              <motion.div
+                key="no-notes"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="col-span-full text-center text-muted-foreground"
+              >
+                No notes found. Start by creating a new note!
+              </motion.div>
+            ) : (
+              filteredNotes.map((note) => (
+                <motion.div key={note.id} layout initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}>
+                  <Card>
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                      <CardTitle className="text-sm font-medium">{note.title || "Untitled Note"}</CardTitle>
+                      {note.type === "TEXT" && <Edit2Icon className="h-4 w-4 text-muted-foreground" />}
+                      {note.type === "IMAGE" && <ImageIcon className="h-4 w-4 text-muted-foreground" />}
+                      {note.type === "STYLUS" && <PencilIcon className="h-4 w-4 text-muted-foreground" />}
+                      {note.type === "VOICE" && <Mic className="h-4 w-4 text-muted-foreground" />}
+                    </CardHeader>
+                    <CardContent>
+                      {note.type === 'STYLUS' ? (
+                        <img src={note.content} alt="Stylus note" className="w-full h-auto" />
+                      ) : note.type === 'TEXT' ? (
+                        <div dangerouslySetInnerHTML={{ __html: note.content }} className="prose max-w-none" />
+                      ) : note.type === 'IMAGE' ? (
+                        <img src={note.content} alt="Note image" className="w-full h-auto" />
+                      ) : (
+                        <p className="text-sm">{note.content}</p>
+                      )}
+                      <p className="text-xs text-muted-foreground mt-2">{new Date(note.updatedAt).toLocaleString()}</p>
+                    </CardContent>
+                    <CardFooter className="flex justify-between">
+                      <Button variant="outline" size="sm" onClick={() => handleEdit(note)}>
+                        Edit
+                      </Button>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button variant="outline" size="sm">
+                            Delete
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                            <AlertDialogDescription>This action cannot be undone. This will permanently delete your note.</AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction onClick={() => deleteNote(note.id)}>Delete</AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </CardFooter>
+                  </Card>
+                </motion.div>
+              ))
+            )}
+          </AnimatePresence>
+        </div>
+      </main>
+    </div>
   )
 }
