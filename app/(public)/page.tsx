@@ -142,7 +142,7 @@ export default function Page() {
     </div>
   
 
-      <div className="container mx-auto px-4 mb-20">
+      <div className="container mx-auto px-4 mt-10">
       <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
         Never Forget Anything
       </h4>
