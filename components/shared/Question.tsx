@@ -154,12 +154,30 @@ export default function Question({
   )
   const [aiEnabled, setAiEnabled] = useState(true)
   const [notesEnabled, setNotesEnabled] = useState(true)
+  const [localNote, setLocalNote] = useState(note)
 
   const { toast, dismiss } = useToast()
 
   useEffect(() => {
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
+
+  useEffect(() => {
+    const fetchNote = async () => {
+      try {
+        const response = await fetch(`/api/notes/${question.questionId}`)
+        if (response.ok) {
+          const data = await response.json()
+          setLocalNote(data.content)
+          handleNoteChange(question.questionId, data.content)
+        }
+      } catch (error) {
+        console.error('Error fetching note:', error)
+      }
+    }
+
+    fetchNote()
+  }, [question.questionId, handleNoteChange])
 
   const handleOptionClickLocal = (option: string) => {
     if (localSelectedOption !== option) {
@@ -212,7 +230,7 @@ export default function Question({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           questionId: question.questionId, 
-          content: note,
+          content: localNote,
           title: `Note for Question ${question.questionId}`,
           type: 'TEXT'
         }),
@@ -239,6 +257,7 @@ export default function Question({
         title: 'Note Deleted',
         description: 'Your note has been deleted successfully.',
       })
+      setLocalNote('')
       handleNoteChange(question.questionId, '')
     } catch (error) {
       console.error('Error deleting note:', error)
@@ -807,31 +826,34 @@ export default function Question({
           </CardContent>
 
           {showNotes && (
-        <CardContent>
-          <Card>
-            <CardHeader>
-              <CardTitle>Notes</CardTitle>
-              <CardDescription>
-                Add your notes for this question here.
-              </CardDescription>
-            </CardHeader>
             <CardContent>
-              <Tiptap
-                content={note}
-                onUpdate={(content) => handleNoteChange(question.questionId, content)}
-              />
+              <Card>
+                <CardHeader>
+                  <CardTitle>Notes</CardTitle>
+                  <CardDescription>
+                    Add your notes for this question here.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Tiptap
+                    content={localNote}
+                    onUpdate={(content) => {
+                      setLocalNote(content)
+                      handleNoteChange(question.questionId, content)
+                    }}
+                  />
+                </CardContent>
+                <CardFooter className="flex justify-between">
+                  <Button variant="outline" onClick={saveNote}>
+                    Save Note
+                  </Button>
+                  <Button variant="destructive" onClick={deleteNote}>
+                    Delete Note
+                  </Button>
+                </CardFooter>
+              </Card>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" onClick={saveNote}>
-                Save Note
-              </Button>
-              <Button variant="destructive" onClick={deleteNote}>
-                Delete Note
-              </Button>
-            </CardFooter>
-          </Card>
-        </CardContent>
-      )}
+          )}
 
           {showAI && (
             <CardContent>
