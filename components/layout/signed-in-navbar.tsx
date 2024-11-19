@@ -25,6 +25,7 @@ import {
 import { cn } from "@/lib/utils"
 import { signOut } from "next-auth/react"
 import { MultiStepLoader } from "@/components/aceternity-ui/multi-step-loader"
+import FeedbackPopover from "./feedback"
 
 const supportLinks = [
   {
@@ -131,6 +132,7 @@ export default function NavBar({ session }: { session: Session | null }) {
           <div className="hidden md:flex items-center space-x-4">
             {session ? (
               <>
+                <FeedbackPopover/>
                 <NotificationDropdown />
                 <UserDropdown session={session} />
               </>
