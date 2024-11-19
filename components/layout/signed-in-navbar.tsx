@@ -113,7 +113,7 @@ export default function NavBar({ session }: { session: Session | null }) {
         className={cn(
           "fixed left-1/2 transform -translate-x-1/2 w-full max-w-screen-{1000px} z-30 transition-all duration-300 ease-in-out",
           scrolled
-            ? "backdrop-blur-sm shadow-sm"
+            ? "backdrop-blur-md shadow-sm"
             : ""
         )}
       >

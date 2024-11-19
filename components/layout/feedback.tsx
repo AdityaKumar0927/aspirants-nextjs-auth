@@ -119,7 +119,7 @@ export default function FeedbackPopover() {
                           key={index}
                           variant="ghost"
                           size="sm"
-                          className={`p-0 w-8 h-8 rounded-full ${selectedEmoji === index ? 'bg-muted' : ''}`}
+                          className={`p-0 w-8 h-8 rounded-full ${selectedEmoji === index ? 'bg-blue-200' : ''}`}
                           onClick={() => setSelectedEmoji(index)}
                         >
                           <span className="text-xl">{emoji}</span>
