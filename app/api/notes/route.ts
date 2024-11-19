@@ -63,3 +63,33 @@ export async function POST(request: Request) {
     )
   }
 }
+
+export async function GET(request: Request) {
+  try {
+    const session = await getServerSession(authOptions)
+    if (!session || !session.user) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
+    }
+
+    const { searchParams } = new URL(request.url)
+    const questionId = searchParams.get('questionId')
+
+    const notes = await prisma.note.findMany({
+      where: {
+        userId: session.user.id,
+        questionId: questionId || null,
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    })
+
+    return NextResponse.json(notes)
+  } catch (error) {
+    console.error('Error fetching notes:', error)
+    return NextResponse.json(
+      { message: 'Error fetching notes' },
+      { status: 500 }
+    )
+  }
+}
