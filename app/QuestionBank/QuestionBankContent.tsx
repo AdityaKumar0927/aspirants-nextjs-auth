@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React, { useReducer, useEffect, useMemo, useCallback, useState } from "react"
 import { useSession } from "next-auth/react"
@@ -20,6 +20,8 @@ import { useToast } from "@/components/ui/use-toast"
 import {
   Card,
   CardContent,
+  CardHeader, 
+  CardTitle,
 } from "@/components/ui/card"
 import {
   Dialog,
@@ -641,10 +643,10 @@ const QuestionBankContent: React.FC = () => {
       dispatch({ type: "SET_NOTES", payload: newNotes })
 
       try {
-        const response = await fetch("/api/notes/save", {
+        const response = await fetch("/api/notes", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, content: note }),
+          body: JSON.stringify({ questionId, content: note, title: "Note", type: "text" }),
         })
         if (!response.ok) throw new Error("Failed to save note")
       } catch (error) {
@@ -657,14 +659,13 @@ const QuestionBankContent: React.FC = () => {
   const handleDeleteNote = useCallback(
     async (questionId: string) => {
       try {
-        const response = await fetch("/api/notes/delete", {
+        const response = await fetch(`/api/notes/${questionId}`, {
           method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId }),
         })
         if (!response.ok) throw new Error("Failed to delete note")
 
-        const newNotes = { ...state.notes, [questionId]: "" }
+        const newNotes = { ...state.notes }
+        delete newNotes[questionId]
         dispatch({ type: "SET_NOTES", payload: newNotes })
       } catch (error) {
         console.error("Error deleting note:", error)
@@ -970,47 +971,57 @@ const QuestionBankContent: React.FC = () => {
             ))}
           </div>
 
-          <Card className="bg-black text-white border-gray-800 mb-6">
-            <CardContent className="p-6">
-              <h2 className="text-2xl font-bold tracking-tight mb-6">
-                Question Progress
-              </h2>
-              <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-400">Overall Progress</span>
-                  <span className="text-sm font-medium text-white">
-                    {Math.round((questionStats.answered / filteredQuestions.length) * 100)}%
-                  </span>
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle>Question Progress</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-muted-foreground">Overall Progress</span>
+                <span className="text-sm font-medium">
+                  {Math.round((questionStats.answered / filteredQuestions.length) * 100)}%
+                </span>
+              </div>
+              <Progress 
+                value={(questionStats.answered / filteredQuestions.length) * 100} 
+                className="w-full" 
+              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="flex items-center space-x-3 p-4 rounded-lg bg-muted">
+                  <div className="text-muted-foreground p-2 rounded-full bg-background">
+                    <HelpCircle className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{questionStats.notVisited}</p>
+                    <p className="text-sm text-muted-foreground">Not Visited</p>
+                  </div>
                 </div>
-                <Progress 
-                  value={(questionStats.answered / filteredQuestions.length) * 100} 
-                  className="w-full h-1 bg-gray-700 progress-indicator" 
-                />
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <StatusCard
-                    icon={<HelpCircle className="h-5 w-5" />}
-                    label="Not Visited"
-                    value={questionStats.notVisited}
-                    color="text-gray-400"
-                  />
-                  <StatusCard
-                    icon={<Circle className="h-5 w-5" />}
-                    label="Not Answered"
-                    value={questionStats.notAnswered}
-                    color="text-blue-400"
-                  />
-                  <StatusCard
-                    icon={<CheckCircle2 className="h-5 w-5" />}
-                    label="Answered"
-                    value={questionStats.answered}
-                    color="text-green-400"
-                  />
-                  <StatusCard
-                    icon={<Flag className="h-5 w-5" />}
-                    label="For Review"
-                    value={questionStats.markedForReview}
-                    color="text-yellow-400"
-                  />
+                <div className="flex items-center space-x-3 p-4 rounded-lg bg-muted">
+                  <div className="text-blue-500 p-2 rounded-full bg-background">
+                    <Circle className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{questionStats.notAnswered}</p>
+                    <p className="text-sm text-muted-foreground">Not Answered</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3 p-4 rounded-lg bg-muted">
+                  <div className="text-green-500 p-2 rounded-full bg-background">
+                    <CheckCircle2 className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{questionStats.answered}</p>
+                    <p className="text-sm text-muted-foreground">Answered</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3 p-4 rounded-lg bg-muted">
+                  <div className="text-yellow-500 p-2 rounded-full bg-background">
+                    <Flag className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{questionStats.markedForReview}</p>
+                    <p className="text-sm text-muted-foreground">For Review</p>
+                  </div>
                 </div>
               </div>
             </CardContent>
@@ -1078,4 +1089,4 @@ async function fetchData(url: string) {
   return await response.json()
 }
 
-export default QuestionBankContent;
+export default QuestionBankContent

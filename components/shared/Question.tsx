@@ -155,6 +155,7 @@ export default function Question({
   const [aiEnabled, setAiEnabled] = useState(true)
   const [notesEnabled, setNotesEnabled] = useState(true)
   const [localNote, setLocalNote] = useState(note)
+  const [noteId, setNoteId] = useState<string | null>(null)
 
   const { toast, dismiss } = useToast()
 
@@ -168,11 +169,21 @@ export default function Question({
         const response = await fetch(`/api/notes/${question.questionId}`)
         if (response.ok) {
           const data = await response.json()
-          setLocalNote(data.content)
-          handleNoteChange(question.questionId, data.content)
+          if (data && data.content) {
+            setLocalNote(data.content)
+            setNoteId(data.id)
+            handleNoteChange(question.questionId, data.content)
+          } else {
+            setLocalNote('')
+            setNoteId(null)
+            handleNoteChange(question.questionId, '')
+          }
         }
       } catch (error) {
         console.error('Error fetching note:', error)
+        setLocalNote('')
+        setNoteId(null)
+        handleNoteChange(question.questionId, '')
       }
     }
 
@@ -225,8 +236,11 @@ export default function Question({
 
   const saveNote = async () => {
     try {
-      const response = await fetch(`/api/notes`, {
-        method: 'POST',
+      const endpoint = noteId ? `/api/notes/${noteId}` : '/api/notes'
+      const method = noteId ? 'PUT' : 'POST'
+      
+      const response = await fetch(endpoint, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           questionId: question.questionId, 
@@ -235,7 +249,12 @@ export default function Question({
           type: 'TEXT'
         }),
       })
+
       if (!response.ok) throw new Error('Failed to save note')
+      
+      const data = await response.json()
+      setNoteId(data.id)
+
       toast({
         title: 'Note Saved',
         description: 'Your note has been saved successfully.',
@@ -251,13 +270,22 @@ export default function Question({
   }
 
   const deleteNote = async () => {
+    if (!noteId) return
+
     try {
-      await handleDeleteNote(question.questionId)
+      const response = await fetch(`/api/notes/${noteId}`, {
+        method: 'DELETE',
+      })
+
+      if (!response.ok) throw new Error('Failed to delete note')
+
       toast({
         title: 'Note Deleted',
         description: 'Your note has been deleted successfully.',
       })
+      
       setLocalNote('')
+      setNoteId(null)
       handleNoteChange(question.questionId, '')
     } catch (error) {
       console.error('Error deleting note:', error)
@@ -847,7 +875,11 @@ export default function Question({
                   <Button variant="outline" onClick={saveNote}>
                     Save Note
                   </Button>
-                  <Button variant="destructive" onClick={deleteNote}>
+                  <Button 
+                    variant="destructive" 
+                    onClick={deleteNote}
+                    disabled={!noteId}
+                  >
                     Delete Note
                   </Button>
                 </CardFooter>
@@ -966,6 +998,7 @@ export default function Question({
                 </div>
                 <Button
                   className="mt-4"
+                  variant="outline"
                   onClick={() => setShowMarkschemeModal(false)}
                 >
                   Close

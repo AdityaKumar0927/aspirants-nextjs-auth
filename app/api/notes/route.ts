@@ -1,65 +1,65 @@
-import { PrismaClient } from '@prisma/client';
-import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/options';
+import { NextResponse } from 'next/server'
+import prisma from '@/lib/prisma'
+import { getServerSession } from "next-auth/next"
+import authOptions from '../auth/[...nextauth]/options'
 
-const prisma = new PrismaClient();
-
-export async function GET(req: NextRequest) {
+export async function POST(request: Request) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const session = await getServerSession(authOptions)
+    if (!session || !session.user) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
     }
 
-    const url = new URL(req.url);
-    const questionId = url.searchParams.get('questionId');
+    const body = await request.json()
+    const { questionId, content, title, type } = body
 
-    const notes = await prisma.note.findMany({
-      where: { 
+    // Check if a note already exists for this question and user
+    const existingNote = await prisma.note.findFirst({
+      where: {
+        questionId: questionId,
         userId: session.user.id,
-        questionId: questionId ? questionId : null
       },
-      include: { question: true },
-      orderBy: { createdAt: 'desc' },
-    });
+      orderBy: {
+        createdAt: 'desc'
+      }
+    })
 
-    return NextResponse.json(notes);
-  } catch (error) {
-    console.error('Error fetching notes:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
-  }
-}
-
-export async function POST(req: NextRequest) {
-  try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (existingNote) {
+      // Update existing note
+      const updatedNote = await prisma.note.update({
+        where: {
+          id: existingNote.id,
+        },
+        data: {
+          content,
+          title,
+          type,
+        },
+      })
+      return NextResponse.json(updatedNote)
     }
 
-    const { content, questionId, title, type } = await req.json();
-
-    if (!content || !title || !type) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
-    }
-
+    // Create new note if none exists
     const note = await prisma.note.create({
       data: {
+        questionId,
         content,
         title,
         type,
-        userId: session.user.id,
-        questionId: questionId || null,
+        user: {
+          connect: {
+            id: session.user.id
+          }
+        }
       },
-      include: { question: true },
-    });
+    })
 
-    return NextResponse.json(note);
+    return NextResponse.json(note)
   } catch (error) {
-    console.error('Error creating note:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    console.error('Error creating/updating note:', error)
+    return NextResponse.json(
+      { message: 'Error creating/updating note' },
+      { status: 500 }
+    )
   }
 }
