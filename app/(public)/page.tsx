@@ -15,6 +15,7 @@ import Chat from '@/components/shared/Chat';
 import { AnimatedGradientText } from '@/components/magicui/animated-gradient-text';
 import Ripple from '../components/magicui/ripple';
 import { SmileIcon } from 'lucide-react';
+import { FAQ } from '@/components/shared/FAQ';
 
 const projects = [
   {
@@ -181,6 +182,9 @@ export default function Page() {
           </motion.div>
         </div>
       </div>
+
+      <FAQ />
+
     </div>
   );
 }
