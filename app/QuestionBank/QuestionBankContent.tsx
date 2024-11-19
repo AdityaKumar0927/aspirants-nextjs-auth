@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import React, { useReducer, useEffect, useMemo, useCallback, useState } from "react"
 import { useSession } from "next-auth/react"
@@ -121,7 +121,6 @@ type StateType = {
   notes: Record<string, string>
   loading: boolean
   currentPage: number
-  filterSearchQueries: Record<string, string>
 }
 
 type ActionType =
@@ -136,7 +135,6 @@ type ActionType =
   | { type: "SET_NOTES"; payload: Record<string, string> }
   | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_CURRENT_PAGE"; payload: number }
-  | { type: "SET_FILTER_SEARCH_QUERY"; payload: { filterType: string; query: string } }
 
 const initialState: StateType = {
   questions: [],
@@ -167,15 +165,6 @@ const initialState: StateType = {
   notes: {},
   loading: true,
   currentPage: 1,
-  filterSearchQueries: {
-    exams: "",
-    subjects: "",
-    topics: "",
-    subtopics: "",
-    difficulties: "",
-    types: "",
-    years: "",
-  },
 }
 
 function reducer(state: StateType, action: ActionType): StateType {
@@ -205,14 +194,6 @@ function reducer(state: StateType, action: ActionType): StateType {
       return { ...state, loading: action.payload }
     case "SET_CURRENT_PAGE":
       return { ...state, currentPage: action.payload }
-    case "SET_FILTER_SEARCH_QUERY":
-      return {
-        ...state,
-        filterSearchQueries: {
-          ...state.filterSearchQueries,
-          [action.payload.filterType]: action.payload.query,
-        },
-      }
     default:
       return state
   }
@@ -373,20 +354,6 @@ const QuestionBankContent: React.FC = () => {
       const selectedOptions: Record<string, string> = {}
       const notes: Record<string, string> = {}
 
-      const notesData = await Promise.all(
-        questionsData.map(async (question: QuestionType) => {
-          try {
-            const response = await fetch(`/api/notes/${question.questionId}`)
-            if (response.ok) {
-              return await response.json()
-            }
-          } catch (error) {
-            console.error(`Error fetching note for question ${question.questionId}:`, error)
-          }
-          return null
-        })
-      )
-
       const mergedQuestions = questionsData.map((question: QuestionType) => {
         const progress = userProgressData.find(
           (p: any) => p.questionId === question.questionId
@@ -394,7 +361,6 @@ const QuestionBankContent: React.FC = () => {
         const userAnswer = userAnswersData.find(
           (a: UserAnswer) => a.questionId === question.questionId
         )
-        const note = notesData.find((n: any) => n && n.questionId === question.questionId)
         const performance = userPerformanceData.find(
           (p: UserPerformance) => p.questionId === question.questionId
         )
@@ -404,15 +370,10 @@ const QuestionBankContent: React.FC = () => {
           feedback[question.questionId] = userAnswer.isCorrect ? "correct" : "incorrect"
         }
 
-        if (note) {
-          notes[question.questionId] = note.content
-        }
-
         return {
           ...question,
           reviewed: performance?.reviewed ?? progress?.reviewed ?? false,
           completed: performance?.completed ?? progress?.completed ?? false,
-          notes: note ? note.content : "",
           lastAttempted: progress?.lastAttempted ?? "",
           performance: performance || {},
         }
@@ -458,16 +419,13 @@ const QuestionBankContent: React.FC = () => {
         (!state.filters.exams.length || state.filters.exams.includes(question.exam)) &&
         (!state.filters.subjects.length ||
           state.filters.subjects.includes(question.subject)) &&
-        (!state.filters.topics.length ||
-          state.filters.topics.includes(question.topic)) &&
+        (!state.filters.topics.length || state.filters.topics.includes(question.topic)) &&
         (!state.filters.subtopics.length ||
           state.filters.subtopics.includes(question.subtopic)) &&
         (!state.filters.difficulties.length ||
           state.filters.difficulties.includes(question.difficulty)) &&
-        (!state.filters.years.length ||
-          state.filters.years.includes(question.year)) &&
-        (!state.filters.types.length ||
-          state.filters.types.includes(question.type))
+        (!state.filters.years.length || state.filters.years.includes(question.year)) &&
+        (!state.filters.types.length || state.filters.types.includes(question.type))
 
       if (state.filters.status === "review") {
         return matchesSearch && matchesFilters && question.reviewed
@@ -500,8 +458,10 @@ const QuestionBankContent: React.FC = () => {
           ? filterValues.filter((v: string) => v !== value)
           : [...filterValues, value]
         
+        // Update filters
         const newFilters = { ...state.filters, [tag]: updatedFilter }
         
+        // If an exam is selected, filter other dropdowns
         if (tag === 'exams') {
           const selectedExams = newFilters.exams
           newFilters.subjects = newFilters.subjects.filter(subject => 
@@ -676,10 +636,10 @@ const QuestionBankContent: React.FC = () => {
       dispatch({ type: "SET_NOTES", payload: newNotes })
 
       try {
-        const response = await fetch(`/api/notes/${questionId}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ content: note }),
+        const response = await fetch("/api/notes/save", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ questionId, content: note }),
         })
         if (!response.ok) throw new Error("Failed to save note")
       } catch (error) {
@@ -692,13 +652,14 @@ const QuestionBankContent: React.FC = () => {
   const handleDeleteNote = useCallback(
     async (questionId: string) => {
       try {
-        const response = await fetch(`/api/notes/${questionId}`, {
-          method: 'DELETE',
+        const response = await fetch("/api/notes/delete", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ questionId }),
         })
         if (!response.ok) throw new Error("Failed to delete note")
 
-        const newNotes = { ...state.notes }
-        delete newNotes[questionId]
+        const newNotes = { ...state.notes, [questionId]: "" }
         dispatch({ type: "SET_NOTES", payload: newNotes })
       } catch (error) {
         console.error("Error deleting note:", error)
@@ -741,10 +702,6 @@ const QuestionBankContent: React.FC = () => {
 
     return stats
   }, [filteredQuestions])
-
-  const handleFilterSearch = useCallback((filterType: string, query: string) => {
-    dispatch({ type: "SET_FILTER_SEARCH_QUERY", payload: { filterType, query } })
-  }, [])
 
   if (status === "loading" || state.loading) {
     return (
@@ -901,8 +858,9 @@ const QuestionBankContent: React.FC = () => {
                           type="text"
                           placeholder={`Search ${filterType}...`}
                           className="mb-2"
-                          value={state.filterSearchQueries[filterType]}
-                          onChange={(e) => handleFilterSearch(filterType, e.target.value)}
+                          onChange={(e) => {
+                            // Implement search functionality here
+                          }}
                         />
                         <div className="max-h-60 overflow-y-auto">
                           {Array.from(
@@ -932,11 +890,7 @@ const QuestionBankContent: React.FC = () => {
                                   }
                                 })
                             )
-                          )
-                          .filter((value: string) => 
-                            value.toLowerCase().includes(state.filterSearchQueries[filterType].toLowerCase())
-                          )
-                          .map((value: string) => (
+                          ).map((value: string) => (
                             <div key={value} className="flex items-center">
                               <input
                                 type="checkbox"
@@ -1012,60 +966,60 @@ const QuestionBankContent: React.FC = () => {
           </div>
 
           <Card className="mb-6">
-            <CardHeader>
-              <CardTitle>Question Progress</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium text-muted-foreground">Overall Progress</span>
-                <span className="text-sm font-medium">
-                  {Math.round((questionStats.answered / filteredQuestions.length) * 100)}%
-                </span>
-              </div>
-              <Progress 
-                value={(questionStats.answered / filteredQuestions.length) * 100} 
-                className="w-full" 
-              />
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="flex items-center space-x-3 p-4 rounded-lg bg-muted">
-                  <div className="text-muted-foreground p-2 rounded-full bg-background">
-                    <HelpCircle className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold">{questionStats.notVisited}</p>
-                    <p className="text-sm text-muted-foreground">Not Visited</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3 p-4 rounded-lg bg-muted">
-                  <div className="text-blue-500 p-2 rounded-full bg-background">
-                    <Circle className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold">{questionStats.notAnswered}</p>
-                    <p className="text-sm text-muted-foreground">Not Answered</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3 p-4 rounded-lg bg-muted">
-                  <div className="text-green-500 p-2 rounded-full bg-background">
-                    <CheckCircle2 className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold">{questionStats.answered}</p>
-                    <p className="text-sm text-muted-foreground">Answered</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3 p-4 rounded-lg bg-muted">
-                  <div className="text-yellow-500 p-2 rounded-full bg-background">
-                    <Flag className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold">{questionStats.markedForReview}</p>
-                    <p className="text-sm text-muted-foreground">For Review</p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+  <CardHeader>
+    <CardTitle>Question Progress</CardTitle>
+  </CardHeader>
+  <CardContent className="space-y-6">
+    <div className="flex justify-between items-center">
+      <span className="text-sm font-medium text-muted-foreground">Overall Progress</span>
+      <span className="text-sm font-medium">
+        {Math.round((questionStats.answered / filteredQuestions.length) * 100)}%
+      </span>
+    </div>
+    <Progress 
+      value={(questionStats.answered / filteredQuestions.length) * 100} 
+      className="w-full" 
+    />
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="flex items-center space-x-3 p-4 rounded-lg bg-muted">
+        <div className="text-muted-foreground p-2 rounded-full bg-background">
+          <HelpCircle className="h-5 w-5" />
+        </div>
+        <div>
+          <p className="text-2xl font-bold">{questionStats.notVisited}</p>
+          <p className="text-sm text-muted-foreground">Not Visited</p>
+        </div>
+      </div>
+      <div className="flex items-center space-x-3 p-4 rounded-lg bg-muted">
+        <div className="text-blue-500 p-2 rounded-full bg-background">
+          <Circle className="h-5 w-5" />
+        </div>
+        <div>
+          <p className="text-2xl font-bold">{questionStats.notAnswered}</p>
+          <p className="text-sm text-muted-foreground">Not Answered</p>
+        </div>
+      </div>
+      <div className="flex items-center space-x-3 p-4 rounded-lg bg-muted">
+        <div className="text-green-500 p-2 rounded-full bg-background">
+          <CheckCircle2 className="h-5 w-5" />
+        </div>
+        <div>
+          <p className="text-2xl font-bold">{questionStats.answered}</p>
+          <p className="text-sm text-muted-foreground">Answered</p>
+        </div>
+      </div>
+      <div className="flex items-center space-x-3 p-4 rounded-lg bg-muted">
+        <div className="text-yellow-500 p-2 rounded-full bg-background">
+          <Flag className="h-5 w-5" />
+        </div>
+        <div>
+          <p className="text-2xl font-bold">{questionStats.markedForReview}</p>
+          <p className="text-sm text-muted-foreground">For Review</p>
+        </div>
+      </div>
+    </div>
+  </CardContent>
+</Card>
 
           {paginatedQuestions.length > 0 ? (
             <>
@@ -1129,4 +1083,4 @@ async function fetchData(url: string) {
   return await response.json()
 }
 
-export default QuestionBankContent
+export default QuestionBankContent;
