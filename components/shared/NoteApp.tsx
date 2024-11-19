@@ -164,12 +164,7 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
       if (questionId) {
         url += `?questionId=${questionId}`
       }
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      const response = await fetch(url)
       if (!response.ok) throw new Error('Failed to fetch notes')
       const data = await response.json()
       setNotes(Array.isArray(data) ? data : [])
@@ -205,7 +200,7 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
         questionId: questionId || null,
       }
 
-      const url = '/api/notes'
+      const url = editingNote ? `/api/notes/${editingNote.id}` : '/api/notes'
       const method = editingNote ? 'PUT' : 'POST'
 
       const response = await fetch(url, {
@@ -462,7 +457,7 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
                     <TabsContent value="TEXT">
                       <div className="border rounded-md p-4">
                         <MenuBar editor={editor} />
-                        <EditorContent editor={editor} className="prose max-w-none" />
+                        <EditorContent editor={editor} />
                       </div>
                     </TabsContent>
                     <TabsContent value="IMAGE">
