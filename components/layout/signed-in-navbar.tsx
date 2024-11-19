@@ -26,6 +26,7 @@ import { cn } from "@/lib/utils"
 import { signOut } from "next-auth/react"
 import { MultiStepLoader } from "@/components/aceternity-ui/multi-step-loader"
 import FeedbackPopover from "./feedback"
+import { ToastProvider } from "@/components/ui/toast"
 
 const supportLinks = [
   {
@@ -103,7 +104,7 @@ export default function NavBar({ session }: { session: Session | null }) {
   }
 
   return (
-    <>
+    <ToastProvider>
       <SignInModal />
       <nav
         className={cn(
@@ -176,7 +177,7 @@ export default function NavBar({ session }: { session: Session | null }) {
         )}
       </nav>
       <MultiStepLoader loadingStates={logoutSteps} loading={showLogoutLoader} duration={1000} loop={false} />
-    </>
+    </ToastProvider>
   )
 }
 
@@ -277,6 +278,7 @@ function MobileNavLinks({
             </Button>
             <UserDropdown session={session} />
           </div>
+          <FeedbackPopover />
           <Button
             variant="outline"
             className="w-full mt-4 flex items-center justify-center"
