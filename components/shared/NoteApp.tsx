@@ -162,19 +162,17 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
     try {
       let url = '/api/notes'
       if (questionId) {
-        url = `/api/notes/${questionId}`
+        url += `?questionId=${questionId}`
       }
-      const response = await fetch(url)
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
       if (!response.ok) throw new Error('Failed to fetch notes')
       const data = await response.json()
-      if (Array.isArray(data)) {
-        setNotes(data)
-      } else if (data && typeof data === 'object') {
-        // If it's a single note object, wrap it in an array
-        setNotes([data])
-      } else {
-        setNotes([])
-      }
+      setNotes(Array.isArray(data) ? data : [data])
       toast.success("Notes loaded successfully")
     } catch (error) {
       console.error('Error fetching notes:', error)
