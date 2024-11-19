@@ -13,7 +13,7 @@ export default function Survey() {
           title="Survey"
           style={{
             position: 'absolute',
-            top: -25,
+            top: 0,
             right: 0,
             bottom: 0,
             left: 0,
