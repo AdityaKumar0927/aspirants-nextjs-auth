@@ -121,6 +121,7 @@ type StateType = {
   notes: Record<string, string>
   loading: boolean
   currentPage: number
+  filterSearchQueries: Record<string, string>
 }
 
 type ActionType =
@@ -135,6 +136,7 @@ type ActionType =
   | { type: "SET_NOTES"; payload: Record<string, string> }
   | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_CURRENT_PAGE"; payload: number }
+  | { type: "SET_FILTER_SEARCH_QUERY"; payload: { filterType: string; query: string } }
 
 const initialState: StateType = {
   questions: [],
@@ -165,6 +167,15 @@ const initialState: StateType = {
   notes: {},
   loading: true,
   currentPage: 1,
+  filterSearchQueries: {
+    exams: "",
+    subjects: "",
+    topics: "",
+    subtopics: "",
+    difficulties: "",
+    types: "",
+    years: "",
+  },
 }
 
 function reducer(state: StateType, action: ActionType): StateType {
@@ -194,6 +205,14 @@ function reducer(state: StateType, action: ActionType): StateType {
       return { ...state, loading: action.payload }
     case "SET_CURRENT_PAGE":
       return { ...state, currentPage: action.payload }
+    case "SET_FILTER_SEARCH_QUERY":
+      return {
+        ...state,
+        filterSearchQueries: {
+          ...state.filterSearchQueries,
+          [action.payload.filterType]: action.payload.query,
+        },
+      }
     default:
       return state
   }
@@ -342,18 +361,31 @@ const QuestionBankContent: React.FC = () => {
     dispatch({ type: "SET_LOADING", payload: true })
 
     try {
-      const [questionsData, userProgressData, userAnswersData, notesData, userPerformanceData] =
+      const [questionsData, userProgressData, userAnswersData, userPerformanceData] =
         await Promise.all([
           fetchData("/api/questions"),
           fetchData("/api/user-progress"),
           fetchData("/api/user-answers"),
-          fetchData("/api/notes"),
           fetchData("/api/user-performance/get"),
         ])
 
       const feedback: Record<string, string> = {}
       const selectedOptions: Record<string, string> = {}
       const notes: Record<string, string> = {}
+
+      const notesData = await Promise.all(
+        questionsData.map(async (question: QuestionType) => {
+          try {
+            const response = await fetch(`/api/notes/${question.questionId}`)
+            if (response.ok) {
+              return await response.json()
+            }
+          } catch (error) {
+            console.error(`Error fetching note for question ${question.questionId}:`, error)
+          }
+          return null
+        })
+      )
 
       const mergedQuestions = questionsData.map((question: QuestionType) => {
         const progress = userProgressData.find(
@@ -362,7 +394,7 @@ const QuestionBankContent: React.FC = () => {
         const userAnswer = userAnswersData.find(
           (a: UserAnswer) => a.questionId === question.questionId
         )
-        const note = notesData.find((n: any) => n.questionId === question.questionId)
+        const note = notesData.find((n: any) => n && n.questionId === question.questionId)
         const performance = userPerformanceData.find(
           (p: UserPerformance) => p.questionId === question.questionId
         )
@@ -426,13 +458,16 @@ const QuestionBankContent: React.FC = () => {
         (!state.filters.exams.length || state.filters.exams.includes(question.exam)) &&
         (!state.filters.subjects.length ||
           state.filters.subjects.includes(question.subject)) &&
-        (!state.filters.topics.length || state.filters.topics.includes(question.topic)) &&
+        (!state.filters.topics.length ||
+          state.filters.topics.includes(question.topic)) &&
         (!state.filters.subtopics.length ||
           state.filters.subtopics.includes(question.subtopic)) &&
         (!state.filters.difficulties.length ||
           state.filters.difficulties.includes(question.difficulty)) &&
-        (!state.filters.years.length || state.filters.years.includes(question.year)) &&
-        (!state.filters.types.length || state.filters.types.includes(question.type))
+        (!state.filters.years.length ||
+          state.filters.years.includes(question.year)) &&
+        (!state.filters.types.length ||
+          state.filters.types.includes(question.type))
 
       if (state.filters.status === "review") {
         return matchesSearch && matchesFilters && question.reviewed
@@ -465,10 +500,8 @@ const QuestionBankContent: React.FC = () => {
           ? filterValues.filter((v: string) => v !== value)
           : [...filterValues, value]
         
-        // Update filters
         const newFilters = { ...state.filters, [tag]: updatedFilter }
         
-        // If an exam is selected, filter other dropdowns
         if (tag === 'exams') {
           const selectedExams = newFilters.exams
           newFilters.subjects = newFilters.subjects.filter(subject => 
@@ -643,10 +676,10 @@ const QuestionBankContent: React.FC = () => {
       dispatch({ type: "SET_NOTES", payload: newNotes })
 
       try {
-        const response = await fetch("/api/notes", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, content: note, title: "Note", type: "text" }),
+        const response = await fetch(`/api/notes/${questionId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content: note }),
         })
         if (!response.ok) throw new Error("Failed to save note")
       } catch (error) {
@@ -660,7 +693,7 @@ const QuestionBankContent: React.FC = () => {
     async (questionId: string) => {
       try {
         const response = await fetch(`/api/notes/${questionId}`, {
-          method: "DELETE",
+          method: 'DELETE',
         })
         if (!response.ok) throw new Error("Failed to delete note")
 
@@ -708,6 +741,10 @@ const QuestionBankContent: React.FC = () => {
 
     return stats
   }, [filteredQuestions])
+
+  const handleFilterSearch = useCallback((filterType: string, query: string) => {
+    dispatch({ type: "SET_FILTER_SEARCH_QUERY", payload: { filterType, query } })
+  }, [])
 
   if (status === "loading" || state.loading) {
     return (
@@ -864,9 +901,8 @@ const QuestionBankContent: React.FC = () => {
                           type="text"
                           placeholder={`Search ${filterType}...`}
                           className="mb-2"
-                          onChange={(e) => {
-                            // Implement search functionality here
-                          }}
+                          value={state.filterSearchQueries[filterType]}
+                          onChange={(e) => handleFilterSearch(filterType, e.target.value)}
                         />
                         <div className="max-h-60 overflow-y-auto">
                           {Array.from(
@@ -896,7 +932,11 @@ const QuestionBankContent: React.FC = () => {
                                   }
                                 })
                             )
-                          ).map((value: string) => (
+                          )
+                          .filter((value: string) => 
+                            value.toLowerCase().includes(state.filterSearchQueries[filterType].toLowerCase())
+                          )
+                          .map((value: string) => (
                             <div key={value} className="flex items-center">
                               <input
                                 type="checkbox"

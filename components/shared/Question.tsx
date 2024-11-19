@@ -976,34 +976,62 @@ export default function Question({
           </Card>
         )}
 
-        <AnimatePresence>
+<AnimatePresence>
           {showMarkschemeModal && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-              onClick={() => setShowMarkschemeModal(false)}
-            >
-              <motion.div
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.9 }}
-                className="bg-white p-6 rounded-lg max-w-2xl w-full m-4"
-                onClick={(e) => e.stopPropagation()}
+         <motion.div
+         initial={{ opacity: 0, scale: 0.9 }}
+         animate={{ opacity: 1, scale: 1 }}
+         exit={{ opacity: 0, scale: 0.9 }}
+         transition={{ duration: 0.2 }}
+         className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
+       >
+              <Card className="w-full max-w-2xl">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle>Markscheme</CardTitle>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="relative"
+                onClick={() => setShowMarkschemeModal(false)}
               >
-                <h2 className="text-2xl font-bold mb-4">Markscheme</h2>
-                <div className="prose max-w-none">
-                  <MathRenderer text={question.markscheme || ''} />
-                </div>
-                <Button
-                  className="mt-4"
-                  variant="outline"
-                  onClick={() => setShowMarkschemeModal(false)}
-                >
-                  Close
-                </Button>
-              </motion.div>
+                <X className="h-4 w-4" />
+                <span className="sr-only">Close markscheme</span>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Close markscheme</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </CardHeader>
+                <CardContent>
+                  <div className="overflow-y-auto max-h-[60vh]">
+                    <p className="mb-2">
+                      {question.markscheme ? (
+                        question.markscheme.startsWith('http') ? (
+                          <div className="relative w-full h-64">
+                            <Image
+                              src={question.markscheme}
+                              alt="Markscheme image"
+                              layout="fill"
+                              objectFit="contain"
+                              className="rounded-md"
+                            />
+                          </div>
+                          
+                        ) : (
+                          <MathRenderer text={question.markscheme} />
+                        )
+                      ) : (
+                        'No answer available'
+                      )}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
           )}
         </AnimatePresence>
