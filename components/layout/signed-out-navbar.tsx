@@ -36,7 +36,7 @@ const supportLinks = [
   },
   {
     title: "Report",
-    href: "/Report",
+    href: "/issues",
     description: "Report issues or provide feedback.",
   },
   {
