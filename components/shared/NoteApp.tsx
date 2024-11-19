@@ -200,6 +200,8 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
         questionId: questionId || null,
       }
 
+      console.log('Sending note data:', noteData) // Add this line for debugging
+
       const url = editingNote ? `/api/notes/${editingNote.id}` : '/api/notes'
       const method = editingNote ? 'PUT' : 'POST'
 
@@ -213,6 +215,7 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
 
       if (!response.ok) {
         const errorData = await response.json()
+        console.error('Server response:', errorData) // Add this line for debugging
         throw new Error(errorData.error || 'Failed to save note')
       }
 
@@ -429,7 +432,13 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit((data) => {
+              if (!data.content.trim() && data.type !== 'STYLUS') {
+                toast.error("Note content cannot be empty")
+                return
+              }
+              onSubmit(data)
+            })}>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="title">Title</Label>
