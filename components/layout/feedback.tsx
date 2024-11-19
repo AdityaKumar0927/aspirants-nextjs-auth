@@ -7,7 +7,6 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { AnimatePresence, motion } from "framer-motion"
 import { useToast } from "@/components/ui/use-toast"
-import { Toaster } from "@/components/ui/toaster"
 
 export default function FeedbackPopover() {
   const [isOpen, setIsOpen] = useState(false)
@@ -141,7 +140,6 @@ export default function FeedbackPopover() {
           </AnimatePresence>
         </PopoverContent>
       </Popover>
-      <Toaster />
     </>
   )
 }
