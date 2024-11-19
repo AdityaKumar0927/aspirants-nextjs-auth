@@ -156,7 +156,9 @@ export default function NoteApp() {
     setIsLoading(true)
     try {
       const response = await fetch('/api/notes')
-      if (!response.ok) throw new Error('Failed to fetch notes')
+      if (!response.ok) {
+        throw new Error('Failed to fetch notes')
+      }
       const data = await response.json()
       setNotes(Array.isArray(data) ? data : [])
       toast.success("Notes loaded successfully")
@@ -193,8 +195,6 @@ export default function NoteApp() {
       const url = editingNote ? `/api/notes/${editingNote.id}` : '/api/notes'
       const method = editingNote ? 'PUT' : 'POST'
 
-      console.log('Sending note data:', noteData)
-
       const response = await fetch(url, {
         method,
         headers: {
@@ -205,7 +205,6 @@ export default function NoteApp() {
 
       if (!response.ok) {
         const errorData = await response.json()
-        console.error('Server response:', errorData)
         throw new Error(errorData.error || 'Failed to save note')
       }
 
