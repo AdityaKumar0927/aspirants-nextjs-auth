@@ -5,14 +5,10 @@ import { useForm, Controller } from "react-hook-form"
 import { motion, AnimatePresence } from "framer-motion"
 import { toast } from "sonner"
 import { RocketIcon, Search, PlusIcon, ImageIcon, Loader2Icon, PencilIcon, Square, Circle, Edit2Icon, EraserIcon, BoldIcon, ItalicIcon, UnderlineIcon, ListIcon, ListOrderedIcon, Mic, MicOff } from 'lucide-react'
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "@/components/ui/command"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Toggle } from "@/components/ui/toggle"
@@ -134,6 +130,8 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
   const [penSize, setPenSize] = useState(2)
   const [currentShape, setCurrentShape] = useState<"pen" | "square" | "circle">("pen")
   const [isClient, setIsClient] = useState(false)
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  const [noteToDelete, setNoteToDelete] = useState<Note | null>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { control, handleSubmit, reset, watch, setValue } = useForm<{ title: string; content: string; type: NoteType }>({
     defaultValues: { title: "", content: "", type: "TEXT" },
@@ -200,8 +198,6 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
         questionId: questionId || null,
       }
 
-      console.log('Sending note data:', noteData) // Add this line for debugging
-
       const url = editingNote ? `/api/notes/${editingNote.id}` : '/api/notes'
       const method = editingNote ? 'PUT' : 'POST'
 
@@ -215,7 +211,6 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
 
       if (!response.ok) {
         const errorData = await response.json()
-        console.error('Server response:', errorData) // Add this line for debugging
         throw new Error(errorData.error || 'Failed to save note')
       }
 
@@ -246,15 +241,16 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
     }
   }
 
-  const deleteNote = async (id: string) => {
+  const deleteNote = async (note: Note) => {
+    setIsLoading(true)
     try {
-      const response = await fetch(`/api/notes/${id}`, {
+      const response = await fetch(`/api/notes/${note.id}`, {
         method: 'DELETE',
       })
 
       if (!response.ok) throw new Error('Failed to delete note')
 
-      setNotes(notes.filter((note) => note.id !== id))
+      setNotes(notes.filter((n) => n.id !== note.id))
       toast.success("Note deleted successfully", {
         description: "Your note has been permanently removed.",
       })
@@ -263,6 +259,10 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
       toast.error("Failed to delete note", {
         description: "The note couldn't be deleted. Please try again later.",
       })
+    } finally {
+      setIsLoading(false)
+      setIsDeleteModalOpen(false)
+      setNoteToDelete(null)
     }
   }
 
@@ -645,23 +645,16 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
                       <Button variant="outline" size="sm" onClick={() => handleEdit(note)}>
                         Edit
                       </Button>
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button variant="outline" size="sm">
-                            Delete
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                            <AlertDialogDescription>This action cannot be undone. This will permanently delete your note.</AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction onClick={() => deleteNote(note.id)}>Delete</AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        onClick={() => {
+                          setNoteToDelete(note)
+                          setIsDeleteModalOpen(true)
+                        }}
+                      >
+                        Delete
+                      </Button>
                     </CardFooter>
                   </Card>
                 </motion.div>
@@ -670,6 +663,47 @@ export default function NoteApp({ questionId }: { questionId?: string }) {
           </AnimatePresence>
         </div>
       </main>
+
+      {/* Delete Confirmation Modal */}
+      {isDeleteModalOpen && noteToDelete && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex items-center justify-center z-50">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full"
+          >
+            <h2 className="text-xl font-bold mb-4">Confirm Deletion</h2>
+            <p className="mb-6">Are you sure you want to delete this note? This action cannot be undone.</p>
+            <div className="flex justify-end space-x-4">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setIsDeleteModalOpen(false)
+                  setNoteToDelete(null)
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="destructive"
+                onClick={() => deleteNote(noteToDelete)}
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                    Deleting...
+                  </>
+                ) : (
+                  "Delete"
+                )}
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   )
 }
