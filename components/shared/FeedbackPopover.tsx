@@ -1,20 +1,20 @@
 'use client'
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Switch } from "@/components/ui/switch"
-import { Sun, Moon } from 'lucide-react'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
+import { Loader2 } from 'lucide-react'
 
 interface FeedbackPopoverProps {
   questionId: string;
@@ -25,22 +25,29 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
   const [area, setArea] = useState<string>("")
   const [priority, setPriority] = useState<string>("")
   const [description, setDescription] = useState<string>("")
-  const [isDarkTheme, setIsDarkTheme] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const { toast } = useToast()
 
-  useEffect(() => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setIsDarkTheme(true)
-    }
-  }, [])
+  const feedbackOptions = [
+    { id: "incorrect", label: "Incorrect information" },
+    { id: "ignored", label: "Instructions ignored" },
+    { id: "lazy", label: "Being lazy" },
+    { id: "style", label: "Don't like style" },
+    { id: "bad-recommendation", label: "Bad recommendation" },
+    { id: "other", label: "Other" },
+  ]
 
-  const handleFeedbackChange = (value: string) => {
-    setSelectedFeedback(prev => 
-      prev.includes(value) ? prev.filter(item => item !== value) : [...prev, value]
+  const toggleFeedback = (id: string) => {
+    setSelectedFeedback(current =>
+      current.includes(id)
+        ? current.filter(item => item !== id)
+        : [...current, id]
     )
   }
 
   const handleSubmit = async () => {
+    setIsSubmitting(true)
     try {
       const response = await fetch('/api/issues', {
         method: 'POST',
@@ -65,11 +72,12 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
         description: "Thank you for your feedback!",
       })
 
-      // Reset form
+      // Reset form and close popover
       setSelectedFeedback([])
       setArea("")
       setPriority("")
       setDescription("")
+      setIsOpen(false)
     } catch (error) {
       console.error('Error submitting feedback:', error)
       toast({
@@ -77,127 +85,128 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
         description: "Failed to submit feedback. Please try again.",
         variant: "destructive",
       })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
-  const toggleTheme = () => {
-    setIsDarkTheme(!isDarkTheme)
+  const handleCancel = () => {
+    setSelectedFeedback([])
+    setArea("")
+    setPriority("")
+    setDescription("")
+    setIsOpen(false)
   }
 
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button variant="outline">Feedback</Button>
       </PopoverTrigger>
-      <PopoverContent className={`w-[calc(100vw-2rem)] sm:w-[480px] p-0 ${isDarkTheme ? 'bg-zinc-900 text-white' : 'bg-white text-black'}`}>
-        <div className="p-3 sm:p-4 space-y-3 sm:space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div>
-              <h2 className={`text-lg sm:text-xl font-semibold ${isDarkTheme ? 'text-white' : 'text-black'}`}>Question Feedback</h2>
-              <p className={`text-xs sm:text-sm ${isDarkTheme ? 'text-zinc-400' : 'text-gray-500'}`}>
-                Help us improve our question bank. Select all that apply.
-              </p>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Sun className="h-3 w-3 sm:h-4 sm:w-4" />
-              <Switch
-                checked={isDarkTheme}
-                onCheckedChange={toggleTheme}
-                className={`${isDarkTheme ? 'bg-zinc-700' : 'bg-gray-200'}`}
-              />
-              <Moon className="h-3 w-3 sm:h-4 sm:w-4" />
-            </div>
-          </div>
-
-          <div className="grid gap-2 sm:gap-3">
-            {[
-              { id: "incorrect", label: "Incorrect answer" },
-              { id: "unclear", label: "Unclear question" },
-              { id: "typo", label: "Typo or grammatical error" },
-              { id: "outdated", label: "Outdated information" },
-              { id: "duplicate", label: "Duplicate question" },
-              { id: "other", label: "Other" }
-            ].map(({ id, label }) => (
-              <div key={id} className={`flex items-center space-x-2 rounded-md border p-2 ${
-                isDarkTheme ? 'border-zinc-800' : 'border-gray-200'
-              }`}>
-                <Checkbox 
-                  id={id} 
-                  checked={selectedFeedback.includes(id)}
-                  onCheckedChange={() => handleFeedbackChange(id)}
-                  className={`${
-                    isDarkTheme 
-                      ? 'border-zinc-700 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600' 
-                      : 'border-gray-300 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600'
-                  }`}
-                />
-                <Label htmlFor={id} className="text-xs sm:text-sm">{label}</Label>
-              </div>
-            ))}
-          </div>
-
-          <div className="space-y-2">
-            <Label className={`text-xs sm:text-sm ${isDarkTheme ? 'text-zinc-400' : 'text-gray-600'}`}>Feedback Area</Label>
-            <RadioGroup value={area} onValueChange={setArea} className="flex flex-wrap gap-2 sm:gap-4">
-              {["CONTENT", "UI", "BUG", "FEATURE", "OTHER"].map((value) => (
-                <div key={value} className="flex items-center space-x-2">
-                  <RadioGroupItem value={value} id={value} className={`${isDarkTheme ? 'border-zinc-700' : 'border-gray-300'} text-blue-600`} />
-                  <Label htmlFor={value} className="capitalize text-xs sm:text-sm">{value.toLowerCase()}</Label>
+      <PopoverContent className="w-full p-0">
+        <div className="dark">
+          <Card className="w-full max-w-md bg-zinc-950 text-white border-zinc-800">
+            <CardHeader>
+              <CardTitle>Give feedback</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-1">
+                <Label className="text-zinc-100">
+                  Provide additional feedback on this message. Select all that apply.
+                </Label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                  {feedbackOptions.map((option) => (
+                    <div
+                      key={option.id}
+                      className={`flex items-center space-x-2 rounded-lg border p-3 ${
+                        selectedFeedback.includes(option.id)
+                          ? "border-blue-600 bg-blue-950/50"
+                          : "border-zinc-800"
+                      }`}
+                    >
+                      <Checkbox
+                        id={option.id}
+                        checked={selectedFeedback.includes(option.id)}
+                        onCheckedChange={() => toggleFeedback(option.id)}
+                        className="data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
+                      />
+                      <Label
+                        htmlFor={option.id}
+                        className={`font-normal ${
+                          selectedFeedback.includes(option.id)
+                            ? "text-blue-400"
+                            : "text-zinc-100"
+                        }`}
+                      >
+                        {option.label}
+                      </Label>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </RadioGroup>
-          </div>
-
-          <div className="space-y-2">
-            <Label className={`text-xs sm:text-sm ${isDarkTheme ? 'text-zinc-400' : 'text-gray-600'}`}>Priority</Label>
-            <Select value={priority} onValueChange={setPriority}>
-              <SelectTrigger className={`${isDarkTheme ? 'bg-zinc-800 border-zinc-700' : 'bg-white border-gray-300'}`}>
-                <SelectValue placeholder="Select priority" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="LOW">Low</SelectItem>
-                <SelectItem value="MEDIUM">Medium</SelectItem>
-                <SelectItem value="HIGH">High</SelectItem>
-                <SelectItem value="CRITICAL">Critical</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="feedback" className={`text-xs sm:text-sm ${isDarkTheme ? 'text-zinc-400' : 'text-gray-600'}`}>
-              Additional comments (optional)
-            </Label>
-            <Textarea
-              id="feedback"
-              placeholder="Provide any additional feedback about this question..."
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className={`h-20 sm:h-24 text-xs sm:text-sm resize-none ${
-                isDarkTheme 
-                  ? 'bg-zinc-800 border-zinc-700 placeholder:text-zinc-500' 
-                  : 'bg-white border-gray-300 placeholder:text-gray-400'
-              }`}
-            />
-          </div>
-
-          <div className="flex justify-end space-x-2">
-            <Button 
-              variant="outline" 
-              className={`text-xs sm:text-sm py-1 px-2 sm:py-2 sm:px-4 ${
-                isDarkTheme 
-                  ? 'text-white bg-zinc-800 border-zinc-700 hover:bg-zinc-700 hover:text-white' 
-                  : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-900'
-              }`}
-            >
-              Cancel
-            </Button>
-            <Button 
-              className="bg-blue-600 text-white hover:bg-blue-700 text-xs sm:text-sm py-1 px-2 sm:py-2 sm:px-4" 
-              onClick={handleSubmit}
-            >
-              Submit
-            </Button>
-          </div>
+              </div>
+              <div className="space-y-2">
+                <Label className="text-zinc-100">Feedback Area</Label>
+                <RadioGroup value={area} onValueChange={setArea} className="flex flex-wrap gap-2">
+                  {["CONTENT", "UI", "BUG", "FEATURE", "OTHER"].map((value) => (
+                    <div key={value} className="flex items-center space-x-2">
+                      <RadioGroupItem value={value} id={value} className="border-zinc-700 text-blue-600" />
+                      <Label htmlFor={value} className="capitalize text-zinc-100">{value.toLowerCase()}</Label>
+                    </div>
+                  ))}
+                </RadioGroup>
+              </div>
+              <div className="space-y-2">
+                <Label className="text-zinc-100">Priority</Label>
+                <Select value={priority} onValueChange={setPriority}>
+                  <SelectTrigger className="bg-zinc-800 border-zinc-700 text-zinc-100">
+                    <SelectValue placeholder="Select priority" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="LOW">Low</SelectItem>
+                    <SelectItem value="MEDIUM">Medium</SelectItem>
+                    <SelectItem value="HIGH">High</SelectItem>
+                    <SelectItem value="CRITICAL">Critical</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="feedback" className="text-zinc-100">
+                  How can we improve? (optional)
+                </Label>
+                <Textarea
+                  id="feedback"
+                  placeholder="Your feedback..."
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className="min-h-[100px] bg-zinc-900 border-zinc-800 placeholder:text-zinc-500"
+                />
+              </div>
+            </CardContent>
+            <CardFooter className="flex justify-end space-x-2">
+              <Button 
+                variant="outline" 
+                className="border-zinc-800 text-zinc-100 hover:bg-zinc-800"
+                onClick={handleCancel}
+                disabled={isSubmitting}
+              >
+                Cancel
+              </Button>
+              <Button 
+                className="bg-white text-black hover:bg-zinc-200" 
+                onClick={handleSubmit}
+                disabled={selectedFeedback.length === 0 || isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  'Submit'
+                )}
+              </Button>
+            </CardFooter>
+          </Card>
         </div>
       </PopoverContent>
     </Popover>
