@@ -27,6 +27,7 @@ type Note = {
   createdAt: string
   updatedAt: string
   userId: string
+  questionId: string | null
 }
 
 const useSpeechRecognition = () => {
@@ -119,7 +120,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
   )
 }
 
-export default function NoteApp() {
+export default function NoteApp({ questionId }: { questionId?: string }) {
   const [notes, setNotes] = useState<Note[]>([])
   const [editingNote, setEditingNote] = useState<Note | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -129,6 +130,8 @@ export default function NoteApp() {
   const [penSize, setPenSize] = useState(2)
   const [currentShape, setCurrentShape] = useState<"pen" | "square" | "circle">("pen")
   const [isClient, setIsClient] = useState(false)
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  const [noteToDelete, setNoteToDelete] = useState<Note | null>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { control, handleSubmit, reset, watch, setValue } = useForm<{ title: string; content: string; type: NoteType }>({
     defaultValues: { title: "", content: "", type: "TEXT" },
@@ -150,15 +153,17 @@ export default function NoteApp() {
   useEffect(() => {
     setIsClient(true)
     fetchNotes()
-  }, [])
+  }, [questionId])
 
   const fetchNotes = async () => {
     setIsLoading(true)
     try {
-      const response = await fetch('/api/notes')
-      if (!response.ok) {
-        throw new Error('Failed to fetch notes')
+      let url = '/api/notes'
+      if (questionId) {
+        url += `/question?questionId=${questionId}`
       }
+      const response = await fetch(url)
+      if (!response.ok) throw new Error('Failed to fetch notes')
       const data = await response.json()
       setNotes(Array.isArray(data) ? data : [])
       toast.success("Notes loaded successfully")
@@ -187,9 +192,10 @@ export default function NoteApp() {
       }
 
       const noteData = {
-        title: data.title.trim() || 'Untitled Note',
+        title: data.title.trim() || `Note for ${questionId ? `Question ${questionId}` : 'General'}`,
         content: noteContent,
         type: data.type,
+        questionId: questionId || null,
       }
 
       const url = editingNote ? `/api/notes/${editingNote.id}` : '/api/notes'
@@ -235,15 +241,16 @@ export default function NoteApp() {
     }
   }
 
-  const deleteNote = async (id: string) => {
+  const deleteNote = async (note: Note) => {
+    setIsLoading(true)
     try {
-      const response = await fetch(`/api/notes/${id}`, {
+      const response = await fetch(`/api/notes/${note.id}`, {
         method: 'DELETE',
       })
 
       if (!response.ok) throw new Error('Failed to delete note')
 
-      setNotes(notes.filter((note) => note.id !== id))
+      setNotes(notes.filter((n) => n.id !== note.id))
       toast.success("Note deleted successfully", {
         description: "Your note has been permanently removed.",
       })
@@ -252,6 +259,10 @@ export default function NoteApp() {
       toast.error("Failed to delete note", {
         description: "The note couldn't be deleted. Please try again later.",
       })
+    } finally {
+      setIsLoading(false)
+      setIsDeleteModalOpen(false)
+      setNoteToDelete(null)
     }
   }
 
@@ -398,7 +409,9 @@ export default function NoteApp() {
   return (
     <div className="flex min-h-screen w-full flex-col">
       <header className="flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-        <h1 className="text-lg font-semibold">General Notes</h1>
+        <h1 className="text-lg font-semibold">
+          {questionId ? `Notes for Question ${questionId}` : 'General Notes'}
+        </h1>
         <div className="flex-1" />
         <Input
           className="w-[200px] md:w-[300px]"
@@ -411,7 +424,12 @@ export default function NoteApp() {
         <Card className="w-full md:w-[700px]">
           <CardHeader>
             <CardTitle>{editingNote ? "Edit Note" : "Create Note"}</CardTitle>
-            <CardDescription>Add a general note</CardDescription>
+            <CardDescription>
+              {questionId 
+                ? `Add a note for Question ${questionId}`
+                : 'Add a general note'
+              }
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit((data) => {
@@ -630,7 +648,10 @@ export default function NoteApp() {
                       <Button 
                         variant="outline" 
                         size="sm" 
-                        onClick={() => deleteNote(note.id)}
+                        onClick={() => {
+                          setNoteToDelete(note)
+                          setIsDeleteModalOpen(true)
+                        }}
                       >
                         Delete
                       </Button>
@@ -642,6 +663,47 @@ export default function NoteApp() {
           </AnimatePresence>
         </div>
       </main>
+
+      {/* Delete Confirmation Modal */}
+      {isDeleteModalOpen && noteToDelete && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex items-center justify-center z-50">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full"
+          >
+            <h2 className="text-xl font-bold mb-4">Confirm Deletion</h2>
+            <p className="mb-6">Are you sure you want to delete this note? This action cannot be undone.</p>
+            <div className="flex justify-end space-x-4">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setIsDeleteModalOpen(false)
+                  setNoteToDelete(null)
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="destructive"
+                onClick={() => deleteNote(noteToDelete)}
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                    Deleting...
+                  </>
+                ) : (
+                  "Delete"
+                )}
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   )
 }

@@ -372,7 +372,7 @@ model Application {
   updatedAt  DateTime         @updatedAt
   user       User             @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId])
+  @@index([id, userId])
 }
 
 enum ApplicationRole {
