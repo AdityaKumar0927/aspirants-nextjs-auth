@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ContainerScroll } from '@/components/ui/container-scroll-animation';
 import Dashboard from '@/components/home/DashboardContent';
-import NoteApp from '@/components/shared/NoteApp';
 import MainContent from '@/components/home/MainContent';
 import ShinyButton from '@/components/magicui/shiny-button';
 import ShimmerButton from '@/components/magicui/shimmer-button';
@@ -139,23 +138,6 @@ export default function Page() {
         <ContainerScroll titleComponent={<></>}>
           <Dashboard />
         </ContainerScroll>
-      </div>
-    </div>
-  
-
-      <div className="container mx-auto px-4 mt-10">
-      <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-        Never Forget Anything
-      </h4>
-
-      <p className="text-sm lg:text-base mt-5 max-w-2xl mx-auto text-neutral-500 text-center font-normal">
-        View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill.
-      </p>
-
-      <div className="flex justify-center">
-        <div className="relative z-20 p-4 w-full max-w-4xl">
-          <NoteApp />
-        </div>
       </div>
     </div>
 
