@@ -7,6 +7,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { LucidePencil } from "lucide-react";
 import AnimatedModal from "@/components/shared/AnimatedModal";
+import NoteApp from "@/components/shared/note";
 import Stats from "@/components/shared/Stats";
 import { useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -47,6 +48,24 @@ export default function Bar({ userId }: BarProps) {
           <DockIcon mouseX={mouseX}>
             <Tooltip>
               <TooltipTrigger asChild>
+                <button
+                  onClick={() => setShowNoteModal(true)}
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "size-12"
+                  )}
+                >
+                  <LucidePencil className="size-4" />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Notes</p>
+              </TooltipContent>
+            </Tooltip>
+          </DockIcon>
+          <DockIcon mouseX={mouseX}>
+            <Tooltip>
+              <TooltipTrigger asChild>
                 <ModeToggle />
               </TooltipTrigger>
               <TooltipContent>
@@ -56,6 +75,10 @@ export default function Bar({ userId }: BarProps) {
           </DockIcon>
         </Dock>
       </div>
+
+      <AnimatedModal showModal={showNoteModal} setShowModal={setShowNoteModal}>
+        <NoteApp />
+      </AnimatedModal>
 
       <AnimatedModal showModal={showDashboardModal} setShowModal={setShowDashboardModal}>
         <Stats />
