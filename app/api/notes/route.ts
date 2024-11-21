@@ -1,15 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 import { getServerSession } from 'next-auth/next'
-import authOptions from '@/app/api/auth/[...nextauth]/options'
+import authOptions from '../auth/[...nextauth]/options'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
 
 const prisma = new PrismaClient()
 
-// Create a new ratelimiter, that allows 10 requests per 10 seconds
+// Initialize Redis with environment variables
+const redis = new Redis({
+  url: process.env.REDIS_URL!,
+  token: process.env.REDIS_TOKEN!,
+})
+
+// Create a new ratelimiter
 const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
+  redis,
   limiter: Ratelimit.slidingWindow(10, '10 s'),
   analytics: true,
 })
@@ -34,7 +40,9 @@ export async function GET(req: NextRequest) {
       orderBy: { updatedAt: 'desc' },
     })
 
-    return NextResponse.json(notes)
+    const res = NextResponse.json(notes)
+    res.headers.set('Cache-Control', 's-maxage=60, stale-while-revalidate=30')
+    return res
   } catch (error) {
     console.error('GET /api/notes error:', error)
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
