@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 import { getServerSession } from 'next-auth/next'
-import authOptions from '@/app/api/auth/[...nextauth]/options'
+import authOptions from '../../auth/[...nextauth]/options'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
 
@@ -38,7 +38,7 @@ export async function GET(
         userId: userId,
       },
       orderBy: {
-        createdAt: 'desc'
+        updatedAt: 'desc'
       }
     })
 
@@ -46,7 +46,9 @@ export async function GET(
       return NextResponse.json({ error: 'Note not found' }, { status: 404 })
     }
 
-    return NextResponse.json(note)
+    const response = NextResponse.json(note)
+    response.headers.set('Cache-Control', 's-maxage=60, stale-while-revalidate=30')
+    return response
   } catch (error) {
     console.error('Error fetching note:', error)
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
