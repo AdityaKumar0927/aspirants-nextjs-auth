@@ -4,26 +4,26 @@ import { BookOpenIcon, BeakerIcon, PencilIcon, TextCursorIcon as DocumentTextIco
 const links = [
   {
     name: 'Practice Questions',
-    href: '/questions',
+    href: '/QuestionBank',
     description: 'Access thousands of practice questions across various subjects.',
     icon: PencilIcon,
   },
   { 
     name: 'Study Notes', 
-    href: '/notes', 
-    description: 'Comprehensive study materials and notes.', 
+    href: '/', 
+    description: 'Coming Soon.', 
     icon: DocumentTextIcon 
   },
   {
     name: 'Flashcards',
-    href: '/flashcards',
-    description: 'Interactive flashcards for effective learning.',
+    href: '/',
+    description: 'Coming Soon',
     icon: BookOpenIcon,
   },
   { 
     name: 'Test Series', 
-    href: '/tests', 
-    description: 'Full-length practice tests and mock exams.', 
+    href: '/', 
+    description: 'Coming Soon', 
     icon: BeakerIcon 
   },
 ]
