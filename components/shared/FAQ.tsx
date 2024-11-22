@@ -83,7 +83,7 @@ export function FAQ() {
         
         <p className="text-center text-sm text-gray-400 mt-12 tracking-tight">
           Still have questions? Email us at{" "}
-          <a href="contactus@aspirants.tech" className="text-blue-500 hover:underline">
+          <a href="mailto:contactus@aspirants.tech" className="text-blue-500 hover:underline">
             contactus@aspirants.tech
           </a>
         </p>
