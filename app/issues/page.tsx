@@ -1,8 +1,5 @@
-// app/issues/page.tsx
-import IssuesPageContent from './IssuesPageContent'
-import { getIssues } from '@/lib/getIssues'
+import IssuePageWrapper from './IssuePageWrapper'
 
-export default async function IssuesPage() {
-  const initialIssues = await getIssues()
-  return <IssuesPageContent initialIssues={initialIssues} />
+export default function IssuesPage() {
+  return <IssuePageWrapper />
 }

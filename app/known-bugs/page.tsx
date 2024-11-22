@@ -63,7 +63,7 @@ const knownBugs: Bug[] = [
 export default function Page() {
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Known Issues Tracker</h1>
+      <h1 className="text-2xl font-semibold mb-4">Known Issues Tracker</h1>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {knownBugs.map((bug) => (
           <Card key={bug.id}>
