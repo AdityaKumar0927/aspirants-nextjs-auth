@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState, useCallback, useMemo, useContext, createContext } from 'react'
+import React, { useState, useCallback, useMemo } from 'react'
 import { useVirtualizer } from '@tanstack/react-virtual'
-import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -19,24 +19,8 @@ import { Label } from "@/components/ui/label"
 import { Skeleton } from "@/components/ui/skeleton"
 import { ArrowUpIcon, ArrowDownIcon, ChevronDown, Search, Plus, Trash2, Edit, Eye, CheckCircle, XCircle, MoreHorizontal, Upload, FileUp, FileJson, Loader2 } from 'lucide-react'
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { useQuestionContext } from './QuestionContext'
 import type { Question, QuestionStatus } from './types'
-
-// Create a context for global state
-const QuestionBankContext = createContext<{
-  filters: FiltersType;
-  setFilters: React.Dispatch<React.SetStateAction<FiltersType>>;
-  selectedQuestions: string[];
-  setSelectedQuestions: React.Dispatch<React.SetStateAction<string[]>>;
-} | null>(null)
-
-// Custom hook for using the context
-const useQuestionBank = () => {
-  const context = useContext(QuestionBankContext)
-  if (!context) {
-    throw new Error('useQuestionBank must be used within a QuestionBankProvider')
-  }
-  return context
-}
 
 // Types
 type FiltersType = {
@@ -55,59 +39,29 @@ const PAGE_SIZE = 20
 
 // API functions
 const fetchQuestions = async (): Promise<Question[]> => {
-  const response = await fetch('/api/questions')
-  if (!response.ok) throw new Error('Failed to fetch questions')
-  return response.json()
+  try {
+    const response = await fetch('/api/questions')
+    if (!response.ok) throw new Error('Failed to fetch questions')
+    return response.json()
+  } catch (error) {
+    console.error('Error fetching questions:', error)
+    throw error
+  }
 }
 
 const updateQuestion = async (question: Partial<Question>): Promise<Question> => {
-  const response = await fetch('/api/questions', {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(question),
-  })
-  if (!response.ok) throw new Error('Failed to update question')
-  return response.json()
-}
-
-// Custom hooks
-const useQuestions = () => {
-  return useQuery<Question[]>({
-    queryKey: ['questions'],
-    queryFn: fetchQuestions,
-  })
-}
-
-const useUpdateQuestion = () => {
-  const queryClient = useQueryClient()
-  const { toast } = useToast()
-
-  return useMutation({
-    mutationFn: updateQuestion,
-    onMutate: async (updatedQuestion) => {
-      await queryClient.cancelQueries({ queryKey: ['questions'] })
-      const previousQuestions = queryClient.getQueryData<Question[]>(['questions'])
-      queryClient.setQueryData<Question[]>(['questions'], (old) =>
-        old?.map(question =>
-          question.questionId === updatedQuestion.questionId ? { ...question, ...updatedQuestion } : question
-        ) ?? []
-      )
-      return { previousQuestions }
-    },
-    onError: (err, newQuestion, context: any) => {
-      if (context?.previousQuestions) {
-        queryClient.setQueryData(['questions'], context.previousQuestions)
-      }
-      toast({
-        title: "Error",
-        description: "Failed to update question. Please try again.",
-        variant: "destructive",
-      })
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['questions'] })
-    },
-  })
+  try {
+    const response = await fetch('/api/questions', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(question),
+    })
+    if (!response.ok) throw new Error('Failed to update question')
+    return response.json()
+  } catch (error) {
+    console.error('Error updating question:', error)
+    throw error
+  }
 }
 
 // Components
@@ -184,8 +138,119 @@ const QuestionForm = ({ initialData, onSubmit }: { initialData?: Partial<Questio
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Form fields */}
-      {/* ... (previous form fields remain unchanged) ... */}
+      <div className="space-y-2">
+        <Label htmlFor="text">Question Text</Label>
+        <Textarea
+          id="text"
+          name="text"
+          value={formData.text}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="subject">Subject</Label>
+          <Input
+            id="subject"
+            name="subject"
+            value={formData.subject}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="topic">Topic</Label>
+          <Input
+            id="topic"
+            name="topic"
+            value={formData.topic}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="difficulty">Difficulty</Label>
+        <Select
+          name="difficulty"
+          value={formData.difficulty}
+          onValueChange={(value) => handleSelectChange('difficulty', value)}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Select difficulty" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Easy">Easy</SelectItem>
+            <SelectItem value="Medium">Medium</SelectItem>
+            <SelectItem value="Hard">Hard</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="space-y-2">
+        <Label>Options</Label>
+        {formData.options?.map((option, index) => (
+          <div key={index} className="flex items-center space-x-2">
+            <Input
+              value={option}
+              onChange={(e) => handleOptionChange(index, e.target.value)}
+              placeholder={`Option ${index + 1}`}
+            />
+            <Button type="button" variant="outline" size="icon" onClick={() => handleRemoveOption(index)}>
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          </div>
+        ))}
+        <Button type="button" variant="outline" onClick={handleAddOption}>
+          Add Option
+        </Button>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="correctOption">Correct Option</Label>
+        <Select
+          name="correctOption"
+          value={formData.correctOption || ''}
+          onValueChange={(value) => handleSelectChange('correctOption', value)}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Select correct option" />
+          </SelectTrigger>
+          <SelectContent>
+            {formData.options?.map((option, index) => (
+              <SelectItem key={index} value={option}>
+                {option}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="markscheme">Mark Scheme</Label>
+        <Textarea
+          id="markscheme"
+          name="markscheme"
+          value={formData.markscheme || ''}
+          onChange={handleInputChange}
+        />
+      </div>
+      <div className="space-y-2">
+        <Label>Notes</Label>
+        {formData.notes?.map((note, index) => (
+          <div key={note.id} className="flex items-center space-x-2">
+            <Textarea
+              value={note.content}
+              onChange={(e) => handleNoteChange(index, e.target.value)}
+              placeholder={`Note ${index + 1}`}
+            />
+            <Button type="button" variant="outline" size="icon" onClick={() => handleRemoveNote(index)}>
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          </div>
+        ))}
+        <Button type="button" variant="outline" onClick={handleAddNote}>
+          Add Note
+        </Button>
+      </div>
       <DialogFooter>
         <Button type="submit">Save Question</Button>
       </DialogFooter>
@@ -194,8 +259,7 @@ const QuestionForm = ({ initialData, onSubmit }: { initialData?: Partial<Questio
 }
 
 const FilterButton = ({ filterType }: { filterType: keyof FiltersType }) => {
-  const { filters, setFilters } = useQuestionBank()
-  const { data: questions } = useQuestions()
+  const { filters, setFilters, questions } = useQuestionContext()
 
   const handleFilterChange = useCallback(
     (value: string) => {
@@ -289,7 +353,7 @@ const FilterButton = ({ filterType }: { filterType: keyof FiltersType }) => {
 }
 
 export function QuestionBankDashboardContent() {
-  const [searchQuery, setSearchQuery] = useState("")
+  const { questions, setQuestions, filters, setFilters, searchQuery, setSearchQuery } = useQuestionContext()
   const [currentPage, setCurrentPage] = useState(1)
   const [isAddQuestionOpen, setIsAddQuestionOpen] = useState(false)
   const [isBatchUploadDialogOpen, setIsBatchUploadDialogOpen] = useState(false)
@@ -298,13 +362,42 @@ export function QuestionBankDashboardContent() {
   const { toast } = useToast()
   const queryClient = useQueryClient()
 
-  const { data: questions = [], isLoading, error } = useQuestions()
-  const updateQuestionMutation = useUpdateQuestion()
+  const [selectedQuestions, setSelectedQuestions] = useState<string[]>([])
 
-  const { filters, setFilters, selectedQuestions, setSelectedQuestions } = useQuestionBank()
+  const { data: fetchedQuestions = [], isLoading, error } = useQuery<Question[], Error>({
+    queryKey: ['questions'],
+    queryFn: fetchQuestions,
+  })
+
+  const updateQuestionMutation = useMutation({
+    mutationFn: updateQuestion,
+    onMutate: async (updatedQuestion) => {
+      await queryClient.cancelQueries({ queryKey: ['questions'] })
+      const previousQuestions = queryClient.getQueryData<Question[]>(['questions'])
+      queryClient.setQueryData<Question[]>(['questions'], (old) =>
+        old?.map(question =>
+          question.questionId === updatedQuestion.questionId ? { ...question, ...updatedQuestion } : question
+        ) ?? []
+      )
+      return { previousQuestions }
+    },
+    onError: (err, newQuestion, context: any) => {
+      if (context?.previousQuestions) {
+        queryClient.setQueryData(['questions'], context.previousQuestions)
+      }
+      toast({
+        title: "Error",
+        description: "Failed to update question. Please try again.",
+        variant: "destructive",
+      })
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['questions'] })
+    },
+  })
 
   const filteredQuestions = useMemo(() => {
-    return questions.filter((question) => {
+    return fetchedQuestions.filter((question) => {
       const lowerSearchQuery = searchQuery.toLowerCase()
       const matchesSearch =
         question.text.toLowerCase().includes(lowerSearchQuery) ||
@@ -324,7 +417,7 @@ export function QuestionBankDashboardContent() {
 
       return matchesSearch && matchesFilters
     }).sort((a, b) => parseInt(a.questionId) - parseInt(b.questionId))
-  }, [questions, filters, searchQuery])
+  }, [fetchedQuestions, filters, searchQuery])
 
   const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
 
@@ -346,7 +439,7 @@ export function QuestionBankDashboardContent() {
   const handleSearchChange = useCallback((value: string) => {
     setSearchQuery(value)
     setCurrentPage(1)
-  }, [])
+  }, [setSearchQuery])
 
   const handlePageChange = useCallback((page: number) => {
     setCurrentPage(page)
@@ -391,12 +484,12 @@ export function QuestionBankDashboardContent() {
 
     try {
       const deletePromises = selectedQuestions.map(questionId =>
-          fetch(`/api/questions`, {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ questionId }),
-          })
-        )
+        fetch(`/api/questions`, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ questionId }),
+        })
+      )
 
       const results = await Promise.allSettled(deletePromises)
       const successfulDeletes = results.filter(result => result.status === 'fulfilled').length
@@ -429,7 +522,7 @@ export function QuestionBankDashboardContent() {
         variant: "destructive",
       })
     }
-  }, [selectedQuestions, queryClient, toast, setSelectedQuestions])
+  }, [selectedQuestions, queryClient, toast])
 
   const handleBatchUpload = useCallback(async (questions: string) => {
     try {
@@ -530,7 +623,7 @@ export function QuestionBankDashboardContent() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{questions.length}</div>
+              <div className="text-2xl font-bold">{fetchedQuestions.length}</div>
               <p className="text-xs text-muted-foreground">+20% from last month</p>
             </CardContent>
           </Card>
@@ -778,27 +871,3 @@ export function QuestionBankDashboardContent() {
     </TooltipProvider>
   )
 }
-
-// Wrapper component to provide context
-export function QuestionBankDashboard() {
-  const [filters, setFilters] = useState<FiltersType>({
-    exams: [],
-    subjects: [],
-    topics: [],
-    subtopics: [],
-    difficulties: [],
-    types: [],
-    years: [],
-    status: 'all',
-  })
-  const [selectedQuestions, setSelectedQuestions] = useState<string[]>([])
-
-  return (
-    <QueryClientProvider client={new QueryClient()}>
-      <QuestionBankContext.Provider value={{ filters, setFilters, selectedQuestions, setSelectedQuestions }}>
-        <QuestionBankDashboardContent />
-      </QuestionBankContext.Provider>
-    </QueryClientProvider>
-  )
-}
-

@@ -1,7 +1,18 @@
 'use client'
 
 import React, { createContext, useContext, useState, ReactNode } from 'react'
-import type { Question, FiltersType } from './types'
+import type { Question, QuestionStatus } from './types'
+
+export type FiltersType = {
+  exams: string[];
+  subjects: string[];
+  topics: string[];
+  subtopics: string[];
+  difficulties: string[];
+  types: string[];
+  years: string[];
+  status: QuestionStatus | 'all';
+}
 
 interface QuestionContextType {
   questions: Question[]
