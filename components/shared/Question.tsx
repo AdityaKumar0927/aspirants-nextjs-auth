@@ -936,7 +936,7 @@ export default function Question({
             <CardHeader>
               <CardTitle>Comments</CardTitle>
               <CardDescription>
-                Discuss this question with other users.
+                This is a dummy UI, comments are coming soon!
               </CardDescription>
             </CardHeader>
             <CardContent>
