@@ -1,71 +1,54 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { ExternalLink } from 'lucide-react'
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 export default function CookiePolicy() {
   return (
-    <div className="min-h-screen bg-background text-foreground py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background text-foreground py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-2">Cookie Policy</h1>
-        <p className="text-muted-foreground mb-8">Effective date: 1st September, 2024</p>
+        <h1 className="text-3xl sm:text-4xl font-bold mb-2">Cookie Policy</h1>
+        <p className="text-sm text-muted-foreground mb-6">Effective date: 1st September, 2024</p>
 
-        <Card className="mb-8">
-          <CardContent className="p-6">
+        <Card className="mb-6">
+          <CardContent className="p-4 sm:p-6">
             <p className="text-sm text-muted-foreground">
               This is the cookie policy for Aspirants (&quot;Aspirants&quot;, &quot;we&quot;, &quot;us&quot; or &quot;our&quot;). For more information about how we may use personal data, please read our privacy policy or contact us at aspirants.contact@gmail.com.
             </p>
           </CardContent>
         </Card>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           <Section title="What is a Cookie">
-            <p className="mb-4">
+            <p className="mb-4 text-sm">
               A cookie is a small text file that is downloaded onto your device when you access a website. It is sent through your browser, and it helps us to recognise you and your device.
             </p>
-            <p className="mb-4">
+            <p className="mb-4 text-sm">
               There are technologies, which, although technically not &quot;cookies&quot;, are like cookies. These include:
             </p>
             <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
-              <li>
-                Web beacons/pixels: used to count the number of users who have interacted with some content on our website
-              </li>
-              <li>
-                Local storage: storage of data in your device&apos;s (phone, laptop, computer, etc.) local cache (temporary memory)
-              </li>
-              <li>
-                Scripts: Computer programs designed to give extra functionality
-              </li>
+              <li>Web beacons/pixels: used to count the number of users who have interacted with some content on our website</li>
+              <li>Local storage: storage of data in your device&apos;s (phone, laptop, computer, etc.) local cache (temporary memory)</li>
+              <li>Scripts: Computer programs designed to give extra functionality</li>
             </ul>
           </Section>
 
           <Section title="Different Types of Cookies">
             <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
-              <li>
-                First party cookies: these are the cookies created by us which you might encounter while using our website
-              </li>
-              <li>
-                Third party cookies: these are the cookies created by third party platforms which you might encounter while using our website
-              </li>
-              <li>
-                Session cookies: these are the cookies which only last for the duration of your visit to our website
-              </li>
-              <li>
-                Persistent cookies: these are the cookies which last for a longer period of time than Session Cookies
-              </li>
-              <li>
-                Zombie cookies: these are the cookies that are automatically recreated after you delete them. We DO NOT use this type of malicious cookie.
-              </li>
+              <li>First party cookies: these are the cookies created by us which you might encounter while using our website</li>
+              <li>Third party cookies: these are the cookies created by third party platforms which you might encounter while using our website</li>
+              <li>Session cookies: these are the cookies which only last for the duration of your visit to our website</li>
+              <li>Persistent cookies: these are the cookies which last for a longer period of time than Session Cookies</li>
+              <li>Zombie cookies: these are the cookies that are automatically recreated after you delete them. We DO NOT use this type of malicious cookie.</li>
             </ul>
           </Section>
 
           <Section title="How we use Cookies">
-            <p className="mb-4">We use cookies for a variety of purposes, including but not limited to:</p>
+            <p className="mb-4 text-sm">We use cookies for a variety of purposes, including but not limited to:</p>
             <ul className="list-disc list-inside space-y-2 mb-4 text-sm text-muted-foreground">
               <li>Keeping you logged into our website</li>
               <li>Analyzing your site usage patterns, such as the duration of your visit, and so on</li>
-              <li>
-                Tracking how you navigate and engage with our site&apos;s pages to detect and resolve technical problems
-              </li>
+              <li>Tracking how you navigate and engage with our site&apos;s pages to detect and resolve technical problems</li>
             </ul>
             <p className="mb-4 text-sm">
               Please keep in mind that cookies are necessary for the functioning of our website. We only use first party, third party and session cookies. We do not use any type of marketing cookie.
@@ -193,7 +176,7 @@ export default function CookiePolicy() {
               ]}
             />
 
-            <div className="mt-8">
+            <div className="mt-6">
               <h3 className="text-lg font-semibold mb-2">
                 Marketing Cookies (Currently Not Used)
               </h3>
@@ -222,9 +205,9 @@ export default function CookiePolicy() {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <Card className="mb-8">
-      <CardHeader>
-        <CardTitle>{title}</CardTitle>
+    <Card className="mb-6">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-xl">{title}</CardTitle>
       </CardHeader>
       <CardContent>{children}</CardContent>
     </Card>
@@ -241,31 +224,33 @@ function CookieTable({
   cookies: { name: string; provider: string; purpose: string; expiry: string; type: string }[]
 }) {
   return (
-    <div className="mt-8">
+    <div className="mt-6">
       <h3 className="text-lg font-semibold mb-2">{title}</h3>
       <p className="text-sm text-muted-foreground mb-4">{description}</p>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Name</TableHead>
-            <TableHead>Provider</TableHead>
-            <TableHead>Purpose</TableHead>
-            <TableHead>Expiry</TableHead>
-            <TableHead>Type</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {cookies.map((cookie) => (
-            <TableRow key={cookie.name}>
-              <TableCell className="font-medium">{cookie.name}</TableCell>
-              <TableCell>{cookie.provider}</TableCell>
-              <TableCell>{cookie.purpose}</TableCell>
-              <TableCell>{cookie.expiry}</TableCell>
-              <TableCell>{cookie.type}</TableCell>
+      <ScrollArea className="h-[300px] rounded-md border">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">Name</TableHead>
+              <TableHead>Provider</TableHead>
+              <TableHead>Purpose</TableHead>
+              <TableHead>Expiry</TableHead>
+              <TableHead>Type</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {cookies.map((cookie) => (
+              <TableRow key={cookie.name}>
+                <TableCell className="font-medium">{cookie.name}</TableCell>
+                <TableCell>{cookie.provider}</TableCell>
+                <TableCell>{cookie.purpose}</TableCell>
+                <TableCell>{cookie.expiry}</TableCell>
+                <TableCell>{cookie.type}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </ScrollArea>
     </div>
   )
 }
