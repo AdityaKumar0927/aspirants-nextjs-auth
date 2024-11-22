@@ -45,13 +45,6 @@ export default function AspirantsMissionPage() {
             We&apos;re not here to sell you courses or slap a paywall on knowledge. We&apos;re here to rewrite how students prepare for exams - and make sure anyone, from Delhi to Darbhanga, has access to high quality education.
           </p>
         </section>
-
-        <div className="mt-16 text-center">
-          <a href="#" className="inline-flex items-center text-xl bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-colors">
-            Join Aspirants Today
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </a>
-        </div>
       </div>
     </div>
   )
