@@ -1,4 +1,5 @@
-import React from 'react';
+import Image from 'next/image'
+import Link from 'next/link'
 import { BookOpenIcon, BeakerIcon, PencilIcon, TextCursorIcon as DocumentTextIcon } from 'lucide-react'
 
 const links = [
@@ -57,21 +58,23 @@ export default function NotFound() {
   return (
     <div className="bg-white">
       <main className="mx-auto w-full max-w-7xl px-6 pb-16 pt-10 sm:pb-24 lg:px-8">
-        <a href="/" className="mx-auto flex justify-center">
+        <Link href="/" className="mx-auto flex justify-center">
           <span className="sr-only">Aspirants.tech</span>
-          <img
+          <Image
             src="/bulb.svg"
             alt="Aspirants.tech"
+            width={48}
+            height={48}
             className="h-12 w-auto"
           />
-        </a>
+        </Link>
         <div className="mx-auto mt-20 max-w-2xl text-center sm:mt-24">
           <p className="text-base font-semibold text-blue-600">404</p>
           <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-6xl">
             Page not found
           </h1>
           <p className="mt-6 text-pretty text-lg text-gray-600 sm:text-xl">
-            Sorry, we couldn't find the study resource you're looking for. Let's get you back on track.
+            Sorry, we couldn&apos;t find the study resource you&apos;re looking for. Let&apos;s get you back on track.
           </p>
         </div>
         <div className="mx-auto mt-16 flow-root max-w-lg sm:mt-20">
@@ -84,10 +87,10 @@ export default function NotFound() {
                 </div>
                 <div className="flex-auto">
                   <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                    <a href={link.href}>
+                    <Link href={link.href}>
                       <span className="absolute inset-0" />
                       {link.name}
-                    </a>
+                    </Link>
                   </h3>
                   <p className="mt-2 text-sm leading-6 text-gray-600">{link.description}</p>
                 </div>
@@ -95,10 +98,10 @@ export default function NotFound() {
             ))}
           </ul>
           <div className="mt-10 flex justify-center">
-            <a href="/" className="text-sm font-semibold leading-6 text-blue-600">
+            <Link href="/" className="text-sm font-semibold leading-6 text-blue-600">
               <span aria-hidden="true">&larr;</span>
               {' '}Back to home
-            </a>
+            </Link>
           </div>
         </div>
       </main>
