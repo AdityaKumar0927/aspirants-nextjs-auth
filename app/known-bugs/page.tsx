@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Badge } from "@/components/ui/badge"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
@@ -58,7 +60,7 @@ const knownBugs: Bug[] = [
   }
 ]
 
-export function KnownBugsTracker() {
+export default function Page() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Known Issues Tracker</h1>
