@@ -1521,6 +1521,17 @@
     "@react-spring/web" "9.4.5 || ^9.7.2"
     lodash "^4.17.21"
 
+"@nivo/arcs@0.88.0":
+  version "0.88.0"
+  resolved "https://registry.npmjs.org/@nivo/arcs/-/arcs-0.88.0.tgz"
+  integrity sha512-q7MHxT71s/KKlDDtSJS4L9+/JIa5HPZZrDr3ZFECLnvp0TC1qzyFMtVevN2CsXopSTj8poN4uFXPWxYVXOq8vg==
+  dependencies:
+    "@nivo/colors" "0.88.0"
+    "@nivo/core" "0.88.0"
+    "@react-spring/web" "9.4.5 || ^9.7.2"
+    "@types/d3-shape" "^3.1.6"
+    d3-shape "^3.2.0"
+
 "@nivo/axes@0.87.0":
   version "0.87.0"
   resolved "https://registry.npmjs.org/@nivo/axes/-/axes-0.87.0.tgz"
@@ -1550,12 +1561,46 @@
     lodash "^4.17.21"
     prop-types "^15.7.2"
 
+"@nivo/colors@0.88.0":
+  version "0.88.0"
+  resolved "https://registry.npmjs.org/@nivo/colors/-/colors-0.88.0.tgz"
+  integrity sha512-IZ+leYIqAlo7dyLHmsQwujanfRgXyoQ5H7PU3RWLEn1PP0zxDKLgEjFEDADpDauuslh2Tx0L81GNkWR6QSP0Mw==
+  dependencies:
+    "@nivo/core" "0.88.0"
+    "@types/d3-color" "^3.0.0"
+    "@types/d3-scale" "^4.0.8"
+    "@types/d3-scale-chromatic" "^3.0.0"
+    "@types/prop-types" "^15.7.2"
+    d3-color "^3.1.0"
+    d3-scale "^4.0.2"
+    d3-scale-chromatic "^3.0.0"
+    lodash "^4.17.21"
+    prop-types "^15.7.2"
+
 "@nivo/core@0.87.0":
   version "0.87.0"
   resolved "https://registry.npmjs.org/@nivo/core/-/core-0.87.0.tgz"
   integrity sha512-yEQWJn7QjWnbmCZccBCo4dligNyNyz3kgyV9vEtcaB1iGeKhg55RJEAlCOul+IDgSCSPFci2SxTmipE6LZEZCg==
   dependencies:
     "@nivo/tooltip" "0.87.0"
+    "@react-spring/web" "9.4.5 || ^9.7.2"
+    "@types/d3-shape" "^3.1.6"
+    d3-color "^3.1.0"
+    d3-format "^1.4.4"
+    d3-interpolate "^3.0.1"
+    d3-scale "^4.0.2"
+    d3-scale-chromatic "^3.0.0"
+    d3-shape "^3.2.0"
+    d3-time-format "^3.0.0"
+    lodash "^4.17.21"
+    prop-types "^15.7.2"
+
+"@nivo/core@0.88.0":
+  version "0.88.0"
+  resolved "https://registry.npmjs.org/@nivo/core/-/core-0.88.0.tgz"
+  integrity sha512-XjUkA5MmwjLP38bdrJwn36Gj7T5SYMKD55LYQp/1nIJPdxqJ38dUfE4XyBDfIEgfP6yrHOihw3C63cUdnUBoiw==
+  dependencies:
+    "@nivo/tooltip" "0.88.0"
     "@react-spring/web" "9.4.5 || ^9.7.2"
     "@types/d3-shape" "^3.1.6"
     d3-color "^3.1.0"
@@ -1578,6 +1623,16 @@
     "@types/d3-scale" "^4.0.8"
     d3-scale "^4.0.2"
 
+"@nivo/legends@0.88.0":
+  version "0.88.0"
+  resolved "https://registry.npmjs.org/@nivo/legends/-/legends-0.88.0.tgz"
+  integrity sha512-d4DF9pHbD8LmGJlp/Gp1cF4e8y2wfQTcw3jVhbZj9zkb7ZWB7JfeF60VHRfbXNux9bjQ9U78/SssQqueVDPEmg==
+  dependencies:
+    "@nivo/colors" "0.88.0"
+    "@nivo/core" "0.88.0"
+    "@types/d3-scale" "^4.0.8"
+    d3-scale "^4.0.2"
+
 "@nivo/line@^0.87.0":
   version "0.87.0"
   resolved "https://registry.npmjs.org/@nivo/line/-/line-0.87.0.tgz"
@@ -1592,6 +1647,34 @@
     "@nivo/tooltip" "0.87.0"
     "@nivo/voronoi" "0.87.0"
     "@react-spring/web" "9.4.5 || ^9.7.2"
+    d3-shape "^3.2.0"
+
+"@nivo/pie@^0.88.0":
+  version "0.88.0"
+  resolved "https://registry.npmjs.org/@nivo/pie/-/pie-0.88.0.tgz"
+  integrity sha512-BE6dFWlGne1SnaEkFHNbg0sZBiwtcIqBFwmMRJ0F11SiKOzVeJyq3KiyY1I2ySSCx5VR1V8/MNBXzXFu3vJMAQ==
+  dependencies:
+    "@nivo/arcs" "0.88.0"
+    "@nivo/colors" "0.88.0"
+    "@nivo/core" "0.88.0"
+    "@nivo/legends" "0.88.0"
+    "@nivo/tooltip" "0.88.0"
+    "@types/d3-shape" "^3.1.6"
+    d3-shape "^3.2.0"
+
+"@nivo/radar@^0.88.0":
+  version "0.88.0"
+  resolved "https://registry.npmjs.org/@nivo/radar/-/radar-0.88.0.tgz"
+  integrity sha512-KYdfbKPl8n5NUanqrVm2GVS+xeesrxu6bgh1t7PJmKoxGbJ5mTQMvHtadjXei3N+1/3RlNOxi5ZZDx+LuoupSQ==
+  dependencies:
+    "@nivo/colors" "0.88.0"
+    "@nivo/core" "0.88.0"
+    "@nivo/legends" "0.88.0"
+    "@nivo/tooltip" "0.88.0"
+    "@react-spring/web" "9.4.5 || ^9.7.2"
+    "@types/d3-scale" "^4.0.8"
+    "@types/d3-shape" "^3.1.6"
+    d3-scale "^4.0.2"
     d3-shape "^3.2.0"
 
 "@nivo/scales@0.87.0":
@@ -1613,6 +1696,14 @@
   integrity sha512-nZJWyRIt/45V/JBdJ9ksmNm1LFfj59G1Dy9wB63Icf2YwyBT+J+zCzOGXaY7gxCxgF1mnSL3dC7fttcEdXyN/g==
   dependencies:
     "@nivo/core" "0.87.0"
+    "@react-spring/web" "9.4.5 || ^9.7.2"
+
+"@nivo/tooltip@0.88.0":
+  version "0.88.0"
+  resolved "https://registry.npmjs.org/@nivo/tooltip/-/tooltip-0.88.0.tgz"
+  integrity sha512-iEjVfQA8gumAzg/yUinjTwswygCkE5Iwuo8opwnrbpNIqMrleBV+EAKIgB0PrzepIoW8CFG/SJhoiRfbU8jhOw==
+  dependencies:
+    "@nivo/core" "0.88.0"
     "@react-spring/web" "9.4.5 || ^9.7.2"
 
 "@nivo/voronoi@0.87.0":

@@ -11,8 +11,8 @@ const footerNavs = [
   {
     label: "Company",
     items: [
-      { href: "/about", name: "About Us" },
-      { href: "/contact", name: "Contact" },
+      { href: "/mission", name: "Our Mission" },
+      { href: "/Contact", name: "Contact" },
     ],
   },
   {
@@ -20,7 +20,7 @@ const footerNavs = [
     items: [
       { href: "/privacy-policy", name: "Privacy Policy" },
       { href: "/terms-of-service", name: "Terms of Service" },
-      { href: "/Cookie-Policy", name: "Cookie Policy" },
+      { href: "/cookie-policy", name: "Cookie Policy" },
     ],
   },
 ];

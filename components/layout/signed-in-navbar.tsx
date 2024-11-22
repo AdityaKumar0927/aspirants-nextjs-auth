@@ -129,6 +129,7 @@ export default function NavBar({ session }: { session: Session | null }) {
               height={30}
               className="ml-2"
             />
+             <span className="ml-2 text-xs font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded-full">BETA</span>
           </Link>
           <div className="hidden md:flex items-center justify-center space-x-4 flex-1">
             <DesktopNavLinks session={session} />

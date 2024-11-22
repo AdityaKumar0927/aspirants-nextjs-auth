@@ -21,12 +21,27 @@ import {
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { Badge } from "@/components/ui/badge"
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/components/ui/use-toast"
 import { Skeleton } from "@/components/ui/skeleton"
-import { ExternalLink, Search, HelpCircle, ChevronDown, Plus, RefreshCw } from 'lucide-react'
+import { cn } from "@/lib/utils"
+import { format } from "date-fns"
+import { ExternalLink, Search, HelpCircle, ChevronDown, Plus, RefreshCw, CalendarIcon, MoreHorizontal } from 'lucide-react'
 
 export type IssueArea = "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
 export type IssueStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
@@ -77,8 +92,12 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
   const [error, setError] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState<string>("")
   const [statusFilter, setStatusFilter] = useState<string>("all")
-  const [areaFilter, setAreaFilter] = useState<string>("all") // Added areaFilter state
+  const [priorityFilter, setPriorityFilter] = useState<string>("all")
+  const [areaFilter, setAreaFilter] = useState<string>("all")
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [selectedIssue, setSelectedIssue] = useState<Issue | null>(null)
   const [sortConfig, setSortConfig] = useState<{ key: keyof Issue | 'createdBy.name', direction: 'asc' | 'desc' }>({ key: 'updatedAt', direction: 'desc' })
+  const [date, setDate] = useState<Date>()
   const [isCreateIssueDialogOpen, setIsCreateIssueDialogOpen] = useState(false)
   const [newIssue, setNewIssue] = useState<Omit<Issue, 'id' | 'createdAt' | 'updatedAt' | 'createdBy'>>({
     title: '',
@@ -91,6 +110,8 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
   const [viewAllIssues, setViewAllIssues] = useState(false)
   const router = useRouter()
   const { toast } = useToast()
+
+  const itemsPerPage = 10
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -146,11 +167,13 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
       const matchesSearch = issue.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         issue.description.toLowerCase().includes(searchQuery.toLowerCase())
       const matchesStatus = statusFilter === "all" || issue.status === statusFilter.toUpperCase()
-      const matchesArea = areaFilter === "all" || issue.area === areaFilter // Updated filtering logic
-      return matchesSearch && matchesStatus && matchesArea
+      const matchesPriority = priorityFilter === "all" || issue.priority === priorityFilter.toUpperCase()
+      const matchesArea = areaFilter === "all" || issue.area === areaFilter.toUpperCase()
+      return matchesSearch && matchesStatus && matchesPriority && matchesArea
     })
     setFilteredIssues(filtered)
-  }, [issues, userIssues, viewAllIssues, searchQuery, statusFilter, areaFilter]) // Added areaFilter to dependencies
+    setCurrentPage(1)
+  }, [issues, userIssues, viewAllIssues, searchQuery, statusFilter, priorityFilter, areaFilter])
 
   const handleRefresh = async () => {
     setLoading(true)
@@ -210,6 +233,10 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
     }
   }
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+  }
+
   const handleSort = (key: keyof Issue | 'createdBy.name') => {
     setSortConfig(prevConfig => ({
       key,
@@ -247,6 +274,16 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
     return sortableIssues
   }, [filteredIssues, sortConfig])
 
+  const paginatedIssues = sortedIssues.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  )
+
+  const totalPages = Math.ceil(sortedIssues.length / itemsPerPage)
+
+  const canResolveIssues = userRole === 'moderator' || userRole === 'administrator'
+  const canApproveChanges = userRole === 'administrator'
+  const canViewDetailedInfo = userRole === 'moderator' || userRole === 'administrator'
   const canCreateIssue = userRole && userRole !== 'member'
 
   return (
@@ -282,7 +319,7 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
         <div className="flex gap-4 items-center">
           <Tabs value={statusFilter} onValueChange={setStatusFilter} className="w-full md:w-auto">
             <TabsList>
-              <TabsTrigger value="all">All Statuses</TabsTrigger> {/* Updated Tabs */}
+              <TabsTrigger value="all">All Statuses</TabsTrigger>
               <TabsTrigger value="open">Open</TabsTrigger>
               <TabsTrigger value="in_progress">In Progress</TabsTrigger>
               <TabsTrigger value="resolved">Resolved</TabsTrigger>
@@ -311,6 +348,65 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
         </div>
       </div>
 
+      <div className="flex justify-between items-center mb-4">
+        <Select value={priorityFilter} onValueChange={setPriorityFilter}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="All Priorities" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Priorities</SelectItem>
+            <SelectItem value="low">Low</SelectItem>
+            <SelectItem value="medium">Medium</SelectItem>
+            <SelectItem value="high">High</SelectItem>
+            <SelectItem value="critical">Critical</SelectItem>
+          </SelectContent>
+        </Select>
+        <Select value={areaFilter} onValueChange={setAreaFilter}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="All Areas" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Areas</SelectItem>
+            <SelectItem value="content">Content</SelectItem>
+            <SelectItem value="ui">UI</SelectItem>
+            <SelectItem value="bug">Bug</SelectItem>
+            <SelectItem value="feature">Feature</SelectItem>
+            <SelectItem value="other">Other</SelectItem>
+          </SelectContent>
+        </Select>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant={"outline"}
+              className={cn(
+                "w-[240px] justify-start text-left font-normal",
+                !date && "text-muted-foreground"
+              )}
+            >
+              <CalendarIcon className="mr-2 h-4 w-4" />
+              {date ? format(date, "PPP") : "Pick a date"}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0" align="start">
+            <Calendar
+              mode="single"
+              selected={date}
+              onSelect={setDate}
+              initialFocus
+            />
+          </PopoverContent>
+        </Popover>
+        <Button 
+          onClick={() => {
+            setViewAllIssues(!viewAllIssues)
+            setFilteredIssues(viewAllIssues ? userIssues : issues)
+          }} 
+          variant="outline" 
+        >
+          {viewAllIssues ? "View My Issues" : "View All Issues"}
+        </Button>
+      </div>
+
       {loading ? (
         <div className="space-y-4">
           {[...Array(5)].map((_, i) => (
@@ -335,20 +431,26 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
             Retry
           </Button>
         </div>
-      ) : sortedIssues.length === 0 ? (
+      ) : paginatedIssues.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 border rounded-lg bg-gray-50">
           <div className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center mb-4">
             <HelpCircle className="h-6 w-6 text-gray-400" />
           </div>
           <h2 className="text-xl font-medium mb-2">No cases yet</h2>
-          <p className="text-gray-500 mb-6">Create a new case to get started</p>
+          <p className="text-gray-500 mb-6">
+            {viewAllIssues 
+              ? "No issues have been reported yet." 
+              : "You haven't reported any issues yet."}
+          </p>
           {canCreateIssue && (
-            <Button onClick={() => setIsCreateIssueDialogOpen(true)}>Create Case</Button>
+            <Button onClick={() => setIsCreateIssueDialogOpen(true)}>
+              {viewAllIssues ? "Create First Issue" : "Report Your First Issue"}
+            </Button>
           )}
         </div>
       ) : (
         <div className="space-y-4">
-          {sortedIssues.map((issue) => (
+          {paginatedIssues.map((issue) => (
             <div key={issue.id} className="flex items-center gap-4 p-4 bg-white border rounded-lg hover:bg-gray-50">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
@@ -387,13 +489,82 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
                   <span>by {issue.createdBy.name ?? 'Unknown'}</span>
                 </div>
               </div>
-              <Button variant="ghost" size="sm">
-                View Details
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm">
+                    <MoreHorizontal className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onSelect={() => setSelectedIssue(issue)}>View Details</DropdownMenuItem>
+                  {canResolveIssues && (
+                    <DropdownMenuItem>Resolve Issue</DropdownMenuItem>
+                  )}
+                  {canApproveChanges && (
+                    <DropdownMenuItem>Approve Changes</DropdownMenuItem>
+                  )}
+                  {canViewDetailedInfo && (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem className="text-destructive">
+                        Delete
+                      </DropdownMenuItem>
+                    </>
+                  )}
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           ))}
         </div>
       )}
+
+      {paginatedIssues.length > 0 && (
+        <div className="flex justify-between items-center mt-4">
+          <p className="text-sm text-muted-foreground">
+            Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
+            {Math.min(currentPage * itemsPerPage, sortedIssues.length)} of{" "}
+            {sortedIssues.length} issues
+          </p>
+          <div className="space-x-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </Button>
+          </div>
+        </div>
+      )}
+
+      <Dialog open={!!selectedIssue} onOpenChange={() => setSelectedIssue(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{selectedIssue?.title}</DialogTitle>
+            <DialogDescription>Issue Details</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-2">
+            <p><strong>ID:</strong> {selectedIssue?.id}</p>
+            <p><strong>Description:</strong> {selectedIssue?.description}</p>
+            <p><strong>Status:</strong> {selectedIssue?.status}</p>
+            <p><strong>Priority:</strong> {selectedIssue?.priority}</p>
+            <p><strong>Area:</strong> {selectedIssue?.area}</p>
+            <p><strong>Created At:</strong> {selectedIssue?.createdAt}</p>
+            <p><strong>Updated At:</strong> {selectedIssue?.updatedAt}</p>
+            <p><strong>Created By:</strong> {selectedIssue?.createdBy.name ?? 'Unknown'} ({selectedIssue?.createdBy.email ?? 'No email'})</p>
+            {selectedIssue?.questionId && <p><strong>Related Question ID:</strong> {selectedIssue.questionId}</p>}
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <Dialog open={isCreateIssueDialogOpen} onOpenChange={setIsCreateIssueDialogOpen}>
         <DialogContent>
@@ -445,7 +616,6 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
                   <SelectValue placeholder="Select area" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Areas</SelectItem> {/* Added All Areas option */}
                   <SelectItem value="CONTENT">Content</SelectItem>
                   <SelectItem value="UI">UI</SelectItem>
                   <SelectItem value="BUG">Bug</SelectItem>

@@ -1,297 +1,358 @@
 "use client"
 
-import React, { useState } from "react";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
+import React, { useState, useMemo, useCallback } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import {
   Table,
-  TableHeader,
-  TableRow,
-  TableHead,
   TableBody,
   TableCell,
-} from "@/components/ui/table";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
-import { ResponsiveLine } from "@nivo/line";
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+} from "@/components/ui/dialog"
+import { ResponsiveLine } from "@nivo/line"
+import { ResponsivePie } from "@nivo/pie"
+import { ResponsiveRadar } from "@nivo/radar"
+import { Trophy, RefreshCw, ArrowUp, ArrowDown, Minus, X, Search, Filter, SearchIcon } from 'lucide-react'
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Badge } from "@/components/ui/badge"
+import { IconSearch } from "@tabler/icons-react"
 
-// Define types for user object to prevent TypeScript errors
 interface User {
-  username: string;
-  avatar: string;
-  questionsSolved: number;
-  accuracy: number;
-  attempted: number;
-  timePerQuestion: string;
+  username: string
+  avatar: string
+  questionsSolved: number
+  accuracy: number
+  attempted: number
+  timePerQuestion: string
+  trend: "up" | "down" | "neutral"
+  lastActive: string
+  streak: number
+  tags: string[]
+  joinDate: string
+  rank: number
+  contributions: number
 }
 
-export default function Component() {
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+const users: User[] = [
+  {
+    username: "shadcn",
+    avatar: "/placeholder.svg?height=40&width=40",
+    questionsSolved: 12345,
+    accuracy: 92.3,
+    attempted: 13500,
+    timePerQuestion: "12s",
+    trend: "up",
+    lastActive: "2h ago",
+    streak: 7,
+    tags: ["algorithms", "data structures", "dynamic programming"],
+    joinDate: "2022-03-15",
+    rank: 1,
+    contributions: 250,
+  },
+  {
+    username: "jaredpalmer",
+    avatar: "/placeholder.svg?height=40&width=40",
+    questionsSolved: 11987,
+    accuracy: 89.7,
+    attempted: 13200,
+    timePerQuestion: "14s",
+    trend: "down",
+    lastActive: "1d ago",
+    streak: 3,
+    tags: ["react", "javascript", "web development"],
+    joinDate: "2022-05-20",
+    rank: 2,
+    contributions: 180,
+  },
+  {
+    username: "maxleiter",
+    avatar: "/placeholder.svg?height=40&width=40",
+    questionsSolved: 10654,
+    accuracy: 87.2,
+    attempted: 12800,
+    timePerQuestion: "16s",
+    trend: "up",
+    lastActive: "3h ago",
+    streak: 5,
+    tags: ["system design", "databases", "networking"],
+    joinDate: "2022-04-10",
+    rank: 3,
+    contributions: 210,
+  },
+  {
+    username: "shuding_",
+    avatar: "/placeholder.svg?height=40&width=40",
+    questionsSolved: 9876,
+    accuracy: 84.5,
+    attempted: 11900,
+    timePerQuestion: "18s",
+    trend: "neutral",
+    lastActive: "5h ago",
+    streak: 2,
+    tags: ["machine learning", "python", "data science"],
+    joinDate: "2022-06-05",
+    rank: 4,
+    contributions: 150,
+  },
+  {
+    username: "lee_robinson",
+    avatar: "/placeholder.svg?height=40&width=40",
+    questionsSolved: 8765,
+    accuracy: 81.2,
+    attempted: 10800,
+    timePerQuestion: "20s",
+    trend: "up",
+    lastActive: "1h ago",
+    streak: 4,
+    tags: ["frontend", "nextjs", "react"],
+    joinDate: "2022-07-01",
+    rank: 5,
+    contributions: 190,
+  },
+]
 
-  const handleUserClick = (user: User) => {
-    setSelectedUser(user);
-  };
+export default function LeaderboardPage() {
+  const [selectedUser, setSelectedUser] = useState<User | null>(null)
+  const [searchTerm, setSearchTerm] = useState("")
+  const [sortBy, setSortBy] = useState("questionsSolved")
 
-  const handleModalClose = () => {
-    setSelectedUser(null);
-  };
+  const handleUserClick = useCallback((user: User) => {
+    setSelectedUser(user)
+  }, [])
+
+  const filteredUsers = useMemo(() => {
+    return users
+      .filter(user => user.username.toLowerCase().includes(searchTerm.toLowerCase()))
+      .sort((a, b) => (b[sortBy as keyof User] as number) - (a[sortBy as keyof User] as number))
+  }, [searchTerm, sortBy])
 
   return (
-    <>
-      <Card className="w-full max-w-3xl">
-        <CardHeader className="flex items-center justify-between border-b pb-4">
-          <CardTitle className="text-2xl font-bold">Leaderboard</CardTitle>
-          <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm">
-              <TrophyIcon className="h-4 w-4" />
-              <span>View Prizes</span>
-            </Button>
-            <Button variant="outline" size="sm">
-              <RefreshCwIcon className="h-4 w-4" />
-              <span>Refresh</span>
-            </Button>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <div className="bg-muted/5 rounded-lg p-4">
-              <div className="text-sm font-medium">Questions Solved</div>
-              <div className="text-3xl font-bold">12,345</div>
-              <Progress value={92.3} aria-label="92.3% accuracy" className="mt-2" />
+    <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">Leaderboard</h1>
+          <Button variant="outline">
+            <RefreshCw className="h-4 w-4 mr-2" />
+            Refresh
+          </Button>
+        </div>
+
+        <Card className="mb-8">
+          <CardContent className="pt-6">
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1">
+                <Input
+                  placeholder="Search users..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full"
+                />
+                <IconSearch></IconSearch>
+              </div>
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="questionsSolved">Questions Solved</SelectItem>
+                  <SelectItem value="accuracy">Accuracy</SelectItem>
+                  <SelectItem value="attempted">Attempted</SelectItem>
+                  <SelectItem value="contributions">Contributions</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-            <div className="bg-muted/5 rounded-lg p-4">
-              <div className="text-sm font-medium">Accuracy</div>
-              <div className="text-3xl font-bold">92.3%</div>
-              <Progress value={92.3} aria-label="92.3% accuracy" className="mt-2" />
-            </div>
-            <div className="bg-muted/5 rounded-lg p-4">
-              <div className="text-sm font-medium">Time per Question</div>
-              <div className="text-3xl font-bold">12s</div>
-              <Progress value={80} aria-label="80% time per question" className="mt-2" />
-            </div>
-          </div>
-          <Table className="mt-6">
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-12 text-center">#</TableHead>
-                <TableHead>Username</TableHead>
-                <TableHead className="text-right">Questions Solved</TableHead>
-                <TableHead className="text-right">Accuracy</TableHead>
-                <TableHead className="text-right">Attempted</TableHead>
-                <TableHead className="text-right">Time per Question</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {[
-                {
-                  username: "shadcn",
-                  avatar: "/placeholder-user.jpg",
-                  questionsSolved: 12345,
-                  accuracy: 92.3,
-                  attempted: 13500,
-                  timePerQuestion: "12s",
-                },
-                {
-                  username: "jaredpalmer",
-                  avatar: "/placeholder-user.jpg",
-                  questionsSolved: 11987,
-                  accuracy: 89.7,
-                  attempted: 13200,
-                  timePerQuestion: "14s",
-                },
-                {
-                  username: "maxleiter",
-                  avatar: "/placeholder-user.jpg",
-                  questionsSolved: 10654,
-                  accuracy: 87.2,
-                  attempted: 12800,
-                  timePerQuestion: "16s",
-                },
-                {
-                  username: "shuding_",
-                  avatar: "/placeholder-user.jpg",
-                  questionsSolved: 9876,
-                  accuracy: 84.5,
-                  attempted: 11900,
-                  timePerQuestion: "18s",
-                },
-                {
-                  username: "lee_robinson",
-                  avatar: "/placeholder-user.jpg",
-                  questionsSolved: 8765,
-                  accuracy: 81.2,
-                  attempted: 10800,
-                  timePerQuestion: "20s",
-                },
-              ].map((user, index) => (
-                <TableRow
-                  key={index}
-                  className="cursor-pointer hover:bg-muted/10"
-                  onClick={() => handleUserClick(user)}
-                >
-                  <TableCell className="text-center font-medium">{index + 1}</TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-3">
-                      <Avatar className="h-8 w-8">
-                        <AvatarImage src={user.avatar} alt={`@${user.username}`} />
-                        <AvatarFallback>{user.username.slice(0, 2).toUpperCase()}</AvatarFallback>
-                      </Avatar>
-                      <span>{user.username}</span>
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-right font-medium">{user.questionsSolved}</TableCell>
-                  <TableCell className="text-right font-medium">{user.accuracy}%</TableCell>
-                  <TableCell className="text-right font-medium">{user.attempted}</TableCell>
-                  <TableCell className="text-right font-medium">{user.timePerQuestion}</TableCell>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="p-0">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-16">Rank</TableHead>
+                  <TableHead>User</TableHead>
+                  <TableHead className="text-right">Solved</TableHead>
+                  <TableHead className="text-right">Accuracy</TableHead>
+                  <TableHead className="text-right">Attempted</TableHead>
+                  <TableHead className="text-right">Time/Q</TableHead>
+                  <TableHead className="text-center">Trend</TableHead>
+                  <TableHead className="text-center">Streak</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
+              </TableHeader>
+              <TableBody>
+                {filteredUsers.map((user, index) => (
+                  <TableRow
+                    key={user.username}
+                    className="cursor-pointer transition-colors hover:bg-gray-100"
+                    onClick={() => handleUserClick(user)}
+                  >
+                    <TableCell className="font-medium">
+                      {index === 0 && <Trophy className="inline-block w-5 h-5 text-yellow-500 mr-1" />}
+                      {index === 1 && <Trophy className="inline-block w-5 h-5 text-gray-400 mr-1" />}
+                      {index === 2 && <Trophy className="inline-block w-5 h-5 text-amber-600 mr-1" />}
+                      {user.rank}
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-3">
+                        <Avatar className="h-10 w-10">
+                          <AvatarImage src={user.avatar} alt={`@${user.username}`} />
+                          <AvatarFallback>{user.username.slice(0, 2).toUpperCase()}</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="font-medium">{user.username}</div>
+                          <div className="text-sm text-gray-500">Last active: {user.lastActive}</div>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-right font-medium">{user.questionsSolved.toLocaleString()}</TableCell>
+                    <TableCell className="text-right">{user.accuracy}%</TableCell>
+                    <TableCell className="text-right">{user.attempted.toLocaleString()}</TableCell>
+                    <TableCell className="text-right">{user.timePerQuestion}</TableCell>
+                    <TableCell className="text-center">
+                      {user.trend === "up" && <ArrowUp className="inline-block text-green-500" />}
+                      {user.trend === "down" && <ArrowDown className="inline-block text-red-500" />}
+                      {user.trend === "neutral" && <Minus className="inline-block text-yellow-500" />}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <Badge variant="secondary">
+                        {user.streak} days
+                      </Badge>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </div>
 
       {selectedUser && (
-        <Dialog open onOpenChange={handleModalClose}>
-          <DialogContent className="sm:max-w-[425px]">
+        <Dialog open={!!selectedUser} onOpenChange={() => setSelectedUser(null)}>
+          <DialogContent className="sm:max-w-[600px]">
             <DialogHeader>
-              <div className="flex items-center gap-3">
+              <DialogTitle className="flex items-center gap-3">
                 <Avatar className="h-12 w-12">
                   <AvatarImage src={selectedUser.avatar} alt={selectedUser.username} />
-                  <AvatarFallback>{selectedUser.username.charAt(0).toUpperCase()}</AvatarFallback>
+                  <AvatarFallback>{selectedUser.username.slice(0, 2).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <div>
-                  <div className="text-lg font-bold">{selectedUser.username}</div>
-                  <div className="text-sm text-muted-foreground">User Analytics</div>
+                  <div className="text-xl font-bold">{selectedUser.username}</div>
+                  <div className="text-sm text-gray-500">User Analytics</div>
                 </div>
-              </div>
+              </DialogTitle>
             </DialogHeader>
-            <div>
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <div className="text-sm font-medium">Questions Solved</div>
-                  <div className="text-2xl font-bold">{selectedUser.questionsSolved}</div>
-                </div>
-                <div>
-                  <div className="text-sm font-medium">Accuracy</div>
-                  <div className="text-2xl font-bold">{selectedUser.accuracy}%</div>
-                </div>
-                <div>
-                  <div className="text-sm font-medium">Attempted</div>
-                  <div className="text-2xl font-bold">{selectedUser.attempted}</div>
-                </div>
-                <div>
-                  <div className="text-sm font-medium">Time per Question</div>
-                  <div className="text-2xl font-bold">{selectedUser.timePerQuestion}</div>
-                </div>
-              </div>
-              <div className="mt-6">
-                <LineChart className="w-full aspect-[4/3]" />
+            <div className="grid grid-cols-2 gap-6 py-4">
+              <StatItem title="Questions Solved" value={selectedUser.questionsSolved.toLocaleString()} icon={<Trophy className="h-4 w-4 text-yellow-500" />} />
+              <StatItem title="Accuracy" value={`${selectedUser.accuracy}%`} icon={<ArrowUp className="h-4 w-4 text-green-500" />} />
+              <StatItem title="Attempted" value={selectedUser.attempted.toLocaleString()} icon={<RefreshCw className="h-4 w-4 text-blue-500" />} />
+              <StatItem title="Time per Question" value={selectedUser.timePerQuestion} icon={<Minus className="h-4 w-4 text-purple-500" />} />
+            </div>
+            <div className="mt-6">
+              <h3 className="text-lg font-semibold mb-2">Performance Trend</h3>
+              <div className="h-[200px]">
+                <ResponsiveLine
+                  data={[
+                    {
+                      id: "Performance",
+                      data: [
+                        { x: "Week 1", y: 43 },
+                        { x: "Week 2", y: 137 },
+                        { x: "Week 3", y: 61 },
+                        { x: "Week 4", y: 145 },
+                        { x: "Week 5", y: 26 },
+                        { x: "Week 6", y: 154 },
+                      ],
+                    },
+                  ]}
+                  margin={{ top: 20, right: 20, bottom: 40, left: 60 }}
+                  xScale={{ type: "point" }}
+                  yScale={{ type: "linear", min: "auto", max: "auto" }}
+                  curve="cardinal"
+                  axisBottom={{ tickSize: 5, tickPadding: 5, tickRotation: 0, legend: "Weeks", legendOffset: 36 }}
+                  axisLeft={{ tickSize: 5, tickPadding: 5, tickRotation: 0, legend: "Questions Solved", legendOffset: -40 }}
+                  pointSize={8}
+                  pointColor={{ theme: "background" }}
+                  pointBorderWidth={2}
+                  pointBorderColor={{ from: "serieColor" }}
+                  useMesh={true}
+                  enableSlices="x"
+                  colors={["#3b82f6"]}
+                  theme={{
+                    axis: { ticks: { text: { fontSize: 12 } } },
+                    grid: { line: { stroke: "#e2e8f0" } },
+                    crosshair: { line: { stroke: "#3b82f6", strokeWidth: 1, strokeOpacity: 0.35 } },
+                  }}
+                />
               </div>
             </div>
+            <div className="mt-6">
+              <h3 className="text-lg font-semibold mb-2">Skill Radar</h3>
+              <div className="h-[200px]">
+                <ResponsiveRadar
+                  data={[
+                    { skill: "Algorithms", value: 80 },
+                    { skill: "Data Structures", value: 90 },
+                    { skill: "Problem Solving", value: 85 },
+                    { skill: "Time Complexity", value: 70 },
+                    { skill: "Space Complexity", value: 75 },
+                  ]}
+                  keys={["value"]}
+                  indexBy="skill"
+                  valueFormat=">-.2f"
+                  margin={{ top: 20, right: 80, bottom: 20, left: 80 }}
+                  borderColor={{ from: "color" }}
+                  gridLabelOffset={36}
+                  dotSize={10}
+                  dotColor={{ theme: "background" }}
+                  dotBorderWidth={2}
+                  colors={{ scheme: "nivo" }}
+                  blendMode="multiply"
+                  motionConfig="wobbly"
+                />
+              </div>
+            </div>
+            <div className="mt-6">
+              <h3 className="text-lg font-semibold mb-2">Top Tags</h3>
+              <div className="flex flex-wrap gap-2">
+                {selectedUser.tags.map((tag, index) => (
+                  <Badge key={index} variant="secondary">
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+            <DialogClose asChild>
+              <Button size="sm" variant="ghost" className="absolute right-4 top-4">
+                <X className="h-4 w-4" />
+                <span className="sr-only">Close</span>
+              </Button>
+            </DialogClose>
           </DialogContent>
         </Dialog>
       )}
-    </>
-  );
-}
-
-// Define LineChart component properly with the expected props type
-function LineChart(props: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div {...props}>
-      <ResponsiveLine
-        data={[
-          {
-            id: "Desktop",
-            data: [
-              { x: "Jan", y: 43 },
-              { x: "Feb", y: 137 },
-              { x: "Mar", y: 61 },
-              { x: "Apr", y: 145 },
-              { x: "May", y: 26 },
-              { x: "Jun", y: 154 },
-            ],
-          },
-          {
-            id: "Mobile",
-            data: [
-              { x: "Jan", y: 60 },
-              { x: "Feb", y: 48 },
-              { x: "Mar", y: 177 },
-              { x: "Apr", y: 78 },
-              { x: "May", y: 96 },
-              { x: "Jun", y: 204 },
-            ],
-          },
-        ]}
-        margin={{ top: 10, right: 10, bottom: 40, left: 40 }}
-        xScale={{ type: "point" }}
-        yScale={{ type: "linear" }}
-        axisTop={null}
-        axisRight={null}
-        axisBottom={{ tickSize: 0, tickPadding: 16 }}
-        axisLeft={{ tickSize: 0, tickValues: 5, tickPadding: 16 }}
-        colors={["#2563eb", "#e11d48"]}
-        pointSize={6}
-        useMesh={true}
-        gridYValues={6}
-        theme={{
-          tooltip: {
-            chip: { borderRadius: "9999px" },
-            container: { fontSize: "12px", textTransform: "capitalize", borderRadius: "6px" },
-          },
-          grid: { line: { stroke: "#f3f4f6" } },
-        }}
-        role="application"
-      />
     </div>
-  );
+  )
 }
 
-// Icon components with proper type annotations
-function RefreshCwIcon(props: React.SVGProps<SVGSVGElement>) {
+function StatItem({ title, value, icon }: { title: string; value: string; icon: React.ReactNode }) {
   return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
-      <path d="M21 3v5h-5" />
-      <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
-      <path d="M8 16H3v5" />
-    </svg>
-  );
-}
-
-function TrophyIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-      <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-      <path d="M4 22h16" />
-      <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
-      <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
-      <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-    </svg>
-  );
+    <div className="flex items-center space-x-3">
+      <div className="bg-gray-100 p-2 rounded-full">{icon}</div>
+      <div>
+        <div className="text-sm font-medium text-gray-500">{title}</div>
+        <div className="text-xl font-semibold">{value}</div>
+      </div>
+    </div>
+  )
 }
