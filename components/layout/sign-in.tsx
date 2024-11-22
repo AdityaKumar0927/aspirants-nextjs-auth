@@ -196,7 +196,7 @@ function SignInModalComponent({
           </button>
           <div className="flex h-full items-center justify-center">
             <div className="text-center">
-              <h2 className="mb-4 text-2xl font-bold">Sign In</h2>
+              <h2 className="mb-12 text-4xl font-semibold tracking-tighter">Sign In</h2>
               <Button
                 variant="outline"
                 className="w-full mb-4"
