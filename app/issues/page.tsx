@@ -1,5 +1,5 @@
-import IssuePageWrapper from './IssuePageWrapper'
+import IssuesPageContent from './IssuesPageContent'
 
 export default function IssuesPage() {
-  return <IssuePageWrapper />
+  return <IssuesPageContent />
 }

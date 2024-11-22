@@ -1,8 +1,6 @@
-"use client"
+'use client'
 
 import React, { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -41,7 +39,7 @@ import { useToast } from "@/components/ui/use-toast"
 import { Skeleton } from "@/components/ui/skeleton"
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
-import { ExternalLink, Search, HelpCircle, ChevronDown, Plus, RefreshCw, CalendarIcon, MoreHorizontal } from 'lucide-react'
+import { Search, HelpCircle, ChevronDown, Plus, RefreshCw, CalendarIcon, MoreHorizontal } from 'lucide-react'
 
 export type IssueArea = "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
 export type IssueStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
@@ -65,10 +63,6 @@ export interface Issue {
 
 type Role = 'member' | 'volunteer' | 'moderator' | 'administrator'
 
-interface IssuesPageContentProps {
-  initialIssues: Issue[]
-}
-
 const statusColors = {
   OPEN: "bg-yellow-500/20 text-yellow-700",
   IN_PROGRESS: "bg-blue-500/20 text-blue-700",
@@ -83,9 +77,9 @@ const priorityColors = {
   CRITICAL: "bg-purple-500/20 text-purple-700",
 }
 
-export default function IssuesPageContent({ initialIssues }: IssuesPageContentProps) {
+export default function IssuesPageContent() {
   const [userRole, setUserRole] = useState<Role | null>(null)
-  const [issues, setIssues] = useState<Issue[]>(initialIssues)
+  const [issues, setIssues] = useState<Issue[]>([])
   const [userIssues, setUserIssues] = useState<Issue[]>([])
   const [filteredIssues, setFilteredIssues] = useState<Issue[]>([])
   const [loading, setLoading] = useState<boolean>(true)
@@ -108,7 +102,6 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
     questionId: null
   })
   const [viewAllIssues, setViewAllIssues] = useState(false)
-  const router = useRouter()
   const { toast } = useToast()
 
   const itemsPerPage = 10
