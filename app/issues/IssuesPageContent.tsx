@@ -290,13 +290,9 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
     <div className="container mx-auto p-6 max-w-7xl">
       <div className="flex justify-between items-center mb-4">
         <div>
-          <h1 className="text-3xl font-medium mb-2">Support Center</h1>
+          <h1 className="text-3xl font-medium mb-2">Report Issues</h1>
           <p className="text-gray-500">
             Create and view support cases for your projects.{" "}
-            <Link href="#" className="text-blue-500 hover:text-blue-600 inline-flex items-center">
-              Learn more
-              <ExternalLink className="h-4 w-4 ml-1" />
-            </Link>
           </p>
         </div>
         {canCreateIssue && (
@@ -437,15 +433,9 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
             <HelpCircle className="h-6 w-6 text-gray-400" />
           </div>
           <h2 className="text-xl font-medium mb-2">No cases yet</h2>
-          <p className="text-gray-500 mb-6">
-            {viewAllIssues 
-              ? "No issues have been reported yet." 
-              : "You haven't reported any issues yet."}
-          </p>
+          <p className="text-gray-500 mb-6">Create a new case to get started</p>
           {canCreateIssue && (
-            <Button onClick={() => setIsCreateIssueDialogOpen(true)}>
-              {viewAllIssues ? "Create First Issue" : "Report Your First Issue"}
-            </Button>
+            <Button onClick={() => setIsCreateIssueDialogOpen(true)}>Create Case</Button>
           )}
         </div>
       ) : (
@@ -553,14 +543,12 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
             <DialogDescription>Issue Details</DialogDescription>
           </DialogHeader>
           <div className="space-y-2">
-            <p><strong>ID:</strong> {selectedIssue?.id}</p>
             <p><strong>Description:</strong> {selectedIssue?.description}</p>
             <p><strong>Status:</strong> {selectedIssue?.status}</p>
             <p><strong>Priority:</strong> {selectedIssue?.priority}</p>
             <p><strong>Area:</strong> {selectedIssue?.area}</p>
             <p><strong>Created At:</strong> {selectedIssue?.createdAt}</p>
             <p><strong>Updated At:</strong> {selectedIssue?.updatedAt}</p>
-            <p><strong>Created By:</strong> {selectedIssue?.createdBy.name ?? 'Unknown'} ({selectedIssue?.createdBy.email ?? 'No email'})</p>
             {selectedIssue?.questionId && <p><strong>Related Question ID:</strong> {selectedIssue.questionId}</p>}
           </div>
         </DialogContent>
