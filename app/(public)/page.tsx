@@ -13,7 +13,7 @@ import { HoverEffect } from '@/components/ui/card-hover-effect';
 import Chat from '@/components/shared/Chat';
 import { AnimatedGradientText } from '@/components/magicui/animated-gradient-text';
 import Ripple from '../components/magicui/ripple';
-import { SmileIcon } from 'lucide-react';
+import DemoNoteComponent from '@/components/shared/demo-note';
 import { FAQ } from '@/components/shared/FAQ';
 
 const projects = [
@@ -141,6 +141,22 @@ export default function Page() {
       </div>
     </div>
 
+    <div className="container mx-auto px-4 mt-10">
+      <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+        Never Forget Anything
+      </h4>
+
+      <p className="text-sm lg:text-base mt-5 max-w-2xl mx-auto text-neutral-500 text-center font-normal">
+        View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill.
+      </p>
+
+      <div className="flex justify-center">
+        <div className="relative z-20 p-4 w-full max-w-4xl">
+          <DemoNoteComponent />
+        </div>
+      </div>
+    </div>
+
       <div className="mb-20">
         <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-2xl sm:leading-[4rem]">
           A Plethora of Exams
@@ -163,6 +179,9 @@ export default function Page() {
           >
           </motion.div>
         </div>
+
+            <FAQ />
+
       </div>
     </div>
   );

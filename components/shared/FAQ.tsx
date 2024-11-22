@@ -1,31 +1,23 @@
-"use client";
- 
+"use client"
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
- 
+} from "@/components/ui/accordion"
+
 const faqs = [
   {
     section: "General",
     qa: [
       {
         question: "What is aspirants?",
-        answer: (
-          <span>
-            aspirants is an online platform designed to help students and professionals prepare for competitive exams with comprehensive resources, practice tests, and interactive features.
-          </span>
-        ),
+        answer: "aspirants is an online platform designed to help students and professionals prepare for competitive exams with comprehensive resources, practice tests, and interactive features.",
       },
       {
         question: "How can I get started with aspirants?",
-        answer: (
-          <span>
-            To get started, simply create an account on our website, explore our available resources, and start practicing with our tailored study materials and tests.
-          </span>
-        ),
+        answer: "To get started, simply create an account on our website, explore our available resources, and start practicing with our tailored study materials and tests.",
       },
     ],
   },
@@ -34,11 +26,7 @@ const faqs = [
     qa: [
       {
         question: "Does aspirants offer technical support?",
-        answer: (
-          <span>
-            Yes, aspirants provides technical support through our help center and customer support email. You can also find answers to common issues in our FAQ section.
-          </span>
-        ),
+        answer: "Yes, aspirants provides technical support through our help center and customer support email. You can also find answers to common issues in our FAQ section.",
       },
     ],
   },
@@ -47,11 +35,7 @@ const faqs = [
     qa: [
       {
         question: "Can I customize my study plan on aspirants?",
-        answer: (
-          <span>
-            Absolutely! aspirants allows you to customize your study plan based on your specific goals and timelines. You can track your progress and adjust your plan as needed.
-          </span>
-        ),
+        answer: "aspirants allows you to customize your study plan based on your specific goals and timelines. You can track your progress and adjust your plan as needed.",
       },
     ],
   },
@@ -60,62 +44,50 @@ const faqs = [
     qa: [
       {
         question: "Can I integrate aspirants with other tools?",
-        answer: (
-          <span>
-            Currently, aspirants is a standalone platform, but we are working on integrating with other popular tools and apps to enhance your study experience. Stay tuned for updates!
-          </span>
-        ),
+        answer: "Currently, aspirants is a standalone platform, but we are working on integrating with other popular tools and apps to enhance your study experience. Stay tuned for updates!",
       },
     ],
   },
-];
- 
+]
+
 export function FAQ() {
   return (
-    <section id="faq">
-      <div className="py-14">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="mx-auto max-w-5xl text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
-              Still Got Questions? 
-            </h2>
-            <p className="mt-6 text-xl leading-8 text-black/80">
-              we&apos;ve got answers
-            </p>
+    <section id="faq" className="py-16 bg-white">
+      <div className="container mx-auto px-4 max-w-3xl">
+        <h2 className="text-3xl font-light tracking-tight text-center mb-2">
+          Still Got Questions?
+        </h2>
+        <p className="text-lg text-center text-gray-500 mb-12 tracking-tight">
+          We&apos;ve got answers
+        </p>
+        
+        {faqs.map((faq, idx) => (
+          <div key={idx} className="mb-8">
+            <h3 className="text-lg font-normal text-gray-400 mb-4 tracking-tight">
+              {faq.section}
+            </h3>
+            <Accordion type="single" collapsible className="border-t border-gray-100">
+              {faq.qa.map((item, itemIdx) => (
+                <AccordionItem key={itemIdx} value={item.question} className="border-b border-gray-100">
+                  <AccordionTrigger className="text-left py-4 hover:no-underline font-light tracking-tight">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="py-4 text-gray-500 font-light tracking-tight">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
-          <div className="container mx-auto my-12 max-w-[1600px] space-y-12">
-            {faqs.map((faq, idx) => (
-              <section key={idx} id={"faq-" + faq.section}>
-                <h2 className="mb-4 text-left text-base font-semibold tracking-tight text-foreground/60">
-                  {faq.section}
-                </h2>
-                <Accordion
-                  type="single"
-                  collapsible
-                  className="flex w-[1000px] flex-col items-center justify-center"
-                >
-                  {faq.qa.map((faq, idx) => (
-                    <AccordionItem
-                      key={idx}
-                      value={faq.question}
-                      className="w-full max-w-[600px]"
-                    >
-                      <AccordionTrigger>{faq.question}</AccordionTrigger>
-                      <AccordionContent>{faq.answer}</AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </section>
-            ))}
-          </div>
-          <h4 className="mb-12 text-center text-sm font-medium tracking-tight text-foreground/80">
-            Still have questions? Email us at{" "}
-            <a href="mailto:support@example.com" className="underline">
-              contactus@aspirants.tech
-            </a>
-          </h4>
-        </div>
+        ))}
+        
+        <p className="text-center text-sm text-gray-400 mt-12 tracking-tight">
+          Still have questions? Email us at{" "}
+          <a href="mailto:support@example.com" className="text-blue-500 hover:underline">
+            support@example.com
+          </a>
+        </p>
       </div>
     </section>
-  );
+  )
 }

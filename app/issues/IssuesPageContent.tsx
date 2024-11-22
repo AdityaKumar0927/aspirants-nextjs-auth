@@ -39,6 +39,7 @@ import { CalendarIcon, ChevronDown, MoreHorizontal, Plus, RefreshCw, Search, Arr
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/components/ui/use-toast"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export type IssueArea = "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
 export type IssueStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
@@ -83,7 +84,8 @@ const priorityColors = {
 export default function IssuesPageContent({ initialIssues }: IssuesPageContentProps) {
   const [userRole, setUserRole] = useState<Role | null>(null)
   const [issues, setIssues] = useState<Issue[]>(initialIssues)
-  const [filteredIssues, setFilteredIssues] = useState<Issue[]>(initialIssues)
+  const [userIssues, setUserIssues] = useState<Issue[]>([])
+  const [filteredIssues, setFilteredIssues] = useState<Issue[]>(userIssues)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState<string>("")
@@ -103,6 +105,7 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
     status: 'OPEN',
     questionId: null
   })
+  const [viewAllIssues, setViewAllIssues] = useState(false)
   const router = useRouter()
   const { toast } = useToast()
 
@@ -131,7 +134,34 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
   }, [toast])
 
   useEffect(() => {
-    const filtered = issues.filter((issue) => {
+    const fetchIssues = async () => {
+      setLoading(true)
+      try {
+        const [allIssuesResponse, userIssuesResponse] = await Promise.all([
+          fetch("/api/issues"),
+          fetch("/api/issues?user=true")
+        ])
+        if (!allIssuesResponse.ok || !userIssuesResponse.ok) {
+          throw new Error("Failed to fetch issues")
+        }
+        const allIssuesData = await allIssuesResponse.json()
+        const userIssuesData = await userIssuesResponse.json()
+        setIssues(allIssuesData)
+        setUserIssues(userIssuesData)
+        setFilteredIssues(userIssuesData)
+      } catch (error) {
+        console.error("Error fetching issues:", error)
+        setError(error instanceof Error ? error.message : "An unknown error occurred")
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchIssues()
+  }, [])
+
+  useEffect(() => {
+    const filtered = (viewAllIssues ? issues : userIssues).filter((issue) => {
       const matchesSearch =
         issue.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         issue.description.toLowerCase().includes(searchQuery.toLowerCase())
@@ -142,28 +172,29 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
     })
     setFilteredIssues(filtered)
     setCurrentPage(1)
-  }, [issues, searchQuery, statusFilter, priorityFilter, areaFilter])
+  }, [issues, userIssues, viewAllIssues, searchQuery, statusFilter, priorityFilter, areaFilter])
 
-  const fetchIssues = async () => {
+  const handleRefresh = async () => {
     setLoading(true)
     try {
-      const response = await fetch("/api/issues")
-      if (!response.ok) {
+      const [allIssuesResponse, userIssuesResponse] = await Promise.all([
+        fetch("/api/issues"),
+        fetch("/api/issues?user=true")
+      ])
+      if (!allIssuesResponse.ok || !userIssuesResponse.ok) {
         throw new Error("Failed to fetch issues")
       }
-      const data = await response.json()
-      setIssues(data)
-      setFilteredIssues(data)
+      const allIssuesData = await allIssuesResponse.json()
+      const userIssuesData = await userIssuesResponse.json()
+      setIssues(allIssuesData)
+      setUserIssues(userIssuesData)
+      setFilteredIssues(viewAllIssues ? allIssuesData : userIssuesData)
     } catch (error) {
       console.error("Error fetching issues:", error)
       setError(error instanceof Error ? error.message : "An unknown error occurred")
     } finally {
       setLoading(false)
     }
-  }
-
-  const handleRefresh = () => {
-    fetchIssues()
   }
 
   const handleCreateIssue = async () => {
@@ -182,7 +213,9 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
       }
 
       const createdIssue = await response.json()
-      setIssues([createdIssue, ...issues])
+      setIssues(prevIssues => [createdIssue, ...prevIssues])
+      setUserIssues(prevUserIssues => [createdIssue, ...prevUserIssues])
+      setFilteredIssues(prevFilteredIssues => [createdIssue, ...prevFilteredIssues])
       setIsCreateIssueDialogOpen(false)
       setNewIssue({ title: '', description: '', priority: 'LOW', area: 'OTHER', status: 'OPEN', questionId: null })
       toast({
@@ -344,18 +377,38 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh
           </Button>
-          {canCreateIssue && (
-            <Button onClick={() => setIsCreateIssueDialogOpen(true)} size="sm">
-              <Plus className="mr-2 h-4 w-4" />
-              New Issue
+          <div className="space-x-2">
+            <Button 
+              onClick={() => {
+                setViewAllIssues(!viewAllIssues)
+                setFilteredIssues(viewAllIssues ? userIssues : issues)
+              }} 
+              variant="outline" 
+              size="sm"
+            >
+              {viewAllIssues ? "View My Issues" : "View All Issues"}
             </Button>
-          )}
+            {canCreateIssue && (
+              <Button onClick={() => setIsCreateIssueDialogOpen(true)} size="sm">
+                <Plus className="mr-2 h-4 w-4" />
+                New Issue
+              </Button>
+            )}
+          </div>
         </div>
 
         <div className="rounded-lg border">
           {loading ? (
-            <div className="p-8 text-center text-muted-foreground">
-              Loading issues...
+            <div className="space-y-4 p-4">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="flex items-center space-x-4 bg-muted/50 p-4 rounded-md">
+                  <Skeleton className="h-12 w-12 rounded-full" />
+                  <div className="space-y-2 flex-1">
+                    <Skeleton className="h-4 w-[200px]" />
+                    <Skeleton className="h-4 w-full" />
+                  </div>
+                </div>
+              ))}
             </div>
           ) : error ? (
             <div className="p-8 text-center text-red-500">
@@ -364,6 +417,19 @@ export default function IssuesPageContent({ initialIssues }: IssuesPageContentPr
                 <RefreshCw className="mr-2 h-4 w-4" />
                 Retry
               </Button>
+            </div>
+          ) : paginatedIssues.length === 0 ? (
+            <div className="p-8 text-center">
+              <p className="text-muted-foreground mb-4">
+                {viewAllIssues 
+                  ? "No issues have been reported yet." 
+                  : "You haven't reported any issues yet."}
+              </p>
+              {canCreateIssue && (
+                <Button onClick={() => setIsCreateIssueDialogOpen(true)}>
+                  {viewAllIssues ? "Create First Issue" : "Report Your First Issue"}
+                </Button>
+              )}
             </div>
           ) : (
             <div className="divide-y">
