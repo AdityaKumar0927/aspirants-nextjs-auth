@@ -69,21 +69,6 @@ export default function StatsPage() {
         <h1 className="text-3xl font-light text-gray-800">
           Question Bank Analytics
         </h1>
-        <div className="flex items-center gap-4">
-          <Select defaultValue="week">
-            <SelectTrigger className="w-[180px] bg-white border-gray-200">
-              <SelectValue placeholder="Select time range" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="week">This Week</SelectItem>
-              <SelectItem value="month">This Month</SelectItem>
-              <SelectItem value="year">This Year</SelectItem>
-            </SelectContent>
-          </Select>
-          <Button variant="outline" size="icon" className="border-gray-200 text-gray-600 hover:text-gray-800">
-            <MoreHorizontal className="h-4 w-4" />
-          </Button>
-        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
