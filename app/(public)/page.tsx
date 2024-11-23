@@ -101,7 +101,7 @@ export default function Page() {
                     </span>
                   </ShimmerButton>
                 </Link>
-                <Link className="flex items-center justify-center space-x-2" href="BrowseResources">
+                <Link className="items-center justify-center space-x-2 hidden" href="BrowseResources">
                   <ShinyButton text="Browse Resources" />
                 </Link>
               </div>

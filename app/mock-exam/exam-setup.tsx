@@ -245,7 +245,7 @@ const ExamSetup: React.FC<ExamSetupProps> = ({
                 !selectedYear ||
                 (examMode === "custom" && !selectedLevel)
               }
-              className="w-auto bg-white"
+              className="w-auto"
             >
               Start Exam
               <span className="ml-1">{examMode === "past" ? "" : numberOfQuestions}</span>
