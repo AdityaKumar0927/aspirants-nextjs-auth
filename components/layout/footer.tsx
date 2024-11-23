@@ -1,9 +1,8 @@
 import React from 'react';
 import { LinkedInLogoIcon, TwitterLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import Link from 'next/link';
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { Roboto_Slab } from 'next/font/google';
+import Script from 'next/script';
 
 const robotoSlab = Roboto_Slab({ subsets: ['latin'], weight: '300' });
 
@@ -95,17 +94,7 @@ export function Footer() {
               <h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
                 Subscribe to our newsletter
               </h2>
-              <form className="flex flex-col space-y-2">
-                <Input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="rounded-md"
-                  aria-label="Email for newsletter"
-                />
-                <Button type="submit" className="w-full">
-                  Subscribe
-                </Button>
-              </form>
+              <div id="custom-substack-embed"></div>
             </div>
           </div>
         </div>
@@ -120,6 +109,21 @@ export function Footer() {
           </div>
         </div>
       </div>
+      <Script id="substack-widget" strategy="afterInteractive">
+        {`
+          window.CustomSubstackWidget = {
+            substackUrl: "aspirantstech.substack.com",
+            placeholder: "example@gmail.com",
+            buttonText: "Subscribe",
+            theme: "green"
+          };
+        `}
+      </Script>
+      <Script 
+        src="https://substackapi.com/widget.js" 
+        strategy="lazyOnload"
+      />
     </footer>
   );
 }
+
