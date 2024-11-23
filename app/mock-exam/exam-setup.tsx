@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Slider } from "@/components/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Zap, Pencil } from 'lucide-react'
+import { RainbowButton } from "@/components/magicui/rainbow-button"
 
 interface ExamSetupProps {
   exams: string[]
@@ -236,8 +237,7 @@ const ExamSetup: React.FC<ExamSetupProps> = ({
               </ul>
             </div>
 
-            <Button
-              size="lg"
+            <RainbowButton
               onClick={onStartExam}
               disabled={
                 !selectedExam ||
@@ -245,12 +245,11 @@ const ExamSetup: React.FC<ExamSetupProps> = ({
                 !selectedYear ||
                 (examMode === "custom" && !selectedLevel)
               }
-              className="w-auto bg-white hover:bg-gray-50 text-purple-600 border-2 border-purple-600 hover:border-purple-700 hover:text-purple-700"
+              className="w-auto bg-white"
             >
               Start Exam
-              <Zap className="ml-2 h-4 w-4" />
-              <span className="ml-1">{examMode === "past" ? "Full Paper" : numberOfQuestions}</span>
-            </Button>
+              <span className="ml-1">{examMode === "past" ? "" : numberOfQuestions}</span>
+            </RainbowButton>
           </div>
         </div>
       </div>
