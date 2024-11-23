@@ -39,7 +39,7 @@ import { useToast } from "@/components/ui/use-toast"
 import { Skeleton } from "@/components/ui/skeleton"
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
-import { Search, HelpCircle, ChevronDown, Plus, RefreshCw, CalendarIcon, MoreHorizontal } from 'lucide-react'
+import { Search, HelpCircle, ChevronDown, Plus, RefreshCw, CalendarIcon, MoreHorizontal, Filter } from 'lucide-react'
 
 export type IssueArea = "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
 export type IssueStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
@@ -93,6 +93,7 @@ export default function IssuesPageContent() {
   const [sortConfig, setSortConfig] = useState<{ key: keyof Issue | 'createdBy.name', direction: 'asc' | 'desc' }>({ key: 'updatedAt', direction: 'desc' })
   const [date, setDate] = useState<Date>()
   const [isCreateIssueDialogOpen, setIsCreateIssueDialogOpen] = useState(false)
+  const [isFilterDialogOpen, setIsFilterDialogOpen] = useState(false)
   const [newIssue, setNewIssue] = useState<Omit<Issue, 'id' | 'createdAt' | 'updatedAt' | 'createdBy'>>({
     title: '',
     description: '',
@@ -280,41 +281,46 @@ export default function IssuesPageContent() {
   const canCreateIssue = userRole && userRole !== 'member'
 
   return (
-    <div className="container mx-auto p-6 max-w-7xl">
-      <div className="flex justify-between items-center mb-4">
-        <div>
-          <h1 className="text-3xl font-medium mb-2">Report Issues</h1>
-          <p className="text-gray-500">
-            Create and view support cases for your projects.{" "}
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-7xl">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+        <div className="mb-4 sm:mb-0">
+          <h1 className="text-2xl sm:text-3xl font-medium mb-2">Report Issues</h1>
+          <p className="text-gray-500 text-sm sm:text-base">
+            Create and view support cases for your projects.
           </p>
         </div>
         {canCreateIssue && (
-          <Button className="bg-black text-white hover:bg-gray-800" onClick={() => setIsCreateIssueDialogOpen(true)}>
+          <Button className="bg-black text-white hover:bg-gray-800 w-full sm:w-auto" onClick={() => setIsCreateIssueDialogOpen(true)}>
             Create Case
           </Button>
         )}
       </div>
 
-      <div className="flex flex-col md:flex-row gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row gap-4 mb-6">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
           <Input
             placeholder="Search..."
-            className="pl-10"
+            className="pl-10 w-full"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <div className="flex gap-4 items-center">
-          <Tabs value={statusFilter} onValueChange={setStatusFilter} className="w-full md:w-auto">
-            <TabsList>
-              <TabsTrigger value="all">All Statuses</TabsTrigger>
-              <TabsTrigger value="open">Open</TabsTrigger>
-              <TabsTrigger value="in_progress">In Progress</TabsTrigger>
-              <TabsTrigger value="resolved">Resolved</TabsTrigger>
-              <TabsTrigger value="closed">Closed</TabsTrigger>
-            </TabsList>
-          </Tabs>
+        <div className="flex gap-2 sm:gap-4 items-center">
+          <Button variant="outline" size="icon" onClick={() => setIsFilterDialogOpen(true)} className="sm:hidden">
+            <Filter className="h-4 w-4" />
+          </Button>
+          <div className="hidden sm:block">
+            <Tabs value={statusFilter} onValueChange={setStatusFilter} className="w-full md:w-auto">
+              <TabsList>
+                <TabsTrigger value="all">All</TabsTrigger>
+                <TabsTrigger value="open">Open</TabsTrigger>
+                <TabsTrigger value="in_progress">In Progress</TabsTrigger>
+                <TabsTrigger value="resolved">Resolved</TabsTrigger>
+                <TabsTrigger value="closed">Closed</TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
           <Select
             value={`${sortConfig.key}-${sortConfig.direction}`}
             onValueChange={(value) => {
@@ -322,13 +328,13 @@ export default function IssuesPageContent() {
               handleSort(key as keyof Issue | 'createdBy.name')
             }}
           >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[140px] sm:w-[180px]">
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="updatedAt-desc">Sort by Last Updated</SelectItem>
-              <SelectItem value="createdAt-desc">Sort by Created Date</SelectItem>
-              <SelectItem value="priority-desc">Sort by Priority</SelectItem>
+              <SelectItem value="updatedAt-desc">Last Updated</SelectItem>
+              <SelectItem value="createdAt-desc">Created Date</SelectItem>
+              <SelectItem value="priority-desc">Priority</SelectItem>
             </SelectContent>
           </Select>
           <Button variant="outline" size="icon" onClick={handleRefresh}>
@@ -337,63 +343,68 @@ export default function IssuesPageContent() {
         </div>
       </div>
 
-      <div className="flex justify-between items-center mb-4">
-        <Select value={priorityFilter} onValueChange={setPriorityFilter}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="All Priorities" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Priorities</SelectItem>
-            <SelectItem value="low">Low</SelectItem>
-            <SelectItem value="medium">Medium</SelectItem>
-            <SelectItem value="high">High</SelectItem>
-            <SelectItem value="critical">Critical</SelectItem>
-          </SelectContent>
-        </Select>
-        <Select value={areaFilter} onValueChange={setAreaFilter}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="All Areas" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Areas</SelectItem>
-            <SelectItem value="content">Content</SelectItem>
-            <SelectItem value="ui">UI</SelectItem>
-            <SelectItem value="bug">Bug</SelectItem>
-            <SelectItem value="feature">Feature</SelectItem>
-            <SelectItem value="other">Other</SelectItem>
-          </SelectContent>
-        </Select>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant={"outline"}
-              className={cn(
-                "w-[240px] justify-start text-left font-normal",
-                !date && "text-muted-foreground"
-              )}
-            >
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              {date ? format(date, "PPP") : "Pick a date"}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0" align="start">
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={setDate}
-              initialFocus
-            />
-          </PopoverContent>
-        </Popover>
-        <Button 
-          onClick={() => {
-            setViewAllIssues(!viewAllIssues)
-            setFilteredIssues(viewAllIssues ? userIssues : issues)
-          }} 
-          variant="outline" 
-        >
-          {viewAllIssues ? "View My Issues" : "View All Issues"}
-        </Button>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+        <div className="flex flex-wrap gap-2 sm:gap-4">
+          <Select value={priorityFilter} onValueChange={setPriorityFilter}>
+            <SelectTrigger className="w-[140px] sm:w-[180px]">
+              <SelectValue placeholder="All Priorities" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Priorities</SelectItem>
+              <SelectItem value="low">Low</SelectItem>
+              <SelectItem value="medium">Medium</SelectItem>
+              <SelectItem value="high">High</SelectItem>
+              <SelectItem value="critical">Critical</SelectItem>
+            </SelectContent>
+          </Select>
+          <Select value={areaFilter} onValueChange={setAreaFilter}>
+            <SelectTrigger className="w-[140px] sm:w-[180px]">
+              <SelectValue placeholder="All Areas" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Areas</SelectItem>
+              <SelectItem value="content">Content</SelectItem>
+              <SelectItem value="ui">UI</SelectItem>
+              <SelectItem value="bug">Bug</SelectItem>
+              <SelectItem value="feature">Feature</SelectItem>
+              <SelectItem value="other">Other</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="flex gap-2 sm:gap-4 w-full sm:w-auto">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"outline"}
+                className={cn(
+                  "justify-start text-left font-normal w-full sm:w-[240px]",
+                  !date && "text-muted-foreground"
+                )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date ? format(date, "PPP") : "Pick a date"}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover>
+          <Button 
+            onClick={() => {
+              setViewAllIssues(!viewAllIssues)
+              setFilteredIssues(viewAllIssues ? userIssues : issues)
+            }} 
+            variant="outline"
+            className="w-full sm:w-auto"
+          >
+            {viewAllIssues ? "My Issues" : "All Issues"}
+          </Button>
+        </div>
       </div>
 
       {loading ? (
@@ -434,9 +445,9 @@ export default function IssuesPageContent() {
       ) : (
         <div className="space-y-4">
           {paginatedIssues.map((issue) => (
-            <div key={issue.id} className="flex items-center gap-4 p-4 bg-white border rounded-lg hover:bg-gray-50">
+            <div key={issue.id} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-white border rounded-lg hover:bg-gray-50">
               <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
+                <div className="flex flex-wrap items-center gap-2 mb-2">
                   <Badge
                     variant="secondary"
                     className={`${statusColors[issue.status]} px-2 py-0.5 text-xs font-normal`}
@@ -452,11 +463,11 @@ export default function IssuesPageContent() {
                     {issue.priority.charAt(0) + issue.priority.slice(1).toLowerCase()}
                   </Badge>
                   <span className="text-sm text-gray-500">
-                    {issue.id}
+                    {issue.id.replace('cm3oyfu850000me035l9m6hlb', '')}
                   </span>
                 </div>
                 <h2 className="text-lg font-medium mb-1">{issue.title}</h2>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
+                <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500">
                   <span>{issue.area.toLowerCase()}</span>
                   <span>•</span>
                   <span>
@@ -502,13 +513,13 @@ export default function IssuesPageContent() {
       )}
 
       {paginatedIssues.length > 0 && (
-        <div className="flex justify-between items-center mt-4">
-          <p className="text-sm text-muted-foreground">
+        <div className="flex flex-col sm:flex-row justify-between items-center mt-6 gap-4">
+          <p className="text-sm text-muted-foreground order-2 sm:order-1">
             Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
             {Math.min(currentPage * itemsPerPage, sortedIssues.length)} of{" "}
             {sortedIssues.length} issues
           </p>
-          <div className="space-x-2">
+          <div className="space-x-2 order-1 sm:order-2">
             <Button
               variant="outline"
               size="sm"
@@ -617,6 +628,62 @@ export default function IssuesPageContent() {
           </div>
           <DialogFooter>
             <Button onClick={handleCreateIssue}>Create Issue</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isFilterDialogOpen} onOpenChange={setIsFilterDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Filter Issues</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label>Status</Label>
+              <Tabs value={statusFilter} onValueChange={setStatusFilter} className="w-full">
+                <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
+                  <TabsTrigger value="all">All</TabsTrigger>
+                  <TabsTrigger value="open">Open</TabsTrigger>
+                  <TabsTrigger value="in_progress">In Progress</TabsTrigger>
+                  <TabsTrigger value="resolved">Resolved</TabsTrigger>
+                  <TabsTrigger value="closed">Closed</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+            <div>
+              <Label>Priority</Label>
+              <Select value={priorityFilter} onValueChange={setPriorityFilter}>
+                <SelectTrigger>
+                  <SelectValue placeholder="All Priorities" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Priorities</SelectItem>
+                  <SelectItem value="low">Low</SelectItem>
+                  <SelectItem value="medium">Medium</SelectItem>
+                  <SelectItem value="high">High</SelectItem>
+                  <SelectItem value="critical">Critical</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label>Area</Label>
+              <Select value={areaFilter} onValueChange={setAreaFilter}>
+                <SelectTrigger>
+                  <SelectValue placeholder="All Areas" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Areas</SelectItem>
+                  <SelectItem value="content">Content</SelectItem>
+                  <SelectItem value="ui">UI</SelectItem>
+                  <SelectItem value="bug">Bug</SelectItem>
+                  <SelectItem value="feature">Feature</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button onClick={() => setIsFilterDialogOpen(false)}>Apply Filters</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
