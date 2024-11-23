@@ -140,31 +140,13 @@ export default function StatsPage() {
             </div>
           </CardContent>
         </Card>
-
-        <Card className="overflow-hidden">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-normal text-gray-600">Reattempt Accuracy</CardTitle>
-            <Clock className="h-4 w-4 text-purple-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-light text-gray-800"><EscapedNumber value={averageReattemptAccuracy} decimals={2} />%</div>
-            <p className="text-xs text-muted-foreground mt-1">+1.2% from last week</p>
-            <div className="h-[80px] mt-4">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={userPerformance}>
-                  <Line type="monotone" dataKey="reattemptAccuracy" stroke="#a855f7" strokeWidth={2} dot={false} />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
       </div>
 
       <Card className="overflow-hidden">
         <CardHeader>
           <CardTitle className="text-lg font-normal flex items-center gap-2 text-gray-700">
             <TrendingUp className="h-5 w-5 text-blue-500" />
-            Performance Trends
+            Performance Trends, coming soon.... 
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6">
