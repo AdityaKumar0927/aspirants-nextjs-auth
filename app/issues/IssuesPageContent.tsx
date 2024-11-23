@@ -40,6 +40,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 import { Search, HelpCircle, ChevronDown, Plus, RefreshCw, CalendarIcon, MoreHorizontal, Filter } from 'lucide-react'
+import FeedbackPopover from "@/components/shared/FeedbackPopover"
 
 export type IssueArea = "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
 export type IssueStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
@@ -305,6 +306,7 @@ export default function IssuesPageContent() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
+          
         </div>
         <div className="flex gap-2 sm:gap-4 items-center">
           <Button variant="outline" size="icon" onClick={() => setIsFilterDialogOpen(true)} className="sm:hidden">
@@ -441,7 +443,9 @@ export default function IssuesPageContent() {
           {canCreateIssue && (
             <Button onClick={() => setIsCreateIssueDialogOpen(true)}>Create Case</Button>
           )}
+          <FeedbackPopover questionId="example-question-id" />
         </div>
+        
       ) : (
         <div className="space-y-4">
           {paginatedIssues.map((issue) => (
