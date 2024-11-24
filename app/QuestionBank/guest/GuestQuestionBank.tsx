@@ -441,12 +441,6 @@ export default function GuestQuestionBank() {
                   </p>
                 </div>
               </div>
-              <Link href="/QuestionBank" className="hidden sm:block">
-                <Button variant="outline" className="border-blue-200 hover:border-blue-300 hover:bg-blue-50">
-                  Sign in
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
             </CardContent>
           </Card>
 
@@ -630,51 +624,54 @@ export default function GuestQuestionBank() {
             ))}
           </div>
 
-          <Card className="bg-black text-white border-gray-800 mb-6">
-            <CardContent className="p-6">
-              <h2 className="text-2xl font-bold tracking-tight mb-6">
-                Question Progress
-              </h2>
-              <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-400">Overall Progress</span>
-                  <span className="text-sm font-medium text-white">
-                    {Math.round((questionStats.answered / filteredQuestions.length) * 100)}%
-                  </span>
-                </div>
-                <Progress 
-                  value={(questionStats.answered / filteredQuestions.length) * 100} 
-                  className="w-full h-1 bg-gray-700" 
-                />
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <StatusCard
-                    icon={<HelpCircle className="h-5 w-5" />}
-                    label="Not Visited"
-                    value={questionStats.notVisited}
-                    color="text-gray-400"
-                  />
-                  <StatusCard
-                    icon={<Circle className="h-5 w-5" />}
-                    label="Not Answered"
-                    value={questionStats.notAnswered}
-                    color="text-blue-400"
-                  />
-                  <StatusCard
-                    icon={<CheckCircle2 className="h-5 w-5" />}
-                    label="Answered"
-                    value={questionStats.answered}
-                    color="text-green-400"
-                  />
-                  <StatusCard
-                    icon={<Flag className="h-5 w-5" />}
-                    label="For Review"
-                    value={questionStats.markedForReview}
-                    color="text-yellow-400"
-                  />
-                </div>
+          <Card className="bg-gradient-to-br from-gray-900 to-gray-800 text-white border-gray-700 mb-6">
+      <CardContent className="p-6">
+        <h2 className="text-2xl font-light tracking-tight text-gray-200 mb-6">
+          Question Progress
+        </h2>
+        <div className="space-y-6">
+          <div className="flex justify-between items-center">
+            <span className="text-sm font-light tracking-tight text-gray-300">Overall Progress</span>
+            <span className="text-sm font-light tracking-tight text-gray-300">
+              {Math.round((questionStats.answered / filteredQuestions.length) * 100)}%
+            </span>
+          </div>
+          <Progress 
+            value={(questionStats.answered / filteredQuestions.length) * 100} 
+            className="w-full h-1.5 bg-gray-700" 
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
+              <div className="text-blue-400 p-2 rounded-full bg-blue-400/10">
+                <HelpCircle className="h-5 w-5" />
               </div>
-            </CardContent>
-          </Card>
+              <div>
+                <p className="text-2xl font-light tracking-tighter text-blue-300">{questionStats.notVisited}</p>
+                <p className="text-sm font-light tracking-tight text-gray-400">Not Answered</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
+              <div className="text-green-400 p-2 rounded-full bg-green-400/10">
+                <CheckCircle2 className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-2xl font-light tracking-tighter text-green-300">{questionStats.answered}</p>
+                <p className="text-sm font-light tracking-tight text-gray-400">Answered</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
+              <div className="text-yellow-400 p-2 rounded-full bg-yellow-400/10">
+                <Flag className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-2xl font-light tracking-tighter text-yellow-300">{questionStats.markedForReview}</p>
+                <p className="text-sm font-light tracking-tight text-gray-400">For Review</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
 
           {paginatedQuestions.length > 0 ? (
             <>
