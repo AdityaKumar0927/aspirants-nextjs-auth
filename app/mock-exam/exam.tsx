@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { Button } from "@/components/ui/button"
 import {
@@ -27,6 +29,7 @@ import {
 } from "@/components/ui/tooltip"
 import Image from "next/image"
 import { QuestionType } from "@/lib/exam-helpers"
+import MathRenderer from "./MathRenderer3"
 
 interface ExamProps {
   currentQuestion: number
@@ -145,111 +148,108 @@ const Exam: React.FC<ExamProps> = ({
       <main className="flex-grow flex overflow-hidden">
         {/* Question Content Section */}
         <div className="flex-grow overflow-y-auto p-4 sm:p-6 lg:p-8 max-h-screen flex flex-col">
-      <Card className="mb-6 max-w-4xl mx-auto">
-        <CardHeader>
-          <CardTitle className="flex justify-between items-center">
-            <span>Question {currentQuestion + 1}</span>
-            <span className="text-sm font-normal text-muted-foreground">
-              {currentQuestion + 1} of {filteredQuestions.length}
-            </span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="p-6 overflow-y-auto max-h-[60vh]">
-          {renderQuestionDiagram(currentQuestionData.diagramUrl)}
-          <div
-            className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7"
-            dangerouslySetInnerHTML={{ __html: currentQuestionData.text }}
-          />
-          {currentQuestionData.type === "Multiple Choice" && (
-            <div className="space-y-4 mt-4">
-              {Object.entries(currentQuestionData.options).map(
-                ([optionId, optionText], index) => (
-                  <Button
-                    key={`${currentQuestionData.id}_${optionId}`}
-                    variant={
-                      answers[currentQuestion] ===
-                      String.fromCharCode(65 + index)
-                        ? "secondary"
-                        : "outline"
-                    }
-                    className={`w-full justify-start text-left h-auto py-3 px-4`}
-                    onClick={() =>
-                      onAnswer(String.fromCharCode(65 + index))
-                    }
-                  >
-                    <span className="font-semibold mr-2">
-                      {String.fromCharCode(65 + index)}.
-                    </span>
-                    <span
-                      dangerouslySetInnerHTML={{ __html: optionText }}
-                    />
-                  </Button>
-                )
+          <Card className="mb-6 max-w-4xl mx-auto">
+            <CardHeader>
+              <CardTitle className="flex justify-between items-center">
+                <span>Question {currentQuestion + 1}</span>
+                <span className="text-sm font-normal text-muted-foreground">
+                  {currentQuestion + 1} of {filteredQuestions.length}
+                </span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-6 overflow-y-auto max-h-[60vh]">
+              {renderQuestionDiagram(currentQuestionData.diagramUrl)}
+              <div className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7">
+                <MathRenderer text={currentQuestionData.text} />
+              </div>
+              {currentQuestionData.type === "Multiple Choice" && (
+                <div className="space-y-4 mt-4">
+                  {Object.entries(currentQuestionData.options).map(
+                    ([optionId, optionText], index) => (
+                      <Button
+                        key={`${currentQuestionData.id}_${optionId}`}
+                        variant={
+                          answers[currentQuestion] ===
+                          String.fromCharCode(65 + index)
+                            ? "secondary"
+                            : "outline"
+                        }
+                        className={`w-full justify-start text-left h-auto py-3 px-4`}
+                        onClick={() =>
+                          onAnswer(String.fromCharCode(65 + index))
+                        }
+                      >
+                        <span className="font-semibold mr-2">
+                          {String.fromCharCode(65 + index)}.
+                        </span>
+                        <MathRenderer text={optionText} />
+                      </Button>
+                    )
+                  )}
+                </div>
               )}
-            </div>
-          )}
-          {currentQuestionData.type === "Numerical" && (
-            <div className="mt-4">
-              <Input
-                type="text"
-                className="w-full p-2 text-base sm:text-lg"
-                placeholder="Write your answer here..."
-                value={answers[currentQuestion] || ""}
-                onChange={(e) => onAnswer(e.target.value)}
-              />
-            </div>
-          )}
-        </CardContent>
-        <CardFooter className="flex flex-col gap-4">
-          <div className="flex flex-wrap gap-3 justify-between w-full">
-            <div className="flex gap-3">
-              <Button
-                onClick={onPrevious}
-                variant="outline"
-                className="flex items-center"
-                disabled={currentQuestion === 0}
-              >
-                <ChevronLeft className="w-4 h-4 mr-2" />
-                Previous
-              </Button>
-              <Button
-                onClick={onNext}
-                variant="outline"
-                className="flex items-center"
-                disabled={currentQuestion === filteredQuestions.length - 1}
-              >
-                Next
-                <ChevronRight className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
-            <div className="flex gap-3">
-              <Button onClick={onClear} variant="outline">
-                Clear
-              </Button>
-              <Button onClick={onReviewAndNext} variant="outline">
-                Mark for Review & Next
-              </Button>
-              <Button onClick={onSaveAndNext} variant="outline">
-                Save & Next
-              </Button>
-            </div>
+              {currentQuestionData.type === "Numerical" && (
+                <div className="mt-4">
+                  <Input
+                    type="text"
+                    className="w-full p-2 text-base sm:text-lg"
+                    placeholder="Write your answer here..."
+                    value={answers[currentQuestion] || ""}
+                    onChange={(e) => onAnswer(e.target.value)}
+                  />
+                </div>
+              )}
+            </CardContent>
+            <CardFooter className="flex flex-col gap-4">
+              <div className="flex flex-wrap gap-3 justify-between w-full">
+                <div className="flex gap-3">
+                  <Button
+                    onClick={onPrevious}
+                    variant="outline"
+                    className="flex items-center"
+                    disabled={currentQuestion === 0}
+                  >
+                    <ChevronLeft className="w-4 h-4 mr-2" />
+                    Previous
+                  </Button>
+                  <Button
+                    onClick={onNext}
+                    variant="outline"
+                    className="flex items-center"
+                    disabled={currentQuestion === filteredQuestions.length - 1}
+                  >
+                    Next
+                    <ChevronRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </div>
+                <div className="flex gap-3">
+                  <Button onClick={onClear} variant="outline">
+                    Clear
+                  </Button>
+                  <Button onClick={onReviewAndNext} variant="outline">
+                    Mark for Review & Next
+                  </Button>
+                  <Button onClick={onSaveAndNext} variant="outline">
+                    Save & Next
+                  </Button>
+                </div>
+              </div>
+            </CardFooter>
+          </Card>
+          <div className="flex justify-center mt-6">
+            <Button
+              onClick={() => {
+                if (window.confirm("Are you sure you want to submit the exam?")) {
+                  onSubmit()
+                }
+              }}
+              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 py-2 text-lg font-light"
+              variant="outline"
+            >
+              Submit Exam
+            </Button>
           </div>
-        </CardFooter>
-      </Card>
-      <div className="flex justify-center mt-6">
-        <Button
-          onClick={() => {
-            if (window.confirm("Are you sure you want to submit the exam?")) {
-              onSubmit()
-            }
-          }}
-          className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 py-2 text-lg font-light"
-          variant="outline"
-        >
-          Submit Exam
-        </Button>
-      </div>
-    </div>
+        </div>
         <Separator orientation="vertical" className="h-auto" />
 
         {/* Question Navigator Section */}
@@ -362,3 +362,4 @@ const Exam: React.FC<ExamProps> = ({
 }
 
 export default Exam
+
