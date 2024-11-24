@@ -70,7 +70,7 @@ export default function Page() {
         <div className="flex flex-col items-center gap-6 pb-8 text-center">
           <Ripple className="hidden sm:block -z-50 bottom-20" />
           <AnimatedGradientText className="bg-white text-black font-light flex items-center space-x-2">
-            <span>Now enhanced by ChatGPT 4o</span>
+            <span>1000+ questions</span>
           </AnimatedGradientText>
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
