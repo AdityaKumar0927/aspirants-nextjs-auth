@@ -113,6 +113,9 @@ export default async function PublicLayout({ children }: { children: React.React
               <Suspense fallback="...">
                 <Nav />
               </Suspense>
+              <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+                {children}
+              </main>
               <Bar userId={userId} />
               <Footer />
               <VercelAnalytics />
