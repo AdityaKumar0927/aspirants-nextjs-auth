@@ -21,11 +21,8 @@ export const metadata = {
   metadataBase: new URL("https://aspirants.tech/"),
 };
 
-// Assuming you get the userId from some authentication context or similar.
 const getUserId = () => {
-  // Replace this with actual logic to fetch user ID, e.g., from a session or a context.
-  // Return null if user is not signed in.
-  const userId = null; // Simulate unsigned user. Replace with actual authentication logic.
+  const userId = null; 
   return userId;
 };
 
@@ -97,7 +94,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
                 {children}
               </main>
-              {/* Render the Bar for both signed-in and non-signed-in users */}
               <Bar userId={userId} />
               <Footer />
               <VercelAnalytics />

@@ -19,7 +19,7 @@ const footerNavs = [
     items: [
       { href: "/privacy-policy", name: "Privacy Policy" },
       { href: "/terms-of-service", name: "Terms of Service" },
-      { href: "/cookie-policy", name: "Cookie Policy" },
+      { href: "/cookies", name: "Cookie Policy" },
     ],
   },
 ];
