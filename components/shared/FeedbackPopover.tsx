@@ -30,11 +30,11 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
   const { toast } = useToast()
 
   const feedbackOptions = [
-    { id: "incorrect", label: "Incorrect information" },
-    { id: "ignored", label: "Instructions ignored" },
-    { id: "lazy", label: "Being lazy" },
-    { id: "style", label: "Don't like style" },
-    { id: "bad-recommendation", label: "Bad recommendation" },
+    { id: "question", label: "Incorrect Question" },
+    { id: "answer", label: "Incorrect Answer" },
+    { id: "markscheme", label: "Incorrect Markscheme" },
+    { id: "rendering", label: "Image/Equation not Rendering" },
+    { id: "diagram", label: "Incorrect Diagram" },
     { id: "other", label: "Other" },
   ]
 
