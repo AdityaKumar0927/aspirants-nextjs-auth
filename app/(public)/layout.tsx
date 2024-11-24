@@ -13,7 +13,6 @@ import { UserPerformanceProvider } from "@/components/layout/UserPerformanceCont
 import Nav from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import Bar from '@/components/layout/Bar';
-import CookiePopup from "@/components/layout/cookie-popup"; // Import the updated CookiePopup component
 import { getServerSession } from 'next-auth/next'; // Ensure this points to NextAuth setup
 import { authOptions } from "../api/auth/[...nextauth]/options";// Adjust the path based on your file structure
 import { cookies } from 'next/headers'; // Import cookies for server-side session management
@@ -114,11 +113,6 @@ export default async function PublicLayout({ children }: { children: React.React
               <Suspense fallback="...">
                 <Nav />
               </Suspense>
-              {/* Render the CookiePopup only if the user is not signed in */}
-              {!userId && <CookiePopup />}
-              <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-                {children}
-              </main>
               <Bar userId={userId} />
               <Footer />
               <VercelAnalytics />
