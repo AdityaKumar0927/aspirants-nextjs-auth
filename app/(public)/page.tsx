@@ -87,7 +87,7 @@ export default function Page() {
               </p>
               <div className="flex items-center justify-center mt-5">
       <p className="text-xl font-light">
-        PS: It&apos;s free. 😊
+        P.S. It&apos;s free. 😊
       </p>
     </div>
               <div
