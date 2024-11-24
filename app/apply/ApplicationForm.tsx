@@ -113,7 +113,7 @@ export default function ApplicationForm({ session }: ApplicationFormProps) {
   return (
     <Card className="max-w-2xl mx-auto">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">Volunteer/Moderator Application</CardTitle>
+        <CardTitle className="text-2xl font-bold">Apply Now</CardTitle>
         <CardDescription>Join our team and help make a difference in our community!</CardDescription>
       </CardHeader>
       <CardContent>
