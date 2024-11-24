@@ -4,7 +4,6 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useSignInModal } from "./sign-in"
-import { useSignUpModal } from "./sign-up"
 import { Menu, X, ChevronDown } from "lucide-react"
 import useScroll from "@/lib/hooks/use-scroll"
 import { Session } from "next-auth"
@@ -48,7 +47,6 @@ const supportLinks = [
 
 export default function SignedOutNavbar() {
   const { SignInModal, setShowSignInModal } = useSignInModal()
-  const { SignUpModal, setShowSignUpModal } = useSignUpModal()
   const scrolled = useScroll(50)
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [supportOpen, setSupportOpen] = React.useState(false)
@@ -81,7 +79,6 @@ export default function SignedOutNavbar() {
   return (
     <>
       <SignInModal />
-      <SignUpModal />
 
       <motion.nav
         className={cn(
@@ -149,7 +146,6 @@ export default function SignedOutNavbar() {
               <MobileNavLinks
                 setMenuOpen={setMenuOpen}
                 setShowSignInModal={setShowSignInModal}
-                setShowSignUpModal={setShowSignUpModal}
                 supportOpen={supportOpen}
                 toggleSupport={toggleSupport}
               />
@@ -198,7 +194,6 @@ function DesktopNavLinks() {
 interface MobileNavLinksProps {
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
   setShowSignInModal: React.Dispatch<React.SetStateAction<boolean>>
-  setShowSignUpModal: React.Dispatch<React.SetStateAction<boolean>>
   supportOpen: boolean
   toggleSupport: (e: React.MouseEvent) => void
 }
@@ -206,7 +201,6 @@ interface MobileNavLinksProps {
 function MobileNavLinks({
   setMenuOpen,
   setShowSignInModal,
-  setShowSignUpModal,
   supportOpen,
   toggleSupport,
 }: MobileNavLinksProps) {
