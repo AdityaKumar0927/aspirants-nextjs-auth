@@ -346,7 +346,7 @@ export default function DemoNoteComponent() {
   return (
     <div className="flex min-h-screen w-full flex-col">
       <header className="flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-        <h1 className="text-lg font-semibold">Demo Note App</h1>
+        <h1 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">My Notes</h1>
         <div className="flex-1" />
         <Input
           className="w-[200px] md:w-[300px]"
