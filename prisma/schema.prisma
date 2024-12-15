@@ -398,3 +398,42 @@ model Feedback {
 
   @@index([userId])
 }
+
+model GoalAspirantsQuestion {
+  id               Int       @id @default(autoincrement())
+  questionId       String    @unique
+  exam             String
+  text             String
+  subject          String
+  topic            String?   // Combined from ExamGoal's `chapter` and `topicName`
+  subtopic         String?   // Additional granularity, from ExamGoal's `chapterGroup`
+  difficulty       String?   // Difficulty level, e.g., "Easy", "Medium", "Hard"
+  type             String    // Question type, e.g., "mcq", "integer"
+  year             Int       // Year of the exam
+  marks            Float?    // Marks for the question
+  negMarks         Float?    // Negative marks for incorrect answers
+  correctOptions   String[]  // Correct options, from ExamGoal's `correct_options`
+  explanation      String?   // Explanation or solution for the question
+  markscheme       String?   // Additional marking scheme details
+  subjectGroup     String?   // Optional, for grouping subjects (e.g., "Sciences")
+  diagramUrl       String?   // URL for any associated diagrams
+  answer           String?   // For integer-type questions with direct answers
+  isOutOfSyllabus  Boolean   @default(false) // Indicates if the question is out of syllabus
+  isBonus          Boolean   @default(false) // Indicates if the question is a bonus question
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  options          GoalOption[] @relation("GoalQuestionOptions") // Relation to GoalOption model
+
+  @@index([exam, subject]) // Index for optimized queries
+}
+
+model GoalOption {
+  id           Int       @id @default(autoincrement())
+  identifier   String    // Option identifier, e.g., "A", "B"
+  content      String    // Option content
+  questionId   Int       // Relational ID to the GoalAspirantsQuestion
+  question     GoalAspirantsQuestion @relation("GoalQuestionOptions", fields: [questionId], references: [id]) // Backward relation
+
+  @@unique([questionId, identifier]) // Ensure options are unique for each question
+}

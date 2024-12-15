@@ -16,6 +16,7 @@ import Ripple from '../components/magicui/ripple';
 import DemoNoteComponent from '@/components/shared/demo-note';
 import { FAQ } from '@/components/shared/FAQ';
 
+
 const projects = [
   {
     title: "JEE",

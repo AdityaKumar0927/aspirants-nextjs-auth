@@ -28,6 +28,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Mathematics", "app/api/custom-user-progress", "app/api/custom-user-answers", "app/api/custom-questions", "app/CustomQuestionBank"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Mathematics", "app/api/custom-user-progress", "app/api/custom-user-answers", "app/api/custom-questions", "app/CustomQuestionBank", "prisma/questions.ts"],
   "exclude": ["node_modules"]
 }
