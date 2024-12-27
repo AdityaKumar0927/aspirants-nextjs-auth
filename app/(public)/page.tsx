@@ -181,6 +181,33 @@ export default function Page() {
           </motion.div>
         </div>
 
+            
+        <div className="h-full w-3/4 border justify-self-center rounded-3xl bg-black relative overflow-hidden">
+        {/* Gradient overlay */}
+        <div className="absolute bottom-0 w-full h-[40vh] bg-gradient-to-r from-orange-400/20 via-white/10 to-blue-400/20 blur-3xl" />
+        
+        <div className="relative z-10 container mx-auto px-4 py-12">
+          {/* Main content */}
+          <div className="max-w-3xl mx-auto mt-24 text-center space-y-8">
+            <h1 className="text-5xl md:text-6xl font-normal text-white tracking-tight">
+              Join aspirants today{' '}
+              <span className="block italic font-light">
+                save time
+              </span>
+            </h1>
+            
+            <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+              High-quality question banks, mock exams, progress tracking, and much more. 
+            </p>
+            
+            <button className="bg-blue-950/50 hover:bg-[#1a1d45] text-blue-600 border border-blue-600 px-8 py-3 rounded-full text-lg font-medium transition-colors">
+              Become a aspirant
+            </button>
+          </div>
+        </div>
+      </div>
+
+            
             <FAQ />
 
       </div>

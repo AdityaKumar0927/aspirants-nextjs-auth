@@ -1,25 +1,37 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useSwipeable } from 'react-swipeable'
-import { Checkbox } from '@/components/ui/checkbox'
-import MathRenderer from '@/components/layout/MathRenderer'
-import { BookOpen, LucideBot, X, MessageSquare, ThumbsUp, ThumbsDown, Edit, Trash2, Reply, CornerDownRight, Flag } from 'lucide-react'
-import Image from 'next/image'
-import Tiptap from '@/components/layout/Tiptap'
-import Chat from '@/components/shared/Chat'
-import { ToastAction } from '@/components/ui/toast'
-import { useToast } from '@/components/ui/use-toast'
-import SettingsPopover from '@/components/ui/SettingsPopover'
+import React, { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { useSwipeable } from "react-swipeable"
+import { Checkbox } from "@/components/ui/checkbox"
+import MathRenderer from "@/components/layout/MathRenderer"
+import {
+  BookOpen,
+  LucideBot,
+  X,
+  MessageSquare,
+  ThumbsUp,
+  ThumbsDown,
+  Edit,
+  Trash2,
+  Reply,
+  CornerDownRight,
+  Flag,
+} from "lucide-react"
+import Image from "next/image"
+import Tiptap from "@/components/layout/Tiptap"
+import Chat from "@/components/shared/Chat"
+import { ToastAction } from "@/components/ui/toast"
+import { useToast } from "@/components/ui/use-toast"
+import SettingsPopover from "@/components/ui/SettingsPopover"
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
   TooltipProvider,
-} from '@/components/ui/tooltip'
-import FeedbackPopover from './FeedbackPopover'
-import { Button } from '@/components/ui/button'
+} from "@/components/ui/tooltip"
+import FeedbackPopover from "./FeedbackPopover"
+import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -27,38 +39,64 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
+} from "@/components/ui/card"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { Badge } from '@/components/ui/badge'
+} from "@/components/ui/select"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Badge } from "@/components/ui/badge"
+
+//
+// 1) Enum for question status (optional)
+//
+enum QuestionStatus {
+  ACTIVE = "ACTIVE",
+  DRAFT = "DRAFT",
+  ARCHIVED = "ARCHIVED",
+}
+
+//
+// 2) Broaden 'type' and include missing fields like 'exam', 'markscheme'.
+//    Make them optional so TS won't complain if they're undefined.
+//
+type QuestionTypeString = "Multiple Choice" | "Numerical" | string
 
 interface QuestionType {
-  exam: String
-  questionId: string
-  text: string
-  subject: string
-  difficulty: string
-  year: string
-  type: 'Multiple Choice' | 'Numerical'
+  id: number
+  questionId?: string
+
+  // Potentially undefined fields
+  text?: string
   options?: string[]
-  correctOption?: string
   markscheme?: string
-  notes?: string
+  correctOption?: string
   diagramUrl?: string
-  relatedResources?: { title: string; url: string }[]
+
+  exam?: string
+  subject?: string
+  difficulty?: string
+  year?: number
+  type?: QuestionTypeString
+  reviewed?: boolean
+  completed?: boolean
+  lastAttempted?: string
+  status?: QuestionStatus
+
+  // Custom tags, etc.
   customTags?: string[]
 }
 
+//
+// 3) Local CommentType if you handle comments
+//
 interface CommentType {
   id: string
   userId: string
@@ -71,12 +109,16 @@ interface CommentType {
   edited: boolean
 }
 
+//
+// 4) Props for this Question component
+//
 interface QuestionProps {
   question: QuestionType
   feedback: string | undefined
   selectedOption: string | undefined
   numericalAnswer: string | undefined
   showMarkscheme: boolean | undefined
+
   handleOptionClick: (
     questionId: string,
     option: string,
@@ -91,13 +133,16 @@ interface QuestionProps {
   handleMarkschemeToggle: (questionId: string) => void
   handleMarkForReview: (questionId: string) => void
   handleMarkComplete: (questionId: string) => void
+
   isMarkedForReview: boolean
   isMarkedComplete: boolean
   markschemesDisabled: boolean
+
   note: string
   handleNoteChange: (questionId: string, note: string) => void
   userId: string
   handleDeleteNote: (questionId: string) => Promise<void>
+
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
   totalQuestions: number
@@ -138,20 +183,18 @@ export default function Question({
   const [showNotes, setShowNotes] = useState(false)
   const [showAI, setShowAI] = useState(false)
   const [showComments, setShowComments] = useState(false)
+
   const [comments, setComments] = useState<CommentType[]>([])
-  const [newComment, setNewComment] = useState('')
+  const [newComment, setNewComment] = useState("")
   const [replyingTo, setReplyingTo] = useState<string | null>(null)
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null)
-  const [editedCommentContent, setEditedCommentContent] = useState('')
-  const [commentSort, setCommentSort] = useState<'newest' | 'oldest' | 'popular'>(
-    'newest'
-  )
+  const [editedCommentContent, setEditedCommentContent] = useState("")
+  const [commentSort, setCommentSort] = useState<"newest" | "oldest" | "popular">("newest")
+
   const [points, setPoints] = useState(0)
   const [streak, setStreak] = useState(0)
-  const [newTag, setNewTag] = useState('')
-  const [localCustomTags, setLocalCustomTags] = useState<string[]>(
-    question.customTags || []
-  )
+  const [newTag, setNewTag] = useState("")
+  const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || [])
   const [aiEnabled, setAiEnabled] = useState(true)
   const [notesEnabled, setNotesEnabled] = useState(true)
   const [localNote, setLocalNote] = useState(note)
@@ -163,8 +206,10 @@ export default function Question({
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
+  // If you fetch notes from server, guard question.questionId:
   useEffect(() => {
     const fetchNote = async () => {
+      if (!question.questionId) return
       try {
         const response = await fetch(`/api/notes/${question.questionId}`)
         if (response.ok) {
@@ -174,48 +219,115 @@ export default function Question({
             setNoteId(data.id)
             handleNoteChange(question.questionId, data.content)
           } else {
-            setLocalNote('')
+            setLocalNote("")
             setNoteId(null)
-            handleNoteChange(question.questionId, '')
+            handleNoteChange(question.questionId, "")
           }
         }
       } catch (error) {
-        console.error('Error fetching note:', error)
-        setLocalNote('')
+        console.error("Error fetching note:", error)
+        setLocalNote("")
         setNoteId(null)
-        handleNoteChange(question.questionId, '')
+        handleNoteChange(question.questionId, "")
       }
     }
-
     fetchNote()
   }, [question.questionId, handleNoteChange])
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => onNextQuestion && onNextQuestion(),
+    onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
+    trackMouse: true,
+  })
+
+  // Tag logic
+  const handleAddTag = () => {
+    if (newTag && !localCustomTags.includes(newTag)) {
+      setLocalCustomTags([...localCustomTags, newTag])
+      setNewTag("")
+    }
+  }
+
+  const handleRemoveTag = (tagToRemove: string) => {
+    setLocalCustomTags(localCustomTags.filter((tag) => tag !== tagToRemove))
+  }
+
+  // Mark complete / review
+  const handleMarkCompleteLocal = async () => {
+    if (!question.questionId) return
+    await handleMarkComplete(question.questionId)
+    toast({
+      title: "Question Completed",
+      description: `You have completed question #${question.id}`,
+      duration: 5000,
+      action: (
+        <ToastAction onClick={() => undoMarkComplete(question.questionId ?? "")} altText="Undo">
+          Undo
+        </ToastAction>
+      ),
+    })
+  }
+
+  const handleMarkForReviewLocal = async () => {
+    if (!question.questionId) return
+    await handleMarkForReview(question.questionId)
+    toast({
+      title: "Question Flagged for Review",
+      description: `You have flagged question #${question.id} for review.`,
+      duration: 5000,
+      action: (
+        <ToastAction onClick={() => undoMarkForReview(question.questionId ?? "")} altText="Undo">
+          Undo
+        </ToastAction>
+      ),
+    })
+  }
+
+  const undoMarkComplete = async (qid: string) => {
+    await handleMarkComplete(qid)
+    dismiss()
+  }
+
+  const undoMarkForReview = async (qid: string) => {
+    await handleMarkForReview(qid)
+    dismiss()
+  }
+
+  // Handling multiple choice
+  // *** NOTE the fallback: question.questionId ?? "", question.correctOption ?? "N/A" ***
   const handleOptionClickLocal = (option: string) => {
+    if (!question.questionId) return
     if (localSelectedOption !== option) {
       setLocalSelectedOption(option)
-      handleOptionClick(question.questionId, option, question.correctOption || '')
-      saveProgress(question.questionId, 'completed', true)
+      handleOptionClick(
+        question.questionId ?? "",
+        option,
+        question.correctOption ?? "N/A"
+      )
       updatePoints(option === question.correctOption)
     }
   }
 
+  // Handling numeric
+  // *** NOTE the fallback: question.questionId ?? "", question.correctOption ?? "N/A" ***
   const handleNumericalSubmitLocal = () => {
+    if (!question.questionId) return
     handleNumericalSubmit(
-      question.questionId,
-      numericalAnswer || '',
-      question.correctOption || ''
+      question.questionId ?? "",
+      numericalAnswer ?? "",
+      question.correctOption ?? "N/A"
     )
-    saveProgress(question.questionId, 'completed', true)
     updatePoints(numericalAnswer === question.correctOption)
   }
 
+  // Points & streak
   const updatePoints = (isCorrect: boolean) => {
     if (isCorrect) {
-      setPoints((prevPoints) => prevPoints + 10)
-      setStreak((prevStreak) => prevStreak + 1)
+      setPoints((prev) => prev + 10)
+      setStreak((prev) => prev + 1)
       if (streak + 1 === 5) {
         toast({
-          title: 'Achievement Unlocked!',
+          title: "Achievement Unlocked!",
           description: "You've answered 5 questions correctly in a row!",
           duration: 5000,
         })
@@ -225,149 +337,72 @@ export default function Question({
     }
   }
 
-  const toggleMarkscheme = () => {
-    setShowMarkschemeModal(!showMarkschemeModal)
-    handleMarkschemeToggle(question.questionId)
-  }
-
-  const handleMarkschemeSwitch = () => {
-    setMarkschemeEnabled(!markschemeEnabled)
-  }
-
+  // Notes
   const saveNote = async () => {
+    if (!question.questionId) return
     try {
-      const endpoint = noteId ? `/api/notes/${noteId}` : '/api/notes'
-      const method = noteId ? 'PUT' : 'POST'
-      
+      const endpoint = noteId ? `/api/notes/${noteId}` : "/api/notes"
+      const method = noteId ? "PUT" : "POST"
+
       const response = await fetch(endpoint, {
         method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          questionId: question.questionId, 
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          questionId: question.questionId,
           content: localNote,
-          title: `Note for Question ${question.questionId}`,
-          type: 'TEXT'
+          title: `Note for Question #${question.id}`,
+          type: "TEXT",
         }),
       })
-
-      if (!response.ok) throw new Error('Failed to save note')
-      
+      if (!response.ok) throw new Error("Failed to save note")
       const data = await response.json()
       setNoteId(data.id)
-
       toast({
-        title: 'Note Saved',
-        description: 'Your note has been saved successfully.',
+        title: "Note Saved",
+        description: "Your note has been saved successfully.",
       })
     } catch (error) {
-      console.error('Error saving note:', error)
+      console.error("Error saving note:", error)
       toast({
-        title: 'Error',
-        description: 'Failed to save note. Please try again.',
-        variant: 'destructive',
+        title: "Error",
+        description: "Failed to save note. Please try again.",
+        variant: "destructive",
       })
     }
   }
 
   const deleteNote = async () => {
-    if (!noteId) return
-
+    if (!noteId || !question.questionId) return
     try {
       const response = await fetch(`/api/notes/${noteId}`, {
-        method: 'DELETE',
+        method: "DELETE",
       })
-
-      if (!response.ok) throw new Error('Failed to delete note')
+      if (!response.ok) throw new Error("Failed to delete note")
 
       toast({
-        title: 'Note Deleted',
-        description: 'Your note has been deleted successfully.',
+        title: "Note Deleted",
+        description: "Your note has been deleted successfully.",
       })
-      
-      setLocalNote('')
+      setLocalNote("")
       setNoteId(null)
-      handleNoteChange(question.questionId, '')
+      handleNoteChange(question.questionId, "")
     } catch (error) {
-      console.error('Error deleting note:', error)
+      console.error("Error deleting note:", error)
       toast({
-        title: 'Error',
-        description: 'Failed to delete note. Please try again.',
-        variant: 'destructive',
+        title: "Error",
+        description: "Failed to delete note. Please try again.",
+        variant: "destructive",
       })
     }
   }
 
-  const saveProgress = async (
-    questionId: string,
-    field: string,
-    value: boolean
-  ) => {
-    try {
-      const response = await fetch(`/api/user-progress`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId, [field]: value }),
-      })
-      if (!response.ok) throw new Error('Failed to save progress')
-    } catch (error) {
-      console.error('Error saving progress:', error)
-    }
-  }
-
-  const handleMarkCompleteLocal = async (questionId: string) => {
-    await handleMarkComplete(questionId)
-    saveProgress(questionId, 'completed', !isMarkedComplete)
-    toast({
-      title: 'Question Completed',
-      description: `You have completed question ${questionId}.`,
-      duration: 5000,
-      action: (
-        <ToastAction
-          onClick={() => undoMarkComplete(questionId)}
-          altText="Undo"
-        >
-          Undo
-        </ToastAction>
-      ),
-    })
-  }
-
-  const handleMarkForReviewLocal = async (questionId: string) => {
-    await handleMarkForReview(questionId)
-    saveProgress(questionId, 'reviewed', !isMarkedForReview)
-    toast({
-      title: 'Question Flagged for Review',
-      description: `You have flagged question ${questionId} for review.`,
-      duration: 5000,
-      action: (
-        <ToastAction
-          onClick={() => undoMarkForReview(questionId)}
-          altText="Undo"
-        >
-          Undo
-        </ToastAction>
-      ),
-    })
-  }
-
-  const undoMarkComplete = async (questionId: string) => {
-    await handleMarkComplete(questionId)
-    saveProgress(questionId, 'completed', false)
-    dismiss()
-  }
-
-  const undoMarkForReview = async (questionId: string) => {
-    await handleMarkForReview(questionId)
-    saveProgress(questionId, 'reviewed', false)
-    dismiss()
-  }
-
+  // Comments (dummy local logic)
   const handleAddComment = () => {
     if (newComment.trim()) {
       const newCommentObj: CommentType = {
         id: Date.now().toString(),
         userId,
-        username: 'Current User',
+        username: "Current User",
         content: newComment,
         timestamp: new Date().toISOString(),
         replies: [],
@@ -376,12 +411,12 @@ export default function Question({
         edited: false,
       }
       setComments([...comments, newCommentObj])
-      setNewComment('')
+      setNewComment("")
     }
   }
 
   const handleReply = (parentId: string, replyContent: string) => {
-    const updatedComments = comments.map((comment) => {
+    const updated = comments.map((comment) => {
       if (comment.id === parentId) {
         return {
           ...comment,
@@ -390,7 +425,7 @@ export default function Question({
             {
               id: Date.now().toString(),
               userId,
-              username: 'Current User',
+              username: "Current User",
               content: replyContent,
               timestamp: new Date().toISOString(),
               replies: [],
@@ -403,13 +438,12 @@ export default function Question({
       }
       return comment
     })
-
-    setComments(updatedComments)
+    setComments(updated)
     setReplyingTo(null)
   }
 
   const handleEditComment = (commentId: string, newContent: string) => {
-    const updatedComments = comments.map((comment) => {
+    const updated = comments.map((comment) => {
       if (comment.id === commentId) {
         return { ...comment, content: newContent, edited: true }
       }
@@ -420,50 +454,51 @@ export default function Question({
         ),
       }
     })
-    setComments(updatedComments)
+    setComments(updated)
     setEditingCommentId(null)
   }
 
   const handleDeleteComment = (commentId: string) => {
-    const updatedComments = comments.filter((comment) => {
-      if (comment.id === commentId) {
+    const updated = comments.filter((c) => {
+      if (c.id === commentId) {
         return false
       }
-      comment.replies = comment.replies.filter((reply) => reply.id !== commentId)
+      c.replies = c.replies.filter((r) => r.id !== commentId)
       return true
     })
-    setComments(updatedComments)
+    setComments(updated)
   }
 
-  const handleVote = (commentId: string, voteType: 'upvote' | 'downvote') => {
-    const updatedComments = comments.map((comment) => {
+  const handleVote = (commentId: string, voteType: "upvote" | "downvote") => {
+    const updated = comments.map((comment) => {
       if (comment.id === commentId) {
         return {
           ...comment,
-          upvotes: voteType === 'upvote' ? comment.upvotes + 1 : comment.upvotes,
-          downvotes: voteType === 'downvote' ? comment.downvotes + 1 : comment.downvotes,
+          upvotes: voteType === "upvote" ? comment.upvotes + 1 : comment.upvotes,
+          downvotes: voteType === "downvote" ? comment.downvotes + 1 : comment.downvotes,
         }
       }
       comment.replies = comment.replies.map((reply) =>
         reply.id === commentId
           ? {
               ...reply,
-              upvotes: voteType === 'upvote' ? reply.upvotes + 1 : reply.upvotes,
-              downvotes: voteType === 'downvote' ? reply.downvotes + 1 : reply.downvotes,
+              upvotes: voteType === "upvote" ? reply.upvotes + 1 : reply.upvotes,
+              downvotes: voteType === "downvote" ? reply.downvotes + 1 : reply.downvotes,
             }
           : reply
       )
       return comment
     })
-    setComments(updatedComments)
+    setComments(updated)
   }
 
   const sortedComments = [...comments].sort((a, b) => {
-    if (commentSort === 'newest') {
+    if (commentSort === "newest") {
       return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-    } else if (commentSort === 'oldest') {
+    } else if (commentSort === "oldest") {
       return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
     } else {
+      // 'popular' => sort by upvotes
       return b.upvotes - a.upvotes
     }
   })
@@ -471,7 +506,7 @@ export default function Question({
   const renderComment = (comment: CommentType, isReply = false, depth = 0) => (
     <div
       key={comment.id}
-      className={`${isReply ? 'ml-6' : 'border-t'} pt-4 ${depth > 0 ? 'mt-4' : ''}`}
+      className={`${isReply ? "ml-6" : "border-t"} pt-4 ${depth > 0 ? "mt-4" : ""}`}
     >
       <div className="flex items-start space-x-2">
         {isReply && <CornerDownRight className="h-6 w-6 text-gray-400 mt-2" />}
@@ -487,9 +522,7 @@ export default function Question({
             </Avatar>
             <div>
               <p className="font-semibold">{comment.username}</p>
-              <p className="text-sm text-gray-500">
-                {new Date(comment.timestamp).toLocaleString()}
-              </p>
+              <p className="text-sm text-gray-500">{new Date(comment.timestamp).toLocaleString()}</p>
             </div>
           </div>
           {editingCommentId === comment.id ? (
@@ -515,7 +548,7 @@ export default function Question({
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
-                  onClick={() => handleVote(comment.id, 'upvote')}
+                  onClick={() => handleVote(comment.id, "upvote")}
                   className="flex items-center space-x-1 text-gray-500 hover:text-green-500"
                 >
                   <ThumbsUp className="h-4 w-4" />
@@ -527,7 +560,7 @@ export default function Question({
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
-                  onClick={() => handleVote(comment.id, 'downvote')}
+                  onClick={() => handleVote(comment.id, "downvote")}
                   className="flex items-center space-x-1 text-gray-500 hover:text-red-500"
                 >
                   <ThumbsDown className="h-4 w-4" />
@@ -595,52 +628,48 @@ export default function Question({
           )}
         </div>
       </div>
-      {comment.replies.map((reply) => renderComment(reply, true, depth + 1))}
+      {comment.replies.map((r) => renderComment(r, true, depth + 1))}
     </div>
   )
 
-  const handlers = useSwipeable({
-    onSwipedLeft: () => onNextQuestion && onNextQuestion(),
-    onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
-    trackMouse: true,
-  })
-
-  const handleAddTag = () => {
-    if (newTag && !localCustomTags.includes(newTag)) {
-      setLocalCustomTags([...localCustomTags, newTag])
-      setNewTag('')
-    }
-  }
-
-  const handleRemoveTag = (tagToRemove: string) => {
-    setLocalCustomTags(localCustomTags.filter((tag) => tag !== tagToRemove))
-  }
-
   return (
     <TooltipProvider>
-      <div {...handlers} className="relative pb-20">
+      <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
         <Card className="w-full overflow-hidden mb-6">
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
                 <CardTitle className="font-normal text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-                  Question {question.questionId}
+                  {/* Using question.id for numbering */}
+                  Question #{question.id}
                 </CardTitle>
-                <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-                  {question.subject}
-                </div>
-                <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-                  {question.difficulty}
-                </div>
-                <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-                  {question.year}
-                </div>
-                <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-                  {question.type}
-                </div>
-                <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-                  {question.exam}
-                </div>
+                {/* Subject, difficulty, etc. if present */}
+                {question.subject && (
+                  <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
+                    {question.subject}
+                  </div>
+                )}
+                {question.difficulty && (
+                  <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
+                    {question.difficulty}
+                  </div>
+                )}
+                {question.year !== undefined && (
+                  <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
+                    {question.year}
+                  </div>
+                )}
+                {question.type && (
+                  <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
+                    {question.type}
+                  </div>
+                )}
+                {question.exam && (
+                  <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
+                    {question.exam}
+                  </div>
+                )}
+                {/* Custom tags */}
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -674,71 +703,75 @@ export default function Question({
                 </div>
               </div>
               <div className="flex items-center space-x-4">
+                {/* Mark as complete */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Checkbox
-                      id={`complete-${question.questionId}`}
+                      id={`complete-${question.id}`}
                       checked={isMarkedComplete}
-                      onCheckedChange={() => handleMarkCompleteLocal(question.questionId)}
+                      onCheckedChange={() => handleMarkCompleteLocal()}
                     />
                   </TooltipTrigger>
                   <TooltipContent>Mark as Complete</TooltipContent>
                 </Tooltip>
+                {/* Mark for review */}
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => handleMarkForReviewLocal(question.questionId)}
-                    >
+                    <Button variant="ghost" size="icon" onClick={handleMarkForReviewLocal}>
                       <Flag
                         className={
                           isMarkedForReview
-                            ? 'fill-yellow-500 text-yellow-500'
-                            : 'text-gray-500'
+                            ? "fill-yellow-500 text-yellow-500"
+                            : "text-gray-500"
                         }
                       />
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>Flag for Review</TooltipContent>
                 </Tooltip>
+                {/* Settings */}
                 <SettingsPopover
                   markschemeEnabled={markschemeEnabled}
-                  setMarkschemeEnabled={handleMarkschemeSwitch}
+                  setMarkschemeEnabled={() => setMarkschemeEnabled(!markschemeEnabled)}
                   aiEnabled={aiEnabled}
                   setAiEnabled={setAiEnabled}
                   notesEnabled={notesEnabled}
                   setNotesEnabled={setNotesEnabled}
                 />
-                <FeedbackPopover questionId={question.questionId} />
+                {/* Feedback if questionId is defined */}
+                {question.questionId && <FeedbackPopover questionId={question.questionId} />}
               </div>
             </div>
           </CardHeader>
           <CardContent>
             <div className="mb-6">
-              {question.diagramUrl && question.diagramUrl !== '' && (
+              {question.diagramUrl && question.diagramUrl !== "" && (
                 <div className="relative w-64 h-64 mb-4 mx-auto">
                   <Image
                     src={question.diagramUrl}
-                    alt={`Diagram for question ${question.questionId}`}
+                    alt={`Diagram for question #${question.id}`}
                     layout="fill"
                     objectFit="contain"
                     className="rounded-md"
                   />
                 </div>
               )}
-              <p className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7 [&:not(:first-child)]:mt-6">
-                <MathRenderer text={question.text} />
+              {/* Render the question text with MathRenderer */}
+              <p className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7">
+                <MathRenderer text={question.text ?? ""} />
               </p>
             </div>
-            {question.type === 'Numerical' && (
+
+            {/* If this is a Numerical type question */}
+            {question.type === "Numerical" && (
               <div className="mb-4">
                 <Input
                   type="text"
                   className="w-full p-2 border rounded text-base sm:text-lg"
                   placeholder="Write your answer here..."
-                  value={numericalAnswer}
+                  value={numericalAnswer ?? ""}
                   onChange={(e) =>
+                    question.questionId &&
                     handleNumericalChange(question.questionId, e.target.value)
                   }
                 />
@@ -752,122 +785,134 @@ export default function Question({
                 </Tooltip>
               </div>
             )}
-            {question.type === 'Multiple Choice' && (
+
+            {/* If this is a Multiple Choice question */}
+            {question.type === "Multiple Choice" && (
               <div className="space-y-2 mb-4">
-                {question.options?.map((option: string, index: number) => (
-                  <Tooltip key={index}>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant={
-                          localSelectedOption === String.fromCharCode(65 + index)
-                            ? 'default'
-                            : 'outline'
-                        }
-                        className={`w-full justify-start text-left text-base sm:text-lg p-4 leading-7 [&:not(:first-child)]:mt-6 ${
-                          localSelectedOption === String.fromCharCode(65 + index) &&
-                          feedback
-                            ? feedback === 'correct'
-                              ? 'bg-green-100 hover:bg-green-200 text-green-700'
-                              : 'bg-red-100 hover:bg-red-200 text-red-700'
-                            : ''
-                        }`}
-                        onClick={() =>
-                          handleOptionClickLocal(String.fromCharCode(65 + index))
-                        }
-                      >
-                        <span className="mr-2">
-                          {String.fromCharCode(65 + index)}.
-                        </span>
-                        <div className="font-serif">
-                          {option.startsWith('http') ? (
-                            <div className="relative w-full h-64">
-                              <Image
-                                src={option}
-                                alt={`Option ${String.fromCharCode(65 + index)} image`}
-                                layout="fill"
-                                objectFit="contain"
-                                className="rounded-md"
-                              />
-                            </div>
-                          ) : (
-                            <MathRenderer text={option} />
-                          )}
-                        </div>
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Select this option</TooltipContent>
-                  </Tooltip>
-                ))}
+                {question.options?.map((option, index) => {
+                  const letter = String.fromCharCode(65 + index)
+                  const isSelected = localSelectedOption === letter
+                  const isFeedbackActive = isSelected && feedback
+                  return (
+                    <Tooltip key={index}>
+                      <TooltipTrigger asChild>
+                        <Button
+                          variant={isSelected ? "default" : "outline"}
+                          className={`w-full justify-start text-left text-base sm:text-lg p-4 leading-7 ${
+                            isFeedbackActive
+                              ? feedback === "correct"
+                                ? "bg-green-100 hover:bg-green-200 text-green-700"
+                                : "bg-red-100 hover:bg-red-200 text-red-700"
+                              : ""
+                          }`}
+                          onClick={() => handleOptionClickLocal(letter)}
+                        >
+                          <span className="mr-2">{letter}.</span>
+                          <div className="font-serif">
+                            {option.startsWith("http") ? (
+                              <div className="relative w-full h-64">
+                                <Image
+                                  src={option}
+                                  alt={`Option ${letter}`}
+                                  layout="fill"
+                                  objectFit="contain"
+                                  className="rounded-md"
+                                />
+                              </div>
+                            ) : (
+                              <MathRenderer text={option ?? ""} />
+                            )}
+                          </div>
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>Select this option</TooltipContent>
+                    </Tooltip>
+                  )
+                })}
               </div>
             )}
+
+            {/* Feedback: correct/incorrect message */}
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
-                  feedback === 'correct'
-                    ? 'bg-green-100 text-green-700'
-                    : feedback === 'incorrect'
-                    ? 'bg-red-100 text-red-700'
-                    : 'bg-gray-100 text-gray-700'
+                  feedback === "correct"
+                    ? "bg-green-100 text-green-700"
+                    : feedback === "incorrect"
+                    ? "bg-red-100 text-red-700"
+                    : "bg-gray-100 text-gray-700"
                 }`}
               >
-                {feedback === 'correct'
-                  ? 'Correct!'
-                  : feedback === 'incorrect'
-                  ? 'Incorrect, try again.'
-                  : 'No answer available'}
+                {feedback === "correct"
+                  ? "Correct!"
+                  : feedback === "incorrect"
+                  ? "Incorrect, try again."
+                  : "No answer available"}
               </div>
             )}
+
+            {/* Show Markscheme button if user selected an option & markscheme is enabled */}
             {localSelectedOption && markschemeEnabled && (
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant="outline" className="mt-4" onClick={toggleMarkscheme}>
+                  <Button
+                    variant="outline"
+                    className="mt-4"
+                    onClick={() => {
+                      setShowMarkschemeModal(!showMarkschemeModal)
+                      question.questionId && handleMarkschemeToggle(question.questionId)
+                    }}
+                  >
                     Show Markscheme
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>View the markscheme</TooltipContent>
               </Tooltip>
             )}
+
             <div className="flex justify-end space-x-2 mt-4">
+              {/* Notes toggle */}
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="outline" onClick={() => setShowNotes(!showNotes)}>
                     <BookOpen className="mr-2 h-4 w-4" />
-                    {showNotes ? 'Hide Notes' : 'Take Notes'}
+                    {showNotes ? "Hide Notes" : "Take Notes"}
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  {showNotes ? 'Hide note-taking interface' : 'Open note-taking interface'}
+                  {showNotes ? "Hide note-taking interface" : "Open note-taking interface"}
                 </TooltipContent>
               </Tooltip>
+
+              {/* AI toggle */}
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="outline" onClick={() => setShowAI(!showAI)}>
                     <LucideBot className="mr-2 h-4 w-4" />
-                    {showAI ? 'Hide AI' : 'AI Assistance'}
+                    {showAI ? "Hide AI" : "AI Assistance"}
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  {showAI ? 'Hide AI assistant' : 'Get AI help'}
+                  {showAI ? "Hide AI assistant" : "Get AI help"}
                 </TooltipContent>
               </Tooltip>
             </div>
           </CardContent>
 
+          {/* Notes interface */}
           {showNotes && (
             <CardContent>
               <Card>
                 <CardHeader>
                   <CardTitle>Notes</CardTitle>
-                  <CardDescription>
-                    Add your notes for this question here.
-                  </CardDescription>
+                  <CardDescription>Add your notes for this question here.</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <Tiptap
                     content={localNote}
                     onUpdate={(content) => {
                       setLocalNote(content)
-                      handleNoteChange(question.questionId, content)
+                      question.questionId && handleNoteChange(question.questionId, content)
                     }}
                   />
                 </CardContent>
@@ -875,11 +920,7 @@ export default function Question({
                   <Button variant="outline" onClick={saveNote}>
                     Save Note
                   </Button>
-                  <Button 
-                    variant="destructive" 
-                    onClick={deleteNote}
-                    disabled={!noteId}
-                  >
+                  <Button variant="destructive" onClick={deleteNote} disabled={!noteId}>
                     Delete Note
                   </Button>
                 </CardFooter>
@@ -887,6 +928,7 @@ export default function Question({
             </CardContent>
           )}
 
+          {/* AI assistant */}
           {showAI && (
             <CardContent>
               <Card>
@@ -897,47 +939,46 @@ export default function Question({
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Chat 
-                    questionId={question.questionId}
-                    questionText={question.text}
-                    options={question.options}
-                    markscheme={question.markscheme}
-                  />
+                  {question.questionId && (
+                    <Chat
+                      questionId={question.questionId}
+                      questionText={question.text ?? ""}
+                      options={question.options}
+                      markscheme={question.markscheme}
+                    />
+                  )}
                 </CardContent>
               </Card>
             </CardContent>
           )}
 
+          {/* Comments toggle at bottom */}
           <CardFooter className="flex justify-between">
             <div className="flex items-center space-x-2">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button
-                    variant="outline"
-                    onClick={() => setShowComments(!showComments)}
-                  >
+                  <Button variant="outline" onClick={() => setShowComments(!showComments)}>
                     <MessageSquare className="mr-2 h-4 w-4" />
-                    {showComments ? 'Hide Comments' : 'Show Comments'}
+                    {showComments ? "Hide Comments" : "Show Comments"}
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  {showComments ? 'Hide comments' : 'View and add comments'}
+                  {showComments ? "Hide comments" : "View and add comments"}
                 </TooltipContent>
               </Tooltip>
               <span className="text-sm text-gray-500">
-                {comments.length} comment{comments.length !== 1 && 's'}
+                {comments.length} comment{comments.length !== 1 && "s"}
               </span>
             </div>
           </CardFooter>
         </Card>
 
+        {/* Comments section (dummy UI) */}
         {showComments && (
           <Card className="mt-6">
             <CardHeader>
               <CardTitle>Comments</CardTitle>
-              <CardDescription>
-                This is a dummy UI, comments are coming soon!
-              </CardDescription>
+              <CardDescription>This is a dummy UI, comments are coming soon!</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -945,7 +986,7 @@ export default function Question({
                   <Label htmlFor="comment-sort">Sort by</Label>
                   <Select
                     value={commentSort}
-                    onValueChange={(value: 'newest' | 'oldest' | 'popular') =>
+                    onValueChange={(value: "newest" | "oldest" | "popular") =>
                       setCommentSort(value)
                     }
                   >
@@ -969,64 +1010,62 @@ export default function Question({
                   <Button onClick={handleAddComment}>Add Comment</Button>
                 </div>
                 <ScrollArea className="h-[300px]">
-                  {sortedComments.map((comment) => renderComment(comment))}
+                  {sortedComments.map((c) => renderComment(c))}
                 </ScrollArea>
               </div>
             </CardContent>
           </Card>
         )}
 
-<AnimatePresence>
+        {/* Markscheme modal if user toggles it */}
+        <AnimatePresence>
           {showMarkschemeModal && (
-         <motion.div
-         initial={{ opacity: 0, scale: 0.9 }}
-         animate={{ opacity: 1, scale: 1 }}
-         exit={{ opacity: 0, scale: 0.9 }}
-         transition={{ duration: 0.2 }}
-         className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
-       >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
+            >
               <Card className="w-full max-w-2xl">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle>Markscheme</CardTitle>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="relative"
-                onClick={() => setShowMarkschemeModal(false)}
-              >
-                <X className="h-4 w-4" />
-                <span className="sr-only">Close markscheme</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Close markscheme</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </CardHeader>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle>Markscheme</CardTitle>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="relative"
+                          onClick={() => setShowMarkschemeModal(false)}
+                        >
+                          <X className="h-4 w-4" />
+                          <span className="sr-only">Close markscheme</span>
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Close markscheme</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </CardHeader>
                 <CardContent>
                   <div className="overflow-y-auto max-h-[60vh]">
                     <p className="mb-2">
-                      {question.markscheme ? (
-                        question.markscheme.startsWith('http') ? (
-                          <div className="relative w-full h-64">
-                            <Image
-                              src={question.markscheme}
-                              alt="Markscheme image"
-                              layout="fill"
-                              objectFit="contain"
-                              className="rounded-md"
-                            />
-                          </div>
-                          
-                        ) : (
-                          <MathRenderer text={question.markscheme} />
-                        )
+                      {question.markscheme?.startsWith("http") ? (
+                        <div className="relative w-full h-64">
+                          <Image
+                            src={question.markscheme}
+                            alt="Markscheme image"
+                            layout="fill"
+                            objectFit="contain"
+                            className="rounded-md"
+                          />
+                        </div>
+                      ) : question.markscheme ? (
+                        <MathRenderer text={question.markscheme ?? ""} />
                       ) : (
-                        'No answer available'
+                        "No answer available"
                       )}
                     </p>
                   </div>

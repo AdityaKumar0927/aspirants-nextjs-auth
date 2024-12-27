@@ -106,33 +106,87 @@ model UserProgress {
 }
 
 model Question {
-  id               Int               @id @default(autoincrement())
-  exam             String
-  questionId       String            @unique
-  text             String
-  subject          String
-  topic            String
-  subtopic         String
-  difficulty       String
-  type             String
-  year             Int
-  reviewed         Boolean
-  completed        Boolean
-  options          String[]
-  correctOption    String
-  markscheme       String
-  marks            String?
-  correctAttempts  String?
-  wrongAttempts    String?
-  averageTimeTaken String?
-  lastAttempted    DateTime?
-  diagramUrl       String?
-  notes            Note[]            @relation("QuestionNotes")
-  progresses       UserProgress[]
-  answers          UserAnswer[]
-  userPerformances UserPerformance[]
-  status           QuestionStatus    @default(ACTIVE)
-  issues           Issue[]
+  id                   Int               @id @default(autoincrement())
+  questionId           String            @unique
+  examGroup            String?           // e.g., "jee", "medical"
+  country              String?           // Country code, e.g., "in"
+  exam                 String?           // Exam identifier, e.g., "jee-main"
+  key                  String?           // Unique key for the question
+  date                 DateTime?         // Exam date
+  description          String?           // Description of the question or exam
+  isMemoryBased        Boolean?          // Indicates if the question is memory-based
+  isOnline             Boolean?          // Indicates if the question is from an online exam
+  languages            String[]          // Supported languages (required list)
+  title                String?           // Title of the exam or question
+  year                 Int?              // Year of the exam
+  pyqOutOfSyllabus     Int?              // Out-of-syllabus question count
+  pyqTotal             Int?              // Total questions in the exam
+  pyqPrivate           Int?              // Private questions count
+  pyqPublic            Int?              // Public questions count
+
+  // Additional fields inferred from user logs/data
+  examId               Int?              // Foreign key referencing the Exam model
+  subjectGroup         String?
+  chapterGroup         String?
+  chapter              String?
+  topicName            String?
+  examDate             DateTime?         // If distinct from `date`
+  content              Json?             // Complex question content (HTML, structured data)
+  permalink            String?
+  paperId              String?
+  isOutOfSyllabus      Boolean?
+  isBonus              Boolean?
+
+  // Question-specific fields
+  text                 String            // Question text (required)
+  subject              String?           // Subject of the question
+  topic                String?           // Topic name
+  subtopic             String?           // Subtopic for additional granularity
+  difficulty           String?           // Difficulty level
+  type                 String?           // Question type, e.g., "mcq", "integer"
+  marks                Float?            // Marks assigned
+  negMarks             Float?            // Negative marks for incorrect answers
+  options              String[]          // List of options (required list)
+  correctOption        String?           // Correct option
+  markscheme           String?           // Marking scheme details
+  correctAttempts      String?           // Number of correct attempts
+  wrongAttempts        String?           // Number of wrong attempts
+  averageTimeTaken     String?           // Average time taken to solve
+  lastAttempted        DateTime?         // Last attempted date
+  diagramUrl           String?           // URL for diagrams, if any
+  customTag            String?           // Custom tag for user-defined grouping
+  explanation          Json?             // JSON object for explanation details
+  reviewed             Boolean?          // Whether the question has been reviewed
+  completed            Boolean?          // Whether the question is marked as completed
+
+  // Additional metadata
+  paperTitle           String?           // Title of the paper the question belongs to
+  timeAllotted         Int?              // Time allotted for the question
+  updatedTime          Int?              // Timestamp for last update
+  updatedBy            String?           // ID or name of the user/admin who last updated the question
+  source               String?           // Source of the question, e.g., "official paper", "mock test"
+  peerSolvedPercentage Float?            // Percentage of peers who solved the question correctly
+  linkedResources      Json?             // Links to additional resources for understanding the concept
+  commonMistakes       Json?             // JSON object for common mistakes and explanations
+  discussionLink       String?           // URL for discussion forum or thread
+  parentQuestionId     Int?              // If part of a composite question, reference parent question
+  difficultyRating     Float?            // Difficulty rating: Easy, Medium, Hard, Very Hard
+
+  // Additional fields
+  yearKey              String?           // Unique key for the year of the question
+  status               QuestionStatus    @default(ACTIVE) // Status of the question
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime          @updatedAt
+
+  // Relations
+  notes                Note[]            @relation("QuestionNotes")
+  progresses           UserProgress[]
+  answers              UserAnswer[]
+  userPerformances     UserPerformance[]
+  issues               Issue[]
+
+  // Relation to Exam model
+  examModel            Exam?             @relation(fields: [examId], references: [id], onDelete: Cascade)
 
   @@index([status])
 }
@@ -164,6 +218,37 @@ enum NoteType {
   IMAGE
   STYLUS
   VOICE
+}
+
+model Exam {
+  id            Int      @id @default(autoincrement())
+  key           String   @unique
+  examGroup     String?
+  country       String?
+  exam          String?
+  date          DateTime?
+  description   String?
+  isMemoryBased Boolean?
+  isOnline      Boolean?
+  languages     String[]
+  title         String
+  year          Int?
+
+  pyq           Pyq[]
+
+  questions     Question[]
+  @@index([key])
+}
+
+model Pyq {
+  id              Int    @id @default(autoincrement())
+  out_of_syllabus Int?
+  total           Int?
+  private         Int?
+  public          Int?
+  examId          Int
+
+  exam            Exam   @relation(fields: [examId], references: [id], onDelete: Cascade)
 }
 
 model UserPerformance {
@@ -399,41 +484,3 @@ model Feedback {
   @@index([userId])
 }
 
-model GoalAspirantsQuestion {
-  id               Int       @id @default(autoincrement())
-  questionId       String    @unique
-  exam             String
-  text             String
-  subject          String
-  topic            String?   // Combined from ExamGoal's `chapter` and `topicName`
-  subtopic         String?   // Additional granularity, from ExamGoal's `chapterGroup`
-  difficulty       String?   // Difficulty level, e.g., "Easy", "Medium", "Hard"
-  type             String    // Question type, e.g., "mcq", "integer"
-  year             Int       // Year of the exam
-  marks            Float?    // Marks for the question
-  negMarks         Float?    // Negative marks for incorrect answers
-  correctOptions   String[]  // Correct options, from ExamGoal's `correct_options`
-  explanation      String?   // Explanation or solution for the question
-  markscheme       String?   // Additional marking scheme details
-  subjectGroup     String?   // Optional, for grouping subjects (e.g., "Sciences")
-  diagramUrl       String?   // URL for any associated diagrams
-  answer           String?   // For integer-type questions with direct answers
-  isOutOfSyllabus  Boolean   @default(false) // Indicates if the question is out of syllabus
-  isBonus          Boolean   @default(false) // Indicates if the question is a bonus question
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-
-  options          GoalOption[] @relation("GoalQuestionOptions") // Relation to GoalOption model
-
-  @@index([exam, subject]) // Index for optimized queries
-}
-
-model GoalOption {
-  id           Int       @id @default(autoincrement())
-  identifier   String    // Option identifier, e.g., "A", "B"
-  content      String    // Option content
-  questionId   Int       // Relational ID to the GoalAspirantsQuestion
-  question     GoalAspirantsQuestion @relation("GoalQuestionOptions", fields: [questionId], references: [id]) // Backward relation
-
-  @@unique([questionId, identifier]) // Ensure options are unique for each question
-}

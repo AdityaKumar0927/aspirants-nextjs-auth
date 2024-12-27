@@ -6,7 +6,19 @@ import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
 import Question from "@/components/shared/Question"
 import Popover from "@/components/shared/popover"
-import { CheckCheckIcon, ChevronDown, ChevronLeft, ChevronRight, Info, List, Search, Circle, CheckCircle2, Flag, HelpCircle } from 'lucide-react'
+import {
+  CheckCheckIcon,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Info,
+  List,
+  Search,
+  Circle,
+  CheckCircle2,
+  Flag,
+  HelpCircle,
+} from "lucide-react"
 import Link from "next/link"
 import {
   Tooltip,
@@ -20,7 +32,7 @@ import { useToast } from "@/components/ui/use-toast"
 import {
   Card,
   CardContent,
-  CardHeader, 
+  CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import {
@@ -37,31 +49,85 @@ import { motion, AnimatePresence } from "framer-motion"
 const PAGE_SIZE = 10
 
 enum QuestionStatus {
+  ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
-  PUBLISHED = "PUBLISHED",
   ARCHIVED = "ARCHIVED",
-  UNDER_REVIEW = "UNDER_REVIEW"
 }
 
+// We allow any string for `type` to avoid “string not assignable” errors:
+type QuestionTypeString = "Multiple Choice" | "Numerical" | string
+
+/**
+ * IMPORTANT: We need an `id: number` field here because our Question component
+ * (in Question.tsx) requires `question.id` to be present.
+ */
 interface QuestionType {
-  exam: string
+  id: number                   // <--- Newly added to match Question.tsx requirement
   questionId: string
   text: string
-  subject: string
-  topic: string
-  subtopic: string
-  difficulty: string
-  type: "Multiple Choice" | "Numerical"
-  year: string
-  reviewed: boolean
-  completed: boolean
+  subject?: string
+  topic?: string
+  subtopic?: string
+  difficulty?: string
+  type?: QuestionTypeString
+  year?: number
+  reviewed?: boolean
+  completed?: boolean
   options?: string[]
   correctOption?: string
   markscheme?: string
   notes?: string
   lastAttempted?: string
   diagramUrl?: string
-  status: QuestionStatus
+  status?: QuestionStatus
+
+  // Additional fields from your updated Prisma schema:
+  exam?: string
+  examGroup?: string
+  country?: string
+  key?: string
+  date?: string
+  description?: string
+  isMemoryBased?: boolean
+  isOnline?: boolean
+  languages?: string[]
+  title?: string
+  pyqOutOfSyllabus?: number
+  pyqTotal?: number
+  pyqPrivate?: number
+  pyqPublic?: number
+  examId?: number
+  subjectGroup?: string
+  chapterGroup?: string
+  chapter?: string
+  topicName?: string
+  examDate?: string
+  content?: any
+  permalink?: string
+  paperId?: string
+  isOutOfSyllabus?: boolean
+  isBonus?: boolean
+  marks?: number
+  negMarks?: number
+  correctAttempts?: string
+  wrongAttempts?: string
+  averageTimeTaken?: string
+  customTag?: string
+  explanation?: any
+  paperTitle?: string
+  timeAllotted?: number
+  updatedTime?: number
+  updatedBy?: string
+  source?: string
+  peerSolvedPercentage?: number
+  linkedResources?: any
+  commonMistakes?: any
+  discussionLink?: string
+  parentQuestionId?: number
+  difficultyRating?: number
+  yearKey?: string
+  createdAt?: string
+  updatedAt?: string
 }
 
 interface UserAnswer {
@@ -199,25 +265,25 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
-const StatusCard = ({ 
-  icon, 
-  label, 
-  value, 
-  color 
-}: { 
+const StatusCard = ({
+  icon,
+  label,
+  value,
+  color,
+}: {
   icon: React.ReactNode
   label: string
   value: number
   color: string
 }) => {
   return (
-    <motion.div 
+    <motion.div
       className="flex items-center p-4 rounded-lg bg-gray-900 transition-all duration-300"
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
       <AnimatePresence>
-        <motion.div 
+        <motion.div
           className={`flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 mr-4 ${color}`}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -228,7 +294,7 @@ const StatusCard = ({
         </motion.div>
       </AnimatePresence>
       <div>
-        <motion.span 
+        <motion.span
           className={`text-2xl font-bold ${color}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -236,7 +302,7 @@ const StatusCard = ({
         >
           {value}
         </motion.span>
-        <motion.p 
+        <motion.p
           className="text-sm font-medium text-gray-400"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -322,7 +388,10 @@ const GuestBanner: React.FC = () => {
           </div>
         </div>
         <Link href="/QuestionBank" className="hidden sm:block">
-          <Button variant="outline" className="border-blue-200 hover:border-blue-300 hover:bg-blue-50">
+          <Button
+            variant="outline"
+            className="border-blue-200 hover:border-blue-300 hover:bg-blue-50"
+          >
             Sign in
             <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
@@ -354,35 +423,44 @@ const QuestionBankContent: React.FC = () => {
       const selectedOptions: Record<string, string> = {}
       const notes: Record<string, string> = {}
 
-      const mergedQuestions = questionsData.map((question: QuestionType) => {
-        const progress = userProgressData.find(
-          (p: any) => p.questionId === question.questionId
-        )
-        const userAnswer = userAnswersData.find(
-          (a: UserAnswer) => a.questionId === question.questionId
-        )
-        const performance = userPerformanceData.find(
-          (p: UserPerformance) => p.questionId === question.questionId
-        )
+      /**
+       * We generate an `id` for each question to match the `Question` component’s required `id`.
+       * For example, use `index + 1` or parseInt(question.questionId).
+       */
+      const mergedQuestions: QuestionType[] = questionsData.map(
+        (question: Omit<QuestionType, "id">, index: number) => {
+          // If you prefer, you could parse the questionId to a number:
+          // const numericId = parseInt(question.questionId, 10) || index + 1
+          // We'll keep it simple here and just do index + 1:
+          const forcedId = index + 1
 
-        if (userAnswer) {
-          selectedOptions[question.questionId] = userAnswer.selectedOption
-          feedback[question.questionId] = userAnswer.isCorrect ? "correct" : "incorrect"
+          const progress = userProgressData.find(
+            (p: any) => p.questionId === question.questionId
+          )
+          const userAnswer = userAnswersData.find(
+            (a: UserAnswer) => a.questionId === question.questionId
+          )
+          const performance = userPerformanceData.find(
+            (p: UserPerformance) => p.questionId === question.questionId
+          )
+
+          if (userAnswer) {
+            selectedOptions[question.questionId] = userAnswer.selectedOption
+            feedback[question.questionId] = userAnswer.isCorrect ? "correct" : "incorrect"
+          }
+
+          return {
+            ...question,
+            id: forcedId, // <--- inject our forced ID here
+            reviewed: performance?.reviewed ?? progress?.reviewed ?? false,
+            completed: performance?.completed ?? progress?.completed ?? false,
+            lastAttempted: progress?.lastAttempted ?? "",
+          }
         }
-
-        return {
-          ...question,
-          reviewed: performance?.reviewed ?? progress?.reviewed ?? false,
-          completed: performance?.completed ?? progress?.completed ?? false,
-          lastAttempted: progress?.lastAttempted ?? "",
-          performance: performance || {},
-        }
-      })
-
-      mergedQuestions.sort(
-        (a: QuestionType, b: QuestionType) =>
-          parseInt(a.questionId, 10) - parseInt(b.questionId, 10)
       )
+
+      // Sort by numeric ID or by questionId
+      mergedQuestions.sort((a, b) => a.id - b.id)
 
       dispatch({ type: "SET_QUESTIONS", payload: mergedQuestions })
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: selectedOptions })
@@ -407,42 +485,43 @@ const QuestionBankContent: React.FC = () => {
   }, [fetchAllData, status])
 
   const filteredQuestions = useMemo(() => {
+    const searchQuery = state.searchQuery.toLowerCase()
     return state.questions.filter((question) => {
-      const searchQuery = state.searchQuery.toLowerCase()
       const matchesSearch =
         question.text.toLowerCase().includes(searchQuery) ||
-        question.topic.toLowerCase().includes(searchQuery) ||
-        question.subtopic.toLowerCase().includes(searchQuery) ||
-        question.subject.toLowerCase().includes(searchQuery)
+        (question.topic && question.topic.toLowerCase().includes(searchQuery)) ||
+        (question.subtopic && question.subtopic.toLowerCase().includes(searchQuery)) ||
+        (question.subject && question.subject.toLowerCase().includes(searchQuery))
 
       const matchesFilters =
-        (!state.filters.exams.length || state.filters.exams.includes(question.exam)) &&
+        (!state.filters.exams.length ||
+          (question.exam && state.filters.exams.includes(question.exam))) &&
         (!state.filters.subjects.length ||
-          state.filters.subjects.includes(question.subject)) &&
-        (!state.filters.topics.length || state.filters.topics.includes(question.topic)) &&
+          (question.subject && state.filters.subjects.includes(question.subject))) &&
+        (!state.filters.topics.length ||
+          (question.topic && state.filters.topics.includes(question.topic))) &&
         (!state.filters.subtopics.length ||
-          state.filters.subtopics.includes(question.subtopic)) &&
+          (question.subtopic && state.filters.subtopics.includes(question.subtopic))) &&
         (!state.filters.difficulties.length ||
-          state.filters.difficulties.includes(question.difficulty)) &&
-        (!state.filters.years.length || state.filters.years.includes(question.year)) &&
-        (!state.filters.types.length || state.filters.types.includes(question.type))
+          (question.difficulty && state.filters.difficulties.includes(question.difficulty))) &&
+        (!state.filters.years.length ||
+          (question.year && state.filters.years.includes(question.year.toString()))) &&
+        (!state.filters.types.length ||
+          (question.type && state.filters.types.includes(question.type)))
 
       if (state.filters.status === "review") {
         return matchesSearch && matchesFilters && question.reviewed
       } else if (state.filters.status === "complete") {
         return matchesSearch && matchesFilters && question.completed
       }
-
       return matchesSearch && matchesFilters
     })
   }, [state.questions, state.filters, state.searchQuery])
 
   const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
-
   const paginatedQuestions = useMemo(() => {
     const startIndex = (state.currentPage - 1) * PAGE_SIZE
-    const endIndex = startIndex + PAGE_SIZE
-    return filteredQuestions.slice(startIndex, endIndex)
+    return filteredQuestions.slice(startIndex, startIndex + PAGE_SIZE)
   }, [filteredQuestions, state.currentPage])
 
   const handlePageChange = useCallback((page: number) => {
@@ -457,27 +536,25 @@ const QuestionBankContent: React.FC = () => {
         const updatedFilter = isSelected
           ? filterValues.filter((v: string) => v !== value)
           : [...filterValues, value]
-        
-        // Update filters
+
         const newFilters = { ...state.filters, [tag]: updatedFilter }
-        
-        // If an exam is selected, filter other dropdowns
-        if (tag === 'exams') {
+
+        if (tag === "exams") {
           const selectedExams = newFilters.exams
-          newFilters.subjects = newFilters.subjects.filter(subject => 
-            state.questions.some(q => selectedExams.includes(q.exam) && q.subject === subject)
+          newFilters.subjects = newFilters.subjects.filter((subj) =>
+            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.subject === subj)
           )
-          newFilters.topics = newFilters.topics.filter(topic => 
-            state.questions.some(q => selectedExams.includes(q.exam) && q.topic === topic)
+          newFilters.topics = newFilters.topics.filter((topic) =>
+            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.topic === topic)
           )
-          newFilters.subtopics = newFilters.subtopics.filter(subtopic => 
-            state.questions.some(q => selectedExams.includes(q.exam) && q.subtopic === subtopic)
+          newFilters.subtopics = newFilters.subtopics.filter((subt) =>
+            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.subtopic === subt)
           )
-          newFilters.types = newFilters.types.filter(type => 
-            state.questions.some(q => selectedExams.includes(q.exam) && q.type === type)
+          newFilters.types = newFilters.types.filter((t) =>
+            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.type === t)
           )
         }
-        
+
         dispatch({ type: "SET_FILTERS", payload: newFilters })
       }
     },
@@ -485,10 +562,7 @@ const QuestionBankContent: React.FC = () => {
   )
 
   const updateUserPerformance = useCallback(
-    async (
-      questionId: string,
-      updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>
-    ) => {
+    async (questionId: string, updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>) => {
       try {
         const response = await fetch("/api/user-performance/update", {
           method: "POST",
@@ -556,7 +630,6 @@ const QuestionBankContent: React.FC = () => {
   const handleOptionClick = useCallback(
     async (questionId: string, option: string, correctOption: string) => {
       const isCorrect = option === correctOption
-
       const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" }
       const newSelectedOptions = { ...state.selectedOptions, [questionId]: option }
 
@@ -575,7 +648,7 @@ const QuestionBankContent: React.FC = () => {
         reattemptAccuracy: isCorrect ? 100 : 0,
       }
 
-      const [updatedPerformance, savedAnswer] = await Promise.all([
+      const [updatedPerformance] = await Promise.all([
         updateUserPerformance(questionId, updatedFields),
         saveUserAnswer(questionId, option, isCorrect),
       ])
@@ -589,20 +662,14 @@ const QuestionBankContent: React.FC = () => {
         })
       }
     },
-    [
-      saveUserAnswer,
-      updateUserPerformance,
-      state.feedback,
-      state.selectedOptions,
-      state.questions,
-    ]
+    [saveUserAnswer, updateUserPerformance, state.feedback, state.selectedOptions, state.questions]
   )
 
   const handleNumericalSubmit = useCallback(
     async (questionId: string, userAnswer: string, correctAnswer: string) => {
       const isCorrect = userAnswer === correctAnswer
-
       const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" }
+
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
 
       const updatedFields = {
@@ -613,7 +680,7 @@ const QuestionBankContent: React.FC = () => {
         reattemptAccuracy: isCorrect ? 100 : 0,
       }
 
-      const [updatedPerformance, savedAnswer] = await Promise.all([
+      const [updatedPerformance] = await Promise.all([
         updateUserPerformance(questionId, updatedFields),
         saveUserAnswer(questionId, userAnswer, isCorrect),
       ])
@@ -668,17 +735,22 @@ const QuestionBankContent: React.FC = () => {
     [state.notes]
   )
 
-  const handleNavigatorClick = useCallback((index: number) => {
-    const newPage = Math.floor(index / PAGE_SIZE) + 1
-    dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
-    setIsNavigatorOpen(false)
-    setTimeout(() => {
-      const questionElement = document.getElementById(`question-${filteredQuestions[index].questionId}`)
-      if (questionElement) {
-        questionElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    }, 100)
-  }, [filteredQuestions])
+  const handleNavigatorClick = useCallback(
+    (index: number) => {
+      const newPage = Math.floor(index / PAGE_SIZE) + 1
+      dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
+      setIsNavigatorOpen(false)
+      setTimeout(() => {
+        const questionElement = document.getElementById(
+          `question-${filteredQuestions[index].questionId}`
+        )
+        if (questionElement) {
+          questionElement.scrollIntoView({ behavior: "smooth", block: "start" })
+        }
+      }, 100)
+    },
+    [filteredQuestions]
+  )
 
   const questionStats = useMemo(() => {
     const stats = {
@@ -687,7 +759,6 @@ const QuestionBankContent: React.FC = () => {
       answered: 0,
       markedForReview: 0,
     }
-
     filteredQuestions.forEach((question) => {
       if (question.reviewed) {
         stats.markedForReview++
@@ -699,7 +770,6 @@ const QuestionBankContent: React.FC = () => {
         stats.notVisited++
       }
     })
-
     return stats
   }, [filteredQuestions])
 
@@ -765,7 +835,9 @@ const QuestionBankContent: React.FC = () => {
                 type="text"
                 placeholder="Search questions..."
                 value={state.searchQuery}
-                onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
+                onChange={(e) =>
+                  dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })
+                }
                 className="pl-10"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -813,206 +885,220 @@ const QuestionBankContent: React.FC = () => {
           </div>
 
           <div className="flex space-x-4 mb-2">
-            {["all", "complete", "review"].map((status) => (
-              <Tooltip key={status}>
+            {["all", "complete", "review"].map((filterStatus) => (
+              <Tooltip key={filterStatus}>
                 <TooltipTrigger asChild>
                   <button
                     onClick={() =>
                       dispatch({
                         type: "SET_FILTERS",
-                        payload: { ...state.filters, status },
+                        payload: { ...state.filters, status: filterStatus },
                       })
                     }
                     className={`px-4 py-2 rounded-md ${
-                      state.filters.status === status
+                      state.filters.status === filterStatus
                         ? "bg-white border hover:border-black border-gray-600 text-gray-500"
                         : "bg-white hover:border-black border border-gray-300 text-gray-500"
                     }`}
                   >
-                    {status.charAt(0).toUpperCase() + status.slice(1)}
+                    {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}
                   </button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  {status.charAt(0).toUpperCase() + status.slice(1)}
+                  {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}
                 </TooltipContent>
               </Tooltip>
             ))}
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {[
-              "exams",
-              "subjects",
-              "topics",
-              "subtopics",
-              "difficulties",
-              "years",
-              "types",
-            ].map((filterType) => (
-              <Tooltip key={filterType}>
-                <TooltipTrigger asChild>
-                  <Popover
-                    content={
-                      <div className="w-full bg-white rounded-md p-2 sm:w-80">
-                        <Input
-                          type="text"
-                          placeholder={`Search ${filterType}...`}
-                          className="mb-2"
-                          onChange={(e) => {
-                            // Implement search functionality here
-                          }}
-                        />
-                        <div className="max-h-60 overflow-y-auto">
-                          {Array.from(
-                            new Set(
-                              state.questions
-                                .filter(q => 
-                                  state.filters.exams.length === 0 || state.filters.exams.includes(q.exam)
-                                )
-                                .map((q) => {
-                                  switch (filterType) {
-                                    case "exams":
-                                      return q.exam
-                                    case "subjects":
-                                      return q.subject
-                                    case "topics":
-                                      return q.topic
-                                    case "subtopics":
-                                      return q.subtopic
-                                    case "difficulties":
-                                      return q.difficulty
-                                    case "years":
-                                      return q.year
-                                    case "types":
-                                      return q.type
-                                    default:
-                                      return ""
+            {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map(
+              (filterType) => (
+                <Tooltip key={filterType}>
+                  <TooltipTrigger asChild>
+                    <Popover
+                      content={
+                        <div className="w-full bg-white rounded-md p-2 sm:w-80">
+                          <Input
+                            type="text"
+                            placeholder={`Search ${filterType}...`}
+                            className="mb-2"
+                            onChange={() => {
+                              // Optional search logic
+                            }}
+                          />
+                          <div className="max-h-60 overflow-y-auto">
+                            {Array.from(
+                              new Set(
+                                state.questions
+                                  .filter(
+                                    (q) =>
+                                      // If no exam filter or the question’s exam is in that filter
+                                      !state.filters.exams.length ||
+                                      (q.exam && state.filters.exams.includes(q.exam)) ||
+                                      // If we’re enumerating “exams”, just let them pass
+                                      filterType === "exams"
+                                  )
+                                  .map((q) => {
+                                    switch (filterType) {
+                                      case "exams":
+                                        return q.exam
+                                      case "subjects":
+                                        return q.subject
+                                      case "topics":
+                                        return q.topic
+                                      case "subtopics":
+                                        return q.subtopic
+                                      case "difficulties":
+                                        return q.difficulty
+                                      case "years":
+                                        return q.year?.toString()
+                                      case "types":
+                                        return q.type
+                                      default:
+                                        return ""
+                                    }
+                                  })
+                                  // .filter(Boolean) removes empty or undefined
+                                  .filter(Boolean) as string[]
+                              )
+                            ).map((value) => (
+                              <div key={value} className="flex items-center">
+                                <input
+                                  type="checkbox"
+                                  id={`${filterType}-${value}`}
+                                  className="mr-2"
+                                  checked={
+                                    (state.filters[filterType as keyof FiltersType] as string[]).includes(
+                                      value
+                                    )
                                   }
-                                })
-                            )
-                          ).map((value: string) => (
-                            <div key={value} className="flex items-center">
-                              <input
-                                type="checkbox"
-                                id={`${filterType}-${value}`}
-                                className="mr-2"
-                                checked={
-                                  (state.filters[filterType as keyof FiltersType] as string[] ||
-                                    []
-                                  ).includes(value)
-                                }
-                                onChange={() =>
-                                  handleFilterChange(filterType as keyof FiltersType, value)
-                                }
-                              />
-                              <label
-                                htmlFor={`${filterType}-${value}`}
-                                className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
-                              >
-                                {value}
-                              </label>
-                            </div>
-                          ))}
+                                  onChange={() => handleFilterChange(filterType as keyof FiltersType, value)}
+                                />
+                                <label
+                                  htmlFor={`${filterType}-${value}`}
+                                  className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
+                                >
+                                  {value}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    }
-                    align="start"
-                    openPopover={state.dropdowns[filterType as keyof typeof state.dropdowns]}
-                    setOpenPopover={(open) => {
-                      dispatch({
-                        type: "SET_DROPDOWN",
-                        payload: { tag: filterType as keyof FiltersType, value: !!open },
-                      })
-                    }}
-                  >
-                    <button
-                      onClick={() =>
+                      }
+                      align="start"
+                      openPopover={state.dropdowns[filterType as keyof typeof state.dropdowns]}
+                      setOpenPopover={(open) => {
                         dispatch({
                           type: "SET_DROPDOWN",
-                          payload: {
-                            tag: filterType as keyof FiltersType,
-                            value: !state.dropdowns[
-                              filterType as keyof typeof state.dropdowns
-                            ],
-                          },
+                          payload: { tag: filterType as keyof FiltersType, value: !!open },
                         })
-                      }
-                      className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
+                      }}
                     >
-                      <p className="text-gray-600">
-                        {Array.isArray(state.filters[filterType as keyof FiltersType]) &&
-                        (state.filters[filterType as keyof FiltersType] as string[]).length
-                          ? `${
-                              (state.filters[filterType as keyof FiltersType] as string[])
-                                .length
-                            } selected`
-                          : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                      </p>
-                      <ChevronDown
-                        className={`h-4 w-4 text-gray-600 transition-all ${
-                          state.dropdowns[filterType as keyof typeof state.dropdowns]
-                            ? "rotate-180"
-                            : ""
-                        }`}
-                      />
-                    </button>
-                  </Popover>
-                </TooltipTrigger>
-                <TooltipContent>
-                  Select {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                </TooltipContent>
-              </Tooltip>
-            ))}
+                      <button
+                        onClick={() =>
+                          dispatch({
+                            type: "SET_DROPDOWN",
+                            payload: {
+                              tag: filterType as keyof FiltersType,
+                              value: !state.dropdowns[filterType as keyof typeof state.dropdowns],
+                            },
+                          })
+                        }
+                        className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
+                      >
+                        <p className="text-gray-600">
+                          {Array.isArray(state.filters[filterType as keyof FiltersType]) &&
+                          (state.filters[filterType as keyof FiltersType] as string[]).length
+                            ? `${
+                                (state.filters[filterType as keyof FiltersType] as string[]).length
+                              } selected`
+                            : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                        </p>
+                        <ChevronDown
+                          className={`h-4 w-4 text-gray-600 transition-all ${
+                            state.dropdowns[filterType as keyof typeof state.dropdowns]
+                              ? "rotate-180"
+                              : ""
+                          }`}
+                        />
+                      </button>
+                    </Popover>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    Select {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                  </TooltipContent>
+                </Tooltip>
+              )
+            )}
           </div>
 
           <Card className="bg-gradient-to-br from-gray-900 to-gray-800 text-white border-gray-700 mb-6">
-      <CardContent className="p-6">
-        <h2 className="text-2xl font-light tracking-tight text-gray-200 mb-6">
-          Question Progress
-        </h2>
-        <div className="space-y-6">
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-light tracking-tight text-gray-300">Overall Progress</span>
-            <span className="text-sm font-light tracking-tight text-gray-300">
-              {Math.round((questionStats.answered / filteredQuestions.length) * 100)}%
-            </span>
-          </div>
-          <Progress 
-            value={(questionStats.answered / filteredQuestions.length) * 100} 
-            className="w-full h-1.5 bg-gray-700" 
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
-              <div className="text-blue-400 p-2 rounded-full bg-blue-400/10">
-                <HelpCircle className="h-5 w-5" />
+            <CardContent className="p-6">
+              <h2 className="text-2xl font-light tracking-tight text-gray-200 mb-6">
+                Question Progress
+              </h2>
+              <div className="space-y-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm font-light tracking-tight text-gray-300">
+                    Overall Progress
+                  </span>
+                  <span className="text-sm font-light tracking-tight text-gray-300">
+                    {Math.round(
+                      (questionStats.answered / filteredQuestions.length) * 100
+                    )}
+                    %
+                  </span>
+                </div>
+                <Progress
+                  value={(questionStats.answered / filteredQuestions.length) * 100}
+                  className="w-full h-1.5 bg-gray-700"
+                />
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
+                    <div className="text-blue-400 p-2 rounded-full bg-blue-400/10">
+                      <HelpCircle className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-2xl font-light tracking-tighter text-blue-300">
+                        {questionStats.notVisited}
+                      </p>
+                      <p className="text-sm font-light tracking-tight text-gray-400">
+                        Not Answered
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
+                    <div className="text-green-400 p-2 rounded-full bg-green-400/10">
+                      <CheckCircle2 className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-2xl font-light tracking-tighter text-green-300">
+                        {questionStats.answered}
+                      </p>
+                      <p className="text-sm font-light tracking-tight text-gray-400">
+                        Answered
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
+                    <div className="text-yellow-400 p-2 rounded-full bg-yellow-400/10">
+                      <Flag className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-2xl font-light tracking-tighter text-yellow-300">
+                        {questionStats.markedForReview}
+                      </p>
+                      <p className="text-sm font-light tracking-tight text-gray-400">
+                        For Review
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <p className="text-2xl font-light tracking-tighter text-blue-300">{questionStats.notVisited}</p>
-                <p className="text-sm font-light tracking-tight text-gray-400">Not Answered</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
-              <div className="text-green-400 p-2 rounded-full bg-green-400/10">
-                <CheckCircle2 className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-2xl font-light tracking-tighter text-green-300">{questionStats.answered}</p>
-                <p className="text-sm font-light tracking-tight text-gray-400">Answered</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
-              <div className="text-yellow-400 p-2 rounded-full bg-yellow-400/10">
-                <Flag className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-2xl font-light tracking-tighter text-yellow-300">{questionStats.markedForReview}</p>
-                <p className="text-sm font-light tracking-tight text-gray-400">For Review</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+            </CardContent>
+          </Card>
+
           {paginatedQuestions.length > 0 ? (
             <>
               {paginatedQuestions.map((question, index) => (
@@ -1031,24 +1117,24 @@ const QuestionBankContent: React.FC = () => {
                       payload: { ...state.numericalAnswers, [questionId]: value },
                     })
                   }
-                  handleMarkschemeToggle={() =>
+                  handleMarkschemeToggle={(qId) =>
                     dispatch({
                       type: "SET_SHOW_MARKSCHEME",
                       payload: {
                         ...state.showMarkscheme,
-                        [question.questionId]: !state.showMarkscheme[question.questionId],
+                        [qId]: !state.showMarkscheme[qId],
                       },
                     })
                   }
                   handleMarkForReview={handleMarkForReview}
                   handleMarkComplete={handleMarkComplete}
-                  isMarkedForReview={question.reviewed}
-                  isMarkedComplete={question.completed}
+                  isMarkedForReview={question.reviewed || false}
+                  isMarkedComplete={question.completed || false}
                   markschemesDisabled={false}
                   note={state.notes[question.questionId] || ""}
                   handleNoteChange={handleNoteChange}
                   handleDeleteNote={handleDeleteNote}
-                  userId={session?.user?.id || ''}
+                  userId={session?.user?.id || ""}
                   totalQuestions={filteredQuestions.length}
                   currentQuestionIndex={index + (state.currentPage - 1) * PAGE_SIZE}
                   handleQuestionChange={handleNavigatorClick}
@@ -1075,4 +1161,4 @@ async function fetchData(url: string) {
   return await response.json()
 }
 
-export default QuestionBankContent;
+export default QuestionBankContent
