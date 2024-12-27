@@ -64,18 +64,20 @@ enum QuestionStatus {
 }
 
 //
-// 2) Broaden 'type' and include missing fields like 'exam', 'markscheme'.
-//    Make them optional so TS won't complain if they're undefined.
+// 2) Broaden 'type' and include missing fields. Make them optional so TS won't complain.
 //
 type QuestionTypeString = "Multiple Choice" | "Numerical" | string
 
+//
+// 3) This matches the shape we pass to <Question>, ensuring 'options?: string[]'
+//
 interface QuestionType {
   id: number
   questionId?: string
 
   // Potentially undefined fields
   text?: string
-  options?: string[]
+  options?: string[]     // <--- strictly an array of strings
   markscheme?: string
   correctOption?: string
   diagramUrl?: string
@@ -95,7 +97,7 @@ interface QuestionType {
 }
 
 //
-// 3) Local CommentType if you handle comments
+// 4) Local CommentType if you handle comments
 //
 interface CommentType {
   id: string
@@ -110,7 +112,7 @@ interface CommentType {
 }
 
 //
-// 4) Props for this Question component
+// 5) Props for this Question component
 //
 interface QuestionProps {
   question: QuestionType
@@ -206,7 +208,7 @@ export default function Question({
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
-  // If you fetch notes from server, guard question.questionId:
+  // If you fetch notes from server, e.g. /api/notes/:questionId
   useEffect(() => {
     const fetchNote = async () => {
       if (!question.questionId) return
@@ -240,7 +242,9 @@ export default function Question({
     trackMouse: true,
   })
 
+  //
   // Tag logic
+  //
   const handleAddTag = () => {
     if (newTag && !localCustomTags.includes(newTag)) {
       setLocalCustomTags([...localCustomTags, newTag])
@@ -252,7 +256,9 @@ export default function Question({
     setLocalCustomTags(localCustomTags.filter((tag) => tag !== tagToRemove))
   }
 
+  //
   // Mark complete / review
+  //
   const handleMarkCompleteLocal = async () => {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId)
@@ -261,7 +267,10 @@ export default function Question({
       description: `You have completed question #${question.id}`,
       duration: 5000,
       action: (
-        <ToastAction onClick={() => undoMarkComplete(question.questionId ?? "")} altText="Undo">
+        <ToastAction
+          onClick={() => undoMarkComplete(question.questionId ?? "")}
+          altText="Undo"
+        >
           Undo
         </ToastAction>
       ),
@@ -276,7 +285,10 @@ export default function Question({
       description: `You have flagged question #${question.id} for review.`,
       duration: 5000,
       action: (
-        <ToastAction onClick={() => undoMarkForReview(question.questionId ?? "")} altText="Undo">
+        <ToastAction
+          onClick={() => undoMarkForReview(question.questionId ?? "")}
+          altText="Undo"
+        >
           Undo
         </ToastAction>
       ),
@@ -293,12 +305,14 @@ export default function Question({
     dismiss()
   }
 
+  //
   // Handling multiple choice
-  // *** NOTE the fallback: question.questionId ?? "", question.correctOption ?? "N/A" ***
+  //
   const handleOptionClickLocal = (option: string) => {
     if (!question.questionId) return
     if (localSelectedOption !== option) {
       setLocalSelectedOption(option)
+      // Provide fallback if correctOption is undefined
       handleOptionClick(
         question.questionId ?? "",
         option,
@@ -308,8 +322,9 @@ export default function Question({
     }
   }
 
+  //
   // Handling numeric
-  // *** NOTE the fallback: question.questionId ?? "", question.correctOption ?? "N/A" ***
+  //
   const handleNumericalSubmitLocal = () => {
     if (!question.questionId) return
     handleNumericalSubmit(
@@ -320,7 +335,9 @@ export default function Question({
     updatePoints(numericalAnswer === question.correctOption)
   }
 
+  //
   // Points & streak
+  //
   const updatePoints = (isCorrect: boolean) => {
     if (isCorrect) {
       setPoints((prev) => prev + 10)
@@ -337,7 +354,9 @@ export default function Question({
     }
   }
 
+  //
   // Notes
+  //
   const saveNote = async () => {
     if (!question.questionId) return
     try {
@@ -396,7 +415,9 @@ export default function Question({
     }
   }
 
-  // Comments (dummy local logic)
+  //
+  // Comments (dummy local logic for demonstration)
+  //
   const handleAddComment = () => {
     if (newComment.trim()) {
       const newCommentObj: CommentType = {
@@ -503,6 +524,9 @@ export default function Question({
     }
   })
 
+  //
+  // Renders a single Comment + any replies
+  //
   const renderComment = (comment: CommentType, isReply = false, depth = 0) => (
     <div
       key={comment.id}
@@ -522,7 +546,9 @@ export default function Question({
             </Avatar>
             <div>
               <p className="font-semibold">{comment.username}</p>
-              <p className="text-sm text-gray-500">{new Date(comment.timestamp).toLocaleString()}</p>
+              <p className="text-sm text-gray-500">
+                {new Date(comment.timestamp).toLocaleString()}
+              </p>
             </div>
           </div>
           {editingCommentId === comment.id ? (
@@ -536,7 +562,10 @@ export default function Question({
                 <Button onClick={() => handleEditComment(comment.id, editedCommentContent)}>
                   Save
                 </Button>
-                <Button variant="outline" onClick={() => setEditingCommentId(null)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setEditingCommentId(null)}
+                >
                   Cancel
                 </Button>
               </div>
@@ -634,13 +663,14 @@ export default function Question({
 
   return (
     <TooltipProvider>
+      {/* Use an ID so the question navigator can scroll into view */}
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
         <Card className="w-full overflow-hidden mb-6">
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
+                {/* Using question.id for numbering */}
                 <CardTitle className="font-normal text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-                  {/* Using question.id for numbering */}
                   Question #{question.id}
                 </CardTitle>
                 {/* Subject, difficulty, etc. if present */}
@@ -743,8 +773,10 @@ export default function Question({
               </div>
             </div>
           </CardHeader>
+
           <CardContent>
             <div className="mb-6">
+              {/* If there's a diagram URL, show it */}
               {question.diagramUrl && question.diagramUrl !== "" && (
                 <div className="relative w-64 h-64 mb-4 mx-auto">
                   <Image
@@ -756,7 +788,7 @@ export default function Question({
                   />
                 </div>
               )}
-              {/* Render the question text with MathRenderer */}
+              {/* Render question.text with LaTeX */}
               <p className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7">
                 <MathRenderer text={question.text ?? ""} />
               </p>
@@ -790,6 +822,7 @@ export default function Question({
             {question.type === "Multiple Choice" && (
               <div className="space-y-2 mb-4">
                 {question.options?.map((option, index) => {
+                  // We'll label them A, B, C, etc.
                   const letter = String.fromCharCode(65 + index)
                   const isSelected = localSelectedOption === letter
                   const isFeedbackActive = isSelected && feedback
@@ -810,6 +843,7 @@ export default function Question({
                           <span className="mr-2">{letter}.</span>
                           <div className="font-serif">
                             {option.startsWith("http") ? (
+                              // If the option is actually an image link
                               <div className="relative w-full h-64">
                                 <Image
                                   src={option}
@@ -820,7 +854,8 @@ export default function Question({
                                 />
                               </div>
                             ) : (
-                              <MathRenderer text={option ?? ""} />
+                              // Else parse as LaTeX text
+                              <MathRenderer text={option} />
                             )}
                           </div>
                         </Button>
@@ -832,7 +867,7 @@ export default function Question({
               </div>
             )}
 
-            {/* Feedback: correct/incorrect message */}
+            {/* Show feedback: correct/incorrect */}
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
@@ -851,7 +886,7 @@ export default function Question({
               </div>
             )}
 
-            {/* Show Markscheme button if user selected an option & markscheme is enabled */}
+            {/* Markscheme button if user selected an option & markscheme is enabled */}
             {localSelectedOption && markschemeEnabled && (
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -899,13 +934,15 @@ export default function Question({
             </div>
           </CardContent>
 
-          {/* Notes interface */}
+          {/* Notes panel */}
           {showNotes && (
             <CardContent>
               <Card>
                 <CardHeader>
                   <CardTitle>Notes</CardTitle>
-                  <CardDescription>Add your notes for this question here.</CardDescription>
+                  <CardDescription>
+                    Add your notes for this question here.
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <Tiptap
@@ -920,7 +957,11 @@ export default function Question({
                   <Button variant="outline" onClick={saveNote}>
                     Save Note
                   </Button>
-                  <Button variant="destructive" onClick={deleteNote} disabled={!noteId}>
+                  <Button
+                    variant="destructive"
+                    onClick={deleteNote}
+                    disabled={!noteId}
+                  >
                     Delete Note
                   </Button>
                 </CardFooter>
@@ -928,7 +969,7 @@ export default function Question({
             </CardContent>
           )}
 
-          {/* AI assistant */}
+          {/* AI panel */}
           {showAI && (
             <CardContent>
               <Card>
@@ -952,7 +993,7 @@ export default function Question({
             </CardContent>
           )}
 
-          {/* Comments toggle at bottom */}
+          {/* Comments toggle */}
           <CardFooter className="flex justify-between">
             <div className="flex items-center space-x-2">
               <Tooltip>
@@ -973,7 +1014,7 @@ export default function Question({
           </CardFooter>
         </Card>
 
-        {/* Comments section (dummy UI) */}
+        {/* Comments section */}
         {showComments && (
           <Card className="mt-6">
             <CardHeader>
@@ -1017,7 +1058,7 @@ export default function Question({
           </Card>
         )}
 
-        {/* Markscheme modal if user toggles it */}
+        {/* Markscheme modal */}
         <AnimatePresence>
           {showMarkschemeModal && (
             <motion.div

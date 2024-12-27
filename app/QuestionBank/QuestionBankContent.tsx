@@ -46,25 +46,33 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Progress } from "@/components/ui/progress"
 import { motion, AnimatePresence } from "framer-motion"
 
+//
+// Pagination constant
+//
 const PAGE_SIZE = 10
 
+//
+// Enum for question status
+//
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
   ARCHIVED = "ARCHIVED",
 }
 
-// We allow any string for `type` to avoid “string not assignable” errors:
+//
+// For question.type, allow any string plus a couple known ones:
+//
 type QuestionTypeString = "Multiple Choice" | "Numerical" | string
 
-/**
- * IMPORTANT: We need an `id: number` field here because our Question component
- * (in Question.tsx) requires `question.id` to be present.
- */
+//
+// The main QuestionType interface, including an 'id' for <Question>:
+//
 interface QuestionType {
-  id: number                   // <--- Newly added to match Question.tsx requirement
+  id: number                   // REQUIRED for <Question> numbering
   questionId: string
   text: string
+
   subject?: string
   topic?: string
   subtopic?: string
@@ -73,7 +81,7 @@ interface QuestionType {
   year?: number
   reviewed?: boolean
   completed?: boolean
-  options?: string[]
+  options?: string[]           // Flattened MCQ options
   correctOption?: string
   markscheme?: string
   notes?: string
@@ -81,7 +89,7 @@ interface QuestionType {
   diagramUrl?: string
   status?: QuestionStatus
 
-  // Additional fields from your updated Prisma schema:
+  // Additional schema fields:
   exam?: string
   examGroup?: string
   country?: string
@@ -130,12 +138,14 @@ interface QuestionType {
   updatedAt?: string
 }
 
+//
+// Additional interfaces for user answers and performance
+//
 interface UserAnswer {
   questionId: string
   selectedOption: string
   isCorrect: boolean
 }
-
 interface UserPerformance {
   questionId: string
   correctAnswers: number
@@ -156,6 +166,9 @@ interface UserPerformance {
   reviewed: boolean
 }
 
+//
+// Filter structure
+//
 type FiltersType = {
   exams: string[]
   subjects: string[]
@@ -167,6 +180,9 @@ type FiltersType = {
   status: string
 }
 
+//
+// State shape
+//
 type StateType = {
   questions: QuestionType[]
   filters: FiltersType
@@ -189,6 +205,9 @@ type StateType = {
   currentPage: number
 }
 
+//
+// Actions for our reducer
+//
 type ActionType =
   | { type: "SET_QUESTIONS"; payload: QuestionType[] }
   | { type: "SET_FILTERS"; payload: FiltersType }
@@ -202,6 +221,9 @@ type ActionType =
   | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_CURRENT_PAGE"; payload: number }
 
+//
+// Our initialState
+//
 const initialState: StateType = {
   questions: [],
   filters: {
@@ -233,6 +255,9 @@ const initialState: StateType = {
   currentPage: 1,
 }
 
+//
+// Our reducer
+//
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_QUESTIONS":
@@ -265,6 +290,9 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
+//
+// A fun little StatusCard (optional)
+//
 const StatusCard = ({
   icon,
   label,
@@ -315,6 +343,9 @@ const StatusCard = ({
   )
 }
 
+//
+// A simple Pagination component
+//
 const Pagination: React.FC<{
   currentPage: number
   totalPages: number
@@ -350,11 +381,7 @@ const Pagination: React.FC<{
       {totalPages > 5 && currentPage < totalPages - 2 && (
         <>
           <span className="text-gray-500">...</span>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => onPageChange(totalPages)}
-          >
+          <Button variant="outline" size="icon" onClick={() => onPageChange(totalPages)}>
             {totalPages}
           </Button>
         </>
@@ -372,6 +399,9 @@ const Pagination: React.FC<{
   )
 }
 
+//
+// A banner for guests, if you want it
+//
 const GuestBanner: React.FC = () => {
   return (
     <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
@@ -401,16 +431,22 @@ const GuestBanner: React.FC = () => {
   )
 }
 
+//
+// The main QuestionBankContent component
+//
 const QuestionBankContent: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { data: session, status } = useSession()
   const { toast } = useToast()
-  const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
 
+  //
+  // fetchAllData: load questions + user data, unify them
+  //
   const fetchAllData = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
 
     try {
+      // 1) We fetch all relevant data in parallel
       const [questionsData, userProgressData, userAnswersData, userPerformanceData] =
         await Promise.all([
           fetchData("/api/questions"),
@@ -423,35 +459,30 @@ const QuestionBankContent: React.FC = () => {
       const selectedOptions: Record<string, string> = {}
       const notes: Record<string, string> = {}
 
-      /**
-       * We generate an `id` for each question to match the `Question` component’s required `id`.
-       * For example, use `index + 1` or parseInt(question.questionId).
-       */
+      // 2) Merge them, generating an `id` for each question
       const mergedQuestions: QuestionType[] = questionsData.map(
-        (question: Omit<QuestionType, "id">, index: number) => {
-          // If you prefer, you could parse the questionId to a number:
-          // const numericId = parseInt(question.questionId, 10) || index + 1
-          // We'll keep it simple here and just do index + 1:
+        (q: Omit<QuestionType, "id">, index: number) => {
+          // If questionId is numeric, parse it. Otherwise do index+1
           const forcedId = index + 1
 
           const progress = userProgressData.find(
-            (p: any) => p.questionId === question.questionId
+            (p: any) => p.questionId === q.questionId
           )
           const userAnswer = userAnswersData.find(
-            (a: UserAnswer) => a.questionId === question.questionId
+            (a: UserAnswer) => a.questionId === q.questionId
           )
           const performance = userPerformanceData.find(
-            (p: UserPerformance) => p.questionId === question.questionId
+            (p: UserPerformance) => p.questionId === q.questionId
           )
 
           if (userAnswer) {
-            selectedOptions[question.questionId] = userAnswer.selectedOption
-            feedback[question.questionId] = userAnswer.isCorrect ? "correct" : "incorrect"
+            selectedOptions[q.questionId] = userAnswer.selectedOption
+            feedback[q.questionId] = userAnswer.isCorrect ? "correct" : "incorrect"
           }
 
           return {
-            ...question,
-            id: forcedId, // <--- inject our forced ID here
+            ...q,
+            id: forcedId,
             reviewed: performance?.reviewed ?? progress?.reviewed ?? false,
             completed: performance?.completed ?? progress?.completed ?? false,
             lastAttempted: progress?.lastAttempted ?? "",
@@ -459,9 +490,10 @@ const QuestionBankContent: React.FC = () => {
         }
       )
 
-      // Sort by numeric ID or by questionId
+      // 3) Sort them, e.g. by .id
       mergedQuestions.sort((a, b) => a.id - b.id)
 
+      // 4) Update state
       dispatch({ type: "SET_QUESTIONS", payload: mergedQuestions })
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: selectedOptions })
       dispatch({ type: "SET_FEEDBACK", payload: feedback })
@@ -478,12 +510,18 @@ const QuestionBankContent: React.FC = () => {
     }
   }, [toast])
 
+  //
+  // If user is authenticated, fetch data on mount
+  //
   useEffect(() => {
     if (status === "authenticated") {
       fetchAllData()
     }
   }, [fetchAllData, status])
 
+  //
+  // Filter & search
+  //
   const filteredQuestions = useMemo(() => {
     const searchQuery = state.searchQuery.toLowerCase()
     return state.questions.filter((question) => {
@@ -518,16 +556,25 @@ const QuestionBankContent: React.FC = () => {
     })
   }, [state.questions, state.filters, state.searchQuery])
 
+  //
+  // Pagination
+  //
   const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
   const paginatedQuestions = useMemo(() => {
     const startIndex = (state.currentPage - 1) * PAGE_SIZE
     return filteredQuestions.slice(startIndex, startIndex + PAGE_SIZE)
   }, [filteredQuestions, state.currentPage])
 
+  //
+  // Page change
+  //
   const handlePageChange = useCallback((page: number) => {
     dispatch({ type: "SET_CURRENT_PAGE", payload: page })
   }, [])
 
+  //
+  // Filter changes
+  //
   const handleFilterChange = useCallback(
     (tag: keyof FiltersType, value: string) => {
       const filterValues = state.filters[tag]
@@ -561,6 +608,9 @@ const QuestionBankContent: React.FC = () => {
     [state.filters, state.questions]
   )
 
+  //
+  // Performance updates (mark complete, review, etc.)
+  //
   const updateUserPerformance = useCallback(
     async (questionId: string, updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>) => {
       try {
@@ -627,6 +677,9 @@ const QuestionBankContent: React.FC = () => {
     [updateUserPerformance, state.questions]
   )
 
+  //
+  // The actual MCQ logic:
+  //
   const handleOptionClick = useCallback(
     async (questionId: string, option: string, correctOption: string) => {
       const isCorrect = option === correctOption
@@ -665,6 +718,9 @@ const QuestionBankContent: React.FC = () => {
     [saveUserAnswer, updateUserPerformance, state.feedback, state.selectedOptions, state.questions]
   )
 
+  //
+  // Numeric logic:
+  //
   const handleNumericalSubmit = useCallback(
     async (questionId: string, userAnswer: string, correctAnswer: string) => {
       const isCorrect = userAnswer === correctAnswer
@@ -697,6 +753,17 @@ const QuestionBankContent: React.FC = () => {
     [saveUserAnswer, updateUserPerformance, state.feedback, state.questions]
   )
 
+  const handleNumericalChange = useCallback(
+    (questionId: string, value: string) => {
+      const newNumbers = { ...state.numericalAnswers, [questionId]: value }
+      dispatch({ type: "SET_NUMERICAL_ANSWERS", payload: newNumbers })
+    },
+    [state.numericalAnswers]
+  )
+
+  //
+  // Notes
+  //
   const handleNoteChange = useCallback(
     async (questionId: string, note: string) => {
       const newNotes = { ...state.notes, [questionId]: note }
@@ -735,6 +802,10 @@ const QuestionBankContent: React.FC = () => {
     [state.notes]
   )
 
+  //
+  // Navigator
+  //
+  const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
   const handleNavigatorClick = useCallback(
     (index: number) => {
       const newPage = Math.floor(index / PAGE_SIZE) + 1
@@ -752,6 +823,9 @@ const QuestionBankContent: React.FC = () => {
     [filteredQuestions]
   )
 
+  //
+  // Question stats
+  //
   const questionStats = useMemo(() => {
     const stats = {
       notVisited: 0,
@@ -773,6 +847,9 @@ const QuestionBankContent: React.FC = () => {
     return stats
   }, [filteredQuestions])
 
+  //
+  // Loader states
+  //
   if (status === "loading" || state.loading) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -821,6 +898,9 @@ const QuestionBankContent: React.FC = () => {
     )
   }
 
+  //
+  // Final render
+  //
   return (
     <TooltipProvider>
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -923,9 +1003,6 @@ const QuestionBankContent: React.FC = () => {
                             type="text"
                             placeholder={`Search ${filterType}...`}
                             className="mb-2"
-                            onChange={() => {
-                              // Optional search logic
-                            }}
                           />
                           <div className="max-h-60 overflow-y-auto">
                             {Array.from(
@@ -933,10 +1010,8 @@ const QuestionBankContent: React.FC = () => {
                                 state.questions
                                   .filter(
                                     (q) =>
-                                      // If no exam filter or the question’s exam is in that filter
                                       !state.filters.exams.length ||
                                       (q.exam && state.filters.exams.includes(q.exam)) ||
-                                      // If we’re enumerating “exams”, just let them pass
                                       filterType === "exams"
                                   )
                                   .map((q) => {
@@ -959,7 +1034,6 @@ const QuestionBankContent: React.FC = () => {
                                         return ""
                                     }
                                   })
-                                  // .filter(Boolean) removes empty or undefined
                                   .filter(Boolean) as string[]
                               )
                             ).map((value) => (
@@ -973,7 +1047,9 @@ const QuestionBankContent: React.FC = () => {
                                       value
                                     )
                                   }
-                                  onChange={() => handleFilterChange(filterType as keyof FiltersType, value)}
+                                  onChange={() =>
+                                    handleFilterChange(filterType as keyof FiltersType, value)
+                                  }
                                 />
                                 <label
                                   htmlFor={`${filterType}-${value}`}
@@ -1155,6 +1231,9 @@ const QuestionBankContent: React.FC = () => {
   )
 }
 
+//
+// Simple fetch helper
+//
 async function fetchData(url: string) {
   const response = await fetch(url)
   if (!response.ok) throw new Error(`Failed to fetch data from ${url}`)
