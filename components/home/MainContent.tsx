@@ -4,16 +4,23 @@ import React, { useState } from "react";
 import Question from "@/components/shared/Question";
 import sampleQuestions from "@/components/shared/sampleQuestions.json";
 
+//
+// 1) Updated QuestionType to match <Question> requirements:
+//    - year?: number (instead of string)
+//    - id: number for internal numbering
+//    - options?: string[] ensures no `undefined` in the array
+//
 interface QuestionType {
-  exam: string;
-  questionId: string;
-  text: string;
-  subject: string;
-  topic: string;
-  subtopic: string;
-  difficulty: string;
-  type: "Multiple Choice" | "Numerical";
-  year: string;
+  id: number;
+  exam?: string;
+  questionId?: string;
+  text?: string;
+  subject?: string;
+  topic?: string;
+  subtopic?: string;
+  difficulty?: string;
+  type?: "Multiple Choice" | "Numerical" | string;
+  year?: number;              // Was string before, now number
   reviewed: boolean;
   completed: boolean;
   options?: string[];
@@ -21,37 +28,43 @@ interface QuestionType {
   markscheme?: string;
 }
 
-const MainContent: React.FC = () => {
-  const [questions, setQuestions] = useState<QuestionType[]>(sampleQuestions as QuestionType[]);
+export default function MainContent() {
+  //
+  // 2) Transform sampleQuestions so year => number, add id, filter out undefined from options
+  //
+  const initialQuestions: QuestionType[] = (sampleQuestions as any[]).map((q, i) => ({
+    ...q,
+    id: i + 1, // Provide numeric ID
+    year: q.year ? parseInt(q.year, 10) : undefined,
+    options: q.options
+      ? q.options.filter((opt: string | undefined): opt is string => !!opt)
+      : undefined,
+  }));
+
+  const [questions, setQuestions] = useState<QuestionType[]>(initialQuestions);
+
   const [feedback, setFeedback] = useState<Record<string, string>>({});
   const [numericalAnswers, setNumericalAnswers] = useState<Record<string, string>>({});
   const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
 
   const handleOptionClick = (questionId: string, option: string, correctOption: string) => {
+    // If user clicks the same option again, de-select it
     if (selectedOptions[questionId] === option) {
-      setSelectedOptions({
-        ...selectedOptions,
-        [questionId]: ''
-      });
-      setFeedback({
-        ...feedback,
-        [questionId]: '',
-      });
+      setSelectedOptions((prev) => ({ ...prev, [questionId]: "" }));
+      setFeedback((prev) => ({ ...prev, [questionId]: "" }));
       setQuestions((prevQuestions) =>
         prevQuestions.map((q) =>
           q.questionId === questionId ? { ...q, completed: false } : q
         )
       );
     } else {
-      setSelectedOptions({
-        ...selectedOptions,
-        [questionId]: option
-      });
-      setFeedback({
-        ...feedback,
-        [questionId]: option === correctOption ? 'correct' : 'incorrect',
-      });
+      // Otherwise, select this option
+      setSelectedOptions((prev) => ({ ...prev, [questionId]: option }));
+      setFeedback((prev) => ({
+        ...prev,
+        [questionId]: option === correctOption ? "correct" : "incorrect",
+      }));
       setQuestions((prevQuestions) =>
         prevQuestions.map((q) =>
           q.questionId === questionId ? { ...q, completed: true } : q
@@ -60,18 +73,19 @@ const MainContent: React.FC = () => {
     }
   };
 
-  const handleNumericalSubmit = (questionId: string, userAnswer: string, correctAnswer: string) => {
-    setFeedback({
-      ...feedback,
-      [questionId]: userAnswer === correctAnswer ? 'correct' : 'incorrect',
-    });
+  const handleNumericalSubmit = (
+    questionId: string,
+    userAnswer: string,
+    correctAnswer: string
+  ) => {
+    setFeedback((prev) => ({
+      ...prev,
+      [questionId]: userAnswer === correctAnswer ? "correct" : "incorrect",
+    }));
   };
 
   const handleNumericalChange = (questionId: string, value: string) => {
-    setNumericalAnswers({
-      ...numericalAnswers,
-      [questionId]: value,
-    });
+    setNumericalAnswers((prev) => ({ ...prev, [questionId]: value }));
   };
 
   const handleMarkschemeToggle = (questionId: string) => {
@@ -97,8 +111,9 @@ const MainContent: React.FC = () => {
     );
   };
 
+  // Placeholder note deletion logic
   const handleDeleteNote = async (questionId: string): Promise<void> => {
-    return new Promise((resolve) => resolve());
+    return Promise.resolve();
   };
 
   return (
@@ -108,34 +123,32 @@ const MainContent: React.FC = () => {
           <Question
             key={question.questionId}
             question={question}
-            feedback={feedback[question.questionId]}
-            selectedOption={selectedOptions[question.questionId]} 
-            numericalAnswer={numericalAnswers[question.questionId]}
-            showMarkscheme={showMarkscheme[question.questionId]}
+            feedback={feedback[question.questionId ?? ""]}
+            selectedOption={selectedOptions[question.questionId ?? ""]}
+            numericalAnswer={numericalAnswers[question.questionId ?? ""]}
+            showMarkscheme={showMarkscheme[question.questionId ?? ""]}
             handleOptionClick={handleOptionClick}
             handleNumericalSubmit={handleNumericalSubmit}
             handleNumericalChange={handleNumericalChange}
             handleMarkschemeToggle={handleMarkschemeToggle}
-            handleMarkForReview={() => handleMarkForReview(question.questionId)}
-            handleMarkComplete={() => handleMarkComplete(question.questionId)}
+            handleMarkForReview={() => handleMarkForReview(question.questionId ?? "")}
+            handleMarkComplete={() => handleMarkComplete(question.questionId ?? "")}
             isMarkedForReview={question.reviewed}
             isMarkedComplete={question.completed}
             markschemesDisabled={false}
             note=""
             handleNoteChange={() => {}}
             handleDeleteNote={handleDeleteNote}
-            userId="user-id-placeholder" 
+            userId="user-id-placeholder"
             totalQuestions={questions.length}
             currentQuestionIndex={index}
             handleQuestionChange={(newIndex) => {
               console.log(`Navigating to question ${newIndex}`);
-              // Logic to handle question navigation (if needed)
+              // Add your question navigation logic here if needed
             }}
           />
         ))}
       </div>
     </div>
   );
-};
-
-export default MainContent;
+}
