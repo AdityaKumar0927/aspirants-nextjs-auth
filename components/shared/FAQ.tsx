@@ -52,27 +52,27 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="py-16 bg-white">
+    <section id="faq" className="py-16 bg-white dark:bg-dark-background">
       <div className="container mx-auto px-4 max-w-3xl">
-        <h2 className="text-3xl font-light tracking-tight text-center mb-2">
+        <h2 className="text-3xl font-light tracking-tight text-center mb-2 text-black dark:text-white">
           Still Got Questions?
         </h2>
-        <p className="text-lg text-center text-gray-500 mb-12 tracking-tight">
+        <p className="text-lg text-center text-gray-500 dark:text-gray-400 mb-12 tracking-tight">
           We&apos;ve got answers
         </p>
         
         {faqs.map((faq, idx) => (
           <div key={idx} className="mb-8">
-            <h3 className="text-lg font-normal text-gray-400 mb-4 tracking-tight">
+            <h3 className="text-lg font-normal text-gray-400 dark:text-gray-500 mb-4 tracking-tight">
               {faq.section}
             </h3>
-            <Accordion type="single" collapsible className="border-t border-gray-100">
+            <Accordion type="single" collapsible className="border-t border-gray-100 dark:border-gray-800">
               {faq.qa.map((item, itemIdx) => (
-                <AccordionItem key={itemIdx} value={item.question} className="border-b border-gray-100">
-                  <AccordionTrigger className="text-left py-4 hover:no-underline font-light tracking-tight">
+                <AccordionItem key={itemIdx} value={item.question} className="border-b border-gray-100 dark:border-gray-800">
+                  <AccordionTrigger className="text-left py-4 hover:no-underline font-light tracking-tight text-black dark:text-white">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="py-4 text-gray-500 font-light tracking-tight">
+                  <AccordionContent className="py-4 text-gray-500 dark:text-gray-400 font-light tracking-tight">
                     {item.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -81,7 +81,7 @@ export function FAQ() {
           </div>
         ))}
         
-        <p className="text-center text-sm text-gray-400 mt-12 tracking-tight">
+        <p className="text-center text-sm text-gray-400 dark:text-gray-500 mt-12 tracking-tight">
           Still have questions? Email us at{" "}
           <a href="mailto:contactus@aspirants.tech" className="text-blue-500 hover:underline">
             contactus@aspirants.tech
@@ -91,3 +91,4 @@ export function FAQ() {
     </section>
   )
 }
+

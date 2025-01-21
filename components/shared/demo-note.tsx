@@ -336,7 +336,7 @@ export default function DemoNoteComponent() {
             Reset
           </Button>
         </div>
-        <div className="p-4 border rounded-md min-h-[100px]">
+        <div className="p-4 border rounded-md min-h-[100px] bg-white dark:bg-gray-800 text-black dark:text-white">
           {transcript || "Your note will appear here..."}
         </div>
       </div>
@@ -344,19 +344,19 @@ export default function DemoNoteComponent() {
   }
 
   return (
-    <div className="flex min-h-screen w-full flex-col">
-      <header className="flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+    <div className="flex min-h-screen w-full flex-col bg-white dark:bg-gray-900 text-black dark:text-white">
+      <header className="flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6 dark:border-gray-700">
         <h1 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">My Notes</h1>
         <div className="flex-1" />
         <Input
-          className="w-[200px] md:w-[300px]"
+          className="w-[200px] md:w-[300px] bg-white dark:bg-gray-800 text-black dark:text-white"
           placeholder="Search notes..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </header>
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 overflow-auto">
-        <Card className="w-full md:w-[700px]">
+        <Card className="w-full md:w-[700px] bg-white dark:bg-gray-800">
           <CardHeader>
             <CardTitle>{editingNote ? "Edit Note" : "Create Note"}</CardTitle>
             <CardDescription>
@@ -380,7 +380,7 @@ export default function DemoNoteComponent() {
                     rules={{ required: "Title is required" }}
                     render={({ field, fieldState: { error } }) => (
                       <>
-                        <Input id="title" {...field} placeholder="Enter a title" />
+                        <Input id="title" {...field} placeholder="Enter a title" className="bg-white dark:bg-gray-700 text-black dark:text-white" />
                         {error && <span className="text-red-500 text-sm">{error.message}</span>}
                       </>
                     )}
@@ -389,16 +389,16 @@ export default function DemoNoteComponent() {
                 <div className="flex flex-col space-y-1.5">
                   <Label>Note Type</Label>
                   <Tabs value={noteType} onValueChange={(value) => setValue("type", value as NoteType)}>
-                    <TabsList>
-                      <TabsTrigger value="TEXT">Text</TabsTrigger>
-                      <TabsTrigger value="IMAGE">Image</TabsTrigger>
-                      <TabsTrigger value="STYLUS">Stylus</TabsTrigger>
-                      <TabsTrigger value="VOICE">Voice</TabsTrigger>
+                    <TabsList className="bg-gray-100 dark:bg-gray-700">
+                      <TabsTrigger value="TEXT" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-600">Text</TabsTrigger>
+                      <TabsTrigger value="IMAGE" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-600">Image</TabsTrigger>
+                      <TabsTrigger value="STYLUS" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-600">Stylus</TabsTrigger>
+                      <TabsTrigger value="VOICE" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-600">Voice</TabsTrigger>
                     </TabsList>
                     <TabsContent value="TEXT">
-                      <div className="border rounded-md p-4">
+                      <div className="border rounded-md p-4 bg-white dark:bg-gray-700">
                         <MenuBar editor={editor} />
-                        <EditorContent editor={editor} />
+                        <EditorContent editor={editor} className="prose dark:prose-invert" />
                       </div>
                     </TabsContent>
                     <TabsContent value="IMAGE">
@@ -416,14 +416,15 @@ export default function DemoNoteComponent() {
                             reader.readAsDataURL(file)
                           }
                         }}
+                        className="bg-white dark:bg-gray-700 text-black dark:text-white"
                       />
                     </TabsContent>
                     <TabsContent value="STYLUS">
                       <Dialog>
                         <DialogTrigger asChild>
-                          <Button variant="outline">Open Drawing Canvas</Button>
+                          <Button variant="outline" className="bg-white dark:bg-gray-700 text-black dark:text-white">Open Drawing Canvas</Button>
                         </DialogTrigger>
-                        <DialogContent className="sm:max-w-[800px] backdrop-blur-sm bg-opacity-50">
+                        <DialogContent className="sm:max-w-[800px] backdrop-blur-sm bg-white dark:bg-gray-800 bg-opacity-50">
                           <DialogHeader>
                             <DialogTitle>Drawing Canvas</DialogTitle>
                             <DialogDescription>Use your stylus or mouse to draw a note.</DialogDescription>
@@ -455,7 +456,7 @@ export default function DemoNoteComponent() {
                                 onChange={(e) => setPenSize(parseInt(e.target.value))}
                                 className="w-32"
                               />
-                              <Button variant="outline" onClick={clearCanvas}>
+                              <Button variant="outline" onClick={clearCanvas} className="bg-white dark:bg-gray-700 text-black dark:text-white">
                                 <EraserIcon className="h-4 w-4 mr-2" />
                                 Clear
                               </Button>
@@ -471,7 +472,7 @@ export default function DemoNoteComponent() {
                               onTouchStart={startDrawing}
                               onTouchEnd={stopDrawing}
                               onTouchMove={draw}
-                              className="border border-gray-300 rounded-lg touch-none"
+                              className="border border-gray-300 dark:border-gray-600 rounded-lg touch-none bg-white"
                             />
                           </div>
                         </DialogContent>
@@ -484,7 +485,7 @@ export default function DemoNoteComponent() {
                 </div>
               </div>
               <div className="mt-4 flex justify-between">
-                <Button type="submit" disabled={isLoading}>
+                <Button type="submit" disabled={isLoading} className="bg-blue-500 hover:bg-blue-600 text-white">
                   {isLoading ? (
                     <>
                       <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
@@ -506,6 +507,7 @@ export default function DemoNoteComponent() {
                         description: "You've cancelled editing. The note remains unchanged.",
                       })
                     }}
+                    className="bg-white dark:bg-gray-700 text-black dark:text-white"
                   >
                     Cancel Edit
                   </Button>
@@ -525,17 +527,17 @@ export default function DemoNoteComponent() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                 >
-                  <Card>
+                  <Card className="bg-white dark:bg-gray-800">
                     <CardHeader>
-                      <Skeleton className="h-5 w-1/2" />
+                      <Skeleton className="h-5 w-1/2 bg-gray-200 dark:bg-gray-700" />
                     </CardHeader>
                     <CardContent>
-                      <Skeleton className="h-4 w-full mb-2" />
-                      <Skeleton className="h-4 w-2/3" />
+                      <Skeleton className="h-4 w-full mb-2 bg-gray-200 dark:bg-gray-700" />
+                      <Skeleton className="h-4 w-2/3 bg-gray-200 dark:bg-gray-700" />
                     </CardContent>
                     <CardFooter>
-                      <Skeleton className="h-9 w-20 mr-2" />
-                      <Skeleton className="h-9 w-20" />
+                      <Skeleton className="h-9 w-20 mr-2 bg-gray-200 dark:bg-gray-700" />
+                      <Skeleton className="h-9 w-20 bg-gray-200 dark:bg-gray-700" />
                     </CardFooter>
                   </Card>
                 </motion.div>
@@ -553,7 +555,7 @@ export default function DemoNoteComponent() {
             ) : (
               filteredNotes.map((note) => (
                 <motion.div key={note.id} layout initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}>
-                  <Card>
+                  <Card className="bg-white dark:bg-gray-800">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium">{note.title || "Untitled Note"}</CardTitle>
                       {note.type === "TEXT" && <Edit2Icon className="h-4 w-4 text-muted-foreground" />}
@@ -565,7 +567,7 @@ export default function DemoNoteComponent() {
                       {note.type === 'STYLUS' ? (
                         <img src={note.content} alt="Stylus note" className="w-full h-auto" />
                       ) : note.type === 'TEXT' ? (
-                        <div dangerouslySetInnerHTML={{ __html: note.content }} className="prose max-w-none" />
+                        <div dangerouslySetInnerHTML={{ __html: note.content }} className="prose dark:prose-invert max-w-none" />
                       ) : note.type === 'IMAGE' ? (
                         <img src={note.content} alt="Note image" className="w-full h-auto" />
                       ) : (
@@ -574,7 +576,7 @@ export default function DemoNoteComponent() {
                       <p className="text-xs text-muted-foreground mt-2">{new Date(note.updatedAt).toLocaleString()}</p>
                     </CardContent>
                     <CardFooter className="flex justify-between">
-                      <Button variant="outline" size="sm" onClick={() => handleEdit(note)}>
+                      <Button variant="outline" size="sm" onClick={() => handleEdit(note)} className="bg-white dark:bg-gray-700 text-black dark:text-white">
                         Edit
                       </Button>
                       <Button 
@@ -584,6 +586,7 @@ export default function DemoNoteComponent() {
                           setNoteToDelete(note)
                           setIsDeleteModalOpen(true)
                         }}
+                        className="bg-white dark:bg-gray-700 text-black dark:text-white"
                       >
                         Delete
                       </Button>
@@ -604,10 +607,10 @@ export default function DemoNoteComponent() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full"
+            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-md w-full"
           >
-            <h2 className="text-xl font-bold mb-4">Confirm Deletion</h2>
-            <p className="mb-6">Are you sure you want to delete this note? This action cannot be undone.</p>
+            <h2 className="text-xl font-bold mb-4 text-black dark:text-white">Confirm Deletion</h2>
+            <p className="mb-6 text-gray-600 dark:text-gray-300">Are you sure you want to delete this note? This action cannot be undone.</p>
             <div className="flex justify-end space-x-4">
               <Button
                 variant="outline"
@@ -615,6 +618,7 @@ export default function DemoNoteComponent() {
                   setIsDeleteModalOpen(false)
                   setNoteToDelete(null)
                 }}
+                className="bg-white dark:bg-gray-700 text-black dark:text-white"
               >
                 Cancel
               </Button>
@@ -622,6 +626,7 @@ export default function DemoNoteComponent() {
                 variant="destructive"
                 onClick={() => deleteNote(noteToDelete)}
                 disabled={isLoading}
+                className="bg-red-500 hover:bg-red-600 text-white"
               >
                 {isLoading ? (
                   <>

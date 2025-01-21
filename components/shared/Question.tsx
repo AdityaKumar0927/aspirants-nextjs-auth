@@ -17,6 +17,7 @@ import {
   Reply,
   CornerDownRight,
   Flag,
+  ChevronDown,
 } from "lucide-react"
 import Image from "next/image"
 import Tiptap from "@/components/layout/Tiptap"
@@ -71,13 +72,16 @@ type QuestionTypeString = "Multiple Choice" | "Numerical" | string
 //
 // 3) This matches the shape we pass to <Question>, ensuring 'options?: string[]'
 //
+//    NOTE: we now include the new fields: difficultyRating, explanation, linkedResources,
+//    commonMistakes, discussionLink, updatedBy, peerSolvedPercentage, etc.
+//
 interface QuestionType {
   id: number
   questionId?: string
 
   // Potentially undefined fields
   text?: string
-  options?: string[]     // <--- strictly an array of strings
+  options?: string[]
   markscheme?: string
   correctOption?: string
   diagramUrl?: string
@@ -94,6 +98,29 @@ interface QuestionType {
 
   // Custom tags, etc.
   customTags?: string[]
+  customTag?: string  // from your schema
+
+  // New fields from schema:
+  explanation?: any
+  linkedResources?: any
+  commonMistakes?: any
+  discussionLink?: string
+  parentQuestionId?: number
+  difficultyRating?: number        // numeric rating for easy/medium/hard
+  peerSolvedPercentage?: number
+  updatedBy?: string
+  source?: string
+  updatedTime?: number
+
+  // Additional
+  isOutOfSyllabus?: boolean
+  isBonus?: boolean
+  marks?: number
+  negMarks?: number
+  correctAttempts?: string
+  wrongAttempts?: string
+  averageTimeTaken?: string
+  // And so on if needed...
 }
 
 //
@@ -142,8 +169,8 @@ interface QuestionProps {
 
   note: string
   handleNoteChange: (questionId: string, note: string) => void
-  userId: string
   handleDeleteNote: (questionId: string) => Promise<void>
+  userId: string
 
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
@@ -169,8 +196,8 @@ export default function Question({
   markschemesDisabled,
   note,
   handleNoteChange,
-  userId,
   handleDeleteNote,
+  userId,
   onNextQuestion,
   onPreviousQuestion,
   totalQuestions,
@@ -201,6 +228,11 @@ export default function Question({
   const [notesEnabled, setNotesEnabled] = useState(true)
   const [localNote, setLocalNote] = useState(note)
   const [noteId, setNoteId] = useState<string | null>(null)
+
+  // For handling difficulty rating updates
+  const [localDifficultyRating, setLocalDifficultyRating] = useState<number | undefined>(
+    question.difficultyRating
+  )
 
   const { toast, dismiss } = useToast()
 
@@ -234,7 +266,8 @@ export default function Question({
       }
     }
     fetchNote()
-  }, [question.questionId, handleNoteChange])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [question.questionId])
 
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
@@ -313,11 +346,7 @@ export default function Question({
     if (localSelectedOption !== option) {
       setLocalSelectedOption(option)
       // Provide fallback if correctOption is undefined
-      handleOptionClick(
-        question.questionId ?? "",
-        option,
-        question.correctOption ?? "N/A"
-      )
+      handleOptionClick(question.questionId ?? "", option, question.correctOption ?? "N/A")
       updatePoints(option === question.correctOption)
     }
   }
@@ -351,6 +380,44 @@ export default function Question({
       }
     } else {
       setStreak(0)
+    }
+  }
+
+  //
+  // Difficulty rating update
+  //
+  const handleDifficultyChange = async (newRating: number) => {
+    if (!question.questionId) return
+    setLocalDifficultyRating(newRating)
+
+    try {
+      // PATCH request to update question (including updatedBy from user)
+      const res = await fetch("/api/questions", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          questionId: question.questionId,
+          difficultyRating: newRating,
+          updatedBy: userId || "guest", // or session user id
+        }),
+      })
+      if (!res.ok) {
+        throw new Error("Failed to update difficulty rating")
+      }
+      const updated = await res.json()
+      toast({
+        title: "Difficulty Updated",
+        description: `Set question #${question.id} difficulty to ${
+          newRating === 1 ? "Easy" : newRating === 2 ? "Medium" : "Hard"
+        }.`,
+      })
+    } catch (error) {
+      console.error(error)
+      toast({
+        title: "Error",
+        description: "Could not update difficulty rating.",
+        variant: "destructive",
+      })
     }
   }
 
@@ -724,7 +791,7 @@ export default function Question({
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button variant="outline" onClick={handleAddTag} size="sm">
-                        <X className="mr-2 h-4 w-4" />
+                        <ChevronDown className="mr-2 h-4 w-4 rotate-90" />
                         Add
                       </Button>
                     </TooltipTrigger>
@@ -782,14 +849,14 @@ export default function Question({
                   <Image
                     src={question.diagramUrl}
                     alt={`Diagram for question #${question.id}`}
-                    layout="fill"
-                    objectFit="contain"
+                    fill
+                    style={{ objectFit: "contain" }}
                     className="rounded-md"
                   />
                 </div>
               )}
               {/* Render question.text with LaTeX */}
-              <p className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7">
+              <p className="text-gray-700 dark:text-white mb-4 text-base sm:text-lg md:text-xl leading-7">
                 <MathRenderer text={question.text ?? ""} />
               </p>
             </div>
@@ -848,8 +915,8 @@ export default function Question({
                                 <Image
                                   src={option}
                                   alt={`Option ${letter}`}
-                                  layout="fill"
-                                  objectFit="contain"
+                                  fill
+                                  style={{ objectFit: "contain" }}
                                   className="rounded-md"
                                 />
                               </div>
@@ -905,118 +972,143 @@ export default function Question({
               </Tooltip>
             )}
 
-            <div className="flex justify-end space-x-2 mt-4">
-              {/* Notes toggle */}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline" onClick={() => setShowNotes(!showNotes)}>
-                    <BookOpen className="mr-2 h-4 w-4" />
-                    {showNotes ? "Hide Notes" : "Take Notes"}
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  {showNotes ? "Hide note-taking interface" : "Open note-taking interface"}
-                </TooltipContent>
-              </Tooltip>
-
-              {/* AI toggle */}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline" onClick={() => setShowAI(!showAI)}>
-                    <LucideBot className="mr-2 h-4 w-4" />
-                    {showAI ? "Hide AI" : "AI Assistance"}
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  {showAI ? "Hide AI assistant" : "Get AI help"}
-                </TooltipContent>
-              </Tooltip>
+            {/* Difficulty Rating */}
+            <div className="flex items-center space-x-2 mt-4">
+              <Label className="text-sm text-gray-600">Difficulty:</Label>
+              <Select
+                value={
+                  localDifficultyRating === 1
+                    ? "easy"
+                    : localDifficultyRating === 2
+                    ? "medium"
+                    : localDifficultyRating === 3
+                    ? "hard"
+                    : ""
+                }
+                onValueChange={(val) => {
+                  let rating = 1
+                  if (val === "medium") rating = 2
+                  if (val === "hard") rating = 3
+                  handleDifficultyChange(rating)
+                }}
+              >
+                <SelectTrigger className="w-36">
+                  <SelectValue placeholder="Set difficulty" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="easy">Easy</SelectItem>
+                  <SelectItem value="medium">Medium</SelectItem>
+                  <SelectItem value="hard">Hard</SelectItem>
+                </SelectContent>
+              </Select>
+              {question.peerSolvedPercentage !== undefined && (
+                <p className="ml-4 text-sm text-gray-500">
+                  Peer Solved: {question.peerSolvedPercentage.toFixed(1)}%
+                </p>
+              )}
             </div>
           </CardContent>
 
-          {/* Notes panel */}
-          {showNotes && (
-            <CardContent>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Notes</CardTitle>
-                  <CardDescription>
-                    Add your notes for this question here.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Tiptap
-                    content={localNote}
-                    onUpdate={(content) => {
-                      setLocalNote(content)
-                      question.questionId && handleNoteChange(question.questionId, content)
-                    }}
-                  />
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                  <Button variant="outline" onClick={saveNote}>
-                    Save Note
-                  </Button>
-                  <Button
-                    variant="destructive"
-                    onClick={deleteNote}
-                    disabled={!noteId}
-                  >
-                    Delete Note
-                  </Button>
-                </CardFooter>
-              </Card>
-            </CardContent>
-          )}
+          <CardFooter className="flex justify-end space-x-2">
+            {/* Notes toggle */}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="outline" onClick={() => setShowNotes(!showNotes)}>
+                  <BookOpen className="mr-2 h-4 w-4" />
+                  {showNotes ? "Hide Notes" : "Take Notes"}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                {showNotes ? "Hide note-taking interface" : "Open note-taking interface"}
+              </TooltipContent>
+            </Tooltip>
 
-          {/* AI panel */}
-          {showAI && (
-            <CardContent>
-              <Card>
-                <CardHeader>
-                  <CardTitle>AI Assistant</CardTitle>
-                  <CardDescription>
-                    Ask for help or clarification on this question.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {question.questionId && (
-                    <Chat
-                      questionId={question.questionId}
-                      questionText={question.text ?? ""}
-                      options={question.options}
-                      markscheme={question.markscheme}
-                    />
-                  )}
-                </CardContent>
-              </Card>
-            </CardContent>
-          )}
+            {/* AI toggle */}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="outline" onClick={() => setShowAI(!showAI)}>
+                  <LucideBot className="mr-2 h-4 w-4" />
+                  {showAI ? "Hide AI" : "AI Assistance"}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                {showAI ? "Hide AI assistant" : "Get AI help"}
+              </TooltipContent>
+            </Tooltip>
 
-          {/* Comments toggle */}
-          <CardFooter className="flex justify-between">
-            <div className="flex items-center space-x-2">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline" onClick={() => setShowComments(!showComments)}>
-                    <MessageSquare className="mr-2 h-4 w-4" />
-                    {showComments ? "Hide Comments" : "Show Comments"}
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  {showComments ? "Hide comments" : "View and add comments"}
-                </TooltipContent>
-              </Tooltip>
-              <span className="text-sm text-gray-500">
-                {comments.length} comment{comments.length !== 1 && "s"}
-              </span>
-            </div>
+            {/* Comments toggle */}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="outline" onClick={() => setShowComments(!showComments)}>
+                  <MessageSquare className="mr-2 h-4 w-4" />
+                  {showComments ? "Hide Comments" : "Show Comments"}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                {showComments ? "Hide comments" : "View and add comments"}
+              </TooltipContent>
+            </Tooltip>
           </CardFooter>
         </Card>
 
+        {/* Notes panel */}
+        {showNotes && (
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle>Notes</CardTitle>
+              <CardDescription>
+                Add your notes for this question here.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Tiptap
+                content={localNote}
+                onUpdate={(content) => {
+                  setLocalNote(content)
+                  question.questionId && handleNoteChange(question.questionId, content)
+                }}
+              />
+            </CardContent>
+            <CardFooter className="flex justify-between">
+              <Button variant="outline" onClick={saveNote}>
+                Save Note
+              </Button>
+              <Button
+                variant="destructive"
+                onClick={deleteNote}
+                disabled={!noteId}
+              >
+                Delete Note
+              </Button>
+            </CardFooter>
+          </Card>
+        )}
+
+        {/* AI panel */}
+        {showAI && (
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle>AI Assistant</CardTitle>
+              <CardDescription>
+                Ask for help or clarification on this question.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              {question.questionId && (
+                <Chat
+                  questionId={question.questionId}
+                  questionText={question.text ?? ""}
+                  options={question.options}
+                  markscheme={question.markscheme}
+                />
+              )}
+            </CardContent>
+          </Card>
+        )}
+
         {/* Comments section */}
         {showComments && (
-          <Card className="mt-6">
+          <Card className="mb-6">
             <CardHeader>
               <CardTitle>Comments</CardTitle>
               <CardDescription>This is a dummy UI, comments are coming soon!</CardDescription>
@@ -1092,23 +1184,21 @@ export default function Question({
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-y-auto max-h-[60vh]">
-                    <p className="mb-2">
-                      {question.markscheme?.startsWith("http") ? (
-                        <div className="relative w-full h-64">
-                          <Image
-                            src={question.markscheme}
-                            alt="Markscheme image"
-                            layout="fill"
-                            objectFit="contain"
-                            className="rounded-md"
-                          />
-                        </div>
-                      ) : question.markscheme ? (
-                        <MathRenderer text={question.markscheme ?? ""} />
-                      ) : (
-                        "No answer available"
-                      )}
-                    </p>
+                    {question.markscheme?.startsWith("http") ? (
+                      <div className="relative w-full h-64">
+                        <Image
+                          src={question.markscheme}
+                          alt="Markscheme image"
+                          fill
+                          style={{ objectFit: "contain" }}
+                          className="rounded-md"
+                        />
+                      </div>
+                    ) : question.markscheme ? (
+                      <MathRenderer text={question.markscheme ?? ""} />
+                    ) : (
+                      "No answer available"
+                    )}
                   </div>
                 </CardContent>
               </Card>

@@ -1,4 +1,4 @@
-// app/(public)/layout.tsx
+import { ThemeProvider } from "next-themes";
 import "../globals.css";
 import cx from "classnames";
 import { sfPro, inter } from "../fonts";
@@ -13,31 +13,20 @@ import { UserPerformanceProvider } from "@/components/layout/UserPerformanceCont
 import Nav from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import Bar from '@/components/layout/Bar';
-import { getServerSession } from 'next-auth/next'; // Ensure this points to NextAuth setup
-import { authOptions } from "../api/auth/[...nextauth]/options";// Adjust the path based on your file structure
-import { cookies } from 'next/headers'; // Import cookies for server-side session management
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from "../api/auth/[...nextauth]/options";
 
 config.autoAddCss = false;
 
-// Function to get the user ID from the session
 const getUserId = async () => {
   try {
-    // Fetch the session using NextAuth's getServerSession with the defined options
     const session = await getServerSession(authOptions);
-
-    // Check if session exists and has a user with an ID
-    if (session && session.user && session.user.id) {
-      return session.user.id;
-    }
-
-    // Return null if the session does not contain a valid user ID
-    return null;
+    return session?.user?.id ?? null;
   } catch (error) {
     console.error('Error fetching user ID:', error);
     return null;
   }
 };
-
 
 export const metadata = {
   title: 'aspirants',
@@ -45,14 +34,11 @@ export const metadata = {
   metadataBase: new URL('https://aspirants.tech/'),
 };
 
-
 export default async function PublicLayout({ children }: { children: React.ReactNode }) {
-  // Fetch the user ID before rendering the component
   const userId = await getUserId();
 
-
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
@@ -66,7 +52,7 @@ export default async function PublicLayout({ children }: { children: React.React
             __html: `
               window.MathJax = {
                 tex: {
-                  inlineMath: [['$', '$'], ['\\(', '\\)']],
+                  inlineMath: [['$', '$'], ['\$$', '\$$']],
                   displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 },
                 options: {
@@ -90,40 +76,29 @@ export default async function PublicLayout({ children }: { children: React.React
           integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMGd8V0ER0VgLRW3UppZWW1tBgFO7VVHAb7FZk5"
           crossOrigin="anonymous"
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
-                link.integrity = 'sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMGd8V0ER0VgLRW3UppZWW1tBgFO7VVHAb7FZk5';
-                link.crossOrigin = 'anonymous';
-                document.head.appendChild(link);
-              })();
-            `,
-          }}
-        />
       </head>
-      <body className={cx(sfPro.variable, inter.variable, 'bg-white')}>
-        <LoadingProvider>
-          <UserPerformanceProvider userId={userId}>
-            <TooltipProvider>
-              <div className="fixed inset-0 z-[-10]"></div>
-              <Suspense fallback="...">
-                <Nav />
-              </Suspense>
-              <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-                {children}
-              </main>
-              <Bar userId={userId} />
-              <Footer />
-              <VercelAnalytics />
-              <Toaster />
-            </TooltipProvider>
-          </UserPerformanceProvider>
-        </LoadingProvider>
+      <body className={cx(sfPro.variable, inter.variable, 'bg-white dark:bg-dark-background text-black dark:text-white')}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <LoadingProvider>
+            <UserPerformanceProvider userId={userId}>
+              <TooltipProvider>
+                <div className="fixed inset-0 z-[-10]"></div>
+                <Suspense fallback="...">
+                  <Nav />
+                </Suspense>
+                <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+                  {children}
+                </main>
+                <Bar userId={userId} />
+                <Footer />
+                <VercelAnalytics />
+                <Toaster />
+              </TooltipProvider>
+            </UserPerformanceProvider>
+          </LoadingProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
 }
+

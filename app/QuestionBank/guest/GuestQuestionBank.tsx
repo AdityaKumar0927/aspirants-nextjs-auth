@@ -522,12 +522,11 @@ export default function GuestQuestionBank() {
 
   return (
     <TooltipProvider>
-      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+      <div className="bg-white dark:bg-dark-background w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
           <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
             Guest Question Bank
           </h1>
-
           <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
             <CardContent className="p-4 flex items-center justify-between">
               <div className="flex items-center space-x-4">

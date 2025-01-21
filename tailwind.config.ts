@@ -65,6 +65,13 @@ const config: Config = {
         'color-3': 'hsl(var(--color-3))',
         'color-4': 'hsl(var(--color-4))',
         'color-5': 'hsl(var(--color-5))',
+        dark: {
+          background: '#1a1a2e',
+          surface: '#16213e',
+          primary: '#0f3460',
+          secondary: '#533483',
+          accent: '#e94560',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',

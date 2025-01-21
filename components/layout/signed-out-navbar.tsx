@@ -4,9 +4,8 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useSignInModal } from "./sign-in"
-import { Menu, X, ChevronDown } from "lucide-react"
+import { Menu, X, ChevronDown } from 'lucide-react'
 import useScroll from "@/lib/hooks/use-scroll"
-import { Session } from "next-auth"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
@@ -122,7 +121,7 @@ export default function SignedOutNavbar() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-black focus:outline-none"
+                className="text-black dark:text-white focus:outline-none"
                 onClick={toggleMenu}
                 aria-label={menuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={menuOpen}
@@ -137,7 +136,7 @@ export default function SignedOutNavbar() {
           {menuOpen && (
             <motion.div
               ref={menuRef}
-              className="absolute top-full left-0 right-0 bg-white shadow-lg z-20 md:hidden"
+              className="absolute top-full left-0 right-0 bg-white dark:bg-dark-background shadow-lg z-20 md:hidden"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -160,33 +159,31 @@ export default function SignedOutNavbar() {
 function DesktopNavLinks() {
   return (
     <nav>
-      <ul className="flex space-x-6">
       <NavigationMenu>
-              <NavigationMenuList>
-              <NavigationMenuItem>
-        <Link href={"/QuestionBank/guest"} passHref legacyBehavior>
-          <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black")}>
-               Question Bank
-         </NavigationMenuLink>
-              </Link>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <Link href="/QuestionBank/guest" passHref legacyBehavior>
+              <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}>
+                Question Bank
+              </NavigationMenuLink>
+            </Link>
           </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-display text-sm text-black">Support</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
-                      {supportLinks.map((link) => (
-                        <ListItem key={link.title} title={link.title} href={link.href}>
-                          {link.description}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-              <NavigationMenuIndicator />
-              <NavigationMenuViewport />
-            </NavigationMenu>
-      </ul>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger className="font-display text-sm text-black dark:text-white">Support</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
+                {supportLinks.map((link) => (
+                  <ListItem key={link.title} title={link.title} href={link.href}>
+                    {link.description}
+                  </ListItem>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+        <NavigationMenuIndicator />
+        <NavigationMenuViewport />
+      </NavigationMenu>
     </nav>
   )
 }
@@ -205,17 +202,17 @@ function MobileNavLinks({
   toggleSupport,
 }: MobileNavLinksProps) {
   return (
-    <nav className="p-4 space-y-4 top-0 left-0 right-0 bg-white shadow-md z-[100000000]">
+    <nav className="p-4 space-y-4 top-0 left-0 right-0 bg-white dark:bg-dark-background shadow-md z-[100000000]">
       <Link
-        href="/QuestionBank"
-        className="block w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
+        href="/QuestionBank/guest"
+        className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
         Question Bank
       </Link>
       <div>
         <button
-          className="flex items-center justify-between w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
+          className="flex items-center justify-between w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
           onClick={toggleSupport}
           aria-expanded={supportOpen}
         >
@@ -279,14 +276,14 @@ const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
         <Link
           href={href}
           className={cn(
-            "block select-none rounded-md p-2 font-display text-sm text-black hover:bg-gray-100 focus:bg-gray-100 transition-colors",
+            "block select-none rounded-md p-2 font-display text-sm text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800 transition-colors",
             className
           )}
           onClick={onClick}
           {...props}
         >
           <div className="font-medium">{title}</div>
-          <p className="text-xs text-gray-500">{children}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">{children}</p>
         </Link>
       </li>
     )
@@ -294,3 +291,4 @@ const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
 )
 
 ListItem.displayName = "ListItem"
+

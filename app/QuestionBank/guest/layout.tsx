@@ -12,6 +12,7 @@ import Bar from '@/components/layout/Bar';
 import { Toaster } from "@/components/ui/toaster";
 import { LoadingProvider } from "@/components/layout/LoadingContext";
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext";
+import { ThemeProvider } from "next-themes";
 
 config.autoAddCss = false;
 
@@ -30,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const userId = getUserId(); // Fetch the user ID
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
@@ -44,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `
               window.MathJax = {
                 tex: {
-                  inlineMath: [['$', '$'], ['\\(', '\\)']],
+                  inlineMath: [['$', '$'], ['\$$', '\$$']],
                   displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 },
                 options: {
@@ -83,24 +84,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
-        <LoadingProvider> 
-          <UserPerformanceProvider userId={userId}> 
-            <TooltipProvider>
-              <div className="fixed inset-0 z-[-10]"></div>
-              <Suspense fallback="...">
-                <Nav />
-              </Suspense>
-              <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-                {children}
-              </main>
-              <Bar userId={userId} />
-              <VercelAnalytics />
-            </TooltipProvider>
-            <Toaster />
-          </UserPerformanceProvider> 
-        </LoadingProvider> 
+      <body className={cx(sfPro.variable, inter.variable, "bg-white dark:bg-dark-background text-black dark:text-white")}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <LoadingProvider> 
+            <UserPerformanceProvider userId={userId}> 
+              <TooltipProvider>
+                <div className="fixed inset-0 z-[-10]"></div>
+                <Suspense fallback="...">
+                  <Nav />
+                </Suspense>
+                <main className="flex min-h-screen w-full flex-col items-center justify-center py-32 bg-white dark:bg-dark-background">
+                  {children}
+                </main>
+                <Bar userId={userId} />
+                <VercelAnalytics />
+              </TooltipProvider>
+              <Toaster />
+            </UserPerformanceProvider> 
+          </LoadingProvider> 
+        </ThemeProvider>
       </body>
     </html>
   );
 }
+

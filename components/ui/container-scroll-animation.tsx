@@ -1,6 +1,8 @@
 "use client";
+
 import React, { useRef } from "react";
 import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
+
 export const ContainerScroll = ({
   titleComponent,
   children,
@@ -51,7 +53,6 @@ export const ContainerScroll = ({
         </Card>
       </div>
     </div>
-    
   );
 };
 
@@ -86,13 +87,18 @@ export const Card = ({
         boxShadow:
           "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
       }}
-      className="max-w-5xl -mt-12 mx-auto h-[50rem] md:h-[50rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl"
-      
+      className="max-w-5xl -mt-12 mx-auto h-[50rem] md:h-[50rem] w-full bg-white dark:bg-[#222222] rounded-[30px] shadow-2xl overflow-hidden"
     >
-
-      <div className="h-full w-full overflow-hidden rounded-2xl bg-white md:rounded-2xl md:p-4">
-        {children}
+      <div className="h-full w-full relative">
+        {/* More visible border */}
+        <div className="absolute inset-0 border-8 border-gray-900 dark:border-[#6C6C6C] rounded-[30px] pointer-events-none" style={{ boxShadow: 'inset 0 0 0 2px rgba(0, 0, 0, 0.1)' }}></div>
+        
+        {/* Content */}
+        <div className="h-full w-full overflow-hidden rounded-[28px] bg-white dark:bg-dark-background p-1 md:p-2">
+          {children}
+        </div>
       </div>
     </motion.div>
   );
 };
+

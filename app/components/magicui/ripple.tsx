@@ -17,7 +17,7 @@ const Ripple = React.memo(function Ripple({
   return (
     <div
       className={cn(
-        "absolute inset-0 bg-white [mask-image:linear-gradient(to_bottom,white,transparent)]",
+        "absolute inset-0 bg-white dark:bg-dark-background [mask-image:linear-gradient(to_bottom,white,transparent)]",
         className
       )}
     >
@@ -31,16 +31,20 @@ const Ripple = React.memo(function Ripple({
         return (
           <div
             key={i}
-            className={`absolute animate-ripple rounded-full bg-blue-400 shadow-xl border [--i:${i}]`}
+            className={cn(
+              "absolute animate-ripple rounded-full shadow-xl border [--i:var(--i)]",
+              "bg-blue-400 dark:bg-blue-600"
+            )}
             style={
               {
+                "--i": i,
                 width: `${size}px`,
                 height: `${size}px`,
                 opacity,
                 animationDelay,
                 borderStyle,
                 borderWidth: "1px",
-                borderColor: `hsl(var(--foreground), ${borderOpacity / 100})`,
+                borderColor: `hsl(var(--foreground) / ${borderOpacity}%)`,
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%) scale(1)",
@@ -56,3 +60,4 @@ const Ripple = React.memo(function Ripple({
 Ripple.displayName = "Ripple";
 
 export default Ripple;
+

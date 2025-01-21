@@ -67,12 +67,15 @@ type QuestionTypeString = "Multiple Choice" | "Numerical" | string
 
 //
 // The main QuestionType interface, including an 'id' for <Question>:
+// NOTE: We have extended it to include many new fields: difficultyRating, updatedBy, peerSolvedPercentage,
+// explanation, linkedResources, commonMistakes, and discussionLink, etc.
 //
 interface QuestionType {
   id: number                   // REQUIRED for <Question> numbering
   questionId: string
-  text: string
 
+  // Basic question details
+  text: string
   subject?: string
   topic?: string
   subtopic?: string
@@ -121,18 +124,18 @@ interface QuestionType {
   wrongAttempts?: string
   averageTimeTaken?: string
   customTag?: string
-  explanation?: any
+  explanation?: any            // JSON object for explanation details
   paperTitle?: string
   timeAllotted?: number
   updatedTime?: number
-  updatedBy?: string
+  updatedBy?: string           // ID or name of the user who last updated
   source?: string
-  peerSolvedPercentage?: number
-  linkedResources?: any
-  commonMistakes?: any
+  peerSolvedPercentage?: number  // float for how many solved on first try
+  linkedResources?: any          // JSON with external resource links
+  commonMistakes?: any           // JSON with typical mistakes
   discussionLink?: string
   parentQuestionId?: number
-  difficultyRating?: number
+  difficultyRating?: number      // numeric rating for easy/medium/hard
   yearKey?: string
   createdAt?: string
   updatedAt?: string
