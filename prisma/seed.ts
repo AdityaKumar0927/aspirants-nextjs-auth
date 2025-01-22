@@ -1,19 +1,21 @@
 /**
  * seed.ts (CommonJS + TypeScript)
  * 
- * Key Differences from "basic" script:
- * 1. Parse the "results[].questions[]" structure in each question file.
- * 2. For each metaId file, collect all question objects into a single array.
- * 3. Upsert exam in a transaction, then createMany (chunked).
- * 4. Type annotate `tx` with Prisma.TransactionClient to avoid TS warnings.
+ * This script:
+ * 1. Reads your meta file (!metaid/jee_jee-main.json).
+ * 2. Reads question JSON files from /past-papers/jee_jee-main, each named by metaId.
+ * 3. Upserts the exam in a quick non-transaction.
+ * 4. Splits questions into chunks (CHUNK_SIZE = 100).
+ * 5. For each chunk, runs a short transaction => createMany(questions).
+ *    This prevents "Transaction already closed" due to lengthy single transactions.
  */
 
 ///////////////////////////////
-// CommonJS requires
+// CommonJS requires + TS imports
 ///////////////////////////////
 const fs = require("fs");
 const path = require("path");
-import type { Prisma } from "@prisma/client"; // only the type
+import type { Prisma } from "@prisma/client";
 const { PrismaClient, Prisma: PrismaNS, QuestionStatus } = require("@prisma/client");
 
 ///////////////////////////////
@@ -80,7 +82,7 @@ function toDateOrNull(value: any): Date | null {
 const prisma = new PrismaClient();
 
 ///////////////////////////////
-// Types
+// Types for your data
 ///////////////////////////////
 interface ExamMeta {
   metaId: string;
@@ -103,10 +105,8 @@ interface ExamMeta {
       public: number;
     };
   };
-  // Possibly other fields like "liveAt", "testId", etc.
 }
 
-/** Shaped like your question JSON example. */
 interface QuestionFile {
   statusCode?: number;
   results: {
@@ -115,7 +115,6 @@ interface QuestionFile {
   }[];
 }
 
-/** The question objects inside results[].questions */
 interface QuestionJson {
   question_id: string;
   examGroup?: string | null;
@@ -135,7 +134,7 @@ interface QuestionJson {
   topicName?: string | null;
   type?: string | null;
   examDate?: string | null;
-  question?: any; // deeper nested fields
+  question?: any; // deeper nested fields (question.en, etc.)
   updated_time?: number | null;
   permalink?: string | null;
   paperId?: string | null;
@@ -145,9 +144,9 @@ interface QuestionJson {
   yearKey?: string | null;
 }
 
-/**
- * Main seeding logic
- */
+///////////////////////////////
+// Main
+///////////////////////////////
 async function main() {
   const metaFilePath = "./!metaid/jee_jee-main.json";
   const questionFolder = "./past-papers/jee_jee-main";
@@ -168,7 +167,7 @@ async function main() {
     return;
   }
 
-  // 2) Build metaMap by metaId
+  // 2) Build metaMap (metaId => ExamMeta)
   const metaMap: Record<string, ExamMeta> = {};
   for (const m of metaArray) {
     if (!m.metaId) {
@@ -192,17 +191,15 @@ async function main() {
   // questionMap: metaId => array of question objects
   const questionMap: Record<string, QuestionJson[]> = {};
 
-  // 4) For each file, parse -> gather all questions from results[].questions
+  // 4) Gather questions from each file
   for (const qFile of questionFiles) {
     const metaId = qFile.replace(".json", "");
     if (!metaMap[metaId]) {
-      // We'll warn but keep going
       logWarn(`No meta found for question file: ${qFile}`);
       continue;
     }
 
     const questionFilePath = path.join(qFolderAbsolute, qFile);
-
     let raw: any;
     try {
       raw = JSON.parse(fs.readFileSync(questionFilePath, "utf-8"));
@@ -211,8 +208,6 @@ async function main() {
       continue;
     }
 
-    // According to your snippet, it looks like:
-    // { "statusCode": 0, "results": [ { "_id": "...", "questions": [...]} ] }
     if (!raw || !raw.results || !Array.isArray(raw.results)) {
       logWarn(`No valid "results" array in file: ${qFile}`);
       continue;
@@ -224,7 +219,6 @@ async function main() {
         allQuestions = allQuestions.concat(block.questions);
       }
     }
-
     if (!allQuestions.length) {
       logWarn(`Found 0 questions after parsing results[].questions in file: ${qFile}`);
       continue;
@@ -233,11 +227,10 @@ async function main() {
     questionMap[metaId] = allQuestions;
   }
 
-  // 5) For each metaId in metaMap, if we have questions -> Upsert exam + createMany
+  // 5) For each metaId, upsert exam outside big transaction, then chunk question inserts
   for (const [metaId, metaObj] of Object.entries(metaMap)) {
     const matchedQuestions = questionMap[metaId];
     if (!matchedQuestions || matchedQuestions.length === 0) {
-      // Possibly a meta entry that has no .json file in question folder
       logWarn(`No question file matched metaId: ${metaId}`);
       continue;
     }
@@ -245,144 +238,137 @@ async function main() {
     logInfo(`\n=== Processing metaId: ${metaId} => ${metaObj.title} ===`);
 
     try {
-      await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-        // (a) Upsert exam
-        const exam = await tx.exam.upsert({
-          where: { key: metaObj.key },
-          update: {},
-          create: {
-            examGroup: metaObj.examGroup || null,
-            country: metaObj.country || null,
-            exam: metaObj.exam || null,
-            key: metaObj.key,
-            date: toDateOrNull(metaObj.date),
-            description: metaObj.description ?? null,
-            isMemoryBased: metaObj.isMemoryBased ?? false,
-            isOnline: metaObj.isOnline ?? false,
-            languages: metaObj.languages || [],
-            title: metaObj.title,
-            year: metaObj.year ?? null,
+      // (A) Upsert exam outside large transaction
+      const exam = await prisma.exam.upsert({
+        where: { key: metaObj.key },
+        update: {},
+        create: {
+          examGroup: metaObj.examGroup || null,
+          country: metaObj.country || null,
+          exam: metaObj.exam || null,
+          key: metaObj.key,
+          date: toDateOrNull(metaObj.date),
+          description: metaObj.description ?? null,
+          isMemoryBased: metaObj.isMemoryBased ?? false,
+          isOnline: metaObj.isOnline ?? false,
+          languages: metaObj.languages || [],
+          title: metaObj.title,
+          year: metaObj.year ?? null,
+          pyq: metaObj.pyq
+            ? {
+                create: {
+                  out_of_syllabus: metaObj.pyq.count.out_of_syllabus,
+                  total: metaObj.pyq.count.total,
+                  private: metaObj.pyq.count.private,
+                  public: metaObj.pyq.count.public,
+                },
+              }
+            : undefined,
+        },
+      });
+      logInfo(`Upserted exam => ${exam.title} (id: ${exam.id})`);
 
-            // create pyq if available
-            pyq: metaObj.pyq
-              ? {
-                  create: {
-                    out_of_syllabus: metaObj.pyq.count.out_of_syllabus,
-                    total: metaObj.pyq.count.total,
-                    private: metaObj.pyq.count.private,
-                    public: metaObj.pyq.count.public
-                  }
-                }
-              : undefined
-          }
-        });
-        logInfo(`Upserted exam => ${exam.title} (id: ${exam.id})`);
+      // (B) Build question data
+      const validQuestions = matchedQuestions.filter(
+        (q) => q.question_id && q.question_id.trim() !== ""
+      );
+      if (!validQuestions.length) {
+        logWarn(`No valid 'question_id' found for metaId: ${metaId}`);
+        continue;
+      }
 
-        // (b) Prepare array of questions for createMany
-        // Validate minimum fields, e.g. question_id
-        const validQuestions = matchedQuestions.filter(
-          (q) => q.question_id && q.question_id.trim() !== ""
-        );
-        if (!validQuestions.length) {
-          logWarn(`No valid 'question_id' found for metaId: ${metaId}`);
-          return; // skip
+      const questionCreateData = validQuestions.map((q) => {
+        const questionId = q.question_id.trim();
+        const textContent =
+          q.question?.en?.content?.trim() ||
+          q.question?.content?.trim() ||
+          "No text available";
+
+        let optionsArray: string[] = [];
+        if (q.question?.en?.options && Array.isArray(q.question.en.options)) {
+          optionsArray = q.question.en.options.map(String);
         }
 
-        // Convert each question
-        const questionCreateData = validQuestions.map((q) => {
-          const questionId = q.question_id.trim();
-          const textContent =
-            q.question?.en?.content?.trim() ||
-            q.question?.content?.trim() ||
-            "No text available";
+        let correctOption: string | null = null;
+        if (
+          q.question?.en?.correct_options &&
+          Array.isArray(q.question.en.correct_options) &&
+          q.question.en.correct_options.length > 0
+        ) {
+          correctOption = q.question.en.correct_options[0];
+        } else if (q.question?.en?.answer) {
+          correctOption = String(q.question.en.answer);
+        }
 
-          // attempt to parse an array of options from q.question.en.options
-          let optionsArray: string[] = [];
-          if (q.question?.en?.options && Array.isArray(q.question.en.options)) {
-            optionsArray = q.question.en.options.map(String);
-          }
+        return {
+          questionId,
+          examId: exam.id,
 
-          // If there's a single correct option
-          let correctOption: string | null = null;
-          if (
-            q.question?.en?.correct_options &&
-            Array.isArray(q.question.en.correct_options) &&
-            q.question.en.correct_options.length > 0
-          ) {
-            correctOption = q.question.en.correct_options[0];
-          } else if (q.question?.en?.answer) {
-            correctOption = String(q.question.en.answer);
-          }
+          examGroup: q.examGroup || null,
+          country: q.country || null,
+          exam: q.exam || null,
+          subjectGroup: q.subjectGroup || null,
+          subject: q.subject || null,
+          chapterGroup: q.chapterGroup || null,
+          chapter: q.chapter || null,
+          topicName: q.topicName || null,
+          topic: q.topic || null,
+          difficulty: q.difficulty || null,
+          type: q.type || null,
 
-          return {
-            questionId,
-            examId: exam.id,
+          year: q.year ?? null,
+          paperTitle: q.paperTitle ?? null,
+          timeAllotted: q.timeAllotted ?? null,
+          marks: toFloatOrNull(q.marks),
+          negMarks: toFloatOrNull(q.negMarks),
+          updatedTime: toIntOrNull(q.updated_time),
+          examDate: toDateOrNull(q.examDate),
+          isOutOfSyllabus: q.isOutOfSyllabus ?? null,
+          isBonus: q.isBonus ?? null,
+          yearKey: q.yearKey || null,
+          permalink: q.permalink || null,
+          languages: q.languages || [],
 
-            examGroup: q.examGroup || null,
-            country: q.country || null,
-            exam: q.exam || null,
-            subjectGroup: q.subjectGroup || null,
-            subject: q.subject || null,
-            chapterGroup: q.chapterGroup || null,
-            chapter: q.chapter || null,
-            topicName: q.topicName || null,
-            topic: q.topic || null,
-            difficulty: q.difficulty || null,
-            type: q.type || null,
+          // required text
+          text: textContent,
+          options: optionsArray,
+          correctOption,
+          content: toNullableJson(q.question),
+          status: QuestionStatus.ACTIVE,
+        };
+      });
 
-            year: q.year ?? null,
-            paperTitle: q.paperTitle ?? null,
-            timeAllotted: q.timeAllotted ?? null,
-            marks: toFloatOrNull(q.marks),
-            negMarks: toFloatOrNull(q.negMarks),
-            updatedTime: toIntOrNull(q.updated_time),
-            examDate: toDateOrNull(q.examDate),
-            isOutOfSyllabus: q.isOutOfSyllabus ?? null,
-            isBonus: q.isBonus ?? null,
-            yearKey: q.yearKey || null,
-            permalink: q.permalink || null,
-            languages: q.languages || [],
+      // (C) Chunk inserts in smaller transactions
+      const CHUNK_SIZE = 100; // pick a chunk size that finishes quickly
+      const chunks = chunkArray(questionCreateData, CHUNK_SIZE);
+      let totalCreated = 0;
 
-            // Required text
-            text: textContent,
-            // Options + correct
-            options: optionsArray,
-            correctOption,
-
-            // Explanation, content, etc.
-            // Store entire question block in 'content'
-            content: toNullableJson(q.question),
-            status: QuestionStatus.ACTIVE
-          };
-        });
-
-        // (c) Insert in chunks
-        const CHUNK_SIZE = 500;
-        const chunks = chunkArray(questionCreateData, CHUNK_SIZE);
-        let totalCreated = 0;
-        for (const chunk of chunks) {
+      for (const chunk of chunks) {
+        // short transaction for each chunk
+        await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
           const res = await tx.question.createMany({
             data: chunk,
-            skipDuplicates: true
+            skipDuplicates: true,
           });
           totalCreated += res.count;
-        }
-        logInfo(`Inserted ${totalCreated} questions for exam: ${exam.title}`);
-      }); // end $transaction
+        });
+        // each chunk commits or rolls back here
+      }
 
-      logInfo(`Transaction committed successfully for metaId: ${metaId}`);
+      logInfo(`Inserted ${totalCreated} questions for exam: ${exam.title}`);
     } catch (err) {
-      logError(
-        `Transaction failed for metaId: ${metaId}, rolling back. Error: ${err}`
-      );
+      // If any chunk fails, that chunk is rolled back,
+      // but prior chunks remain committed.
+      logError(`Error seeding data for metaId: ${metaId}: ${err}`);
     }
   }
 
-  logInfo("All meta files processed. Closing Prisma.");
+  // All meta files processed
+  logInfo("All done. Closing Prisma.");
   await prisma.$disconnect();
 }
 
-// Run main
+// Execute
 main()
   .then(() => process.exit(0))
   .catch((err: any) => {

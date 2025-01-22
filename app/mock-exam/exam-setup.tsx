@@ -1,12 +1,15 @@
-import React from "react"
+"use client"
+
+import type React from "react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Slider } from "@/components/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Zap, Pencil } from 'lucide-react'
-import { RainbowButton } from "@/components/magicui/rainbow-button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
+import { BookOpen, Clock, FileQuestion, GraduationCap, Zap } from "lucide-react"
 
 interface ExamSetupProps {
   exams: string[]
@@ -54,207 +57,229 @@ const ExamSetup: React.FC<ExamSetupProps> = ({
   onStartExam,
 }) => {
   return (
-    <div className="h-12 w-full flex items-center justify-center bg-background p-4">
-      <div className="max-w-3xl mx-auto p-6 space-y-8">
-        <div className="flex items-center gap-4">
-          <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center">
-            <Zap className="w-8 h-8 text-blue-500" />
-          </div>
-          
-          <h1 className="text-5xl font-light tracking-tight">Mock Exam</h1>
-        </div>
-
-        <Tabs
-          value={examMode}
-          onValueChange={(value) => onExamModeChange(value as "past" | "custom")}
-        >
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="past">Past Papers</TabsTrigger>
-            <TabsTrigger value="custom">Custom Mock Exam</TabsTrigger>
-          </TabsList>
-          <TabsContent value="past">
-            <div className="grid gap-4">
-              <div>
-                <label className="text-xl font-semibold">Exam</label>
-                <Select value={selectedExam} onValueChange={onExamChange}>
-                  <SelectTrigger className="w-full bg-gray-50 border-gray-200 h-14 text-gray-500 text-lg">
-                    <SelectValue placeholder="Select exam" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {exams.map((exam) => (
-                      <SelectItem key={exam} value={exam}>
-                        {exam}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <label className="text-xl font-semibold">Subject</label>
-                <Select value={selectedSubject} onValueChange={onSubjectChange}>
-                  <SelectTrigger className="w-full bg-gray-50 border-gray-200 h-14 text-gray-500 text-lg">
-                    <SelectValue placeholder="Select subject" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {subjects.map((subject) => (
-                      <SelectItem key={subject} value={subject}>
-                        {subject}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <label className="text-xl font-semibold">Year</label>
-                <Select value={selectedYear} onValueChange={onYearChange}>
-                  <SelectTrigger className="w-full bg-gray-50 border-gray-200 h-14 text-gray-500 text-lg">
-                    <SelectValue placeholder="Select year" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {years.map((year) => (
-                      <SelectItem key={year} value={year}>
-                        {year}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+    <div className="container mx-auto px-4 py-8">
+      <Card className="w-full max-w-4xl mx-auto">
+        <CardHeader>
+          <div className="flex items-center space-x-4">
+            <div className="p-2 bg-primary rounded-full">
+              <Zap className="w-6 h-6 text-primary-foreground" />
             </div>
-          </TabsContent>
-          <TabsContent value="custom">
-            <div className="grid gap-4">
-              <div>
-                <label className="text-xl font-semibold">Exam</label>
-                <Select value={selectedExam} onValueChange={onExamChange}>
-                  <SelectTrigger className="w-full bg-gray-50 border-gray-200 h-14 text-gray-500 text-lg">
-                    <SelectValue placeholder="Select exam" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {exams.map((exam) => (
-                      <SelectItem key={exam} value={exam}>
-                        {exam}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+            <div>
+              <CardTitle className="text-3xl font-bold">Mock Exam Setup</CardTitle>
+              <CardDescription>Configure your exam settings</CardDescription>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <Tabs
+            value={examMode}
+            onValueChange={(value) => onExamModeChange(value as "past" | "custom")}
+            className="w-full"
+          >
+            <TabsList className="grid w-full grid-cols-2 mb-6">
+              <TabsTrigger value="past" className="text-lg">
+                <BookOpen className="w-5 h-5 mr-2" />
+                Past Papers
+              </TabsTrigger>
+              <TabsTrigger value="custom" className="text-lg">
+                <FileQuestion className="w-5 h-5 mr-2" />
+                Custom Mock Exam
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="past">
+              <div className="grid gap-6 md:grid-cols-3">
+                <div className="space-y-2">
+                  <Label htmlFor="exam" className="text-lg font-medium">
+                    Exam
+                  </Label>
+                  <Select value={selectedExam} onValueChange={onExamChange}>
+                    <SelectTrigger id="exam" className="w-full">
+                      <SelectValue placeholder="Select exam" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {exams.map((exam) => (
+                        <SelectItem key={exam} value={exam}>
+                          {exam}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="subject" className="text-lg font-medium">
+                    Subject
+                  </Label>
+                  <Select value={selectedSubject} onValueChange={onSubjectChange}>
+                    <SelectTrigger id="subject" className="w-full">
+                      <SelectValue placeholder="Select subject" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {subjects.map((subject) => (
+                        <SelectItem key={subject} value={subject}>
+                          {subject}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="year" className="text-lg font-medium">
+                    Year
+                  </Label>
+                  <Select value={selectedYear} onValueChange={onYearChange}>
+                    <SelectTrigger id="year" className="w-full">
+                      <SelectValue placeholder="Select year" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {years.map((year) => (
+                        <SelectItem key={year} value={year}>
+                          {year}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-              <div>
-                <label className="text-xl font-semibold">Subject</label>
-                <Select value={selectedSubject} onValueChange={onSubjectChange}>
-                  <SelectTrigger className="w-full bg-gray-50 border-gray-200 h-14 text-gray-500 text-lg">
-                    <SelectValue placeholder="Select subject" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {subjects.map((subject) => (
-                      <SelectItem key={subject} value={subject}>
-                        {subject}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+            </TabsContent>
+            <TabsContent value="custom">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="custom-exam" className="text-lg font-medium">
+                    Exam
+                  </Label>
+                  <Select value={selectedExam} onValueChange={onExamChange}>
+                    <SelectTrigger id="custom-exam" className="w-full">
+                      <SelectValue placeholder="Select exam" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {exams.map((exam) => (
+                        <SelectItem key={exam} value={exam}>
+                          {exam}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="custom-subject" className="text-lg font-medium">
+                    Subject
+                  </Label>
+                  <Select value={selectedSubject} onValueChange={onSubjectChange}>
+                    <SelectTrigger id="custom-subject" className="w-full">
+                      <SelectValue placeholder="Select subject" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {subjects.map((subject) => (
+                        <SelectItem key={subject} value={subject}>
+                          {subject}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="custom-year" className="text-lg font-medium">
+                    Year
+                  </Label>
+                  <Select value={selectedYear} onValueChange={onYearChange}>
+                    <SelectTrigger id="custom-year" className="w-full">
+                      <SelectValue placeholder="Select year" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {years.map((year) => (
+                        <SelectItem key={year} value={year}>
+                          {year}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="level" className="text-lg font-medium">
+                    Level
+                  </Label>
+                  <Select value={selectedLevel} onValueChange={onLevelChange}>
+                    <SelectTrigger id="level" className="w-full">
+                      <SelectValue placeholder="Select your level" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="beginner">Beginner</SelectItem>
+                      <SelectItem value="intermediate">Intermediate</SelectItem>
+                      <SelectItem value="advanced">Advanced</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="questions" className="text-lg font-medium">
+                    Number of Questions
+                  </Label>
+                  <Input
+                    id="questions"
+                    type="number"
+                    value={numberOfQuestions}
+                    onChange={(e) => onNumberOfQuestionsChange(Number(e.target.value))}
+                    className="w-full"
+                    min={1}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="exam-time" className="text-lg font-medium">
+                    Exam Time (minutes)
+                  </Label>
+                  <Slider
+                    id="exam-time"
+                    value={[examTime]}
+                    onValueChange={(value) => onExamTimeChange(value[0])}
+                    max={120}
+                    min={15}
+                    step={5}
+                    className="w-full"
+                  />
+                  <div className="text-center mt-2">{examTime} minutes</div>
+                </div>
               </div>
-              <div>
-                <label className="text-xl font-semibold">Year</label>
-                <Select value={selectedYear} onValueChange={onYearChange}>
-                  <SelectTrigger className="w-full bg-gray-50 border-gray-200 h-14 text-gray-500 text-lg">
-                    <SelectValue placeholder="Select year" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {years.map((year) => (
-                      <SelectItem key={year} value={year}>
-                        {year}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <label className="text-xl font-semibold">Level</label>
-                <Select value={selectedLevel} onValueChange={onLevelChange}>
-                  <SelectTrigger className="w-full bg-gray-50 border-gray-200 h-14 text-gray-500 text-lg">
-                    <SelectValue placeholder="Select your level" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="beginner">Beginner</SelectItem>
-                    <SelectItem value="intermediate">Intermediate</SelectItem>
-                    <SelectItem value="advanced">Advanced</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <label className="text-xl font-semibold">Questions</label>
-                <Input
-                  type="number"
-                  value={numberOfQuestions}
-                  onChange={(e) => onNumberOfQuestionsChange(Number(e.target.value))}
-                  className="w-32 bg-gray-50 border-gray-200 h-14 text-lg"
-                  min={1}
-                />
-              </div>
-              <div className="flex items-center space-x-3 pt-4">
+              <div className="flex items-center space-x-3 mt-6">
                 <Checkbox
                   id="skip"
                   checked={skipCompleted}
                   onCheckedChange={(checked) => onSkipCompletedChange(checked as boolean)}
-                  className="w-5 h-5 border-2 border-blue-500 data-[state=checked]:border-blue-500 data-[state=checked]:bg-blue-500"
                 />
-                <label htmlFor="skip" className="text-lg font-medium">
+                <Label htmlFor="skip" className="text-base font-medium">
                   Skip completed questions
-                </label>
+                </Label>
               </div>
-              <div>
-                <label className="text-xl font-semibold">Exam Time (minutes)</label>
-                <Slider
-                  value={[examTime]}
-                  onValueChange={(value) => onExamTimeChange(value[0])}
-                  max={120}
-                  min={15}
-                  step={5}
-                  className="w-full"
-                />
-                <div className="text-center mt-2">{examTime} minutes</div>
-              </div>
-            </div>
-          </TabsContent>
-        </Tabs>
+            </TabsContent>
+          </Tabs>
 
-        <div className="space-y-6 mt-8">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center">
-              <Pencil className="w-6 h-6 text-blue-500" />
+          <div className="mt-8 space-y-6">
+            <div className="flex items-center space-x-4">
+              <div className="p-2 bg-secondary rounded-full">
+                <GraduationCap className="w-6 h-6 text-secondary-foreground" />
+              </div>
+              <h2 className="text-2xl font-semibold">Exam Instructions</h2>
             </div>
-            <h2 className="text-4xl font-light">Exam mode</h2>
+            <ul className="space-y-2 list-disc list-inside text-muted-foreground">
+              <li>The mock exam will start as soon as you click the Start Exam button.</li>
+              <li>Show all working whenever possible.</li>
+              <li>Use fully labelled diagrams and references to the text/data where appropriate.</li>
+              <li>Your score and feedback will be compiled into a report at the end of the exam.</li>
+            </ul>
           </div>
 
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-2xl font-light mb-4">Instructions</h3>
-              <ul className="space-y-3 text-gray-600">
-                <li>The mock exam will start as soon as you click the Start Exam button.</li>
-                <li>Show all working whenever possible.</li>
-                <li>Use fully labelled diagrams and references to the text/data where appropriate.</li>
-                <li>Your score and feedback will be compiled into a report at the end of the exam.</li>
-              </ul>
-            </div>
-
-            <RainbowButton
-              onClick={onStartExam}
-              disabled={
-                !selectedExam ||
-                !selectedSubject ||
-                !selectedYear ||
-                (examMode === "custom" && !selectedLevel)
-              }
-              className="w-auto"
-            >
-              Start Exam
-              <span className="ml-1">{examMode === "past" ? "" : numberOfQuestions}</span>
-            </RainbowButton>
-          </div>
-        </div>
-      </div>
+          <Button
+            onClick={onStartExam}
+            disabled={!selectedExam || !selectedSubject || !selectedYear || (examMode === "custom" && !selectedLevel)}
+            className="w-full mt-8 text-lg h-12"
+          >
+            <Clock className="w-5 h-5 mr-2" />
+            Start Exam
+            {examMode === "custom" && <span className="ml-2">({numberOfQuestions} questions)</span>}
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   )
 }
 
 export default ExamSetup
+
