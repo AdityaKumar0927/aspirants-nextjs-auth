@@ -1,89 +1,19 @@
-import { NextResponse } from 'next/server'
 import { PrismaClient, QuestionStatus } from '@prisma/client'
+import { NextResponse } from 'next/server'
 
 const prisma = new PrismaClient()
 
 /**
  * GET /api/questions
- * - Query parameters:
- *   ?page=1&pageSize=10
- *   ?exam=JEE
- *   ?subject=Physics
- *   ?topic=Mechanics
- *   ?subtopic=Kinematics
- *   ?difficulty=easy
- *   ?year=2023
- *   ?type=Multiple+Choice
- *   ?search=keyword
- *
- * Returns paginated + filtered list of questions:
- * {
- *   data: Question[],
- *   currentPage: number,
- *   pageSize: number,
- *   totalCount: number
- * }
+ * 
+ * Returns an array of questions, including JSON fields (explanation, etc.).
+ * We also demonstrate how to JSON.stringify certain nested fields if you
+ * absolutely want them as plain strings. By default, Next.js serializes
+ * JSON objects just fine.
  */
-export async function GET(request: Request) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(request.url)
-
-    // 1. Parse pagination
-    const page = parseInt(searchParams.get('page') || '1', 10)
-    const pageSize = parseInt(searchParams.get('pageSize') || '10', 10)
-    const skip = (page - 1) * pageSize
-    const take = pageSize
-
-    // 2. Parse optional filters
-    const examFilter = searchParams.get('exam') || undefined
-    const subjectFilter = searchParams.get('subject') || undefined
-    const topicFilter = searchParams.get('topic') || undefined
-    const subtopicFilter = searchParams.get('subtopic') || undefined
-    const difficultyFilter = searchParams.get('difficulty') || undefined
-    const yearFilter = searchParams.get('year') || undefined
-    const typeFilter = searchParams.get('type') || undefined
-    const searchQuery = searchParams.get('search') || undefined
-
-    // 3. Build Prisma "where" object for filters
-    const where: any = {}
-
-    if (examFilter) {
-      where.exam = examFilter
-    }
-    if (subjectFilter) {
-      where.subject = subjectFilter
-    }
-    if (topicFilter) {
-      where.topic = topicFilter
-    }
-    if (subtopicFilter) {
-      where.subtopic = subtopicFilter
-    }
-    if (difficultyFilter) {
-      where.difficulty = difficultyFilter
-    }
-    if (yearFilter) {
-      // year in DB is likely a number; parse yearFilter to number
-      where.year = parseInt(yearFilter, 10)
-    }
-    if (typeFilter) {
-      where.type = typeFilter
-    }
-
-    // Optional text search in the "text" field (and/or "title", etc.)
-    // NOTE: For large production DBs, consider a full-text index or advanced search approach.
-    if (searchQuery) {
-      where.text = {
-        contains: searchQuery,
-        mode: 'insensitive',
-      }
-    }
-
-    // 4. Query for the paginated items
     const questions = await prisma.question.findMany({
-      skip,
-      take,
-      where,
       select: {
         // Basic question identity
         questionId: true,
@@ -127,7 +57,7 @@ export async function GET(request: Request) {
         type: true,
         marks: true,
         negMarks: true,
-        options: true,
+        options: true,         // <== stored as JSON/array
         correctOption: true,
         markscheme: true,
 
@@ -140,7 +70,7 @@ export async function GET(request: Request) {
         // Extra question metadata
         diagramUrl: true,
         customTag: true,
-        explanation: true,
+        explanation: true,     // <== stored as JSON
         reviewed: true,
         completed: true,
         paperTitle: true,
@@ -149,8 +79,8 @@ export async function GET(request: Request) {
         updatedBy: true,
         source: true,
         peerSolvedPercentage: true,
-        linkedResources: true,
-        commonMistakes: true,
+        linkedResources: true, // <== stored as JSON
+        commonMistakes: true,  // <== stored as JSON
         discussionLink: true,
         parentQuestionId: true,
         difficultyRating: true,
@@ -161,17 +91,27 @@ export async function GET(request: Request) {
       },
     })
 
-    // 5. Get total count for pagination
-    const totalCount = await prisma.question.count({
-      where,
+    // OPTIONAL: Stringify nested JSON fields if you want them to appear as strings
+    // in the response. Otherwise, Next.js will serialize objects automatically.
+    // Example:
+    /*
+    questions.forEach((q: any) => {
+      if (typeof q.explanation === 'object') {
+        q.explanation = JSON.stringify(q.explanation)
+      }
+      if (typeof q.linkedResources === 'object') {
+        q.linkedResources = JSON.stringify(q.linkedResources)
+      }
+      if (typeof q.commonMistakes === 'object') {
+        q.commonMistakes = JSON.stringify(q.commonMistakes)
+      }
+      if (Array.isArray(q.options)) {
+        q.options = JSON.stringify(q.options)
+      }
     })
+    */
 
-    return NextResponse.json({
-      data: questions,
-      currentPage: page,
-      pageSize,
-      totalCount,
-    })
+    return NextResponse.json(questions)
   } catch (error) {
     console.error('Error fetching questions:', error)
     return NextResponse.json(
@@ -183,11 +123,35 @@ export async function GET(request: Request) {
 
 /**
  * POST /api/questions
- * Create a new question. Expects JSON body with question data.
+ * Create a new question. Expects a JSON body with question data (including JSON fields).
+ *
+ * Example body:
+ * {
+ *   "questionId": "abc123",
+ *   "text": "Some question",
+ *   "options": ["A","B","C"],       // or a JSON string
+ *   "explanation": { "en": { "content": "..."} },
+ *   "linkedResources": { "link1": "https://..." },
+ *   ...
+ * }
  */
 export async function POST(request: Request) {
   try {
     const data = await request.json()
+
+    // If user sent JSON fields as strings, parse them:
+    if (typeof data.options === 'string') {
+      try { data.options = JSON.parse(data.options) } catch {}
+    }
+    if (typeof data.explanation === 'string') {
+      try { data.explanation = JSON.parse(data.explanation) } catch {}
+    }
+    if (typeof data.linkedResources === 'string') {
+      try { data.linkedResources = JSON.parse(data.linkedResources) } catch {}
+    }
+    if (typeof data.commonMistakes === 'string') {
+      try { data.commonMistakes = JSON.parse(data.commonMistakes) } catch {}
+    }
 
     // Map difficultyRating -> difficulty string if present
     if (data.difficultyRating !== undefined) {
@@ -199,12 +163,12 @@ export async function POST(request: Request) {
     // Default status if not provided
     const status = data.status || QuestionStatus.ACTIVE
 
+    // Create in DB
     const created = await prisma.question.create({
       data: {
         ...data,
         status,
-        // Possibly set an explicit 'updatedTime'
-        updatedTime: Math.floor(Date.now() / 1000),
+        updatedTime: Math.floor(Date.now() / 1000), // or new Date() if a datetime
       },
     })
 
@@ -220,7 +184,8 @@ export async function POST(request: Request) {
 
 /**
  * PATCH /api/questions
- * Update an existing question. Expects a JSON body with { questionId, ...fields }.
+ * Update an existing question by questionId. 
+ * Expects JSON body: { questionId: string, ...fields }
  */
 export async function PATCH(request: Request) {
   try {
@@ -234,6 +199,20 @@ export async function PATCH(request: Request) {
       )
     }
 
+    // If user updated JSON fields as strings, parse them:
+    if (typeof rest.options === 'string') {
+      try { rest.options = JSON.parse(rest.options) } catch {}
+    }
+    if (typeof rest.explanation === 'string') {
+      try { rest.explanation = JSON.parse(rest.explanation) } catch {}
+    }
+    if (typeof rest.linkedResources === 'string') {
+      try { rest.linkedResources = JSON.parse(rest.linkedResources) } catch {}
+    }
+    if (typeof rest.commonMistakes === 'string') {
+      try { rest.commonMistakes = JSON.parse(rest.commonMistakes) } catch {}
+    }
+
     // Map difficultyRating -> difficulty string
     if (rest.difficultyRating !== undefined) {
       const rating = Number(rest.difficultyRating)
@@ -242,7 +221,7 @@ export async function PATCH(request: Request) {
       else if (rating === 3) rest.difficulty = 'hard'
     }
 
-    // Update 'updatedTime' whenever we PATCH
+    // Update 'updatedTime'
     rest.updatedTime = Math.floor(Date.now() / 1000)
 
     // Validate status if provided
@@ -272,7 +251,7 @@ export async function PATCH(request: Request) {
 
 /**
  * DELETE /api/questions
- * Delete a question. Expects a JSON body with { questionId }.
+ * Delete a question. Expects a JSON body: { questionId: "abc123" }
  */
 export async function DELETE(request: Request) {
   try {
