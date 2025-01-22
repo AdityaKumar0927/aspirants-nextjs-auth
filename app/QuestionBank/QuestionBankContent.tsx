@@ -4,18 +4,15 @@ import React, { useReducer, useEffect, useMemo, useCallback, useState } from "re
 import { useSession } from "next-auth/react"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
-import Question from "@/components/shared/Question"
+import Question from "@/components/shared/Question" // adjust import if needed
 import Popover from "@/components/shared/popover"
 import {
-  CheckCheckIcon,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   Info,
   List,
   Search,
-  Circle,
-  CheckCircle2,
   Flag,
   HelpCircle,
 } from "lucide-react"
@@ -29,12 +26,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Dialog,
   DialogContent,
@@ -44,9 +36,10 @@ import {
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Progress } from "@/components/ui/progress"
-import { motion, AnimatePresence } from "framer-motion"
 
-const PAGE_SIZE = 10
+//
+// --------------- Type Definitions ---------------
+//
 
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
@@ -195,6 +188,10 @@ type ActionType =
   | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_CURRENT_PAGE"; payload: number }
 
+//
+// --------------- Reducer & Initial State ---------------
+//
+
 const initialState: StateType = {
   questions: [],
   filters: {
@@ -258,61 +255,21 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
-const StatusCard = ({
-  icon,
-  label,
-  value,
-  color,
-}: {
-  icon: React.ReactNode
-  label: string
-  value: number
-  color: string
-}) => {
-  return (
-    <motion.div
-      className="flex items-center p-4 rounded-lg bg-gray-900 dark:bg-gray-800 transition-all duration-300"
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-    >
-      <AnimatePresence>
-        <motion.div
-          className={`flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 dark:bg-gray-700 mr-4 ${color}`}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.2 }}
-        >
-          {icon}
-        </motion.div>
-      </AnimatePresence>
-      <div>
-        <motion.span
-          className={`text-2xl font-bold ${color}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
-        >
-          {value}
-        </motion.span>
-        <motion.p
-          className="text-sm font-medium text-gray-400 dark:text-gray-300"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          {label}
-        </motion.p>
-      </div>
-    </motion.div>
-  )
-}
+//
+// --------------- UI Components ---------------
+//
 
-const Pagination: React.FC<{
+const PAGE_SIZE = 10
+
+function Pagination({
+  currentPage,
+  totalPages,
+  onPageChange,
+}: {
   currentPage: number
   totalPages: number
   onPageChange: (page: number) => void
-}> = ({ currentPage, totalPages, onPageChange }) => {
+}) {
   return (
     <nav className="flex items-center justify-center mt-6" aria-label="Pagination">
       <Button
@@ -361,7 +318,7 @@ const Pagination: React.FC<{
   )
 }
 
-const GuestBanner: React.FC = () => {
+function GuestBanner() {
   return (
     <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900">
       <CardContent className="p-4 flex items-center justify-between">
@@ -390,40 +347,65 @@ const GuestBanner: React.FC = () => {
   )
 }
 
-const QuestionBankContent: React.FC = () => {
+//
+// --------------- Main Component ---------------
+//
+
+export default function QuestionBankContent() {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { data: session, status } = useSession()
   const { toast } = useToast()
+  const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
 
+  //
+  // 1. typed fetchData that returns an array of T
+  //
+  const fetchData = useCallback(async <T,>(url: string): Promise<T[]> => {
+    const response = await fetch(url)
+    if (!response.ok) {
+      const errorText = await response.text()
+      throw new Error(`Failed to fetch ${url}: ${errorText}`)
+    }
+    const data = await response.json()
+    // If the server returns { data: [...] } or an array directly:
+    if (Array.isArray(data)) {
+      return data as T[]
+    }
+    if (data && Array.isArray(data.data)) {
+      return data.data as T[]
+    }
+    // If error:
+    if (data && data.error) {
+      throw new Error(data.error)
+    }
+    throw new Error(`Unexpected response from ${url}, expected array but got: ${JSON.stringify(data)}`)
+  }, [])
+
+  //
+  // 2. Combine multiple calls
+  //
   const fetchAllData = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
-
     try {
       const [questionsData, userProgressData, userAnswersData, userPerformanceData] =
         await Promise.all([
-          fetchData("/api/questions"),
-          fetchData("/api/user-progress"),
-          fetchData("/api/user-answers"),
-          fetchData("/api/user-performance/get"),
+          fetchData<QuestionType>("/api/questions"),
+          fetchData<any>("/api/user-progress"),
+          fetchData<UserAnswer>("/api/user-answers"),
+          fetchData<UserPerformance>("/api/user-performance/get"),
         ])
 
       const feedback: Record<string, string> = {}
       const selectedOptions: Record<string, string> = {}
       const notes: Record<string, string> = {}
 
+      // typed map: (q: QuestionType, index: number)
       const mergedQuestions: QuestionType[] = questionsData.map(
-        (q: Omit<QuestionType, "id">, index: number) => {
+        (q: QuestionType, index: number) => {
           const forcedId = index + 1
-
-          const progress = userProgressData.find(
-            (p: any) => p.questionId === q.questionId
-          )
-          const userAnswer = userAnswersData.find(
-            (a: UserAnswer) => a.questionId === q.questionId
-          )
-          const performance = userPerformanceData.find(
-            (p: UserPerformance) => p.questionId === q.questionId
-          )
+          const progress = userProgressData.find((p: any) => p.questionId === q.questionId)
+          const userAnswer = userAnswersData.find((a) => a.questionId === q.questionId)
+          const performance = userPerformanceData.find((p) => p.questionId === q.questionId)
 
           if (userAnswer) {
             selectedOptions[q.questionId] = userAnswer.selectedOption
@@ -456,7 +438,7 @@ const QuestionBankContent: React.FC = () => {
     } finally {
       dispatch({ type: "SET_LOADING", payload: false })
     }
-  }, [toast])
+  }, [toast, fetchData])
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -464,6 +446,9 @@ const QuestionBankContent: React.FC = () => {
     }
   }, [fetchAllData, status])
 
+  //
+  // 3. computed data (filters/pagination)
+  //
   const filteredQuestions = useMemo(() => {
     const searchQuery = state.searchQuery.toLowerCase()
     return state.questions.filter((question) => {
@@ -505,6 +490,9 @@ const QuestionBankContent: React.FC = () => {
     return filteredQuestions.slice(startIndex, startIndex + PAGE_SIZE)
   }, [filteredQuestions, state.currentPage])
 
+  //
+  // 4. Filter changes, pagination, etc.
+  //
   const handlePageChange = useCallback((page: number) => {
     dispatch({ type: "SET_CURRENT_PAGE", payload: page })
   }, [])
@@ -548,6 +536,9 @@ const QuestionBankContent: React.FC = () => {
     [state.filters, state.questions]
   )
 
+  //
+  // 5. Updating user performance / user answers
+  //
   const updateUserPerformance = useCallback(
     async (
       questionId: string,
@@ -631,7 +622,7 @@ const QuestionBankContent: React.FC = () => {
 
       const updatedFields = {
         correctAnswers: isCorrect ? 1 : 0,
-        incorrectAnswers: !isCorrect ? 1 : 0,
+        incorrectAnswers: isCorrect ? 0 : 1,
         uniqueQuestions: 1,
         questionsAttempted: 1,
         lastAttempted: new Date().toISOString(),
@@ -655,13 +646,7 @@ const QuestionBankContent: React.FC = () => {
         })
       }
     },
-    [
-      saveUserAnswer,
-      updateUserPerformance,
-      state.feedback,
-      state.selectedOptions,
-      state.questions,
-    ]
+    [saveUserAnswer, updateUserPerformance, state.feedback, state.selectedOptions, state.questions]
   )
 
   const handleNumericalSubmit = useCallback(
@@ -712,6 +697,7 @@ const QuestionBankContent: React.FC = () => {
       const newNotes = { ...state.notes, [questionId]: note }
       dispatch({ type: "SET_NOTES", payload: newNotes })
 
+      // Example: save note to server
       try {
         const response = await fetch("/api/notes/save", {
           method: "POST",
@@ -745,12 +731,12 @@ const QuestionBankContent: React.FC = () => {
     [state.notes]
   )
 
-  const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
   const handleNavigatorClick = useCallback(
     (index: number) => {
       const newPage = Math.floor(index / PAGE_SIZE) + 1
       dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
       setIsNavigatorOpen(false)
+
       setTimeout(() => {
         const questionElement = document.getElementById(
           `question-${filteredQuestions[index].questionId}`
@@ -784,6 +770,9 @@ const QuestionBankContent: React.FC = () => {
     return stats
   }, [filteredQuestions])
 
+  //
+  // 6. Render
+  //
   if (status === "loading" || state.loading) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -855,7 +844,10 @@ const QuestionBankContent: React.FC = () => {
             </div>
             <Dialog open={isNavigatorOpen} onOpenChange={setIsNavigatorOpen}>
               <DialogTrigger asChild>
-                <Button variant="outline" className="dark:border-gray-700 dark:hover:border-gray-500 dark:text-gray-100">
+                <Button
+                  variant="outline"
+                  className="dark:border-gray-700 dark:hover:border-gray-500 dark:text-gray-100"
+                >
                   <List className="mr-2 h-4 w-4" />
                   Question Navigator
                 </Button>
@@ -974,13 +966,9 @@ const QuestionBankContent: React.FC = () => {
                                   type="checkbox"
                                   id={`${filterType}-${value}`}
                                   className="mr-2"
-                                  checked={
-                                    (
-                                      state.filters[
-                                        filterType as keyof FiltersType
-                                      ] as string[]
-                                    ).includes(value)
-                                  }
+                                  checked={(
+                                    state.filters[filterType as keyof FiltersType] as string[]
+                                  ).includes(value)}
                                   onChange={() =>
                                     handleFilterChange(filterType as keyof FiltersType, value)
                                   }
@@ -1043,7 +1031,6 @@ const QuestionBankContent: React.FC = () => {
             )}
           </div>
 
-          {/* Dark-mode–friendly card with gradient or neutral colors */}
           <Card className="bg-gradient-to-br from-gray-200 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 border-gray-200 dark:border-gray-700 mb-6">
             <CardContent className="p-6">
               <h2 className="text-2xl font-light tracking-tight text-gray-800 dark:text-gray-200 mb-6">
@@ -1055,14 +1042,18 @@ const QuestionBankContent: React.FC = () => {
                     Overall Progress
                   </span>
                   <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
-                    {Math.round(
-                      (questionStats.answered / filteredQuestions.length) * 100
-                    )}
+                    {filteredQuestions.length > 0
+                      ? Math.round((questionStats.answered / filteredQuestions.length) * 100)
+                      : 0}
                     %
                   </span>
                 </div>
                 <Progress
-                  value={(questionStats.answered / filteredQuestions.length) * 100}
+                  value={
+                    filteredQuestions.length > 0
+                      ? (questionStats.answered / filteredQuestions.length) * 100
+                      : 0
+                  }
                   className="w-full h-1.5 bg-gray-300 dark:bg-gray-700"
                 />
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -1081,7 +1072,19 @@ const QuestionBankContent: React.FC = () => {
                   </div>
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-green-400 p-2 rounded-full bg-green-400/10">
-                      <CheckCircle2 className="h-5 w-5" />
+                      <svg
+                        className="h-5 w-5"
+                        strokeWidth="2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9 12l2 2 4-4"
+                        />
+                      </svg>
                     </div>
                     <div>
                       <p className="text-2xl font-light tracking-tighter text-green-600 dark:text-green-300">
@@ -1167,11 +1170,3 @@ const QuestionBankContent: React.FC = () => {
     </TooltipProvider>
   )
 }
-
-async function fetchData(url: string) {
-  const response = await fetch(url)
-  if (!response.ok) throw new Error(`Failed to fetch data from ${url}`)
-  return await response.json()
-}
-
-export default QuestionBankContent
