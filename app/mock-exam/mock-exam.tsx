@@ -1,772 +1,565 @@
 "use client"
 
-import type React from "react"
-import { useState, useCallback, useMemo, createContext, useContext } from "react"
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
+import React, { useState, useEffect, useCallback, useMemo, useRef } from "react"
+import { useSession } from "next-auth/react"
 import { useToast } from "@/components/ui/use-toast"
+import { useRouter } from "next/navigation"
+import { AnimatePresence, motion } from "framer-motion"
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import ExamSetup from "./exam-setup"
+import Exam from "./exam"
+import AdvancedExamResults from "./exam-results"
+import { QuestionType, ExamResultsType, TopicPerformance } from "@/lib/exam-helpers"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { TooltipProvider, Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
-import { Skeleton } from "@/components/ui/skeleton"
-import { Search, Plus, Upload, Trash2, Edit, Filter, ChevronDown } from "lucide-react"
-import debounce from "lodash/debounce"
-import type { Question, QuestionStatus, FiltersType } from "./types"
-import { Separator } from "@/components/ui/separator"
-import { Badge } from "@/components/ui/badge"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Input } from "@/components/ui/input"
 
-// Custom Hooks
-function useQuestions(filters: FiltersType, searchQuery: string) {
-  const fetchQuestions = async (): Promise<Question[]> => {
-    const response = await fetch("/api/questions")
-    if (!response.ok) throw new Error("Failed to fetch questions")
-    return response.json()
-  }
 
-  const {
-    data: questions = [],
-    isLoading,
-    error,
-  } = useQuery<Question[]>({
-    queryKey: ["questions"],
-    queryFn: fetchQuestions,
-  })
+const HOUR_IN_SECONDS = 3600
+
+export default function MockExam() {
+  const router = useRouter()
+  const [allQuestions, setAllQuestions] = useState<QuestionType[]>([])
+  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [answers, setAnswers] = useState<(string | null)[]>([])
+  const [questionStatuses, setQuestionStatuses] = useState<{
+    [index: number]: string
+  }>({})
+  const [examTimeLeft, setExamTimeLeft] = useState(HOUR_IN_SECONDS)
+  const [isExamStarted, setIsExamStarted] = useState(false)
+  const [isExamFinished, setIsExamFinished] = useState(false)
+  const [exams, setExams] = useState<string[]>([])
+  const [subjects, setSubjects] = useState<string[]>([])
+  const [years, setYears] = useState<string[]>([])
+  const [selectedExam, setSelectedExam] = useState<string>("")
+  const [selectedSubject, setSelectedSubject] = useState<string>("")
+  const [selectedYear, setSelectedYear] = useState<string>("")
+  const [selectedLevel, setSelectedLevel] = useState<string>("")
+  const [numberOfQuestions, setNumberOfQuestions] = useState<number>(10)
+  const [skipCompleted, setSkipCompleted] = useState<boolean>(false)
+  const [examTime, setExamTime] = useState<number>(60)
+  const [isLoading, setIsLoading] = useState(true)
+  const [examMode, setExamMode] = useState<"past" | "custom">("past")
+  const { data: session } = useSession()
+  const { toast } = useToast()
+  const [examResults, setExamResults] = useState<ExamResultsType | null>(null)
+  const questionStartTimeRef = useRef<number>(0)
+  const [timeSpentPerQuestion, setTimeSpentPerQuestion] = useState<number[]>([])
+  const [darkMode, setDarkMode] = useState(false)
 
   const filteredQuestions = useMemo(() => {
-    return questions
-      .filter((question) => {
-        const lowerSearchQuery = searchQuery.toLowerCase()
-        const matchesSearch =
-          question.text.toLowerCase().includes(lowerSearchQuery) ||
-          question.topic.toLowerCase().includes(lowerSearchQuery) ||
-          (question.subtopic?.toLowerCase().includes(lowerSearchQuery) ?? false) ||
-          question.subject.toLowerCase().includes(lowerSearchQuery)
+    if (examMode === "past") {
+      return allQuestions.filter(
+        (q) =>
+          q.exam === selectedExam &&
+          q.subject === selectedSubject &&
+          q.year === selectedYear
+      )
+    } else {
+      return (
+        allQuestions
+          .filter(
+            (q) =>
+              q.exam === selectedExam &&
+              q.subject === selectedSubject &&
+              q.year === selectedYear
+          )
+          .slice(0, numberOfQuestions) || []
+      )
+    }
+  }, [
+    allQuestions,
+    examMode,
+    selectedExam,
+    selectedSubject,
+    selectedYear,
+    numberOfQuestions,
+  ])
 
-        const matchesFilters =
-          (!filters.exams.length || filters.exams.includes(question.exam)) &&
-          (!filters.subjects.length || filters.subjects.includes(question.subject)) &&
-          (!filters.topics.length || filters.topics.includes(question.topic)) &&
-          (!filters.subtopics.length || (question.subtopic && filters.subtopics.includes(question.subtopic))) &&
-          (!filters.difficulties.length || filters.difficulties.includes(question.difficulty)) &&
-          (!filters.years.length || filters.years.includes(question.year.toString())) &&
-          (!filters.types.length || filters.types.includes(question.type)) &&
-          (filters.status === "all" || question.status === filters.status)
-
-        return matchesSearch && matchesFilters
+  useEffect(() => {
+    if (isExamStarted) {
+      const initialStatuses: { [index: number]: string } = {}
+      filteredQuestions.forEach((_, index) => {
+        initialStatuses[index] = "notVisited"
       })
-      .sort((a, b) => Number.parseInt(a.questionId) - Number.parseInt(b.questionId))
-  }, [questions, filters, searchQuery])
+      setQuestionStatuses(initialStatuses)
+      setAnswers(new Array(filteredQuestions.length).fill(null))
+    }
+  }, [isExamStarted, filteredQuestions.length])
 
-  return { questions: filteredQuestions, isLoading, error }
-}
+  const handleAnswer = (answerId: string) => {
+    setAnswers((prev) => {
+      const newAnswers = [...prev]
+      newAnswers[currentQuestion] = answerId
+      return newAnswers
+    })
+    setQuestionStatuses((prev) => ({
+      ...prev,
+      [currentQuestion]:
+        prev[currentQuestion] === "markedForReview"
+          ? "markedForReview"
+          : "answered",
+    }))
+  }
 
-// Contexts
-const FiltersContext = createContext<{
-  filters: FiltersType
-  setFilters: React.Dispatch<React.SetStateAction<FiltersType>>
-} | null>(null)
-
-const SelectedQuestionsContext = createContext<{
-  selectedQuestions: Set<string>
-  toggleQuestionSelection: (questionId: string) => void
-  clearSelection: () => void
-} | null>(null)
-
-const QuestionsContext = createContext<{
-  questions: Question[]
-  isLoading: boolean
-} | null>(null)
-
-// Filters Component
-function Filters() {
-  const { filters, setFilters } = useContext(FiltersContext)!
-  const { questions } = useContext(QuestionsContext)!
-
-  const handleFilterChange = useCallback(
-    (tag: keyof FiltersType, value: string) => {
-      setFilters((prevFilters) => {
-        const filterValues = prevFilters[tag]
-        if (Array.isArray(filterValues)) {
-          const isSelected = filterValues.includes(value)
-          const updatedFilter = isSelected ? filterValues.filter((v) => v !== value) : [...filterValues, value]
-          return { ...prevFilters, [tag]: updatedFilter }
+  const handleNavigate = (index: number) => {
+    if (index < 0 || index >= filteredQuestions.length) return
+    updateTimeSpent()
+    setCurrentQuestion(index)
+    setQuestionStatuses((prev) => {
+      const status = prev[index]
+      if (status === "notVisited") {
+        return {
+          ...prev,
+          [index]: "notAnswered",
         }
-        return prevFilters
-      })
-    },
-    [setFilters],
-  )
-
-  const filterCategories = [
-    { key: "exams", label: "Exams" },
-    { key: "subjects", label: "Subjects" },
-    { key: "topics", label: "Topics" },
-    { key: "subtopics", label: "Subtopics" },
-    { key: "difficulties", label: "Difficulties" },
-    { key: "types", label: "Types" },
-    { key: "years", label: "Years" },
-  ] as const
-
-  return (
-    <div className="bg-white rounded-lg shadow-md p-6 space-y-6">
-      <h3 className="text-xl font-semibold text-gray-800">Filters</h3>
-      {filterCategories.map((category) => {
-        const values = Array.from(
-          new Set(
-            questions.map((q) => {
-              switch (category.key) {
-                case "exams":
-                  return q.exam
-                case "subjects":
-                  return q.subject
-                case "topics":
-                  return q.topic
-                case "subtopics":
-                  return q.subtopic ?? ""
-                case "difficulties":
-                  return q.difficulty
-                case "types":
-                  return q.type
-                case "years":
-                  return q.year?.toString() ?? ""
-                default:
-                  return ""
-              }
-            }),
-          ),
-        ).filter((v) => v !== "")
-
-        return (
-          <div key={category.key}>
-            <Label className="font-medium text-gray-700 mb-2 block">{category.label}</Label>
-            <div className="space-y-2">
-              {values.map((value) => (
-                <div key={value} className="flex items-center">
-                  <Checkbox
-                    id={`${category.key}-${value}`}
-                    checked={filters[category.key as keyof FiltersType].includes(value)}
-                    onCheckedChange={() => handleFilterChange(category.key as keyof FiltersType, value)}
-                    className="mr-2 border-gray-300"
-                  />
-                  <Label htmlFor={`${category.key}-${value}`} className="text-sm text-gray-600 cursor-pointer">
-                    {value}
-                  </Label>
-                </div>
-              ))}
-            </div>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
-
-// QuestionForm Component
-function QuestionForm({
-  initialData,
-  onSubmit,
-}: {
-  initialData?: Partial<Question>
-  onSubmit: (question: Partial<Question>) => void
-}) {
-  const [formData, setFormData] = useState<Partial<Question>>(() => ({
-    text: "",
-    subject: "",
-    topic: "",
-    difficulty: "Easy",
-    options: [],
-    correctOption: "",
-    markscheme: "",
-    notes: [],
-    ...initialData,
-  }))
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSelectChange = (name: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleOptionChange = (index: number, value: string) => {
-    setFormData((prev) => {
-      const newOptions = [...(prev.options || [])]
-      newOptions[index] = value
-      return { ...prev, options: newOptions }
+      }
+      return prev
     })
   }
 
-  const handleAddOption = () => {
-    setFormData((prev) => ({
+  const handleReviewAndNext = () => {
+    setQuestionStatuses((prev) => ({
       ...prev,
-      options: [...(prev.options || []), ""],
+      [currentQuestion]: "markedForReview",
+    }))
+    if (currentQuestion < filteredQuestions.length - 1) {
+      handleNavigate(currentQuestion + 1)
+    }
+  }
+
+  const handleClear = () => {
+    setAnswers((prev) => {
+      const newAnswers = [...prev]
+      newAnswers[currentQuestion] = null
+      return newAnswers
+    })
+    setQuestionStatuses((prev) => ({
+      ...prev,
+      [currentQuestion]:
+        prev[currentQuestion] === "markedForReview"
+          ? "markedForReview"
+          : "notAnswered",
     }))
   }
 
-  const handleRemoveOption = (index: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      options: prev.options?.filter((_, i) => i !== index) || [],
-    }))
+  const handleNext = () => {
+    if (currentQuestion < filteredQuestions.length - 1) {
+      updateTimeSpent()
+      handleNavigate(currentQuestion + 1)
+    }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    onSubmit(formData)
+  const handlePrevious = () => {
+    if (currentQuestion > 0) {
+      updateTimeSpent()
+      handleNavigate(currentQuestion - 1)
+    }
   }
 
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="space-y-2">
-        <Label htmlFor="text">Question Text</Label>
-        <Textarea id="text" name="text" value={formData.text} onChange={handleInputChange} required />
-      </div>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="subject">Subject</Label>
-          <Input id="subject" name="subject" value={formData.subject} onChange={handleInputChange} required />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="topic">Topic</Label>
-          <Input id="topic" name="topic" value={formData.topic} onChange={handleInputChange} required />
-        </div>
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="difficulty">Difficulty</Label>
-        <Select
-          name="difficulty"
-          value={formData.difficulty}
-          onValueChange={(value) => handleSelectChange("difficulty", value)}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Select difficulty" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="Easy">Easy</SelectItem>
-            <SelectItem value="Medium">Medium</SelectItem>
-            <SelectItem value="Hard">Hard</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="space-y-2">
-        <Label>Options</Label>
-        {formData.options?.map((option, index) => (
-          <div key={index} className="flex items-center space-x-2">
-            <Input
-              value={option}
-              onChange={(e) => handleOptionChange(index, e.target.value)}
-              placeholder={`Option ${index + 1}`}
-            />
-            <Button type="button" variant="outline" size="icon" onClick={() => handleRemoveOption(index)}>
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          </div>
-        ))}
-        <Button type="button" variant="outline" onClick={handleAddOption}>
-          Add Option
-        </Button>
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="correctOption">Correct Option</Label>
-        <Select
-          name="correctOption"
-          value={formData.correctOption || ""}
-          onValueChange={(value) => handleSelectChange("correctOption", value)}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Select correct option" />
-          </SelectTrigger>
-          <SelectContent>
-            {formData.options?.map((option, index) => (
-              <SelectItem key={index} value={option}>
-                {option}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="markscheme">Mark Scheme</Label>
-        <Textarea id="markscheme" name="markscheme" value={formData.markscheme || ""} onChange={handleInputChange} />
-      </div>
-      <DialogFooter>
-        <Button type="submit">Save Question</Button>
-      </DialogFooter>
-    </form>
+  const handleSaveAndNext = () => {
+    handleNext()
+  }
+
+  const calculateStatusCounts = () => {
+    const counts: {
+      notVisited: number
+      notAnswered: number
+      answered: number
+      markedForReview: number
+    } = {
+      notVisited: 0,
+      notAnswered: 0,
+      answered: 0,
+      markedForReview: 0,
+    }
+  
+    Object.values(questionStatuses).forEach((status) => {
+      if (
+        status === "notVisited" ||
+        status === "notAnswered" ||
+        status === "answered" ||
+        status === "markedForReview"
+      ) {
+        counts[status] += 1
+      }
+    })
+  
+    return counts
+  }
+  
+
+  const questionStatusCounts = calculateStatusCounts()
+
+  const handleSubmit = useCallback(() => {
+    if (!filteredQuestions.length) return
+
+    const totalQuestions = filteredQuestions.length
+    const correctCount = filteredQuestions.reduce((acc, question, index) => {
+      return acc + (answers[index] === question.correctOption ? 1 : 0)
+    }, 0)
+    const incorrectAnswers = totalQuestions - correctCount
+    const score = (correctCount / totalQuestions) * 100
+
+    const topicPerformance: Record<string, TopicPerformance> = {}
+    const subtopicPerformance: Record<string, TopicPerformance> = {}
+    const topicWiseIncorrectAnswers: Record<string, number> = {}
+
+    filteredQuestions.forEach((question, index) => {
+      const isCorrect = answers[index] === question.correctOption
+
+      if (!topicPerformance[question.topic]) {
+        topicPerformance[question.topic] = { correct: 0, total: 0 }
+      }
+      topicPerformance[question.topic].total++
+      if (isCorrect) {
+        topicPerformance[question.topic].correct++
+      } else {
+        topicWiseIncorrectAnswers[question.topic] =
+          (topicWiseIncorrectAnswers[question.topic] || 0) + 1
+      }
+
+      if (!subtopicPerformance[question.subtopic]) {
+        subtopicPerformance[question.subtopic] = { correct: 0, total: 0 }
+      }
+      subtopicPerformance[question.subtopic].total++
+      if (isCorrect) subtopicPerformance[question.subtopic].correct++
+    })
+
+    const topStrengths = Object.entries(topicPerformance)
+      .sort((a, b) => b[1].correct / b[1].total - a[1].correct / a[1].total)
+      .slice(0, 3)
+
+    const topWeaknesses = Object.entries(topicPerformance)
+      .sort((a, b) => a[1].correct / a[1].total - b[1].correct / a[1].total)
+      .slice(0, 3)
+
+    const averageTimePerQuestion =
+      timeSpentPerQuestion.reduce((a, b) => a + b, 0) /
+      timeSpentPerQuestion.length
+
+    const skillLevels: Record<string, number> = {
+      "Problem Solving": Math.random() * 100,
+      "Critical Thinking": Math.random() * 100,
+      "Data Analysis": Math.random() * 100,
+      "Conceptual Understanding": Math.random() * 100,
+      "Application of Knowledge": Math.random() * 100,
+    }
+
+    setExamResults({
+      totalQuestions,
+      correctAnswersCount: correctCount,
+      incorrectAnswers,
+      score,
+      topicPerformance,
+      subtopicPerformance,
+      topStrengths,
+      topWeaknesses,
+      userAnswers: answers.map((answer) => answer || ""),
+      correctAnswers: filteredQuestions.map((q) => q.correctOption),
+      timeSpentPerQuestion,
+      averageTimePerQuestion,
+      topicWiseIncorrectAnswers,
+      questions: filteredQuestions,
+      skillLevels,
+    })
+
+    setIsExamFinished(true)
+  }, [answers, filteredQuestions, timeSpentPerQuestion])
+
+  const updateTimeSpent = useCallback(() => {
+    const timeSpent = Math.floor(
+      (Date.now() - questionStartTimeRef.current) / 1000
+    )
+    setTimeSpentPerQuestion((prev) => {
+      const newTimeSpent = [...prev]
+      newTimeSpent[currentQuestion] =
+        (newTimeSpent[currentQuestion] || 0) + timeSpent
+      return newTimeSpent
+    })
+    questionStartTimeRef.current = Date.now()
+  }, [currentQuestion])
+
+  useEffect(() => {
+    let examTimer: NodeJS.Timeout
+    if (isExamStarted && !isExamFinished) {
+      examTimer = setInterval(() => {
+        setExamTimeLeft((prevTime) => {
+          if (prevTime <= 1) {
+            clearInterval(examTimer)
+            updateTimeSpent()
+            handleSubmit()
+            return 0
+          }
+          return prevTime - 1
+        })
+      }, 1000)
+    }
+    return () => {
+      if (examTimer) clearInterval(examTimer)
+    }
+  }, [isExamStarted, isExamFinished, updateTimeSpent, handleSubmit])
+
+  useEffect(() => {
+    if (isExamStarted && !isExamFinished) {
+      updateTimeSpent()
+      questionStartTimeRef.current = Date.now()
+    }
+  }, [currentQuestion, isExamStarted, isExamFinished, updateTimeSpent])
+
+  useEffect(() => {
+    fetchQuestions()
+  }, [])
+
+  const fetchQuestions = async () => {
+    try {
+      const response = await fetch("/api/questions")
+      if (!response.ok) {
+        throw new Error("Failed to fetch questions")
+      }
+      const data: QuestionType[] = await response.json()
+      setAllQuestions(data)
+    } catch (error) {
+      console.error("Error fetching questions:", error)
+      toast({
+        title: "Error",
+        description: "Failed to load questions. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (allQuestions.length > 0) {
+      const uniqueExams = [...new Set(allQuestions.map((q) => q.exam))]
+      setExams(uniqueExams)
+    }
+  }, [allQuestions])
+
+  useEffect(() => {
+    if (selectedExam) {
+      const uniqueSubjects = [
+        ...new Set(
+          allQuestions
+            .filter((q) => q.exam === selectedExam)
+            .map((q) => q.subject)
+        ),
+      ]
+      setSubjects(uniqueSubjects)
+      setSelectedSubject("")
+      setSelectedYear("")
+    }
+  }, [selectedExam, allQuestions])
+
+  useEffect(() => {
+    if (selectedExam && selectedSubject) {
+      const uniqueYears = [
+        ...new Set(
+          allQuestions
+            .filter(
+              (q) => q.exam === selectedExam && q.subject === selectedSubject
+            )
+            .map((q) => q.year)
+        ),
+      ]
+      setYears(uniqueYears)
+      setSelectedYear("")
+    }
+  }, [selectedExam, selectedSubject, allQuestions])
+
+  const startExam = useCallback(() => {
+    setExamTimeLeft(examMode === "past" ? HOUR_IN_SECONDS : examTime * 60)
+    setIsExamStarted(true)
+    setCurrentQuestion(0)
+    setAnswers(new Array(filteredQuestions.length).fill(null))
+    setQuestionStatuses({})
+    setExamResults(null)
+    setTimeSpentPerQuestion(new Array(filteredQuestions.length).fill(0))
+    questionStartTimeRef.current = Date.now()
+  }, [examMode, examTime, filteredQuestions.length])
+
+  const exitExam = () => {
+    if (
+      window.confirm(
+        "Are you sure you want to exit the exam? Your progress will be lost."
+      )
+    ) {
+      setIsExamStarted(false)
+      setIsExamFinished(false)
+      setExamResults(null)
+      router.push("/mock-exam") // Redirect to home page
+    }
+  }
+
+  useEffect(() => {
+    if (isExamStarted) {
+      document.body.classList.add("exam-mode")
+    } else {
+      document.body.classList.remove("exam-mode")
+    }
+    return () => {
+      document.body.classList.remove("exam-mode")
+    }
+  }, [isExamStarted])
+
+  const renderExamSetup = () => (
+    <ExamSetup
+      exams={exams}
+      subjects={subjects}
+      years={years}
+      selectedExam={selectedExam}
+      selectedSubject={selectedSubject}
+      selectedYear={selectedYear}
+      selectedLevel={selectedLevel}
+      numberOfQuestions={numberOfQuestions}
+      skipCompleted={skipCompleted}
+      examTime={examTime}
+      examMode={examMode}
+      onExamModeChange={setExamMode}
+      onExamChange={setSelectedExam}
+      onSubjectChange={setSelectedSubject}
+      onYearChange={setSelectedYear}
+      onLevelChange={setSelectedLevel}
+      onNumberOfQuestionsChange={setNumberOfQuestions}
+      onSkipCompletedChange={setSkipCompleted}
+      onExamTimeChange={setExamTime}
+      onStartExam={startExam}
+    />
   )
-}
 
-// QuestionTable Component
-function QuestionTable({
-  currentPage,
-  pageSize,
-  onEdit,
-  onDelete,
-}: {
-  currentPage: number
-  pageSize: number
-  onEdit: (question: Question) => void
-  onDelete: (questionId: string) => void
-}) {
-  const { questions, isLoading } = useContext(QuestionsContext)!
-  const { selectedQuestions, toggleQuestionSelection } = useContext(SelectedQuestionsContext)!
-  const startIndex = (currentPage - 1) * pageSize
-  const paginatedQuestions = questions.slice(startIndex, startIndex + pageSize)
+  const renderExam = useCallback(
+    () => (
+      <Exam
+        currentQuestion={currentQuestion}
+        filteredQuestions={filteredQuestions}
+        answers={answers}
+        questionStatuses={questionStatuses}
+        questionStatusCounts={questionStatusCounts}
+        examTimeLeft={examTimeLeft}
+        onAnswer={handleAnswer}
+        onNext={handleNext}
+        onPrevious={handlePrevious}
+        onClear={handleClear}
+        onReviewAndNext={handleReviewAndNext}
+        onSaveAndNext={handleSaveAndNext}
+        onSubmit={() => {
+          if (window.confirm("Are you sure you want to submit the exam?")) {
+            updateTimeSpent()
+            handleSubmit()
+          }
+        }}
+        onExit={exitExam}
+        onNavigate={handleNavigate}
+        userName={session?.user?.name || "Guest User"}
+        selectedSubject={selectedSubject}
+        selectedYear={selectedYear}
+        selectedLevel={selectedLevel}
+      />
+    ),
+    [
+      currentQuestion,
+      filteredQuestions,
+      answers,
+      questionStatuses,
+      questionStatusCounts,
+      examTimeLeft,
+      handleAnswer,
+      handleNext,
+      handlePrevious,
+      handleClear,
+      handleReviewAndNext,
+      handleSaveAndNext,
+      handleSubmit,
+      exitExam,
+      handleNavigate,
+      session?.user?.name,
+      selectedSubject,
+      selectedYear,
+      selectedLevel,
+      updateTimeSpent,
+    ]
+  )
+
+  const onStartNewExam = () => {
+    setIsExamStarted(false)
+    setIsExamFinished(false)
+    setExamResults(null)
+  }
 
   if (isLoading) {
     return (
-      <div className="space-y-4">
-        {[...Array(5)].map((_, index) => (
-          <div key={index} className="flex items-center space-x-4">
-            <Skeleton className="h-12 w-12 rounded-full" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[200px]" />
-            </div>
+      <div className="min-h-screen w-full flex flex-col p-4 md:p-8">
+      <div className="max-w-3xl mx-auto w-full">
+        <div className="flex items-center gap-4 mb-8">
+          <Skeleton circle width={64} height={64} />
+          <Skeleton width={200} height={40} />
+        </div>
+        <Skeleton width={300} height={40} className="mb-4" />
+        <Skeleton height={56} className="mb-4" />
+        <Skeleton height={56} className="mb-4" />
+        <Skeleton height={56} className="mb-4" />
+        <div className="mt-8">
+          <div className="flex items-center gap-4 mb-4">
+            <Skeleton circle width={48} height={48} />
+            <Skeleton width={150} height={32} />
           </div>
-        ))}
+          <Skeleton count={4} height={24} className="mb-2" />
+          <Skeleton width={150} height={48} className="mt-4" />
+        </div>
       </div>
+    </div>
     )
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <Table>
-        <TableHeader>
-          <TableRow className="bg-gray-50">
-            <TableHead className="w-[50px]">
-              <Checkbox
-                checked={selectedQuestions.size === paginatedQuestions.length}
-                onCheckedChange={(checked) => {
-                  paginatedQuestions.forEach((q) => {
-                    if (checked) {
-                      selectedQuestions.add(q.questionId)
-                    } else {
-                      selectedQuestions.delete(q.questionId)
-                    }
-                  })
-                }}
-              />
-            </TableHead>
-            <TableHead className="font-semibold text-gray-700">Question</TableHead>
-            <TableHead
-              className="I'll continue the text stream from the cut-off point:
-
-text-gray-700"
-            >
-              Question
-            </TableHead>
-            <TableHead className="font-semibold text-gray-700">Subject</TableHead>
-            <TableHead className="font-semibold text-gray-700">Difficulty</TableHead>
-            <TableHead className="font-semibold text-gray-700">Status</TableHead>
-            <TableHead className="text-right font-semibold text-gray-700">Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {paginatedQuestions.map((question) => (
-            <TableRow key={question.questionId} className="hover:bg-gray-50">
-              <TableCell>
-                <Checkbox
-                  checked={selectedQuestions.has(question.questionId)}
-                  onCheckedChange={() => toggleQuestionSelection(question.questionId)}
-                />
-              </TableCell>
-              <TableCell>
-                <div className="font-medium text-gray-900">{question.text.substring(0, 50)}...</div>
-                <div className="text-sm text-gray-500">ID: {question.questionId}</div>
-              </TableCell>
-              <TableCell>
-                <Badge variant="secondary" className="bg-blue-100 text-blue-800">
-                  {question.subject}
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <Badge
-                  variant="outline"
-                  className={
-                    question.difficulty === "Easy"
-                      ? "border-green-500 text-green-700"
-                      : question.difficulty === "Medium"
-                        ? "border-yellow-500 text-yellow-700"
-                        : "border-red-500 text-red-700"
-                  }
-                >
-                  {question.difficulty}
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <Badge
-                  className={
-                    question.status === ("Active" as QuestionStatus)
-                      ? "bg-green-100 text-green-800"
-                      : question.status === ("Inactive" as QuestionStatus)
-                        ? "bg-gray-100 text-gray-800"
-                        : "bg-yellow-100 text-yellow-800"
-                  }
-                >
-                  {question.status}
-                </Badge>
-              </TableCell>
-              <TableCell className="text-right space-x-2">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="sm" onClick={() => onEdit(question)}>
-                      <Edit className="h-4 w-4 text-blue-600" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Edit Question</TooltipContent>
-                </Tooltip>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="sm" onClick={() => onDelete(question.questionId)}>
-                      <Trash2 className="h-4 w-4 text-red-600" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Delete Question</TooltipContent>
-                </Tooltip>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
-  )
-}
-
-// Pagination Component
-function Pagination({
-  currentPage,
-  totalPages,
-  onPageChange,
-}: {
-  currentPage: number
-  totalPages: number
-  onPageChange: (page: number) => void
-}) {
-  return (
-    <div className="flex justify-center mt-6">
-      <nav className="inline-flex rounded-md shadow">
-        <Button
-          variant="outline"
-          onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-          disabled={currentPage === 1}
-          className="rounded-l-md"
+    <AnimatePresence mode="wait">
+      {!isExamStarted && (
+        <motion.div
+          key="setup"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className={darkMode ? "dark" : ""}
         >
-          Previous
-        </Button>
-        <div className="flex items-center justify-center px-4 h-10 bg-white border-t border-b border-gray-300 text-sm font-medium text-gray-700">
-          Page {currentPage} of {totalPages}
-        </div>
-        <Button
-          variant="outline"
-          onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-          disabled={currentPage === totalPages}
-          className="rounded-r-md"
+          {renderExamSetup()}
+        </motion.div>
+      )}
+      {isExamStarted && !isExamFinished && (
+        <motion.div
+          key="exam"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className={`${darkMode ? "dark" : ""} fixed inset-0 z-50`}
         >
-          Next
-        </Button>
-      </nav>
-    </div>
+          {renderExam()}
+        </motion.div>
+      )}
+      {isExamFinished && examResults && (
+        <motion.div
+          key="results"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className={darkMode ? "dark" : ""}
+        >
+          <AdvancedExamResults
+            examResults={examResults}
+            onStartNewExam={onStartNewExam}
+            onExit={() => setIsExamFinished(false)}
+          />
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
-
-// Main Component
-export function QuestionBankDashboardContent() {
-  const [filters, setFilters] = useState<FiltersType>({
-    exams: [],
-    subjects: [],
-    topics: [],
-    subtopics: [],
-    difficulties: [],
-    types: [],
-    years: [],
-    status: "all",
-  })
-  const [searchQuery, setSearchQuery] = useState("")
-  const [selectedQuestions, setSelectedQuestions] = useState<Set<string>>(new Set())
-  const [currentPage, setCurrentPage] = useState(1)
-  const [isAddQuestionOpen, setIsAddQuestionOpen] = useState(false)
-  const [editingQuestion, setEditingQuestion] = useState<Question | null>(null)
-  const pageSize = 10
-  const { toast } = useToast()
-  const queryClient = useQueryClient()
-
-  const debouncedSearch = useMemo(
-    () =>
-      debounce((value: string) => {
-        setSearchQuery(value)
-        setCurrentPage(1)
-      }, 300),
-    [],
-  )
-
-  const { questions, isLoading, error } = useQuestions(filters, searchQuery)
-
-  const totalPages = Math.ceil(questions.length / pageSize)
-
-  // Mutations for add, edit, delete operations
-  const addQuestionMutation = useMutation({
-    mutationFn: async (newQuestion: Partial<Question>) => {
-      const response = await fetch("/api/questions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newQuestion),
-      })
-      if (!response.ok) throw new Error("Failed to add question")
-      return response.json()
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["questions"] })
-      toast({
-        title: "Question Added",
-        description: "New question has been successfully added.",
-      })
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to add question. Please try again.",
-        variant: "destructive",
-      })
-    },
-  })
-
-  const editQuestionMutation = useMutation({
-    mutationFn: async (updatedQuestion: Partial<Question>) => {
-      const response = await fetch("/api/questions", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedQuestion),
-      })
-      if (!response.ok) throw new Error("Failed to update question")
-      return response.json()
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["questions"] })
-      toast({
-        title: "Question Updated",
-        description: "Question has been successfully updated.",
-      })
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to update question. Please try again.",
-        variant: "destructive",
-      })
-    },
-  })
-
-  const deleteQuestionMutation = useMutation({
-    mutationFn: async (questionId: string) => {
-      const response = await fetch(`/api/questions/${questionId}`, {
-        method: "DELETE",
-      })
-      if (!response.ok) throw new Error("Failed to delete question")
-      return response.json()
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["questions"] })
-      toast({
-        title: "Question Deleted",
-        description: "Question has been successfully deleted.",
-      })
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to delete question. Please try again.",
-        variant: "destructive",
-      })
-    },
-  })
-
-  const handleAddQuestion = async (newQuestion: Partial<Question>) => {
-    await addQuestionMutation.mutateAsync(newQuestion)
-    setIsAddQuestionOpen(false)
-  }
-
-  const handleEditQuestion = async (editedQuestion: Partial<Question>) => {
-    await editQuestionMutation.mutateAsync(editedQuestion)
-    setEditingQuestion(null)
-  }
-
-  const handleDeleteQuestion = async (questionId: string) => {
-    await deleteQuestionMutation.mutateAsync(questionId)
-  }
-
-  const toggleQuestionSelection = (questionId: string) => {
-    setSelectedQuestions((prevSelected) => {
-      const newSelected = new Set(prevSelected)
-      if (newSelected.has(questionId)) {
-        newSelected.delete(questionId)
-      } else {
-        newSelected.add(questionId)
-      }
-      return newSelected
-    })
-  }
-
-  const clearSelection = () => {
-    setSelectedQuestions(new Set())
-  }
-
-  if (error) {
-    return <div className="text-center text-red-600 mt-8">Error loading questions. Please try again later.</div>
-  }
-
-  return (
-    <TooltipProvider>
-      <FiltersContext.Provider value={{ filters, setFilters }}>
-        <SelectedQuestionsContext.Provider value={{ selectedQuestions, toggleQuestionSelection, clearSelection }}>
-          <QuestionsContext.Provider value={{ questions, isLoading }}>
-            <div className="flex h-screen overflow-hidden bg-gray-100">
-              {/* Sidebar Filters */}
-              <div className="w-64 p-6 overflow-y-auto">
-                <Filters />
-              </div>
-
-              {/* Main Content */}
-              <div className="flex-1 overflow-auto">
-                <div className="p-8 space-y-8">
-                  <div className="flex justify-between items-center">
-                    <h1 className="text-3xl font-bold text-gray-900">Question Bank</h1>
-                    <div className="flex items-center space-x-4">
-                      <Dialog open={isAddQuestionOpen} onOpenChange={setIsAddQuestionOpen}>
-                        <DialogTrigger asChild>
-                          <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                            <Plus className="mr-2 h-4 w-4" />
-                            Add Question
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-[625px]">
-                          <DialogHeader>
-                            <DialogTitle>Add New Question</DialogTitle>
-                          </DialogHeader>
-                          <ScrollArea className="max-h-[80vh] overflow-y-auto">
-                            <QuestionForm onSubmit={handleAddQuestion} />
-                          </ScrollArea>
-                        </DialogContent>
-                      </Dialog>
-                      <Button variant="outline" className="border-gray-300 text-gray-700">
-                        <Upload className="mr-2 h-4 w-4" />
-                        Batch Upload
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Statistics */}
-                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                    <Card className="bg-white shadow-sm">
-                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium text-gray-600">Total Questions</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="text-2xl font-bold text-gray-900">{questions.length}</div>
-                        <p className="text-xs text-gray-500">+2.5% from last week</p>
-                      </CardContent>
-                    </Card>
-                    <Card className="bg-white shadow-sm">
-                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium text-gray-600">Active Questions</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="text-2xl font-bold text-gray-900">
-                          {questions.filter((q) => q.status === ("Active" as QuestionStatus)).length}
-                        </div>
-                        <p className="text-xs text-gray-500">+1.2% from last week</p>
-                      </CardContent>
-                    </Card>
-                    <Card className="bg-white shadow-sm">
-                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium text-gray-600">Subjects Covered</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="text-2xl font-bold text-gray-900">
-                          {new Set(questions.map((q) => q.subject)).size}
-                        </div>
-                        <p className="text-xs text-gray-500">+1 new subject this week</p>
-                      </CardContent>
-                    </Card>
-                    <Card className="bg-white shadow-sm">
-                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium text-gray-600">Average Difficulty</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="text-2xl font-bold text-gray-900">Medium</div>
-                        <p className="text-xs text-gray-500">No change from last week</p>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  {/* Search and Filters */}
-                  <div className="flex items-center space-x-4">
-                    <div className="relative flex-grow">
-                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                      <Input
-                        type="text"
-                        placeholder="Search questions..."
-                        onChange={(e) => debouncedSearch(e.target.value)}
-                        className="pl-10 border-gray-300"
-                      />
-                    </div>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="border-gray-300 text-gray-700">
-                          <Filter className="mr-2 h-4 w-4" />
-                          Filter
-                          <ChevronDown className="ml-2 h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent>
-                        <DropdownMenuItem>By Subject</DropdownMenuItem>
-                        <DropdownMenuItem>By Difficulty</DropdownMenuItem>
-                        <DropdownMenuItem>By Status</DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
-
-                  {/* Questions Table */}
-                  <QuestionTable
-                    currentPage={currentPage}
-                    pageSize={pageSize}
-                    onEdit={(question) => setEditingQuestion(question)}
-                    onDelete={handleDeleteQuestion}
-                  />
-
-                  {/* Pagination */}
-                  <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
-                </div>
-              </div>
-
-              {/* Edit Question Dialog */}
-              {editingQuestion && (
-                <Dialog open={!!editingQuestion} onOpenChange={() => setEditingQuestion(null)}>
-                  <DialogContent className="sm:max-w-[625px]">
-                    <DialogHeader>
-                      <DialogTitle>Edit Question</DialogTitle>
-                    </DialogHeader>
-                    <ScrollArea className="max-h-[80vh] overflow-y-auto">
-                      <QuestionForm initialData={editingQuestion} onSubmit={handleEditQuestion} />
-                    </ScrollArea>
-                  </DialogContent>
-                </Dialog>
-              )}
-            </div>
-          </QuestionsContext.Provider>
-        </SelectedQuestionsContext.Provider>
-      </FiltersContext.Provider>
-    </TooltipProvider>
-  )
-}
-
