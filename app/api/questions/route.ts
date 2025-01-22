@@ -1,11 +1,12 @@
-import { PrismaClient, Prisma, QuestionStatus } from "@prisma/client"
-import { NextResponse } from "next/server"
+import { PrismaClient, Prisma, QuestionStatus } from '@prisma/client'
+import { NextResponse } from 'next/server'
 
 const prisma = new PrismaClient()
 
 // GET all questions
 export async function GET() {
   try {
+    // We SELECT all relevant fields from your schema:
     const questions = await prisma.question.findMany({
       select: {
         // Basic question identity
@@ -63,7 +64,7 @@ export async function GET() {
         // Extra question metadata
         diagramUrl: true,
         customTag: true,
-        explanation: true,
+        explanation: true,           // JSON for explanations
         reviewed: true,
         completed: true,
         paperTitle: true,
@@ -71,12 +72,12 @@ export async function GET() {
         updatedTime: true,
         updatedBy: true,
         source: true,
-        peerSolvedPercentage: true,
-        linkedResources: true,
-        commonMistakes: true,
+        peerSolvedPercentage: true,  // e.g. show how many solved on 1st try
+        linkedResources: true,       // JSON for resources
+        commonMistakes: true,        // JSON for typical mistakes
         discussionLink: true,
         parentQuestionId: true,
-        difficultyRating: true,
+        difficultyRating: true,      // numeric rating (1=easy,2=medium,3=hard)
         yearKey: true,
         status: true,
         createdAt: true,
@@ -84,19 +85,10 @@ export async function GET() {
       },
     })
 
-    // Parse JSON fields
-    const parsedQuestions = questions.map((q) => ({
-      ...q,
-      languages: q.languages ? q.languages : [],
-      explanation: q.explanation ? JSON.parse(q.explanation as string) : null,
-      linkedResources: q.linkedResources ? JSON.parse(q.linkedResources as string) : null,
-      commonMistakes: q.commonMistakes ? JSON.parse(q.commonMistakes as string) : null,
-    }))
-
-    return NextResponse.json(parsedQuestions)
+    return NextResponse.json(questions)
   } catch (error) {
-    console.error("Error fetching questions:", error)
-    return NextResponse.json({ error: "Failed to fetch questions" }, { status: 500 })
+    console.error('Error fetching questions:', error)
+    return NextResponse.json({ error: 'Failed to fetch questions' }, { status: 500 })
   }
 }
 
@@ -105,35 +97,33 @@ export async function POST(request: Request) {
   try {
     const data = await request.json()
 
-    // Map difficultyRating to difficulty string
+    // If needed: map difficultyRating -> difficulty string
+    // e.g. data.difficultyRating=1 => data.difficulty='easy'
     if (data.difficultyRating !== undefined) {
-      if (data.difficultyRating === 1) data.difficulty = "easy"
-      else if (data.difficultyRating === 2) data.difficulty = "medium"
-      else if (data.difficultyRating === 3) data.difficulty = "hard"
+      if (data.difficultyRating === 1) data.difficulty = 'easy'
+      else if (data.difficultyRating === 2) data.difficulty = 'medium'
+      else if (data.difficultyRating === 3) data.difficulty = 'hard'
     }
 
-    // If status not provided, default to ACTIVE
+    // If status not provided, default to ACTIVE or DRAFT
     const status = data.status || QuestionStatus.ACTIVE
 
-    // Handle nested JSON fields
-    const questionData = {
-      ...data,
-      status,
-      languages: data.languages || [],
-      explanation: data.explanation ? JSON.stringify(data.explanation) : null,
-      linkedResources: data.linkedResources ? JSON.stringify(data.linkedResources) : null,
-      commonMistakes: data.commonMistakes ? JSON.stringify(data.commonMistakes) : null,
-      updatedTime: Math.floor(Date.now() / 1000),
-    }
+    // Because you have JSON fields (explanation, commonMistakes, etc.),
+    // Prisma can handle them as standard JS objects, as long as they are valid JSON.
 
     const created = await prisma.question.create({
-      data: questionData,
+      data: {
+        ...data,
+        status,
+        // Possibly set "updatedTime" or "createdAt" manually if desired
+        updatedTime: Math.floor(Date.now() / 1000),
+      },
     })
 
     return NextResponse.json(created)
   } catch (error) {
-    console.error("Error creating question:", error)
-    return NextResponse.json({ error: "Failed to create question" }, { status: 500 })
+    console.error('Error creating question:', error)
+    return NextResponse.json({ error: 'Failed to create question' }, { status: 500 })
   }
 }
 
@@ -144,75 +134,62 @@ export async function PATCH(request: Request) {
     const { questionId, ...rest } = body
 
     if (!questionId) {
-      return NextResponse.json({ error: "questionId is required" }, { status: 400 })
+      return NextResponse.json({ error: 'questionId is required' }, { status: 400 })
     }
 
     // If the user updated difficultyRating, also set difficulty string
     if (rest.difficultyRating !== undefined) {
       const rating = Number(rest.difficultyRating)
-      if (rating === 1) rest.difficulty = "easy"
-      else if (rating === 2) rest.difficulty = "medium"
-      else if (rating === 3) rest.difficulty = "hard"
+      if (rating === 1) rest.difficulty = 'easy'
+      else if (rating === 2) rest.difficulty = 'medium'
+      else if (rating === 3) rest.difficulty = 'hard'
     }
 
-    // Set updatedTime to now
+    // If a user is updating, set updatedTime to now. Also store updatedBy if provided.
     rest.updatedTime = Math.floor(Date.now() / 1000)
+    // e.g. if "rest.updatedBy" is set from the front-end, keep it
 
     // If we want to cast rest.status -> enum, do so carefully
     if (rest.status) {
       if (!Object.values(QuestionStatus).includes(rest.status)) {
-        return NextResponse.json({ error: "Invalid status" }, { status: 400 })
+        return NextResponse.json({ error: 'Invalid status' }, { status: 400 })
       }
       // rest.status is a valid QuestionStatus
     }
 
-    // Handle nested JSON fields
-    const updateData: any = { ...rest }
-    if (rest.languages) updateData.languages = rest.languages
-    if (rest.explanation) updateData.explanation = JSON.stringify(rest.explanation)
-    if (rest.linkedResources) updateData.linkedResources = JSON.stringify(rest.linkedResources)
-    if (rest.commonMistakes) updateData.commonMistakes = JSON.stringify(rest.commonMistakes)
-
     // Update the question
     const updated = await prisma.question.update({
       where: { questionId },
-      data: updateData,
+      data: {
+        ...rest,
+        // any logic for peerSolvedPercentage if needed
+        // e.g. if we update counters, we could recalc here
+      },
     })
 
-    // Parse JSON fields for response
-    const parsedUpdated = {
-      ...updated,
-      languages: updated.languages || [],
-      explanation: updated.explanation ? JSON.parse(updated.explanation as string) : null,
-      linkedResources: updated.linkedResources ? JSON.parse(updated.linkedResources as string) : null,
-      commonMistakes: updated.commonMistakes ? JSON.parse(updated.commonMistakes as string) : null,
-    }
-
-    return NextResponse.json(parsedUpdated)
+    return NextResponse.json(updated)
   } catch (error) {
-    console.error("Error updating question:", error)
-    return NextResponse.json({ error: "Failed to update question" }, { status: 500 })
+    console.error('Error updating question:', error)
+    return NextResponse.json({ error: 'Failed to update question' }, { status: 500 })
   }
 }
 
 // DELETE a question
 export async function DELETE(request: Request) {
   try {
-    const { searchParams } = new URL(request.url)
-    const questionId = searchParams.get("questionId")
+    const { questionId } = await request.json()
 
     if (!questionId) {
-      return NextResponse.json({ error: "questionId is required" }, { status: 400 })
+      return NextResponse.json({ error: 'questionId is required' }, { status: 400 })
     }
 
     await prisma.question.delete({
       where: { questionId },
     })
 
-    return NextResponse.json({ message: "Question deleted successfully" })
+    return NextResponse.json({ message: 'Question deleted successfully' })
   } catch (error) {
-    console.error("Error deleting question:", error)
-    return NextResponse.json({ error: "Failed to delete question" }, { status: 500 })
+    console.error('Error deleting question:', error)
+    return NextResponse.json({ error: 'Failed to delete question' }, { status: 500 })
   }
 }
-

@@ -15,6 +15,9 @@ import { AnimatedGradientText } from '@/components/magicui/animated-gradient-tex
 import Ripple from '../components/magicui/ripple';
 import DemoNoteComponent from '@/components/shared/demo-note';
 import { FAQ } from '@/components/shared/FAQ';
+import QuestionStatistics from '@/components/home/question-statistics';
+import QuestionStatisticsLoading from '@/components/home/question-statistics-loading';
+import { Suspense } from 'react';
 
 const projects = [
   {
@@ -125,6 +128,15 @@ export default function Page() {
         </div>
       </div>
 
+      <div className="container mx-auto py-10">
+      <h1 className="text-3xl font-bold mb-6">Question Statistics</h1>
+      <Suspense fallback={<QuestionStatisticsLoading />}>
+        <QuestionStatistics />
+      </Suspense>
+    </div>
+
+    
+
       <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
         Review Your Performance
       </h4>
@@ -180,6 +192,8 @@ export default function Page() {
           </motion.div>
         </div>
 
+        <FAQ />
+
         <div className="h-full w-3/4 border border-gray-200 dark:border-gray-700 justify-self-center rounded-3xl bg-gray-100 dark:bg-gray-900 relative overflow-hidden mx-auto">
           {/* Gradient overlay */}
           <div className="absolute bottom-0 w-full h-[40vh] bg-gradient-to-r from-orange-400/20 via-white/10 to-blue-400/20 dark:from-orange-600/20 dark:via-gray-800/10 dark:to-blue-600/20 blur-3xl" />
@@ -204,8 +218,6 @@ export default function Page() {
             </div>
           </div>
         </div>
-
-        <FAQ />
 
       </div>
     </div>
