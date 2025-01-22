@@ -128,15 +128,6 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="container mx-auto py-10">
-      <h1 className="text-3xl font-bold mb-6">Question Statistics</h1>
-      <Suspense fallback={<QuestionStatisticsLoading />}>
-        <QuestionStatistics />
-      </Suspense>
-    </div>
-
-    
-
       <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
         Review Your Performance
       </h4>
