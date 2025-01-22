@@ -55,34 +55,22 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
 
-//
-// 1) Enum for question status (optional)
-//
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
   ARCHIVED = "ARCHIVED",
 }
 
-//
-// 2) Broaden 'type' and include missing fields. Make them optional so TS won't complain.
-//
 type QuestionTypeString = "Multiple Choice" | "mcq" | "Numerical" | "integer" | string
 
-//
-// 3) This matches the shape we pass to <Question>, ensuring 'options?: string[]'
-//
 interface QuestionType {
   id: number
   questionId?: string
-
-  // Potentially undefined fields
   text?: string
   options?: string[]
   markscheme?: string
   correctOption?: string
   diagramUrl?: string
-
   exam?: string
   subject?: string
   difficulty?: string
@@ -92,23 +80,18 @@ interface QuestionType {
   completed?: boolean
   lastAttempted?: string
   status?: QuestionStatus
-
-  // Custom tags, etc.
   customTags?: string[]
-  customTag?: string  // from your schema
-
-  // Additional fields from schema
+  customTag?: string
   explanation?: any
   linkedResources?: any
   commonMistakes?: any
   discussionLink?: string
   parentQuestionId?: number
   difficultyRating?: number
-  peerSolvedPercentage?: number | null // might be null in DB
+  peerSolvedPercentage?: number | null
   updatedBy?: string
   source?: string
   updatedTime?: number
-
   isOutOfSyllabus?: boolean
   isBonus?: boolean
   marks?: number
@@ -116,12 +99,8 @@ interface QuestionType {
   correctAttempts?: string
   wrongAttempts?: string
   averageTimeTaken?: string
-  // etc.
 }
 
-//
-// 4) Local CommentType if you handle comments
-//
 interface CommentType {
   id: string
   userId: string
@@ -134,9 +113,6 @@ interface CommentType {
   edited: boolean
 }
 
-//
-// 5) Props for this Question component
-//
 interface QuestionProps {
   question: QuestionType
   feedback: string | undefined
@@ -232,9 +208,7 @@ export default function Question({
 
   const { toast, dismiss } = useToast()
 
-  //
   // If user swipes left/right to change question
-  //
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
@@ -246,38 +220,11 @@ export default function Question({
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
-  // If you fetch notes from server, e.g. /api/notes/:questionId
-  useEffect(() => {
-    const fetchNote = async () => {
-      if (!question.questionId) return
-      try {
-        const response = await fetch(`/api/notes/${question.questionId}`)
-        if (response.ok) {
-          const data = await response.json()
-          if (data && data.content) {
-            setLocalNote(data.content)
-            setNoteId(data.id)
-            handleNoteChange(question.questionId, data.content)
-          } else {
-            setLocalNote("")
-            setNoteId(null)
-            handleNoteChange(question.questionId, "")
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching note:", error)
-        setLocalNote("")
-        setNoteId(null)
-        handleNoteChange(question.questionId, "")
-      }
-    }
-    fetchNote()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [question.questionId])
+  // Example: If you want to fetch note from server for each question
+  // This is optional. Currently, it sets localNote from your question's note prop.
+  // If your code calls an external /api/notes for each question, do so here.
 
-  //
   // Tag logic
-  //
   const handleAddTag = () => {
     if (newTag && !localCustomTags.includes(newTag)) {
       setLocalCustomTags([...localCustomTags, newTag])
@@ -289,9 +236,7 @@ export default function Question({
     setLocalCustomTags(localCustomTags.filter((tag) => tag !== tagToRemove))
   }
 
-  //
   // Mark complete / review
-  //
   const handleMarkCompleteLocal = async () => {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId)
@@ -338,36 +283,28 @@ export default function Question({
     dismiss()
   }
 
-  //
   // Handling multiple choice
-  //
   const handleOptionClickLocal = (option: string) => {
     if (!question.questionId) return
     if (localSelectedOption !== option) {
       setLocalSelectedOption(option)
-      // Provide fallback if correctOption is undefined
-      handleOptionClick(question.questionId ?? "", option, question.correctOption ?? "N/A")
+      handleOptionClick(question.questionId, option, question.correctOption ?? "N/A")
       updatePoints(option === question.correctOption)
     }
   }
 
-  //
   // Handling numeric
-  //
   const handleNumericalSubmitLocal = () => {
     if (!question.questionId) return
-    // We might parse question.correctOption in case of range or single numeric
     handleNumericalSubmit(
-      question.questionId ?? "",
+      question.questionId,
       numericalAnswer ?? "",
       question.correctOption ?? "N/A"
     )
     updatePoints(numericalAnswer === question.correctOption)
   }
 
-  //
   // Points & streak
-  //
   const updatePoints = (isCorrect: boolean) => {
     if (isCorrect) {
       setPoints((prev) => prev + 10)
@@ -384,28 +321,25 @@ export default function Question({
     }
   }
 
-  //
   // Difficulty rating update
-  //
   const handleDifficultyChange = async (newRating: number) => {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
 
     try {
-      // PATCH request to update question (including updatedBy from user)
       const res = await fetch("/api/questions", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           questionId: question.questionId,
           difficultyRating: newRating,
-          updatedBy: userId || "guest", // or session user id
+          updatedBy: userId || "guest",
         }),
       })
       if (!res.ok) {
         throw new Error("Failed to update difficulty rating")
       }
-      const updated = await res.json()
+      await res.json()
       toast({
         title: "Difficulty Updated",
         description: `Set question #${question.id} difficulty to ${
@@ -422,15 +356,12 @@ export default function Question({
     }
   }
 
-  //
-  // Notes
-  //
+  // Notes (local + server)
   const saveNote = async () => {
     if (!question.questionId) return
     try {
       const endpoint = noteId ? `/api/notes/${noteId}` : "/api/notes"
       const method = noteId ? "PUT" : "POST"
-
       const response = await fetch(endpoint, {
         method,
         headers: { "Content-Type": "application/json" },
@@ -465,7 +396,6 @@ export default function Question({
         method: "DELETE",
       })
       if (!response.ok) throw new Error("Failed to delete note")
-
       toast({
         title: "Note Deleted",
         description: "Your note has been deleted successfully.",
@@ -483,9 +413,7 @@ export default function Question({
     }
   }
 
-  //
   // Comments
-  //
   const handleAddComment = () => {
     if (newComment.trim()) {
       const newCommentObj: CommentType = {
@@ -529,6 +457,7 @@ export default function Question({
     })
     setComments(updated)
     setReplyingTo(null)
+    setNewComment("")
   }
 
   const handleEditComment = (commentId: string, newContent: string) => {
@@ -723,17 +652,15 @@ export default function Question({
 
   return (
     <TooltipProvider>
-      {/* Use an ID so the question navigator can scroll into view */}
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
         <Card className="w-full overflow-hidden mb-6">
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
-                {/* Using question.id for numbering */}
                 <CardTitle className="font-normal text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
                   Question #{question.id}
                 </CardTitle>
-                {/* Subject, difficulty, etc. if present */}
+
                 {question.subject && (
                   <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
                     {question.subject}
@@ -749,7 +676,6 @@ export default function Question({
                     {question.year}
                   </div>
                 )}
-                {/* Show type if you want */}
                 {question.type && (
                   <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
                     {question.type}
@@ -760,7 +686,6 @@ export default function Question({
                     {question.exam}
                   </div>
                 )}
-                {/* Custom tags */}
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -795,7 +720,6 @@ export default function Question({
               </div>
 
               <div className="flex items-center space-x-4">
-                {/* Mark as complete */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Checkbox
@@ -806,7 +730,6 @@ export default function Question({
                   </TooltipTrigger>
                   <TooltipContent>Mark as Complete</TooltipContent>
                 </Tooltip>
-                {/* Mark for review */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button variant="ghost" size="icon" onClick={handleMarkForReviewLocal}>
@@ -821,7 +744,7 @@ export default function Question({
                   </TooltipTrigger>
                   <TooltipContent>Flag for Review</TooltipContent>
                 </Tooltip>
-                {/* Settings */}
+
                 <SettingsPopover
                   markschemeEnabled={markschemeEnabled}
                   setMarkschemeEnabled={() => setMarkschemeEnabled(!markschemeEnabled)}
@@ -830,7 +753,6 @@ export default function Question({
                   notesEnabled={notesEnabled}
                   setNotesEnabled={setNotesEnabled}
                 />
-                {/* Feedback if questionId is defined */}
                 {question.questionId && <FeedbackPopover questionId={question.questionId} />}
               </div>
             </div>
@@ -838,7 +760,6 @@ export default function Question({
 
           <CardContent>
             <div className="mb-6">
-              {/* If there's a diagram URL, show it */}
               {question.diagramUrl && question.diagramUrl !== "" && (
                 <div className="relative w-64 h-64 mb-4 mx-auto">
                   <Image
@@ -850,13 +771,11 @@ export default function Question({
                   />
                 </div>
               )}
-              {/* Render question.text with LaTeX */}
               <p className="text-gray-700 dark:text-white mb-4 text-base sm:text-lg md:text-xl leading-7">
                 <MathRenderer text={question.text ?? ""} />
               </p>
             </div>
 
-            {/* If this is an integer or numerical type question */}
             {(question.type === "Numerical" || question.type === "integer") && (
               <div className="mb-4">
                 <Input
@@ -880,60 +799,55 @@ export default function Question({
               </div>
             )}
 
-            {/* If this is a Multiple Choice or mcq question AND there are actual options */}
-            {(
-              question.type === "Multiple Choice" ||
-              question.type === "mcq"
-            ) && question.options && question.options.length > 0 && (
-              <div className="space-y-2 mb-4">
-                {question.options.map((option, index) => {
-                  // We'll label them A, B, C, etc.
-                  const letter = String.fromCharCode(65 + index)
-                  const isSelected = localSelectedOption === letter
-                  const isFeedbackActive = isSelected && feedback
+            {(question.type === "Multiple Choice" ||
+              question.type === "mcq") &&
+              question.options &&
+              question.options.length > 0 && (
+                <div className="space-y-2 mb-4">
+                  {question.options.map((option, index) => {
+                    const letter = String.fromCharCode(65 + index)
+                    const isSelected = localSelectedOption === letter
+                    const isFeedbackActive = isSelected && feedback
 
-                  return (
-                    <Tooltip key={index}>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant={isSelected ? "default" : "outline"}
-                          className={`w-full justify-start text-left text-base sm:text-lg p-4 leading-7 ${
-                            isFeedbackActive
-                              ? feedback === "correct"
-                                ? "bg-green-100 hover:bg-green-200 text-green-700"
-                                : "bg-red-100 hover:bg-red-200 text-red-700"
-                              : ""
-                          }`}
-                          onClick={() => handleOptionClickLocal(letter)}
-                        >
-                          <span className="mr-2">{letter}.</span>
-                          <div className="font-serif">
-                            {option.startsWith("http") ? (
-                              // If the option is actually an image link
-                              <div className="relative w-full h-64">
-                                <Image
-                                  src={option}
-                                  alt={`Option ${letter}`}
-                                  fill
-                                  style={{ objectFit: "contain" }}
-                                  className="rounded-md"
-                                />
-                              </div>
-                            ) : (
-                              // Else parse as LaTeX text
-                              <MathRenderer text={option} />
-                            )}
-                          </div>
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Select this option</TooltipContent>
-                    </Tooltip>
-                  )
-                })}
-              </div>
-            )}
+                    return (
+                      <Tooltip key={index}>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant={isSelected ? "default" : "outline"}
+                            className={`w-full justify-start text-left text-base sm:text-lg p-4 leading-7 ${
+                              isFeedbackActive
+                                ? feedback === "correct"
+                                  ? "bg-green-100 hover:bg-green-200 text-green-700"
+                                  : "bg-red-100 hover:bg-red-200 text-red-700"
+                                : ""
+                            }`}
+                            onClick={() => handleOptionClickLocal(letter)}
+                          >
+                            <span className="mr-2">{letter}.</span>
+                            <div className="font-serif">
+                              {option.startsWith("http") ? (
+                                <div className="relative w-full h-64">
+                                  <Image
+                                    src={option}
+                                    alt={`Option ${letter}`}
+                                    fill
+                                    style={{ objectFit: "contain" }}
+                                    className="rounded-md"
+                                  />
+                                </div>
+                              ) : (
+                                <MathRenderer text={option} />
+                              )}
+                            </div>
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Select this option</TooltipContent>
+                      </Tooltip>
+                    )
+                  })}
+                </div>
+              )}
 
-            {/* Show feedback: correct/incorrect */}
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
@@ -952,11 +866,10 @@ export default function Question({
               </div>
             )}
 
-            {/* Markscheme button if user has answered & markscheme is enabled */}
             {(
               (localSelectedOption && markschemeEnabled) ||
               ((question.type === "Numerical" || question.type === "integer") &&
-                numericalAnswer && // user typed something
+                numericalAnswer &&
                 markschemeEnabled)
             ) && (
               <Tooltip>
@@ -976,7 +889,6 @@ export default function Question({
               </Tooltip>
             )}
 
-            {/* Difficulty Rating */}
             <div className="flex items-center space-x-2 mt-4">
               <Label className="text-sm text-gray-600">Difficulty:</Label>
               <Select
@@ -1005,8 +917,6 @@ export default function Question({
                   <SelectItem value="hard">Hard</SelectItem>
                 </SelectContent>
               </Select>
-
-              {/* Safely display peerSolvedPercentage */}
               {typeof question.peerSolvedPercentage === "number" && (
                 <p className="ml-4 text-sm text-gray-500">
                   Peer Solved: {question.peerSolvedPercentage.toFixed(1)}%
@@ -1016,7 +926,6 @@ export default function Question({
           </CardContent>
 
           <CardFooter className="flex justify-end space-x-2">
-            {/* Notes toggle */}
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="outline" onClick={() => setShowNotes(!showNotes)}>
@@ -1029,7 +938,6 @@ export default function Question({
               </TooltipContent>
             </Tooltip>
 
-            {/* AI toggle */}
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="outline" onClick={() => setShowAI(!showAI)}>
@@ -1042,7 +950,6 @@ export default function Question({
               </TooltipContent>
             </Tooltip>
 
-            {/* Comments toggle */}
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="outline" onClick={() => setShowComments(!showComments)}>
@@ -1057,7 +964,6 @@ export default function Question({
           </CardFooter>
         </Card>
 
-        {/* Notes panel */}
         {showNotes && (
           <Card className="mb-6">
             <CardHeader>
@@ -1084,7 +990,6 @@ export default function Question({
           </Card>
         )}
 
-        {/* AI panel */}
         {showAI && (
           <Card className="mb-6">
             <CardHeader>
@@ -1106,12 +1011,11 @@ export default function Question({
           </Card>
         )}
 
-        {/* Comments section */}
         {showComments && (
           <Card className="mb-6">
             <CardHeader>
               <CardTitle>Comments</CardTitle>
-              <CardDescription>This is a dummy UI, comments are coming soon!</CardDescription>
+              <CardDescription>This is a dummy UI; real logic is up to you.</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -1150,7 +1054,6 @@ export default function Question({
           </Card>
         )}
 
-        {/* Markscheme modal */}
         <AnimatePresence>
           {showMarkschemeModal && (
             <motion.div
