@@ -8,8 +8,8 @@ import { useSignInModal } from "./sign-in"
 import UserDropdown from "@/components/layout/user-dropdown"
 import { Button } from "@/components/ui/button"
 import NotificationDropdown from "@/components/shared/NotificationDropdown"
-import { Session } from "next-auth"
-import { Menu, X, ChevronDown, Bell, LogOut } from 'lucide-react'
+import type { Session } from "next-auth"
+import { Menu, X, ChevronDown, Bell, LogOut } from "lucide-react"
 import useScroll from "@/lib/hooks/use-scroll"
 import {
   NavigationMenu,
@@ -98,7 +98,7 @@ export default function NavBar({ session }: { session: Session | null }) {
     try {
       await signOut({ redirect: false })
       // Force a full page reload to clear all client-side state
-      window.location.href = '/'
+      window.location.href = "/"
     } finally {
       setShowLogoutLoader(false)
       setMenuOpen(false)
@@ -112,24 +112,18 @@ export default function NavBar({ session }: { session: Session | null }) {
       <nav
         className={cn(
           "fixed left-1/2 transform -translate-x-1/2 w-full max-w-screen-{1000px} z-30 transition-all duration-300 ease-in-out",
-          scrolled
-            ? "backdrop-blur-md shadow-sm"
-            : ""
+          scrolled ? "backdrop-blur-md shadow-sm dark:bg-gray-800/75 dark:shadow-gray-700/30" : "dark:bg-transparent",
         )}
       >
         <div className="mx-auto flex h-16 items-center justify-between w-11/12 md:w-10/12 lg:w-9/12">
           <Link href="/" className="flex items-center font-display text-2xl">
-            <p className="text-left font-display text-2xl tracking-[-0.07em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+            <p className="text-left font-display text-2xl tracking-[-0.07em] drop-shadow-sm sm:text-3xl sm:leading-[4rem] dark:text-white">
               aspirants
             </p>
-            <Image
-              src="/bulb.svg"
-              alt="aspirants logo"
-              width={30}
-              height={30}
-              className="ml-2"
-            />
-             <span className="ml-2 text-xs font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded-full">BETA</span>
+            <Image src="/bulb.svg" alt="aspirants logo" width={30} height={30} className="ml-2" />
+            <span className="ml-2 text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100 px-2 py-1 rounded-full">
+              BETA
+            </span>
           </Link>
           <div className="hidden md:flex items-center justify-center space-x-4 flex-1">
             <DesktopNavLinks session={session} />
@@ -137,7 +131,7 @@ export default function NavBar({ session }: { session: Session | null }) {
           <div className="hidden md:flex items-center space-x-4">
             {session ? (
               <>
-                <FeedbackPopover/>
+                <FeedbackPopover />
                 <NotificationDropdown />
                 <UserDropdown session={session} />
               </>
@@ -145,6 +139,7 @@ export default function NavBar({ session }: { session: Session | null }) {
               <Button
                 variant="outline"
                 onClick={() => setShowSignInModal(true)}
+                className="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
               >
                 Sign In
               </Button>
@@ -154,7 +149,7 @@ export default function NavBar({ session }: { session: Session | null }) {
             <Button
               variant="ghost"
               size="icon"
-              className="text-black focus:outline-none"
+              className="text-black dark:text-white focus:outline-none"
               onClick={toggleMenu}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
@@ -167,7 +162,7 @@ export default function NavBar({ session }: { session: Session | null }) {
         {menuOpen && (
           <div
             ref={menuRef}
-            className="absolute top-full left-0 right-0 bg-white shadow-lg z-20 md:hidden"
+            className="absolute top-full left-0 right-0 bg-white dark:bg-gray-800 shadow-lg z-20 md:hidden"
           >
             <MobileNavLinks
               session={session}
@@ -191,15 +186,28 @@ function DesktopNavLinks({ session }: { session: Session | null }) {
       <NavigationMenuList>
         <NavigationMenuItem>
           <Link href={session ? "/QuestionBank" : "/QuestionBank/guest"} passHref legacyBehavior>
-            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black")}>
+            <NavigationMenuLink
+              className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
+            >
               Question Bank
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="font-display text-sm text-black">Support</NavigationMenuTrigger>
+          <Link href="/mock-exam" passHref legacyBehavior>
+            <NavigationMenuLink
+              className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
+            >
+              Mock Exam
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className="font-display text-sm text-black dark:text-white">
+            Support
+          </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
+            <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px] bg-white dark:bg-gray-800">
               {supportLinks.map((link) => (
                 <ListItem key={link.title} title={link.title} href={link.href}>
                   {link.description}
@@ -236,22 +244,26 @@ function MobileNavLinks({
     <nav className="p-4 space-y-4">
       <Link
         href={session ? "/QuestionBank" : "/QuestionBank/guest"}
-        className="block w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
+        className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
         Question Bank
       </Link>
+      <Link
+        href="/mock-exam"
+        className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+        onClick={() => setMenuOpen(false)}
+      >
+        Mock Exam
+      </Link>
       <div>
         <button
-          className="flex items-center justify-between w-full text-left font-display text-lg text-black hover:text-gray-600 transition-colors"
+          className="flex items-center justify-between w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
           onClick={toggleSupport}
           aria-expanded={supportOpen}
         >
           Support
-          <ChevronDown
-            size={20}
-            className={cn("transition-transform", supportOpen && "rotate-180")}
-          />
+          <ChevronDown size={20} className={cn("transition-transform", supportOpen && "rotate-180")} />
         </button>
         {supportOpen && (
           <ul className="mt-2 space-y-2 pl-4">
@@ -259,7 +271,7 @@ function MobileNavLinks({
               <li key={link.title}>
                 <Link
                   href={link.href}
-                  className="block text-sm text-gray-600 hover:text-black transition-colors"
+                  className="block text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.title}
@@ -275,7 +287,7 @@ function MobileNavLinks({
             <Button
               variant="ghost"
               size="icon"
-              className="rounded-full"
+              className="rounded-full text-black dark:text-white"
               onClick={() => setMenuOpen(false)}
             >
               <Bell size={24} />
@@ -285,7 +297,7 @@ function MobileNavLinks({
           <FeedbackPopover />
           <Button
             variant="outline"
-            className="w-full mt-4 flex items-center justify-center"
+            className="w-full mt-4 flex items-center justify-center dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
             onClick={handleLogout}
           >
             <LogOut className="mr-2 h-4 w-4" /> Log Out
@@ -294,7 +306,7 @@ function MobileNavLinks({
       ) : (
         <Button
           variant="outline"
-          className="w-full mt-4"
+          className="w-full mt-4 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
           onClick={() => {
             setShowSignInModal(true)
             setMenuOpen(false)
@@ -307,28 +319,26 @@ function MobileNavLinks({
   )
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground font-display text-sm text-black",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  )
-})
+const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWithoutRef<"a">>(
+  ({ className, title, children, ...props }, ref) => {
+    return (
+      <li>
+        <NavigationMenuLink asChild>
+          <a
+            ref={ref}
+            className={cn(
+              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground font-display text-sm text-black dark:text-white",
+              className,
+            )}
+            {...props}
+          >
+            <div className="text-sm font-medium leading-none">{title}</div>
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-gray-300">{children}</p>
+          </a>
+        </NavigationMenuLink>
+      </li>
+    )
+  },
+)
 ListItem.displayName = "ListItem"
+

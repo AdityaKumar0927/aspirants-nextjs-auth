@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useReducer, useEffect, useMemo, useCallback, useState } from "react"
+import type React from "react"
+import { useReducer, useEffect, useMemo, useCallback, useState } from "react"
 import { useSession } from "next-auth/react"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
@@ -20,61 +21,29 @@ import {
   HelpCircle,
 } from "lucide-react"
 import Link from "next/link"
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider,
-} from "@/components/ui/tooltip"
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Progress } from "@/components/ui/progress"
 import { motion, AnimatePresence } from "framer-motion"
 
-//
-// Pagination constant
-//
 const PAGE_SIZE = 10
 
-//
-// Enum for question status
-//
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
   ARCHIVED = "ARCHIVED",
 }
 
-//
-// For question.type, allow any string plus a couple known ones:
-//
 type QuestionTypeString = "Multiple Choice" | "Numerical" | string
 
-//
-// The main QuestionType interface, including an 'id' for <Question>:
-// NOTE: We have extended it to include many new fields: difficultyRating, updatedBy, peerSolvedPercentage,
-// explanation, linkedResources, commonMistakes, and discussionLink, etc.
-//
 interface QuestionType {
-  id: number                   // REQUIRED for <Question> numbering
+  id: number
   questionId: string
-
-  // Basic question details
   text: string
   subject?: string
   topic?: string
@@ -84,15 +53,13 @@ interface QuestionType {
   year?: number
   reviewed?: boolean
   completed?: boolean
-  options?: string[]           // Flattened MCQ options
+  options?: string[]
   correctOption?: string
   markscheme?: string
   notes?: string
   lastAttempted?: string
   diagramUrl?: string
   status?: QuestionStatus
-
-  // Additional schema fields:
   exam?: string
   examGroup?: string
   country?: string
@@ -124,26 +91,23 @@ interface QuestionType {
   wrongAttempts?: string
   averageTimeTaken?: string
   customTag?: string
-  explanation?: any            // JSON object for explanation details
+  explanation?: any
   paperTitle?: string
   timeAllotted?: number
   updatedTime?: number
-  updatedBy?: string           // ID or name of the user who last updated
+  updatedBy?: string
   source?: string
-  peerSolvedPercentage?: number  // float for how many solved on first try
-  linkedResources?: any          // JSON with external resource links
-  commonMistakes?: any           // JSON with typical mistakes
+  peerSolvedPercentage?: number
+  linkedResources?: any
+  commonMistakes?: any
   discussionLink?: string
   parentQuestionId?: number
-  difficultyRating?: number      // numeric rating for easy/medium/hard
+  difficultyRating?: number
   yearKey?: string
   createdAt?: string
   updatedAt?: string
 }
 
-//
-// Additional interfaces for user answers and performance
-//
 interface UserAnswer {
   questionId: string
   selectedOption: string
@@ -169,9 +133,6 @@ interface UserPerformance {
   reviewed: boolean
 }
 
-//
-// Filter structure
-//
 type FiltersType = {
   exams: string[]
   subjects: string[]
@@ -183,9 +144,6 @@ type FiltersType = {
   status: string
 }
 
-//
-// State shape
-//
 type StateType = {
   questions: QuestionType[]
   filters: FiltersType
@@ -208,9 +166,6 @@ type StateType = {
   currentPage: number
 }
 
-//
-// Actions for our reducer
-//
 type ActionType =
   | { type: "SET_QUESTIONS"; payload: QuestionType[] }
   | { type: "SET_FILTERS"; payload: FiltersType }
@@ -224,9 +179,6 @@ type ActionType =
   | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_CURRENT_PAGE"; payload: number }
 
-//
-// Our initialState
-//
 const initialState: StateType = {
   questions: [],
   filters: {
@@ -258,9 +210,6 @@ const initialState: StateType = {
   currentPage: 1,
 }
 
-//
-// Our reducer
-//
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_QUESTIONS":
@@ -293,9 +242,6 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
-//
-// A fun little StatusCard (optional)
-//
 const StatusCard = ({
   icon,
   label,
@@ -309,13 +255,13 @@ const StatusCard = ({
 }) => {
   return (
     <motion.div
-      className="flex items-center p-4 rounded-lg bg-gray-900 transition-all duration-300"
+      className="flex items-center p-4 rounded-lg bg-gray-900 dark:bg-gray-800 transition-all duration-300"
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
       <AnimatePresence>
         <motion.div
-          className={`flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 mr-4 ${color}`}
+          className={`flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 dark:bg-gray-700 mr-4 ${color}`}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
@@ -334,7 +280,7 @@ const StatusCard = ({
           {value}
         </motion.span>
         <motion.p
-          className="text-sm font-medium text-gray-400"
+          className="text-sm font-medium text-gray-400 dark:text-gray-300"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
@@ -346,9 +292,6 @@ const StatusCard = ({
   )
 }
 
-//
-// A simple Pagination component
-//
 const Pagination: React.FC<{
   currentPage: number
   totalPages: number
@@ -361,6 +304,7 @@ const Pagination: React.FC<{
         size="icon"
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
+        className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200"
       >
         <span className="sr-only">Previous page</span>
         <ChevronLeft className="h-4 w-4" />
@@ -374,6 +318,11 @@ const Pagination: React.FC<{
               variant={currentPage === pageNumber ? "default" : "outline"}
               size="icon"
               onClick={() => onPageChange(pageNumber)}
+              className={
+                currentPage === pageNumber
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+              }
             >
               {pageNumber}
             </Button>
@@ -383,8 +332,13 @@ const Pagination: React.FC<{
       })}
       {totalPages > 5 && currentPage < totalPages - 2 && (
         <>
-          <span className="text-gray-500">...</span>
-          <Button variant="outline" size="icon" onClick={() => onPageChange(totalPages)}>
+          <span className="text-gray-500 dark:text-gray-400">...</span>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => onPageChange(totalPages)}
+            className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+          >
             {totalPages}
           </Button>
         </>
@@ -394,6 +348,7 @@ const Pagination: React.FC<{
         size="icon"
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
+        className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200"
       >
         <span className="sr-only">Next page</span>
         <ChevronRight className="h-4 w-4" />
@@ -402,20 +357,17 @@ const Pagination: React.FC<{
   )
 }
 
-//
-// A banner for guests, if you want it
-//
 const GuestBanner: React.FC = () => {
   return (
-    <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
+    <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900">
       <CardContent className="p-4 flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
-            <Info className="h-5 w-5 text-blue-700" />
+          <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-800">
+            <Info className="h-5 w-5 text-blue-700 dark:text-blue-200" />
           </div>
           <div className="space-y-1">
-            <h3 className="font-medium text-blue-900">Guest Access</h3>
-            <p className="text-sm text-blue-700">
+            <h3 className="font-medium text-blue-900 dark:text-blue-100">Guest Access</h3>
+            <p className="text-sm text-blue-700 dark:text-blue-300">
               Try out the Question Bank features. Sign in to save your progress.
             </p>
           </div>
@@ -423,7 +375,7 @@ const GuestBanner: React.FC = () => {
         <Link href="/QuestionBank" className="hidden sm:block">
           <Button
             variant="outline"
-            className="border-blue-200 hover:border-blue-300 hover:bg-blue-50"
+            className="border-blue-200 hover:border-blue-300 hover:bg-blue-50 dark:border-blue-700 dark:hover:border-blue-600 dark:hover:bg-blue-800 text-blue-700 dark:text-blue-200"
           >
             Sign in
             <ChevronRight className="ml-2 h-4 w-4" />
@@ -434,69 +386,50 @@ const GuestBanner: React.FC = () => {
   )
 }
 
-//
-// The main QuestionBankContent component
-//
 const QuestionBankContent: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { data: session, status } = useSession()
   const { toast } = useToast()
+  const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
 
-  //
-  // fetchAllData: load questions + user data, unify them
-  //
   const fetchAllData = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
 
     try {
-      // 1) We fetch all relevant data in parallel
-      const [questionsData, userProgressData, userAnswersData, userPerformanceData] =
-        await Promise.all([
-          fetchData("/api/questions"),
-          fetchData("/api/user-progress"),
-          fetchData("/api/user-answers"),
-          fetchData("/api/user-performance/get"),
-        ])
+      const [questionsData, userProgressData, userAnswersData, userPerformanceData] = await Promise.all([
+        fetchData("/api/questions"),
+        fetchData("/api/user-progress"),
+        fetchData("/api/user-answers"),
+        fetchData("/api/user-performance/get"),
+      ])
 
       const feedback: Record<string, string> = {}
       const selectedOptions: Record<string, string> = {}
       const notes: Record<string, string> = {}
 
-      // 2) Merge them, generating an `id` for each question
-      const mergedQuestions: QuestionType[] = questionsData.map(
-        (q: Omit<QuestionType, "id">, index: number) => {
-          // If questionId is numeric, parse it. Otherwise do index+1
-          const forcedId = index + 1
+      const mergedQuestions: QuestionType[] = questionsData.map((q: Omit<QuestionType, "id">, index: number) => {
+        const forcedId = index + 1
 
-          const progress = userProgressData.find(
-            (p: any) => p.questionId === q.questionId
-          )
-          const userAnswer = userAnswersData.find(
-            (a: UserAnswer) => a.questionId === q.questionId
-          )
-          const performance = userPerformanceData.find(
-            (p: UserPerformance) => p.questionId === q.questionId
-          )
+        const progress = userProgressData.find((p: any) => p.questionId === q.questionId)
+        const userAnswer = userAnswersData.find((a: UserAnswer) => a.questionId === q.questionId)
+        const performance = userPerformanceData.find((p: UserPerformance) => p.questionId === q.questionId)
 
-          if (userAnswer) {
-            selectedOptions[q.questionId] = userAnswer.selectedOption
-            feedback[q.questionId] = userAnswer.isCorrect ? "correct" : "incorrect"
-          }
-
-          return {
-            ...q,
-            id: forcedId,
-            reviewed: performance?.reviewed ?? progress?.reviewed ?? false,
-            completed: performance?.completed ?? progress?.completed ?? false,
-            lastAttempted: progress?.lastAttempted ?? "",
-          }
+        if (userAnswer) {
+          selectedOptions[q.questionId] = userAnswer.selectedOption
+          feedback[q.questionId] = userAnswer.isCorrect ? "correct" : "incorrect"
         }
-      )
 
-      // 3) Sort them, e.g. by .id
+        return {
+          ...q,
+          id: forcedId,
+          reviewed: performance?.reviewed ?? progress?.reviewed ?? false,
+          completed: performance?.completed ?? progress?.completed ?? false,
+          lastAttempted: progress?.lastAttempted ?? "",
+        }
+      })
+
       mergedQuestions.sort((a, b) => a.id - b.id)
 
-      // 4) Update state
       dispatch({ type: "SET_QUESTIONS", payload: mergedQuestions })
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: selectedOptions })
       dispatch({ type: "SET_FEEDBACK", payload: feedback })
@@ -513,18 +446,12 @@ const QuestionBankContent: React.FC = () => {
     }
   }, [toast])
 
-  //
-  // If user is authenticated, fetch data on mount
-  //
   useEffect(() => {
     if (status === "authenticated") {
       fetchAllData()
     }
   }, [fetchAllData, status])
 
-  //
-  // Filter & search
-  //
   const filteredQuestions = useMemo(() => {
     const searchQuery = state.searchQuery.toLowerCase()
     return state.questions.filter((question) => {
@@ -535,20 +462,15 @@ const QuestionBankContent: React.FC = () => {
         (question.subject && question.subject.toLowerCase().includes(searchQuery))
 
       const matchesFilters =
-        (!state.filters.exams.length ||
-          (question.exam && state.filters.exams.includes(question.exam))) &&
-        (!state.filters.subjects.length ||
-          (question.subject && state.filters.subjects.includes(question.subject))) &&
-        (!state.filters.topics.length ||
-          (question.topic && state.filters.topics.includes(question.topic))) &&
+        (!state.filters.exams.length || (question.exam && state.filters.exams.includes(question.exam))) &&
+        (!state.filters.subjects.length || (question.subject && state.filters.subjects.includes(question.subject))) &&
+        (!state.filters.topics.length || (question.topic && state.filters.topics.includes(question.topic))) &&
         (!state.filters.subtopics.length ||
           (question.subtopic && state.filters.subtopics.includes(question.subtopic))) &&
         (!state.filters.difficulties.length ||
           (question.difficulty && state.filters.difficulties.includes(question.difficulty))) &&
-        (!state.filters.years.length ||
-          (question.year && state.filters.years.includes(question.year.toString()))) &&
-        (!state.filters.types.length ||
-          (question.type && state.filters.types.includes(question.type)))
+        (!state.filters.years.length || (question.year && state.filters.years.includes(question.year.toString()))) &&
+        (!state.filters.types.length || (question.type && state.filters.types.includes(question.type)))
 
       if (state.filters.status === "review") {
         return matchesSearch && matchesFilters && question.reviewed
@@ -559,61 +481,47 @@ const QuestionBankContent: React.FC = () => {
     })
   }, [state.questions, state.filters, state.searchQuery])
 
-  //
-  // Pagination
-  //
   const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
   const paginatedQuestions = useMemo(() => {
     const startIndex = (state.currentPage - 1) * PAGE_SIZE
     return filteredQuestions.slice(startIndex, startIndex + PAGE_SIZE)
   }, [filteredQuestions, state.currentPage])
 
-  //
-  // Page change
-  //
   const handlePageChange = useCallback((page: number) => {
     dispatch({ type: "SET_CURRENT_PAGE", payload: page })
   }, [])
 
-  //
-  // Filter changes
-  //
   const handleFilterChange = useCallback(
     (tag: keyof FiltersType, value: string) => {
       const filterValues = state.filters[tag]
       if (Array.isArray(filterValues)) {
         const isSelected = filterValues.includes(value)
-        const updatedFilter = isSelected
-          ? filterValues.filter((v: string) => v !== value)
-          : [...filterValues, value]
+        const updatedFilter = isSelected ? filterValues.filter((v: string) => v !== value) : [...filterValues, value]
 
         const newFilters = { ...state.filters, [tag]: updatedFilter }
 
         if (tag === "exams") {
           const selectedExams = newFilters.exams
           newFilters.subjects = newFilters.subjects.filter((subj) =>
-            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.subject === subj)
+            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.subject === subj),
           )
           newFilters.topics = newFilters.topics.filter((topic) =>
-            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.topic === topic)
+            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.topic === topic),
           )
           newFilters.subtopics = newFilters.subtopics.filter((subt) =>
-            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.subtopic === subt)
+            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.subtopic === subt),
           )
           newFilters.types = newFilters.types.filter((t) =>
-            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.type === t)
+            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.type === t),
           )
         }
 
         dispatch({ type: "SET_FILTERS", payload: newFilters })
       }
     },
-    [state.filters, state.questions]
+    [state.filters, state.questions],
   )
 
-  //
-  // Performance updates (mark complete, review, etc.)
-  //
   const updateUserPerformance = useCallback(
     async (questionId: string, updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>) => {
       try {
@@ -628,25 +536,22 @@ const QuestionBankContent: React.FC = () => {
         console.error("Error updating user performance:", error)
       }
     },
-    []
+    [],
   )
 
-  const saveUserAnswer = useCallback(
-    async (questionId: string, selectedOption: string, isCorrect: boolean) => {
-      try {
-        const response = await fetch("/api/user-answers", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, selectedOption, isCorrect }),
-        })
-        if (!response.ok) throw new Error("Failed to save user answer")
-        return await response.json()
-      } catch (error) {
-        console.error("Error saving user answer:", error)
-      }
-    },
-    []
-  )
+  const saveUserAnswer = useCallback(async (questionId: string, selectedOption: string, isCorrect: boolean) => {
+    try {
+      const response = await fetch("/api/user-answers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, selectedOption, isCorrect }),
+      })
+      if (!response.ok) throw new Error("Failed to save user answer")
+      return await response.json()
+    } catch (error) {
+      console.error("Error saving user answer:", error)
+    }
+  }, [])
 
   const handleMarkComplete = useCallback(
     (questionId: string) => {
@@ -654,14 +559,12 @@ const QuestionBankContent: React.FC = () => {
         if (updatedPerformance) {
           dispatch({
             type: "SET_QUESTIONS",
-            payload: state.questions.map((q) =>
-              q.questionId === questionId ? { ...q, completed: true } : q
-            ),
+            payload: state.questions.map((q) => (q.questionId === questionId ? { ...q, completed: true } : q)),
           })
         }
       })
     },
-    [updateUserPerformance, state.questions]
+    [updateUserPerformance, state.questions],
   )
 
   const handleMarkForReview = useCallback(
@@ -670,19 +573,14 @@ const QuestionBankContent: React.FC = () => {
         if (updatedPerformance) {
           dispatch({
             type: "SET_QUESTIONS",
-            payload: state.questions.map((q) =>
-              q.questionId === questionId ? { ...q, reviewed: true } : q
-            ),
+            payload: state.questions.map((q) => (q.questionId === questionId ? { ...q, reviewed: true } : q)),
           })
         }
       })
     },
-    [updateUserPerformance, state.questions]
+    [updateUserPerformance, state.questions],
   )
 
-  //
-  // The actual MCQ logic:
-  //
   const handleOptionClick = useCallback(
     async (questionId: string, option: string, correctOption: string) => {
       const isCorrect = option === correctOption
@@ -712,18 +610,13 @@ const QuestionBankContent: React.FC = () => {
       if (updatedPerformance) {
         dispatch({
           type: "SET_QUESTIONS",
-          payload: state.questions.map((q) =>
-            q.questionId === questionId ? { ...q, completed: true } : q
-          ),
+          payload: state.questions.map((q) => (q.questionId === questionId ? { ...q, completed: true } : q)),
         })
       }
     },
-    [saveUserAnswer, updateUserPerformance, state.feedback, state.selectedOptions, state.questions]
+    [saveUserAnswer, updateUserPerformance, state.feedback, state.selectedOptions, state.questions],
   )
 
-  //
-  // Numeric logic:
-  //
   const handleNumericalSubmit = useCallback(
     async (questionId: string, userAnswer: string, correctAnswer: string) => {
       const isCorrect = userAnswer === correctAnswer
@@ -747,13 +640,11 @@ const QuestionBankContent: React.FC = () => {
       if (updatedPerformance) {
         dispatch({
           type: "SET_QUESTIONS",
-          payload: state.questions.map((q) =>
-            q.questionId === questionId ? { ...q, completed: true } : q
-          ),
+          payload: state.questions.map((q) => (q.questionId === questionId ? { ...q, completed: true } : q)),
         })
       }
     },
-    [saveUserAnswer, updateUserPerformance, state.feedback, state.questions]
+    [saveUserAnswer, updateUserPerformance, state.feedback, state.questions],
   )
 
   const handleNumericalChange = useCallback(
@@ -761,12 +652,9 @@ const QuestionBankContent: React.FC = () => {
       const newNumbers = { ...state.numericalAnswers, [questionId]: value }
       dispatch({ type: "SET_NUMERICAL_ANSWERS", payload: newNumbers })
     },
-    [state.numericalAnswers]
+    [state.numericalAnswers],
   )
 
-  //
-  // Notes
-  //
   const handleNoteChange = useCallback(
     async (questionId: string, note: string) => {
       const newNotes = { ...state.notes, [questionId]: note }
@@ -783,7 +671,7 @@ const QuestionBankContent: React.FC = () => {
         console.error("Error saving note:", error)
       }
     },
-    [state.notes]
+    [state.notes],
   )
 
   const handleDeleteNote = useCallback(
@@ -802,33 +690,24 @@ const QuestionBankContent: React.FC = () => {
         console.error("Error deleting note:", error)
       }
     },
-    [state.notes]
+    [state.notes],
   )
 
-  //
-  // Navigator
-  //
-  const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
   const handleNavigatorClick = useCallback(
     (index: number) => {
       const newPage = Math.floor(index / PAGE_SIZE) + 1
       dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
       setIsNavigatorOpen(false)
       setTimeout(() => {
-        const questionElement = document.getElementById(
-          `question-${filteredQuestions[index].questionId}`
-        )
+        const questionElement = document.getElementById(`question-${filteredQuestions[index].questionId}`)
         if (questionElement) {
           questionElement.scrollIntoView({ behavior: "smooth", block: "start" })
         }
       }, 100)
     },
-    [filteredQuestions]
+    [filteredQuestions],
   )
 
-  //
-  // Question stats
-  //
   const questionStats = useMemo(() => {
     const stats = {
       notVisited: 0,
@@ -850,36 +729,34 @@ const QuestionBankContent: React.FC = () => {
     return stats
   }, [filteredQuestions])
 
-  //
-  // Loader states
-  //
   if (status === "loading" || state.loading) {
     return (
-      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+      <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
-          <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+          <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem] text-gray-900 dark:text-gray-100">
             Question Bank
           </h1>
           <div className="flex space-x-4 mb-6">
-            <Skeleton height={40} width={120} />
-            <Skeleton height={40} width={120} />
-            <Skeleton height={40} width={120} />
+            <Skeleton height={40} width={120} className="bg-gray-200 dark:bg-gray-700" />
+            <Skeleton height={40} width={120} className="bg-gray-200 dark:bg-gray-700" />
+            <Skeleton height={40} width={120} className="bg-gray-200 dark:bg-gray-700" />
           </div>
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map(
-              (filterType) => (
-                <div key={filterType} className="flex items-center space-x-2">
-                  <Skeleton height={40} width={120} />
-                </div>
-              )
-            )}
+            {["exam", "subject", "topic", "subtopic", "difficulty", "year", "type"].map((filterType) => (
+              <div key={filterType} className="flex items-center space-x-2">
+                <Skeleton height={40} width={120} className="bg-gray-200 dark:bg-gray-700" />
+              </div>
+            ))}
           </div>
           <div>
             {[...Array(10)].map((_, i) => (
-              <div key={i} className="mb-4 p-4 border rounded-md">
-                <Skeleton height={20} width={"80%"} />
-                <Skeleton height={20} width={"90%"} />
-                <Skeleton height={20} width={"60%"} />
+              <div
+                key={i}
+                className="mb-4 p-4 border rounded-md bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700"
+              >
+                <Skeleton height={20} width={"80%"} className="bg-gray-200 dark:bg-gray-700" />
+                <Skeleton height={20} width={"90%"} className="bg-gray-200 dark:bg-gray-700" />
+                <Skeleton height={20} width={"60%"} className="bg-gray-200 dark:bg-gray-700" />
               </div>
             ))}
           </div>
@@ -890,9 +767,9 @@ const QuestionBankContent: React.FC = () => {
 
   if (status === "unauthenticated") {
     return (
-      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+      <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
-          <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+          <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem] text-gray-900 dark:text-gray-100">
             Question Bank
           </h1>
           <GuestBanner />
@@ -901,14 +778,11 @@ const QuestionBankContent: React.FC = () => {
     )
   }
 
-  //
-  // Final render
-  //
   return (
     <TooltipProvider>
-      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+      <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
-          <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+          <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem] text-gray-900 dark:text-gray-100">
             Question Bank
           </h1>
 
@@ -918,23 +792,21 @@ const QuestionBankContent: React.FC = () => {
                 type="text"
                 placeholder="Search questions..."
                 value={state.searchQuery}
-                onChange={(e) =>
-                  dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })
-                }
-                className="pl-10"
+                onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
+                className="pl-10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500" />
             </div>
             <Dialog open={isNavigatorOpen} onOpenChange={setIsNavigatorOpen}>
               <DialogTrigger asChild>
-                <Button variant="outline">
+                <Button variant="outline" className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
                   <List className="mr-2 h-4 w-4" />
                   Question Navigator
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[80vw] sm:max-h-[80vh]">
+              <DialogContent className="sm:max-w-[80vw] sm:max-h-[80vh] bg-white dark:bg-gray-800">
                 <DialogHeader>
-                  <DialogTitle>Question Navigator</DialogTitle>
+                  <DialogTitle className="text-gray-900 dark:text-gray-100">Question Navigator</DialogTitle>
                 </DialogHeader>
                 <ScrollArea className="h-[60vh]">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
@@ -947,17 +819,17 @@ const QuestionBankContent: React.FC = () => {
                             onClick={() => handleNavigatorClick(index)}
                             className={`w-10 h-10 ${
                               question.completed
-                                ? "bg-green-100 border-green-500 text-green-700"
+                                ? "bg-green-100 dark:bg-green-800 border-green-500 text-green-700 dark:text-green-200"
                                 : question.reviewed
-                                ? "bg-yellow-100 border-yellow-500 text-yellow-700"
-                                : ""
+                                  ? "bg-yellow-100 dark:bg-yellow-800 border-yellow-500 text-yellow-700 dark:text-yellow-200"
+                                  : "bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                             }`}
                           >
                             {index + 1}
                           </Button>
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p>{question.text.substring(0, 50)}...</p>
+                          <p className="text-gray-900 dark:text-gray-100">{question.text.substring(0, 50)}...</p>
                         </TooltipContent>
                       </Tooltip>
                     ))}
@@ -980,153 +852,138 @@ const QuestionBankContent: React.FC = () => {
                     }
                     className={`px-4 py-2 rounded-md ${
                       state.filters.status === filterStatus
-                        ? "bg-white border hover:border-black border-gray-600 text-gray-500"
-                        : "bg-white hover:border-black border border-gray-300 text-gray-500"
+                        ? "bg-white dark:bg-gray-700 border hover:border-black dark:hover:border-white border-gray-600 dark:border-gray-400 text-gray-500 dark:text-gray-300"
+                        : "bg-white dark:bg-gray-800 hover:border-black dark:hover:border-white border border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-300"
                     }`}
                   >
                     {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}
                   </button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}
+                  <p className="text-gray-900 dark:text-gray-100">
+                    {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}
+                  </p>
                 </TooltipContent>
               </Tooltip>
             ))}
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map(
-              (filterType) => (
-                <Tooltip key={filterType}>
-                  <TooltipTrigger asChild>
-                    <Popover
-                      content={
-                        <div className="w-full bg-white rounded-md p-2 sm:w-80">
-                          <Input
-                            type="text"
-                            placeholder={`Search ${filterType}...`}
-                            className="mb-2"
-                          />
-                          <div className="max-h-60 overflow-y-auto">
-                            {Array.from(
-                              new Set(
-                                state.questions
-                                  .filter(
-                                    (q) =>
-                                      !state.filters.exams.length ||
-                                      (q.exam && state.filters.exams.includes(q.exam)) ||
-                                      filterType === "exams"
-                                  )
-                                  .map((q) => {
-                                    switch (filterType) {
-                                      case "exams":
-                                        return q.exam
-                                      case "subjects":
-                                        return q.subject
-                                      case "topics":
-                                        return q.topic
-                                      case "subtopics":
-                                        return q.subtopic
-                                      case "difficulties":
-                                        return q.difficulty
-                                      case "years":
-                                        return q.year?.toString()
-                                      case "types":
-                                        return q.type
-                                      default:
-                                        return ""
-                                    }
-                                  })
-                                  .filter(Boolean) as string[]
-                              )
-                            ).map((value) => (
-                              <div key={value} className="flex items-center">
-                                <input
-                                  type="checkbox"
-                                  id={`${filterType}-${value}`}
-                                  className="mr-2"
-                                  checked={
-                                    (state.filters[filterType as keyof FiltersType] as string[]).includes(
-                                      value
-                                    )
+            {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map((filterType) => (
+              <Tooltip key={filterType}>
+                <TooltipTrigger asChild>
+                  <Popover
+                    content={
+                      <div className="w-full bg-white dark:bg-gray-800 rounded-md p-2 sm:w-80">
+                        <Input
+                          type="text"
+                          placeholder={`Search ${filterType}...`}
+                          className="mb-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                        />
+                        <div className="max-h-60 overflow-y-auto">
+                          {Array.from(
+                            new Set(
+                              state.questions
+                                .filter(
+                                  (q) =>
+                                    !state.filters.exams.length ||
+                                    (q.exam && state.filters.exams.includes(q.exam)) ||
+                                    filterType === "exams",
+                                )
+                                .map((q) => {
+                                  switch (filterType) {
+                                    case "exams":
+                                      return q.exam
+                                    case "subjects":
+                                      return q.subject
+                                    case "topics":
+                                      return q.topic
+                                    case "subtopics":
+                                      return q.subtopic
+                                    case "difficulties":
+                                      return q.difficulty
+                                    case "years":
+                                      return q.year?.toString()
+                                    case "types":
+                                      return q.type
+                                    default:
+                                      return ""
                                   }
-                                  onChange={() =>
-                                    handleFilterChange(filterType as keyof FiltersType, value)
-                                  }
-                                />
-                                <label
-                                  htmlFor={`${filterType}-${value}`}
-                                  className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
-                                >
-                                  {value}
-                                </label>
-                              </div>
-                            ))}
-                          </div>
+                                })
+                                .filter(Boolean) as string[],
+                            ),
+                          ).map((value) => (
+                            <div key={value} className="flex items-center">
+                              <input
+                                type="checkbox"
+                                id={`${filterType}-${value}`}
+                                className="mr-2"
+                                checked={(state.filters[filterType as keyof FiltersType] as string[]).includes(value)}
+                                onChange={() => handleFilterChange(filterType as keyof FiltersType, value)}
+                              />
+                              <label
+                                htmlFor={`${filterType}-${value}`}
+                                className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 dark:active:bg-gray-600 text-gray-900 dark:text-gray-100"
+                              >
+                                {value}
+                              </label>
+                            </div>
+                          ))}
                         </div>
-                      }
-                      align="start"
-                      openPopover={state.dropdowns[filterType as keyof typeof state.dropdowns]}
-                      setOpenPopover={(open) => {
+                      </div>
+                    }
+                    align="start"
+                    openPopover={state.dropdowns[filterType as keyof typeof state.dropdowns]}
+                    setOpenPopover={(open) => {
+                      dispatch({
+                        type: "SET_DROPDOWN",
+                        payload: { tag: filterType as keyof FiltersType, value: !!open },
+                      })
+                    }}
+                  >
+                    <button
+                      onClick={() =>
                         dispatch({
                           type: "SET_DROPDOWN",
-                          payload: { tag: filterType as keyof FiltersType, value: !!open },
+                          payload: {
+                            tag: filterType as keyof FiltersType,
+                            value: !state.dropdowns[filterType as keyof typeof state.dropdowns],
+                          },
                         })
-                      }}
+                      }
+                      className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 px-4 py-2 bg-white dark:bg-gray-800 transition-all duration-75 hover:border-gray-800 dark:hover:border-gray-400 focus:outline-none active:bg-gray-100 dark:active:bg-gray-700 text-gray-600 dark:text-gray-300"
                     >
-                      <button
-                        onClick={() =>
-                          dispatch({
-                            type: "SET_DROPDOWN",
-                            payload: {
-                              tag: filterType as keyof FiltersType,
-                              value: !state.dropdowns[filterType as keyof typeof state.dropdowns],
-                            },
-                          })
-                        }
-                        className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
-                      >
-                        <p className="text-gray-600">
-                          {Array.isArray(state.filters[filterType as keyof FiltersType]) &&
-                          (state.filters[filterType as keyof FiltersType] as string[]).length
-                            ? `${
-                                (state.filters[filterType as keyof FiltersType] as string[]).length
-                              } selected`
-                            : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                        </p>
-                        <ChevronDown
-                          className={`h-4 w-4 text-gray-600 transition-all ${
-                            state.dropdowns[filterType as keyof typeof state.dropdowns]
-                              ? "rotate-180"
-                              : ""
-                          }`}
-                        />
-                      </button>
-                    </Popover>
-                  </TooltipTrigger>
-                  <TooltipContent>
+                      <p>
+                        {Array.isArray(state.filters[filterType as keyof FiltersType]) &&
+                        (state.filters[filterType as keyof FiltersType] as string[]).length
+                          ? `${(state.filters[filterType as keyof FiltersType] as string[]).length} selected`
+                          : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                      </p>
+                      <ChevronDown
+                        className={`h-4 w-4 transition-all ${
+                          state.dropdowns[filterType as keyof typeof state.dropdowns] ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  </Popover>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="text-gray-900 dark:text-gray-100">
                     Select {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                  </TooltipContent>
-                </Tooltip>
-              )
-            )}
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            ))}
           </div>
 
-          <Card className="bg-gradient-to-br from-gray-900 to-gray-800 text-white border-gray-700 mb-6">
+          <Card className="bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-800 dark:to-gray-900 text-white border-gray-700 mb-6">
             <CardContent className="p-6">
-              <h2 className="text-2xl font-light tracking-tight text-gray-200 mb-6">
-                Question Progress
-              </h2>
+              <h2 className="text-2xl font-light tracking-tight text-gray-200 mb-6">Question Progress</h2>
               <div className="space-y-6">
                 <div className="flex justify-between items-center">
+                  <span className="text-sm font-light tracking-tight text-gray-300">Overall Progress</span>
                   <span className="text-sm font-light tracking-tight text-gray-300">
-                    Overall Progress
-                  </span>
-                  <span className="text-sm font-light tracking-tight text-gray-300">
-                    {Math.round(
-                      (questionStats.answered / filteredQuestions.length) * 100
-                    )}
-                    %
+                    {Math.round((questionStats.answered / filteredQuestions.length) * 100)}%
                   </span>
                 </div>
                 <Progress
@@ -1139,12 +996,8 @@ const QuestionBankContent: React.FC = () => {
                       <HelpCircle className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-2xl font-light tracking-tighter text-blue-300">
-                        {questionStats.notVisited}
-                      </p>
-                      <p className="text-sm font-light tracking-tight text-gray-400">
-                        Not Answered
-                      </p>
+                      <p className="text-2xl font-light tracking-tighter text-blue-300">{questionStats.notVisited}</p>
+                      <p className="text-sm font-light tracking-tight text-gray-400">Not Answered</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
@@ -1152,12 +1005,8 @@ const QuestionBankContent: React.FC = () => {
                       <CheckCircle2 className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-2xl font-light tracking-tighter text-green-300">
-                        {questionStats.answered}
-                      </p>
-                      <p className="text-sm font-light tracking-tight text-gray-400">
-                        Answered
-                      </p>
+                      <p className="text-2xl font-light tracking-tighter text-green-300">{questionStats.answered}</p>
+                      <p className="text-sm font-light tracking-tight text-gray-400">Answered</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
@@ -1168,9 +1017,7 @@ const QuestionBankContent: React.FC = () => {
                       <p className="text-2xl font-light tracking-tighter text-yellow-300">
                         {questionStats.markedForReview}
                       </p>
-                      <p className="text-sm font-light tracking-tight text-gray-400">
-                        For Review
-                      </p>
+                      <p className="text-sm font-light tracking-tight text-gray-400">For Review</p>
                     </div>
                   </div>
                 </div>
@@ -1219,14 +1066,10 @@ const QuestionBankContent: React.FC = () => {
                   handleQuestionChange={handleNavigatorClick}
                 />
               ))}
-              <Pagination
-                currentPage={state.currentPage}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-              />
+              <Pagination currentPage={state.currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
             </>
           ) : (
-            <p className="text-red-400">No questions found with the selected filters.</p>
+            <p className="text-red-400 dark:text-red-300">No questions found with the selected filters.</p>
           )}
         </div>
       </div>
@@ -1234,9 +1077,6 @@ const QuestionBankContent: React.FC = () => {
   )
 }
 
-//
-// Simple fetch helper
-//
 async function fetchData(url: string) {
   const response = await fetch(url)
   if (!response.ok) throw new Error(`Failed to fetch data from ${url}`)
@@ -1244,3 +1084,4 @@ async function fetchData(url: string) {
 }
 
 export default QuestionBankContent
+
