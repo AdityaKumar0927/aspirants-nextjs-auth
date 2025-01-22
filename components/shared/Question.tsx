@@ -67,7 +67,7 @@ enum QuestionStatus {
 //
 // 2) Broaden 'type' and include missing fields. Make them optional so TS won't complain.
 //
-type QuestionTypeString = "Multiple Choice" | "Numerical" | string
+type QuestionTypeString = "Multiple Choice" | "Numerical" | "integer" | string
 
 //
 // 3) This matches the shape we pass to <Question>, ensuring 'options?: string[]'
@@ -209,6 +209,7 @@ export default function Question({
   const [showAI, setShowAI] = useState(false)
   const [showComments, setShowComments] = useState(false)
 
+  // Extra states for tags, AI, notes, difficulty rating, etc.
   const [comments, setComments] = useState<CommentType[]>([])
   const [newComment, setNewComment] = useState("")
   const [replyingTo, setReplyingTo] = useState<string | null>(null)
@@ -225,18 +226,29 @@ export default function Question({
   const [localNote, setLocalNote] = useState(note)
   const [noteId, setNoteId] = useState<string | null>(null)
 
-  // For handling difficulty rating updates
   const [localDifficultyRating, setLocalDifficultyRating] = useState<number | undefined>(
     question.difficultyRating
   )
 
   const { toast, dismiss } = useToast()
 
+  //
+  // If user swipes left/right to change question
+  //
+  const handlers = useSwipeable({
+    onSwipedLeft: () => onNextQuestion && onNextQuestion(),
+    onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
+    trackMouse: true,
+  })
+
+  //
+  // Sync local state with incoming props
+  //
   useEffect(() => {
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
-  // If you fetch notes from server, e.g. /api/notes/:questionId
+  // Optionally fetch existing note from server
   useEffect(() => {
     const fetchNote = async () => {
       if (!question.questionId) return
@@ -265,12 +277,6 @@ export default function Question({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [question.questionId])
 
-  const handlers = useSwipeable({
-    onSwipedLeft: () => onNextQuestion && onNextQuestion(),
-    onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
-    trackMouse: true,
-  })
-
   //
   // Tag logic
   //
@@ -296,10 +302,7 @@ export default function Question({
       description: `You have completed question #${question.id}`,
       duration: 5000,
       action: (
-        <ToastAction
-          onClick={() => undoMarkComplete(question.questionId ?? "")}
-          altText="Undo"
-        >
+        <ToastAction altText="Undo" onClick={() => undoMarkComplete(question.questionId ?? "")}>
           Undo
         </ToastAction>
       ),
@@ -314,10 +317,7 @@ export default function Question({
       description: `You have flagged question #${question.id} for review.`,
       duration: 5000,
       action: (
-        <ToastAction
-          onClick={() => undoMarkForReview(question.questionId ?? "")}
-          altText="Undo"
-        >
+        <ToastAction altText="Undo" onClick={() => undoMarkForReview(question.questionId ?? "")}>
           Undo
         </ToastAction>
       ),
@@ -335,29 +335,58 @@ export default function Question({
   }
 
   //
-  // Handling multiple choice
+  // MCQ logic
   //
   const handleOptionClickLocal = (option: string) => {
     if (!question.questionId) return
     if (localSelectedOption !== option) {
       setLocalSelectedOption(option)
       // Provide fallback if correctOption is undefined
-      handleOptionClick(question.questionId ?? "", option, question.correctOption ?? "N/A")
+      handleOptionClick(question.questionId, option, question.correctOption ?? "N/A")
       updatePoints(option === question.correctOption)
     }
   }
 
   //
-  // Handling numeric
+  // Integer / numerical logic with potential range check
   //
   const handleNumericalSubmitLocal = () => {
     if (!question.questionId) return
-    handleNumericalSubmit(
-      question.questionId ?? "",
-      numericalAnswer ?? "",
-      question.correctOption ?? "N/A"
-    )
-    updatePoints(numericalAnswer === question.correctOption)
+
+    const userVal = numericalAnswer?.trim() || ""
+    const correctVal = question.correctOption ?? ""
+
+    // We'll handle range: e.g. "50to55", "-13540to-13537"
+    let isCorrect = false
+    if (correctVal.includes("to")) {
+      // parse range
+      const parts = correctVal.split("to")
+      if (parts.length === 2) {
+        const low = parseFloat(parts[0])
+        const high = parseFloat(parts[1])
+        const userNum = parseFloat(userVal)
+        if (!isNaN(low) && !isNaN(high) && !isNaN(userNum)) {
+          if (userNum >= low && userNum <= high) {
+            isCorrect = true
+          }
+        }
+      }
+    } else {
+      // single number
+      const correctNum = parseFloat(correctVal)
+      const userNum = parseFloat(userVal)
+      if (!isNaN(correctNum) && !isNaN(userNum)) {
+        if (correctNum === userNum) {
+          isCorrect = true
+        }
+      }
+    }
+
+    // Call the parent's method so it can do user progress
+    handleNumericalSubmit(question.questionId, userVal, correctVal)
+
+    // Update points + toast if correct
+    updatePoints(isCorrect)
   }
 
   //
@@ -387,14 +416,14 @@ export default function Question({
     setLocalDifficultyRating(newRating)
 
     try {
-      // PATCH request to update question (including updatedBy from user)
+      // PATCH request to update question (including updatedBy)
       const res = await fetch("/api/questions", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           questionId: question.questionId,
           difficultyRating: newRating,
-          updatedBy: userId || "guest", // or session user id
+          updatedBy: userId || "guest",
         }),
       })
       if (!res.ok) {
@@ -479,7 +508,7 @@ export default function Question({
   }
 
   //
-  // Comments (dummy local logic for demonstration)
+  // Comments (dummy local logic)
   //
   const handleAddComment = () => {
     if (newComment.trim()) {
@@ -625,10 +654,7 @@ export default function Question({
                 <Button onClick={() => handleEditComment(comment.id, editedCommentContent)}>
                   Save
                 </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => setEditingCommentId(null)}
-                >
+                <Button variant="outline" onClick={() => setEditingCommentId(null)}>
                   Cancel
                 </Button>
               </div>
@@ -732,11 +758,11 @@ export default function Question({
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
-                {/* Using question.id for numbering */}
+                {/* Title based on question.id */}
                 <CardTitle className="font-normal text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
                   Question #{question.id}
                 </CardTitle>
-                {/* Subject, difficulty, etc. if present */}
+                {/* Subject, difficulty, year, type, exam, etc. */}
                 {question.subject && (
                   <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
                     {question.subject}
@@ -857,8 +883,8 @@ export default function Question({
               </p>
             </div>
 
-            {/* If this is a Numerical type question */}
-            {question.type === "Numerical" && (
+            {/* If this is an integer or numerical type question */}
+            {(question.type === "Numerical" || question.type === "integer") && (
               <div className="mb-4">
                 <Input
                   type="text"
@@ -949,8 +975,9 @@ export default function Question({
               </div>
             )}
 
-            {/* Markscheme button if user selected an option & markscheme is enabled */}
-            {localSelectedOption && markschemeEnabled && (
+            {/* Markscheme button if user selected an option / typed numeric & markscheme is enabled */}
+            {((localSelectedOption && markschemeEnabled) ||
+              ((question.type === "Numerical" || question.type === "integer") && markschemeEnabled)) && (
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
@@ -1054,9 +1081,7 @@ export default function Question({
           <Card className="mb-6">
             <CardHeader>
               <CardTitle>Notes</CardTitle>
-              <CardDescription>
-                Add your notes for this question here.
-              </CardDescription>
+              <CardDescription>Add your notes for this question here.</CardDescription>
             </CardHeader>
             <CardContent>
               <Tiptap
@@ -1071,11 +1096,7 @@ export default function Question({
               <Button variant="outline" onClick={saveNote}>
                 Save Note
               </Button>
-              <Button
-                variant="destructive"
-                onClick={deleteNote}
-                disabled={!noteId}
-              >
+              <Button variant="destructive" onClick={deleteNote} disabled={!noteId}>
                 Delete Note
               </Button>
             </CardFooter>
