@@ -67,7 +67,7 @@ enum QuestionStatus {
 //
 // 2) Broaden 'type' and include missing fields. Make them optional so TS won't complain.
 //
-type QuestionTypeString = "Multiple Choice" | "Numerical" | "integer" | string
+type QuestionTypeString = "Multiple Choice" | "mcq" | "Numerical" | "integer" | string
 
 //
 // 3) This matches the shape we pass to <Question>, ensuring 'options?: string[]'
@@ -209,7 +209,6 @@ export default function Question({
   const [showAI, setShowAI] = useState(false)
   const [showComments, setShowComments] = useState(false)
 
-  // Extra states for tags, AI, notes, difficulty rating, etc.
   const [comments, setComments] = useState<CommentType[]>([])
   const [newComment, setNewComment] = useState("")
   const [replyingTo, setReplyingTo] = useState<string | null>(null)
@@ -226,6 +225,7 @@ export default function Question({
   const [localNote, setLocalNote] = useState(note)
   const [noteId, setNoteId] = useState<string | null>(null)
 
+  // For handling difficulty rating updates
   const [localDifficultyRating, setLocalDifficultyRating] = useState<number | undefined>(
     question.difficultyRating
   )
@@ -241,14 +241,12 @@ export default function Question({
     trackMouse: true,
   })
 
-  //
-  // Sync local state with incoming props
-  //
+  // Sync local state with props
   useEffect(() => {
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
-  // Optionally fetch existing note from server
+  // If you fetch notes from server, e.g. /api/notes/:questionId
   useEffect(() => {
     const fetchNote = async () => {
       if (!question.questionId) return
@@ -302,7 +300,10 @@ export default function Question({
       description: `You have completed question #${question.id}`,
       duration: 5000,
       action: (
-        <ToastAction altText="Undo" onClick={() => undoMarkComplete(question.questionId ?? "")}>
+        <ToastAction
+          onClick={() => undoMarkComplete(question.questionId ?? "")}
+          altText="Undo"
+        >
           Undo
         </ToastAction>
       ),
@@ -317,7 +318,10 @@ export default function Question({
       description: `You have flagged question #${question.id} for review.`,
       duration: 5000,
       action: (
-        <ToastAction altText="Undo" onClick={() => undoMarkForReview(question.questionId ?? "")}>
+        <ToastAction
+          onClick={() => undoMarkForReview(question.questionId ?? "")}
+          altText="Undo"
+        >
           Undo
         </ToastAction>
       ),
@@ -335,58 +339,30 @@ export default function Question({
   }
 
   //
-  // MCQ logic
+  // Handling multiple choice
   //
   const handleOptionClickLocal = (option: string) => {
     if (!question.questionId) return
     if (localSelectedOption !== option) {
       setLocalSelectedOption(option)
       // Provide fallback if correctOption is undefined
-      handleOptionClick(question.questionId, option, question.correctOption ?? "N/A")
+      handleOptionClick(question.questionId ?? "", option, question.correctOption ?? "N/A")
       updatePoints(option === question.correctOption)
     }
   }
 
   //
-  // Integer / numerical logic with potential range check
+  // Handling numeric
   //
   const handleNumericalSubmitLocal = () => {
     if (!question.questionId) return
-
-    const userVal = numericalAnswer?.trim() || ""
-    const correctVal = question.correctOption ?? ""
-
-    // We'll handle range: e.g. "50to55", "-13540to-13537"
-    let isCorrect = false
-    if (correctVal.includes("to")) {
-      // parse range
-      const parts = correctVal.split("to")
-      if (parts.length === 2) {
-        const low = parseFloat(parts[0])
-        const high = parseFloat(parts[1])
-        const userNum = parseFloat(userVal)
-        if (!isNaN(low) && !isNaN(high) && !isNaN(userNum)) {
-          if (userNum >= low && userNum <= high) {
-            isCorrect = true
-          }
-        }
-      }
-    } else {
-      // single number
-      const correctNum = parseFloat(correctVal)
-      const userNum = parseFloat(userVal)
-      if (!isNaN(correctNum) && !isNaN(userNum)) {
-        if (correctNum === userNum) {
-          isCorrect = true
-        }
-      }
-    }
-
-    // Call the parent's method so it can do user progress
-    handleNumericalSubmit(question.questionId, userVal, correctVal)
-
-    // Update points + toast if correct
-    updatePoints(isCorrect)
+    // We might parse question.correctOption in case of range or single numeric
+    handleNumericalSubmit(
+      question.questionId ?? "",
+      numericalAnswer ?? "",
+      question.correctOption ?? "N/A"
+    )
+    updatePoints(numericalAnswer === question.correctOption)
   }
 
   //
@@ -416,14 +392,14 @@ export default function Question({
     setLocalDifficultyRating(newRating)
 
     try {
-      // PATCH request to update question (including updatedBy)
+      // PATCH request to update question (including updatedBy from user)
       const res = await fetch("/api/questions", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           questionId: question.questionId,
           difficultyRating: newRating,
-          updatedBy: userId || "guest",
+          updatedBy: userId || "guest", // or session user id
         }),
       })
       if (!res.ok) {
@@ -508,7 +484,7 @@ export default function Question({
   }
 
   //
-  // Comments (dummy local logic)
+  // Comments
   //
   const handleAddComment = () => {
     if (newComment.trim()) {
@@ -616,9 +592,6 @@ export default function Question({
     }
   })
 
-  //
-  // Renders a single Comment + any replies
-  //
   const renderComment = (comment: CommentType, isReply = false, depth = 0) => (
     <div
       key={comment.id}
@@ -632,9 +605,7 @@ export default function Question({
               <AvatarImage
                 src={`https://api.dicebear.com/6.x/initials/svg?seed=${comment.username}`}
               />
-              <AvatarFallback>
-                {comment.username.slice(0, 2).toUpperCase()}
-              </AvatarFallback>
+              <AvatarFallback>{comment.username.slice(0, 2).toUpperCase()}</AvatarFallback>
             </Avatar>
             <div>
               <p className="font-semibold">{comment.username}</p>
@@ -758,11 +729,11 @@ export default function Question({
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
-                {/* Title based on question.id */}
+                {/* Using question.id for numbering */}
                 <CardTitle className="font-normal text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
                   Question #{question.id}
                 </CardTitle>
-                {/* Subject, difficulty, year, type, exam, etc. */}
+                {/* Subject, difficulty, etc. if present */}
                 {question.subject && (
                   <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
                     {question.subject}
@@ -778,6 +749,7 @@ export default function Question({
                     {question.year}
                   </div>
                 )}
+                {/* Show type if you want */}
                 {question.type && (
                   <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
                     {question.type}
@@ -821,6 +793,7 @@ export default function Question({
                   </Tooltip>
                 </div>
               </div>
+
               <div className="flex items-center space-x-4">
                 {/* Mark as complete */}
                 <Tooltip>
@@ -907,14 +880,18 @@ export default function Question({
               </div>
             )}
 
-            {/* If this is a Multiple Choice question */}
-            {question.type === "Multiple Choice" && (
+            {/* If this is a Multiple Choice or mcq question AND there are actual options */}
+            {(
+              question.type === "Multiple Choice" ||
+              question.type === "mcq"
+            ) && question.options && question.options.length > 0 && (
               <div className="space-y-2 mb-4">
-                {question.options?.map((option, index) => {
+                {question.options.map((option, index) => {
                   // We'll label them A, B, C, etc.
                   const letter = String.fromCharCode(65 + index)
                   const isSelected = localSelectedOption === letter
                   const isFeedbackActive = isSelected && feedback
+
                   return (
                     <Tooltip key={index}>
                       <TooltipTrigger asChild>
@@ -975,9 +952,13 @@ export default function Question({
               </div>
             )}
 
-            {/* Markscheme button if user selected an option / typed numeric & markscheme is enabled */}
-            {((localSelectedOption && markschemeEnabled) ||
-              ((question.type === "Numerical" || question.type === "integer") && markschemeEnabled)) && (
+            {/* Markscheme button if user has answered & markscheme is enabled */}
+            {(
+              (localSelectedOption && markschemeEnabled) ||
+              ((question.type === "Numerical" || question.type === "integer") &&
+                numericalAnswer && // user typed something
+                markschemeEnabled)
+            ) && (
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
