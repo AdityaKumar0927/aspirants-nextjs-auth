@@ -46,36 +46,19 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Progress } from "@/components/ui/progress"
 import { motion, AnimatePresence } from "framer-motion"
 
-//
-// Pagination constant
-//
 const PAGE_SIZE = 10
 
-//
-// Enum for question status
-//
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
   ARCHIVED = "ARCHIVED",
 }
 
-//
-// For question.type, allow any string plus a couple known ones:
-//
 type QuestionTypeString = "Multiple Choice" | "Numerical" | string
 
-//
-// The main QuestionType interface, including an 'id' for <Question>:
-//
-// NOTE: We include peerSolvedPercentage (number | undefined) and do NOT call .toFixed() here.
-// If needed, do a null-check in <Question> or wherever it's displayed.
-//
 interface QuestionType {
-  id: number                   // REQUIRED for <Question> numbering
+  id: number
   questionId: string
-
-  // Basic question details
   text: string
   subject?: string
   topic?: string
@@ -85,15 +68,13 @@ interface QuestionType {
   year?: number
   reviewed?: boolean
   completed?: boolean
-  options?: string[]           // Flattened MCQ options
+  options?: string[]
   correctOption?: string
   markscheme?: string
   notes?: string
   lastAttempted?: string
   diagramUrl?: string
   status?: QuestionStatus
-
-  // Additional schema fields:
   exam?: string
   examGroup?: string
   country?: string
@@ -125,31 +106,29 @@ interface QuestionType {
   wrongAttempts?: string
   averageTimeTaken?: string
   customTag?: string
-  explanation?: any            // JSON object for explanation details
+  explanation?: any
   paperTitle?: string
   timeAllotted?: number
   updatedTime?: number
-  updatedBy?: string           // ID or name of the user who last updated
+  updatedBy?: string
   source?: string
-  peerSolvedPercentage?: number  // float for how many solved on first try
-  linkedResources?: any          // JSON with external resource links
-  commonMistakes?: any           // JSON with typical mistakes
+  peerSolvedPercentage?: number
+  linkedResources?: any
+  commonMistakes?: any
   discussionLink?: string
   parentQuestionId?: number
-  difficultyRating?: number      // numeric rating for easy/medium/hard
+  difficultyRating?: number
   yearKey?: string
   createdAt?: string
   updatedAt?: string
 }
 
-//
-// Additional interfaces for user answers and performance
-//
 interface UserAnswer {
   questionId: string
   selectedOption: string
   isCorrect: boolean
 }
+
 interface UserPerformance {
   questionId: string
   correctAnswers: number
@@ -170,9 +149,6 @@ interface UserPerformance {
   reviewed: boolean
 }
 
-//
-// Filter structure
-//
 type FiltersType = {
   exams: string[]
   subjects: string[]
@@ -184,9 +160,6 @@ type FiltersType = {
   status: string
 }
 
-//
-// State shape
-//
 type StateType = {
   questions: QuestionType[]
   filters: FiltersType
@@ -209,9 +182,6 @@ type StateType = {
   currentPage: number
 }
 
-//
-// Actions for our reducer
-//
 type ActionType =
   | { type: "SET_QUESTIONS"; payload: QuestionType[] }
   | { type: "SET_FILTERS"; payload: FiltersType }
@@ -225,9 +195,6 @@ type ActionType =
   | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_CURRENT_PAGE"; payload: number }
 
-//
-// Our initialState
-//
 const initialState: StateType = {
   questions: [],
   filters: {
@@ -259,9 +226,6 @@ const initialState: StateType = {
   currentPage: 1,
 }
 
-//
-// Our reducer
-//
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_QUESTIONS":
@@ -294,9 +258,6 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
-//
-// A fun little StatusCard (optional)
-//
 const StatusCard = ({
   icon,
   label,
@@ -310,13 +271,13 @@ const StatusCard = ({
 }) => {
   return (
     <motion.div
-      className="flex items-center p-4 rounded-lg bg-gray-900 transition-all duration-300"
+      className="flex items-center p-4 rounded-lg bg-gray-900 dark:bg-gray-800 transition-all duration-300"
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
       <AnimatePresence>
         <motion.div
-          className={`flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 mr-4 ${color}`}
+          className={`flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 dark:bg-gray-700 mr-4 ${color}`}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
@@ -335,7 +296,7 @@ const StatusCard = ({
           {value}
         </motion.span>
         <motion.p
-          className="text-sm font-medium text-gray-400"
+          className="text-sm font-medium text-gray-400 dark:text-gray-300"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
@@ -347,9 +308,6 @@ const StatusCard = ({
   )
 }
 
-//
-// A simple Pagination component
-//
 const Pagination: React.FC<{
   currentPage: number
   totalPages: number
@@ -384,7 +342,7 @@ const Pagination: React.FC<{
       })}
       {totalPages > 5 && currentPage < totalPages - 2 && (
         <>
-          <span className="text-gray-500">...</span>
+          <span className="text-gray-500 dark:text-gray-400">...</span>
           <Button variant="outline" size="icon" onClick={() => onPageChange(totalPages)}>
             {totalPages}
           </Button>
@@ -403,20 +361,17 @@ const Pagination: React.FC<{
   )
 }
 
-//
-// A banner for guests, if you want it
-//
 const GuestBanner: React.FC = () => {
   return (
-    <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
+    <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900">
       <CardContent className="p-4 flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
-            <Info className="h-5 w-5 text-blue-700" />
+          <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-800">
+            <Info className="h-5 w-5 text-blue-700 dark:text-blue-200" />
           </div>
           <div className="space-y-1">
-            <h3 className="font-medium text-blue-900">Guest Access</h3>
-            <p className="text-sm text-blue-700">
+            <h3 className="font-medium text-blue-900 dark:text-blue-100">Guest Access</h3>
+            <p className="text-sm text-blue-700 dark:text-blue-200">
               Try out the Question Bank features. Sign in to save your progress.
             </p>
           </div>
@@ -424,7 +379,7 @@ const GuestBanner: React.FC = () => {
         <Link href="/QuestionBank" className="hidden sm:block">
           <Button
             variant="outline"
-            className="border-blue-200 hover:border-blue-300 hover:bg-blue-50"
+            className="border-blue-200 hover:border-blue-300 hover:bg-blue-50 dark:border-blue-700 dark:hover:border-blue-500 dark:hover:bg-blue-800"
           >
             Sign in
             <ChevronRight className="ml-2 h-4 w-4" />
@@ -435,22 +390,15 @@ const GuestBanner: React.FC = () => {
   )
 }
 
-//
-// The main QuestionBankContent component
-//
 const QuestionBankContent: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { data: session, status } = useSession()
   const { toast } = useToast()
 
-  //
-  // fetchAllData: load questions + user data, unify them
-  //
   const fetchAllData = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
 
     try {
-      // 1) We fetch all relevant data in parallel
       const [questionsData, userProgressData, userAnswersData, userPerformanceData] =
         await Promise.all([
           fetchData("/api/questions"),
@@ -463,10 +411,8 @@ const QuestionBankContent: React.FC = () => {
       const selectedOptions: Record<string, string> = {}
       const notes: Record<string, string> = {}
 
-      // 2) Merge them, generating an `id` for each question
       const mergedQuestions: QuestionType[] = questionsData.map(
         (q: Omit<QuestionType, "id">, index: number) => {
-          // If questionId is numeric, parse it. Otherwise do index+1
           const forcedId = index + 1
 
           const progress = userProgressData.find(
@@ -494,10 +440,8 @@ const QuestionBankContent: React.FC = () => {
         }
       )
 
-      // 3) Sort them, e.g. by .id
       mergedQuestions.sort((a, b) => a.id - b.id)
 
-      // 4) Update state
       dispatch({ type: "SET_QUESTIONS", payload: mergedQuestions })
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: selectedOptions })
       dispatch({ type: "SET_FEEDBACK", payload: feedback })
@@ -514,18 +458,12 @@ const QuestionBankContent: React.FC = () => {
     }
   }, [toast])
 
-  //
-  // If user is authenticated, fetch data on mount
-  //
   useEffect(() => {
     if (status === "authenticated") {
       fetchAllData()
     }
   }, [fetchAllData, status])
 
-  //
-  // Filter & search
-  //
   const filteredQuestions = useMemo(() => {
     const searchQuery = state.searchQuery.toLowerCase()
     return state.questions.filter((question) => {
@@ -545,7 +483,8 @@ const QuestionBankContent: React.FC = () => {
         (!state.filters.subtopics.length ||
           (question.subtopic && state.filters.subtopics.includes(question.subtopic))) &&
         (!state.filters.difficulties.length ||
-          (question.difficulty && state.filters.difficulties.includes(question.difficulty))) &&
+          (question.difficulty &&
+            state.filters.difficulties.includes(question.difficulty))) &&
         (!state.filters.years.length ||
           (question.year && state.filters.years.includes(question.year.toString()))) &&
         (!state.filters.types.length ||
@@ -560,25 +499,16 @@ const QuestionBankContent: React.FC = () => {
     })
   }, [state.questions, state.filters, state.searchQuery])
 
-  //
-  // Pagination
-  //
   const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
   const paginatedQuestions = useMemo(() => {
     const startIndex = (state.currentPage - 1) * PAGE_SIZE
     return filteredQuestions.slice(startIndex, startIndex + PAGE_SIZE)
   }, [filteredQuestions, state.currentPage])
 
-  //
-  // Page change
-  //
   const handlePageChange = useCallback((page: number) => {
     dispatch({ type: "SET_CURRENT_PAGE", payload: page })
   }, [])
 
-  //
-  // Filter changes
-  //
   const handleFilterChange = useCallback(
     (tag: keyof FiltersType, value: string) => {
       const filterValues = state.filters[tag]
@@ -593,13 +523,19 @@ const QuestionBankContent: React.FC = () => {
         if (tag === "exams") {
           const selectedExams = newFilters.exams
           newFilters.subjects = newFilters.subjects.filter((subj) =>
-            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.subject === subj)
+            state.questions.some(
+              (q) => q.exam && selectedExams.includes(q.exam) && q.subject === subj
+            )
           )
           newFilters.topics = newFilters.topics.filter((topic) =>
-            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.topic === topic)
+            state.questions.some(
+              (q) => q.exam && selectedExams.includes(q.exam) && q.topic === topic
+            )
           )
           newFilters.subtopics = newFilters.subtopics.filter((subt) =>
-            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.subtopic === subt)
+            state.questions.some(
+              (q) => q.exam && selectedExams.includes(q.exam) && q.subtopic === subt
+            )
           )
           newFilters.types = newFilters.types.filter((t) =>
             state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.type === t)
@@ -612,11 +548,11 @@ const QuestionBankContent: React.FC = () => {
     [state.filters, state.questions]
   )
 
-  //
-  // Performance updates (mark complete, review, etc.)
-  //
   const updateUserPerformance = useCallback(
-    async (questionId: string, updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>) => {
+    async (
+      questionId: string,
+      updatedFields: Partial<QuestionType & Omit<UserPerformance, "timePerQuestion">>
+    ) => {
       try {
         const response = await fetch("/api/user-performance/update", {
           method: "POST",
@@ -681,13 +617,13 @@ const QuestionBankContent: React.FC = () => {
     [updateUserPerformance, state.questions]
   )
 
-  //
-  // The actual MCQ logic:
-  //
   const handleOptionClick = useCallback(
     async (questionId: string, option: string, correctOption: string) => {
       const isCorrect = option === correctOption
-      const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" }
+      const newFeedback = {
+        ...state.feedback,
+        [questionId]: isCorrect ? "correct" : "incorrect",
+      }
       const newSelectedOptions = { ...state.selectedOptions, [questionId]: option }
 
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
@@ -719,16 +655,22 @@ const QuestionBankContent: React.FC = () => {
         })
       }
     },
-    [saveUserAnswer, updateUserPerformance, state.feedback, state.selectedOptions, state.questions]
+    [
+      saveUserAnswer,
+      updateUserPerformance,
+      state.feedback,
+      state.selectedOptions,
+      state.questions,
+    ]
   )
 
-  //
-  // Numeric logic:
-  //
   const handleNumericalSubmit = useCallback(
     async (questionId: string, userAnswer: string, correctAnswer: string) => {
       const isCorrect = userAnswer === correctAnswer
-      const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" }
+      const newFeedback = {
+        ...state.feedback,
+        [questionId]: isCorrect ? "correct" : "incorrect",
+      }
 
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
 
@@ -765,9 +707,6 @@ const QuestionBankContent: React.FC = () => {
     [state.numericalAnswers]
   )
 
-  //
-  // Notes
-  //
   const handleNoteChange = useCallback(
     async (questionId: string, note: string) => {
       const newNotes = { ...state.notes, [questionId]: note }
@@ -806,9 +745,6 @@ const QuestionBankContent: React.FC = () => {
     [state.notes]
   )
 
-  //
-  // Navigator
-  //
   const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
   const handleNavigatorClick = useCallback(
     (index: number) => {
@@ -827,9 +763,6 @@ const QuestionBankContent: React.FC = () => {
     [filteredQuestions]
   )
 
-  //
-  // Question stats
-  //
   const questionStats = useMemo(() => {
     const stats = {
       notVisited: 0,
@@ -851,13 +784,10 @@ const QuestionBankContent: React.FC = () => {
     return stats
   }, [filteredQuestions])
 
-  //
-  // Loader states
-  //
   if (status === "loading" || state.loading) {
     return (
-      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-        <div className="max-w-6xl w-full">
+      <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+        <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
           <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
             Question Bank
           </h1>
@@ -877,7 +807,7 @@ const QuestionBankContent: React.FC = () => {
           </div>
           <div>
             {[...Array(10)].map((_, i) => (
-              <div key={i} className="mb-4 p-4 border rounded-md">
+              <div key={i} className="mb-4 p-4 border rounded-md dark:border-gray-700">
                 <Skeleton height={20} width={"80%"} />
                 <Skeleton height={20} width={"90%"} />
                 <Skeleton height={20} width={"60%"} />
@@ -891,8 +821,8 @@ const QuestionBankContent: React.FC = () => {
 
   if (status === "unauthenticated") {
     return (
-      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-        <div className="max-w-6xl w-full">
+      <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+        <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
           <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
             Question Bank
           </h1>
@@ -902,13 +832,10 @@ const QuestionBankContent: React.FC = () => {
     )
   }
 
-  //
-  // Final render
-  //
   return (
     <TooltipProvider>
-      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-        <div className="max-w-6xl w-full">
+      <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+        <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
           <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
             Question Bank
           </h1>
@@ -922,18 +849,18 @@ const QuestionBankContent: React.FC = () => {
                 onChange={(e) =>
                   dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })
                 }
-                className="pl-10"
+                className="pl-10 dark:text-gray-100 dark:bg-gray-800 dark:placeholder-gray-400"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
             </div>
             <Dialog open={isNavigatorOpen} onOpenChange={setIsNavigatorOpen}>
               <DialogTrigger asChild>
-                <Button variant="outline">
+                <Button variant="outline" className="dark:border-gray-700 dark:hover:border-gray-500 dark:text-gray-100">
                   <List className="mr-2 h-4 w-4" />
                   Question Navigator
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[80vw] sm:max-h-[80vh]">
+              <DialogContent className="sm:max-w-[80vw] sm:max-h-[80vh] dark:bg-gray-800 dark:text-gray-100">
                 <DialogHeader>
                   <DialogTitle>Question Navigator</DialogTitle>
                 </DialogHeader>
@@ -946,18 +873,18 @@ const QuestionBankContent: React.FC = () => {
                             variant={question.completed ? "default" : "outline"}
                             size="sm"
                             onClick={() => handleNavigatorClick(index)}
-                            className={`w-10 h-10 ${
+                            className={`w-10 h-10 dark:border-gray-700 ${
                               question.completed
-                                ? "bg-green-100 border-green-500 text-green-700"
+                                ? "bg-green-100 border-green-500 text-green-700 dark:bg-green-900 dark:border-green-500 dark:text-green-300"
                                 : question.reviewed
-                                ? "bg-yellow-100 border-yellow-500 text-yellow-700"
+                                ? "bg-yellow-100 border-yellow-500 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300"
                                 : ""
                             }`}
                           >
                             {index + 1}
                           </Button>
                         </TooltipTrigger>
-                        <TooltipContent>
+                        <TooltipContent className="dark:bg-gray-700 dark:text-gray-50">
                           <p>{question.text.substring(0, 50)}...</p>
                         </TooltipContent>
                       </Tooltip>
@@ -979,16 +906,17 @@ const QuestionBankContent: React.FC = () => {
                         payload: { ...state.filters, status: filterStatus },
                       })
                     }
-                    className={`px-4 py-2 rounded-md ${
-                      state.filters.status === filterStatus
-                        ? "bg-white border hover:border-black border-gray-600 text-gray-500"
-                        : "bg-white hover:border-black border border-gray-300 text-gray-500"
-                    }`}
+                    className={`px-4 py-2 rounded-md transition-colors
+                      ${
+                        state.filters.status === filterStatus
+                          ? "bg-white dark:bg-gray-700 border dark:border-gray-600 hover:border-gray-500 dark:hover:border-gray-400 text-gray-500 dark:text-gray-100"
+                          : "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-gray-700 dark:hover:border-gray-500 text-gray-500 dark:text-gray-100"
+                      }`}
                   >
                     {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}
                   </button>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent className="dark:bg-gray-700 dark:text-gray-50">
                   {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}
                 </TooltipContent>
               </Tooltip>
@@ -1002,11 +930,11 @@ const QuestionBankContent: React.FC = () => {
                   <TooltipTrigger asChild>
                     <Popover
                       content={
-                        <div className="w-full bg-white rounded-md p-2 sm:w-80">
+                        <div className="w-full bg-white dark:bg-gray-800 rounded-md p-2 sm:w-80">
                           <Input
                             type="text"
                             placeholder={`Search ${filterType}...`}
-                            className="mb-2"
+                            className="mb-2 dark:text-gray-100 dark:bg-gray-700 dark:placeholder-gray-400"
                           />
                           <div className="max-h-60 overflow-y-auto">
                             {Array.from(
@@ -1047,9 +975,11 @@ const QuestionBankContent: React.FC = () => {
                                   id={`${filterType}-${value}`}
                                   className="mr-2"
                                   checked={
-                                    (state.filters[filterType as keyof FiltersType] as string[]).includes(
-                                      value
-                                    )
+                                    (
+                                      state.filters[
+                                        filterType as keyof FiltersType
+                                      ] as string[]
+                                    ).includes(value)
                                   }
                                   onChange={() =>
                                     handleFilterChange(filterType as keyof FiltersType, value)
@@ -1057,7 +987,7 @@ const QuestionBankContent: React.FC = () => {
                                 />
                                 <label
                                   htmlFor={`${filterType}-${value}`}
-                                  className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
+                                  className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-700"
                                 >
                                   {value}
                                 </label>
@@ -1085,9 +1015,9 @@ const QuestionBankContent: React.FC = () => {
                             },
                           })
                         }
-                        className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
+                        className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 dark:border-gray-700 px-4 py-2 bg-white dark:bg-gray-800 transition-all duration-75 hover:border-gray-800 dark:hover:border-gray-500 focus:outline-none active:bg-gray-100 dark:active:bg-gray-700"
                       >
-                        <p className="text-gray-600">
+                        <p className="text-gray-600 dark:text-gray-300">
                           {Array.isArray(state.filters[filterType as keyof FiltersType]) &&
                           (state.filters[filterType as keyof FiltersType] as string[]).length
                             ? `${
@@ -1096,7 +1026,7 @@ const QuestionBankContent: React.FC = () => {
                             : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                         </p>
                         <ChevronDown
-                          className={`h-4 w-4 text-gray-600 transition-all ${
+                          className={`h-4 w-4 text-gray-600 dark:text-gray-300 transition-all ${
                             state.dropdowns[filterType as keyof typeof state.dropdowns]
                               ? "rotate-180"
                               : ""
@@ -1105,7 +1035,7 @@ const QuestionBankContent: React.FC = () => {
                       </button>
                     </Popover>
                   </TooltipTrigger>
-                  <TooltipContent>
+                  <TooltipContent className="dark:bg-gray-700 dark:text-gray-50">
                     Select {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                   </TooltipContent>
                 </Tooltip>
@@ -1113,17 +1043,18 @@ const QuestionBankContent: React.FC = () => {
             )}
           </div>
 
-          <Card className="bg-gradient-to-br from-gray-900 to-gray-800 text-white border-gray-700 mb-6">
+          {/* Dark-mode–friendly card with gradient or neutral colors */}
+          <Card className="bg-gradient-to-br from-gray-200 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 border-gray-200 dark:border-gray-700 mb-6">
             <CardContent className="p-6">
-              <h2 className="text-2xl font-light tracking-tight text-gray-200 mb-6">
+              <h2 className="text-2xl font-light tracking-tight text-gray-800 dark:text-gray-200 mb-6">
                 Question Progress
               </h2>
               <div className="space-y-6">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-light tracking-tight text-gray-300">
+                  <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
                     Overall Progress
                   </span>
-                  <span className="text-sm font-light tracking-tight text-gray-300">
+                  <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
                     {Math.round(
                       (questionStats.answered / filteredQuestions.length) * 100
                     )}
@@ -1132,44 +1063,44 @@ const QuestionBankContent: React.FC = () => {
                 </div>
                 <Progress
                   value={(questionStats.answered / filteredQuestions.length) * 100}
-                  className="w-full h-1.5 bg-gray-700"
+                  className="w-full h-1.5 bg-gray-300 dark:bg-gray-700"
                 />
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
+                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-blue-400 p-2 rounded-full bg-blue-400/10">
                       <HelpCircle className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-2xl font-light tracking-tighter text-blue-300">
+                      <p className="text-2xl font-light tracking-tighter text-blue-600 dark:text-blue-300">
                         {questionStats.notVisited}
                       </p>
-                      <p className="text-sm font-light tracking-tight text-gray-400">
+                      <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
                         Not Answered
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
+                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-green-400 p-2 rounded-full bg-green-400/10">
                       <CheckCircle2 className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-2xl font-light tracking-tighter text-green-300">
+                      <p className="text-2xl font-light tracking-tighter text-green-600 dark:text-green-300">
                         {questionStats.answered}
                       </p>
-                      <p className="text-sm font-light tracking-tight text-gray-400">
+                      <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
                         Answered
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
+                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-yellow-400 p-2 rounded-full bg-yellow-400/10">
                       <Flag className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-2xl font-light tracking-tighter text-yellow-300">
+                      <p className="text-2xl font-light tracking-tighter text-yellow-600 dark:text-yellow-300">
                         {questionStats.markedForReview}
                       </p>
-                      <p className="text-sm font-light tracking-tight text-gray-400">
+                      <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
                         For Review
                       </p>
                     </div>
@@ -1227,7 +1158,9 @@ const QuestionBankContent: React.FC = () => {
               />
             </>
           ) : (
-            <p className="text-red-400">No questions found with the selected filters.</p>
+            <p className="text-red-400 dark:text-red-300">
+              No questions found with the selected filters.
+            </p>
           )}
         </div>
       </div>
@@ -1235,9 +1168,6 @@ const QuestionBankContent: React.FC = () => {
   )
 }
 
-//
-// Simple fetch helper
-//
 async function fetchData(url: string) {
   const response = await fetch(url)
   if (!response.ok) throw new Error(`Failed to fetch data from ${url}`)
