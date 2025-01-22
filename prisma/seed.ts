@@ -1,17 +1,18 @@
 /**
  * seed.ts (CommonJS + TypeScript)
- * 
- * This script:
- * 1. Reads your meta file (!metaid/jee_jee-main.json).
- * 2. Reads question JSON files from /past-papers/jee_jee-main, each named by metaId.
- * 3. Upserts the exam in a quick non-transaction.
- * 4. Splits questions into chunks (CHUNK_SIZE = 100).
- * 5. For each chunk, runs a short transaction => createMany(questions).
- *    This prevents "Transaction already closed" due to lengthy single transactions.
+ *
+ * - Reads an array of exam metadata from:  ./!metaid/jee_jee-main.json
+ * - Reads question JSON files from:        ./past-papers/jee_jee-main
+ *   Each question file is named by the metaId (e.g., <metaId>.json).
+ * - Upserts each Exam outside any transaction (just a normal upsert).
+ * - Inserts all questions in chunks (createMany, skipDuplicates: true).
+ * - No large transactions => avoids "Transaction already closed" timeouts.
+ * - Includes all recognized fields from your question JSON to store them
+ *   in the Prisma "Question" table, plus the entire question object in `content`.
  */
 
 ///////////////////////////////
-// CommonJS requires + TS imports
+// CommonJS + TS imports
 ///////////////////////////////
 const fs = require("fs");
 const path = require("path");
@@ -19,7 +20,7 @@ import type { Prisma } from "@prisma/client";
 const { PrismaClient, Prisma: PrismaNS, QuestionStatus } = require("@prisma/client");
 
 ///////////////////////////////
-// Logger
+// Logger helpers
 ///////////////////////////////
 function logInfo(msg: string) {
   console.log(`[INFO ] ${new Date().toISOString()} - ${msg}`);
@@ -32,7 +33,7 @@ function logError(msg: string) {
 }
 
 ///////////////////////////////
-// Chunk Helper
+// Utility: chunk an array
 ///////////////////////////////
 function chunkArray<T>(arr: T[], size: number): T[][] {
   const chunks: T[][] = [];
@@ -43,13 +44,13 @@ function chunkArray<T>(arr: T[], size: number): T[][] {
 }
 
 ///////////////////////////////
-// Conversion Helpers
+// Convert Helpers
 ///////////////////////////////
 function toNullableJson(value: unknown) {
   if (value === null || value === undefined) {
     return PrismaNS.DbNull;
   }
-  return value as any; // or as Prisma.InputJsonValue
+  return value as Prisma.InputJsonValue;
 }
 
 function toStringOrNull(value: any): string | null {
@@ -72,8 +73,8 @@ function toIntOrNull(value: any): number | null {
 
 function toDateOrNull(value: any): Date | null {
   if (!value) return null;
-  const date = new Date(value);
-  return isNaN(date.getTime()) ? null : date;
+  const d = new Date(value);
+  return isNaN(d.getTime()) ? null : d;
 }
 
 ///////////////////////////////
@@ -105,6 +106,7 @@ interface ExamMeta {
       public: number;
     };
   };
+  // Possibly more fields like "testId", "liveAt", etc.
 }
 
 interface QuestionFile {
@@ -134,7 +136,7 @@ interface QuestionJson {
   topicName?: string | null;
   type?: string | null;
   examDate?: string | null;
-  question?: any; // deeper nested fields (question.en, etc.)
+  question?: any; // We'll store entire 'question' block in 'content' field
   updated_time?: number | null;
   permalink?: string | null;
   paperId?: string | null;
@@ -145,7 +147,7 @@ interface QuestionJson {
 }
 
 ///////////////////////////////
-// Main
+// Main seeding function
 ///////////////////////////////
 async function main() {
   const metaFilePath = "./!metaid/jee_jee-main.json";
@@ -167,7 +169,7 @@ async function main() {
     return;
   }
 
-  // 2) Build metaMap (metaId => ExamMeta)
+  // 2) Build a map from metaId => exam info
   const metaMap: Record<string, ExamMeta> = {};
   for (const m of metaArray) {
     if (!m.metaId) {
@@ -188,10 +190,9 @@ async function main() {
     .readdirSync(qFolderAbsolute)
     .filter((f: string) => f.endsWith(".json"));
 
-  // questionMap: metaId => array of question objects
+  // 4) Build questionMap: metaId => array of question objects
   const questionMap: Record<string, QuestionJson[]> = {};
 
-  // 4) Gather questions from each file
   for (const qFile of questionFiles) {
     const metaId = qFile.replace(".json", "");
     if (!metaMap[metaId]) {
@@ -200,67 +201,67 @@ async function main() {
     }
 
     const questionFilePath = path.join(qFolderAbsolute, qFile);
-    let raw: any;
+    let rawData: any;
     try {
-      raw = JSON.parse(fs.readFileSync(questionFilePath, "utf-8"));
+      rawData = JSON.parse(fs.readFileSync(questionFilePath, "utf-8"));
     } catch (err) {
-      logError(`Failed to parse question file: ${qFile}, err: ${err}`);
+      logError(`Failed to parse question file: ${qFile}, err=${err}`);
       continue;
     }
 
-    if (!raw || !raw.results || !Array.isArray(raw.results)) {
+    if (!rawData || !rawData.results || !Array.isArray(rawData.results)) {
       logWarn(`No valid "results" array in file: ${qFile}`);
       continue;
     }
 
     let allQuestions: QuestionJson[] = [];
-    for (const block of raw.results) {
+    for (const block of rawData.results) {
       if (block.questions && Array.isArray(block.questions)) {
         allQuestions = allQuestions.concat(block.questions);
       }
     }
-    if (!allQuestions.length) {
-      logWarn(`Found 0 questions after parsing results[].questions in file: ${qFile}`);
+    if (allQuestions.length === 0) {
+      logWarn(`Found 0 questions in file: ${qFile}`);
       continue;
     }
 
     questionMap[metaId] = allQuestions;
   }
 
-  // 5) For each metaId, upsert exam outside big transaction, then chunk question inserts
-  for (const [metaId, metaObj] of Object.entries(metaMap)) {
+  // 5) For each metaId => upsert exam => chunked createMany (no transaction)
+  for (const [metaId, examMeta] of Object.entries(metaMap)) {
     const matchedQuestions = questionMap[metaId];
     if (!matchedQuestions || matchedQuestions.length === 0) {
       logWarn(`No question file matched metaId: ${metaId}`);
       continue;
     }
 
-    logInfo(`\n=== Processing metaId: ${metaId} => ${metaObj.title} ===`);
+    logInfo(`\n=== Processing metaId: ${metaId} => ${examMeta.title} ===`);
 
     try {
-      // (A) Upsert exam outside large transaction
+      // (A) Upsert exam (simple upsert, no transaction)
       const exam = await prisma.exam.upsert({
-        where: { key: metaObj.key },
+        where: { key: examMeta.key },
         update: {},
         create: {
-          examGroup: metaObj.examGroup || null,
-          country: metaObj.country || null,
-          exam: metaObj.exam || null,
-          key: metaObj.key,
-          date: toDateOrNull(metaObj.date),
-          description: metaObj.description ?? null,
-          isMemoryBased: metaObj.isMemoryBased ?? false,
-          isOnline: metaObj.isOnline ?? false,
-          languages: metaObj.languages || [],
-          title: metaObj.title,
-          year: metaObj.year ?? null,
-          pyq: metaObj.pyq
+          examGroup: examMeta.examGroup || null,
+          country: examMeta.country || null,
+          exam: examMeta.exam || null,
+          key: examMeta.key,
+          date: toDateOrNull(examMeta.date),
+          description: examMeta.description ?? null,
+          isMemoryBased: examMeta.isMemoryBased ?? false,
+          isOnline: examMeta.isOnline ?? false,
+          languages: examMeta.languages || [],
+          title: examMeta.title,
+          year: examMeta.year ?? null,
+          pyq: examMeta.pyq
             ? {
                 create: {
-                  out_of_syllabus: metaObj.pyq.count.out_of_syllabus,
-                  total: metaObj.pyq.count.total,
-                  private: metaObj.pyq.count.private,
-                  public: metaObj.pyq.count.public,
+                  out_of_syllabus: examMeta.pyq.count.out_of_syllabus,
+                  total: examMeta.pyq.count.total,
+                  private: examMeta.pyq.count.private,
+                  public: examMeta.pyq.count.public,
                 },
               }
             : undefined,
@@ -268,7 +269,7 @@ async function main() {
       });
       logInfo(`Upserted exam => ${exam.title} (id: ${exam.id})`);
 
-      // (B) Build question data
+      // (B) Transform questions
       const validQuestions = matchedQuestions.filter(
         (q) => q.question_id && q.question_id.trim() !== ""
       );
@@ -277,18 +278,23 @@ async function main() {
         continue;
       }
 
+      // map JSON fields -> Prisma Question columns
       const questionCreateData = validQuestions.map((q) => {
         const questionId = q.question_id.trim();
-        const textContent =
+
+        // Try to get text from question.en.content or question.content
+        const textFromJson =
           q.question?.en?.content?.trim() ||
           q.question?.content?.trim() ||
           "No text available";
 
+        // Possibly parse an array of options from question.en.options
         let optionsArray: string[] = [];
         if (q.question?.en?.options && Array.isArray(q.question.en.options)) {
           optionsArray = q.question.en.options.map(String);
         }
 
+        // Single correct option?
         let correctOption: string | null = null;
         if (
           q.question?.en?.correct_options &&
@@ -304,9 +310,12 @@ async function main() {
           questionId,
           examId: exam.id,
 
+          // "Exam" fields
           examGroup: q.examGroup || null,
           country: q.country || null,
           exam: q.exam || null,
+
+          // question classification
           subjectGroup: q.subjectGroup || null,
           subject: q.subject || null,
           chapterGroup: q.chapterGroup || null,
@@ -316,6 +325,7 @@ async function main() {
           difficulty: q.difficulty || null,
           type: q.type || null,
 
+          // numeric
           year: q.year ?? null,
           paperTitle: q.paperTitle ?? null,
           timeAllotted: q.timeAllotted ?? null,
@@ -323,47 +333,54 @@ async function main() {
           negMarks: toFloatOrNull(q.negMarks),
           updatedTime: toIntOrNull(q.updated_time),
           examDate: toDateOrNull(q.examDate),
+
+          // booleans
           isOutOfSyllabus: q.isOutOfSyllabus ?? null,
           isBonus: q.isBonus ?? null,
+
+          // strings
           yearKey: q.yearKey || null,
           permalink: q.permalink || null,
           languages: q.languages || [],
 
           // required text
-          text: textContent,
+          text: textFromJson,
           options: optionsArray,
           correctOption,
+
+          // store entire question block in 'content'
           content: toNullableJson(q.question),
           status: QuestionStatus.ACTIVE,
         };
       });
 
-      // (C) Chunk inserts in smaller transactions
-      const CHUNK_SIZE = 100; // pick a chunk size that finishes quickly
+      // (C) Insert in chunks, no transaction
+      const CHUNK_SIZE = 100;
       const chunks = chunkArray(questionCreateData, CHUNK_SIZE);
-      let totalCreated = 0;
+      let totalInserted = 0;
 
       for (const chunk of chunks) {
-        // short transaction for each chunk
-        await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-          const res = await tx.question.createMany({
+        try {
+          const res = await prisma.question.createMany({
             data: chunk,
             skipDuplicates: true,
           });
-          totalCreated += res.count;
-        });
-        // each chunk commits or rolls back here
+          totalInserted += res.count;
+        } catch (err) {
+          // If a chunk fails, log and decide whether to continue or break
+          logError(
+            `Insert chunk failed for metaId: ${metaId}. Error: ${err}`
+          );
+          // continue to next chunk or break if you prefer
+        }
       }
 
-      logInfo(`Inserted ${totalCreated} questions for exam: ${exam.title}`);
+      logInfo(`Inserted ${totalInserted} questions for exam: ${exam.title}`);
     } catch (err) {
-      // If any chunk fails, that chunk is rolled back,
-      // but prior chunks remain committed.
       logError(`Error seeding data for metaId: ${metaId}: ${err}`);
     }
   }
 
-  // All meta files processed
   logInfo("All done. Closing Prisma.");
   await prisma.$disconnect();
 }

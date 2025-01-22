@@ -72,9 +72,6 @@ type QuestionTypeString = "Multiple Choice" | "Numerical" | string
 //
 // 3) This matches the shape we pass to <Question>, ensuring 'options?: string[]'
 //
-//    NOTE: we now include the new fields: difficultyRating, explanation, linkedResources,
-//    commonMistakes, discussionLink, updatedBy, peerSolvedPercentage, etc.
-//
 interface QuestionType {
   id: number
   questionId?: string
@@ -100,19 +97,18 @@ interface QuestionType {
   customTags?: string[]
   customTag?: string  // from your schema
 
-  // New fields from schema:
+  // Additional fields from schema
   explanation?: any
   linkedResources?: any
   commonMistakes?: any
   discussionLink?: string
   parentQuestionId?: number
-  difficultyRating?: number        // numeric rating for easy/medium/hard
-  peerSolvedPercentage?: number
+  difficultyRating?: number
+  peerSolvedPercentage?: number | null // might be null in DB
   updatedBy?: string
   source?: string
   updatedTime?: number
 
-  // Additional
   isOutOfSyllabus?: boolean
   isBonus?: boolean
   marks?: number
@@ -120,7 +116,7 @@ interface QuestionType {
   correctAttempts?: string
   wrongAttempts?: string
   averageTimeTaken?: string
-  // And so on if needed...
+  // etc.
 }
 
 //
@@ -1001,7 +997,9 @@ export default function Question({
                   <SelectItem value="hard">Hard</SelectItem>
                 </SelectContent>
               </Select>
-              {question.peerSolvedPercentage !== undefined && (
+
+              {/* Safely display peerSolvedPercentage */}
+              {typeof question.peerSolvedPercentage === "number" && (
                 <p className="ml-4 text-sm text-gray-500">
                   Peer Solved: {question.peerSolvedPercentage.toFixed(1)}%
                 </p>

@@ -1,50 +1,47 @@
-import "../globals.css";
-import cx from "classnames";
-import { sfPro, inter } from "../fonts";
-import Nav from "@/components/layout/nav";
-import { Footer } from "@/components/layout/footer";
-import { Suspense } from "react";
-import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import { config } from '@fortawesome/fontawesome-svg-core';
-import { TooltipProvider } from '@radix-ui/react-tooltip';
-import Bar from '@/components/layout/Bar';
-import { Toaster } from "@/components/ui/toaster";
-import { LoadingProvider } from "@/components/layout/LoadingContext";
-import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext";
+import "../globals.css"
+import cx from "classnames"
+import { sfPro, inter } from "../fonts"
+import Nav from "@/components/layout/nav"
+import { Footer } from "@/components/layout/footer"
+import { Suspense } from "react"
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
+import "@fortawesome/fontawesome-svg-core/styles.css"
+import { config } from "@fortawesome/fontawesome-svg-core"
+import { TooltipProvider } from "@radix-ui/react-tooltip"
+import Bar from "@/components/layout/Bar"
+import { Toaster } from "@/components/ui/toaster"
+import { LoadingProvider } from "@/components/layout/LoadingContext"
+import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"
+import { ThemeProvider } from "../components/theme-provider"
 
-config.autoAddCss = false;
+config.autoAddCss = false
 
 export const metadata = {
   title: "aspirants",
   description: "",
   metadataBase: new URL("https://aspirants.tech/"),
-};
+}
 
 const getUserId = () => {
-  const userId = null; 
-  return userId;
-};
+  const userId = null
+  return userId
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const userId = getUserId(); // Fetch the user ID
+  const userId = getUserId()
 
   return (
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-        <script
-          async
-          id="MathJax-script"
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-        ></script>
+        <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.MathJax = {
                 tex: {
-                  inlineMath: [['$', '$'], ['\\(', '\\)']],
+                  inlineMath: [['$', '$'], ['\$$', '\$$']],
                   displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 },
                 options: {
@@ -83,25 +80,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
-        <LoadingProvider> 
-          <UserPerformanceProvider userId={userId}> 
-            <TooltipProvider>
-              <div className="fixed inset-0 z-[-10]"></div>
-              <Suspense fallback="...">
-                <Nav />
-              </Suspense>
-              <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-                {children}
-              </main>
-              <Bar userId={userId} />
-              <Footer />
-              <VercelAnalytics />
-            </TooltipProvider>
-            <Toaster />
-          </UserPerformanceProvider> 
-        </LoadingProvider> 
+      <body className={cx(sfPro.variable, inter.variable, "bg-white dark:bg-gray-950")}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <LoadingProvider>
+            <UserPerformanceProvider userId={userId}>
+              <TooltipProvider>
+                <div className="fixed inset-0 z-[-10]"></div>
+                <Suspense fallback="...">
+                  <Nav />
+                </Suspense>
+                <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">{children}</main>
+                <Bar userId={userId} />
+                <Footer />
+                <VercelAnalytics />
+              </TooltipProvider>
+              <Toaster />
+            </UserPerformanceProvider>
+          </LoadingProvider>
+        </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }
+
