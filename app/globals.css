@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "katex/dist/katex.min.css";
+
 html {
   scroll-behavior: smooth;
 }
@@ -255,4 +257,9 @@ html {
   --color-3: 210 100% 63%;
   --color-4: 195 100% 63%;
   --color-5: 90 100% 63%;
+}
+
+.latex-font {
+  font-family: 'KaTeX_Main', serif !important;
+  /* fallback "serif" or something similar if KaTeX_Main isn't found */
 }

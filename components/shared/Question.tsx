@@ -201,30 +201,26 @@ export default function Question({
   const [localNote, setLocalNote] = useState(note)
   const [noteId, setNoteId] = useState<string | null>(null)
 
-  // For handling difficulty rating updates
   const [localDifficultyRating, setLocalDifficultyRating] = useState<number | undefined>(
     question.difficultyRating
   )
 
   const { toast, dismiss } = useToast()
 
-  // If user swipes left/right to change question
+  // Swipe for previous/next
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
     trackMouse: true,
   })
 
-  // Sync local state with props
   useEffect(() => {
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
-  // Example: If you want to fetch note from server for each question
-  // This is optional. Currently, it sets localNote from your question's note prop.
-  // If your code calls an external /api/notes for each question, do so here.
-
-  // Tag logic
+  //
+  // Tag management
+  //
   const handleAddTag = () => {
     if (newTag && !localCustomTags.includes(newTag)) {
       setLocalCustomTags([...localCustomTags, newTag])
@@ -236,7 +232,9 @@ export default function Question({
     setLocalCustomTags(localCustomTags.filter((tag) => tag !== tagToRemove))
   }
 
+  //
   // Mark complete / review
+  //
   const handleMarkCompleteLocal = async () => {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId)
@@ -283,17 +281,21 @@ export default function Question({
     dismiss()
   }
 
-  // Handling multiple choice
-  const handleOptionClickLocal = (option: string) => {
+  //
+  // Multiple choice
+  //
+  const handleOptionClickLocal = (letter: string) => {
     if (!question.questionId) return
-    if (localSelectedOption !== option) {
-      setLocalSelectedOption(option)
-      handleOptionClick(question.questionId, option, question.correctOption ?? "N/A")
-      updatePoints(option === question.correctOption)
+    if (localSelectedOption !== letter) {
+      setLocalSelectedOption(letter)
+      handleOptionClick(question.questionId, letter, question.correctOption ?? "N/A")
+      updatePoints(letter === question.correctOption)
     }
   }
 
-  // Handling numeric
+  //
+  // Numeric
+  //
   const handleNumericalSubmitLocal = () => {
     if (!question.questionId) return
     handleNumericalSubmit(
@@ -304,7 +306,9 @@ export default function Question({
     updatePoints(numericalAnswer === question.correctOption)
   }
 
+  //
   // Points & streak
+  //
   const updatePoints = (isCorrect: boolean) => {
     if (isCorrect) {
       setPoints((prev) => prev + 10)
@@ -321,7 +325,9 @@ export default function Question({
     }
   }
 
-  // Difficulty rating update
+  //
+  // Difficulty rating
+  //
   const handleDifficultyChange = async (newRating: number) => {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
@@ -356,12 +362,15 @@ export default function Question({
     }
   }
 
-  // Notes (local + server)
+  //
+  // Notes
+  //
   const saveNote = async () => {
     if (!question.questionId) return
     try {
       const endpoint = noteId ? `/api/notes/${noteId}` : "/api/notes"
       const method = noteId ? "PUT" : "POST"
+
       const response = await fetch(endpoint, {
         method,
         headers: { "Content-Type": "application/json" },
@@ -396,6 +405,7 @@ export default function Question({
         method: "DELETE",
       })
       if (!response.ok) throw new Error("Failed to delete note")
+
       toast({
         title: "Note Deleted",
         description: "Your note has been deleted successfully.",
@@ -413,7 +423,9 @@ export default function Question({
     }
   }
 
+  //
   // Comments
+  //
   const handleAddComment = () => {
     if (newComment.trim()) {
       const newCommentObj: CommentType = {
@@ -650,6 +662,15 @@ export default function Question({
     </div>
   )
 
+  //
+  // Remove leading "A:", "B:", etc. from an option if present
+  //
+  function cleanOptionText(option: string): string {
+    // If the text starts with something like "A:" or "B:" or "C:" or "D:",
+    // remove that prefix. Adjust regex as needed if you have multiple letters.
+    return option.replace(/^[A-D]:\s?/i, "").trim();
+  }
+
   return (
     <TooltipProvider>
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
@@ -686,6 +707,7 @@ export default function Question({
                     {question.exam}
                   </div>
                 )}
+
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -759,29 +781,33 @@ export default function Question({
           </CardHeader>
 
           <CardContent>
+            {/* Diagram or question text */}
             <div className="mb-6">
               {question.diagramUrl && question.diagramUrl !== "" && (
-                <div className="relative w-64 h-64 mb-4 mx-auto">
+                <div className="relative w-full max-w-xl mx-auto mb-4">
                   <Image
                     src={question.diagramUrl}
                     alt={`Diagram for question #${question.id}`}
-                    fill
-                    style={{ objectFit: "contain" }}
-                    className="rounded-md"
+                    width={800}
+                    height={600}
+                    className="rounded-md w-full h-auto object-contain"
                   />
                 </div>
               )}
-              <p className="text-gray-700 dark:text-white mb-4 text-base sm:text-lg md:text-xl leading-7">
-                <MathRenderer text={question.text ?? ""} />
-              </p>
+              {question.text && (
+                <p className="text-gray-700 dark:text-white mb-4 text-base sm:text-lg md:text-xl leading-7">
+                  <MathRenderer text={question.text} />
+                </p>
+              )}
             </div>
 
+            {/* Integer/Numerical */}
             {(question.type === "Numerical" || question.type === "integer") && (
               <div className="mb-4">
                 <Input
                   type="text"
-                  className="w-full p-2 border rounded text-base sm:text-lg"
-                  placeholder="Write your answer here..."
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 text-base sm:text-lg"
+                  placeholder="Type your answer..."
                   value={numericalAnswer ?? ""}
                   onChange={(e) =>
                     question.questionId &&
@@ -790,21 +816,27 @@ export default function Question({
                 />
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Button className="mt-2" onClick={handleNumericalSubmitLocal}>
+                    <Button
+                      className="mt-2 px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+                      onClick={handleNumericalSubmitLocal}
+                    >
                       Submit
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent>Submit your answer</TooltipContent>
+                  <TooltipContent>Submit your numeric answer</TooltipContent>
                 </Tooltip>
               </div>
             )}
 
+            {/* Multiple Choice */}
             {(question.type === "Multiple Choice" ||
               question.type === "mcq") &&
               question.options &&
               question.options.length > 0 && (
                 <div className="space-y-2 mb-4">
-                  {question.options.map((option, index) => {
+                  {question.options.map((rawOption, index) => {
+                    // Remove leading "A:", "B:", etc. from DB text
+                    const option = cleanOptionText(rawOption)
                     const letter = String.fromCharCode(65 + index)
                     const isSelected = localSelectedOption === letter
                     const isFeedbackActive = isSelected && feedback
@@ -814,7 +846,7 @@ export default function Question({
                         <TooltipTrigger asChild>
                           <Button
                             variant={isSelected ? "default" : "outline"}
-                            className={`w-full justify-start text-left text-base sm:text-lg p-4 leading-7 ${
+                            className={`w-full justify-start text-left text-base sm:text-lg p-4 leading-7 space-y-2 ${
                               isFeedbackActive
                                 ? feedback === "correct"
                                   ? "bg-green-100 hover:bg-green-200 text-green-700"
@@ -824,21 +856,21 @@ export default function Question({
                             onClick={() => handleOptionClickLocal(letter)}
                           >
                             <span className="mr-2">{letter}.</span>
-                            <div className="font-serif">
-                              {option.startsWith("http") ? (
-                                <div className="relative w-full h-64">
-                                  <Image
-                                    src={option}
-                                    alt={`Option ${letter}`}
-                                    fill
-                                    style={{ objectFit: "contain" }}
-                                    className="rounded-md"
-                                  />
-                                </div>
-                              ) : (
-                                <MathRenderer text={option} />
-                              )}
-                            </div>
+                            {/* If option is an image link */}
+                            {option.startsWith("http") ? (
+                              <div className="w-full">
+                                <Image
+                                  src={option}
+                                  alt={`Option ${letter}`}
+                                  width={800}
+                                  height={600}
+                                  className="rounded-md w-full h-auto object-contain"
+                                />
+                              </div>
+                            ) : (
+                              // Otherwise, parse as LaTeX text
+                              <MathRenderer text={option} />
+                            )}
                           </Button>
                         </TooltipTrigger>
                         <TooltipContent>Select this option</TooltipContent>
@@ -848,6 +880,7 @@ export default function Question({
                 </div>
               )}
 
+            {/* Feedback: correct/incorrect */}
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
@@ -866,6 +899,7 @@ export default function Question({
               </div>
             )}
 
+            {/* Markscheme button if user answered & markscheme is enabled */}
             {(
               (localSelectedOption && markschemeEnabled) ||
               ((question.type === "Numerical" || question.type === "integer") &&
@@ -889,6 +923,7 @@ export default function Question({
               </Tooltip>
             )}
 
+            {/* Difficulty rating */}
             <div className="flex items-center space-x-2 mt-4">
               <Label className="text-sm text-gray-600">Difficulty:</Label>
               <Select
@@ -964,6 +999,7 @@ export default function Question({
           </CardFooter>
         </Card>
 
+        {/* Notes section */}
         {showNotes && (
           <Card className="mb-6">
             <CardHeader>
@@ -990,6 +1026,7 @@ export default function Question({
           </Card>
         )}
 
+        {/* AI panel */}
         {showAI && (
           <Card className="mb-6">
             <CardHeader>
@@ -1011,11 +1048,12 @@ export default function Question({
           </Card>
         )}
 
+        {/* Comments panel */}
         {showComments && (
           <Card className="mb-6">
             <CardHeader>
               <CardTitle>Comments</CardTitle>
-              <CardDescription>This is a dummy UI; real logic is up to you.</CardDescription>
+              <CardDescription>Discuss or ask questions here!</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -1088,13 +1126,13 @@ export default function Question({
                 <CardContent>
                   <div className="overflow-y-auto max-h-[60vh]">
                     {question.markscheme?.startsWith("http") ? (
-                      <div className="relative w-full h-64">
+                      <div className="relative w-full max-w-lg mx-auto">
                         <Image
                           src={question.markscheme}
                           alt="Markscheme image"
-                          fill
-                          style={{ objectFit: "contain" }}
-                          className="rounded-md"
+                          width={800}
+                          height={600}
+                          className="rounded-md w-full h-auto object-contain"
                         />
                       </div>
                     ) : question.markscheme ? (
@@ -1111,4 +1149,13 @@ export default function Question({
       </div>
     </TooltipProvider>
   )
+}
+
+//
+// Helper function to remove leading "A:", "B:", "C:", etc.
+//
+function cleanOptionText(option: string): string {
+  // e.g. "A:some text" => "some text"
+  // e.g. "B:  explanation" => "explanation"
+  return option.replace(/^[A-D]:\s?/i, "").trim()
 }
