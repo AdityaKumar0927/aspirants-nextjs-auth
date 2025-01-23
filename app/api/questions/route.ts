@@ -5,15 +5,40 @@ const prisma = new PrismaClient()
 
 /**
  * GET /api/questions
- * 
- * Returns an array of questions, including JSON fields (explanation, etc.).
- * We also demonstrate how to JSON.stringify certain nested fields if you
- * absolutely want them as plain strings. By default, Next.js serializes
- * JSON objects just fine.
+ *
+ * Supports server-side pagination via ?page=1&pageSize=10
+ * Returns: 
+ * {
+ *   data: Question[],
+ *   currentPage: number,
+ *   pageSize: number,
+ *   totalCount: number
+ * }
  */
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    // 1. Parse query parameters
+    const { searchParams } = new URL(request.url)
+    const page = parseInt(searchParams.get('page') || '1', 10)
+    const pageSize = parseInt(searchParams.get('pageSize') || '10', 10)
+
+    // (Optional) parse filters if needed. Example:
+    // const examFilter = searchParams.get('exam')
+    // const subjectFilter = searchParams.get('subject')
+    // Then build a "where" object
+    // const where: any = {}
+    // if (examFilter) where.exam = examFilter
+    // if (subjectFilter) where.subject = subjectFilter
+
+    // 2. Calculate pagination
+    const skip = (page - 1) * pageSize
+    const take = pageSize
+
+    // 3. Query the slice of questions
     const questions = await prisma.question.findMany({
+      skip,
+      take,
+      // where, // if you built a where object for filters
       select: {
         // Basic question identity
         questionId: true,
@@ -57,7 +82,7 @@ export async function GET() {
         type: true,
         marks: true,
         negMarks: true,
-        options: true,         // <== stored as JSON/array
+        options: true,         // stored as JSON/array
         correctOption: true,
         markscheme: true,
 
@@ -70,7 +95,7 @@ export async function GET() {
         // Extra question metadata
         diagramUrl: true,
         customTag: true,
-        explanation: true,     // <== stored as JSON
+        explanation: true,     // stored as JSON
         reviewed: true,
         completed: true,
         paperTitle: true,
@@ -79,8 +104,8 @@ export async function GET() {
         updatedBy: true,
         source: true,
         peerSolvedPercentage: true,
-        linkedResources: true, // <== stored as JSON
-        commonMistakes: true,  // <== stored as JSON
+        linkedResources: true, // stored as JSON
+        commonMistakes: true,  // stored as JSON
         discussionLink: true,
         parentQuestionId: true,
         difficultyRating: true,
@@ -91,49 +116,34 @@ export async function GET() {
       },
     })
 
-    // OPTIONAL: Stringify nested JSON fields if you want them to appear as strings
-    // in the response. Otherwise, Next.js will serialize objects automatically.
-    // Example:
-    /*
-    questions.forEach((q: any) => {
-      if (typeof q.explanation === 'object') {
-        q.explanation = JSON.stringify(q.explanation)
-      }
-      if (typeof q.linkedResources === 'object') {
-        q.linkedResources = JSON.stringify(q.linkedResources)
-      }
-      if (typeof q.commonMistakes === 'object') {
-        q.commonMistakes = JSON.stringify(q.commonMistakes)
-      }
-      if (Array.isArray(q.options)) {
-        q.options = JSON.stringify(q.options)
-      }
+    // 4. Count total for pagination
+    const totalCount = await prisma.question.count({
+      // where, // match the same filters if used
     })
-    */
 
-    return NextResponse.json(questions)
+    // (Optional) If you want to do any JSON stringification:
+    // questions.forEach((q) => {
+    //   if (typeof q.explanation === 'object') {
+    //     q.explanation = JSON.stringify(q.explanation)
+    //   }
+    //   // etc...
+    // })
+
+    return NextResponse.json({
+      data: questions,
+      currentPage: page,
+      pageSize,
+      totalCount,
+    })
   } catch (error) {
-    console.error('Error fetching questions:', error)
-    return NextResponse.json(
-      { error: 'Failed to fetch questions' },
-      { status: 500 }
-    )
+    console.error('Error fetching paginated questions:', error)
+    return NextResponse.json({ error: 'Failed to fetch questions' }, { status: 500 })
   }
 }
 
 /**
  * POST /api/questions
- * Create a new question. Expects a JSON body with question data (including JSON fields).
- *
- * Example body:
- * {
- *   "questionId": "abc123",
- *   "text": "Some question",
- *   "options": ["A","B","C"],       // or a JSON string
- *   "explanation": { "en": { "content": "..."} },
- *   "linkedResources": { "link1": "https://..." },
- *   ...
- * }
+ * Create a new question. Expects JSON body with question data (including JSON fields).
  */
 export async function POST(request: Request) {
   try {
@@ -163,28 +173,24 @@ export async function POST(request: Request) {
     // Default status if not provided
     const status = data.status || QuestionStatus.ACTIVE
 
-    // Create in DB
     const created = await prisma.question.create({
       data: {
         ...data,
         status,
-        updatedTime: Math.floor(Date.now() / 1000), // or new Date() if a datetime
+        updatedTime: Math.floor(Date.now() / 1000),
       },
     })
 
     return NextResponse.json(created)
   } catch (error) {
     console.error('Error creating question:', error)
-    return NextResponse.json(
-      { error: 'Failed to create question' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Failed to create question' }, { status: 500 })
   }
 }
 
 /**
  * PATCH /api/questions
- * Update an existing question by questionId. 
+ * Update an existing question by questionId.
  * Expects JSON body: { questionId: string, ...fields }
  */
 export async function PATCH(request: Request) {
@@ -193,10 +199,7 @@ export async function PATCH(request: Request) {
     const { questionId, ...rest } = body
 
     if (!questionId) {
-      return NextResponse.json(
-        { error: 'questionId is required' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'questionId is required' }, { status: 400 })
     }
 
     // If user updated JSON fields as strings, parse them:
@@ -227,10 +230,7 @@ export async function PATCH(request: Request) {
     // Validate status if provided
     if (rest.status) {
       if (!Object.values(QuestionStatus).includes(rest.status)) {
-        return NextResponse.json(
-          { error: 'Invalid status' },
-          { status: 400 }
-        )
+        return NextResponse.json({ error: 'Invalid status' }, { status: 400 })
       }
     }
 
@@ -242,26 +242,20 @@ export async function PATCH(request: Request) {
     return NextResponse.json(updated)
   } catch (error) {
     console.error('Error updating question:', error)
-    return NextResponse.json(
-      { error: 'Failed to update question' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Failed to update question' }, { status: 500 })
   }
 }
 
 /**
  * DELETE /api/questions
- * Delete a question. Expects a JSON body: { questionId: "abc123" }
+ * Delete a question. Expects JSON body: { questionId: "abc123" }
  */
 export async function DELETE(request: Request) {
   try {
     const { questionId } = await request.json()
 
     if (!questionId) {
-      return NextResponse.json(
-        { error: 'questionId is required' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'questionId is required' }, { status: 400 })
     }
 
     await prisma.question.delete({
@@ -271,9 +265,6 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ message: 'Question deleted successfully' })
   } catch (error) {
     console.error('Error deleting question:', error)
-    return NextResponse.json(
-      { error: 'Failed to delete question' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Failed to delete question' }, { status: 500 })
   }
 }
