@@ -1,15 +1,88 @@
-// /api/questions/route.ts
-import { PrismaClient, Prisma, QuestionStatus } from '@prisma/client'
 import { NextResponse } from 'next/server'
+import { PrismaClient, QuestionStatus } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-// GET all questions
-export async function GET() {
+/**
+ * GET /api/questions
+ *
+ * By default, returns ALL questions. 
+ * If you provide certain query params like ?page=X&pageSize=Y, it will paginate.
+ * Also supports optional filters (exam, subject, etc.) just like your new route.
+ *
+ * Example usage:
+ *  - /api/questions           => all questions (like old route)
+ *  - /api/questions?page=1&pageSize=10 => paginated results
+ *  - /api/questions?exam=jee => all questions where exam=jee
+ */
+export async function GET(request: Request) {
   try {
+    const { searchParams } = new URL(request.url)
+
+    // Check if user specified pagination
+    const pageParam = searchParams.get('page')
+    const pageSizeParam = searchParams.get('pageSize')
+
+    // If page or pageSize is provided, we do skip/take, else fetch all
+    let skip: number | undefined
+    let take: number | undefined
+
+    if (pageParam || pageSizeParam) {
+      // user wants pagination
+      const page = parseInt(pageParam || '1', 10) || 1
+      const pageSize = parseInt(pageSizeParam || '10', 10) || 10
+      skip = (page - 1) * pageSize
+      take = pageSize
+    }
+
+    // Optional filters
+    const examFilter = searchParams.get('exam') || undefined
+    const subjectFilter = searchParams.get('subject') || undefined
+    const topicFilter = searchParams.get('topic') || undefined
+    const subtopicFilter = searchParams.get('subtopic') || undefined
+    const difficultyFilter = searchParams.get('difficulty') || undefined
+    const yearFilter = searchParams.get('year') || undefined
+    const typeFilter = searchParams.get('type') || undefined
+    const searchQuery = searchParams.get('search') || undefined
+
+    const where: any = {}
+    if (examFilter) {
+      where.exam = examFilter
+    }
+    if (subjectFilter) {
+      where.subject = subjectFilter
+    }
+    if (topicFilter) {
+      where.topic = topicFilter
+    }
+    if (subtopicFilter) {
+      where.subtopic = subtopicFilter
+    }
+    if (difficultyFilter) {
+      where.difficulty = difficultyFilter
+    }
+    if (yearFilter) {
+      // parse numeric
+      where.year = parseInt(yearFilter, 10)
+    }
+    if (typeFilter) {
+      where.type = typeFilter
+    }
+    if (searchQuery) {
+      // naive text search on text field
+      where.text = {
+        contains: searchQuery,
+        mode: 'insensitive',
+      }
+    }
+
+    // Actually fetch questions
     const questions = await prisma.question.findMany({
+      skip,
+      take,
+      where,
       select: {
-        // Include everything you might want in your front-end Question interface
+        // from your old route
         questionId: true,
         examGroup: true,
         country: true,
@@ -74,24 +147,41 @@ export async function GET() {
         updatedAt: true,
       },
     })
-    return NextResponse.json(questions)
+
+    // If we did pagination, also return totalCount/currentPage/pageSize
+    if (skip !== undefined && take !== undefined) {
+      const totalCount = await prisma.question.count({ where })
+      const page = skip / take + 1
+      return NextResponse.json({
+        data: questions,
+        currentPage: page,
+        pageSize: take,
+        totalCount,
+      })
+    } else {
+      // else we are returning ALL
+      return NextResponse.json(questions)
+    }
   } catch (error) {
     console.error('Error fetching questions:', error)
     return NextResponse.json({ error: 'Failed to fetch questions' }, { status: 500 })
   }
 }
 
-// POST a new question
+/**
+ * POST a new question
+ */
 export async function POST(request: Request) {
   try {
     const data = await request.json()
 
-    // If you have arrays or related data, handle them properly. 
-    // E.g. if data.notes is an array of { title, content }, etc.
+    // If you have arrays or JSON fields as strings, parse them here
+    // e.g. if (typeof data.options === 'string') data.options = JSON.parse(data.options)
+
     const created = await prisma.question.create({
       data: {
         ...data,
-        // If status not provided, default to ACTIVE or DRAFT, as you wish
+        // If status not provided, default to ACTIVE or DRAFT
         status: data.status || QuestionStatus.ACTIVE,
       },
     })
@@ -103,19 +193,23 @@ export async function POST(request: Request) {
   }
 }
 
-// PATCH an existing question
+/**
+ * PATCH an existing question
+ */
 export async function PATCH(request: Request) {
   try {
     const body = await request.json()
     const { questionId, ...rest } = body
 
-    // You can optionally cast `rest.status` to QuestionStatus if it’s provided
-    //   e.g.: rest.status ? rest.status as QuestionStatus : undefined
+    if (!questionId) {
+      return NextResponse.json({ error: 'questionId is required' }, { status: 400 })
+    }
+
+    // parse JSON fields if needed
+
     const updated = await prisma.question.update({
       where: { questionId },
-      data: {
-        ...rest,
-      },
+      data: { ...rest },
     })
 
     return NextResponse.json(updated)
@@ -125,14 +219,18 @@ export async function PATCH(request: Request) {
   }
 }
 
-// DELETE a question
+/**
+ * DELETE a question
+ */
 export async function DELETE(request: Request) {
   try {
     const { questionId } = await request.json()
 
-    await prisma.question.delete({
-      where: { questionId },
-    })
+    if (!questionId) {
+      return NextResponse.json({ error: 'questionId is required' }, { status: 400 })
+    }
+
+    await prisma.question.delete({ where: { questionId } })
 
     return NextResponse.json({ message: 'Question deleted successfully' })
   } catch (error) {
