@@ -16,12 +16,7 @@
 ///////////////////////////////
 const fs = require("fs");
 const path = require("path");
-import type { Prisma } from "@prisma/client";
-import {
-  PrismaClient,
-  Prisma as PrismaNS,
-  QuestionStatus,
-} from "@prisma/client";
+import { PrismaClient, Prisma as PrismaNS, QuestionStatus } from "@prisma/client";
 
 ///////////////////////////////
 // Logger helpers
@@ -48,20 +43,25 @@ function chunkArray<T>(arr: T[], size: number): T[][] {
 }
 
 ///////////////////////////////
+// Prisma
+///////////////////////////////
+const prisma = new PrismaClient();
+
+///////////////////////////////
 // Convert Helpers
 ///////////////////////////////
 
-function toNullableJson(value: unknown): PrismaNS.JsonValue | PrismaNS.DbNull {
+/**
+ * Return `undefined` if the value is nullish (so the JSON field is omitted).
+ * Otherwise, cast to InputJsonValue for Prisma.
+ */
+function toNullableJson(value: unknown): PrismaNS.InputJsonValue | undefined {
   if (value === null || value === undefined) {
-    return PrismaNS.DbNull;
+    // omit the field => DB column becomes NULL if it's "Json?" in the schema
+    return undefined;
   }
-  return value as PrismaNS.JsonValue;
-}
-
-function toStringOrNull(value: any): string | null {
-  if (value == null) return null;
-  const str = String(value).trim();
-  return str.length > 0 ? str : null;
+  // otherwise, assume it's valid JSON
+  return value as PrismaNS.InputJsonValue;
 }
 
 function toFloatOrNull(value: any): number | null {
@@ -83,12 +83,7 @@ function toDateOrNull(value: any): Date | null {
 }
 
 ///////////////////////////////
-// Prisma
-///////////////////////////////
-const prisma = new PrismaClient();
-
-///////////////////////////////
-// Types for your data
+// Interfaces for your data (optional)
 ///////////////////////////////
 interface ExamMeta {
   metaId: string;
@@ -111,15 +106,6 @@ interface ExamMeta {
       public: number;
     };
   };
-  // Possibly more fields...
-}
-
-interface QuestionFile {
-  statusCode?: number;
-  results: {
-    _id?: string;
-    questions: QuestionJson[];
-  }[];
 }
 
 interface QuestionJson {
@@ -149,7 +135,6 @@ interface QuestionJson {
   isOutOfSyllabus?: boolean | null;
   isBonus?: boolean | null;
   yearKey?: string | null;
-  // possibly more fields
 }
 
 ///////////////////////////////
@@ -293,20 +278,16 @@ async function main() {
           q.question?.content?.trim() ||
           "No text available";
 
-        // Because your schema has `options String[]`, we must flatten objects:
+        // Because 'options' is String[] in your schema, flatten each object into a string:
         let optionsArray: string[] = [];
         if (q.question?.en?.options && Array.isArray(q.question.en.options)) {
           optionsArray = q.question.en.options.map((opt: any) => {
             if (opt && typeof opt === "object") {
-              // Combine identifier + content into a single string:
-              // e.g. "A: both (A) and (B) can be optically active."
               const identifier = opt.identifier ?? "";
               const content = opt.content ?? "";
               return `${identifier}: ${content}`.trim();
-            } else {
-              // If there's a weird case that's not an object
-              return String(opt);
             }
+            return String(opt);
           });
         }
 
@@ -323,18 +304,13 @@ async function main() {
         }
 
         return {
-          // required unique question id
           questionId,
-
-          // foreign key to the exam we just upserted
           examId: exam.id,
 
-          // Some optional "Exam" fields
           examGroup: q.examGroup || null,
           country: q.country || null,
           exam: q.exam || null,
 
-          // classification
           subjectGroup: q.subjectGroup || null,
           subject: q.subject || null,
           chapterGroup: q.chapterGroup || null,
@@ -344,7 +320,6 @@ async function main() {
           difficulty: q.difficulty || null,
           type: q.type || null,
 
-          // numeric
           year: q.year ?? null,
           paperTitle: q.paperTitle ?? null,
           timeAllotted: q.timeAllotted ?? null,
@@ -353,11 +328,9 @@ async function main() {
           updatedTime: toIntOrNull(q.updated_time),
           examDate: toDateOrNull(q.examDate),
 
-          // booleans
           isOutOfSyllabus: q.isOutOfSyllabus ?? null,
           isBonus: q.isBonus ?? null,
 
-          // strings
           yearKey: q.yearKey || null,
           permalink: q.permalink || null,
           languages: q.languages || [],
@@ -371,8 +344,8 @@ async function main() {
           // Single correct option
           correctOption,
 
-          // store entire question block in 'content'
-          // (this is a Json? field, so we can store the full question object)
+          // store entire question block in 'content' (JSON? column)
+          // => undefined if nullish, otherwise cast to JSON
           content: toNullableJson(q.question),
 
           // default to ACTIVE
@@ -394,7 +367,7 @@ async function main() {
           totalInserted += res.count;
         } catch (err) {
           logError(`Insert chunk failed for metaId: ${metaId}. Error: ${err}`);
-          // You could break or continue depending on your preference
+          // continue or break depending on your preference
         }
       }
 
