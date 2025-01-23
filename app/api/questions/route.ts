@@ -6,150 +6,94 @@ const prisma = new PrismaClient()
 /**
  * GET /api/questions
  *
- * Supports server-side pagination via ?page=1&pageSize=10
- * Returns: 
+ * - By default, supports server-side pagination via ?page=1&pageSize=10
+ * - If the client passes ?all=true, fetch *all* questions at once (may risk timeouts).
+ *
+ * Returns:
  * {
  *   data: Question[],
- *   currentPage: number,
- *   pageSize: number,
- *   totalCount: number
+ *   currentPage?: number,
+ *   pageSize?: number,
+ *   totalCount?: number
  * }
  */
 export async function GET(request: Request) {
   try {
-    // 1. Parse query parameters
     const { searchParams } = new URL(request.url)
-    const page = parseInt(searchParams.get('page') || '1', 10)
-    const pageSize = parseInt(searchParams.get('pageSize') || '10', 10)
+    const allMode = searchParams.get('all') === 'true' // e.g. ?all=true
+    const pageParam = parseInt(searchParams.get('page') || '1', 10)
+    const pageSizeParam = parseInt(searchParams.get('pageSize') || '10', 10)
 
-    // (Optional) parse filters if needed. Example:
-    // const examFilter = searchParams.get('exam')
-    // const subjectFilter = searchParams.get('subject')
-    // Then build a "where" object
+    // Optional: parse filters (exam, subject, etc.) to build "where" object.
+    // e.g. const examFilter = searchParams.get('exam')
     // const where: any = {}
     // if (examFilter) where.exam = examFilter
-    // if (subjectFilter) where.subject = subjectFilter
 
-    // 2. Calculate pagination
-    const skip = (page - 1) * pageSize
-    const take = pageSize
+    let data, totalCount, currentPage, pageSize
 
-    // 3. Query the slice of questions
-    const questions = await prisma.question.findMany({
-      skip,
-      take,
-      // where, // if you built a where object for filters
-      select: {
-        // Basic question identity
-        questionId: true,
-        examGroup: true,
-        country: true,
-        exam: true,
-        key: true,
-        date: true,
-        description: true,
-        isMemoryBased: true,
-        isOnline: true,
-        languages: true,
-        title: true,
-        year: true,
+    if (allMode) {
+      // WARNING: This can cause timeouts if the table is huge!
+      data = await prisma.question.findMany({
+        // where,
+        select: {
+          questionId: true,
+          examGroup: true,
+          // ... snip (include whatever fields you need)
+          updatedAt: true,
+        },
+      })
+      totalCount = data.length
+      // no pagination fields in the response
+      return NextResponse.json({ data, totalCount })
+    } else {
+      // PAGINATED mode
+      const page = pageParam < 1 ? 1 : pageParam
+      const pageSizeNum = pageSizeParam < 1 ? 10 : pageSizeParam
 
-        // PYQ fields
-        pyqOutOfSyllabus: true,
-        pyqTotal: true,
-        pyqPrivate: true,
-        pyqPublic: true,
+      const skip = (page - 1) * pageSizeNum
+      const take = pageSizeNum
 
-        // Syllabus group
-        examId: true,
-        subjectGroup: true,
-        chapterGroup: true,
-        chapter: true,
-        topicName: true,
-        examDate: true,
-        content: true,
-        permalink: true,
-        paperId: true,
-        isOutOfSyllabus: true,
-        isBonus: true,
+      data = await prisma.question.findMany({
+        skip,
+        take,
+        // where,
+        select: {
+          questionId: true,
+          examGroup: true,
+          // ... snip (include whatever fields you need)
+          updatedAt: true,
+        },
+      })
 
-        // Core question data
-        text: true,
-        subject: true,
-        topic: true,
-        subtopic: true,
-        difficulty: true,
-        type: true,
-        marks: true,
-        negMarks: true,
-        options: true,         // stored as JSON/array
-        correctOption: true,
-        markscheme: true,
+      totalCount = await prisma.question.count({
+        // where,
+      })
 
-        // Attempts & stats
-        correctAttempts: true,
-        wrongAttempts: true,
-        averageTimeTaken: true,
-        lastAttempted: true,
+      currentPage = page
+      pageSize = pageSizeNum
 
-        // Extra question metadata
-        diagramUrl: true,
-        customTag: true,
-        explanation: true,     // stored as JSON
-        reviewed: true,
-        completed: true,
-        paperTitle: true,
-        timeAllotted: true,
-        updatedTime: true,
-        updatedBy: true,
-        source: true,
-        peerSolvedPercentage: true,
-        linkedResources: true, // stored as JSON
-        commonMistakes: true,  // stored as JSON
-        discussionLink: true,
-        parentQuestionId: true,
-        difficultyRating: true,
-        yearKey: true,
-        status: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-    })
-
-    // 4. Count total for pagination
-    const totalCount = await prisma.question.count({
-      // where, // match the same filters if used
-    })
-
-    // (Optional) If you want to do any JSON stringification:
-    // questions.forEach((q) => {
-    //   if (typeof q.explanation === 'object') {
-    //     q.explanation = JSON.stringify(q.explanation)
-    //   }
-    //   // etc...
-    // })
-
-    return NextResponse.json({
-      data: questions,
-      currentPage: page,
-      pageSize,
-      totalCount,
-    })
+      return NextResponse.json({
+        data,
+        currentPage,
+        pageSize,
+        totalCount,
+      })
+    }
   } catch (error) {
-    console.error('Error fetching paginated questions:', error)
+    console.error('Error fetching questions:', error)
     return NextResponse.json({ error: 'Failed to fetch questions' }, { status: 500 })
   }
 }
 
 /**
  * POST /api/questions
- * Create a new question. Expects JSON body with question data (including JSON fields).
+ * Create a new question. Expects JSON with question data (including JSON fields).
  */
 export async function POST(request: Request) {
   try {
     const data = await request.json()
 
-    // If user sent JSON fields as strings, parse them:
+    // If user sent JSON fields as strings, parse them
     if (typeof data.options === 'string') {
       try { data.options = JSON.parse(data.options) } catch {}
     }
@@ -163,7 +107,7 @@ export async function POST(request: Request) {
       try { data.commonMistakes = JSON.parse(data.commonMistakes) } catch {}
     }
 
-    // Map difficultyRating -> difficulty string if present
+    // Map difficultyRating -> difficulty string
     if (data.difficultyRating !== undefined) {
       if (data.difficultyRating === 1) data.difficulty = 'easy'
       else if (data.difficultyRating === 2) data.difficulty = 'medium'
@@ -202,7 +146,7 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: 'questionId is required' }, { status: 400 })
     }
 
-    // If user updated JSON fields as strings, parse them:
+    // If user updated JSON fields as strings, parse them
     if (typeof rest.options === 'string') {
       try { rest.options = JSON.parse(rest.options) } catch {}
     }
@@ -216,7 +160,7 @@ export async function PATCH(request: Request) {
       try { rest.commonMistakes = JSON.parse(rest.commonMistakes) } catch {}
     }
 
-    // Map difficultyRating -> difficulty string
+    // If user updated difficultyRating, map to a difficulty string
     if (rest.difficultyRating !== undefined) {
       const rating = Number(rest.difficultyRating)
       if (rating === 1) rest.difficulty = 'easy'
@@ -224,7 +168,7 @@ export async function PATCH(request: Request) {
       else if (rating === 3) rest.difficulty = 'hard'
     }
 
-    // Update 'updatedTime'
+    // Always update 'updatedTime'
     rest.updatedTime = Math.floor(Date.now() / 1000)
 
     // Validate status if provided

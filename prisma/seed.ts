@@ -17,7 +17,11 @@
 const fs = require("fs");
 const path = require("path");
 import type { Prisma } from "@prisma/client";
-const { PrismaClient, Prisma: PrismaNS, QuestionStatus } = require("@prisma/client");
+import {
+  PrismaClient,
+  Prisma as PrismaNS,
+  QuestionStatus,
+} from "@prisma/client";
 
 ///////////////////////////////
 // Logger helpers
@@ -46,11 +50,12 @@ function chunkArray<T>(arr: T[], size: number): T[][] {
 ///////////////////////////////
 // Convert Helpers
 ///////////////////////////////
-function toNullableJson(value: unknown) {
+
+function toNullableJson(value: unknown): PrismaNS.JsonValue | PrismaNS.DbNull {
   if (value === null || value === undefined) {
     return PrismaNS.DbNull;
   }
-  return value as Prisma.InputJsonValue;
+  return value as PrismaNS.JsonValue;
 }
 
 function toStringOrNull(value: any): string | null {
@@ -106,7 +111,7 @@ interface ExamMeta {
       public: number;
     };
   };
-  // Possibly more fields like "testId", "liveAt", etc.
+  // Possibly more fields...
 }
 
 interface QuestionFile {
@@ -144,6 +149,7 @@ interface QuestionJson {
   isOutOfSyllabus?: boolean | null;
   isBonus?: boolean | null;
   yearKey?: string | null;
+  // possibly more fields
 }
 
 ///////////////////////////////
@@ -278,23 +284,33 @@ async function main() {
         continue;
       }
 
-      // map JSON fields -> Prisma Question columns
       const questionCreateData = validQuestions.map((q) => {
         const questionId = q.question_id.trim();
 
-        // Try to get text from question.en.content or question.content
+        // Extract text from question.en.content or question.content
         const textFromJson =
           q.question?.en?.content?.trim() ||
           q.question?.content?.trim() ||
           "No text available";
 
-        // Possibly parse an array of options from question.en.options
+        // Because your schema has `options String[]`, we must flatten objects:
         let optionsArray: string[] = [];
         if (q.question?.en?.options && Array.isArray(q.question.en.options)) {
-          optionsArray = q.question.en.options.map(String);
+          optionsArray = q.question.en.options.map((opt: any) => {
+            if (opt && typeof opt === "object") {
+              // Combine identifier + content into a single string:
+              // e.g. "A: both (A) and (B) can be optically active."
+              const identifier = opt.identifier ?? "";
+              const content = opt.content ?? "";
+              return `${identifier}: ${content}`.trim();
+            } else {
+              // If there's a weird case that's not an object
+              return String(opt);
+            }
+          });
         }
 
-        // Single correct option?
+        // Single correct option
         let correctOption: string | null = null;
         if (
           q.question?.en?.correct_options &&
@@ -307,15 +323,18 @@ async function main() {
         }
 
         return {
+          // required unique question id
           questionId,
+
+          // foreign key to the exam we just upserted
           examId: exam.id,
 
-          // "Exam" fields
+          // Some optional "Exam" fields
           examGroup: q.examGroup || null,
           country: q.country || null,
           exam: q.exam || null,
 
-          // question classification
+          // classification
           subjectGroup: q.subjectGroup || null,
           subject: q.subject || null,
           chapterGroup: q.chapterGroup || null,
@@ -343,13 +362,20 @@ async function main() {
           permalink: q.permalink || null,
           languages: q.languages || [],
 
-          // required text
+          // required question text
           text: textFromJson,
+
+          // Flattened string array of options
           options: optionsArray,
+
+          // Single correct option
           correctOption,
 
           // store entire question block in 'content'
+          // (this is a Json? field, so we can store the full question object)
           content: toNullableJson(q.question),
+
+          // default to ACTIVE
           status: QuestionStatus.ACTIVE,
         };
       });
@@ -367,11 +393,8 @@ async function main() {
           });
           totalInserted += res.count;
         } catch (err) {
-          // If a chunk fails, log and decide whether to continue or break
-          logError(
-            `Insert chunk failed for metaId: ${metaId}. Error: ${err}`
-          );
-          // continue to next chunk or break if you prefer
+          logError(`Insert chunk failed for metaId: ${metaId}. Error: ${err}`);
+          // You could break or continue depending on your preference
         }
       }
 
