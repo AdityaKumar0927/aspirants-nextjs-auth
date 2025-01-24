@@ -76,8 +76,8 @@ interface QuestionType {
   difficulty?: string
   year?: number
   type?: QuestionTypeString
-  reviewed?: boolean
-  completed?: boolean
+  reviewed?: boolean  // if flagged for review
+  completed?: boolean // if marked complete
   lastAttempted?: string
   status?: QuestionStatus
   customTags?: string[]
@@ -120,30 +120,39 @@ interface QuestionProps {
   numericalAnswer: string | undefined
   showMarkscheme: boolean | undefined
 
+  // Fired when user clicks an option
   handleOptionClick: (
     questionId: string,
     option: string,
     correctOption: string
   ) => void
+
+  // For numeric answers
   handleNumericalSubmit: (
     questionId: string,
     userAnswer: string,
     correctAnswer: string
   ) => void
   handleNumericalChange: (questionId: string, value: string) => void
+
+  // Show/hide markscheme
   handleMarkschemeToggle: (questionId: string) => void
-  handleMarkForReview: (questionId: string) => void
-  handleMarkComplete: (questionId: string) => void
+
+  // Toggle "reviewed" and "completed" in DB
+  handleMarkForReview: (questionId: string, newVal?: boolean) => void
+  handleMarkComplete: (questionId: string, newVal?: boolean) => void
 
   isMarkedForReview: boolean
   isMarkedComplete: boolean
   markschemesDisabled: boolean
 
+  // Notes logic
   note: string
   handleNoteChange: (questionId: string, note: string) => void
   handleDeleteNote: (questionId: string) => Promise<void>
   userId: string
 
+  // Navigation
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
   totalQuestions: number
@@ -194,20 +203,25 @@ export default function Question({
 
   const [points, setPoints] = useState(0)
   const [streak, setStreak] = useState(0)
+
+  // Tag management
   const [newTag, setNewTag] = useState("")
   const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || [])
+
+  // AI, Notes toggles
   const [aiEnabled, setAiEnabled] = useState(true)
   const [notesEnabled, setNotesEnabled] = useState(true)
   const [localNote, setLocalNote] = useState(note)
   const [noteId, setNoteId] = useState<string | null>(null)
 
+  // Difficulty rating local
   const [localDifficultyRating, setLocalDifficultyRating] = useState<number | undefined>(
     question.difficultyRating
   )
 
   const { toast, dismiss } = useToast()
 
-  // If user swipes left or right
+  // Allow swiping left/right
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
@@ -219,72 +233,88 @@ export default function Question({
   }, [selectedOption])
 
   //
-  // Tag logic
+  // handleAddTag & handleRemoveTag
   //
-  const handleAddTag = () => {
+  function handleAddTag() {
     if (newTag && !localCustomTags.includes(newTag)) {
       setLocalCustomTags([...localCustomTags, newTag])
       setNewTag("")
     }
   }
-
-  const handleRemoveTag = (tagToRemove: string) => {
+  function handleRemoveTag(tagToRemove: string) {
     setLocalCustomTags(localCustomTags.filter((tag) => tag !== tagToRemove))
   }
 
   //
-  // Mark complete / review
+  // Toggles “mark complete”
   //
-  const handleMarkCompleteLocal = async () => {
+  async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
-    await handleMarkComplete(question.questionId)
-    toast({
-      title: "Question Completed",
-      description: `You have completed question #${question.id}`,
-      duration: 5000,
-      action: (
-        <ToastAction
-          onClick={() => undoMarkComplete(question.questionId ?? "")}
-          altText="Undo"
-        >
-          Undo
-        </ToastAction>
-      ),
-    })
+    // Call your handleMarkComplete with newVal=checked
+    await handleMarkComplete(question.questionId, checked)
+
+    if (checked) {
+      // If user checks it
+      toast({
+        title: "Question Completed",
+        description: `You have completed question #${question.id}.`,
+        duration: 5000,
+        action: (
+          <ToastAction
+            onClick={() => toggleComplete(false)}
+            altText="Undo"
+          >
+            Undo
+          </ToastAction>
+        ),
+      })
+    } else {
+      // If user unchecks
+      toast({
+        title: "Unmarked Complete",
+        description: `You have unmarked question #${question.id} as complete.`,
+        duration: 5000,
+      })
+    }
   }
 
-  const handleMarkForReviewLocal = async () => {
+  //
+  // Toggles “flag for review”
+  //
+  async function toggleReview() {
     if (!question.questionId) return
-    await handleMarkForReview(question.questionId)
-    toast({
-      title: "Question Flagged for Review",
-      description: `You have flagged question #${question.id} for review.`,
-      duration: 5000,
-      action: (
-        <ToastAction
-          onClick={() => undoMarkForReview(question.questionId ?? "")}
-          altText="Undo"
-        >
-          Undo
-        </ToastAction>
-      ),
-    })
-  }
+    const newVal = !isMarkedForReview
+    await handleMarkForReview(question.questionId, newVal)
 
-  const undoMarkComplete = async (qid: string) => {
-    await handleMarkComplete(qid)
-    dismiss()
-  }
-
-  const undoMarkForReview = async (qid: string) => {
-    await handleMarkForReview(qid)
-    dismiss()
+    if (newVal) {
+      // Flagging
+      toast({
+        title: "Question Flagged for Review",
+        description: `Flagged question #${question.id} for review.`,
+        duration: 5000,
+        action: (
+          <ToastAction
+            onClick={() => toggleReview()}
+            altText="Undo"
+          >
+            Undo
+          </ToastAction>
+        ),
+      })
+    } else {
+      // Unflagging
+      toast({
+        title: "Question Unflagged",
+        description: `You removed the review flag for question #${question.id}.`,
+        duration: 5000,
+      })
+    }
   }
 
   //
-  // Handling multiple choice
+  // handleOptionClickLocal
   //
-  const handleOptionClickLocal = (letter: string) => {
+  function handleOptionClickLocal(letter: string) {
     if (!question.questionId) return
     if (localSelectedOption !== letter) {
       setLocalSelectedOption(letter)
@@ -294,22 +324,18 @@ export default function Question({
   }
 
   //
-  // Numeric question
+  // Numeric
   //
-  const handleNumericalSubmitLocal = () => {
+  function handleNumericalSubmitLocal() {
     if (!question.questionId) return
-    handleNumericalSubmit(
-      question.questionId,
-      numericalAnswer ?? "",
-      question.correctOption ?? "N/A"
-    )
+    handleNumericalSubmit(question.questionId, numericalAnswer ?? "", question.correctOption ?? "N/A")
     updatePoints(numericalAnswer === question.correctOption)
   }
 
   //
   // Points & streak
   //
-  const updatePoints = (isCorrect: boolean) => {
+  function updatePoints(isCorrect: boolean) {
     if (isCorrect) {
       setPoints((prev) => prev + 10)
       setStreak((prev) => prev + 1)
@@ -326,9 +352,9 @@ export default function Question({
   }
 
   //
-  // Difficulty rating
+  // handleDifficultyChange
   //
-  const handleDifficultyChange = async (newRating: number) => {
+  async function handleDifficultyChange(newRating: number) {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
 
@@ -365,7 +391,7 @@ export default function Question({
   //
   // Notes
   //
-  const saveNote = async () => {
+  async function saveNote() {
     if (!question.questionId) return
     try {
       const endpoint = noteId ? `/api/notes/${noteId}` : "/api/notes"
@@ -398,7 +424,7 @@ export default function Question({
     }
   }
 
-  const deleteNote = async () => {
+  async function deleteNote() {
     if (!noteId || !question.questionId) return
     try {
       const response = await fetch(`/api/notes/${noteId}`, {
@@ -426,7 +452,7 @@ export default function Question({
   //
   // Comments
   //
-  const handleAddComment = () => {
+  function handleAddComment() {
     if (newComment.trim()) {
       const newCommentObj: CommentType = {
         id: Date.now().toString(),
@@ -444,7 +470,7 @@ export default function Question({
     }
   }
 
-  const handleReply = (parentId: string, replyContent: string) => {
+  function handleReply(parentId: string, replyContent: string) {
     const updated = comments.map((comment) => {
       if (comment.id === parentId) {
         return {
@@ -472,7 +498,7 @@ export default function Question({
     setNewComment("")
   }
 
-  const handleEditComment = (commentId: string, newContent: string) => {
+  function handleEditComment(commentId: string, newContent: string) {
     const updated = comments.map((comment) => {
       if (comment.id === commentId) {
         return { ...comment, content: newContent, edited: true }
@@ -488,7 +514,7 @@ export default function Question({
     setEditingCommentId(null)
   }
 
-  const handleDeleteComment = (commentId: string) => {
+  function handleDeleteComment(commentId: string) {
     const updated = comments.filter((c) => {
       if (c.id === commentId) {
         return false
@@ -499,7 +525,7 @@ export default function Question({
     setComments(updated)
   }
 
-  const handleVote = (commentId: string, voteType: "upvote" | "downvote") => {
+  function handleVote(commentId: string, voteType: "upvote" | "downvote") {
     const updated = comments.map((comment) => {
       if (comment.id === commentId) {
         return {
@@ -528,14 +554,12 @@ export default function Question({
     } else if (commentSort === "oldest") {
       return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
     } else {
-      // 'popular' => sort by upvotes
+      // 'popular'
       return b.upvotes - a.upvotes
     }
   })
 
-  /** 
-   * Remove leading "A:", "B:", etc. if present
-   */
+  // Remove leading "A:", "B:" if present
   function cleanOptionText(option: string): string {
     return option.replace(/^[A-D]:\s?/i, "").trim()
   }
@@ -543,7 +567,7 @@ export default function Question({
   return (
     <TooltipProvider>
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
-        <Card className="w-full overflow-hidden mb-6">
+        <Card className="w-full overflow-hidden mb-6 dark:bg-dark-background">
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
@@ -551,7 +575,7 @@ export default function Question({
                   Question #{question.id}
                 </CardTitle>
 
-                {/* Subject, difficulty, etc. remain normal text, not latex */}
+                {/* E.g. subject, difficulty, year, type, exam, etc. */}
                 {question.subject && (
                   <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
                     {question.subject}
@@ -578,7 +602,7 @@ export default function Question({
                   </div>
                 )}
 
-                {/* Custom tags remain normal text */}
+                {/* Custom tags */}
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -613,19 +637,25 @@ export default function Question({
               </div>
 
               <div className="flex items-center space-x-4">
+                {/* Toggle Mark Complete (checkbox) */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Checkbox
                       id={`complete-${question.id}`}
                       checked={isMarkedComplete}
-                      onCheckedChange={() => handleMarkCompleteLocal()}
+                      onCheckedChange={(checked: boolean) => toggleComplete(checked)}
+                      className="dark:bg-dark-background dark:border-gray-500"
                     />
                   </TooltipTrigger>
-                  <TooltipContent>Mark as Complete</TooltipContent>
+                  <TooltipContent>
+                    {isMarkedComplete ? "Unmark Complete" : "Mark as Complete"}
+                  </TooltipContent>
                 </Tooltip>
+
+                {/* Toggle Flag for review */}
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" onClick={handleMarkForReviewLocal}>
+                    <Button variant="ghost" size="icon" onClick={toggleReview}>
                       <Flag
                         className={
                           isMarkedForReview
@@ -635,7 +665,9 @@ export default function Question({
                       />
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent>Flag for Review</TooltipContent>
+                  <TooltipContent>
+                    {isMarkedForReview ? "Unflag for Review" : "Flag for Review"}
+                  </TooltipContent>
                 </Tooltip>
 
                 <SettingsPopover
@@ -653,7 +685,6 @@ export default function Question({
 
           <CardContent>
             <div className="mb-6">
-              {/* If there's a diagram */}
               {question.diagramUrl && question.diagramUrl !== "" && (
                 <div className="relative w-full max-w-xl mx-auto mb-4">
                   <Image
@@ -665,8 +696,6 @@ export default function Question({
                   />
                 </div>
               )}
-
-              {/* The question text from the API is displayed in latex font */}
               {question.text && (
                 <div className="latex-font text-base sm:text-lg md:text-xl text-gray-700 dark:text-white leading-7 mb-4">
                   <MathRenderer text={question.text} />
@@ -674,7 +703,7 @@ export default function Question({
               )}
             </div>
 
-            {/* If it's numeric (integer) */}
+            {/* Numeric question */}
             {(question.type === "Numerical" || question.type === "integer") && (
               <div className="mb-4">
                 <Input
@@ -701,13 +730,12 @@ export default function Question({
               </div>
             )}
 
-            {/* If multiple choice */}
+            {/* MCQ */}
             {(question.type === "Multiple Choice" || question.type === "mcq") &&
               question.options &&
               question.options.length > 0 && (
                 <div className="space-y-2 mb-4">
                   {question.options.map((rawOption, index) => {
-                    // remove "A:" etc.
                     const option = cleanOptionText(rawOption)
                     const letter = String.fromCharCode(65 + index)
                     const isSelected = localSelectedOption === letter
@@ -743,8 +771,6 @@ export default function Question({
                             }}
                           >
                             <span className="font-semibold">{letter}.</span>
-
-                            {/* If it's an image link, show it. Otherwise, latex. */}
                             {option.startsWith("http") ? (
                               <div className="w-full">
                                 <Image
@@ -756,7 +782,6 @@ export default function Question({
                                 />
                               </div>
                             ) : (
-                              // We want the text from the API to appear in latex font
                               <div className="latex-font">
                                 <MathRenderer text={option} />
                               </div>
@@ -770,7 +795,7 @@ export default function Question({
                 </div>
               )}
 
-            {/* Feedback (correct/incorrect) */}
+            {/* Feedback correct/incorrect */}
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
@@ -789,7 +814,7 @@ export default function Question({
               </div>
             )}
 
-            {/* Markscheme button if answered + enabled */}
+            {/* Markscheme button */}
             {(
               (localSelectedOption && markschemeEnabled) ||
               ((question.type === "Numerical" || question.type === "integer") &&
@@ -813,7 +838,6 @@ export default function Question({
               </Tooltip>
             )}
 
-            {/* Difficulty */}
             <div className="flex items-center space-x-2 mt-4">
               <Label className="text-sm text-gray-600">Difficulty:</Label>
               <Select
@@ -889,8 +913,9 @@ export default function Question({
           </CardFooter>
         </Card>
 
+        {/* Notes */}
         {showNotes && (
-          <Card className="mb-6">
+          <Card className="mb-6 dark:bg-dark-background">
             <CardHeader>
               <CardTitle>Notes</CardTitle>
               <CardDescription>Add your notes for this question here.</CardDescription>
@@ -915,8 +940,9 @@ export default function Question({
           </Card>
         )}
 
+        {/* AI */}
         {showAI && (
-          <Card className="mb-6">
+          <Card className="mb-6 dark:bg-dark-background">
             <CardHeader>
               <CardTitle>AI Assistant</CardTitle>
               <CardDescription>
@@ -936,8 +962,9 @@ export default function Question({
           </Card>
         )}
 
+        {/* Comments */}
         {showComments && (
-          <Card className="mb-6">
+          <Card className="mb-6 dark:bg-dark-background">
             <CardHeader>
               <CardTitle>Comments</CardTitle>
               <CardDescription>Discuss or ask questions here!</CardDescription>
@@ -998,6 +1025,7 @@ export default function Question({
           </Card>
         )}
 
+        {/* Markscheme modal */}
         <AnimatePresence>
           {showMarkschemeModal && (
             <motion.div
@@ -1007,7 +1035,7 @@ export default function Question({
               transition={{ duration: 0.2 }}
               className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
             >
-              <Card className="w-full max-w-2xl">
+              <Card className="w-full max-w-2xl dark:bg-dark-background">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle>Markscheme</CardTitle>
                   <TooltipProvider>
@@ -1042,7 +1070,6 @@ export default function Question({
                         />
                       </div>
                     ) : question.markscheme ? (
-                      // Markscheme from API in latex font
                       <div className="latex-font">
                         <MathRenderer text={question.markscheme ?? ""} />
                       </div>
@@ -1060,7 +1087,7 @@ export default function Question({
   )
 }
 
-// A helper to render each comment item, including its replies
+// helper for rendering comment threads
 function CommentItem({
   comment,
   userId,
