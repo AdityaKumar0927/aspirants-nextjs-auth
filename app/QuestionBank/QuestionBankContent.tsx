@@ -39,9 +39,7 @@ import { Progress } from "@/components/ui/progress"
 
 import { motion, AnimatePresence } from "framer-motion"
 
-//
 // --------------- Type Definitions ---------------
-//
 
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
@@ -154,7 +152,7 @@ type FiltersType = {
   difficulties: string[]
   types: string[]
   years: string[]
-  status: string
+  status: string // "all" | "complete" | "review" | "incomplete"
 }
 
 type StateType = {
@@ -192,9 +190,7 @@ type ActionType =
   | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_CURRENT_PAGE"; payload: number }
 
-//
 // --------------- Reducer & Initial State ---------------
-//
 
 const initialState: StateType = {
   questions: [],
@@ -259,9 +255,7 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
-//
 // --------------- UI Components ---------------
-//
 
 const PAGE_SIZE = 10
 
@@ -360,9 +354,24 @@ enum ViewMode {
 }
 
 //
-// --------------- Main Component ---------------
+// A naive "fuzzy" matching function
+// In production, consider a library like 'Fuse.js'
 //
+function fuzzyContains(haystack: string, needle: string): boolean {
+  // Simple approach: if needle is short, just do .includes
+  // else we can do a partial ratio approach
+  haystack = haystack.toLowerCase()
+  needle = needle.toLowerCase()
+  if (!needle) return true
+  // e.g. basic substring check
+  if (haystack.includes(needle)) return true
 
+  // If you want more advanced fuzzy, you can do e.g. a small Levenshtein test:
+  // For brevity, we'll skip. We'll just do haystack.includes(needle).
+  return false
+}
+
+// --------------- Main Component ---------------
 export default function QuestionBankContent() {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { data: session, status } = useSession()
@@ -473,49 +482,65 @@ export default function QuestionBankContent() {
   //
   // computed data (filters/pagination)
   //
+
   const filteredQuestions = useMemo(() => {
-    const searchQuery = state.searchQuery.toLowerCase()
-    return state.questions.filter((question) => {
-      const matchesSearch =
-        question.text.toLowerCase().includes(searchQuery) ||
-        (question.topic && question.topic.toLowerCase().includes(searchQuery)) ||
-        (question.subtopic && question.subtopic.toLowerCase().includes(searchQuery)) ||
-        (question.subject && question.subject.toLowerCase().includes(searchQuery))
+    // naive fuzzy matching
+    const searchQuery = state.searchQuery
 
+    return state.questions.filter((q) => {
+      // do fuzzy on q.text, q.topic, etc.
+      const textFields = [
+        q.text,
+        q.topic,
+        q.subtopic,
+        q.subject,
+        q.title,
+        q.exam,
+        // any other fields you want to search
+      ]
+      const matchesFuzzy = textFields.some(
+        (field) => field && fuzzyContains(field, searchQuery)
+      )
+
+      // match selected filters
       const matchesFilters =
-        (!state.filters.exams.length ||
-          (question.exam && state.filters.exams.includes(question.exam))) &&
+        (!state.filters.exams.length || (q.exam && state.filters.exams.includes(q.exam))) &&
         (!state.filters.subjects.length ||
-          (question.subject && state.filters.subjects.includes(question.subject))) &&
-        (!state.filters.topics.length ||
-          (question.topic && state.filters.topics.includes(question.topic))) &&
+          (q.subject && state.filters.subjects.includes(q.subject))) &&
+        (!state.filters.topics.length || (q.topic && state.filters.topics.includes(q.topic))) &&
         (!state.filters.subtopics.length ||
-          (question.subtopic && state.filters.subtopics.includes(question.subtopic))) &&
+          (q.subtopic && state.filters.subtopics.includes(q.subtopic))) &&
         (!state.filters.difficulties.length ||
-          (question.difficulty &&
-            state.filters.difficulties.includes(question.difficulty))) &&
+          (q.difficulty && state.filters.difficulties.includes(q.difficulty))) &&
         (!state.filters.years.length ||
-          (question.year && state.filters.years.includes(question.year.toString()))) &&
-        (!state.filters.types.length ||
-          (question.type && state.filters.types.includes(question.type)))
+          (q.year && state.filters.years.includes(q.year.toString()))) &&
+        (!state.filters.types.length || (q.type && state.filters.types.includes(q.type)))
 
+      // "status" filter
       if (state.filters.status === "review") {
-        return matchesSearch && matchesFilters && question.reviewed
+        // flagged only
+        return matchesFuzzy && matchesFilters && q.reviewed
       } else if (state.filters.status === "complete") {
-        return matchesSearch && matchesFilters && question.completed
+        // completed
+        return matchesFuzzy && matchesFilters && q.completed
+      } else if (state.filters.status === "incomplete") {
+        // not completed
+        return matchesFuzzy && matchesFilters && !q.completed
       }
-      return matchesSearch && matchesFilters
+      // "all"
+      return matchesFuzzy && matchesFilters
     })
   }, [state.questions, state.filters, state.searchQuery])
 
   const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
+
   const paginatedQuestions = useMemo(() => {
     const startIndex = (state.currentPage - 1) * PAGE_SIZE
     return filteredQuestions.slice(startIndex, startIndex + PAGE_SIZE)
   }, [filteredQuestions, state.currentPage])
 
   //
-  // handle filter changes, pagination
+  // handle filter changes, e.g. "incomplete" or new subject->topic logic
   //
   const handlePageChange = useCallback((page: number) => {
     dispatch({ type: "SET_CURRENT_PAGE", payload: page })
@@ -532,25 +557,64 @@ export default function QuestionBankContent() {
 
         const newFilters = { ...state.filters, [tag]: updatedFilter }
 
-        if (tag === "exams") {
-          const selectedExams = newFilters.exams
-          newFilters.subjects = newFilters.subjects.filter((subj) =>
+        // e.g. if we selected a subject, then "topics" popover only shows topics for that subject
+        // We'll do that in the front-end popover logic or re-check the next time we open popover
+
+        // If we changed "subjects," we refine the possible topics, subtopics, etc.
+        if (tag === "subjects") {
+          const selectedSubjects = newFilters.subjects
+          newFilters.topics = newFilters.topics.filter((top) =>
             state.questions.some(
-              (q) => q.exam && selectedExams.includes(q.exam) && q.subject === subj
-            )
-          )
-          newFilters.topics = newFilters.topics.filter((topic) =>
-            state.questions.some(
-              (q) => q.exam && selectedExams.includes(q.exam) && q.topic === topic
+              (qq) => qq.subject && selectedSubjects.includes(qq.subject) && qq.topic === top
             )
           )
           newFilters.subtopics = newFilters.subtopics.filter((subt) =>
             state.questions.some(
-              (q) => q.exam && selectedExams.includes(q.exam) && q.subtopic === subt
+              (qq) =>
+                qq.subject &&
+                selectedSubjects.includes(qq.subject) &&
+                qq.subtopic === subt
+            )
+          )
+          newFilters.difficulties = newFilters.difficulties.filter((dif) =>
+            state.questions.some(
+              (qq) => qq.subject && selectedSubjects.includes(qq.subject) && qq.difficulty === dif
+            )
+          )
+          newFilters.years = newFilters.years.filter((y) =>
+            state.questions.some(
+              (qq) =>
+                qq.subject && selectedSubjects.includes(qq.subject) && qq.year?.toString() === y
+            )
+          )
+          newFilters.types = newFilters.types.filter((ty) =>
+            state.questions.some(
+              (qq) => qq.subject && selectedSubjects.includes(qq.subject) && qq.type === ty
+            )
+          )
+        }
+
+        if (tag === "exams") {
+          const selectedExams = newFilters.exams
+          newFilters.subjects = newFilters.subjects.filter((subj) =>
+            state.questions.some(
+              (qq) => qq.exam && selectedExams.includes(qq.exam) && qq.subject === subj
+            )
+          )
+          newFilters.topics = newFilters.topics.filter((topic) =>
+            state.questions.some(
+              (qq) => qq.exam && selectedExams.includes(qq.exam) && qq.topic === topic
+            )
+          )
+          newFilters.subtopics = newFilters.subtopics.filter((subt) =>
+            state.questions.some(
+              (qq) => qq.exam && selectedExams.includes(qq.exam) && qq.subtopic === subt
             )
           )
           newFilters.types = newFilters.types.filter((t) =>
-            state.questions.some((q) => q.exam && selectedExams.includes(q.exam) && q.type === t)
+            state.questions.some(
+              (qq) => qq.exam && selectedExams.includes(qq.exam) && qq.type === t
+            )
           )
         }
 
@@ -561,33 +625,14 @@ export default function QuestionBankContent() {
   )
 
   //
-  // user performance or user answers updates
-  // (omitted here, your existing code references it from the snippet)
-  // e.g. handleMarkComplete, handleMarkForReview, handleOptionClick, ...
-  // etc. We'll just keep your references in the <Question> props.
+  // single-mode next/prev
   //
-
-  // question stats
-  const questionStats = useMemo(() => {
-    const stats = {
-      notVisited: 0,
-      notAnswered: 0,
-      answered: 0,
-      markedForReview: 0,
-    }
-    filteredQuestions.forEach((question) => {
-      if (question.reviewed) {
-        stats.markedForReview++
-      } else if (question.completed) {
-        stats.answered++
-      } else if (question.lastAttempted) {
-        stats.notAnswered++
-      } else {
-        stats.notVisited++
-      }
-    })
-    return stats
-  }, [filteredQuestions])
+  function handleSingleNext() {
+    setSingleIndex((prev) => (prev < filteredQuestions.length - 1 ? prev + 1 : prev))
+  }
+  function handleSinglePrev() {
+    setSingleIndex((prev) => (prev > 0 ? prev - 1 : prev))
+  }
 
   //
   // handle navigator click
@@ -610,17 +655,7 @@ export default function QuestionBankContent() {
     [filteredQuestions]
   )
 
-  // single-mode next/prev
-  function handleSingleNext() {
-    setSingleIndex((prev) => (prev < filteredQuestions.length - 1 ? prev + 1 : prev))
-  }
-  function handleSinglePrev() {
-    setSingleIndex((prev) => (prev > 0 ? prev - 1 : prev))
-  }
-
-  //
-  // Loading UI
-  //
+  // loading UI
   if (status === "loading" || state.loading) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -656,9 +691,6 @@ export default function QuestionBankContent() {
     )
   }
 
-  //
-  // Unauthenticated
-  //
   if (status === "unauthenticated") {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -673,7 +705,7 @@ export default function QuestionBankContent() {
   }
 
   //
-  // If user wants single-question mode
+  // Single question mode
   //
   if (viewMode === ViewMode.SINGLE) {
     if (filteredQuestions.length === 0) {
@@ -692,22 +724,25 @@ export default function QuestionBankContent() {
     const currentQ = filteredQuestions[singleIndex]
 
     return (
-      <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-8 text-gray-900 dark:text-gray-100">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-semibold">Single Question View</h1>
+      <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-4 text-gray-900 dark:text-gray-100 flex justify-center">
+        <div className="max-w-xl w-full">
+          <div className="flex justify-between items-center mb-4">
             <Button variant="outline" onClick={() => setViewMode(ViewMode.LIST)}>
-              Switch to List View
+              List View
             </Button>
+            <p className="text-sm text-gray-500">
+              {singleIndex + 1} / {filteredQuestions.length}
+            </p>
           </div>
 
           <AnimatePresence mode="wait">
             <motion.div
               key={currentQ.questionId}
-              initial={{ x: 100, opacity: 0 }}
+              initial={{ x: 80, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -100, opacity: 0 }}
+              exit={{ x: -80, opacity: 0 }}
               transition={{ duration: 0.3 }}
+              className="rounded-md border dark:border-gray-700 bg-white dark:bg-gray-800 shadow p-3 sm:p-4 mb-6"
             >
               <Question
                 question={currentQ}
@@ -715,43 +750,38 @@ export default function QuestionBankContent() {
                 selectedOption={state.selectedOptions[currentQ.questionId]}
                 numericalAnswer={state.numericalAnswers[currentQ.questionId]}
                 showMarkscheme={state.showMarkscheme[currentQ.questionId]}
-                // your existing props:
-                handleOptionClick={() => {/* implement or pass your existing handle */}}
-                handleNumericalSubmit={() => {/* implement or pass your existing handle */}}
-                handleNumericalChange={() => {/* implement or pass your existing handle */}}
-                handleMarkschemeToggle={() => {/* implement or pass your existing handle */}}
-                handleMarkForReview={() => {/* implement or pass your existing handle */}}
-                handleMarkComplete={() => {/* implement or pass your existing handle */}}
+                // pass your same logic below...
+                handleOptionClick={() => {/* your logic (unmark, reset, etc.) */}}
+                handleNumericalSubmit={() => {/* your logic */}}
+                handleNumericalChange={() => {/* your logic */}}
+                handleMarkschemeToggle={() => {/* your logic */}}
+                handleMarkForReview={() => {/* your logic */}}
+                handleMarkComplete={() => {/* your logic */}}
                 isMarkedForReview={currentQ.reviewed || false}
                 isMarkedComplete={currentQ.completed || false}
                 markschemesDisabled={false}
                 note={state.notes[currentQ.questionId] || ""}
-                handleNoteChange={() => {/* implement or pass your existing handle */}}
+                handleNoteChange={() => {/* your logic */}}
                 handleDeleteNote={() => Promise.resolve()}
                 userId={session?.user?.id || ""}
                 totalQuestions={filteredQuestions.length}
                 currentQuestionIndex={singleIndex}
-                handleQuestionChange={() => {/* implement or pass your existing handle */}}
+                handleQuestionChange={() => {/* your logic or do nothing */}}
               />
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex justify-between mt-4">
-            <Button
-              onClick={() => setSingleIndex((prev) => Math.max(0, prev - 1))}
-              disabled={singleIndex === 0}
-            >
-              Previous
+          <div className="flex justify-between">
+            <Button onClick={handleSinglePrev} disabled={singleIndex === 0}>
+              <ChevronLeft className="mr-1 h-4 w-4" />
+              Prev
             </Button>
             <Button
-              onClick={() =>
-                setSingleIndex((prev) =>
-                  prev < filteredQuestions.length - 1 ? prev + 1 : prev
-                )
-              }
+              onClick={handleSingleNext}
               disabled={singleIndex === filteredQuestions.length - 1}
             >
               Next
+              <ChevronRight className="ml-1 h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -760,13 +790,31 @@ export default function QuestionBankContent() {
   }
 
   //
-  // Otherwise, original multi-question list mode
+  // List mode
   //
+  const questionStats = {
+    notVisited: 0,
+    notAnswered: 0,
+    answered: 0,
+    markedForReview: 0,
+  }
+  filteredQuestions.forEach((q) => {
+    if (q.reviewed) {
+      questionStats.markedForReview++
+    } else if (q.completed) {
+      questionStats.answered++
+    } else if (q.lastAttempted) {
+      questionStats.notAnswered++
+    } else {
+      questionStats.notVisited++
+    }
+  })
+
   return (
     <TooltipProvider>
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
-          {/* Switch to single view button */}
+          {/* Switch to single view */}
           <div className="flex justify-end mb-4">
             <Button variant="outline" onClick={() => setViewMode(ViewMode.SINGLE)}>
               Switch to Single View
@@ -835,8 +883,9 @@ export default function QuestionBankContent() {
             </Dialog>
           </div>
 
+          {/* add “incomplete” filter as well */}
           <div className="flex space-x-4 mb-2">
-            {["all", "complete", "review"].map((filterStatus) => (
+            {["all", "complete", "review", "incomplete"].map((filterStatus) => (
               <Tooltip key={filterStatus}>
                 <TooltipTrigger asChild>
                   <button
@@ -863,6 +912,7 @@ export default function QuestionBankContent() {
             ))}
           </div>
 
+          {/* filter popovers for exam, subject, topic, etc. */}
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map(
               (filterType) => (
@@ -881,10 +931,14 @@ export default function QuestionBankContent() {
                               new Set(
                                 state.questions
                                   .filter(
+                                    // to refine by subject or exam if you want
                                     (q) =>
                                       !state.filters.exams.length ||
                                       (q.exam && state.filters.exams.includes(q.exam)) ||
-                                      filterType === "exams"
+                                      !state.filters.subjects.length ||
+                                      (q.subject && state.filters.subjects.includes(q.subject)) ||
+                                      filterType === "exams" ||
+                                      filterType === "subjects"
                                   )
                                   .map((q) => {
                                     switch (filterType) {
@@ -979,6 +1033,7 @@ export default function QuestionBankContent() {
             )}
           </div>
 
+          {/* question progress card */}
           <Card className="bg-gradient-to-br from-gray-200 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 border-gray-200 dark:border-gray-700 mb-6">
             <CardContent className="p-6">
               <h2 className="text-2xl font-light tracking-tight text-gray-800 dark:text-gray-200 mb-6">
@@ -991,7 +1046,11 @@ export default function QuestionBankContent() {
                   </span>
                   <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
                     {filteredQuestions.length > 0
-                      ? Math.round((questionStats.answered / filteredQuestions.length) * 100)
+                      ? Math.round(
+                          (filteredQuestions.filter((qq) => qq.completed).length /
+                            filteredQuestions.length) *
+                            100
+                        )
                       : 0}
                     %
                   </span>
@@ -999,11 +1058,14 @@ export default function QuestionBankContent() {
                 <Progress
                   value={
                     filteredQuestions.length > 0
-                      ? (questionStats.answered / filteredQuestions.length) * 100
+                      ? (filteredQuestions.filter((qq) => qq.completed).length /
+                          filteredQuestions.length) *
+                        100
                       : 0
                   }
                   className="w-full h-1.5 bg-gray-300 dark:bg-gray-700"
                 />
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-blue-400 p-2 rounded-full bg-blue-400/10">
@@ -1011,7 +1073,11 @@ export default function QuestionBankContent() {
                     </div>
                     <div>
                       <p className="text-2xl font-light tracking-tighter text-blue-600 dark:text-blue-300">
-                        {questionStats.notVisited}
+                        {
+                          filteredQuestions.filter(
+                            (qq) => !qq.reviewed && !qq.completed && !qq.lastAttempted
+                          ).length
+                        }
                       </p>
                       <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
                         Not Answered
@@ -1027,16 +1093,12 @@ export default function QuestionBankContent() {
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M9 12l2 2 4-4"
-                        />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
                       </svg>
                     </div>
                     <div>
                       <p className="text-2xl font-light tracking-tighter text-green-600 dark:text-green-300">
-                        {questionStats.answered}
+                        {filteredQuestions.filter((qq) => qq.completed).length}
                       </p>
                       <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
                         Answered
@@ -1049,7 +1111,7 @@ export default function QuestionBankContent() {
                     </div>
                     <div>
                       <p className="text-2xl font-light tracking-tighter text-yellow-600 dark:text-yellow-300">
-                        {questionStats.markedForReview}
+                        {filteredQuestions.filter((qq) => qq.reviewed).length}
                       </p>
                       <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
                         For Review
@@ -1071,9 +1133,9 @@ export default function QuestionBankContent() {
                   selectedOption={state.selectedOptions[question.questionId]}
                   numericalAnswer={state.numericalAnswers[question.questionId]}
                   showMarkscheme={state.showMarkscheme[question.questionId]}
-                  // your existing handlers for question:
-                  handleOptionClick={() => {/* your logic here or from snippet */}}
-                  handleNumericalSubmit={() => {/* your logic here */}}
+                  // Below handlers: implement your logic for toggling/unmarking, resetting
+                  handleOptionClick={() => {/* implement or pass from snippet */}}
+                  handleNumericalSubmit={() => {/* implement */}}
                   handleNumericalChange={(questionId, value) =>
                     dispatch({
                       type: "SET_NUMERICAL_ANSWERS",
@@ -1089,13 +1151,13 @@ export default function QuestionBankContent() {
                       },
                     })
                   }
-                  handleMarkForReview={() => {/* your logic here */}}
-                  handleMarkComplete={() => {/* your logic here */}}
+                  handleMarkForReview={() => {/* implement unflag logic here */}}
+                  handleMarkComplete={() => {/* implement unmark complete logic here */}}
                   isMarkedForReview={question.reviewed || false}
                   isMarkedComplete={question.completed || false}
                   markschemesDisabled={false}
                   note={state.notes[question.questionId] || ""}
-                  handleNoteChange={() => {/* your logic here */}}
+                  handleNoteChange={() => {/* your logic for note saving */}}
                   handleDeleteNote={() => Promise.resolve()}
                   userId={session?.user?.id || ""}
                   totalQuestions={filteredQuestions.length}

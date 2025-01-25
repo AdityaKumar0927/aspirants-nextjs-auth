@@ -54,14 +54,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
-import Confetti from "react-confetti"
-
-// We define difficulty colors for pulses:
-const difficultyColors: Record<string, string> = {
-  easy: "#22c55e",    // green
-  medium: "#facc15",  // yellow
-  hard: "#ef4444",    // red
-}
 
 // The status enum remains the same
 enum QuestionStatus {
@@ -129,25 +121,20 @@ interface QuestionProps {
   numericalAnswer: string | undefined
   showMarkscheme: boolean | undefined
 
-  // Called when user selects an option
   handleOptionClick: (
     questionId: string,
     option: string,
     correctOption: string
   ) => void
-
-  // Numeric answers
   handleNumericalSubmit: (
     questionId: string,
     userAnswer: string,
     correctAnswer: string
   ) => void
   handleNumericalChange: (questionId: string, value: string) => void
-
-  // Toggle markscheme
   handleMarkschemeToggle: (questionId: string) => void
 
-  // Mark for review & complete
+  // We now pass a second param (newVal) to allow toggling off:
   handleMarkForReview: (questionId: string, newVal?: boolean) => void
   handleMarkComplete: (questionId: string, newVal?: boolean) => void
 
@@ -155,13 +142,11 @@ interface QuestionProps {
   isMarkedComplete: boolean
   markschemesDisabled: boolean
 
-  // Notes
   note: string
   handleNoteChange: (questionId: string, note: string) => void
   handleDeleteNote: (questionId: string) => Promise<void>
   userId: string
 
-  // Navigation
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
   totalQuestions: number
@@ -194,20 +179,18 @@ export default function Question({
   currentQuestionIndex,
   handleQuestionChange,
 }: QuestionProps) {
-  // If user picks an MCQ option but hasn't "submitted"
   const [pendingOption, setPendingOption] = useState<string | null>(null)
 
+  // If we want direct highlight of the user's "selectedOption"
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
     selectedOption || null
   )
-
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
   const [showNotes, setShowNotes] = useState(false)
   const [showAI, setShowAI] = useState(false)
   const [showComments, setShowComments] = useState(false)
 
-  // local comments data
   const [comments, setComments] = useState<CommentType[]>([])
   const [newComment, setNewComment] = useState("")
   const [replyingTo, setReplyingTo] = useState<string | null>(null)
@@ -215,85 +198,35 @@ export default function Question({
   const [editedCommentContent, setEditedCommentContent] = useState("")
   const [commentSort, setCommentSort] = useState<"newest" | "oldest" | "popular">("newest")
 
-  // Points & streak
   const [points, setPoints] = useState(0)
   const [streak, setStreak] = useState(0)
-
-  // Tag management
   const [newTag, setNewTag] = useState("")
   const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || [])
-
-  // Toggles for AI, notes
   const [aiEnabled, setAiEnabled] = useState(true)
   const [notesEnabled, setNotesEnabled] = useState(true)
   const [localNote, setLocalNote] = useState(note)
   const [noteId, setNoteId] = useState<string | null>(null)
 
-  // difficulty rating local
+  // For difficulty rating updates
   const [localDifficultyRating, setLocalDifficultyRating] = useState<number | undefined>(
     question.difficultyRating
   )
 
   const { toast, dismiss } = useToast()
 
-  // confetti for correct answers
-  const [showConfetti, setShowConfetti] = useState(false)
-  // background pulse color
-  const [flashColor, setFlashColor] = useState<string | null>(null)
-
-  // Swiping (optional)
+  // If user swipes left/right
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
     trackMouse: true,
   })
 
-  // Keep local selected option in sync
   useEffect(() => {
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
   //
-  // If user picks an MCQ option (but doesn't submit yet)
-  //
-  function handleOptionSelect(letter: string) {
-    setPendingOption(letter)
-  }
-
-  //
-  // If user clicks "Submit" for MCQ
-  //
-  function handleMcqSubmit() {
-    if (!pendingOption || !question.questionId) return
-    handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "N/A")
-  }
-
-  //
-  // If feedback is "correct," show confetti for 2s
-  //
-  useEffect(() => {
-    if (feedback === "correct") {
-      setShowConfetti(true)
-      const timer = setTimeout(() => setShowConfetti(false), 2000)
-      return () => clearTimeout(timer)
-    }
-  }, [feedback])
-
-  //
-  // If the difficulty changes, do a color pulse
-  //
-  useEffect(() => {
-    if (!question.difficulty) return
-    const c = question.difficulty.toLowerCase()
-    if (difficultyColors[c]) {
-      setFlashColor(difficultyColors[c])
-      const timer = setTimeout(() => setFlashColor(null), 600)
-      return () => clearTimeout(timer)
-    }
-  }, [question.difficulty])
-
-  //
-  // handleAddTag & handleRemoveTag
+  // Tag logic
   //
   function handleAddTag() {
     if (newTag && !localCustomTags.includes(newTag)) {
@@ -306,7 +239,7 @@ export default function Question({
   }
 
   //
-  // Toggling mark complete
+  // Mark complete toggling
   //
   async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
@@ -317,10 +250,7 @@ export default function Question({
         description: `You have completed question #${question.id}.`,
         duration: 5000,
         action: (
-          <ToastAction
-            onClick={() => toggleComplete(false)}
-            altText="Undo"
-          >
+          <ToastAction onClick={() => toggleComplete(false)} altText="Undo">
             Undo
           </ToastAction>
         ),
@@ -328,14 +258,14 @@ export default function Question({
     } else {
       toast({
         title: "Unmarked Complete",
-        description: `You have unmarked question #${question.id} as complete.`,
+        description: `You have unmarked question #${question.id}.`,
         duration: 5000,
       })
     }
   }
 
   //
-  // Toggling mark for review
+  // Flag for review toggling
   //
   async function toggleReview() {
     if (!question.questionId) return
@@ -343,14 +273,11 @@ export default function Question({
     await handleMarkForReview(question.questionId, newVal)
     if (newVal) {
       toast({
-        title: "Question Flagged for Review",
+        title: "Question Flagged",
         description: `Flagged question #${question.id} for review.`,
         duration: 5000,
         action: (
-          <ToastAction
-            onClick={() => toggleReview()}
-            altText="Undo"
-          >
+          <ToastAction onClick={() => toggleReview()} altText="Undo">
             Undo
           </ToastAction>
         ),
@@ -358,14 +285,25 @@ export default function Question({
     } else {
       toast({
         title: "Question Unflagged",
-        description: `You removed the review flag for question #${question.id}.`,
+        description: `Removed review flag for question #${question.id}.`,
         duration: 5000,
       })
     }
   }
 
   //
-  // handleOptionClickLocal - if you still want direct auto-check on click:
+  // Option selection with a separate "Submit" button
+  //
+  function handleOptionSelect(letter: string) {
+    setPendingOption(letter)
+  }
+  function handleMcqSubmit() {
+    if (!pendingOption || !question.questionId) return
+    handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "N/A")
+  }
+
+  //
+  // If user wants direct auto-check on click, we can do:
   //
   function handleOptionClickLocal(letter: string) {
     if (!question.questionId) return
@@ -374,7 +312,7 @@ export default function Question({
   }
 
   //
-  // handleNumericalSubmitLocal
+  // Numeric
   //
   function handleNumericalSubmitLocal() {
     if (!question.questionId) return
@@ -382,30 +320,19 @@ export default function Question({
   }
 
   //
-  // Points & streak
-  //
-  function updatePoints(isCorrect: boolean) {
-    if (isCorrect) {
-      setPoints((prev) => prev + 10)
-      setStreak((prev) => prev + 1)
-      if (streak + 1 === 5) {
-        toast({
-          title: "Achievement Unlocked!",
-          description: "You've answered 5 questions correctly in a row!",
-          duration: 5000,
-        })
-      }
-    } else {
-      setStreak(0)
-    }
-  }
-
-  //
-  // handleDifficultyChange
+  // Difficulty rating -> also update question.difficulty
   //
   async function handleDifficultyChange(newRating: number) {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
+    // set the question's difficulty so the UI tag updates
+    let newDifficulty = "easy"
+    if (newRating === 2) newDifficulty = "medium"
+    else if (newRating === 3) newDifficulty = "hard"
+
+    // you might want a local approach or direct:
+    question.difficulty = newDifficulty
+
     try {
       const res = await fetch("/api/questions", {
         method: "PATCH",
@@ -413,21 +340,19 @@ export default function Question({
         body: JSON.stringify({
           questionId: question.questionId,
           difficultyRating: newRating,
+          // also set question.difficulty in DB
+          difficulty: newDifficulty,
           updatedBy: userId || "guest",
         }),
       })
-      if (!res.ok) {
-        throw new Error("Failed to update difficulty rating")
-      }
+      if (!res.ok) throw new Error("Failed to update difficulty rating")
       await res.json()
       toast({
         title: "Difficulty Updated",
-        description: `Set question #${question.id} difficulty to ${
-          newRating === 1 ? "Easy" : newRating === 2 ? "Medium" : "Hard"
-        }.`,
+        description: `Set question #${question.id} difficulty to ${newDifficulty}.`,
       })
-    } catch (error) {
-      console.error(error)
+    } catch (err) {
+      console.error(err)
       toast({
         title: "Error",
         description: "Could not update difficulty rating.",
@@ -470,7 +395,6 @@ export default function Question({
       })
     }
   }
-
   async function deleteNote() {
     if (!noteId || !question.questionId) return
     try {
@@ -496,6 +420,26 @@ export default function Question({
   }
 
   //
+  // "Reset question" => remove user’s selected answer and feedback
+  //
+  function handleResetQuestion() {
+    if (!question.questionId) return
+    // This might also call an API to remove user answer from DB
+    // e.g. /api/user-answers/delete
+    // Also mark question as not completed
+    toast({
+      title: "Question Reset",
+      description: `You can now re-attempt question #${question.id}.`,
+    })
+    // your logic to remove from state:
+    // set localSelectedOption to null, remove from feedback, etc.
+    setLocalSelectedOption(null)
+    setPendingOption(null)
+    // Possibly call handleMarkComplete(question.questionId, false)
+    // or handleMarkForReview(question.questionId, false)
+  }
+
+  //
   // Comments
   //
   function handleAddComment() {
@@ -515,7 +459,6 @@ export default function Question({
       setNewComment("")
     }
   }
-
   function handleReply(parentId: string, replyContent: string) {
     const updated = comments.map((comment) => {
       if (comment.id === parentId) {
@@ -543,7 +486,6 @@ export default function Question({
     setReplyingTo(null)
     setNewComment("")
   }
-
   function handleEditComment(commentId: string, newContent: string) {
     const updated = comments.map((comment) => {
       if (comment.id === commentId) {
@@ -559,7 +501,6 @@ export default function Question({
     setComments(updated)
     setEditingCommentId(null)
   }
-
   function handleDeleteComment(commentId: string) {
     const updated = comments.filter((c) => {
       if (c.id === commentId) {
@@ -570,7 +511,6 @@ export default function Question({
     })
     setComments(updated)
   }
-
   function handleVote(commentId: string, voteType: "upvote" | "downvote") {
     const updated = comments.map((comment) => {
       if (comment.id === commentId) {
@@ -593,20 +533,18 @@ export default function Question({
     })
     setComments(updated)
   }
-
   const sortedComments = [...comments].sort((a, b) => {
     if (commentSort === "newest") {
       return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
     } else if (commentSort === "oldest") {
       return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
     } else {
-      // 'popular'
       return b.upvotes - a.upvotes
     }
   })
 
   //
-  // Optional: remove leading "A:", "B:" from MCQ
+  // Remove leading "A:", "B:" if present
   //
   function cleanOptionText(option: string): string {
     return option.replace(/^[A-D]:\s?/i, "").trim()
@@ -614,23 +552,7 @@ export default function Question({
 
   return (
     <TooltipProvider>
-      {showConfetti && (
-        <Confetti
-          recycle={false}
-          numberOfPieces={200}
-          gravity={0.3}
-          style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%" }}
-        />
-      )}
-
-      <motion.div
-        {...handlers}
-        className="relative pb-20"
-        id={`question-${question.questionId}`}
-        initial={{ backgroundColor: "#ffffff" }}
-        animate={{ backgroundColor: flashColor ?? "#ffffff" }}
-        transition={{ duration: 0.4 }}
-      >
+      <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
         <Card className="w-full overflow-hidden mb-6 dark:bg-dark-background">
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
@@ -699,13 +621,13 @@ export default function Question({
               </div>
 
               <div className="flex items-center space-x-4">
-                {/* Mark Complete (toggle) */}
+                {/* Toggle Mark Complete */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Checkbox
                       id={`complete-${question.id}`}
                       checked={isMarkedComplete}
-                      onCheckedChange={(checked: boolean) => toggleComplete(checked)}
+                      onCheckedChange={(checked: boolean) => toggleComplete(!!checked)}
                       className="dark:bg-dark-background dark:border-gray-500"
                     />
                   </TooltipTrigger>
@@ -714,7 +636,7 @@ export default function Question({
                   </TooltipContent>
                 </Tooltip>
 
-                {/* Flag for review (toggle) */}
+                {/* Flag for review */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button variant="ghost" size="icon" onClick={toggleReview}>
@@ -770,7 +692,7 @@ export default function Question({
               <div className="mb-4">
                 <Input
                   type="text"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 text-base sm:text-lg"
+                  className="w-full px-3 py-2 border border-blue-600 rounded-sm bg-blue-100 text-blue-800 focus:ring-1 focus:ring-blue-500"
                   placeholder="Type your answer..."
                   value={numericalAnswer ?? ""}
                   onChange={(e) =>
@@ -781,7 +703,7 @@ export default function Question({
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
-                      className="mt-2 px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+                      className="mt-2 border-2 rounded-sm border-blue-600 bg-blue-100 text-blue-800 px-4 py-1"
                       onClick={handleNumericalSubmitLocal}
                     >
                       Submit
@@ -802,7 +724,7 @@ export default function Question({
                       const letter = String.fromCharCode(65 + index)
                       const optionText = cleanOptionText(rawOption)
                       const isSelected = pendingOption === letter
-                      // also show direct highlight if user used handleOptionClickLocal
+                      // direct highlight if user used handleOptionClickLocal
                       const directSelected = localSelectedOption === letter
                       const isFeedbackActive = directSelected && feedback
 
@@ -821,6 +743,12 @@ export default function Question({
                             flex flex-col items-start
                             space-y-2
                             whitespace-normal
+                            border-2
+                            ${
+                              isSelected
+                                ? "border-blue-600 bg-blue-50 text-blue-800"
+                                : "border-gray-300 dark:border-gray-600"
+                            }
                             ${
                               isFeedbackActive
                                 ? feedback === "correct"
@@ -860,7 +788,7 @@ export default function Question({
                         <Button
                           onClick={handleMcqSubmit}
                           disabled={!pendingOption}
-                          className="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+                          className="border-2 rounded-sm border-blue-600 bg-blue-100 text-blue-800 px-4 py-1"
                         >
                           Submit
                         </Button>
@@ -868,13 +796,12 @@ export default function Question({
                       <TooltipContent>Submit your MCQ answer</TooltipContent>
                     </Tooltip>
 
-                    {/* If you still want direct auto-check on option click,
-                        use handleOptionClickLocal(letter) somewhere. */}
-                    {/* Example: <Button onClick={() => handleOptionClickLocal(letter)}>Direct Check</Button> */}
+                    {/* If you also want direct auto-check, you can do handleOptionClickLocal */}
                   </div>
                 </div>
               )}
 
+            {/* Feedback */}
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
@@ -917,7 +844,7 @@ export default function Question({
               </Tooltip>
             )}
 
-            {/* Difficulty rating */}
+            {/* Difficulty Rating */}
             <div className="flex items-center space-x-2 mt-4">
               <Label className="text-sm text-gray-600">Difficulty:</Label>
               <Select
@@ -951,6 +878,26 @@ export default function Question({
                   Peer Solved: {question.peerSolvedPercentage.toFixed(1)}%
                 </p>
               )}
+            </div>
+
+            {/* "Reset question" */}
+            <div className="mt-4">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="text-red-600 border-red-300 hover:bg-red-50"
+                    onClick={() => {
+                      // handle reset logic
+                      // e.g. "handleResetQuestion()"
+                      handleResetQuestion()
+                    }}
+                  >
+                    Reset Question
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Clear answer & feedback for re-attempt</TooltipContent>
+              </Tooltip>
             </div>
           </CardContent>
 
@@ -993,7 +940,7 @@ export default function Question({
           </CardFooter>
         </Card>
 
-        {/* Notes panel */}
+        {/* Notes */}
         {showNotes && (
           <Card className="mb-6 dark:bg-dark-background">
             <CardHeader>
@@ -1162,12 +1109,12 @@ export default function Question({
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </div>
     </TooltipProvider>
   )
 }
 
-// Renders each comment + nested replies
+// helper for comments
 function CommentItem({
   comment,
   userId,
