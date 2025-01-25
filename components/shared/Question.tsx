@@ -55,7 +55,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
 
-// The status enum remains the same
+// Enums & Types
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
@@ -134,19 +134,20 @@ interface QuestionProps {
   handleNumericalChange: (questionId: string, value: string) => void
   handleMarkschemeToggle: (questionId: string) => void
 
-  // We now pass a second param (newVal) to allow toggling off:
+  // Toggle mark-for-review & complete
   handleMarkForReview: (questionId: string, newVal?: boolean) => void
   handleMarkComplete: (questionId: string, newVal?: boolean) => void
-
   isMarkedForReview: boolean
   isMarkedComplete: boolean
   markschemesDisabled: boolean
 
+  // Notes
   note: string
   handleNoteChange: (questionId: string, note: string) => void
   handleDeleteNote: (questionId: string) => Promise<void>
   userId: string
 
+  // Nav
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
   totalQuestions: number
@@ -179,12 +180,13 @@ export default function Question({
   currentQuestionIndex,
   handleQuestionChange,
 }: QuestionProps) {
+  // For MCQ "Submit" approach
   const [pendingOption, setPendingOption] = useState<string | null>(null)
-
-  // If we want direct highlight of the user's "selectedOption"
+  // local highlight of user’s final selected option
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
     selectedOption || null
   )
+
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
   const [showNotes, setShowNotes] = useState(false)
@@ -198,23 +200,19 @@ export default function Question({
   const [editedCommentContent, setEditedCommentContent] = useState("")
   const [commentSort, setCommentSort] = useState<"newest" | "oldest" | "popular">("newest")
 
-  const [points, setPoints] = useState(0)
-  const [streak, setStreak] = useState(0)
   const [newTag, setNewTag] = useState("")
   const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || [])
   const [aiEnabled, setAiEnabled] = useState(true)
   const [notesEnabled, setNotesEnabled] = useState(true)
   const [localNote, setLocalNote] = useState(note)
   const [noteId, setNoteId] = useState<string | null>(null)
-
-  // For difficulty rating updates
   const [localDifficultyRating, setLocalDifficultyRating] = useState<number | undefined>(
     question.difficultyRating
   )
 
-  const { toast, dismiss } = useToast()
+  const { toast } = useToast()
 
-  // If user swipes left/right
+  // swipe left/right
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
@@ -225,9 +223,7 @@ export default function Question({
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
-  //
   // Tag logic
-  //
   function handleAddTag() {
     if (newTag && !localCustomTags.includes(newTag)) {
       setLocalCustomTags([...localCustomTags, newTag])
@@ -238,9 +234,7 @@ export default function Question({
     setLocalCustomTags(localCustomTags.filter((tag) => tag !== tagToRemove))
   }
 
-  //
-  // Mark complete toggling
-  //
+  // Toggle complete
   async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, checked)
@@ -248,7 +242,6 @@ export default function Question({
       toast({
         title: "Question Completed",
         description: `You have completed question #${question.id}.`,
-        duration: 5000,
         action: (
           <ToastAction onClick={() => toggleComplete(false)} altText="Undo">
             Undo
@@ -259,14 +252,11 @@ export default function Question({
       toast({
         title: "Unmarked Complete",
         description: `You have unmarked question #${question.id}.`,
-        duration: 5000,
       })
     }
   }
 
-  //
-  // Flag for review toggling
-  //
+  // Toggle review
   async function toggleReview() {
     if (!question.questionId) return
     const newVal = !isMarkedForReview
@@ -275,7 +265,6 @@ export default function Question({
       toast({
         title: "Question Flagged",
         description: `Flagged question #${question.id} for review.`,
-        duration: 5000,
         action: (
           <ToastAction onClick={() => toggleReview()} altText="Undo">
             Undo
@@ -286,52 +275,37 @@ export default function Question({
       toast({
         title: "Question Unflagged",
         description: `Removed review flag for question #${question.id}.`,
-        duration: 5000,
       })
     }
   }
 
-  //
-  // Option selection with a separate "Submit" button
-  //
+  // For MCQ, store selected in pendingOption
   function handleOptionSelect(letter: string) {
     setPendingOption(letter)
   }
   function handleMcqSubmit() {
     if (!pendingOption || !question.questionId) return
+    // highlight selection
+    setLocalSelectedOption(pendingOption)
+    // call parent
     handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "N/A")
   }
 
-  //
-  // If user wants direct auto-check on click, we can do:
-  //
-  function handleOptionClickLocal(letter: string) {
-    if (!question.questionId) return
-    setLocalSelectedOption(letter)
-    handleOptionClick(question.questionId, letter, question.correctOption ?? "N/A")
-  }
-
-  //
   // Numeric
-  //
   function handleNumericalSubmitLocal() {
     if (!question.questionId) return
     handleNumericalSubmit(question.questionId, numericalAnswer ?? "", question.correctOption ?? "N/A")
   }
 
-  //
-  // Difficulty rating -> also update question.difficulty
-  //
+  // Difficulty rating
   async function handleDifficultyChange(newRating: number) {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
-    // set the question's difficulty so the UI tag updates
-    let newDifficulty = "easy"
-    if (newRating === 2) newDifficulty = "medium"
-    else if (newRating === 3) newDifficulty = "hard"
 
-    // you might want a local approach or direct:
-    question.difficulty = newDifficulty
+    let newDiff = "easy"
+    if (newRating === 2) newDiff = "medium"
+    if (newRating === 3) newDiff = "hard"
+    question.difficulty = newDiff
 
     try {
       const res = await fetch("/api/questions", {
@@ -340,16 +314,13 @@ export default function Question({
         body: JSON.stringify({
           questionId: question.questionId,
           difficultyRating: newRating,
-          // also set question.difficulty in DB
-          difficulty: newDifficulty,
-          updatedBy: userId || "guest",
+          difficulty: newDiff,
         }),
       })
-      if (!res.ok) throw new Error("Failed to update difficulty rating")
-      await res.json()
+      if (!res.ok) throw new Error("Failed to update difficulty")
       toast({
         title: "Difficulty Updated",
-        description: `Set question #${question.id} difficulty to ${newDifficulty}.`,
+        description: `Question #${question.id} is now ${newDiff}.`,
       })
     } catch (err) {
       console.error(err)
@@ -361,9 +332,7 @@ export default function Question({
     }
   }
 
-  //
   // Notes
-  //
   async function saveNote() {
     if (!question.questionId) return
     try {
@@ -386,11 +355,11 @@ export default function Question({
         title: "Note Saved",
         description: "Your note has been saved successfully.",
       })
-    } catch (error) {
-      console.error("Error saving note:", error)
+    } catch (err) {
+      console.error(err)
       toast({
         title: "Error",
-        description: "Failed to save note. Please try again.",
+        description: "Failed to save note.",
         variant: "destructive",
       })
     }
@@ -398,9 +367,7 @@ export default function Question({
   async function deleteNote() {
     if (!noteId || !question.questionId) return
     try {
-      const response = await fetch(`/api/notes/${noteId}`, {
-        method: "DELETE",
-      })
+      const response = await fetch(`/api/notes/${noteId}`, { method: "DELETE" })
       if (!response.ok) throw new Error("Failed to delete note")
       toast({
         title: "Note Deleted",
@@ -409,66 +376,55 @@ export default function Question({
       setLocalNote("")
       setNoteId(null)
       handleNoteChange(question.questionId, "")
-    } catch (error) {
-      console.error("Error deleting note:", error)
+    } catch (err) {
+      console.error(err)
       toast({
         title: "Error",
-        description: "Failed to delete note. Please try again.",
+        description: "Failed to delete note.",
         variant: "destructive",
       })
     }
   }
 
-  //
-  // "Reset question" => remove user’s selected answer and feedback
-  //
+  // Reset question
   function handleResetQuestion() {
     if (!question.questionId) return
-    // This might also call an API to remove user answer from DB
-    // e.g. /api/user-answers/delete
-    // Also mark question as not completed
     toast({
       title: "Question Reset",
       description: `You can now re-attempt question #${question.id}.`,
     })
-    // your logic to remove from state:
-    // set localSelectedOption to null, remove from feedback, etc.
-    setLocalSelectedOption(null)
+    // Clear local states
     setPendingOption(null)
-    // Possibly call handleMarkComplete(question.questionId, false)
-    // or handleMarkForReview(question.questionId, false)
+    setLocalSelectedOption(null)
   }
 
-  //
   // Comments
-  //
   function handleAddComment() {
-    if (newComment.trim()) {
-      const newCommentObj: CommentType = {
-        id: Date.now().toString(),
-        userId,
-        username: "Current User",
-        content: newComment,
-        timestamp: new Date().toISOString(),
-        replies: [],
-        upvotes: 0,
-        downvotes: 0,
-        edited: false,
-      }
-      setComments([...comments, newCommentObj])
-      setNewComment("")
+    if (!newComment.trim()) return
+    const newCom: CommentType = {
+      id: Date.now().toString(),
+      userId: userId || "guest",
+      username: "Current User",
+      content: newComment,
+      timestamp: new Date().toISOString(),
+      replies: [],
+      upvotes: 0,
+      downvotes: 0,
+      edited: false,
     }
+    setComments([...comments, newCom])
+    setNewComment("")
   }
   function handleReply(parentId: string, replyContent: string) {
-    const updated = comments.map((comment) => {
-      if (comment.id === parentId) {
+    const updated = comments.map((c) => {
+      if (c.id === parentId) {
         return {
-          ...comment,
+          ...c,
           replies: [
-            ...comment.replies,
+            ...c.replies,
             {
               id: Date.now().toString(),
-              userId,
+              userId: userId || "guest",
               username: "Current User",
               content: replyContent,
               timestamp: new Date().toISOString(),
@@ -480,22 +436,20 @@ export default function Question({
           ],
         }
       }
-      return comment
+      return c
     })
     setComments(updated)
     setReplyingTo(null)
     setNewComment("")
   }
   function handleEditComment(commentId: string, newContent: string) {
-    const updated = comments.map((comment) => {
-      if (comment.id === commentId) {
-        return { ...comment, content: newContent, edited: true }
+    const updated = comments.map((c) => {
+      if (c.id === commentId) {
+        return { ...c, content: newContent, edited: true }
       }
       return {
-        ...comment,
-        replies: comment.replies.map((reply) =>
-          reply.id === commentId ? { ...reply, content: newContent, edited: true } : reply
-        ),
+        ...c,
+        replies: c.replies.map((r) => (r.id === commentId ? { ...r, content: newContent, edited: true } : r)),
       }
     })
     setComments(updated)
@@ -503,49 +457,41 @@ export default function Question({
   }
   function handleDeleteComment(commentId: string) {
     const updated = comments.filter((c) => {
-      if (c.id === commentId) {
-        return false
-      }
+      if (c.id === commentId) return false
       c.replies = c.replies.filter((r) => r.id !== commentId)
       return true
     })
     setComments(updated)
   }
-  function handleVote(commentId: string, voteType: "upvote" | "downvote") {
-    const updated = comments.map((comment) => {
-      if (comment.id === commentId) {
+  function handleVote(commentId: string, type: "upvote" | "downvote") {
+    const updated = comments.map((c) => {
+      if (c.id === commentId) {
         return {
-          ...comment,
-          upvotes: voteType === "upvote" ? comment.upvotes + 1 : comment.upvotes,
-          downvotes: voteType === "downvote" ? comment.downvotes + 1 : comment.downvotes,
+          ...c,
+          upvotes: type === "upvote" ? c.upvotes + 1 : c.upvotes,
+          downvotes: type === "downvote" ? c.downvotes + 1 : c.downvotes,
         }
       }
-      comment.replies = comment.replies.map((reply) =>
-        reply.id === commentId
+      c.replies = c.replies.map((r) =>
+        r.id === commentId
           ? {
-              ...reply,
-              upvotes: voteType === "upvote" ? reply.upvotes + 1 : reply.upvotes,
-              downvotes: voteType === "downvote" ? reply.downvotes + 1 : reply.downvotes,
+              ...r,
+              upvotes: type === "upvote" ? r.upvotes + 1 : r.upvotes,
+              downvotes: type === "downvote" ? r.downvotes + 1 : r.downvotes,
             }
-          : reply
+          : r
       )
-      return comment
+      return c
     })
     setComments(updated)
   }
   const sortedComments = [...comments].sort((a, b) => {
-    if (commentSort === "newest") {
-      return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-    } else if (commentSort === "oldest") {
-      return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-    } else {
-      return b.upvotes - a.upvotes
-    }
+    if (commentSort === "newest") return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+    if (commentSort === "oldest") return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+    return b.upvotes - a.upvotes
   })
 
-  //
-  // Remove leading "A:", "B:" if present
-  //
+  // remove "A:", "B:" prefix if any
   function cleanOptionText(option: string): string {
     return option.replace(/^[A-D]:\s?/i, "").trim()
   }
@@ -553,14 +499,15 @@ export default function Question({
   return (
     <TooltipProvider>
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
-        <Card className="w-full overflow-hidden mb-6 dark:bg-dark-background">
+        <Card className="w-full overflow-hidden mb-6 dark:bg-gray-800">
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
+              {/* Title & tags */}
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
                 <CardTitle className="font-normal text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
                   Question #{question.id}
                 </CardTitle>
-
+                {/* Info tags */}
                 {question.subject && (
                   <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
                     {question.subject}
@@ -586,7 +533,7 @@ export default function Question({
                     {question.exam}
                   </div>
                 )}
-
+                {/* Custom tags */}
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -600,6 +547,7 @@ export default function Question({
                     </Button>
                   </Badge>
                 ))}
+                {/* Add new tag */}
                 <div className="flex items-center space-x-2">
                   <Input
                     type="text"
@@ -620,22 +568,22 @@ export default function Question({
                 </div>
               </div>
 
+              {/* Right side icons */}
               <div className="flex items-center space-x-4">
-                {/* Toggle Mark Complete */}
+                {/* Mark Complete */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Checkbox
                       id={`complete-${question.id}`}
                       checked={isMarkedComplete}
                       onCheckedChange={(checked: boolean) => toggleComplete(!!checked)}
-                      className="dark:bg-dark-background dark:border-gray-500"
+                      className="dark:bg-gray-800 dark:border-gray-500"
                     />
                   </TooltipTrigger>
                   <TooltipContent>
                     {isMarkedComplete ? "Unmark Complete" : "Mark as Complete"}
                   </TooltipContent>
                 </Tooltip>
-
                 {/* Flag for review */}
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -668,6 +616,7 @@ export default function Question({
           </CardHeader>
 
           <CardContent>
+            {/* Possibly show a diagram */}
             <div className="mb-6">
               {question.diagramUrl && question.diagramUrl !== "" && (
                 <div className="relative w-full max-w-xl mx-auto mb-4">
@@ -680,8 +629,9 @@ export default function Question({
                   />
                 </div>
               )}
+              {/* Question text */}
               {question.text && (
-                <div className="latex-font text-base sm:text-lg md:text-xl text-gray-700 dark:text-white leading-7 mb-4">
+                <div className="latex-font text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-100 leading-7 mb-4">
                   <MathRenderer text={question.text} />
                 </div>
               )}
@@ -692,7 +642,7 @@ export default function Question({
               <div className="mb-4">
                 <Input
                   type="text"
-                  className="w-full px-3 py-2 border border-blue-600 rounded-sm bg-blue-100 text-blue-300 focus:ring-1 focus:ring-blue-300"
+                  className="w-full px-3 py-2 border border-sky-400 rounded-sm bg-sky-50 text-sky-700 dark:bg-gray-700 dark:border-sky-400 dark:text-sky-300 focus:ring-1 focus:ring-sky-300"
                   placeholder="Type your answer..."
                   value={numericalAnswer ?? ""}
                   onChange={(e) =>
@@ -703,7 +653,7 @@ export default function Question({
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
-                      className="mt-2 border-2 rounded-sm border-blue-600 bg-blue-100 text-blue-300 px-4 py-1"
+                      className="mt-2 border-2 rounded-sm border-sky-400 bg-sky-50 text-sky-800 px-4 py-1 dark:bg-gray-700 dark:text-sky-200 dark:border-sky-400 hover:opacity-90"
                       onClick={handleNumericalSubmitLocal}
                     >
                       Submit
@@ -723,16 +673,16 @@ export default function Question({
                     {question.options.map((rawOption, index) => {
                       const letter = String.fromCharCode(65 + index)
                       const optionText = cleanOptionText(rawOption)
-                      const isSelected = pendingOption === letter
-                      // direct highlight if user used handleOptionClickLocal
-                      const directSelected = localSelectedOption === letter
-                      const isFeedbackActive = directSelected && feedback
+
+                      const isPendingSelected = pendingOption === letter
+                      const isFinalSelected = localSelectedOption === letter
+                      const isFeedbackActive = isFinalSelected && feedback
 
                       return (
                         <Button
                           key={index}
-                          variant={isSelected ? "default" : "outline"}
-                          onClick={() => handleOptionSelect(letter)}
+                          variant={isPendingSelected ? "default" : "outline"}
+                          onClick={() => setPendingOption(letter)}
                           className={`
                             w-full
                             text-left
@@ -745,8 +695,8 @@ export default function Question({
                             whitespace-normal
                             border-2
                             ${
-                              isSelected
-                                ? "border-blue-600 bg-blue-50 text-blue-300"
+                              isPendingSelected
+                                ? "border-sky-400 bg-sky-50 text-sky-800"
                                 : "border-gray-300 dark:border-gray-600"
                             }
                             ${
@@ -788,15 +738,13 @@ export default function Question({
                         <Button
                           onClick={handleMcqSubmit}
                           disabled={!pendingOption}
-                          className="border-2 rounded-sm border-blue-600 bg-blue-100 text-blue-800 px-4 py-1"
+                          className="border-2 rounded-sm border-sky-400 bg-sky-50 text-sky-800 px-4 py-1 dark:bg-gray-700 dark:text-sky-200 dark:border-sky-400 hover:opacity-90"
                         >
                           Submit
                         </Button>
                       </TooltipTrigger>
                       <TooltipContent>Submit your MCQ answer</TooltipContent>
                     </Tooltip>
-
-                    {/* If you also want direct auto-check, you can do handleOptionClickLocal */}
                   </div>
                 </div>
               )}
@@ -844,9 +792,9 @@ export default function Question({
               </Tooltip>
             )}
 
-            {/* Difficulty Rating */}
+            {/* Difficulty */}
             <div className="flex items-center space-x-2 mt-4">
-              <Label className="text-sm text-gray-600">Difficulty:</Label>
+              <Label className="text-sm text-gray-600 dark:text-gray-300">Difficulty:</Label>
               <Select
                 value={
                   localDifficultyRating === 1
@@ -874,34 +822,31 @@ export default function Question({
                 </SelectContent>
               </Select>
               {typeof question.peerSolvedPercentage === "number" && (
-                <p className="ml-4 text-sm text-gray-500">
+                <p className="ml-4 text-sm text-gray-500 dark:text-gray-300">
                   Peer Solved: {question.peerSolvedPercentage.toFixed(1)}%
                 </p>
               )}
             </div>
 
-            {/* "Reset question" */}
+            {/* Reset question */}
             <div className="mt-4">
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
                     variant="outline"
-                    className="text-red-600 border-red-300 hover:bg-red-50"
-                    onClick={() => {
-                      // handle reset logic
-                      // e.g. "handleResetQuestion()"
-                      handleResetQuestion()
-                    }}
+                    className="text-red-600 border-red-300 hover:bg-red-50 dark:border-red-500 dark:text-red-400 dark:hover:bg-red-900"
+                    onClick={handleResetQuestion}
                   >
                     Reset Question
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>Clear answer & feedback for re-attempt</TooltipContent>
+                <TooltipContent>Clear answer &amp; feedback for re-attempt</TooltipContent>
               </Tooltip>
             </div>
           </CardContent>
 
           <CardFooter className="flex justify-end space-x-2">
+            {/* Notes toggle */}
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="outline" onClick={() => setShowNotes(!showNotes)}>
@@ -914,6 +859,7 @@ export default function Question({
               </TooltipContent>
             </Tooltip>
 
+            {/* AI toggle */}
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="outline" onClick={() => setShowAI(!showAI)}>
@@ -926,6 +872,7 @@ export default function Question({
               </TooltipContent>
             </Tooltip>
 
+            {/* Comments toggle */}
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="outline" onClick={() => setShowComments(!showComments)}>
@@ -942,7 +889,7 @@ export default function Question({
 
         {/* Notes */}
         {showNotes && (
-          <Card className="mb-6 dark:bg-dark-background">
+          <Card className="mb-6 dark:bg-gray-800">
             <CardHeader>
               <CardTitle>Notes</CardTitle>
               <CardDescription>Add your notes for this question here.</CardDescription>
@@ -969,7 +916,7 @@ export default function Question({
 
         {/* AI panel */}
         {showAI && (
-          <Card className="mb-6 dark:bg-dark-background">
+          <Card className="mb-6 dark:bg-gray-800">
             <CardHeader>
               <CardTitle>AI Assistant</CardTitle>
               <CardDescription>
@@ -991,7 +938,7 @@ export default function Question({
 
         {/* Comments */}
         {showComments && (
-          <Card className="mb-6 dark:bg-dark-background">
+          <Card className="mb-6 dark:bg-gray-800">
             <CardHeader>
               <CardTitle>Comments</CardTitle>
               <CardDescription>Discuss or ask questions here!</CardDescription>
@@ -1062,7 +1009,7 @@ export default function Question({
               transition={{ duration: 0.2 }}
               className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
             >
-              <Card className="w-full max-w-2xl dark:bg-dark-background">
+              <Card className="w-full max-w-2xl dark:bg-gray-800">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle>Markscheme</CardTitle>
                   <TooltipProvider>
@@ -1114,7 +1061,6 @@ export default function Question({
   )
 }
 
-// helper for comments
 function CommentItem({
   comment,
   userId,
@@ -1161,8 +1107,8 @@ function CommentItem({
               <AvatarFallback>{comment.username.slice(0, 2).toUpperCase()}</AvatarFallback>
             </Avatar>
             <div>
-              <p className="font-semibold">{comment.username}</p>
-              <p className="text-sm text-gray-500">
+              <p className="font-semibold dark:text-gray-200">{comment.username}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 {new Date(comment.timestamp).toLocaleString()}
               </p>
             </div>
@@ -1184,14 +1130,14 @@ function CommentItem({
               </div>
             </div>
           ) : (
-            <p className="mt-2">{comment.content}</p>
+            <p className="mt-2 dark:text-gray-200">{comment.content}</p>
           )}
           <div className="mt-2 flex items-center space-x-4">
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
                   onClick={() => handleVote(comment.id, "upvote")}
-                  className="flex items-center space-x-1 text-gray-500 hover:text-green-500"
+                  className="flex items-center space-x-1 text-gray-500 hover:text-green-500 dark:hover:text-green-400"
                 >
                   <ThumbsUp className="h-4 w-4" />
                   <span>{comment.upvotes}</span>
@@ -1203,7 +1149,7 @@ function CommentItem({
               <TooltipTrigger asChild>
                 <button
                   onClick={() => handleVote(comment.id, "downvote")}
-                  className="flex items-center space-x-1 text-gray-500 hover:text-red-500"
+                  className="flex items-center space-x-1 text-gray-500 hover:text-red-500 dark:hover:text-red-400"
                 >
                   <ThumbsDown className="h-4 w-4" />
                   <span>{comment.downvotes}</span>
@@ -1215,7 +1161,7 @@ function CommentItem({
               <TooltipTrigger asChild>
                 <button
                   onClick={() => setReplyingTo(comment.id)}
-                  className="text-gray-500 hover:text-blue-300"
+                  className="text-gray-500 hover:text-sky-400"
                 >
                   <Reply className="h-4 w-4" />
                 </button>
@@ -1242,7 +1188,7 @@ function CommentItem({
                   <TooltipTrigger asChild>
                     <button
                       onClick={() => handleDeleteComment(comment.id)}
-                      className="text-gray-500 hover:text-red-500"
+                      className="text-gray-500 hover:text-red-500 dark:hover:text-red-400"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>
@@ -1252,6 +1198,7 @@ function CommentItem({
               </>
             )}
           </div>
+          {/* If replying */}
           {replyingTo === comment.id && (
             <div className="mt-2">
               <Textarea
@@ -1270,6 +1217,7 @@ function CommentItem({
           )}
         </div>
       </div>
+      {/* Render any child replies */}
       {comment.replies.map((r) => (
         <CommentItem
           key={r.id}
