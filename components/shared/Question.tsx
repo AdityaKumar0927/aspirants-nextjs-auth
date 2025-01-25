@@ -692,7 +692,7 @@ export default function Question({
               <div className="mb-4">
                 <Input
                   type="text"
-                  className="w-full px-3 py-2 border border-blue-600 rounded-sm bg-blue-100 text-blue-800 focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-blue-600 rounded-sm bg-blue-100 text-blue-300 focus:ring-1 focus:ring-blue-300"
                   placeholder="Type your answer..."
                   value={numericalAnswer ?? ""}
                   onChange={(e) =>
@@ -703,7 +703,7 @@ export default function Question({
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
-                      className="mt-2 border-2 rounded-sm border-blue-600 bg-blue-100 text-blue-800 px-4 py-1"
+                      className="mt-2 border-2 rounded-sm border-blue-600 bg-blue-100 text-blue-300 px-4 py-1"
                       onClick={handleNumericalSubmitLocal}
                     >
                       Submit
@@ -746,7 +746,7 @@ export default function Question({
                             border-2
                             ${
                               isSelected
-                                ? "border-blue-600 bg-blue-50 text-blue-800"
+                                ? "border-blue-600 bg-blue-50 text-blue-300"
                                 : "border-gray-300 dark:border-gray-600"
                             }
                             ${
@@ -1215,7 +1215,7 @@ function CommentItem({
               <TooltipTrigger asChild>
                 <button
                   onClick={() => setReplyingTo(comment.id)}
-                  className="text-gray-500 hover:text-blue-500"
+                  className="text-gray-500 hover:text-blue-300"
                 >
                   <Reply className="h-4 w-4" />
                 </button>
