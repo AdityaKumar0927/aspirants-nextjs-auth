@@ -6,7 +6,7 @@ import cx from "classnames";
 import { sfPro, inter } from "../fonts";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
-import { ApplicationLayout } from './application-layout';
+import { AdminLayout } from "./application-layout";
 import { useSession, SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -68,9 +68,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
         <SessionProvider>
           <AuthorizationGuard>
-            <ApplicationLayout events={events}>
+            <AdminLayout>
               {children}
-            </ApplicationLayout>
+            </AdminLayout>
           </AuthorizationGuard>
         </SessionProvider>
       </body>
