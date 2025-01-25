@@ -1,22 +1,61 @@
-'use client'
+"use client"
 
-import React, { useState, useEffect, useRef, useCallback } from "react"
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  ChangeEvent,
+  MouseEvent,
+  TouchEvent,
+} from "react"
 import { useForm, Controller } from "react-hook-form"
 import { motion, AnimatePresence } from "framer-motion"
 import { toast } from "sonner"
-import { RocketIcon, Search, PlusIcon, ImageIcon, Loader2Icon, PencilIcon, Square, Circle, Edit2Icon, EraserIcon, BoldIcon, ItalicIcon, UnderlineIcon, ListIcon, ListOrderedIcon, Mic, MicOff } from 'lucide-react'
+import {
+  BoldIcon,
+  ItalicIcon,
+  UnderlineIcon,
+  ListIcon,
+  ListOrderedIcon,
+  PencilIcon,
+  ImageIcon,
+  Mic,
+  MicOff,
+  Loader2Icon,
+  Edit2Icon,
+  EraserIcon,
+  Square,
+  Circle,
+  Trash2Icon,
+} from "lucide-react"
+
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Toggle } from "@/components/ui/toggle"
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/components/ui/tabs"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Skeleton } from "@/components/ui/skeleton"
-import { useEditor, EditorContent } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import Underline from '@tiptap/extension-underline'
 
+// Tiptap
+import { useEditor, EditorContent } from "@tiptap/react"
+import StarterKit from "@tiptap/starter-kit"
+import Underline from "@tiptap/extension-underline"
+
+// TYPES
 type NoteType = "TEXT" | "IMAGE" | "STYLUS" | "VOICE"
 
 type Note = {
@@ -28,28 +67,34 @@ type Note = {
   updatedAt: string
   userId: string
   questionId: string | null
+  audio?: string
 }
 
-const CACHE_KEY = 'notes_cache'
+// CONSTANTS
+const CACHE_KEY = "notes_cache"
 const API_RATE_LIMIT = 5000 // 5 seconds
 
+/* ------------------------------------------------------------------
+   SPEECH RECOGNITION (TRANSCRIPTION)
+------------------------------------------------------------------ */
 const useSpeechRecognition = () => {
-  const [transcript, setTranscript] = useState('')
+  const [transcript, setTranscript] = useState("")
   const [listening, setListening] = useState(false)
   const recognitionRef = useRef<SpeechRecognition | null>(null)
 
   const startListening = useCallback(() => {
-    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
+      const SpeechRecognition =
+        window.SpeechRecognition || (window as any).webkitSpeechRecognition
       recognitionRef.current = new SpeechRecognition()
       recognitionRef.current.continuous = true
       recognitionRef.current.interimResults = true
 
       recognitionRef.current.onresult = (event) => {
-        const transcript = Array.from(event.results)
-          .map(result => result[0].transcript)
-          .join('')
-        setTranscript(transcript)
+        const finalTranscript = Array.from(event.results)
+          .map((result) => result[0].transcript)
+          .join("")
+        setTranscript(finalTranscript)
       }
 
       recognitionRef.current.onstart = () => setListening(true)
@@ -57,19 +102,16 @@ const useSpeechRecognition = () => {
 
       recognitionRef.current.start()
     } else {
-      console.error('Speech recognition not supported')
-      toast.error("Speech recognition is not supported in this browser.")
+      toast.error("Speech recognition not supported by this browser.")
     }
   }, [])
 
   const stopListening = useCallback(() => {
-    if (recognitionRef.current) {
-      recognitionRef.current.stop()
-    }
+    recognitionRef.current?.stop()
   }, [])
 
   const resetTranscript = useCallback(() => {
-    setTranscript('')
+    setTranscript("")
   }, [])
 
   return {
@@ -78,44 +120,113 @@ const useSpeechRecognition = () => {
     startListening,
     stopListening,
     resetTranscript,
-    browserSupportsSpeechRecognition: 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window
+    browserSupportsSpeechRecognition:
+      "SpeechRecognition" in window || "webkitSpeechRecognition" in window,
   }
 }
 
-const MenuBar = ({ editor }: { editor: any }) => {
-  if (!editor) {
-    return null
+/* ------------------------------------------------------------------
+   AUDIO RECORDER (For Voice Notes)
+------------------------------------------------------------------ */
+const useAudioRecorder = () => {
+  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null)
+  const [recordedChunks, setRecordedChunks] = useState<Blob[]>([])
+  const [isRecording, setIsRecording] = useState(false)
+  const [audioURL, setAudioURL] = useState("")
+
+  useEffect(() => {
+    if (!isRecording && recordedChunks.length > 0) {
+      const blob = new Blob(recordedChunks, { type: "audio/webm" })
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        if (reader.result) {
+          setAudioURL(reader.result as string)
+        }
+      }
+      reader.readAsDataURL(blob)
+    }
+  }, [isRecording, recordedChunks])
+
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      const recorder = new MediaRecorder(stream)
+      recorder.ondataavailable = (e) => {
+        if (e.data.size > 0) {
+          setRecordedChunks((prev) => [...prev, e.data])
+        }
+      }
+      recorder.onstart = () => {
+        setRecordedChunks([])
+        setIsRecording(true)
+      }
+      recorder.onstop = () => {
+        setIsRecording(false)
+      }
+
+      recorder.start()
+      setMediaRecorder(recorder)
+    } catch (error) {
+      toast.error("Error accessing mic for recording.")
+    }
   }
 
+  const stopRecording = () => {
+    mediaRecorder?.stop()
+    setMediaRecorder(null)
+  }
+
+  const resetRecording = () => {
+    setRecordedChunks([])
+    setAudioURL("")
+  }
+
+  return {
+    isRecording,
+    audioURL,
+    startRecording,
+    stopRecording,
+    resetRecording,
+  }
+}
+
+/* ------------------------------------------------------------------
+   TIPTAP MENUBAR (For text formatting)
+------------------------------------------------------------------ */
+const MenuBar = ({ editor }: { editor: any }) => {
+  if (!editor) return null
+
   return (
-    <div className="flex space-x-2 mb-2">
+    <div className="mb-3 flex items-center space-x-2">
       <Toggle
-        pressed={editor.isActive('bold')}
+        pressed={editor.isActive("bold")}
         onPressedChange={() => editor.chain().focus().toggleBold().run()}
       >
         <BoldIcon className="h-4 w-4" />
       </Toggle>
       <Toggle
-        pressed={editor.isActive('italic')}
+        pressed={editor.isActive("italic")}
         onPressedChange={() => editor.chain().focus().toggleItalic().run()}
       >
         <ItalicIcon className="h-4 w-4" />
       </Toggle>
       <Toggle
-        pressed={editor.isActive('underline')}
+        pressed={editor.isActive("underline")}
         onPressedChange={() => editor.chain().focus().toggleUnderline().run()}
       >
         <UnderlineIcon className="h-4 w-4" />
       </Toggle>
       <Toggle
-        pressed={editor.isActive('bulletList')}
+        pressed={editor.isActive("bulletList")}
         onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
       >
         <ListIcon className="h-4 w-4" />
       </Toggle>
       <Toggle
-        pressed={editor.isActive('orderedList')}
-        onPressedChange={() => editor.chain().focus().toggleOrderedList().run()}
+        pressed={editor.isActive("orderedList")}
+        onPressedChange={() =>
+          editor.chain().focus().toggleOrderedList().run()
+        }
       >
         <ListOrderedIcon className="h-4 w-4" />
       </Toggle>
@@ -123,177 +234,209 @@ const MenuBar = ({ editor }: { editor: any }) => {
   )
 }
 
-export default function OptimizedNoteApp({ questionId }: { questionId?: string }) {
+/* ------------------------------------------------------------------
+   MAIN COMPONENT (Vercel-like Minimal Style)
+------------------------------------------------------------------ */
+export default function VercelStyleNoteApp({ questionId }: { questionId?: string }) {
   const [notes, setNotes] = useState<Note[]>([])
   const [editingNote, setEditingNote] = useState<Note | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [isDrawing, setIsDrawing] = useState(false)
-  const [penColor, setPenColor] = useState("#000000")
+  const [penColor, setPenColor] = useState("#000")
   const [penSize, setPenSize] = useState(2)
   const [currentShape, setCurrentShape] = useState<"pen" | "square" | "circle">("pen")
-  const [isClient, setIsClient] = useState(false)
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const [noteToDelete, setNoteToDelete] = useState<Note | null>(null)
   const [lastApiCall, setLastApiCall] = useState(0)
+
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const { control, handleSubmit, reset, watch, setValue } = useForm<{ title: string; content: string; type: NoteType }>({
-    defaultValues: { title: "", content: "", type: "TEXT" },
+
+  // FORM
+  const {
+    control,
+    handleSubmit,
+    reset,
+    watch,
+    setValue,
+  } = useForm<{
+    title: string
+    content: string
+    type: NoteType
+    audio?: string
+  }>({
+    defaultValues: {
+      title: "",
+      content: "",
+      type: "TEXT",
+      audio: "",
+    },
   })
 
   const noteType = watch("type")
 
+  // TIPTAP
   const editor = useEditor({
     extensions: [StarterKit, Underline],
-    content: '',
+    content: "",
     onUpdate: ({ editor }) => {
-      setValue('content', editor.getHTML())
-    }
+      setValue("content", editor.getHTML())
+    },
   })
 
+  // SPEECH RECOGNITION
+  const {
+    transcript,
+    listening,
+    startListening,
+    stopListening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition()
+
+  // AUDIO RECORDER
+  const {
+    isRecording,
+    audioURL,
+    startRecording,
+    stopRecording,
+    resetRecording,
+  } = useAudioRecorder()
+
+  // Fetch
   const fetchNotes = useCallback(async () => {
     const now = Date.now()
     if (now - lastApiCall < API_RATE_LIMIT) {
-      console.log('Rate limit reached, using cached data')
-      const cachedNotes = localStorage.getItem(CACHE_KEY)
-      if (cachedNotes) {
-        setNotes(JSON.parse(cachedNotes))
-      }
+      const cached = localStorage.getItem(CACHE_KEY)
+      if (cached) setNotes(JSON.parse(cached))
       return
     }
 
     setIsLoading(true)
     try {
-      let url = '/api/notes'
-      if (questionId) {
-        url += `/question?questionId=${questionId}`
-      }
-      const response = await fetch(url)
-      if (!response.ok) throw new Error('Failed to fetch notes')
-      const data = await response.json()
+      let url = "/api/notes"
+      if (questionId) url += `/question?questionId=${questionId}`
+      const resp = await fetch(url)
+      if (!resp.ok) throw new Error("Failed to fetch.")
+      const data = await resp.json()
       setNotes(Array.isArray(data) ? data : [])
       localStorage.setItem(CACHE_KEY, JSON.stringify(data))
       setLastApiCall(now)
-      toast.success("Notes loaded successfully")
     } catch (error) {
-      console.error('Error fetching notes:', error)
-      toast.error("Failed to load notes", {
-        description: "Please try again later. Your existing notes are still available.",
-      })
+      toast.error("Could not load notes.")
     } finally {
       setIsLoading(false)
     }
   }, [questionId, lastApiCall])
 
   useEffect(() => {
-    setIsClient(true)
-    const cachedNotes = localStorage.getItem(CACHE_KEY)
-    if (cachedNotes) {
-      setNotes(JSON.parse(cachedNotes))
-    }
+    const cache = localStorage.getItem(CACHE_KEY)
+    if (cache) setNotes(JSON.parse(cache))
     fetchNotes()
   }, [fetchNotes])
 
-  const onSubmit = async (data: { title: string; content: string; type: NoteType }) => {
+  useEffect(() => {
+    if (noteType === "VOICE") {
+      setValue("content", transcript)
+    }
+  }, [transcript, noteType, setValue])
+
+  // SUBMIT
+  const onSubmit = async (data: {
+    title: string
+    content: string
+    type: NoteType
+    audio?: string
+  }) => {
     const now = Date.now()
     if (now - lastApiCall < API_RATE_LIMIT) {
-      toast.error("Please wait before submitting again")
+      toast.error("Please wait before submitting again.")
       return
     }
 
     setIsLoading(true)
     try {
       let noteContent = data.content
-      if (data.type === 'STYLUS') {
-        noteContent = canvasRef.current?.toDataURL() || ''
-      } else if (data.type === 'TEXT') {
-        noteContent = editor?.getHTML() || ''
+      let noteAudio = data.audio || ""
+
+      if (data.type === "STYLUS" && canvasRef.current) {
+        noteContent = canvasRef.current.toDataURL()
+      } else if (data.type === "TEXT") {
+        noteContent = editor?.getHTML() || ""
+      } else if (data.type === "VOICE") {
+        noteAudio = audioURL
       }
 
-      if (!noteContent.trim()) {
-        throw new Error('Note content cannot be empty')
+      // Basic validation for text/voice
+      if ((data.type === "TEXT" || data.type === "VOICE") && !noteContent.trim()) {
+        throw new Error("Cannot be empty.")
       }
 
       const noteData = {
-        title: data.title.trim() || `Note for ${questionId ? `Question ${questionId}` : 'General'}`,
+        title: data.title.trim() || "Untitled",
         content: noteContent,
         type: data.type,
         questionId: questionId || null,
+        audio: noteAudio,
       }
 
-      const url = editingNote ? `/api/notes/${editingNote.id}` : '/api/notes'
-      const method = editingNote ? 'PUT' : 'POST'
+      const url = editingNote ? `/api/notes/${editingNote.id}` : "/api/notes"
+      const method = editingNote ? "PUT" : "POST"
 
-      const response = await fetch(url, {
+      const resp = await fetch(url, {
         method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(noteData),
       })
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Failed to save note')
+      if (!resp.ok) {
+        const errData = await resp.json()
+        throw new Error(errData.error || "Error saving note.")
       }
 
-      const savedNote = await response.json()
-
-      setNotes(prevNotes => {
-        const updatedNotes = editingNote
-          ? prevNotes.map(note => note.id === savedNote.id ? savedNote : note)
-          : [savedNote, ...prevNotes];
-        localStorage.setItem(CACHE_KEY, JSON.stringify(updatedNotes))
-        return updatedNotes
+      const savedNote = await resp.json()
+      setNotes((prev) => {
+        const updated = editingNote
+          ? prev.map((n) => (n.id === savedNote.id ? savedNote : n))
+          : [savedNote, ...prev]
+        localStorage.setItem(CACHE_KEY, JSON.stringify(updated))
+        return updated
       })
 
       setLastApiCall(now)
-      toast.success(editingNote ? "Note updated successfully" : "Note added successfully", {
-        description: `Your ${data.type.toLowerCase()} note has been ${editingNote ? "updated" : "saved"}.`,
-      })
-
-      reset({ title: "", content: "", type: "TEXT" })
-      editor?.commands.setContent('')
+      toast.success(editingNote ? "Note updated" : "Note added")
+      reset({ title: "", content: "", type: "TEXT", audio: "" })
+      editor?.commands.setContent("")
+      resetTranscript()
+      resetRecording()
+      clearCanvas()
       setEditingNote(null)
-    } catch (error) {
-      console.error('Error saving note:', error)
-      toast.error("Failed to save note", {
-        description: error instanceof Error ? error.message : "An unexpected error occurred. Please try again.",
-      })
+    } catch (error: any) {
+      toast.error(error.message || "Failed to save note.")
     } finally {
       setIsLoading(false)
     }
   }
 
+  // DELETE
   const deleteNote = async (note: Note) => {
     const now = Date.now()
     if (now - lastApiCall < API_RATE_LIMIT) {
-      toast.error("Please wait before deleting again")
+      toast.error("Please wait before deleting again.")
       return
     }
-
     setIsLoading(true)
     try {
-      const response = await fetch(`/api/notes/${note.id}`, {
-        method: 'DELETE',
-      })
-
-      if (!response.ok) throw new Error('Failed to delete note')
-
-      setNotes(prevNotes => {
-        const updatedNotes = prevNotes.filter((n) => n.id !== note.id)
-        localStorage.setItem(CACHE_KEY, JSON.stringify(updatedNotes))
-        return updatedNotes
+      const resp = await fetch(`/api/notes/${note.id}`, { method: "DELETE" })
+      if (!resp.ok) throw new Error("Delete failed.")
+      setNotes((prev) => {
+        const updated = prev.filter((n) => n.id !== note.id)
+        localStorage.setItem(CACHE_KEY, JSON.stringify(updated))
+        return updated
       })
       setLastApiCall(now)
-      toast.success("Note deleted successfully", {
-        description: "Your note has been permanently removed.",
-      })
+      toast("Note deleted.")
     } catch (error) {
-      console.error('Error deleting note:', error)
-      toast.error("Failed to delete note", {
-        description: "The note couldn't be deleted. Please try again later.",
-      })
+      toast.error("Failed to delete.")
     } finally {
       setIsLoading(false)
       setIsDeleteModalOpen(false)
@@ -301,293 +444,404 @@ export default function OptimizedNoteApp({ questionId }: { questionId?: string }
     }
   }
 
+  // EDIT
   const handleEdit = (note: Note) => {
     setEditingNote(note)
-    reset({ title: note.title, content: note.content, type: note.type })
-    if (note.type === 'STYLUS' && canvasRef.current) {
-      const ctx = canvasRef.current.getContext('2d')
+    reset({
+      title: note.title,
+      content: note.content,
+      type: note.type,
+      audio: note.audio || "",
+    })
+    if (note.type === "STYLUS" && canvasRef.current) {
+      clearCanvas()
+      const ctx = canvasRef.current.getContext("2d")
+      if (!ctx) return
       const img = new Image()
-      img.onload = () => {
-        ctx?.drawImage(img, 0, 0)
-      }
+      img.onload = () => ctx.drawImage(img, 0, 0)
       img.src = note.content
-    } else if (note.type === 'TEXT') {
+    } else if (note.type === "TEXT") {
       editor?.commands.setContent(note.content)
     }
-    toast.info("Editing note", {
-      description: "You are now editing an existing note. Make your changes and click 'Update Note' to save.",
-    })
   }
 
-  const filteredNotes = notes.filter(
-    (note) => note.title.toLowerCase().includes(searchTerm.toLowerCase()) || note.content.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  // FILTER
+  const filteredNotes = notes.filter((n) => {
+    const t = searchTerm.toLowerCase()
+    return n.title.toLowerCase().includes(t) || n.content.toLowerCase().includes(t)
+  })
 
-  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+  // STYLUS
+  const startDrawing = (
+    e: MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>
+  ) => {
     setIsDrawing(true)
     draw(e)
   }
-
   const stopDrawing = () => {
     setIsDrawing(false)
-    if (canvasRef.current) {
-      const ctx = canvasRef.current.getContext('2d')
-      ctx?.beginPath()
-    }
+    canvasRef.current?.getContext("2d")?.beginPath()
   }
-
-  const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+  const draw = (
+    e: MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>
+  ) => {
     if (!isDrawing || !canvasRef.current) return
-
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
+    const ctx = canvasRef.current.getContext("2d")
     if (!ctx) return
+    const rect = canvasRef.current.getBoundingClientRect()
+    const scaleX = canvasRef.current.width / rect.width
+    const scaleY = canvasRef.current.height / rect.height
 
-    const rect = canvas.getBoundingClientRect()
-    const scaleX = canvas.width / rect.width
-    const scaleY = canvas.height / rect.height
-
-    let x, y
-    if ('touches' in e) {
+    let x: number
+    let y: number
+    if ("touches" in e) {
       x = (e.touches[0].clientX - rect.left) * scaleX
       y = (e.touches[0].clientY - rect.top) * scaleY
     } else {
-      x = (e.clientX - rect.left) * scaleX
-      y = (e.clientY - rect.top) * scaleY
+      x = ((e as MouseEvent).clientX - rect.left) * scaleX
+      y = ((e as MouseEvent).clientY - rect.top) * scaleY
     }
 
     ctx.strokeStyle = penColor
     ctx.lineWidth = penSize
-    ctx.lineCap = 'round'
+    ctx.lineCap = "round"
 
-    if (currentShape === 'pen') {
+    if (currentShape === "pen") {
       ctx.lineTo(x, y)
       ctx.stroke()
       ctx.beginPath()
       ctx.moveTo(x, y)
-    } else if (currentShape === 'square') {
+    } else if (currentShape === "square") {
       ctx.strokeRect(x - penSize / 2, y - penSize / 2, penSize, penSize)
-    } else if (currentShape === 'circle') {
+    } else if (currentShape === "circle") {
       ctx.beginPath()
       ctx.arc(x, y, penSize / 2, 0, Math.PI * 2)
       ctx.stroke()
     }
   }
-
   const clearCanvas = () => {
     if (canvasRef.current) {
-      const ctx = canvasRef.current.getContext('2d')
+      const ctx = canvasRef.current.getContext("2d")
       ctx?.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
     }
   }
 
-  const VoiceToTextContent = () => {
-    const {
-      transcript,
-      listening,
-      startListening,
-      stopListening,
-      resetTranscript,
-      browserSupportsSpeechRecognition
-    } = useSpeechRecognition()
-
-    useEffect(() => {
-      if (typeof browserSupportsSpeechRecognition === 'boolean') {
-        setIsClient(browserSupportsSpeechRecognition)
-      }
-    }, [browserSupportsSpeechRecognition])
-
-    useEffect(() => {
-      setValue('content', transcript)
-    }, [transcript, setValue])
-
-    if (!isClient) {
-      return <span>Loading speech recognition...</span>
-    }
-
-    if (!browserSupportsSpeechRecognition) {
-      return <span>Browser doesn&apos;t support speech recognition.</span>
-    }
-
-    return (
-      <div className="space-y-4">
-        <div className="flex justify-center space-x-2">
-          <Button
-            onClick={startListening}
-            disabled={listening}
-          >
-            <Mic className="mr-2 h-4 w-4" />
-            Start Recording
-          </Button>
-          <Button
-            onClick={stopListening}
-            disabled={!listening}
-            variant="secondary"
-          >
-            <MicOff className="mr-2 h-4 w-4" />
-            Stop Recording
-          </Button>
-          <Button
-            onClick={resetTranscript}
-            variant="outline"
-          >
-            Reset
-          </Button>
-        </div>
-        <div className="p-4 border rounded-md min-h-[100px]">
-          {transcript || "Your note will appear here..."}
-        </div>
-      </div>
-    )
-  }
-
+  // RENDER
   return (
-    <div className="flex min-h-screen w-full flex-col">
-      <header className="flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-        <h1 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-          {questionId ? `Notes for Question ${questionId}` : 'My Notes'}
-        </h1>
-        <div className="flex-1" />
+    <div className="min-h-screen flex flex-col bg-black text-white">
+      {/* HEADER */}
+      <header className="border-b border-neutral-800 px-6 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <h1 className="text-xl font-bold">Notes</h1>
+          {questionId && (
+            <span className="text-sm text-neutral-400">Q#{questionId}</span>
+          )}
+        </div>
         <Input
-          className="w-[200px] md:w-[300px]"
-          placeholder="Search notes..."
+          placeholder="Search..."
+          className="bg-neutral-900 text-sm text-white placeholder:text-neutral-500 border-0 focus:outline-none px-3 py-1.5"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </header>
-      <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 overflow-auto">
-        <Card className="w-full md:w-[700px]">
-          <CardHeader>
-            <CardTitle>{editingNote ? "Edit Note" : "Create Note"}</CardTitle>
-            <CardDescription>
-              {questionId 
-                ? `Add a note for Question ${questionId}`
-                : 'Add a note'
-              }
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit((data) => {
-              if (!data.content.trim() && data.type !== 'STYLUS') {
-                toast.error("Note content cannot be empty")
-                return
-              }
-              onSubmit(data)
-            })}>
-              <div className="grid w-full items-center gap-4">
-                <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="title">Title</Label>
-                  <Controller 
-                    name="title" 
-                    control={control} 
-                    rules={{ required: "Title is required" }}
-                    render={({ field, fieldState: { error } }) => (
-                      <>
-                        <Input id="title" {...field} placeholder="Enter a title" />
-                        {error && <span className="text-red-500 text-sm">{error.message}</span>}
-                      </>
-                    )}
-                  />
-                </div>
-                <div className="flex flex-col space-y-1.5">
-                  <Label>Note Type</Label>
-                  <Tabs value={noteType} onValueChange={(value) => setValue("type", value as NoteType)}>
-                    <TabsList>
-                      <TabsTrigger value="TEXT">Text</TabsTrigger>
-                      <TabsTrigger value="IMAGE">Image</TabsTrigger>
-                      <TabsTrigger value="STYLUS">Stylus</TabsTrigger>
-                      <TabsTrigger value="VOICE">Voice</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="TEXT">
-                      <div className="border rounded-md p-4">
-                        <MenuBar editor={editor} />
-                        <EditorContent editor={editor} />
+
+      {/* BODY */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* SIDEBAR - LIST OF NOTES */}
+        <aside className="border-r border-neutral-800 hidden md:block w-64 p-4 overflow-auto">
+          <h2 className="font-semibold mb-3">Your Notes</h2>
+          <div className="space-y-2">
+            <AnimatePresence>
+              {isLoading
+                ? Array.from({ length: 3 }).map((_, i) => (
+                    <motion.div
+                      key={`skel-${i}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      <Skeleton className="h-8 w-full bg-neutral-800 rounded" />
+                    </motion.div>
+                  ))
+                : filteredNotes.length === 0
+                ? (
+                  <motion.div
+                    key="no-notes"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-sm text-neutral-500"
+                  >
+                    No notes found.
+                  </motion.div>
+                ) : (
+                  filteredNotes.map((note) => (
+                    <motion.div
+                      key={note.id}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      className="p-2 border border-neutral-800 rounded hover:border-neutral-600 transition-colors cursor-pointer"
+                      onClick={() => handleEdit(note)}
+                    >
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="truncate">{note.title || "Untitled"}</span>
+                        {note.type === "TEXT" && (
+                          <Edit2Icon className="h-4 w-4 text-neutral-400" />
+                        )}
+                        {note.type === "IMAGE" && (
+                          <ImageIcon className="h-4 w-4 text-neutral-400" />
+                        )}
+                        {note.type === "STYLUS" && (
+                          <PencilIcon className="h-4 w-4 text-neutral-400" />
+                        )}
+                        {note.type === "VOICE" && (
+                          <Mic className="h-4 w-4 text-neutral-400" />
+                        )}
                       </div>
-                    </TabsContent>
-                    <TabsContent value="IMAGE">
-                      <Input 
-                        id="picture" 
-                        type="file" 
-                        accept="image/*" 
-                        onChange={(e) => {
-                          const file = e.target.files?.[0]
-                          if (file) {
-                            const reader = new FileReader()
-                            reader.onloadend = () => {
-                              setValue('content', reader.result as string)
-                            }
-                            reader.readAsDataURL(file)
-                          }
-                        }}
-                      />
-                    </TabsContent>
-                    <TabsContent value="STYLUS">
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button variant="outline">Open Drawing Canvas</Button>
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-[800px] backdrop-blur-sm bg-opacity-50">
-                          <DialogHeader>
-                            <DialogTitle>Drawing Canvas</DialogTitle>
-                            <DialogDescription>Use your stylus or mouse to draw a note.</DialogDescription>
-                          </DialogHeader>
-                          <div className="flex flex-col space-y-4">
-                            <div className="flex justify-between items-center">
-                              <div className="flex space-x-2">
-                                <Toggle pressed={currentShape === 'pen'} onPressedChange={() => setCurrentShape('pen')}>
-                                  <PencilIcon className="h-4 w-4"  />
-                                </Toggle>
-                                <Toggle pressed={currentShape === 'square'} onPressedChange={() => setCurrentShape('square')}>
-                                  <Square className="h-4 w-4" />
-                                </Toggle>
-                                <Toggle pressed={currentShape === 'circle'} onPressedChange={() => setCurrentShape('circle')}>
-                                  <Circle className="h-4 w-4" />
-                                </Toggle>
-                              </div>
-                              <Input
-                                type="color"
-                                value={penColor}
-                                onChange={(e) => setPenColor(e.target.value)}
-                                className="w-10 h-10 p-0 border-0"
-                              />
-                              <Input
-                                type="range"
-                                min="1"
-                                max="20"
-                                value={penSize}
-                                onChange={(e) => setPenSize(parseInt(e.target.value))}
-                                className="w-32"
-                              />
-                              <Button variant="outline" onClick={clearCanvas}>
-                                <EraserIcon className="h-4 w-4 mr-2" />
-                                Clear
-                              </Button>
-                            </div>
-                            <canvas
-                              ref={canvasRef}
-                              width={700}
-                              height={400}
-                              onMouseDown={startDrawing}
-                              onMouseUp={stopDrawing}
-                              onMouseOut={stopDrawing}
-                              onMouseMove={draw}
-                              onTouchStart={startDrawing}
-                              onTouchEnd={stopDrawing}
-                              onTouchMove={draw}
-                              className="border border-gray-300 rounded-lg touch-none"
-                            />
-                          </div>
-                        </DialogContent>
-                      </Dialog>
-                    </TabsContent>
-                    <TabsContent value="VOICE">
-                      {isClient && <VoiceToTextContent />}
-                    </TabsContent>
-                  </Tabs>
-                </div>
-              </div>
-              <div className="mt-4 flex justify-between">
-                <Button type="submit" disabled={isLoading}>
+                      <div className="text-xs text-neutral-500">
+                        {new Date(note.updatedAt).toLocaleString()}
+                      </div>
+                    </motion.div>
+                  ))
+                )}
+            </AnimatePresence>
+          </div>
+        </aside>
+
+        {/* MAIN EDITOR */}
+        <main className="flex-1 overflow-auto p-4 md:p-6 lg:p-8">
+          <motion.div
+            layout
+            className="max-w-2xl mx-auto w-full border border-neutral-800 rounded p-4"
+          >
+            <h2 className="text-lg font-semibold mb-1">
+              {editingNote ? "Edit Note" : "Create Note"}
+            </h2>
+            <p className="text-sm text-neutral-500 mb-4">
+              {questionId ? `Question #${questionId}` : "Write or draw something."}
+            </p>
+
+            <form
+              onSubmit={handleSubmit((data) => {
+                if (data.type !== "STYLUS" && !data.content.trim()) {
+                  toast.error("Content cannot be empty.")
+                  return
+                }
+                onSubmit(data)
+              })}
+            >
+              {/* TITLE */}
+              <Label className="block mb-1">Title</Label>
+              <Controller
+                name="title"
+                control={control}
+                rules={{ required: "Title is required." }}
+                render={({ field, fieldState }) => (
+                  <>
+                    <Input
+                      {...field}
+                      className="w-full bg-neutral-900 text-white mb-3"
+                      placeholder="Note title"
+                    />
+                    {fieldState.error && (
+                      <span className="text-red-400 text-sm">
+                        {fieldState.error.message}
+                      </span>
+                    )}
+                  </>
+                )}
+              />
+
+              {/* TABS */}
+              <Tabs value={noteType} onValueChange={(val) => setValue("type", val as NoteType)}>
+                <TabsList className="bg-neutral-900 text-white mb-3">
+                  <TabsTrigger value="TEXT">Text</TabsTrigger>
+                  <TabsTrigger value="IMAGE">Image</TabsTrigger>
+                  <TabsTrigger value="STYLUS">Stylus</TabsTrigger>
+                  <TabsTrigger value="VOICE">Voice</TabsTrigger>
+                </TabsList>
+
+                {/* TEXT */}
+                <TabsContent value="TEXT">
+                  <MenuBar editor={editor} />
+                  <div className="border border-neutral-800 rounded p-2">
+                    <EditorContent editor={editor} />
+                  </div>
+                </TabsContent>
+
+                {/* IMAGE */}
+                <TabsContent value="IMAGE">
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    className="bg-neutral-900 text-white mt-2"
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                      const file = e.target.files?.[0]
+                      if (file) {
+                        const reader = new FileReader()
+                        reader.onloadend = () => {
+                          setValue("content", reader.result as string)
+                        }
+                        reader.readAsDataURL(file)
+                      }
+                    }}
+                  />
+                </TabsContent>
+
+                {/* STYLUS */}
+                <TabsContent value="STYLUS">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" className="mt-2 text-sm">
+                        Open Canvas
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="border border-neutral-700 bg-neutral-900 text-white max-w-3xl w-full">
+                      <DialogHeader>
+                        <DialogTitle>Draw</DialogTitle>
+                        <DialogDescription>Use your mouse or stylus.</DialogDescription>
+                      </DialogHeader>
+                      <div className="mt-4 space-y-4">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <Toggle
+                            pressed={currentShape === "pen"}
+                            onPressedChange={() => setCurrentShape("pen")}
+                          >
+                            <PencilIcon className="h-4 w-4" />
+                          </Toggle>
+                          <Toggle
+                            pressed={currentShape === "square"}
+                            onPressedChange={() => setCurrentShape("square")}
+                          >
+                            <Square className="h-4 w-4" />
+                          </Toggle>
+                          <Toggle
+                            pressed={currentShape === "circle"}
+                            onPressedChange={() => setCurrentShape("circle")}
+                          >
+                            <Circle className="h-4 w-4" />
+                          </Toggle>
+                          <Input
+                            type="color"
+                            value={penColor}
+                            onChange={(e) => setPenColor(e.target.value)}
+                            className="w-8 h-8 p-0"
+                          />
+                          <Input
+                            type="range"
+                            min={1}
+                            max={20}
+                            value={penSize}
+                            onChange={(e) => setPenSize(parseInt(e.target.value))}
+                            className="w-28"
+                          />
+                          <Button
+                            variant="outline"
+                            className="text-sm"
+                            onClick={clearCanvas}
+                          >
+                            <EraserIcon className="h-4 w-4 mr-2" />
+                            Clear
+                          </Button>
+                        </div>
+                        <canvas
+                          ref={canvasRef}
+                          width={800}
+                          height={400}
+                          className="border border-neutral-700 w-full"
+                          onMouseDown={startDrawing}
+                          onMouseUp={stopDrawing}
+                          onMouseOut={stopDrawing}
+                          onMouseMove={draw}
+                          onTouchStart={startDrawing}
+                          onTouchEnd={stopDrawing}
+                          onTouchMove={draw}
+                        />
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </TabsContent>
+
+                {/* VOICE */}
+                <TabsContent value="VOICE">
+                  {/* Transcription */}
+                  <div className="mt-2">
+                    <Label className="mb-1">Transcription</Label>
+                    <div className="flex gap-2 mb-2">
+                      <Button
+                        onClick={startListening}
+                        disabled={listening}
+                        className="text-sm"
+                      >
+                        <Mic className="mr-2 h-4 w-4" />
+                        {listening ? "Listening..." : "Start"}
+                      </Button>
+                      <Button
+                        onClick={stopListening}
+                        disabled={!listening}
+                        variant="outline"
+                        className="text-sm"
+                      >
+                        <MicOff className="mr-2 h-4 w-4" />
+                        Stop
+                      </Button>
+                      <Button
+                        onClick={resetTranscript}
+                        variant="outline"
+                        className="text-sm"
+                      >
+                        Reset
+                      </Button>
+                    </div>
+                    <div className="min-h-[60px] border border-neutral-800 rounded p-2 text-sm text-neutral-200">
+                      {transcript || "Your transcription here..."}
+                    </div>
+                    {!browserSupportsSpeechRecognition && (
+                      <p className="text-red-400 text-sm mt-2">
+                        Browser not supported.
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Audio Recording */}
+                  <div className="mt-4">
+                    <Label className="mb-1">Audio Recording</Label>
+                    <div className="flex gap-2 mb-2">
+                      {!isRecording ? (
+                        <Button onClick={startRecording} className="text-sm">
+                          <Mic className="mr-2 h-4 w-4" />
+                          Record Audio
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="destructive"
+                          onClick={stopRecording}
+                          className="text-sm"
+                        >
+                          <MicOff className="mr-2 h-4 w-4" />
+                          Stop
+                        </Button>
+                      )}
+                      <Button onClick={resetRecording} variant="outline" className="text-sm">
+                        Reset
+                      </Button>
+                    </div>
+                    {audioURL && (
+                      <audio controls src={audioURL} className="mt-2 w-full">
+                        Audio not supported.
+                      </audio>
+                    )}
+                  </div>
+                </TabsContent>
+              </Tabs>
+
+              {/* ACTION BUTTONS */}
+              <div className="mt-4 flex items-center gap-3">
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="text-sm bg-[#0070F3] hover:bg-[#0059bf]"
+                >
                   {isLoading ? (
                     <>
                       <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
@@ -600,145 +854,76 @@ export default function OptimizedNoteApp({ questionId }: { questionId?: string }
                   )}
                 </Button>
                 {editingNote && (
-                  <Button type="button" variant="outline"
+                  <Button
+                    variant="outline"
+                    className="text-sm"
                     onClick={() => {
                       setEditingNote(null)
-                      reset({ title: "", content: "", type: "TEXT" })
-                      editor?.commands.setContent('')
-                      toast.info("Cancelled editing", {
-                        description: "You've cancelled editing. The note remains unchanged.",
-                      })
+                      reset({ title: "", content: "", type: "TEXT", audio: "" })
+                      editor?.commands.setContent("")
+                      resetTranscript()
+                      resetRecording()
+                      clearCanvas()
                     }}
                   >
-                    Cancel Edit
+                    Cancel
                   </Button>
                 )}
               </div>
             </form>
-          </CardContent>
-        </Card>
-
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence>
-            {isLoading ? (
-              Array.from({ length: 3 }).map((_, index) => (
-                <motion.div
-                  key={`skeleton-${index}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <Card>
-                    <CardHeader>
-                      <Skeleton className="h-5 w-1/2" />
-                    </CardHeader>
-                    <CardContent>
-                      <Skeleton className="h-4 w-full mb-2" />
-                      <Skeleton className="h-4 w-2/3" />
-                    </CardContent>
-                    <CardFooter>
-                      <Skeleton className="h-9 w-20 mr-2" />
-                      <Skeleton className="h-9 w-20" />
-                    </CardFooter>
-                  </Card>
-                </motion.div>
-              ))
-            ) : filteredNotes.length === 0 ? (
-              <motion.div
-                key="no-notes"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="col-span-full text-center text-muted-foreground"
-              >
-                No notes found. Start by creating a new note!
-              </motion.div>
-            ) : (
-              filteredNotes.map((note) => (
-                <motion.div key={note.id} layout initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}>
-                  <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">{note.title || "Untitled Note"}</CardTitle>
-                      {note.type === "TEXT" && <Edit2Icon className="h-4 w-4 text-muted-foreground" />}
-                      {note.type === "IMAGE" && <ImageIcon className="h-4 w-4 text-muted-foreground" />}
-                      {note.type === "STYLUS" && <PencilIcon className="h-4 w-4 text-muted-foreground" />}
-                      {note.type === "VOICE" && <Mic className="h-4 w-4 text-muted-foreground" />}
-                    </CardHeader>
-                    <CardContent>
-                      {note.type === 'STYLUS' ? (
-                        <img src={note.content} alt="Stylus note" className="w-full h-auto" />
-                      ) : note.type === 'TEXT' ? (
-                        <div dangerouslySetInnerHTML={{ __html: note.content }} className="prose max-w-none" />
-                      ) : note.type === 'IMAGE' ? (
-                        <img src={note.content} alt="Note image" className="w-full h-auto" />
-                      ) : (
-                        <p className="text-sm">{note.content}</p>
-                      )}
-                      <p className="text-xs text-muted-foreground mt-2">{new Date(note.updatedAt).toLocaleString()}</p>
-                    </CardContent>
-                    <CardFooter className="flex justify-between">
-                      <Button variant="outline" size="sm" onClick={() => handleEdit(note)}>
-                        Edit
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        onClick={() => {
-                          setNoteToDelete(note)
-                          setIsDeleteModalOpen(true)
-                        }}
-                      >
-                        Delete
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </motion.div>
-              ))
-            )}
-          </AnimatePresence>
-        </div>
-      </main>
-
-      {/* Delete Confirmation Modal */}
-      {isDeleteModalOpen && noteToDelete && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex items-center justify-center z-50">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full"
-          >
-            <h2 className="text-xl font-bold mb-4">Confirm Deletion</h2>
-            <p className="mb-6">Are you sure you want to delete this note? This action cannot be undone.</p>
-            <div className="flex justify-end space-x-4">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setIsDeleteModalOpen(false)
-                  setNoteToDelete(null)
-                }}
-              >
-                Cancel
-              </Button>
-              <Button
-                variant="destructive"
-                onClick={() => deleteNote(noteToDelete)}
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                    Deleting...
-                  </>
-                ) : (
-                  "Delete"
-                )}
-              </Button>
-            </div>
           </motion.div>
-        </div>
-      )}
+        </main>
+      </div>
+
+      {/* DELETE MODAL */}
+      <AnimatePresence>
+        {isDeleteModalOpen && noteToDelete && (
+          <motion.div
+            className="fixed inset-0 flex items-center justify-center bg-black/60"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="bg-neutral-900 border border-neutral-700 p-6 rounded text-white max-w-sm w-full"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+            >
+              <h2 className="text-xl font-bold mb-4">Delete Note</h2>
+              <p className="mb-4 text-sm text-neutral-400">
+                This action cannot be undone.
+              </p>
+              <div className="flex justify-end gap-3">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setIsDeleteModalOpen(false)
+                    setNoteToDelete(null)
+                  }}
+                  className="text-sm"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  variant="destructive"
+                  onClick={() => deleteNote(noteToDelete)}
+                  className="text-sm"
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                      Deleting...
+                    </>
+                  ) : (
+                    "Delete"
+                  )}
+                </Button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
