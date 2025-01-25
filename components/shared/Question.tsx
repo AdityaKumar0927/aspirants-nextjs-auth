@@ -55,9 +55,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
 
-//
-// Enums & Types
-//
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
@@ -123,7 +120,7 @@ interface QuestionProps {
   numericalAnswer: string | undefined
   showMarkscheme: boolean | undefined
 
-  // We'll have a separate "submit" for MCQ
+  // For MCQ or numeric
   handleOptionClick: (
     questionId: string,
     option: string,
@@ -137,6 +134,7 @@ interface QuestionProps {
   handleNumericalChange: (questionId: string, value: string) => void
   handleMarkschemeToggle: (questionId: string) => void
 
+  // Toggling
   handleMarkForReview: (questionId: string, newVal?: boolean) => void
   handleMarkComplete: (questionId: string, newVal?: boolean) => void
 
@@ -144,11 +142,13 @@ interface QuestionProps {
   isMarkedComplete: boolean
   markschemesDisabled: boolean
 
+  // Notes
   note: string
   handleNoteChange: (questionId: string, note: string) => void
   handleDeleteNote: (questionId: string) => Promise<void>
   userId: string
 
+  // Nav
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
   totalQuestions: number
@@ -181,13 +181,14 @@ export default function Question({
   currentQuestionIndex,
   handleQuestionChange,
 }: QuestionProps) {
-  // For MCQ "pendingOption" that user selects, then hits "Submit"
+  // For MCQ: user selects option, then hits "Submit"
   const [pendingOption, setPendingOption] = useState<string | null>(null)
 
-  // If we want also to highlight auto selection
+  // If we want direct highlight after submission
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
     selectedOption || null
   )
+
   const [showMarkschemeModal, setShowMarkschemeModal] = useState(false)
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
   const [showNotes, setShowNotes] = useState(false)
@@ -202,23 +203,18 @@ export default function Question({
   const [editedCommentContent, setEditedCommentContent] = useState("")
   const [commentSort, setCommentSort] = useState<"newest" | "oldest" | "popular">("newest")
 
-  const [points, setPoints] = useState(0)
-  const [streak, setStreak] = useState(0)
   const [newTag, setNewTag] = useState("")
   const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || [])
   const [aiEnabled, setAiEnabled] = useState(true)
   const [notesEnabled, setNotesEnabled] = useState(true)
   const [localNote, setLocalNote] = useState(note)
   const [noteId, setNoteId] = useState<string | null>(null)
-
-  // For difficulty rating
   const [localDifficultyRating, setLocalDifficultyRating] = useState<number | undefined>(
     question.difficultyRating
   )
 
-  const { toast, dismiss } = useToast()
+  const { toast } = useToast()
 
-  // If user swipes on question
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
@@ -243,7 +239,7 @@ export default function Question({
   }
 
   //
-  // Mark complete toggle
+  // Mark complete
   //
   async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
@@ -252,7 +248,6 @@ export default function Question({
       toast({
         title: "Question Completed",
         description: `You have completed question #${question.id}.`,
-        duration: 5000,
         action: (
           <ToastAction onClick={() => toggleComplete(false)} altText="Undo">
             Undo
@@ -262,14 +257,13 @@ export default function Question({
     } else {
       toast({
         title: "Unmarked Complete",
-        description: `You have unmarked question #${question.id}.`,
-        duration: 5000,
+        description: `Question #${question.id} is no longer marked complete.`,
       })
     }
   }
 
   //
-  // Flag for review toggle
+  // Flag for review
   //
   async function toggleReview() {
     if (!question.questionId) return
@@ -279,7 +273,6 @@ export default function Question({
       toast({
         title: "Question Flagged",
         description: `Flagged question #${question.id} for review.`,
-        duration: 5000,
         action: (
           <ToastAction onClick={() => toggleReview()} altText="Undo">
             Undo
@@ -289,23 +282,20 @@ export default function Question({
     } else {
       toast({
         title: "Question Unflagged",
-        description: `Removed review flag for question #${question.id}.`,
-        duration: 5000,
+        description: `Removed the review flag for question #${question.id}.`,
       })
     }
   }
 
   //
-  // MCQ "select then submit"
+  // MCQ
   //
   function handleOptionSelect(letter: string) {
     setPendingOption(letter)
   }
   function handleMcqSubmit() {
     if (!pendingOption || !question.questionId) return
-    // Actually do the handleOptionClick
     handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "N/A")
-    // Optionally highlight
     setLocalSelectedOption(pendingOption)
   }
 
@@ -324,7 +314,7 @@ export default function Question({
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
 
-    // Also update question.difficulty so we see the UI tag update
+    // also set question.difficulty for UI
     let newDifficulty = "easy"
     if (newRating === 2) newDifficulty = "medium"
     else if (newRating === 3) newDifficulty = "hard"
@@ -416,7 +406,7 @@ export default function Question({
   }
 
   //
-  // "Reset question" => remove user’s selected answer
+  // Reset question
   //
   function handleResetQuestion() {
     if (!question.questionId) return
@@ -424,10 +414,10 @@ export default function Question({
       title: "Question Reset",
       description: `You can now re-attempt question #${question.id}.`,
     })
-    // Clear local selections
+    // Clear local
     setLocalSelectedOption(null)
     setPendingOption(null)
-    // If you also want to unmark it as completed, do:
+    // Optionally unmark as complete
     handleMarkComplete(question.questionId, false)
   }
 
@@ -525,6 +515,7 @@ export default function Question({
     })
     setComments(updated)
   }
+
   const sortedComments = [...comments].sort((a, b) => {
     if (commentSort === "newest") {
       return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
@@ -535,7 +526,7 @@ export default function Question({
     }
   })
 
-  // If options have leading "A:", "B:", remove
+  // Clean leading "A:" from MCQ options
   function cleanOptionText(option: string): string {
     return option.replace(/^[A-D]:\s?/i, "").trim()
   }
@@ -543,7 +534,7 @@ export default function Question({
   return (
     <TooltipProvider>
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
-        <Card className="w-full overflow-hidden mb-6 dark:bg-dark-background">
+        <Card className="w-full overflow-hidden mb-6 dark:bg-background dark:text-foreground">
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
@@ -551,7 +542,6 @@ export default function Question({
                   Question #{question.id}
                 </CardTitle>
 
-                {/* Subject, difficulty, etc. */}
                 {question.subject && (
                   <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
                     {question.subject}
@@ -578,7 +568,6 @@ export default function Question({
                   </div>
                 )}
 
-                {/* Custom tags */}
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -613,14 +602,13 @@ export default function Question({
               </div>
 
               <div className="flex items-center space-x-4">
-                {/* Mark Complete */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Checkbox
                       id={`complete-${question.id}`}
                       checked={isMarkedComplete}
                       onCheckedChange={(checked: boolean) => toggleComplete(!!checked)}
-                      className="dark:bg-dark-background dark:border-gray-500"
+                      className="dark:bg-background dark:border-foreground"
                     />
                   </TooltipTrigger>
                   <TooltipContent>
@@ -628,7 +616,6 @@ export default function Question({
                   </TooltipContent>
                 </Tooltip>
 
-                {/* Flag for review */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button variant="ghost" size="icon" onClick={toggleReview}>
@@ -673,7 +660,7 @@ export default function Question({
                 </div>
               )}
               {question.text && (
-                <div className="latex-font text-base sm:text-lg md:text-xl text-gray-700 dark:text-white leading-7 mb-4">
+                <div className="latex-font text-base sm:text-lg md:text-xl leading-7 mb-4 text-foreground">
                   <MathRenderer text={question.text} />
                 </div>
               )}
@@ -684,7 +671,20 @@ export default function Question({
               <div className="mb-4">
                 <Input
                   type="text"
-                  className="w-full px-3 py-2 border border-blue-300 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-gray-800 dark:text-blue-200 focus:ring-1 focus:ring-blue-300 rounded-sm"
+                  className="
+                    w-full
+                    px-3 py-2
+                    border
+                    border-blue-400
+                    bg-blue-50
+                    text-blue-800
+                    dark:border-blue-600
+                    dark:bg-slate-800
+                    dark:text-blue-200
+                    focus:ring-1
+                    focus:ring-blue-300
+                    rounded-sm
+                  "
                   placeholder="Type your answer..."
                   value={numericalAnswer ?? ""}
                   onChange={(e) =>
@@ -695,7 +695,20 @@ export default function Question({
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
-                      className="mt-2 border-2 border-blue-300 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-gray-800 dark:text-blue-200 px-4 py-1 hover:bg-blue-100 dark:hover:bg-gray-700 rounded-sm"
+                      className="
+                        mt-2
+                        border-2
+                        border-blue-400
+                        bg-blue-50
+                        text-blue-800
+                        dark:border-blue-600
+                        dark:bg-slate-800
+                        dark:text-blue-200
+                        px-4 py-1
+                        hover:bg-blue-100
+                        dark:hover:bg-slate-700
+                        rounded-sm
+                      "
                       onClick={handleNumericalSubmitLocal}
                     >
                       Submit
@@ -715,7 +728,6 @@ export default function Question({
                     {question.options.map((rawOption, index) => {
                       const letter = String.fromCharCode(65 + index)
                       const optionText = cleanOptionText(rawOption)
-                      // pendingOption is what user last clicked
                       const isPending = pendingOption === letter
                       const directSelected = localSelectedOption === letter
                       const isFeedbackActive = directSelected && feedback
@@ -738,7 +750,7 @@ export default function Question({
                             border-2
                             ${
                               isPending
-                                ? "border-blue-300 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-gray-800 dark:text-blue-200"
+                                ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
                                 : "border-gray-300 dark:border-gray-600"
                             }
                             ${
@@ -780,7 +792,19 @@ export default function Question({
                         <Button
                           onClick={handleMcqSubmit}
                           disabled={!pendingOption}
-                          className="border-2 border-blue-300 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-gray-800 dark:text-blue-200 px-4 py-1 hover:bg-blue-100 dark:hover:bg-gray-700 rounded-sm"
+                          className="
+                            border-2
+                            border-blue-400
+                            bg-blue-50
+                            text-blue-800
+                            dark:border-blue-600
+                            dark:bg-slate-800
+                            dark:text-blue-200
+                            px-4 py-1
+                            hover:bg-blue-100
+                            dark:hover:bg-slate-700
+                            rounded-sm
+                          "
                         >
                           Submit
                         </Button>
@@ -791,7 +815,7 @@ export default function Question({
                 </div>
               )}
 
-            {/* Feedback (correct/incorrect) */}
+            {/* Feedback */}
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
@@ -810,7 +834,7 @@ export default function Question({
               </div>
             )}
 
-            {/* Markscheme toggle button */}
+            {/* Markscheme toggle */}
             {(
               (localSelectedOption && markschemeEnabled) ||
               ((question.type === "Numerical" || question.type === "integer") &&
@@ -836,7 +860,7 @@ export default function Question({
 
             {/* Difficulty */}
             <div className="flex items-center space-x-2 mt-4">
-              <Label className="text-sm text-gray-600">Difficulty:</Label>
+              <Label className="text-sm text-gray-600 dark:text-gray-300">Difficulty:</Label>
               <Select
                 value={
                   localDifficultyRating === 1
@@ -864,19 +888,27 @@ export default function Question({
                 </SelectContent>
               </Select>
               {typeof question.peerSolvedPercentage === "number" && (
-                <p className="ml-4 text-sm text-gray-500">
+                <p className="ml-4 text-sm text-gray-500 dark:text-gray-400">
                   Peer Solved: {question.peerSolvedPercentage.toFixed(1)}%
                 </p>
               )}
             </div>
 
-            {/* Reset question button */}
+            {/* Reset question */}
             <div className="mt-4">
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
                     variant="outline"
-                    className="border-blue-300 text-blue-700 hover:bg-blue-50 dark:border-blue-600 dark:text-blue-200 dark:hover:bg-gray-700 rounded-sm"
+                    className="
+                      border-blue-400
+                      text-blue-700
+                      hover:bg-blue-50
+                      dark:border-blue-600
+                      dark:text-blue-200
+                      dark:hover:bg-slate-700
+                      rounded-sm
+                    "
                     onClick={handleResetQuestion}
                   >
                     Reset Question
@@ -926,9 +958,9 @@ export default function Question({
           </CardFooter>
         </Card>
 
-        {/* NOTES */}
+        {/* Notes */}
         {showNotes && (
-          <Card className="mb-6 dark:bg-dark-background">
+          <Card className="mb-6 dark:bg-background dark:text-foreground">
             <CardHeader>
               <CardTitle>Notes</CardTitle>
               <CardDescription>Add your notes for this question here.</CardDescription>
@@ -955,7 +987,7 @@ export default function Question({
 
         {/* AI */}
         {showAI && (
-          <Card className="mb-6 dark:bg-dark-background">
+          <Card className="mb-6 dark:bg-background dark:text-foreground">
             <CardHeader>
               <CardTitle>AI Assistant</CardTitle>
               <CardDescription>
@@ -975,9 +1007,9 @@ export default function Question({
           </Card>
         )}
 
-        {/* COMMENTS */}
+        {/* Comments */}
         {showComments && (
-          <Card className="mb-6 dark:bg-dark-background">
+          <Card className="mb-6 dark:bg-background dark:text-foreground">
             <CardHeader>
               <CardTitle>Comments</CardTitle>
               <CardDescription>Discuss or ask questions here!</CardDescription>
@@ -1048,7 +1080,7 @@ export default function Question({
               transition={{ duration: 0.2 }}
               className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
             >
-              <Card className="w-full max-w-2xl dark:bg-dark-background">
+              <Card className="w-full max-w-2xl dark:bg-background dark:text-foreground">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle>Markscheme</CardTitle>
                   <TooltipProvider>
@@ -1064,9 +1096,7 @@ export default function Question({
                           <span className="sr-only">Close markscheme</span>
                         </Button>
                       </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Close markscheme</p>
-                      </TooltipContent>
+                      <TooltipContent>Close markscheme</TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
                 </CardHeader>
@@ -1100,7 +1130,7 @@ export default function Question({
   )
 }
 
-/** Renders a single comment + replies recursively */
+// Single comment + replies
 function CommentItem({
   comment,
   userId,
@@ -1148,7 +1178,7 @@ function CommentItem({
             </Avatar>
             <div>
               <p className="font-semibold">{comment.username}</p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 {new Date(comment.timestamp).toLocaleString()}
               </p>
             </div>
