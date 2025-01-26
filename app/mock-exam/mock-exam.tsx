@@ -12,8 +12,12 @@ import ExamSetup from "./exam-setup"
 import Exam from "./exam"
 import AdvancedExamResults from "./exam-results"
 
-// IMPORTANT: We import the single source of truth for QuestionType
-import { QuestionType, ExamResultsType, TopicPerformance } from "@/lib/exam-helpers"
+// Single source of truth for types
+import {
+  QuestionType,
+  ExamResultsType,
+  TopicPerformance,
+} from "@/lib/exam-helpers"
 import { Button } from "@/components/ui/button"
 
 const HOUR_IN_SECONDS = 3600
@@ -23,33 +27,225 @@ export default function MockExam() {
   const { toast } = useToast()
   const { data: session } = useSession()
 
-  // All questions from DB
-  const [allQuestions, setAllQuestions] = useState<QuestionType[]>([])
-  // Filtered set matching exam + year
+  // Exam/Year data (fetched from new API)
+  const [exams, setExams] = useState<string[]>([])
+  const [years, setYears] = useState<string[]>([])
+
+  // We only store the filtered questions once exam+year is selected
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([])
 
+  // UI states
+  const [isLoading, setIsLoading] = useState(false)
+  const [isExamStarted, setIsExamStarted] = useState(false)
+  const [isExamFinished, setIsExamFinished] = useState(false)
+
+  // The user’s picks from the dropdowns
+  const [selectedExam, setSelectedExam] = useState("")
+  const [selectedYear, setSelectedYear] = useState("")
+  const [examTime, setExamTime] = useState<number>(60) // default 60 min => 1 hour
+
+  // For answering and results
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<(string | null)[]>([])
   const [questionStatuses, setQuestionStatuses] = useState<{ [index: number]: string }>({})
   const [timeSpentPerQuestion, setTimeSpentPerQuestion] = useState<number[]>([])
-
   const [examTimeLeft, setExamTimeLeft] = useState(HOUR_IN_SECONDS)
-  const [isExamStarted, setIsExamStarted] = useState(false)
-  const [isExamFinished, setIsExamFinished] = useState(false)
-
-  const [exams, setExams] = useState<string[]>([])
-  const [years, setYears] = useState<string[]>([])
-
-  const [selectedExam, setSelectedExam] = useState("")
-  const [selectedYear, setSelectedYear] = useState("")
-  const [examTime, setExamTime] = useState<number>(60) // default 60 min
-
-  const [isLoading, setIsLoading] = useState(true)
   const [examResults, setExamResults] = useState<ExamResultsType | null>(null)
 
   const questionStartTimeRef = useRef<number>(0)
 
-  // 1) If we use a function declaration, it’s hoisted, so no “used before assigned” error:
+  // ------------------------------------------------------------------
+  // 1) Fetch the list of exams (and possibly years) on mount
+  // ------------------------------------------------------------------
+  useEffect(() => {
+    fetchExamsAndYears()
+  }, [])
+
+  async function fetchExamsAndYears() {
+    try {
+      setIsLoading(true)
+      const response = await fetch("/api/exams-and-years") // adjust your route name
+      if (!response.ok) {
+        throw new Error("Failed to fetch exams and years.")
+      }
+      const data = await response.json()
+
+      // Example shape: { exams: ["JEE", "NEET"], years: [2020, 2021] }
+      setExams(data.exams || [])
+      // If your API also returns a global set of years, you can load them here
+      // or you can wait until the user chooses an exam and then fetch that exam’s years.
+      // For simplicity, assume we get *all* possible years:
+      setYears(data.years || [])
+    } catch (error) {
+      console.error("Error fetching exams and years:", error)
+      toast({
+        title: "Error",
+        description: "Failed to load exam/year data.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // 2) Start the exam => fetch questions for the selected exam + year
+  // ------------------------------------------------------------------
+  async function startExam() {
+    if (!selectedExam || !selectedYear) {
+      toast({
+        title: "Validation Error",
+        description: "Please select an exam and year before starting.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    try {
+      setIsLoading(true)
+
+      // Fetch only the relevant questions for that exam + year
+      const response = await fetch(
+        `/api/questions?exam=${encodeURIComponent(selectedExam)}&year=${encodeURIComponent(
+          selectedYear
+        )}`
+      )
+      if (!response.ok) {
+        throw new Error("Failed to fetch questions for the selected exam/year.")
+      }
+
+      // If your API returns paginated data => data.data
+      // If it returns a raw array => data
+      const data = await response.json()
+      const matching = data.data ?? data
+
+      setFilteredQuestions(matching)
+
+      // Initialize statuses, answers, time
+      const initialStatuses: { [index: number]: string } = {}
+      matching.forEach((_: any, i: number) => {
+        initialStatuses[i] = "notVisited"
+      })
+      setQuestionStatuses(initialStatuses)
+      setAnswers(new Array(matching.length).fill(null))
+      setTimeSpentPerQuestion(new Array(matching.length).fill(0))
+
+      // Convert minutes to seconds
+      setExamTimeLeft(examTime * 60)
+
+      setIsExamStarted(true)
+      setIsExamFinished(false)
+      setExamResults(null)
+      setCurrentQuestion(0)
+
+      questionStartTimeRef.current = Date.now()
+    } catch (error) {
+      console.error("Error loading exam questions:", error)
+      toast({
+        title: "Error",
+        description: "Failed to load questions. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // 3) Handling answers, statuses, navigation
+  // ------------------------------------------------------------------
+  const handleAnswer = useCallback(
+    (answerId: string) => {
+      setAnswers((prev) => {
+        const newArr = [...prev]
+        newArr[currentQuestion] = answerId
+        return newArr
+      })
+      setQuestionStatuses((prev) => {
+        const oldStatus = prev[currentQuestion]
+        return {
+          ...prev,
+          [currentQuestion]:
+            oldStatus === "markedForReview" ? "markedForReview" : "answered",
+        }
+      })
+    },
+    [currentQuestion]
+  )
+
+  const handleClear = useCallback(() => {
+    setAnswers((prev) => {
+      const newArr = [...prev]
+      newArr[currentQuestion] = null
+      return newArr
+    })
+    setQuestionStatuses((prev) => ({
+      ...prev,
+      [currentQuestion]:
+        prev[currentQuestion] === "markedForReview"
+          ? "markedForReview"
+          : "notAnswered",
+    }))
+  }, [currentQuestion])
+
+  const handleReviewAndNext = useCallback(() => {
+    setQuestionStatuses((prev) => ({
+      ...prev,
+      [currentQuestion]: "markedForReview",
+    }))
+    if (currentQuestion < filteredQuestions.length - 1) {
+      handleNavigate(currentQuestion + 1)
+    }
+  }, [currentQuestion, filteredQuestions.length])
+
+  const handleSaveAndNext = useCallback(() => {
+    if (currentQuestion < filteredQuestions.length - 1) {
+      handleNavigate(currentQuestion + 1)
+    }
+  }, [currentQuestion, filteredQuestions.length])
+
+  // ------------------------------------------------------------------
+  // 4) Navigation with time tracking
+  // ------------------------------------------------------------------
+  function updateTimeSpent() {
+    const timeSpent = Math.floor((Date.now() - questionStartTimeRef.current) / 1000)
+    setTimeSpentPerQuestion((prev) => {
+      const newTimeSpent = [...prev]
+      newTimeSpent[currentQuestion] =
+        (newTimeSpent[currentQuestion] || 0) + timeSpent
+      return newTimeSpent
+    })
+    questionStartTimeRef.current = Date.now()
+  }
+
+  function handleNavigate(index: number) {
+    if (index < 0 || index >= filteredQuestions.length) return
+    updateTimeSpent()
+    setCurrentQuestion(index)
+    setQuestionStatuses((prev) => {
+      const st = prev[index]
+      if (st === "notVisited") {
+        return { ...prev, [index]: "notAnswered" }
+      }
+      return prev
+    })
+  }
+
+  function handleNext() {
+    if (currentQuestion < filteredQuestions.length - 1) {
+      handleNavigate(currentQuestion + 1)
+    }
+  }
+
+  function handlePrevious() {
+    if (currentQuestion > 0) {
+      handleNavigate(currentQuestion - 1)
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // 5) Submitting the exam
+  // ------------------------------------------------------------------
   function handleSubmit() {
     if (!filteredQuestions.length) return
     updateTimeSpent()
@@ -76,7 +272,8 @@ export default function MockExam() {
       if (isCorrect) {
         topicPerformance[top].correct++
       } else {
-        topicWiseIncorrectAnswers[top] = (topicWiseIncorrectAnswers[top] || 0) + 1
+        topicWiseIncorrectAnswers[top] =
+          (topicWiseIncorrectAnswers[top] || 0) + 1
       }
 
       const sub = q.subtopic || "No Subtopic"
@@ -98,8 +295,10 @@ export default function MockExam() {
       .slice(0, 3)
 
     const avgTimePerQ =
-      timeSpentPerQuestion.reduce((a, b) => a + b, 0) / timeSpentPerQuestion.length
+      timeSpentPerQuestion.reduce((a, b) => a + b, 0) /
+      timeSpentPerQuestion.length
 
+    // Example: random skill levels
     const skillLevels: Record<string, number> = {
       "Problem Solving": Math.random() * 100,
       "Critical Thinking": Math.random() * 100,
@@ -129,171 +328,9 @@ export default function MockExam() {
     setIsExamFinished(true)
   }
 
-  // 2) Then we can define other logic or hooks:
-
-  function updateTimeSpent() {
-    const timeSpent = Math.floor((Date.now() - questionStartTimeRef.current) / 1000)
-    setTimeSpentPerQuestion((prev) => {
-      const newTimeSpent = [...prev]
-      newTimeSpent[currentQuestion] =
-        (newTimeSpent[currentQuestion] || 0) + timeSpent
-      return newTimeSpent
-    })
-    questionStartTimeRef.current = Date.now()
-  }
-
-  // etc.
-
-  // ---------- FETCH -----------
-  useEffect(() => {
-    fetchQuestions()
-  }, [])
-
-  async function fetchQuestions() {
-    try {
-      const response = await fetch("/api/questions")
-      if (!response.ok) {
-        throw new Error("Failed to fetch questions")
-      }
-      const data: QuestionType[] = await response.json()
-      setAllQuestions(data)
-    } catch (error) {
-      console.error("Error fetching questions:", error)
-      toast({
-        title: "Error",
-        description: "Failed to load questions. Please try again.",
-        variant: "destructive",
-      })
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  // EXAMS + YEARS
-  useEffect(() => {
-    if (allQuestions.length > 0) {
-      const uniqueExams = Array.from(
-        new Set(allQuestions.map((q) => q.exam).filter(Boolean))
-      ) as string[]
-      setExams(uniqueExams)
-    }
-  }, [allQuestions])
-
-  useEffect(() => {
-    if (selectedExam) {
-      const uniqueYears = Array.from(
-        new Set(
-          allQuestions
-            .filter((q) => q.exam === selectedExam)
-            .map((q) => q.year)
-            .filter(Boolean)
-        )
-      ) as string[]
-      setYears(uniqueYears)
-    }
-  }, [selectedExam, allQuestions])
-
-  // ---------- EXAM START -----------
-  function startExam() {
-    // Filter for exam + year
-    const matching = allQuestions.filter(
-      (q) => q.exam === selectedExam && q.year === selectedYear
-    )
-
-    setFilteredQuestions(matching)
-
-    // Make statuses
-    const initialStatuses: { [index: number]: string } = {}
-    matching.forEach((_, i) => {
-      initialStatuses[i] = "notVisited"
-    })
-    setQuestionStatuses(initialStatuses)
-
-    setAnswers(new Array(matching.length).fill(null))
-    setTimeSpentPerQuestion(new Array(matching.length).fill(0))
-
-    // Convert minutes to seconds
-    setExamTimeLeft(examTime * 60)
-
-    setIsExamStarted(true)
-    setIsExamFinished(false)
-    setExamResults(null)
-    setCurrentQuestion(0)
-
-    questionStartTimeRef.current = Date.now()
-  }
-
-  // ---------- ANSWERING -----------
-  const handleAnswer = useCallback((answerId: string) => {
-    setAnswers((prev) => {
-      const newArr = [...prev]
-      newArr[currentQuestion] = answerId
-      return newArr
-    })
-    setQuestionStatuses((prev) => {
-      const oldStatus = prev[currentQuestion]
-      return {
-        ...prev,
-        [currentQuestion]: oldStatus === "markedForReview" ? "markedForReview" : "answered",
-      }
-    })
-  }, [currentQuestion])
-
-  const handleClear = useCallback(() => {
-    setAnswers((prev) => {
-      const newArr = [...prev]
-      newArr[currentQuestion] = null
-      return newArr
-    })
-    setQuestionStatuses((prev) => ({
-      ...prev,
-      [currentQuestion]:
-        prev[currentQuestion] === "markedForReview" ? "markedForReview" : "notAnswered",
-    }))
-  }, [currentQuestion])
-
-  const handleReviewAndNext = useCallback(() => {
-    setQuestionStatuses((prev) => ({
-      ...prev,
-      [currentQuestion]: "markedForReview",
-    }))
-    if (currentQuestion < filteredQuestions.length - 1) {
-      handleNavigate(currentQuestion + 1)
-    }
-  }, [currentQuestion, filteredQuestions.length])
-
-  const handleSaveAndNext = useCallback(() => {
-    if (currentQuestion < filteredQuestions.length - 1) {
-      handleNavigate(currentQuestion + 1)
-    }
-  }, [currentQuestion, filteredQuestions.length])
-
-  // ---------- NAVIGATION -----------
-  function handleNavigate(index: number) {
-    if (index < 0 || index >= filteredQuestions.length) return
-    updateTimeSpent()
-    setCurrentQuestion(index)
-    setQuestionStatuses((prev) => {
-      const st = prev[index]
-      if (st === "notVisited") {
-        return { ...prev, [index]: "notAnswered" }
-      }
-      return prev
-    })
-  }
-
-  function handleNext() {
-    if (currentQuestion < filteredQuestions.length - 1) {
-      handleNavigate(currentQuestion + 1)
-    }
-  }
-  function handlePrevious() {
-    if (currentQuestion > 0) {
-      handleNavigate(currentQuestion - 1)
-    }
-  }
-
-  // ---------- EXAM TIMER -----------
+  // ------------------------------------------------------------------
+  // 6) Exam timer
+  // ------------------------------------------------------------------
   useEffect(() => {
     let examTimer: NodeJS.Timeout
     if (isExamStarted && !isExamFinished) {
@@ -320,9 +357,15 @@ export default function MockExam() {
     }
   }, [currentQuestion, isExamStarted, isExamFinished])
 
-  // exit exam early
+  // ------------------------------------------------------------------
+  // 7) Early exit exam
+  // ------------------------------------------------------------------
   function exitExam() {
-    if (window.confirm("Are you sure you want to exit the exam? Your progress will be lost.")) {
+    if (
+      window.confirm(
+        "Are you sure you want to exit the exam? Your progress will be lost."
+      )
+    ) {
       setIsExamStarted(false)
       setIsExamFinished(false)
       setExamResults(null)
@@ -336,8 +379,10 @@ export default function MockExam() {
     setExamResults(null)
   }
 
-  // Loading skeleton
-  if (isLoading) {
+  // ------------------------------------------------------------------
+  // 8) Loading skeleton
+  // ------------------------------------------------------------------
+  if (isLoading && !isExamStarted && !isExamFinished) {
     return (
       <div className="min-h-screen w-full flex flex-col p-4 md:p-8">
         <div className="max-w-3xl mx-auto w-full">
@@ -362,10 +407,13 @@ export default function MockExam() {
     )
   }
 
+  // ------------------------------------------------------------------
+  // 9) Render the 3 states (Setup -> Exam -> Results)
+  // ------------------------------------------------------------------
   return (
     <AnimatePresence mode="wait">
       {/* 1) exam setup */}
-      {!isExamStarted && (
+      {!isExamStarted && !isExamFinished && (
         <motion.div
           key="setup"
           initial={{ opacity: 0 }}
@@ -445,6 +493,7 @@ export default function MockExam() {
   )
 }
 
+// Helper to count statuses
 function calcStatusCounts(obj: { [index: number]: string }) {
   const counts = {
     notVisited: 0,
