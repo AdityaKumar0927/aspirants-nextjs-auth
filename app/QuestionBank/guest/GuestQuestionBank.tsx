@@ -23,9 +23,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import {
-  TooltipProvider,
-} from "@/components/ui/tooltip"
+import { TooltipProvider } from "@/components/ui/tooltip"
 import { useToast } from "@/components/ui/use-toast"
 
 // Icons
@@ -67,7 +65,7 @@ interface QuestionType {
   type?: string
   options?: string[]
   correctOption?: string
-  // No completed/reviewed flags from server in guest mode
+  // Additional fields if needed (e.g. completed, reviewed) 
 }
 
 // Distinct filter values from /api/filters
@@ -120,10 +118,10 @@ interface StateType {
   // The “checkbox” popover open states
   dropdowns: DropdownsType
 
-  // local search text
+  // The user’s search text
   searchQuery: string
 
-  // local progress
+  // Local progress & tracking
   feedback: Record<string, string>        // questionId => "correct"/"incorrect"
   selectedOptions: Record<string, string> // questionId => chosen MCQ letter
   reviewed: Record<string, boolean>       // questionId => flagged
@@ -131,7 +129,7 @@ interface StateType {
   notes: Record<string, string>           // questionId => note text
   showMarkscheme: Record<string, boolean> // questionId => whether markscheme is shown
 
-  // local pagination / single
+  // Local pagination / single-index
   currentPage: number
   pageSize: number
 }
@@ -245,8 +243,6 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
-const GUEST_PAGE_SIZE = 10
-
 export default function GuestQuestionBank() {
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const [singleIndex, setSingleIndex] = React.useState(0)
@@ -261,19 +257,19 @@ export default function GuestQuestionBank() {
     }
   }, [])
 
-  // (A) fetch distinct filters from /api/filters
-  const fetchFilterOptions = React.useCallback(async () => {
+  // (A) fetch distinct filter options from /api/filters
+  const fetchFilterOptions = useCallback(async () => {
     try {
       const res = await fetch("/api/filters", { cache:"no-store" })
       if (!res.ok) throw new Error("Failed to fetch filter options.")
       const data: FilterOptionsType = await res.json()
-      dispatch({ type:"SET_FILTER_OPTIONS", payload:data })
+      dispatch({ type: "SET_FILTER_OPTIONS", payload: data })
     } catch (err) {
       console.error("Error fetching filter options:", err)
       toast({
-        title:"Error",
-        description:"Unable to load filter fields. Using minimal approach.",
-        variant:"destructive",
+        title: "Error",
+        description: "Unable to load filter fields. Using minimal approach.",
+        variant: "destructive",
       })
     }
   }, [toast])
@@ -283,48 +279,48 @@ export default function GuestQuestionBank() {
   }, [fetchFilterOptions])
 
   // (B) fetch all questions for guest usage
-  const fetchQuestions = React.useCallback(async () => {
-    dispatch({ type:"SET_LOADING", payload:true })
+  const fetchQuestions = useCallback(async () => {
+    dispatch({ type: "SET_LOADING", payload: true })
     try {
       const res = await fetch("/api/questions", { cache:"no-store" })
       if (!res.ok) throw new Error("Failed to fetch all questions.")
       let data: QuestionType[] = await res.json()
 
-      // sort ascending by questionId if you want
+      // -- Sort ascending by numeric part of questionId
       data = data.sort((a, b) => {
         const aId = a.questionId?.match(/\d+/)?.[0] || "0"
         const bId = b.questionId?.match(/\d+/)?.[0] || "0"
-        return parseInt(aId,10) - parseInt(bId,10)
+        return parseInt(aId, 10) - parseInt(bId, 10)
       })
 
-      data = data.map((q, idx)=> ({ ...q, id: idx+1 }))
+      // Optionally add a local "id" if needed for indexing
+      data = data.map((q, idx) => ({ ...q, id: idx + 1 }))
 
-      dispatch({ type:"SET_QUESTIONS", payload:data })
-    } catch(err) {
+      dispatch({ type: "SET_QUESTIONS", payload: data })
+    } catch (err) {
       console.error(err)
       toast({
-        title:"Error",
-        description:"Could not load questions. Please try again later.",
-        variant:"destructive",
+        title: "Error",
+        description: "Could not load questions. Please try again later.",
+        variant: "destructive",
       })
     } finally {
-      dispatch({ type:"SET_LOADING", payload:false })
+      dispatch({ type: "SET_LOADING", payload: false })
     }
   }, [toast])
 
-  // load local progress
+  // Load local progress from localStorage
   React.useEffect(() => {
     fetchQuestions()
-
     const saved = localStorage.getItem("guestQnBank")
     if (saved) {
       const obj = JSON.parse(saved)
-      dispatch({ type:"SET_FEEDBACK", payload: obj.feedback || {} })
-      dispatch({ type:"SET_SELECTED_OPTIONS", payload: obj.selectedOptions || {} })
-      dispatch({ type:"SET_REVIEWED", payload: obj.reviewed || {} })
-      dispatch({ type:"SET_COMPLETED", payload: obj.completed || {} })
-      dispatch({ type:"SET_NOTES", payload: obj.notes || {} })
-      dispatch({ type:"SET_SHOW_MARKSCHEME", payload: obj.showMarkscheme || {} })
+      dispatch({ type: "SET_FEEDBACK", payload: obj.feedback || {} })
+      dispatch({ type: "SET_SELECTED_OPTIONS", payload: obj.selectedOptions || {} })
+      dispatch({ type: "SET_REVIEWED", payload: obj.reviewed || {} })
+      dispatch({ type: "SET_COMPLETED", payload: obj.completed || {} })
+      dispatch({ type: "SET_NOTES", payload: obj.notes || {} })
+      dispatch({ type: "SET_SHOW_MARKSCHEME", payload: obj.showMarkscheme || {} })
     }
   }, [fetchQuestions])
 
@@ -349,7 +345,7 @@ export default function GuestQuestionBank() {
   ])
 
   // (C) local searching + filter for status
-  const filteredQuestions = React.useMemo(() => {
+  const filteredQuestions = useMemo(() => {
     const s = state.searchQuery.toLowerCase()
     return state.questions.filter((q) => {
       const fields = [q.text, q.exam, q.subject, q.topic, q.subtopic, q.type]
@@ -357,50 +353,47 @@ export default function GuestQuestionBank() {
 
       const qid = q.questionId ?? ""
       let matchesStatus = true
-      if (state.filters.status==="complete") {
-        if (!state.completed[qid]) matchesStatus=false
-      } else if (state.filters.status==="review") {
-        if (!state.reviewed[qid]) matchesStatus=false
-      } else if (state.filters.status==="incomplete") {
-        if (state.completed[qid]) matchesStatus=false
+      if (state.filters.status === "complete") {
+        if (!state.completed[qid]) matchesStatus = false
+      } else if (state.filters.status === "review") {
+        if (!state.reviewed[qid]) matchesStatus = false
+      } else if (state.filters.status === "incomplete") {
+        if (state.completed[qid]) matchesStatus = false
       }
+
       return matchesSearch && matchesStatus
     })
   }, [state.questions, state.completed, state.reviewed, state.filters.status, state.searchQuery])
 
-  // (D) compute question progress (purely local)
-  const localStats = React.useMemo(() => {
-    // total = all loaded
+  // (D) compute local question progress
+  const localStats = useMemo(() => {
     const total = state.questions.length
-    // answered => # where feedback[qid] === "correct" 
-    //   OR if you define answered = completed, pick that
     let answered = 0
     let forReview = 0
-    // notAnswered => total minus answered minus forReview
     state.questions.forEach((q) => {
       const qid = q.questionId ?? ""
       if (state.reviewed[qid]) forReview++
+      // define “answered” as completed or feedback="correct"
       if (state.feedback[qid] === "correct" || state.completed[qid]) answered++
     })
     const notAnswered = total - answered - forReview
-    // overall progress => answered / total * 100
-    const progress = total>0 ? (answered/total)*100 : 0
+    const progress = total > 0 ? (answered / total) * 100 : 0
     return { total, answered, forReview, notAnswered, progress }
   }, [state.questions, state.reviewed, state.completed, state.feedback])
 
   // (E) local pagination
   const totalPages = Math.ceil(filteredQuestions.length / state.pageSize)
-  const startIndex = (state.currentPage - 1)*state.pageSize
-  const paginated = filteredQuestions.slice(startIndex, startIndex+state.pageSize)
+  const startIndex = (state.currentPage - 1) * state.pageSize
+  const paginated = filteredQuestions.slice(startIndex, startIndex + state.pageSize)
 
   function handlePageChange(newPage: number) {
-    dispatch({ type:"SET_CURRENT_PAGE", payload:newPage })
+    dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
   }
 
-  // (F) single or list
+  // Single or list
   const [singleQuestionIndex, setSingleQuestionIndex] = React.useState(0)
 
-  // If loading skeleton
+  // If loading => skeleton
   if (state.loading) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -412,12 +405,12 @@ export default function GuestQuestionBank() {
     )
   }
 
-  if (state.viewMode===ViewMode.SINGLE) {
-    // single index-based approach
+  // SINGLE VIEW
+  if (state.viewMode === ViewMode.SINGLE) {
     if (!filteredQuestions.length) {
       return (
         <div className="p-4 min-h-screen">
-          <Button variant="outline" onClick={()=>dispatch({ type:"SET_VIEW_MODE", payload:ViewMode.LIST })}>
+          <Button variant="outline" onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.LIST })}>
             Switch to List View
           </Button>
           <p className="mt-4 text-red-400">No questions found.</p>
@@ -430,14 +423,17 @@ export default function GuestQuestionBank() {
       <div className="p-4 min-h-screen w-full flex justify-center">
         <div className="max-w-xl w-full">
           <div className="flex justify-between mb-4">
-            <Button variant="outline" onClick={()=>dispatch({ type:"SET_VIEW_MODE", payload:ViewMode.LIST })}>
+            <Button
+              variant="outline"
+              onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.LIST })}
+            >
               List View
             </Button>
 
             <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
               <DialogTrigger asChild>
                 <Button variant="outline" className="flex items-center">
-                  <Filter className="mr-2 h-4 w-4"/>
+                  <Filter className="mr-2 h-4 w-4" />
                   Filters
                 </Button>
               </DialogTrigger>
@@ -451,7 +447,7 @@ export default function GuestQuestionBank() {
               </DialogContent>
             </Dialog>
 
-            <span>{singleQuestionIndex+1} / {filteredQuestions.length}</span>
+            <span>{singleQuestionIndex + 1} / {filteredQuestions.length}</span>
           </div>
 
           <Question
@@ -460,44 +456,58 @@ export default function GuestQuestionBank() {
             feedback={state.feedback[qid] || ""}
             selectedOption={state.selectedOptions[qid] || ""}
             numericalAnswer=""
+            // MCQ
             handleOptionClick={(questionId, option, correctOption) => {
-              const isCorrect = option===correctOption
+              const isCorrect = option === correctOption
               dispatch({
-                type:"SET_FEEDBACK",
-                payload:{ ...state.feedback, [questionId]: isCorrect?"correct":"incorrect" },
+                type: "SET_FEEDBACK",
+                payload: {
+                  ...state.feedback,
+                  [questionId]: isCorrect ? "correct" : "incorrect",
+                },
               })
               dispatch({
-                type:"SET_SELECTED_OPTIONS",
-                payload:{ ...state.selectedOptions, [questionId]:option },
+                type: "SET_SELECTED_OPTIONS",
+                payload: {
+                  ...state.selectedOptions,
+                  [questionId]: option,
+                },
               })
             }}
+            // Numerical
             handleNumericalSubmit={(questionId, userAns, correctAns) => {
-              const isCorrect = (userAns===correctAns)
+              const isCorrect = userAns === correctAns
               dispatch({
-                type:"SET_FEEDBACK",
-                payload:{ ...state.feedback, [questionId]: isCorrect?"correct":"incorrect" },
+                type: "SET_FEEDBACK",
+                payload: {
+                  ...state.feedback,
+                  [questionId]: isCorrect ? "correct" : "incorrect",
+                },
               })
             }}
-            handleNumericalChange={()=>{}}
+            handleNumericalChange={() => {}}
+            // Mark for review
             handleMarkForReview={(questionId) => {
               const old = { ...state.reviewed }
               old[questionId] = !old[questionId]
-              dispatch({ type:"SET_REVIEWED", payload:old })
+              dispatch({ type: "SET_REVIEWED", payload: old })
             }}
+            // Mark complete
             handleMarkComplete={(questionId) => {
               const old = { ...state.completed }
               old[questionId] = !old[questionId]
-              dispatch({ type:"SET_COMPLETED", payload:old })
+              dispatch({ type: "SET_COMPLETED", payload: old })
             }}
             isMarkedForReview={!!state.reviewed[qid]}
             isMarkedComplete={!!state.completed[qid]}
             showMarkscheme={!!state.showMarkscheme[qid]}
-            handleMarkschemeToggle={(questionId)=>{
+            handleMarkschemeToggle={(questionId) => {
               const copy = { ...state.showMarkscheme }
               copy[questionId] = !copy[questionId]
-              dispatch({ type:"SET_SHOW_MARKSCHEME", payload:copy })
+              dispatch({ type: "SET_SHOW_MARKSCHEME", payload: copy })
             }}
             markschemesDisabled={false}
+            // Reset
             handleResetQuestion={(questionId) => {
               const newFeedback = { ...state.feedback }
               delete newFeedback[questionId]
@@ -505,41 +515,42 @@ export default function GuestQuestionBank() {
               delete newSel[questionId]
               const newRev = { ...state.reviewed, [questionId]: false }
               const newComp = { ...state.completed, [questionId]: false }
-              dispatch({ type:"SET_FEEDBACK", payload:newFeedback })
-              dispatch({ type:"SET_SELECTED_OPTIONS", payload:newSel })
-              dispatch({ type:"SET_REVIEWED", payload:newRev })
-              dispatch({ type:"SET_COMPLETED", payload:newComp })
+              dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
+              dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSel })
+              dispatch({ type: "SET_REVIEWED", payload: newRev })
+              dispatch({ type: "SET_COMPLETED", payload: newComp })
             }}
             note={state.notes[qid] || ""}
-            handleNoteChange={(nid, val)=>{
-              const cp = { ...state.notes, [nid]:val }
-              dispatch({ type:"SET_NOTES", payload:cp })
+            handleNoteChange={(nid, val) => {
+              const cp = { ...state.notes, [nid]: val }
+              dispatch({ type: "SET_NOTES", payload: cp })
             }}
-            handleDeleteNote={async (nid)=>{
+            handleDeleteNote={async (nid) => {
               const cp = { ...state.notes }
               delete cp[nid]
-              dispatch({ type:"SET_NOTES", payload:cp })
+              dispatch({ type: "SET_NOTES", payload: cp })
             }}
             userId="guest"
             totalQuestions={filteredQuestions.length}
             currentQuestionIndex={singleQuestionIndex}
-            handleQuestionChange={()=>{}}
+            handleQuestionChange={() => {}}
           />
 
+          {/* Prev/Next buttons */}
           <div className="flex justify-between mt-4">
             <Button
-              onClick={()=>setSingleQuestionIndex(Math.max(0,singleQuestionIndex-1))}
-              disabled={singleQuestionIndex===0}
+              onClick={() => setSingleQuestionIndex(Math.max(0, singleQuestionIndex - 1))}
+              disabled={singleQuestionIndex === 0}
             >
-              <ChevronLeft className="mr-2 h-4 w-4"/>
+              <ChevronLeft className="mr-2 h-4 w-4" />
               Prev
             </Button>
             <Button
-              onClick={()=>setSingleQuestionIndex(Math.min(filteredQuestions.length-1, singleQuestionIndex+1))}
-              disabled={singleQuestionIndex===filteredQuestions.length-1}
+              onClick={() => setSingleQuestionIndex(Math.min(filteredQuestions.length - 1, singleQuestionIndex + 1))}
+              disabled={singleQuestionIndex === filteredQuestions.length - 1}
             >
               Next
-              <ChevronRight className="ml-2 h-4 w-4"/>
+              <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -547,7 +558,7 @@ export default function GuestQuestionBank() {
     )
   }
 
-  // LIST mode
+  // LIST VIEW
   return (
     <TooltipProvider>
       <div className="p-4 min-h-screen w-full">
@@ -569,16 +580,16 @@ export default function GuestQuestionBank() {
                 type="text"
                 placeholder="Search questions..."
                 value={state.searchQuery}
-                onChange={(e)=>dispatch({ type:"SET_SEARCH_QUERY", payload:e.target.value })}
+                onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
                 className="pl-10"
               />
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"/>
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             </div>
 
             <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
               <DialogTrigger asChild>
                 <Button variant="outline" className="block sm:hidden">
-                  <Filter className="mr-2 h-4 w-4"/>
+                  <Filter className="mr-2 h-4 w-4" />
                   Filters
                 </Button>
               </DialogTrigger>
@@ -596,7 +607,7 @@ export default function GuestQuestionBank() {
             <Dialog open={navigatorOpen} onOpenChange={setNavigatorOpen}>
               <DialogTrigger asChild>
                 <Button variant="outline" className="hidden sm:flex">
-                  <List className="mr-2 h-4 w-4"/>
+                  <List className="mr-2 h-4 w-4" />
                   Question Navigator
                 </Button>
               </DialogTrigger>
@@ -608,20 +619,21 @@ export default function GuestQuestionBank() {
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
                     {filteredQuestions.map((q, idx) => {
                       const qid = q.questionId ?? ""
-                      const isCorrect = state.feedback[qid]==="correct"
+                      const isCorrect = state.feedback[qid] === "correct"
                       return (
                         <Button
                           key={qid}
-                          variant={isCorrect ? "default":"outline"}
+                          variant={isCorrect ? "default" : "outline"}
                           size="sm"
-                          onClick={()=>{
-                            const newPage = Math.floor(idx/state.pageSize)+1
-                            dispatch({ type:"SET_CURRENT_PAGE", payload:newPage })
+                          onClick={() => {
+                            // Jump to the page containing this question
+                            const newPage = Math.floor(idx / state.pageSize) + 1
+                            dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
                             setNavigatorOpen(false)
-                            setTimeout(()=>{
+                            setTimeout(() => {
                               const el = document.getElementById(`question-${qid}`)
                               if (el) {
-                                el.scrollIntoView({ behavior:"smooth", block:"start" })
+                                el.scrollIntoView({ behavior: "smooth", block: "start" })
                               }
                             }, 200)
                           }}
@@ -633,7 +645,7 @@ export default function GuestQuestionBank() {
                               : ""
                           }`}
                         >
-                          {idx+1}
+                          {idx + 1}
                         </Button>
                       )
                     })}
@@ -648,15 +660,15 @@ export default function GuestQuestionBank() {
             {["all","complete","review","incomplete"].map((st) => (
               <Button
                 key={st}
-                variant={state.filters.status===st ? "default":"outline"}
+                variant={state.filters.status === st ? "default" : "outline"}
                 onClick={() => {
                   dispatch({
-                    type:"SET_FILTERS",
-                    payload:{ ...state.filters, status:st }
+                    type: "SET_FILTERS",
+                    payload: { ...state.filters, status: st },
                   })
                 }}
               >
-                {st.charAt(0).toUpperCase()+st.slice(1)}
+                {st.charAt(0).toUpperCase() + st.slice(1)}
               </Button>
             ))}
           </div>
@@ -664,13 +676,13 @@ export default function GuestQuestionBank() {
           {/* popovers for exam etc. */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {(["exams","subjects","topics","subtopics","difficulties","years","types"] as (keyof FilterOptionsType)[]).map((filterKey) => {
-              const distinctVals = state.filterOptions[filterKey]||[]
+              const distinctVals = state.filterOptions[filterKey] || []
               return (
                 <Popover
                   key={filterKey}
                   content={
                     <div className="w-full bg-white border rounded-md p-2 sm:w-80">
-                      <Input placeholder={`Search ${filterKey}...`} className="mb-2"/>
+                      <Input placeholder={`Search ${filterKey}...`} className="mb-2" />
                       <div className="max-h-60 overflow-y-auto">
                         {distinctVals.map((val) => (
                           <div key={val} className="flex items-center px-2 py-1">
@@ -678,18 +690,18 @@ export default function GuestQuestionBank() {
                               type="checkbox"
                               className="mr-2"
                               checked={state.filters[filterKey].includes(val)}
-                              onChange={()=>{
+                              onChange={() => {
                                 const arr = state.filters[filterKey]
                                 const isIn = arr.includes(val)
                                 let newArr
                                 if (isIn) {
-                                  newArr = arr.filter((x) => x!==val)
+                                  newArr = arr.filter((x) => x !== val)
                                 } else {
-                                  newArr = [...arr,val]
+                                  newArr = [...arr, val]
                                 }
                                 dispatch({
-                                  type:"SET_FILTERS",
-                                  payload:{ ...state.filters, [filterKey]: newArr },
+                                  type: "SET_FILTERS",
+                                  payload: { ...state.filters, [filterKey]: newArr },
                                 })
                               }}
                             />
@@ -700,77 +712,66 @@ export default function GuestQuestionBank() {
                     </div>
                   }
                   openPopover={state.dropdowns[filterKey]}
-                  setOpenPopover={(open)=>{
+                  setOpenPopover={(open) => {
                     dispatch({
-                      type:"SET_DROPDOWNS",
-                      payload:{ key: filterKey, value:!!open }
+                      type: "SET_DROPDOWNS",
+                      payload: { key: filterKey, value: !!open },
                     })
                   }}
                 >
                   <Button
                     variant="outline"
                     className="flex items-center justify-between w-36"
-                    onClick={()=>{
+                    onClick={() => {
                       const was = state.dropdowns[filterKey]
                       dispatch({
-                        type:"SET_DROPDOWNS",
-                        payload:{ key: filterKey, value:!was }
+                        type: "SET_DROPDOWNS",
+                        payload: { key: filterKey, value: !was },
                       })
                     }}
                   >
-                    {filterKey.charAt(0).toUpperCase()+filterKey.slice(1)}
-                    <ChevronDown className="ml-2 h-4 w-4"/>
+                    {filterKey.charAt(0).toUpperCase() + filterKey.slice(1)}
+                    <ChevronDown className="ml-2 h-4 w-4" />
                   </Button>
                 </Popover>
               )
             })}
           </div>
 
-          {/* local question progress card */}
+          {/* Local question progress card */}
           <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
             <CardContent className="p-4">
               <h3 className="font-medium text-blue-900 mb-4">Guest Question Progress</h3>
-
-              {(()=>{
-                const total = state.questions.length
-                // answered => either feedback=== "correct" or completed[...]===true
-                let answeredCount = 0
-                let reviewCount = 0
-                state.questions.forEach((q) => {
-                  const qid = q.questionId ?? ""
-                  if (state.reviewed[qid]) reviewCount++
-                  if (state.feedback[qid]==="correct" || state.completed[qid]) answeredCount++
-                })
-                const notAnswered = total - answeredCount - reviewCount
-                const progressPct = total>0 ? (answeredCount/total)*100 : 0
+              {(() => {
+                const { total, answered, forReview, notAnswered, progress } = localStats
                 return (
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-blue-700">Overall Progress</span>
                       <span className="text-sm text-blue-700">
-                        {Math.round(progressPct)}%
+                        {Math.round(progress)}%
                       </span>
                     </div>
-                    <Progress value={progressPct}/>
+                    <Progress value={progress} />
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                       <div className="flex items-center p-2 bg-blue-100 rounded-md">
-                        <HelpCircle className="mr-2 text-blue-600"/>
+                        <HelpCircle className="mr-2 text-blue-600" />
                         <div>
                           <p className="text-lg text-blue-800">{notAnswered}</p>
                           <p className="text-sm text-blue-600">Not Answered</p>
                         </div>
                       </div>
                       <div className="flex items-center p-2 bg-green-100 rounded-md">
-                        <CheckCircle2 className="mr-2 text-green-600"/>
+                        <CheckCircle2 className="mr-2 text-green-600" />
                         <div>
-                          <p className="text-lg text-green-800">{answeredCount}</p>
+                          <p className="text-lg text-green-800">{answered}</p>
                           <p className="text-sm text-green-600">Answered</p>
                         </div>
                       </div>
                       <div className="flex items-center p-2 bg-yellow-100 rounded-md">
-                        <Flag className="mr-2 text-yellow-600"/>
+                        <Flag className="mr-2 text-yellow-600" />
                         <div>
-                          <p className="text-lg text-yellow-800">{reviewCount}</p>
+                          <p className="text-lg text-yellow-800">{forReview}</p>
                           <p className="text-sm text-yellow-600">For Review</p>
                         </div>
                       </div>
@@ -782,8 +783,8 @@ export default function GuestQuestionBank() {
           </Card>
 
           {state.loading ? (
-            <Skeleton count={5} height={40}/>
-          ) : paginated.length>0 ? (
+            <Skeleton count={5} height={40} />
+          ) : paginated.length > 0 ? (
             <>
               {paginated.map((question, i) => {
                 const qid = question.questionId ?? ""
@@ -794,70 +795,77 @@ export default function GuestQuestionBank() {
                     feedback={state.feedback[qid] || ""}
                     selectedOption={state.selectedOptions[qid] || ""}
                     numericalAnswer=""
+                    // MCQ
                     handleOptionClick={(qId, option, correct) => {
-                      const isCorrect = (option===correct)
+                      const isCorrect = option === correct
                       dispatch({
-                        type:"SET_FEEDBACK",
-                        payload:{ ...state.feedback, [qId]: isCorrect?"correct":"incorrect" },
+                        type: "SET_FEEDBACK",
+                        payload: { ...state.feedback, [qId]: isCorrect ? "correct" : "incorrect" },
                       })
                       dispatch({
-                        type:"SET_SELECTED_OPTIONS",
-                        payload:{ ...state.selectedOptions, [qId]:option },
+                        type: "SET_SELECTED_OPTIONS",
+                        payload: { ...state.selectedOptions, [qId]: option },
                       })
                     }}
+                    // Numeric
                     handleNumericalSubmit={(qId, userAns, correctAns) => {
-                      const isCorrect = (userAns===correctAns)
+                      const isCorrect = userAns === correctAns
                       dispatch({
-                        type:"SET_FEEDBACK",
-                        payload:{ ...state.feedback, [qId]: isCorrect?"correct":"incorrect" },
+                        type: "SET_FEEDBACK",
+                        payload: { ...state.feedback, [qId]: isCorrect ? "correct" : "incorrect" },
                       })
                     }}
-                    handleNumericalChange={()=>{}}
+                    handleNumericalChange={() => {}}
+                    // Review
                     handleMarkForReview={(qId) => {
                       const old = { ...state.reviewed }
                       old[qId] = !old[qId]
-                      dispatch({ type:"SET_REVIEWED", payload:old })
+                      dispatch({ type: "SET_REVIEWED", payload: old })
                     }}
+                    // Complete
                     handleMarkComplete={(qId) => {
                       const old = { ...state.completed }
                       old[qId] = !old[qId]
-                      dispatch({ type:"SET_COMPLETED", payload:old })
+                      dispatch({ type: "SET_COMPLETED", payload: old })
                     }}
                     isMarkedForReview={!!state.reviewed[qid]}
                     isMarkedComplete={!!state.completed[qid]}
+                    // Markscheme
                     showMarkscheme={!!state.showMarkscheme[qid]}
-                    handleMarkschemeToggle={(qId)=>{
+                    handleMarkschemeToggle={(qId) => {
                       const cp = { ...state.showMarkscheme }
                       cp[qId] = !cp[qId]
-                      dispatch({ type:"SET_SHOW_MARKSCHEME", payload:cp })
+                      dispatch({ type: "SET_SHOW_MARKSCHEME", payload: cp })
                     }}
                     markschemesDisabled={false}
-                    handleResetQuestion={(qId)=>{
+                    // Reset
+                    handleResetQuestion={(qId) => {
                       const newFb = { ...state.feedback }
                       delete newFb[qId]
                       const newSel = { ...state.selectedOptions }
                       delete newSel[qId]
                       const newRev = { ...state.reviewed, [qId]: false }
                       const newComp = { ...state.completed, [qId]: false }
-                      dispatch({ type:"SET_FEEDBACK", payload:newFb })
-                      dispatch({ type:"SET_SELECTED_OPTIONS", payload:newSel })
-                      dispatch({ type:"SET_REVIEWED", payload:newRev })
-                      dispatch({ type:"SET_COMPLETED", payload:newComp })
+                      dispatch({ type: "SET_FEEDBACK", payload: newFb })
+                      dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSel })
+                      dispatch({ type: "SET_REVIEWED", payload: newRev })
+                      dispatch({ type: "SET_COMPLETED", payload: newComp })
                     }}
+                    // Notes
                     note={state.notes[qid] || ""}
-                    handleNoteChange={(nid,val)=>{
-                      const cp = { ...state.notes, [nid]:val }
-                      dispatch({ type:"SET_NOTES", payload:cp })
+                    handleNoteChange={(nid, val) => {
+                      const cp = { ...state.notes, [nid]: val }
+                      dispatch({ type: "SET_NOTES", payload: cp })
                     }}
-                    handleDeleteNote={async (nid)=>{
+                    handleDeleteNote={async (nid) => {
                       const cp = { ...state.notes }
                       delete cp[nid]
-                      dispatch({ type:"SET_NOTES", payload:cp })
+                      dispatch({ type: "SET_NOTES", payload: cp })
                     }}
                     userId="guest"
                     totalQuestions={filteredQuestions.length}
-                    currentQuestionIndex={i + (state.currentPage-1)*state.pageSize}
-                    handleQuestionChange={()=>{}}
+                    currentQuestionIndex={i + (state.currentPage - 1) * state.pageSize}
+                    handleQuestionChange={() => {}}
                   />
                 )
               })}
@@ -866,10 +874,15 @@ export default function GuestQuestionBank() {
               <div className="mt-6 flex justify-center space-x-4 items-center">
                 <Button
                   variant="outline"
-                  onClick={()=> dispatch({ type:"SET_CURRENT_PAGE", payload: Math.max(1, state.currentPage-1) })}
-                  disabled={state.currentPage===1}
+                  onClick={() =>
+                    dispatch({
+                      type: "SET_CURRENT_PAGE",
+                      payload: Math.max(1, state.currentPage - 1),
+                    })
+                  }
+                  disabled={state.currentPage === 1}
                 >
-                  <ChevronLeft className="mr-2 h-4 w-4"/>
+                  <ChevronLeft className="mr-2 h-4 w-4" />
                   Prev Page
                 </Button>
                 <p className="text-sm">
@@ -877,11 +890,16 @@ export default function GuestQuestionBank() {
                 </p>
                 <Button
                   variant="outline"
-                  onClick={()=> dispatch({ type:"SET_CURRENT_PAGE", payload: Math.min(totalPages, state.currentPage+1) })}
-                  disabled={state.currentPage===totalPages}
+                  onClick={() =>
+                    dispatch({
+                      type: "SET_CURRENT_PAGE",
+                      payload: Math.min(totalPages, state.currentPage + 1),
+                    })
+                  }
+                  disabled={state.currentPage === totalPages}
                 >
                   Next Page
-                  <ChevronRight className="ml-2 h-4 w-4"/>
+                  <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
             </>
@@ -903,12 +921,20 @@ function FilterPanelMobile({
   dispatch: React.Dispatch<ActionType>
 }) {
   const statuses = ["all","complete","review","incomplete"]
-  const filterKeys = ["exams","subjects","topics","subtopics","difficulties","years","types"] as (keyof FilterOptionsType)[]
+  const filterKeys = [
+    "exams",
+    "subjects",
+    "topics",
+    "subtopics",
+    "difficulties",
+    "years",
+    "types",
+  ] as (keyof FilterOptionsType)[]
 
   function handleStatusChange(st: string) {
     dispatch({
-      type:"SET_FILTERS",
-      payload:{ ...state.filters, status: st }
+      type: "SET_FILTERS",
+      payload: { ...state.filters, status: st },
     })
   }
 
@@ -917,13 +943,13 @@ function FilterPanelMobile({
     const isIn = arr.includes(val)
     let newArr
     if (isIn) {
-      newArr = arr.filter((x)=> x!==val)
+      newArr = arr.filter((x) => x !== val)
     } else {
-      newArr = [...arr,val]
+      newArr = [...arr, val]
     }
     dispatch({
-      type:"SET_FILTERS",
-      payload:{ ...state.filters, [fk]: newArr },
+      type: "SET_FILTERS",
+      payload: { ...state.filters, [fk]: newArr },
     })
   }
 
@@ -931,14 +957,14 @@ function FilterPanelMobile({
     <div className="space-y-4">
       <div>
         <p className="font-semibold mb-2">Question Status</p>
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 flex-wrap">
           {statuses.map((st) => (
             <Button
               key={st}
-              variant={state.filters.status===st ? "default":"outline"}
-              onClick={()=>handleStatusChange(st)}
+              variant={state.filters.status === st ? "default" : "outline"}
+              onClick={() => handleStatusChange(st)}
             >
-              {st.charAt(0).toUpperCase()+st.slice(1)}
+              {st.charAt(0).toUpperCase() + st.slice(1)}
             </Button>
           ))}
         </div>
@@ -949,7 +975,7 @@ function FilterPanelMobile({
         return (
           <div key={fk}>
             <p className="font-semibold mb-2">
-              {fk.charAt(0).toUpperCase()+fk.slice(1)}
+              {fk.charAt(0).toUpperCase() + fk.slice(1)}
             </p>
             <div className="border p-2 rounded-md max-h-40 overflow-y-auto">
               {distinctVals.map((val) => (
@@ -958,7 +984,7 @@ function FilterPanelMobile({
                     type="checkbox"
                     className="form-checkbox"
                     checked={state.filters[fk].includes(val)}
-                    onChange={()=> toggleFilterValue(fk,val)}
+                    onChange={() => toggleFilterValue(fk, val)}
                   />
                   <span>{val}</span>
                 </label>

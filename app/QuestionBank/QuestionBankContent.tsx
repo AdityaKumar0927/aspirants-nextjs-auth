@@ -263,7 +263,7 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
-// The main pagination UI
+// Pagination UI
 function Pagination({
   currentPage,
   totalCount,
@@ -312,7 +312,7 @@ export default function QuestionBankContent() {
   const [singleIndex, setSingleIndex] = React.useState(0)
   const [filtersOpenMobile, setFiltersOpenMobile] = React.useState(false)
 
-  // If small => single
+  // If window < 768 => use single view
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       setViewMode(ViewMode.SINGLE)
@@ -324,7 +324,7 @@ export default function QuestionBankContent() {
     try {
       const res = await fetch("/api/filters", { cache: "no-store" })
       if (!res.ok) throw new Error("Failed to fetch distinct filter fields.")
-      const data = await res.json() as FilterOptionsType
+      const data = (await res.json()) as FilterOptionsType
       dispatch({ type: "SET_FILTER_OPTIONS", payload: data })
     } catch (err) {
       console.error("Error fetching filter options:", err)
@@ -342,13 +342,14 @@ export default function QuestionBankContent() {
 
   // (B) Fetch global stats from entire DB
   const fetchGlobalStats = React.useCallback(async () => {
+    // If you do NOT have a /api/questions/stats route, comment out or remove this:
     try {
       const res = await fetch("/api/questions/stats", { cache: "no-store" })
       if (!res.ok) {
         const txt = await res.text()
         throw new Error(`Failed to fetch stats: ${txt}`)
       }
-      const data = await res.json() as GlobalStats
+      const data = (await res.json()) as GlobalStats
       dispatch({ type: "SET_GLOBAL_STATS", payload: data })
     } catch (err) {
       console.error("Error fetching global stats:", err)
@@ -360,7 +361,7 @@ export default function QuestionBankContent() {
     fetchGlobalStats()
   }, [fetchGlobalStats])
 
-  // (C) Fetch questions with pagination + user’s selected filters
+  // (C) Fetch questions with pagination + filters
   const fetchQuestions = React.useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
 
@@ -397,15 +398,21 @@ export default function QuestionBankContent() {
       let data: QuestionType[] = []
       let totalCount = 0
       if (Array.isArray(result)) {
+        // If the API returned an array with no pagination metadata
         data = result
         totalCount = data.length
       } else if (result.data) {
+        // If the API returned { data, totalCount, etc. }
         data = result.data
         totalCount = result.totalCount
       }
 
-      // If needed, you can do a local sort by questionId or something
-      // data = data.sort(...)
+      // -- FIX #1: Sort client-side ascending by questionId numeric part
+      data = data.sort((a, b) => {
+        const aId = a.questionId?.match(/\d+/)?.[0] || "0"
+        const bId = b.questionId?.match(/\d+/)?.[0] || "0"
+        return parseInt(aId, 10) - parseInt(bId, 10)
+      })
 
       dispatch({ type: "SET_QUESTIONS", payload: data })
       dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount })
@@ -425,157 +432,173 @@ export default function QuestionBankContent() {
     fetchQuestions()
   }, [fetchQuestions])
 
-  // handle page
+  // handle page change
   function handlePageChange(page: number) {
     dispatch({ type: "SET_CURRENT_PAGE", payload: page })
   }
 
   // Mark complete / review
-  const handleMarkComplete = React.useCallback(async (questionId: string, newVal?: boolean) => {
-    const val = newVal===undefined ? true : newVal
-    try {
-      await fetch("/api/questions", {
-        method:"PATCH",
-        headers: { "Content-Type":"application/json" },
-        body: JSON.stringify({ questionId, completed: val }),
-      })
-      dispatch({
-        type:"SET_QUESTIONS",
-        payload: state.questions.map((q)=>
-          q.questionId===questionId ? {...q, completed:val} : q
-        ),
-      })
-    } catch (err) {
-      console.error("Error marking complete:", err)
-    }
-  }, [state.questions])
+  const handleMarkComplete = React.useCallback(
+    async (questionId: string, newVal?: boolean) => {
+      const val = newVal === undefined ? true : newVal
+      try {
+        await fetch("/api/questions", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ questionId, completed: val }),
+        })
+        dispatch({
+          type: "SET_QUESTIONS",
+          payload: state.questions.map((q) =>
+            q.questionId === questionId ? { ...q, completed: val } : q
+          ),
+        })
+      } catch (err) {
+        console.error("Error marking complete:", err)
+      }
+    },
+    [state.questions]
+  )
 
-  const handleMarkForReview = React.useCallback(async (questionId: string, newVal?: boolean) => {
-    const val = newVal===undefined ? true : newVal
-    try {
-      await fetch("/api/questions", {
-        method:"PATCH",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({ questionId, reviewed: val }),
-      })
-      dispatch({
-        type:"SET_QUESTIONS",
-        payload: state.questions.map((q)=>
-          q.questionId===questionId ? {...q, reviewed:val} : q
-        )
-      })
-    } catch(err) {
-      console.error("Error marking review:", err)
-    }
-  }, [state.questions])
+  const handleMarkForReview = React.useCallback(
+    async (questionId: string, newVal?: boolean) => {
+      const val = newVal === undefined ? true : newVal
+      try {
+        await fetch("/api/questions", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ questionId, reviewed: val }),
+        })
+        dispatch({
+          type: "SET_QUESTIONS",
+          payload: state.questions.map((q) =>
+            q.questionId === questionId ? { ...q, reviewed: val } : q
+          ),
+        })
+      } catch (err) {
+        console.error("Error marking review:", err)
+      }
+    },
+    [state.questions]
+  )
 
   // MCQ
-  const handleOptionClick = React.useCallback((questionId: string, option: string, correctOption: string) => {
-    const isCorrect = option===correctOption
-    dispatch({
-      type:"SET_FEEDBACK",
-      payload:{
-        ...state.feedback,
-        [questionId]: isCorrect?"correct":"incorrect",
-      }
-    })
-    dispatch({
-      type:"SET_SELECTED_OPTIONS",
-      payload:{
-        ...state.selectedOptions,
-        [questionId]: option,
-      }
-    })
-    // Mark completed local
-    dispatch({
-      type:"SET_QUESTIONS",
-      payload: state.questions.map((q)=>
-        q.questionId===questionId? {...q, completed:true} : q
-      )
-    })
-  }, [state.feedback, state.selectedOptions, state.questions])
+  const handleOptionClick = React.useCallback(
+    (questionId: string, option: string, correctOption: string) => {
+      const isCorrect = option === correctOption
+      dispatch({
+        type: "SET_FEEDBACK",
+        payload: {
+          ...state.feedback,
+          [questionId]: isCorrect ? "correct" : "incorrect",
+        },
+      })
+      dispatch({
+        type: "SET_SELECTED_OPTIONS",
+        payload: {
+          ...state.selectedOptions,
+          [questionId]: option,
+        },
+      })
+      // Mark completed local
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: true } : q
+        ),
+      })
+    },
+    [state.feedback, state.selectedOptions, state.questions]
+  )
 
   // Numeric
-  const handleNumericalSubmit = React.useCallback((questionId: string, userAnswer: string, correctAnswer: string) => {
-    const isCorrect = (userAnswer===correctAnswer)
-    dispatch({
-      type:"SET_FEEDBACK",
-      payload:{
-        ...state.feedback,
-        [questionId]: isCorrect?"correct":"incorrect",
-      }
-    })
-    dispatch({
-      type:"SET_NUMERICAL_ANSWERS",
-      payload:{
-        ...state.numericalAnswers,
-        [questionId]: userAnswer
-      }
-    })
-    // Mark complete
-    dispatch({
-      type:"SET_QUESTIONS",
-      payload: state.questions.map((q)=>
-        q.questionId===questionId ? {...q, completed:true} : q
-      ),
-    })
-  }, [state.feedback, state.numericalAnswers, state.questions])
+  const handleNumericalSubmit = React.useCallback(
+    (questionId: string, userAnswer: string, correctAnswer: string) => {
+      const isCorrect = userAnswer === correctAnswer
+      dispatch({
+        type: "SET_FEEDBACK",
+        payload: {
+          ...state.feedback,
+          [questionId]: isCorrect ? "correct" : "incorrect",
+        },
+      })
+      dispatch({
+        type: "SET_NUMERICAL_ANSWERS",
+        payload: {
+          ...state.numericalAnswers,
+          [questionId]: userAnswer,
+        },
+      })
+      // Mark complete
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: true } : q
+        ),
+      })
+    },
+    [state.feedback, state.numericalAnswers, state.questions]
+  )
 
   // Reset question
-  const handleResetQuestion = React.useCallback(async (questionId: string) => {
-    dispatch({
-      type:"SET_FEEDBACK",
-      payload:{ ...state.feedback, [questionId]:undefined },
-    })
-    dispatch({
-      type:"SET_SELECTED_OPTIONS",
-      payload:{ ...state.selectedOptions, [questionId]:undefined },
-    })
-    dispatch({
-      type:"SET_NUMERICAL_ANSWERS",
-      payload:{ ...state.numericalAnswers, [questionId]:undefined },
-    })
-    // uncomplete + unreview
-    dispatch({
-      type:"SET_QUESTIONS",
-      payload: state.questions.map((q)=>
-        q.questionId===questionId? {...q, completed:false, reviewed:false} : q
-      )
-    })
-    try {
-      await fetch("/api/questions", {
-        method:"PATCH",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({
-          questionId,
-          completed:false,
-          reviewed:false,
-        })
+  const handleResetQuestion = React.useCallback(
+    async (questionId: string) => {
+      dispatch({
+        type: "SET_FEEDBACK",
+        payload: { ...state.feedback, [questionId]: undefined },
       })
-    } catch(err) {
-      console.error("Error resetting question:", err)
-    }
-  }, [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions])
+      dispatch({
+        type: "SET_SELECTED_OPTIONS",
+        payload: { ...state.selectedOptions, [questionId]: undefined },
+      })
+      dispatch({
+        type: "SET_NUMERICAL_ANSWERS",
+        payload: { ...state.numericalAnswers, [questionId]: undefined },
+      })
+      // uncomplete + unreview
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: false, reviewed: false } : q
+        ),
+      })
+      try {
+        await fetch("/api/questions", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            questionId,
+            completed: false,
+            reviewed: false,
+          }),
+        })
+      } catch (err) {
+        console.error("Error resetting question:", err)
+      }
+    },
+    [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions]
+  )
 
   // local filter for search & status
-  const filteredQuestions = React.useMemo(()=>{
+  const filteredQuestions = React.useMemo(() => {
     const s = state.searchQuery.toLowerCase()
-    return state.questions.filter((q)=>{
+    return state.questions.filter((q) => {
       const textFields = [q.text, q.exam, q.subject, q.topic, q.subtopic]
       const matchesSearch = textFields.some((f) => f && fuzzyContains(f, s))
 
       let matchesStatus = true
-      if (state.filters.status==="review" && !q.reviewed) {
-        matchesStatus=false
-      } else if (state.filters.status==="complete" && !q.completed) {
-        matchesStatus=false
-      } else if (state.filters.status==="incomplete" && q.completed) {
-        matchesStatus=false
+      if (state.filters.status === "review" && !q.reviewed) {
+        matchesStatus = false
+      } else if (state.filters.status === "complete" && !q.completed) {
+        matchesStatus = false
+      } else if (state.filters.status === "incomplete" && q.completed) {
+        matchesStatus = false
       }
       return matchesSearch && matchesStatus
     })
   }, [state.questions, state.filters.status, state.searchQuery])
 
+  // LOADING SKELETON
   if (state.loading) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -607,13 +630,13 @@ export default function QuestionBankContent() {
     )
   }
 
-  // SINGLE
-  if (viewMode===ViewMode.SINGLE) {
+  // SINGLE VIEW
+  if (viewMode === ViewMode.SINGLE) {
     if (!filteredQuestions.length) {
       return (
         <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-8 text-gray-900 dark:text-gray-100">
           <div className="max-w-6xl mx-auto">
-            <Button variant="outline" onClick={()=> setViewMode(ViewMode.LIST)}>
+            <Button variant="outline" onClick={() => setViewMode(ViewMode.LIST)}>
               Switch to List View
             </Button>
             <p className="mt-6 text-red-300">No questions found with these filters.</p>
@@ -627,14 +650,14 @@ export default function QuestionBankContent() {
       <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-4 text-gray-900 dark:text-gray-100 flex justify-center">
         <div className="max-w-xl w-full">
           <div className="flex items-center justify-between mb-4">
-            <Button variant="outline" onClick={()=> setViewMode(ViewMode.LIST)}>
+            <Button variant="outline" onClick={() => setViewMode(ViewMode.LIST)}>
               List View
             </Button>
 
             <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
               <DialogTrigger asChild>
                 <Button variant="outline" className="ml-2 inline-flex items-center">
-                  <Filter className="mr-2 h-4 w-4"/>
+                  <Filter className="mr-2 h-4 w-4" />
                   Filters
                 </Button>
               </DialogTrigger>
@@ -644,24 +667,24 @@ export default function QuestionBankContent() {
                 </DialogHeader>
                 <ScrollArea className="h-[70vh]">
                   <div className="space-y-4 p-2">
-                    <FilterPanelMobile state={state} dispatch={dispatch}/>
+                    <FilterPanelMobile state={state} dispatch={dispatch} />
                   </div>
                 </ScrollArea>
               </DialogContent>
             </Dialog>
 
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              {singleIndex+1} / {filteredQuestions.length}
+              {singleIndex + 1} / {filteredQuestions.length}
             </span>
           </div>
 
           <AnimatePresence mode="wait">
             <motion.div
               key={currentQ.questionId}
-              initial={{ x:80, opacity:0 }}
-              animate={{ x:0, opacity:1 }}
-              exit={{ x:-80, opacity:0 }}
-              transition={{ duration:0.3 }}
+              initial={{ x: 80, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -80, opacity: 0 }}
+              transition={{ duration: 0.3 }}
               className="rounded-md border dark:border-gray-700 bg-white dark:bg-gray-800 shadow p-3 sm:p-4 mb-6"
             >
               <Question
@@ -669,22 +692,22 @@ export default function QuestionBankContent() {
                 feedback={state.feedback[currentQ.questionId]}
                 selectedOption={state.selectedOptions[currentQ.questionId]}
                 numericalAnswer={state.numericalAnswers[currentQ.questionId]}
-                showMarkscheme={state.showMarkscheme[currentQ.questionId]||false}
+                showMarkscheme={state.showMarkscheme[currentQ.questionId] || false}
                 handleOptionClick={handleOptionClick}
                 handleNumericalSubmit={handleNumericalSubmit}
-                handleNumericalChange={(qId, val)=>{
+                handleNumericalChange={(qId, val) => {
                   dispatch({
-                    type:"SET_NUMERICAL_ANSWERS",
-                    payload:{ ...state.numericalAnswers, [qId]:val },
+                    type: "SET_NUMERICAL_ANSWERS",
+                    payload: { ...state.numericalAnswers, [qId]: val },
                   })
                 }}
-                handleMarkschemeToggle={(qId)=>{
+                handleMarkschemeToggle={(qId) => {
                   dispatch({
-                    type:"SET_SHOW_MARKSCHEME",
-                    payload:{
+                    type: "SET_SHOW_MARKSCHEME",
+                    payload: {
                       ...state.showMarkscheme,
-                      [qId]:!state.showMarkscheme[qId],
-                    }
+                      [qId]: !state.showMarkscheme[qId],
+                    },
                   })
                 }}
                 handleMarkForReview={handleMarkForReview}
@@ -694,30 +717,30 @@ export default function QuestionBankContent() {
                 isMarkedComplete={!!currentQ.completed}
                 markschemesDisabled={false}
                 note=""
-                handleNoteChange={()=>{}}
-                handleDeleteNote={()=>Promise.resolve()}
+                handleNoteChange={() => {}}
+                handleDeleteNote={() => Promise.resolve()}
                 userId={"guest"}
                 totalQuestions={filteredQuestions.length}
                 currentQuestionIndex={singleIndex}
-                handleQuestionChange={()=>{}}
+                handleQuestionChange={() => {}}
               />
             </motion.div>
           </AnimatePresence>
 
           <div className="flex justify-between">
             <Button
-              onClick={()=> setSingleIndex(Math.max(0,singleIndex-1))}
-              disabled={singleIndex===0}
+              onClick={() => setSingleIndex(Math.max(0, singleIndex - 1))}
+              disabled={singleIndex === 0}
             >
-              <ChevronLeft className="mr-1 h-4 w-4"/>
+              <ChevronLeft className="mr-1 h-4 w-4" />
               Prev
             </Button>
             <Button
-              onClick={()=> setSingleIndex(Math.min(filteredQuestions.length-1, singleIndex+1))}
-              disabled={singleIndex===filteredQuestions.length-1}
+              onClick={() => setSingleIndex(Math.min(filteredQuestions.length - 1, singleIndex + 1))}
+              disabled={singleIndex === filteredQuestions.length - 1}
             >
               Next
-              <ChevronRight className="ml-1 h-4 w-4"/>
+              <ChevronRight className="ml-1 h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -725,13 +748,13 @@ export default function QuestionBankContent() {
     )
   }
 
-  // LIST
+  // LIST VIEW
   return (
     <TooltipProvider>
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
           <div className="flex justify-end mb-4">
-            <Button variant="outline" onClick={()=> setViewMode(ViewMode.SINGLE)}>
+            <Button variant="outline" onClick={() => setViewMode(ViewMode.SINGLE)}>
               Switch to Single View
             </Button>
           </div>
@@ -746,8 +769,8 @@ export default function QuestionBankContent() {
                 type="text"
                 placeholder="Search questions..."
                 value={state.searchQuery}
-                onChange={(e)=>
-                  dispatch({ type:"SET_SEARCH_QUERY", payload:e.target.value })
+                onChange={(e) =>
+                  dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })
                 }
                 className="pl-10 dark:text-gray-100 dark:bg-gray-800 dark:placeholder-gray-400"
               />
@@ -772,7 +795,7 @@ export default function QuestionBankContent() {
                   </DialogHeader>
                   <ScrollArea className="h-[70vh]">
                     <div className="space-y-4 p-2">
-                      <FilterPanelMobile state={state} dispatch={dispatch}/>
+                      <FilterPanelMobile state={state} dispatch={dispatch} />
                     </div>
                   </ScrollArea>
                 </DialogContent>
@@ -850,7 +873,6 @@ export default function QuestionBankContent() {
           {/* Desktop filter popovers */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {(["exams","subjects","topics","subtopics","difficulties","years","types"] as FilterKey[]).map((filterType) => {
-              // gather distinct values from the entire DB (state.filterOptions)
               const filterValues = state.filterOptions[filterType] || []
 
               return (
@@ -938,7 +960,7 @@ export default function QuestionBankContent() {
                     Overall Progress
                   </span>
                   <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
-                    {state.globalStats.total>0
+                    {state.globalStats.total > 0
                       ? Math.round( (state.globalStats.completed / state.globalStats.total)*100 )
                       : 0
                     }%
@@ -1008,7 +1030,7 @@ export default function QuestionBankContent() {
             </CardContent>
           </Card>
 
-          {state.questions.length>0 ? (
+          {state.questions.length > 0 ? (
             <>
               {filteredQuestions.map((question, index) => (
                 <Question
@@ -1017,73 +1039,73 @@ export default function QuestionBankContent() {
                   feedback={state.feedback[question.questionId]}
                   selectedOption={state.selectedOptions[question.questionId]}
                   numericalAnswer={state.numericalAnswers[question.questionId]}
-                  showMarkscheme={state.showMarkscheme[question.questionId]||false}
+                  showMarkscheme={state.showMarkscheme[question.questionId] || false}
                   handleOptionClick={handleOptionClick}
                   handleNumericalSubmit={handleNumericalSubmit}
-                  handleNumericalChange={(qId, val)=>{
+                  handleNumericalChange={(qId, val) => {
                     dispatch({
-                      type:"SET_NUMERICAL_ANSWERS",
-                      payload:{ ...state.numericalAnswers, [qId]:val },
+                      type: "SET_NUMERICAL_ANSWERS",
+                      payload: { ...state.numericalAnswers, [qId]: val },
                     })
                   }}
-                  handleMarkschemeToggle={(qId)=>{
+                  handleMarkschemeToggle={(qId) => {
                     dispatch({
-                      type:"SET_SHOW_MARKSCHEME",
-                      payload:{
+                      type: "SET_SHOW_MARKSCHEME",
+                      payload: {
                         ...state.showMarkscheme,
                         [qId]: !state.showMarkscheme[qId],
-                      }
+                      },
                     })
                   }}
                   handleMarkForReview={handleMarkForReview}
                   handleMarkComplete={handleMarkComplete}
-                  handleResetQuestion={async (qId)=>{
+                  handleResetQuestion={async (qId) => {
                     // local reset
                     dispatch({
-                      type:"SET_FEEDBACK",
-                      payload:{ ...state.feedback, [qId]:undefined }
+                      type: "SET_FEEDBACK",
+                      payload: { ...state.feedback, [qId]: undefined },
                     })
                     dispatch({
-                      type:"SET_SELECTED_OPTIONS",
-                      payload:{ ...state.selectedOptions, [qId]:undefined }
+                      type: "SET_SELECTED_OPTIONS",
+                      payload: { ...state.selectedOptions, [qId]: undefined },
                     })
                     dispatch({
-                      type:"SET_NUMERICAL_ANSWERS",
-                      payload:{ ...state.numericalAnswers, [qId]:undefined }
+                      type: "SET_NUMERICAL_ANSWERS",
+                      payload: { ...state.numericalAnswers, [qId]: undefined },
                     })
                     dispatch({
-                      type:"SET_QUESTIONS",
-                      payload: state.questions.map((qq)=>
-                        qq.questionId===qId
-                          ? {...qq, completed:false, reviewed:false}
+                      type: "SET_QUESTIONS",
+                      payload: state.questions.map((qq) =>
+                        qq.questionId === qId
+                          ? { ...qq, completed: false, reviewed: false }
                           : qq
-                      )
+                      ),
                     })
                     // server
                     try {
                       await fetch("/api/questions", {
-                        method:"PATCH",
-                        headers:{"Content-Type":"application/json"},
+                        method: "PATCH",
+                        headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                          questionId:qId,
-                          completed:false,
-                          reviewed:false,
-                        })
+                          questionId: qId,
+                          completed: false,
+                          reviewed: false,
+                        }),
                       })
-                    } catch(e){
+                    } catch (e) {
                       console.error("Error resetting question:", e)
                     }
                   }}
-                  isMarkedForReview={question.reviewed||false}
-                  isMarkedComplete={question.completed||false}
+                  isMarkedForReview={question.reviewed || false}
+                  isMarkedComplete={question.completed || false}
                   markschemesDisabled={false}
                   note=""
-                  handleNoteChange={()=>{}}
-                  handleDeleteNote={()=>Promise.resolve()}
+                  handleNoteChange={() => {}}
+                  handleDeleteNote={() => Promise.resolve()}
                   userId={"guest"}
                   totalQuestions={filteredQuestions.length}
                   currentQuestionIndex={index}
-                  handleQuestionChange={()=>{}}
+                  handleQuestionChange={() => {}}
                 />
               ))}
               <Pagination
@@ -1124,7 +1146,7 @@ function FilterPanelMobile({
   ]
 
   function handleStatusChange(st: string) {
-    dispatch({ type:"SET_FILTERS", payload:{ ...state.filters, status:st } })
+    dispatch({ type: "SET_FILTERS", payload: { ...state.filters, status: st } })
   }
 
   function handleArrayFilterChange(filterType: FilterKey, value: string) {
@@ -1132,13 +1154,13 @@ function FilterPanelMobile({
     const isSelected = oldVals.includes(value)
     let newArr: string[]
     if (isSelected) {
-      newArr = oldVals.filter((v) => v!==value)
+      newArr = oldVals.filter((v) => v !== value)
     } else {
       newArr = [...oldVals, value]
     }
     dispatch({
-      type:"SET_FILTERS",
-      payload:{ ...state.filters, [filterType]:newArr },
+      type: "SET_FILTERS",
+      payload: { ...state.filters, [filterType]: newArr },
     })
   }
 
@@ -1150,22 +1172,21 @@ function FilterPanelMobile({
           {statuses.map((st) => (
             <Button
               key={st}
-              variant={state.filters.status===st ? "default":"outline"}
-              onClick={()=> handleStatusChange(st)}
+              variant={state.filters.status === st ? "default" : "outline"}
+              onClick={() => handleStatusChange(st)}
             >
-              {st.charAt(0).toUpperCase()+st.slice(1)}
+              {st.charAt(0).toUpperCase() + st.slice(1)}
             </Button>
           ))}
         </div>
       </div>
 
       {filterTypes.map((filterType) => {
-        // read from entire DB filterOptions
         const values = state.filterOptions[filterType] || []
         return (
           <div key={filterType}>
             <p className="font-semibold mb-2">
-              {filterType.charAt(0).toUpperCase()+filterType.slice(1)}
+              {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
             </p>
             <div className="space-y-1 max-h-40 overflow-y-auto border p-2 rounded-md dark:border-gray-700">
               {values.map((val) => (
@@ -1174,7 +1195,7 @@ function FilterPanelMobile({
                     type="checkbox"
                     className="form-checkbox"
                     checked={state.filters[filterType].includes(val)}
-                    onChange={()=> handleArrayFilterChange(filterType,val)}
+                    onChange={() => handleArrayFilterChange(filterType, val)}
                   />
                   <span>{val}</span>
                 </label>
