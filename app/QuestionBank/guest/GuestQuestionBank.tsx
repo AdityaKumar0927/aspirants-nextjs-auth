@@ -47,9 +47,6 @@ import Popover from "@/components/shared/popover"
 
 const PAGE_SIZE = 10
 
-//
-// 1) Ensure 'options?: string[]' matches <Question> component's interface.
-//
 interface QuestionType {
   id: number
   questionId?: string
@@ -60,7 +57,7 @@ interface QuestionType {
   difficulty?: string
   type?: "Multiple Choice" | "Numerical" | string
   year?: number
-  options?: string[]           // IMPORTANT: 'string[]' not '(string | undefined)[]'
+  options?: string[] // Filtered to be strictly string[]
   correctOption?: string
   exam?: string
   reviewed?: boolean
@@ -227,11 +224,6 @@ export default function GuestQuestionBank() {
   const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
   const { toast } = useToast()
 
-  //
-  // 2) Fetch questions from your API:
-  //    - parse year => number
-  //    - convert 'options' from (string | undefined)[] to string[] by filtering out undefined
-  //
   const fetchQuestions = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
     try {
@@ -248,19 +240,18 @@ export default function GuestQuestionBank() {
         return aNum - bNum
       })
 
-      // Convert 'year' from string => number,
-      // Filter out undefined from 'options' so final is string[] 
+      // Convert 'year' from string => number & ensure options are strictly string[]
       const updatedQuestions: QuestionType[] = sortedQuestions.map(
-        (q: any, index: number) => {
-          return {
-            ...q,
-            id: index + 1, // numeric id
-            year: q.year ? parseInt(q.year, 10) : undefined,
-            options: q.options
-              ? q.options.filter((opt: string | undefined): opt is string => !!opt)
-              : undefined,
-          }
-        }
+        (q: any, index: number) => ({
+          ...q,
+          id: index + 1, // numeric id
+          year: q.year ? parseInt(q.year, 10) : undefined,
+          options: q.options
+            ? q.options.filter(
+                (opt: string | undefined): opt is string => !!opt
+              )
+            : undefined,
+        })
       )
 
       dispatch({ type: "SET_QUESTIONS", payload: updatedQuestions })
@@ -276,7 +267,6 @@ export default function GuestQuestionBank() {
     }
   }, [toast])
 
-  // On mount, fetch Qs & load localStorage
   useEffect(() => {
     fetchQuestions()
 
@@ -292,7 +282,6 @@ export default function GuestQuestionBank() {
     }
   }, [fetchQuestions])
 
-  // Save to localStorage on changes
   useEffect(() => {
     localStorage.setItem(
       "guestProgress",
@@ -314,10 +303,8 @@ export default function GuestQuestionBank() {
     state.showMarkscheme,
   ])
 
-  // Filtering
   const filteredQuestions = useMemo(() => {
     const searchQuery = state.searchQuery.toLowerCase()
-
     return state.questions.filter((question) => {
       const matchesSearch =
         (question.text ?? "").toLowerCase().includes(searchQuery) ||
@@ -342,8 +329,12 @@ export default function GuestQuestionBank() {
           (question.type && state.filters.types.includes(question.type)))
 
       if (state.filters.status === "complete") {
-        // e.g., only show correct
-        return matchesSearch && matchesFilters && state.feedback[question.questionId ?? ""] === "correct"
+        // e.g. show only 'correct' from feedback
+        return (
+          matchesSearch &&
+          matchesFilters &&
+          state.feedback[question.questionId ?? ""] === "correct"
+        )
       } else if (state.filters.status === "review") {
         return matchesSearch && matchesFilters && state.reviewed[question.questionId ?? ""]
       }
@@ -352,19 +343,16 @@ export default function GuestQuestionBank() {
     })
   }, [state.questions, state.filters, state.searchQuery, state.feedback, state.reviewed])
 
-  // Pagination
   const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
   const paginatedQuestions = useMemo(() => {
     const startIndex = (state.currentPage - 1) * PAGE_SIZE
     return filteredQuestions.slice(startIndex, startIndex + PAGE_SIZE)
   }, [filteredQuestions, state.currentPage])
 
-  // Page handler
   const handlePageChange = useCallback((page: number) => {
     dispatch({ type: "SET_CURRENT_PAGE", payload: page })
   }, [])
 
-  // Filter toggles
   const handleFilterChange = useCallback(
     (tag: keyof FiltersType, value: string) => {
       const filterValues = state.filters[tag]
@@ -381,35 +369,39 @@ export default function GuestQuestionBank() {
     [state.filters]
   )
 
-  // Option clicks (MCQ)
   const handleOptionClick = useCallback(
     (questionId: string, option: string, correctOption: string) => {
       const isCorrect = option === correctOption
-      const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" }
+      const newFeedback = {
+        ...state.feedback,
+        [questionId]: isCorrect ? "correct" : "incorrect",
+      }
       const newSelectedOptions = { ...state.selectedOptions, [questionId]: option }
 
+      // Corrected dispatch (no typo):
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions })
     },
     [state.feedback, state.selectedOptions]
   )
 
-  // Numerical
   const handleNumericalSubmit = useCallback(
     (questionId: string, userAnswer: string, correctAnswer: string) => {
       const isCorrect = userAnswer === correctAnswer
-      const newFeedback = { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" }
+      const newFeedback = {
+        ...state.feedback,
+        [questionId]: isCorrect ? "correct" : "incorrect",
+      }
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
     },
     [state.feedback]
   )
 
   const handleNumericalChange = useCallback((questionId: string, value: string) => {
-    // Optional: store numerical answers separately, or just console.log
+    // Optional numeric state if needed; for now, just log
     console.log(`Numerical answer for Q${questionId}: `, value)
   }, [])
 
-  // Notes
   const handleNoteChange = useCallback(
     (questionId: string, note: string) => {
       const newNotes = { ...state.notes, [questionId]: note }
@@ -418,7 +410,6 @@ export default function GuestQuestionBank() {
     [state.notes]
   )
 
-  // Mark for review/complete
   const handleMarkForReview = useCallback(
     (questionId: string) => {
       const newReviewed = { ...state.reviewed, [questionId]: true }
@@ -435,7 +426,6 @@ export default function GuestQuestionBank() {
     [state.completed]
   )
 
-  // Markscheme
   const handleMarkschemeToggle = useCallback(
     (questionId: string) => {
       const newShowMarkscheme = {
@@ -447,14 +437,12 @@ export default function GuestQuestionBank() {
     [state.showMarkscheme]
   )
 
-  // Navigator
   const handleNavigatorClick = useCallback(
     (index: number) => {
       const newPage = Math.floor(index / PAGE_SIZE) + 1
       dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
       setIsNavigatorOpen(false)
 
-      // Optional scroll
       setTimeout(() => {
         const questionElement = document.getElementById(
           `question-${filteredQuestions[index].questionId}`
@@ -467,7 +455,6 @@ export default function GuestQuestionBank() {
     [filteredQuestions]
   )
 
-  // Toggle popovers
   const handleSetDropdown = useCallback(
     (filterType: string) => {
       return (value: SetStateAction<boolean>) => {
@@ -482,7 +469,6 @@ export default function GuestQuestionBank() {
     [state.dropdowns]
   )
 
-  // Stats
   const questionStats = useMemo(() => {
     const stats = {
       notVisited: 0,
@@ -506,6 +492,31 @@ export default function GuestQuestionBank() {
 
     return stats
   }, [filteredQuestions, state.feedback, state.selectedOptions, state.reviewed])
+
+  // RESET question logic
+  const handleResetQuestion = useCallback(
+    (questionId: string) => {
+      // Clear feedback & selectedOption
+      const newFeedback = { ...state.feedback }
+      delete newFeedback[questionId]
+
+      const newSelectedOptions = { ...state.selectedOptions }
+      delete newSelectedOptions[questionId]
+
+      dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
+      dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions })
+
+      // Unmark 'completed' & 'reviewed'
+      const newCompleted = { ...state.completed, [questionId]: false }
+      dispatch({ type: "SET_COMPLETED", payload: newCompleted })
+
+      const newReviewed = { ...state.reviewed, [questionId]: false }
+      dispatch({ type: "SET_REVIEWED", payload: newReviewed })
+
+      // If you store numeric answers, do similarly
+    },
+    [state.feedback, state.selectedOptions, state.completed, state.reviewed]
+  )
 
   if (state.loading) {
     return (
@@ -549,7 +560,9 @@ export default function GuestQuestionBank() {
                 type="text"
                 placeholder="Search questions..."
                 value={state.searchQuery}
-                onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
+                onChange={(e) =>
+                  dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })
+                }
                 className="pl-10"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -578,9 +591,7 @@ export default function GuestQuestionBank() {
                               size="sm"
                               onClick={() => handleNavigatorClick(index)}
                               className={`w-10 h-10 ${
-                                isCorrect
-                                  ? "bg-green-100 border-green-500 text-green-700"
-                                  : ""
+                                isCorrect ? "bg-green-100 border-green-500 text-green-700" : ""
                               }`}
                             >
                               {index + 1}
@@ -737,7 +748,9 @@ export default function GuestQuestionBank() {
                   </span>
                   <span className="text-sm font-light tracking-tight text-gray-300">
                     {filteredQuestions.length > 0
-                      ? Math.round((questionStats.answered / filteredQuestions.length) * 100)
+                      ? Math.round(
+                          (questionStats.answered / filteredQuestions.length) * 100
+                        )
                       : 0}
                     %
                   </span>
@@ -803,19 +816,18 @@ export default function GuestQuestionBank() {
                   question={question}
                   feedback={state.feedback[question.questionId ?? ""]}
                   selectedOption={state.selectedOptions[question.questionId ?? ""]}
-                  // If numerical logic is needed, pass real props or placeholders:
                   numericalAnswer=""
-                  handleNumericalSubmit={(qid, userAnswer, correctAnswer) =>
-                    handleNumericalSubmit(qid, userAnswer, correctAnswer)
-                  }
-                  handleNumericalChange={(qid, val) => handleNumericalChange(qid, val)}
+                  handleNumericalSubmit={handleNumericalSubmit}
+                  handleNumericalChange={handleNumericalChange}
                   handleOptionClick={handleOptionClick}
                   handleMarkForReview={handleMarkForReview}
                   handleMarkComplete={handleMarkComplete}
                   isMarkedForReview={!!state.reviewed[question.questionId ?? ""]}
                   isMarkedComplete={!!state.completed[question.questionId ?? ""]}
                   showMarkscheme={!!state.showMarkscheme[question.questionId ?? ""]}
-                  handleMarkschemeToggle={() => handleMarkschemeToggle(question.questionId ?? "")}
+                  handleMarkschemeToggle={() =>
+                    handleMarkschemeToggle(question.questionId ?? "")
+                  }
                   markschemesDisabled={false}
                   note={state.notes[question.questionId ?? ""] || ""}
                   handleNoteChange={handleNoteChange}
@@ -828,6 +840,8 @@ export default function GuestQuestionBank() {
                   totalQuestions={filteredQuestions.length}
                   currentQuestionIndex={index + (state.currentPage - 1) * PAGE_SIZE}
                   handleQuestionChange={handleNavigatorClick}
+                  // The crucial fix: pass handleResetQuestion
+                  handleResetQuestion={handleResetQuestion}
                 />
               ))}
               <Pagination

@@ -44,6 +44,14 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Progress } from "@/components/ui/progress"
 import { motion, AnimatePresence } from "framer-motion"
 
+// ----------------------------
+//   FIX #1: Move enum up top
+// ----------------------------
+enum ViewMode {
+  LIST = "list",
+  SINGLE = "single",
+}
+
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
@@ -62,8 +70,8 @@ interface QuestionType {
   difficulty?: string
   type?: QuestionTypeString
   year?: number
-  reviewed?: boolean   // flagged
-  completed?: boolean  // marked complete
+  reviewed?: boolean
+  completed?: boolean
   options?: string[]
   correctOption?: string
   markscheme?: string
@@ -121,6 +129,9 @@ interface QuestionType {
   updatedAt?: string
 }
 
+// --------------------------------------------------
+//               Reducer Types
+// --------------------------------------------------
 type FilterKey =
   | "exams"
   | "subjects"
@@ -203,6 +214,9 @@ const initialState: StateType = {
   currentPage: 1,
 }
 
+// --------------------------------------------------
+//   Reducer
+// --------------------------------------------------
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_QUESTIONS":
@@ -238,8 +252,8 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
+// Pagination component
 const PAGE_SIZE = 10
-
 function Pagination({
   currentPage,
   totalPages,
@@ -257,7 +271,6 @@ function Pagination({
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
       >
-        <span className="sr-only">Previous page</span>
         <ChevronLeft className="h-4 w-4" />
       </Button>
       {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
@@ -294,99 +307,43 @@ function Pagination({
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
       >
-        <span className="sr-only">Next page</span>
         <ChevronRight className="h-4 w-4" />
       </Button>
     </nav>
   )
 }
 
-function GuestBanner() {
-  return (
-    <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900">
-      <CardContent className="p-4 flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-800">
-            <Info className="h-5 w-5 text-blue-700 dark:text-blue-200" />
-          </div>
-          <div className="space-y-1">
-            <h3 className="font-medium text-blue-900 dark:text-blue-100">Guest Access</h3>
-            <p className="text-sm text-blue-700 dark:text-blue-200">
-              Try out the Question Bank features. Sign in to save your progress.
-            </p>
-          </div>
-        </div>
-        <Link href="/QuestionBank" className="hidden sm:block">
-          <Button
-            variant="outline"
-            className="border-blue-200 hover:border-blue-300 hover:bg-blue-50 dark:border-blue-700 dark:hover:border-blue-500 dark:hover:bg-blue-800"
-          >
-            Sign in
-            <ChevronRight className="ml-2 h-4 w-4" />
-          </Button>
-        </Link>
-      </CardContent>
-    </Card>
-  )
-}
-
-enum ViewMode {
-  LIST = "list",
-  SINGLE = "single",
-}
-
 export default function QuestionBankContent() {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { toast } = useToast()
+
+  // --------------------------------------------------------
+  // FIX #2: We only declare singleIndex once
+  // --------------------------------------------------------
   const [viewMode, setViewMode] = useState<ViewMode>(ViewMode.LIST)
   const [singleIndex, setSingleIndex] = useState<number>(0)
   const [filtersOpenMobile, setFiltersOpenMobile] = useState(false)
 
-  // Example: dynamic difficulties from an API
-  const [difficultyOptions, setDifficultyOptions] = useState<string[]>([])
-
-  // On mount, if screen is small, use single-question view
+  // On mount, switch to single if mobile
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       setViewMode(ViewMode.SINGLE)
     }
   }, [])
 
-  // Fetch difficulties from an endpoint if you have one:
-  useEffect(() => {
-    ;(async () => {
-      try {
-        const res = await fetch("/api/difficulties") // or /api/whatever
-        if (!res.ok) {
-          throw new Error("Failed to fetch difficulties")
-        }
-        const data = await res.json()
-        if (Array.isArray(data)) {
-          setDifficultyOptions(data)
-        }
-      } catch (error) {
-        console.error("Error fetching difficulties:", error)
-      }
-    })()
-  }, [])
-
-  // typed fetch helper
-  const fetchData = useCallback(async <T,>(url: string): Promise<T[]> => {
-    const response = await fetch(url)
-    if (!response.ok) {
-      const errorText = await response.text()
-      throw new Error(`Failed to fetch ${url}: ${errorText}`)
-    }
-    const data = await response.json()
-    if (Array.isArray(data)) return data as T[]
-    if (data && Array.isArray(data.data)) return data.data as T[]
-    return []
-  }, [])
-
+  // The main fetch function: use no-store
   const fetchAllData = useCallback(async () => {
+    console.log("Fetching /api/questions with no-store cache to fix reload issues.")
     dispatch({ type: "SET_LOADING", payload: true })
     try {
-      const questionsData = await fetchData<QuestionType>("/api/questions")
+      const response = await fetch("/api/questions", { cache: "no-store" })
+      if (!response.ok) {
+        const text = await response.text()
+        throw new Error(`Failed to fetch /api/questions: ${text}`)
+      }
+      const questionsData: QuestionType[] = await response.json()
+      console.log("Fetched questionsData length =", questionsData.length)
+
       const merged = questionsData.map((q, idx) => ({
         ...q,
         id: idx + 1,
@@ -402,33 +359,25 @@ export default function QuestionBankContent() {
     } finally {
       dispatch({ type: "SET_LOADING", payload: false })
     }
-  }, [fetchData, toast])
+  }, [toast])
 
   useEffect(() => {
     fetchAllData()
   }, [fetchAllData])
 
-  // -------------- CORE LOGIC FOR FEEDBACK --------------
+  // MCQ + numeric feedback
   const handleOptionClick = useCallback(
     (questionId: string, option: string, correctOption: string) => {
       const isCorrect = option === correctOption
-      // update feedback
       dispatch({
         type: "SET_FEEDBACK",
-        payload: {
-          ...state.feedback,
-          [questionId]: isCorrect ? "correct" : "incorrect",
-        },
+        payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
       })
-      // store the selected option
       dispatch({
         type: "SET_SELECTED_OPTIONS",
-        payload: {
-          ...state.selectedOptions,
-          [questionId]: option,
-        },
+        payload: { ...state.selectedOptions, [questionId]: option },
       })
-      // mark question as completed
+      // Mark complete
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
@@ -444,19 +393,13 @@ export default function QuestionBankContent() {
       const isCorrect = userAnswer === correctAnswer
       dispatch({
         type: "SET_FEEDBACK",
-        payload: {
-          ...state.feedback,
-          [questionId]: isCorrect ? "correct" : "incorrect",
-        },
+        payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
       })
       dispatch({
         type: "SET_NUMERICAL_ANSWERS",
-        payload: {
-          ...state.numericalAnswers,
-          [questionId]: userAnswer,
-        },
+        payload: { ...state.numericalAnswers, [questionId]: userAnswer },
       })
-      // mark question as completed
+      // Mark complete
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
@@ -466,12 +409,10 @@ export default function QuestionBankContent() {
     },
     [state.feedback, state.numericalAnswers, state.questions]
   )
-  // -------------------------------------------
 
-  // New: Reset question logic
+  // Reset question
   const handleResetQuestion = useCallback(
     async (questionId: string) => {
-      // Clear feedback, selected option, numerical answer
       dispatch({
         type: "SET_FEEDBACK",
         payload: { ...state.feedback, [questionId]: undefined },
@@ -484,27 +425,18 @@ export default function QuestionBankContent() {
         type: "SET_NUMERICAL_ANSWERS",
         payload: { ...state.numericalAnswers, [questionId]: undefined },
       })
-
-      // Mark question un-complete & un-flagged locally
+      // Mark un-complete
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
-          q.questionId === questionId
-            ? { ...q, completed: false, reviewed: false }
-            : q
+          q.questionId === questionId ? { ...q, completed: false, reviewed: false } : q
         ),
       })
-
-      // Optionally patch server to remove these flags
       try {
         await fetch("/api/questions", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            questionId,
-            completed: false,
-            reviewed: false,
-          }),
+          body: JSON.stringify({ questionId, completed: false, reviewed: false }),
         })
       } catch (err) {
         console.error("Error resetting question:", err)
@@ -513,7 +445,6 @@ export default function QuestionBankContent() {
     [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions]
   )
 
-  // Mark complete / Mark review
   const handleMarkComplete = useCallback(
     async (questionId: string, newVal?: boolean) => {
       const completedVal = newVal === undefined ? true : newVal
@@ -521,12 +452,8 @@ export default function QuestionBankContent() {
         await fetch("/api/questions", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            questionId,
-            completed: completedVal,
-          }),
+          body: JSON.stringify({ questionId, completed: completedVal }),
         })
-        // update local
         dispatch({
           type: "SET_QUESTIONS",
           payload: state.questions.map((q) =>
@@ -547,12 +474,8 @@ export default function QuestionBankContent() {
         await fetch("/api/questions", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            questionId,
-            reviewed: reviewedVal,
-          }),
+          body: JSON.stringify({ questionId, reviewed: reviewedVal }),
         })
-        // update local
         dispatch({
           type: "SET_QUESTIONS",
           payload: state.questions.map((q) =>
@@ -566,14 +489,12 @@ export default function QuestionBankContent() {
     [state.questions]
   )
 
-  // filtering
+  // Filter + search
   const filteredQuestions = useMemo(() => {
-    const search = state.searchQuery.toLowerCase()
+    const searchTerm = state.searchQuery.toLowerCase()
     return state.questions.filter((q) => {
       const textFields = [q.text, q.topic, q.subtopic, q.subject, q.exam, q.title]
-      const matchesSearch = textFields.some(
-        (field) => field && fuzzyContains(field, search)
-      )
+      const matchesSearch = textFields.some((field) => field && fuzzyContains(field, searchTerm))
 
       let matchesFilters = true
       if (state.filters.exams.length && q.exam && !state.filters.exams.includes(q.exam)) {
@@ -602,28 +523,23 @@ export default function QuestionBankContent() {
       if (state.filters.types.length && q.type && !state.filters.types.includes(q.type)) {
         matchesFilters = false
       }
-      if (
-        state.filters.years.length &&
-        q.year &&
-        !state.filters.years.includes(q.year.toString())
-      ) {
+      if (state.filters.years.length && q.year && !state.filters.years.includes(q.year.toString())) {
         matchesFilters = false
       }
 
-      // status
-      if (state.filters.status === "review") {
-        if (!q.reviewed) matchesFilters = false
-      } else if (state.filters.status === "complete") {
-        if (!q.completed) matchesFilters = false
-      } else if (state.filters.status === "incomplete") {
-        if (q.completed) matchesFilters = false
+      // status check
+      if (state.filters.status === "review" && !q.reviewed) {
+        matchesFilters = false
+      } else if (state.filters.status === "complete" && !q.completed) {
+        matchesFilters = false
+      } else if (state.filters.status === "incomplete" && q.completed) {
+        matchesFilters = false
       }
-      // else "all"
-
       return matchesSearch && matchesFilters
     })
   }, [state.filters, state.questions, state.searchQuery])
 
+  // pagination
   const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
   const startIndex = (state.currentPage - 1) * PAGE_SIZE
   const paginatedQuestions = filteredQuestions.slice(startIndex, startIndex + PAGE_SIZE)
@@ -632,12 +548,12 @@ export default function QuestionBankContent() {
     dispatch({ type: "SET_CURRENT_PAGE", payload: page })
   }
 
-  // single question nav
+  // Single question nav
   function handleSingleNext() {
-    setSingleIndex((prev) => (prev < filteredQuestions.length - 1 ? prev + 1 : prev))
+    setSingleIndex((prev) => Math.min(prev + 1, filteredQuestions.length - 1))
   }
   function handleSinglePrev() {
-    setSingleIndex((prev) => (prev > 0 ? prev - 1 : prev))
+    setSingleIndex((prev) => Math.max(prev - 1, 0))
   }
 
   // toggling filter popovers
@@ -649,7 +565,6 @@ export default function QuestionBankContent() {
     })
   }
 
-  // handle filter array changes
   const handleFilterChange = useCallback(
     (filterType: FilterKey, value: string) => {
       const oldValues = state.filters[filterType]
@@ -670,28 +585,24 @@ export default function QuestionBankContent() {
     [state.filters]
   )
 
-  // For question navigator
+  // question navigator
   function handleNavigatorClick(index: number) {
     const newPage = Math.floor(index / PAGE_SIZE) + 1
     dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
     setTimeout(() => {
-      const questionElement = document.getElementById(
-        `question-${filteredQuestions[index].questionId}`
-      )
+      const questionElement = document.getElementById(`question-${filteredQuestions[index].questionId}`)
       if (questionElement) {
         questionElement.scrollIntoView({ behavior: "smooth", block: "start" })
       }
     }, 100)
   }
 
-  // Loading skeleton
+  // loading skeleton
   if (state.loading) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
-          <h1 className="mb-2 text-left text-3xl sm:text-4xl">
-            Question Bank
-          </h1>
+          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
           <div className="flex space-x-4 mb-6">
             <Skeleton height={40} width={120} />
             <Skeleton height={40} width={120} />
@@ -721,7 +632,7 @@ export default function QuestionBankContent() {
   // Decide single or list
   const filteredCount = filteredQuestions.length
 
-  // SINGLE
+  // If single mode
   if (viewMode === ViewMode.SINGLE) {
     if (filteredCount === 0) {
       return (
@@ -784,6 +695,7 @@ export default function QuestionBankContent() {
                 selectedOption={state.selectedOptions[currentQ.questionId]}
                 numericalAnswer={state.numericalAnswers[currentQ.questionId]}
                 showMarkscheme={state.showMarkscheme[currentQ.questionId]}
+                // handlers
                 handleOptionClick={handleOptionClick}
                 handleNumericalSubmit={handleNumericalSubmit}
                 handleNumericalChange={(qId, val) => {
@@ -836,7 +748,7 @@ export default function QuestionBankContent() {
     )
   }
 
-  // LIST view
+  // Otherwise list view
   return (
     <TooltipProvider>
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -847,9 +759,7 @@ export default function QuestionBankContent() {
             </Button>
           </div>
 
-          <h1 className="mb-2 text-left text-3xl sm:text-4xl">
-            Question Bank
-          </h1>
+          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
 
           <div className="mb-6 flex items-center space-x-4">
             <div className="relative flex-grow">
@@ -857,9 +767,7 @@ export default function QuestionBankContent() {
                 type="text"
                 placeholder="Search questions..."
                 value={state.searchQuery}
-                onChange={(e) =>
-                  dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })
-                }
+                onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
                 className="pl-10 dark:text-gray-100 dark:bg-gray-800 dark:placeholder-gray-400"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
@@ -952,7 +860,7 @@ export default function QuestionBankContent() {
                       ${
                         state.filters.status === filterStatus
                           ? "bg-white dark:bg-gray-700 border dark:border-gray-600 hover:border-gray-500 dark:hover:border-gray-400 text-gray-500 dark:text-gray-100"
-                          : "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-gray-700 dark:hover:border-gray-500 text-gray-500 dark:text-gray-100"
+                          : "bg-white dark:bg-gray-800 border border-gray-800 dark:border-gray-600 hover:border-gray-700 dark:hover:border-gray-500 text-gray-500 dark:text-gray-100"
                       }`}
                   >
                     {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}
@@ -967,49 +875,33 @@ export default function QuestionBankContent() {
 
           {/* Desktop filter popovers */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {([
-              "exams",
-              "subjects",
-              "topics",
-              "subtopics",
-              "difficulties",
-              "years",
-              "types",
-            ] as FilterKey[]).map((filterType) => {
-              // If you're fetching difficulties from your API, you can special-case "difficulties" to use difficultyOptions
-              let filterValues: string[]
-              if (filterType === "difficulties" && difficultyOptions.length > 0) {
-                // Use the dynamic difficulty list
-                filterValues = difficultyOptions
-              } else {
-                // Default: gather from the question list
-                filterValues = Array.from(
-                  new Set(
-                    state.questions
-                      .map((q) => {
-                        switch (filterType) {
-                          case "exams":
-                            return q.exam
-                          case "subjects":
-                            return q.subject
-                          case "topics":
-                            return q.topic
-                          case "subtopics":
-                            return q.subtopic
-                          case "difficulties":
-                            return q.difficulty
-                          case "years":
-                            return q.year?.toString()
-                          case "types":
-                            return q.type
-                          default:
-                            return ""
-                        }
-                      })
-                      .filter(Boolean) as string[]
-                  )
+            {(["exams","subjects","topics","subtopics","difficulties","years","types"] as FilterKey[]).map((filterType) => {
+              const filterValues = Array.from(
+                new Set(
+                  state.questions
+                    .map((q) => {
+                      switch (filterType) {
+                        case "exams":
+                          return q.exam
+                        case "subjects":
+                          return q.subject
+                        case "topics":
+                          return q.topic
+                        case "subtopics":
+                          return q.subtopic
+                        case "difficulties":
+                          return q.difficulty
+                        case "years":
+                          return q.year?.toString()
+                        case "types":
+                          return q.type
+                        default:
+                          return ""
+                      }
+                    })
+                    .filter(Boolean) as string[]
                 )
-              }
+              )
 
               return (
                 <Popover
@@ -1027,9 +919,7 @@ export default function QuestionBankContent() {
                             <input
                               type="checkbox"
                               className="mr-2"
-                              checked={(
-                                state.filters[filterType] as string[]
-                              ).includes(value)}
+                              checked={(state.filters[filterType] as string[]).includes(value)}
                               onChange={() => handleFilterChange(filterType, value)}
                             />
                             <label className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -1307,9 +1197,7 @@ function FilterPanelMobile({
                   <input
                     type="checkbox"
                     className="form-checkbox"
-                    checked={(
-                      state.filters[filterType] as string[]
-                    ).includes(val)}
+                    checked={(state.filters[filterType] as string[]).includes(val)}
                     onChange={() => handleArrayFilterChange(filterType, val)}
                   />
                   <span>{val}</span>
