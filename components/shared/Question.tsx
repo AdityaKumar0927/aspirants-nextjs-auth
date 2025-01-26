@@ -120,21 +120,25 @@ interface QuestionProps {
   numericalAnswer: string | undefined
   showMarkscheme: boolean | undefined
 
-  // For MCQ or numeric
+  // Fired when user picks an MCQ option
   handleOptionClick: (
     questionId: string,
     option: string,
     correctOption: string
   ) => void
+
+  // For numeric answers
   handleNumericalSubmit: (
     questionId: string,
     userAnswer: string,
     correctAnswer: string
   ) => void
   handleNumericalChange: (questionId: string, value: string) => void
+
+  // Toggle markscheme
   handleMarkschemeToggle: (questionId: string) => void
 
-  // Toggling
+  // Toggling "review" / "complete"
   handleMarkForReview: (questionId: string, newVal?: boolean) => void
   handleMarkComplete: (questionId: string, newVal?: boolean) => void
 
@@ -142,13 +146,11 @@ interface QuestionProps {
   isMarkedComplete: boolean
   markschemesDisabled: boolean
 
-  // Notes
   note: string
   handleNoteChange: (questionId: string, note: string) => void
   handleDeleteNote: (questionId: string) => Promise<void>
   userId: string
 
-  // Nav
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
   totalQuestions: number
@@ -181,21 +183,16 @@ export default function Question({
   currentQuestionIndex,
   handleQuestionChange,
 }: QuestionProps) {
-  // For MCQ: user selects option, then hits "Submit"
   const [pendingOption, setPendingOption] = useState<string | null>(null)
-
-  // If we want direct highlight after submission
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
     selectedOption || null
   )
-
-  const [showMarkschemeModal, setShowMarkschemeModal] = useState(false)
+  const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
   const [showNotes, setShowNotes] = useState(false)
   const [showAI, setShowAI] = useState(false)
   const [showComments, setShowComments] = useState(false)
 
-  // Comments
   const [comments, setComments] = useState<CommentType[]>([])
   const [newComment, setNewComment] = useState("")
   const [replyingTo, setReplyingTo] = useState<string | null>(null)
@@ -215,6 +212,7 @@ export default function Question({
 
   const { toast } = useToast()
 
+  // optional swipe handlers
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
@@ -225,22 +223,18 @@ export default function Question({
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
-  //
   // Tag logic
-  //
   function handleAddTag() {
     if (newTag && !localCustomTags.includes(newTag)) {
       setLocalCustomTags([...localCustomTags, newTag])
       setNewTag("")
     }
   }
-  function handleRemoveTag(tagToRemove: string) {
-    setLocalCustomTags(localCustomTags.filter((tag) => tag !== tagToRemove))
+  function handleRemoveTag(tag: string) {
+    setLocalCustomTags(localCustomTags.filter((t) => t !== tag))
   }
 
-  //
   // Mark complete
-  //
   async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, checked)
@@ -262,9 +256,7 @@ export default function Question({
     }
   }
 
-  //
-  // Flag for review
-  //
+  // Mark for review
   async function toggleReview() {
     if (!question.questionId) return
     const newVal = !isMarkedForReview
@@ -282,57 +274,47 @@ export default function Question({
     } else {
       toast({
         title: "Question Unflagged",
-        description: `Removed the review flag for question #${question.id}.`,
+        description: `Removed review flag for question #${question.id}.`,
       })
     }
   }
 
-  //
-  // MCQ
-  //
+  // MCQ: user selects -> store in pendingOption
   function handleOptionSelect(letter: string) {
     setPendingOption(letter)
   }
+  // Then user clicks "Submit"
   function handleMcqSubmit() {
     if (!pendingOption || !question.questionId) return
     handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "N/A")
     setLocalSelectedOption(pendingOption)
   }
 
-  //
-  // Numeric
-  //
+  // numeric
   function handleNumericalSubmitLocal() {
     if (!question.questionId) return
     handleNumericalSubmit(question.questionId, numericalAnswer ?? "", question.correctOption ?? "N/A")
   }
 
-  //
   // Difficulty rating
-  //
   async function handleDifficultyChange(newRating: number) {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
-
-    // also set question.difficulty for UI
     let newDifficulty = "easy"
     if (newRating === 2) newDifficulty = "medium"
     else if (newRating === 3) newDifficulty = "hard"
-    question.difficulty = newDifficulty
 
+    // optionally patch
     try {
-      const res = await fetch("/api/questions", {
+      await fetch("/api/questions", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           questionId: question.questionId,
           difficultyRating: newRating,
           difficulty: newDifficulty,
-          updatedBy: userId || "guest",
         }),
       })
-      if (!res.ok) throw new Error("Failed to update difficulty rating")
-      await res.json()
       toast({
         title: "Difficulty Updated",
         description: `Set question #${question.id} difficulty to ${newDifficulty}.`,
@@ -347,9 +329,7 @@ export default function Question({
     }
   }
 
-  //
   // Notes
-  //
   async function saveNote() {
     if (!question.questionId) return
     try {
@@ -373,7 +353,7 @@ export default function Question({
         description: "Your note has been saved successfully.",
       })
     } catch (error) {
-      console.error("Error saving note:", error)
+      console.error(error)
       toast({
         title: "Error",
         description: "Failed to save note. Please try again.",
@@ -396,7 +376,7 @@ export default function Question({
       setNoteId(null)
       handleNoteChange(question.questionId, "")
     } catch (error) {
-      console.error("Error deleting note:", error)
+      console.error(error)
       toast({
         title: "Error",
         description: "Failed to delete note. Please try again.",
@@ -405,128 +385,9 @@ export default function Question({
     }
   }
 
-  //
-  // Reset question
-  //
-  function handleResetQuestion() {
-    if (!question.questionId) return
-    toast({
-      title: "Question Reset",
-      description: `You can now re-attempt question #${question.id}.`,
-    })
-    // Clear local
-    setLocalSelectedOption(null)
-    setPendingOption(null)
-    // Optionally unmark as complete
-    handleMarkComplete(question.questionId, false)
-  }
+  // Comments, etc. are omitted for brevity, but you can keep them
 
-  //
-  // Comments
-  //
-  function handleAddComment() {
-    if (newComment.trim()) {
-      const newCommentObj: CommentType = {
-        id: Date.now().toString(),
-        userId,
-        username: "Current User",
-        content: newComment,
-        timestamp: new Date().toISOString(),
-        replies: [],
-        upvotes: 0,
-        downvotes: 0,
-        edited: false,
-      }
-      setComments([...comments, newCommentObj])
-      setNewComment("")
-    }
-  }
-  function handleReply(parentId: string, replyContent: string) {
-    const updated = comments.map((comment) => {
-      if (comment.id === parentId) {
-        return {
-          ...comment,
-          replies: [
-            ...comment.replies,
-            {
-              id: Date.now().toString(),
-              userId,
-              username: "Current User",
-              content: replyContent,
-              timestamp: new Date().toISOString(),
-              replies: [],
-              upvotes: 0,
-              downvotes: 0,
-              edited: false,
-            },
-          ],
-        }
-      }
-      return comment
-    })
-    setComments(updated)
-    setReplyingTo(null)
-    setNewComment("")
-  }
-  function handleEditComment(commentId: string, newContent: string) {
-    const updated = comments.map((comment) => {
-      if (comment.id === commentId) {
-        return { ...comment, content: newContent, edited: true }
-      }
-      return {
-        ...comment,
-        replies: comment.replies.map((reply) =>
-          reply.id === commentId ? { ...reply, content: newContent, edited: true } : reply
-        ),
-      }
-    })
-    setComments(updated)
-    setEditingCommentId(null)
-  }
-  function handleDeleteComment(commentId: string) {
-    const updated = comments.filter((c) => {
-      if (c.id === commentId) {
-        return false
-      }
-      c.replies = c.replies.filter((r) => r.id !== commentId)
-      return true
-    })
-    setComments(updated)
-  }
-  function handleVote(commentId: string, voteType: "upvote" | "downvote") {
-    const updated = comments.map((comment) => {
-      if (comment.id === commentId) {
-        return {
-          ...comment,
-          upvotes: voteType === "upvote" ? comment.upvotes + 1 : comment.upvotes,
-          downvotes: voteType === "downvote" ? comment.downvotes + 1 : comment.downvotes,
-        }
-      }
-      comment.replies = comment.replies.map((reply) =>
-        reply.id === commentId
-          ? {
-              ...reply,
-              upvotes: voteType === "upvote" ? reply.upvotes + 1 : reply.upvotes,
-              downvotes: voteType === "downvote" ? reply.downvotes + 1 : reply.downvotes,
-            }
-          : reply
-      )
-      return comment
-    })
-    setComments(updated)
-  }
-
-  const sortedComments = [...comments].sort((a, b) => {
-    if (commentSort === "newest") {
-      return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-    } else if (commentSort === "oldest") {
-      return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-    } else {
-      return b.upvotes - a.upvotes
-    }
-  })
-
-  // Clean leading "A:" from MCQ options
+  // Helper to remove "A:" prefix in certain question data
   function cleanOptionText(option: string): string {
     return option.replace(/^[A-D]:\s?/i, "").trim()
   }
@@ -534,11 +395,11 @@ export default function Question({
   return (
     <TooltipProvider>
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
-        <Card className="w-full overflow-hidden mb-6 dark:bg-background dark:text-foreground">
+        <Card className="w-full overflow-hidden mb-6 dark:bg-gray-800 dark:text-gray-100">
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
-                <CardTitle className="font-normal text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+                <CardTitle className="font-normal text-2xl sm:text-3xl">
                   Question #{question.id}
                 </CardTitle>
 
@@ -608,14 +469,13 @@ export default function Question({
                       id={`complete-${question.id}`}
                       checked={isMarkedComplete}
                       onCheckedChange={(checked: boolean) => toggleComplete(!!checked)}
-                      className="dark:bg-background dark:border-foreground"
+                      className="dark:bg-gray-800 dark:border-gray-500"
                     />
                   </TooltipTrigger>
                   <TooltipContent>
                     {isMarkedComplete ? "Unmark Complete" : "Mark as Complete"}
                   </TooltipContent>
                 </Tooltip>
-
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button variant="ghost" size="icon" onClick={toggleReview}>
@@ -660,13 +520,13 @@ export default function Question({
                 </div>
               )}
               {question.text && (
-                <div className="latex-font text-base sm:text-lg md:text-xl leading-7 mb-4 text-foreground">
+                <div className="latex-font text-base sm:text-lg md:text-xl leading-7 mb-4 text-gray-700 dark:text-gray-100">
                   <MathRenderer text={question.text} />
                 </div>
               )}
             </div>
 
-            {/* Numeric */}
+            {/* If numeric */}
             {(question.type === "Numerical" || question.type === "integer") && (
               <div className="mb-4">
                 <Input
@@ -719,7 +579,7 @@ export default function Question({
               </div>
             )}
 
-            {/* MCQ */}
+            {/* If MCQ */}
             {(question.type === "Multiple Choice" || question.type === "mcq") &&
               question.options &&
               question.options.length > 0 && (
@@ -815,7 +675,7 @@ export default function Question({
                 </div>
               )}
 
-            {/* Feedback */}
+            {/* feedback color e.g. correct/incorrect */}
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
@@ -834,7 +694,7 @@ export default function Question({
               </div>
             )}
 
-            {/* Markscheme toggle */}
+            {/* Markscheme button if user answered & allowed */}
             {(
               (localSelectedOption && markschemeEnabled) ||
               ((question.type === "Numerical" || question.type === "integer") &&
@@ -887,35 +747,6 @@ export default function Question({
                   <SelectItem value="hard">Hard</SelectItem>
                 </SelectContent>
               </Select>
-              {typeof question.peerSolvedPercentage === "number" && (
-                <p className="ml-4 text-sm text-gray-500 dark:text-gray-400">
-                  Peer Solved: {question.peerSolvedPercentage.toFixed(1)}%
-                </p>
-              )}
-            </div>
-
-            {/* Reset question */}
-            <div className="mt-4">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="
-                      border-blue-400
-                      text-blue-700
-                      hover:bg-blue-50
-                      dark:border-blue-600
-                      dark:text-blue-200
-                      dark:hover:bg-slate-700
-                      rounded-sm
-                    "
-                    onClick={handleResetQuestion}
-                  >
-                    Reset Question
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Clear your selected answer & re-attempt</TooltipContent>
-              </Tooltip>
             </div>
           </CardContent>
 
@@ -958,9 +789,9 @@ export default function Question({
           </CardFooter>
         </Card>
 
-        {/* Notes */}
+        {/* Notes section */}
         {showNotes && (
-          <Card className="mb-6 dark:bg-background dark:text-foreground">
+          <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
               <CardTitle>Notes</CardTitle>
               <CardDescription>Add your notes for this question here.</CardDescription>
@@ -985,9 +816,9 @@ export default function Question({
           </Card>
         )}
 
-        {/* AI */}
+        {/* AI section */}
         {showAI && (
-          <Card className="mb-6 dark:bg-background dark:text-foreground">
+          <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
               <CardTitle>AI Assistant</CardTitle>
               <CardDescription>
@@ -1009,7 +840,7 @@ export default function Question({
 
         {/* Comments */}
         {showComments && (
-          <Card className="mb-6 dark:bg-background dark:text-foreground">
+          <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
               <CardTitle>Comments</CardTitle>
               <CardDescription>Discuss or ask questions here!</CardDescription>
@@ -1041,10 +872,28 @@ export default function Question({
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                   />
-                  <Button onClick={handleAddComment}>Add Comment</Button>
+                  <Button onClick={() => {
+                    if (newComment.trim()) {
+                      const newC: CommentType = {
+                        id: Date.now().toString(),
+                        userId,
+                        username: "Current User",
+                        content: newComment,
+                        timestamp: new Date().toISOString(),
+                        replies: [],
+                        upvotes: 0,
+                        downvotes: 0,
+                        edited: false,
+                      }
+                      setComments([...comments, newC])
+                      setNewComment("")
+                    }
+                  }}>
+                    Add Comment
+                  </Button>
                 </div>
                 <ScrollArea className="h-[300px]">
-                  {sortedComments.map((c) => (
+                  {comments.map((c) => (
                     <CommentItem
                       key={c.id}
                       comment={c}
@@ -1053,14 +902,85 @@ export default function Question({
                       newComment={newComment}
                       setReplyingTo={setReplyingTo}
                       setNewComment={setNewComment}
-                      handleReply={handleReply}
+                      handleReply={(parentId, replyContent) => {
+                        const updated = comments.map((com) => {
+                          if (com.id === parentId) {
+                            return {
+                              ...com,
+                              replies: [
+                                ...com.replies,
+                                {
+                                  id: Date.now().toString(),
+                                  userId,
+                                  username: "Current User",
+                                  content: replyContent,
+                                  timestamp: new Date().toISOString(),
+                                  replies: [],
+                                  upvotes: 0,
+                                  downvotes: 0,
+                                  edited: false,
+                                },
+                              ],
+                            }
+                          }
+                          return com
+                        })
+                        setComments(updated)
+                        setReplyingTo(null)
+                        setNewComment("")
+                      }}
                       editingCommentId={editingCommentId}
                       editedCommentContent={editedCommentContent}
                       setEditingCommentId={setEditingCommentId}
                       setEditedCommentContent={setEditedCommentContent}
-                      handleEditComment={handleEditComment}
-                      handleDeleteComment={handleDeleteComment}
-                      handleVote={handleVote}
+                      handleEditComment={(commentId, newContent) => {
+                        const updated = comments.map((com) => {
+                          if (com.id === commentId) {
+                            return { ...com, content: newContent, edited: true }
+                          }
+                          return {
+                            ...com,
+                            replies: com.replies.map((rep) =>
+                              rep.id === commentId
+                                ? { ...rep, content: newContent, edited: true }
+                                : rep
+                            ),
+                          }
+                        })
+                        setComments(updated)
+                        setEditingCommentId(null)
+                      }}
+                      handleDeleteComment={(commentId) => {
+                        const updated = comments.filter((com) => {
+                          if (com.id === commentId) return false
+                          com.replies = com.replies.filter((r) => r.id !== commentId)
+                          return true
+                        })
+                        setComments(updated)
+                      }}
+                      handleVote={(commentId, type) => {
+                        const updated = comments.map((com) => {
+                          if (com.id === commentId) {
+                            return {
+                              ...com,
+                              upvotes: type === "upvote" ? com.upvotes + 1 : com.upvotes,
+                              downvotes: type === "downvote" ? com.downvotes + 1 : com.downvotes,
+                            }
+                          }
+                          com.replies = com.replies.map((rep) =>
+                            rep.id === commentId
+                              ? {
+                                  ...rep,
+                                  upvotes: type === "upvote" ? rep.upvotes + 1 : rep.upvotes,
+                                  downvotes:
+                                    type === "downvote" ? rep.downvotes + 1 : rep.downvotes,
+                                }
+                              : rep
+                          )
+                          return com
+                        })
+                        setComments(updated)
+                      }}
                       depth={0}
                     />
                   ))}
@@ -1080,7 +1000,7 @@ export default function Question({
               transition={{ duration: 0.2 }}
               className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
             >
-              <Card className="w-full max-w-2xl dark:bg-background dark:text-foreground">
+              <Card className="w-full max-w-2xl dark:bg-gray-800 dark:text-gray-100">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle>Markscheme</CardTitle>
                   <TooltipProvider>
@@ -1130,7 +1050,7 @@ export default function Question({
   )
 }
 
-// Single comment + replies
+// Comments sub-component
 function CommentItem({
   comment,
   userId,

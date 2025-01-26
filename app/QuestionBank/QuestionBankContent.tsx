@@ -5,11 +5,11 @@ import React, {
   useEffect,
   useMemo,
   useCallback,
-  useState
+  useState,
 } from "react"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
-import Question from "@/components/shared/Question" // Adjust import path if needed
+import Question from "@/components/shared/Question" // adjust if needed
 import Popover from "@/components/shared/popover"
 import {
   ChevronDown,
@@ -44,7 +44,9 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Progress } from "@/components/ui/progress"
 import { motion, AnimatePresence } from "framer-motion"
 
-// -------------- Type Declarations --------------
+// --------------------------------------------------
+//          Type Declarations, Enums, Etc.
+// --------------------------------------------------
 
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
@@ -74,7 +76,7 @@ interface QuestionType {
   diagramUrl?: string
   status?: QuestionStatus
 
-  // Additional fields from your original code if needed
+  // Additional fields if needed
   exam?: string
   examGroup?: string
   country?: string
@@ -123,7 +125,7 @@ interface QuestionType {
   updatedAt?: string
 }
 
-// The filter keys
+// Filter keys for your drop-down filters
 type FilterKey =
   | "exams"
   | "subjects"
@@ -133,11 +135,11 @@ type FilterKey =
   | "years"
   | "types"
 
-// The shape of the filters
+// Filters shape
 type FiltersType = {
   [K in FilterKey]: string[]
 } & {
-  status: string // "all" | "review" | "complete" | "review" | "incomplete" etc.
+  status: string // "all" | "review" | "complete" | "review" | "incomplete"
 }
 
 // The shape of "dropdowns"
@@ -145,7 +147,6 @@ type DropdownsType = {
   [K in FilterKey]: boolean
 }
 
-// Our state
 type StateType = {
   questions: QuestionType[]
   filters: FiltersType
@@ -178,8 +179,7 @@ function fuzzyContains(haystack: string, needle: string): boolean {
   return haystack.toLowerCase().includes(needle.toLowerCase())
 }
 
-// -------------- Reducer & initialState --------------
-
+// The initial state
 const initialState: StateType = {
   questions: [],
   filters: {
@@ -248,8 +248,6 @@ function reducer(state: StateType, action: ActionType): StateType {
 
 const PAGE_SIZE = 10
 
-// -------------- UI Components --------------
-
 function Pagination({
   currentPage,
   totalPages,
@@ -289,7 +287,11 @@ function Pagination({
       {totalPages > 5 && currentPage < totalPages - 2 && (
         <>
           <span className="text-gray-500 dark:text-gray-400">...</span>
-          <Button variant="outline" size="icon" onClick={() => onPageChange(totalPages)}>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => onPageChange(totalPages)}
+          >
             {totalPages}
           </Button>
         </>
@@ -341,8 +343,6 @@ enum ViewMode {
   SINGLE = "single",
 }
 
-// -------------- Main Component --------------
-
 export default function QuestionBankContent() {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { toast } = useToast()
@@ -350,7 +350,7 @@ export default function QuestionBankContent() {
   const [singleIndex, setSingleIndex] = useState<number>(0)
   const [filtersOpenMobile, setFiltersOpenMobile] = useState(false)
 
-  // If on mount we detect small screen, default to SINGLE
+  // On mount, if screen is small, use single question view
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       setViewMode(ViewMode.SINGLE)
@@ -373,15 +373,12 @@ export default function QuestionBankContent() {
   const fetchAllData = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
     try {
-      // fetch from /api/questions
       const questionsData = await fetchData<QuestionType>("/api/questions")
-
-      const mergedQuestions: QuestionType[] = questionsData.map((q, index) => ({
+      const merged = questionsData.map((q, idx) => ({
         ...q,
-        id: index + 1,
+        id: idx + 1,
       }))
-
-      dispatch({ type: "SET_QUESTIONS", payload: mergedQuestions })
+      dispatch({ type: "SET_QUESTIONS", payload: merged })
     } catch (err) {
       console.error("Error fetching data:", err)
       toast({
@@ -395,23 +392,79 @@ export default function QuestionBankContent() {
   }, [fetchData, toast])
 
   useEffect(() => {
-    // load data on mount
     fetchAllData()
   }, [fetchAllData])
 
-  // Filter + search
+  // -------------- CORE LOGIC FOR FEEDBACK --------------
+  const handleOptionClick = useCallback(
+    (questionId: string, option: string, correctOption: string) => {
+      const isCorrect = option === correctOption
+      // update feedback
+      dispatch({
+        type: "SET_FEEDBACK",
+        payload: {
+          ...state.feedback,
+          [questionId]: isCorrect ? "correct" : "incorrect",
+        },
+      })
+      // store the selected option
+      dispatch({
+        type: "SET_SELECTED_OPTIONS",
+        payload: {
+          ...state.selectedOptions,
+          [questionId]: option,
+        },
+      })
+      // optional: mark question as completed
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: true } : q
+        ),
+      })
+    },
+    [state.feedback, state.selectedOptions, state.questions]
+  )
+
+  const handleNumericalSubmit = useCallback(
+    (questionId: string, userAnswer: string, correctAnswer: string) => {
+      const isCorrect = userAnswer === correctAnswer
+      dispatch({
+        type: "SET_FEEDBACK",
+        payload: {
+          ...state.feedback,
+          [questionId]: isCorrect ? "correct" : "incorrect",
+        },
+      })
+      dispatch({
+        type: "SET_NUMERICAL_ANSWERS",
+        payload: {
+          ...state.numericalAnswers,
+          [questionId]: userAnswer,
+        },
+      })
+      // optional: mark question complete
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: true } : q
+        ),
+      })
+    },
+    [state.feedback, state.numericalAnswers, state.questions]
+  )
+  // -------------------------------------------
+
+  // filtering
   const filteredQuestions = useMemo(() => {
     const search = state.searchQuery.toLowerCase()
     return state.questions.filter((q) => {
-      // naive fuzzy match on text, topic, subject, exam, title
       const textFields = [q.text, q.topic, q.subtopic, q.subject, q.exam, q.title]
       const matchesSearch = textFields.some(
         (field) => field && fuzzyContains(field, search)
       )
 
-      // check filters
       let matchesFilters = true
-
       if (state.filters.exams.length && q.exam && !state.filters.exams.includes(q.exam)) {
         matchesFilters = false
       }
@@ -442,7 +495,7 @@ export default function QuestionBankContent() {
         matchesFilters = false
       }
 
-      // status filter
+      // status
       if (state.filters.status === "review") {
         if (!q.reviewed) matchesFilters = false
       } else if (state.filters.status === "complete") {
@@ -472,7 +525,7 @@ export default function QuestionBankContent() {
     setSingleIndex((prev) => (prev > 0 ? prev - 1 : prev))
   }
 
-  // toggling filters
+  // toggling filter popovers
   function toggleFilterDropdown(filterType: FilterKey) {
     const isOpen = state.dropdowns[filterType]
     dispatch({
@@ -481,6 +534,7 @@ export default function QuestionBankContent() {
     })
   }
 
+  // handle filter array changes
   const handleFilterChange = useCallback(
     (filterType: FilterKey, value: string) => {
       const oldValues = state.filters[filterType]
@@ -501,7 +555,7 @@ export default function QuestionBankContent() {
     [state.filters]
   )
 
-  // handleMarkComplete, handleMarkForReview
+  // Mark complete / Mark review
   const handleMarkComplete = useCallback(
     async (questionId: string, newVal?: boolean) => {
       const completedVal = newVal === undefined ? true : newVal
@@ -554,6 +608,7 @@ export default function QuestionBankContent() {
     [state.questions]
   )
 
+  // For question navigator
   function handleNavigatorClick(index: number) {
     const newPage = Math.floor(index / PAGE_SIZE) + 1
     dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
@@ -568,6 +623,8 @@ export default function QuestionBankContent() {
   }
 
   // -------------- Render --------------
+
+  // Loading skeleton
   if (state.loading) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -601,9 +658,12 @@ export default function QuestionBankContent() {
     )
   }
 
-  // SINGLE layout for small screens or user choice
+  // Decide single or list
+  const filteredCount = filteredQuestions.length
+
+  // SINGLE
   if (viewMode === ViewMode.SINGLE) {
-    if (filteredQuestions.length === 0) {
+    if (filteredCount === 0) {
       return (
         <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-8 text-gray-900 dark:text-gray-100">
           <div className="max-w-6xl mx-auto">
@@ -615,7 +675,6 @@ export default function QuestionBankContent() {
         </div>
       )
     }
-
     const currentQ = filteredQuestions[singleIndex]
 
     return (
@@ -626,7 +685,6 @@ export default function QuestionBankContent() {
               List View
             </Button>
 
-            {/* Mobile-only filters button */}
             <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
               <DialogTrigger asChild>
                 <Button variant="outline" className="ml-2 inline-flex items-center">
@@ -647,7 +705,7 @@ export default function QuestionBankContent() {
             </Dialog>
 
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              {singleIndex + 1} / {filteredQuestions.length}
+              {singleIndex + 1} / {filteredCount}
             </span>
           </div>
 
@@ -666,9 +724,15 @@ export default function QuestionBankContent() {
                 selectedOption={state.selectedOptions[currentQ.questionId]}
                 numericalAnswer={state.numericalAnswers[currentQ.questionId]}
                 showMarkscheme={state.showMarkscheme[currentQ.questionId]}
-                handleOptionClick={() => {}}
-                handleNumericalSubmit={() => {}}
-                handleNumericalChange={() => {}}
+                // HERE: pass real handlers
+                handleOptionClick={handleOptionClick}
+                handleNumericalSubmit={handleNumericalSubmit}
+                handleNumericalChange={(qId, val) => {
+                  dispatch({
+                    type: "SET_NUMERICAL_ANSWERS",
+                    payload: { ...state.numericalAnswers, [qId]: val },
+                  })
+                }}
                 handleMarkschemeToggle={(qId) =>
                   dispatch({
                     type: "SET_SHOW_MARKSCHEME",
@@ -687,7 +751,7 @@ export default function QuestionBankContent() {
                 handleNoteChange={() => {}}
                 handleDeleteNote={() => Promise.resolve()}
                 userId={"guest"}
-                totalQuestions={filteredQuestions.length}
+                totalQuestions={filteredCount}
                 currentQuestionIndex={singleIndex}
                 handleQuestionChange={() => {}}
               />
@@ -695,13 +759,13 @@ export default function QuestionBankContent() {
           </AnimatePresence>
 
           <div className="flex justify-between">
-            <Button onClick={handleSinglePrev} disabled={singleIndex === 0}>
+            <Button onClick={() => setSingleIndex((prev) => Math.max(prev - 1, 0))} disabled={singleIndex === 0}>
               <ChevronLeft className="mr-1 h-4 w-4" />
               Prev
             </Button>
             <Button
-              onClick={handleSingleNext}
-              disabled={singleIndex === filteredQuestions.length - 1}
+              onClick={() => setSingleIndex((prev) => Math.min(prev + 1, filteredCount - 1))}
+              disabled={singleIndex === filteredCount - 1}
             >
               Next
               <ChevronRight className="ml-1 h-4 w-4" />
@@ -712,7 +776,7 @@ export default function QuestionBankContent() {
     )
   }
 
-  // LIST layout for desktop or user choice
+  // LIST view
   return (
     <TooltipProvider>
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -741,7 +805,7 @@ export default function QuestionBankContent() {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
             </div>
 
-            {/* On mobile, single “Filters” button */}
+            {/* For mobile: single filters button */}
             <div className="block sm:hidden">
               <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
                 <DialogTrigger asChild>
@@ -812,7 +876,7 @@ export default function QuestionBankContent() {
             </Dialog>
           </div>
 
-          {/* Desktop filter row (status) */}
+          {/* Desktop filter row for status */}
           <div className="hidden sm:flex space-x-4 mb-2">
             {["all", "complete", "review", "incomplete"].map((filterStatus) => (
               <Tooltip key={filterStatus}>
@@ -841,7 +905,7 @@ export default function QuestionBankContent() {
             ))}
           </div>
 
-          {/* Desktop filter popovers (exams, subjects, etc.) */}
+          {/* Desktop filter popovers */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map(
               (filterType) => (
@@ -926,7 +990,6 @@ export default function QuestionBankContent() {
             )}
           </div>
 
-          {/* progress card */}
           <Card className="bg-gradient-to-br from-gray-200 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 border-gray-200 dark:border-gray-700 mb-6">
             <CardContent className="p-6">
               <h2 className="text-2xl font-light tracking-tight text-gray-800 dark:text-gray-200 mb-6">
@@ -1025,15 +1088,17 @@ export default function QuestionBankContent() {
                   selectedOption={state.selectedOptions[question.questionId]}
                   numericalAnswer={state.numericalAnswers[question.questionId]}
                   showMarkscheme={state.showMarkscheme[question.questionId]}
-                  handleOptionClick={() => {}}
-                  handleNumericalSubmit={() => {}}
+
+                  // Pass real handlers for MCQ and numeric
+                  handleOptionClick={handleOptionClick}
+                  handleNumericalSubmit={handleNumericalSubmit}
                   handleNumericalChange={(qId, val) => {
                     dispatch({
                       type: "SET_NUMERICAL_ANSWERS",
                       payload: { ...state.numericalAnswers, [qId]: val },
                     })
                   }}
-                  handleMarkschemeToggle={(qId) => {
+                  handleMarkschemeToggle={(qId) =>
                     dispatch({
                       type: "SET_SHOW_MARKSCHEME",
                       payload: {
@@ -1041,7 +1106,7 @@ export default function QuestionBankContent() {
                         [qId]: !state.showMarkscheme[qId],
                       },
                     })
-                  }}
+                  }
                   handleMarkForReview={handleMarkForReview}
                   handleMarkComplete={handleMarkComplete}
                   isMarkedForReview={question.reviewed || false}
@@ -1084,9 +1149,7 @@ function FilterPanelMobile({
   state: StateType
   dispatch: React.Dispatch<ActionType>
 }) {
-  // For statuses
   const statuses = ["all", "complete", "review", "incomplete"]
-  // For each filter type
   const filterTypes: FilterKey[] = [
     "exams",
     "subjects",
@@ -1117,7 +1180,6 @@ function FilterPanelMobile({
 
   return (
     <div className="space-y-4">
-      {/* Status radio or button group */}
       <div>
         <p className="font-semibold mb-2">Question Status</p>
         <div className="flex flex-wrap gap-2">
@@ -1133,7 +1195,6 @@ function FilterPanelMobile({
         </div>
       </div>
 
-      {/* Each filter type */}
       {filterTypes.map((filterType) => {
         const values = Array.from(
           new Set(
@@ -1161,6 +1222,7 @@ function FilterPanelMobile({
               .filter(Boolean) as string[]
           )
         )
+
         return (
           <div key={filterType}>
             <p className="font-semibold mb-2">
