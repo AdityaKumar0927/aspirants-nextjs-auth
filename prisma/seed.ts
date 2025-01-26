@@ -141,8 +141,8 @@ interface QuestionJson {
 // Main seeding function
 ///////////////////////////////
 async function main() {
-  const metaFilePath = "./!metaid/ssc_ssc-cgl-tier-i.json";
-  const questionFolder = "./past-papers/ssc_ssc-cgl-tier-i";
+  const metaFilePath = "./!metaid/medical_neet.json";
+  const questionFolder = "./past-papers/medical_neet";
 
   logInfo(`Reading meta file: ${metaFilePath}`);
   logInfo(`Reading question files from: ${questionFolder}`);
