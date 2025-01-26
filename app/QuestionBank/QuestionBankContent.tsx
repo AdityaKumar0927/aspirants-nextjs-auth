@@ -764,35 +764,27 @@ export default function QuestionBankContent() {
                 <ScrollArea className="h-[60vh]">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
                     {filteredQuestions.map((question, index) => (
-                      <Tooltip key={question.questionId}>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant={question.completed ? "default" : "outline"}
-                            size="sm"
-                            onClick={() => {
-                              // We only have local page data; 
-                              // if you had many pages, you'd do a diff approach
-                              // For now, let's just scroll
-                              const el = document.getElementById(`question-${question.questionId}`)
-                              if (el) {
-                                el.scrollIntoView({ behavior: "smooth", block: "start" })
-                              }
-                            }}
-                            className={`w-10 h-10 dark:border-gray-700 ${
-                              question.completed
-                                ? "bg-green-100 border-green-500 text-green-700 dark:bg-green-900 dark:border-green-500 dark:text-green-300"
-                                : question.reviewed
-                                ? "bg-yellow-100 border-yellow-500 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300"
-                                : ""
-                            }`}
-                          >
-                            {index + 1}
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent className="dark:bg-gray-700 dark:text-gray-50">
-                          <p>{question.text.substring(0, 50)}...</p>
-                        </TooltipContent>
-                      </Tooltip>
+                      <Button
+                        key={question.questionId}
+                        variant={question.completed ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => {
+                          // scroll to the question
+                          const el = document.getElementById(`question-${question.questionId}`)
+                          if (el) {
+                            el.scrollIntoView({ behavior: "smooth", block: "start" })
+                          }
+                        }}
+                        className={`w-10 h-10 dark:border-gray-700 ${
+                          question.completed
+                            ? "bg-green-100 border-green-500 text-green-700 dark:bg-green-900 dark:border-green-500 dark:text-green-300"
+                            : question.reviewed
+                            ? "bg-yellow-100 border-yellow-500 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300"
+                            : ""
+                        }`}
+                      >
+                        {index + 1}
+                      </Button>
                     ))}
                   </div>
                 </ScrollArea>
