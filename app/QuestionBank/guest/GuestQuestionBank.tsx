@@ -1,742 +1,843 @@
 "use client"
 
 import React, {
-  useReducer,
   useEffect,
-  useMemo,
+  useReducer,
   useCallback,
+  useMemo,
   useState,
-  Dispatch,
-  SetStateAction,
 } from "react"
+import Skeleton from "react-loading-skeleton"
+import "react-loading-skeleton/dist/skeleton.css"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { TooltipProvider } from "@/components/ui/tooltip"
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider,
-} from "@/components/ui/tooltip"
-import {
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
   Search,
   List,
+  Filter,
+  ChevronLeft,
+  ChevronRight,
   HelpCircle,
   Flag,
   CheckCircle2,
+  ChevronDown,
 } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
-import Skeleton from "react-loading-skeleton"
-import "react-loading-skeleton/dist/skeleton.css"
 
-// Import your shared <Question> component
+// Reuse your shared Question component
 import Question from "@/components/shared/Question"
+// Reuse your Popover if needed
 import Popover from "@/components/shared/popover"
 
-// We define how many questions per page we want from the server
-const PAGE_SIZE = 10
+// ------------------------------------------------------------
+// 1) Enums / Types
+// ------------------------------------------------------------
+enum ViewMode {
+  LIST = "list",
+  SINGLE = "single",
+}
 
-// The shape of each question
+// The fields from the server
 interface QuestionType {
   id: number
   questionId?: string
   text?: string
+  exam?: string
   subject?: string
   topic?: string
   subtopic?: string
   difficulty?: string
-  type?: string  // "Multiple Choice" | "Numerical" | ...
   year?: number
-  options?: string[] // strictly an array of strings
+  type?: string
+  options?: string[]
   correctOption?: string
-  exam?: string
   reviewed?: boolean
   completed?: boolean
+  // etc. if needed
 }
 
-// The shape of our filter sets
-interface FiltersType {
+// For distinct filter values
+interface FilterOptions {
   exams: string[]
   subjects: string[]
   topics: string[]
   subtopics: string[]
   difficulties: string[]
-  types: string[]
   years: string[]
-  status: string
+  types: string[]
 }
 
+// The user’s chosen filters
+interface FiltersState {
+  exams: string[]
+  subjects: string[]
+  topics: string[]
+  subtopics: string[]
+  difficulties: string[]
+  years: string[]
+  types: string[]
+  status: string  // "all" | "complete" | "review" | "incomplete"
+}
+
+// The shape of our local store
 interface StateType {
-  questions: QuestionType[]       // The slice of questions we have for current page
-  filters: FiltersType
-  searchQuery: string
-  dropdowns: Record<string, boolean>
-  feedback: Record<string, string>
-  selectedOptions: Record<string, string>
-  notes: Record<string, string>
-  currentPage: number
   loading: boolean
+  viewMode: ViewMode
 
-  // We store "reviewed" and "completed" flags in local state
-  reviewed: Record<string, boolean>
-  completed: Record<string, boolean>
-  showMarkscheme: Record<string, boolean>
-
-  // [PAGINATION] totalCount to figure out how many total pages
+  // The slice of questions from the server for page=..., pageSize=...
+  questions: QuestionType[]
   totalCount: number
+  currentPage: number
+  pageSize: number
+
+  // Distinct filter sets from /api/filters
+  filterOptions: FilterOptions
+
+  // The user’s actual selected filters
+  filters: FiltersState
+
+  // For drop-down popovers
+  dropdowns: {
+    exams: boolean
+    subjects: boolean
+    topics: boolean
+    subtopics: boolean
+    difficulties: boolean
+    years: boolean
+    types: boolean
+  }
+
+  // local search
+  searchQuery: string
+
+  // local guest progress
+  feedback: Record<string, string>         // QID => "correct"/"incorrect"
+  selectedOptions: Record<string, string> // QID => chosen MCQ letter
+  reviewed: Record<string, boolean>       // QID => flagged for review
+  completed: Record<string, boolean>      // QID => marked complete
+  notes: Record<string, string>           // QID => note text
+  showMarkscheme: Record<string, boolean> // QID => whether markscheme is shown
 }
 
 type ActionType =
+  | { type: "SET_LOADING"; payload: boolean }
+  | { type: "SET_VIEW_MODE"; payload: ViewMode }
   | { type: "SET_QUESTIONS"; payload: QuestionType[] }
-  | { type: "SET_FILTERS"; payload: FiltersType }
+  | { type: "SET_TOTAL_COUNT"; payload: number }
+  | { type: "SET_CURRENT_PAGE"; payload: number }
+  | { type: "SET_PAGE_SIZE"; payload: number }
+  | { type: "SET_FILTER_OPTIONS"; payload: FilterOptions }
+  | { type: "SET_FILTERS"; payload: FiltersState }
+  | {
+      type: "SET_DROPDOWNS"
+      payload: { key: keyof StateType["dropdowns"]; value: boolean }
+    }
   | { type: "SET_SEARCH_QUERY"; payload: string }
-  | { type: "SET_DROPDOWN"; payload: { tag: string; value: boolean } }
   | { type: "SET_FEEDBACK"; payload: Record<string, string> }
   | { type: "SET_SELECTED_OPTIONS"; payload: Record<string, string> }
-  | { type: "SET_NOTES"; payload: Record<string, string> }
-  | { type: "SET_CURRENT_PAGE"; payload: number }
-  | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_REVIEWED"; payload: Record<string, boolean> }
   | { type: "SET_COMPLETED"; payload: Record<string, boolean> }
+  | { type: "SET_NOTES"; payload: Record<string, string> }
   | { type: "SET_SHOW_MARKSCHEME"; payload: Record<string, boolean> }
-  | { type: "SET_TOTAL_COUNT"; payload: number }
 
+// pagination size
+const PAGE_SIZE = 10
+
+// ------------------------------------------------------------
+// 2) The initial state
+// ------------------------------------------------------------
 const initialState: StateType = {
+  loading: true,
+  viewMode: ViewMode.LIST,
   questions: [],
+  totalCount: 0,
+  currentPage: 1,
+  pageSize: PAGE_SIZE,
+  filterOptions: {
+    exams: [],
+    subjects: [],
+    topics: [],
+    subtopics: [],
+    difficulties: [],
+    years: [],
+    types: [],
+  },
   filters: {
     exams: [],
     subjects: [],
     topics: [],
     subtopics: [],
     difficulties: [],
-    types: [],
     years: [],
+    types: [],
     status: "all",
   },
+  dropdowns: {
+    exams: false,
+    subjects: false,
+    topics: false,
+    subtopics: false,
+    difficulties: false,
+    years: false,
+    types: false,
+  },
   searchQuery: "",
-  dropdowns: {},
   feedback: {},
   selectedOptions: {},
-  notes: {},
-  currentPage: 1,
-  loading: true,
   reviewed: {},
   completed: {},
+  notes: {},
   showMarkscheme: {},
-
-  totalCount: 0,
 }
 
+// ------------------------------------------------------------
+// 3) Reducer
+// ------------------------------------------------------------
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
+    case "SET_LOADING":
+      return { ...state, loading: action.payload }
+    case "SET_VIEW_MODE":
+      return { ...state, viewMode: action.payload }
     case "SET_QUESTIONS":
       return { ...state, questions: action.payload }
+    case "SET_TOTAL_COUNT":
+      return { ...state, totalCount: action.payload }
+    case "SET_CURRENT_PAGE":
+      return { ...state, currentPage: action.payload }
+    case "SET_PAGE_SIZE":
+      return { ...state, pageSize: action.payload }
+    case "SET_FILTER_OPTIONS":
+      return { ...state, filterOptions: action.payload }
     case "SET_FILTERS":
       return { ...state, filters: action.payload }
-    case "SET_SEARCH_QUERY":
-      return { ...state, searchQuery: action.payload }
-    case "SET_DROPDOWN":
+    case "SET_DROPDOWNS":
       return {
         ...state,
-        dropdowns: { ...state.dropdowns, [action.payload.tag]: action.payload.value },
+        dropdowns: {
+          ...state.dropdowns,
+          [action.payload.key]: action.payload.value,
+        },
       }
+    case "SET_SEARCH_QUERY":
+      return { ...state, searchQuery: action.payload }
     case "SET_FEEDBACK":
       return { ...state, feedback: action.payload }
     case "SET_SELECTED_OPTIONS":
       return { ...state, selectedOptions: action.payload }
-    case "SET_NOTES":
-      return { ...state, notes: action.payload }
-    case "SET_CURRENT_PAGE":
-      return { ...state, currentPage: action.payload }
-    case "SET_LOADING":
-      return { ...state, loading: action.payload }
     case "SET_REVIEWED":
       return { ...state, reviewed: action.payload }
     case "SET_COMPLETED":
       return { ...state, completed: action.payload }
+    case "SET_NOTES":
+      return { ...state, notes: action.payload }
     case "SET_SHOW_MARKSCHEME":
       return { ...state, showMarkscheme: action.payload }
-    case "SET_TOTAL_COUNT":
-      return { ...state, totalCount: action.payload }
     default:
       return state
   }
 }
 
-// A simple pagination component for controlling page
-function Pagination({
-  currentPage,
-  totalCount,
-  pageSize,
-  onPageChange,
-}: {
-  currentPage: number
-  totalCount: number
-  pageSize: number
-  onPageChange: (page: number) => void
-}) {
-  const totalPages = Math.ceil(totalCount / pageSize)
-
-  return (
-    <nav className="flex items-center justify-center mt-6" aria-label="Pagination">
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-        disabled={currentPage === 1}
-      >
-        <ChevronLeft className="h-4 w-4" />
-      </Button>
-
-      <span className="px-4 text-sm">
-        Page {currentPage} of {totalPages}
-      </span>
-
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-        disabled={currentPage === totalPages}
-      >
-        <ChevronRight className="h-4 w-4" />
-      </Button>
-    </nav>
-  )
+// A small helper to do fuzzy text searching
+function fuzzyContains(haystack: string, needle: string): boolean {
+  if (!needle) return true
+  return haystack.toLowerCase().includes(needle.toLowerCase())
 }
 
+// ------------------------------------------------------------
+// 4) The main component
+// ------------------------------------------------------------
 export default function GuestQuestionBank() {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
+  const [singleIndex, setSingleIndex] = useState(0)
   const { toast } = useToast()
+  const [navigatorOpen, setNavigatorOpen] = useState(false)
+  const [filtersOpenMobile, setFiltersOpenMobile] = useState(false)
 
-  // ------------------------------------------------------------------
-  // 1. Fetch questions from server with pagination
-  // ------------------------------------------------------------------
+  // --------------------------------------------
+  // (A) Fetch Distinct Filter Values from /api/filters
+  // --------------------------------------------
+  const fetchFilterOptions = useCallback(async () => {
+    try {
+      console.log("Fetching /api/filters for distinct field values.")
+      const res = await fetch("/api/filters")
+      if (!res.ok) throw new Error("Failed to fetch filter options.")
+      const data = await res.json() as FilterOptions
+      dispatch({ type: "SET_FILTER_OPTIONS", payload: data })
+    } catch (err) {
+      console.error(err)
+      toast({
+        title: "Error",
+        description: "Could not load filter options. Using minimal.",
+        variant: "destructive",
+      })
+    }
+  }, [toast])
+
+  useEffect(() => {
+    fetchFilterOptions()
+  }, [fetchFilterOptions])
+
+  // --------------------------------------------
+  // (B) Fetch Paginated Questions from /api/questions
+  // with the user’s selected filters
+  // --------------------------------------------
   const fetchQuestions = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
+
     try {
-      // We'll request only the slice for the current page
+      // We'll build a query string for exam, subject, etc. plus page & pageSize
+      const {
+        exams,
+        subjects,
+        topics,
+        subtopics,
+        difficulties,
+        years,
+        types,
+        status,
+      } = state.filters
+
       const page = state.currentPage
-      const pageSize = PAGE_SIZE
-      const url = `/api/questions?page=${page}&pageSize=${pageSize}`
+      const pageSize = state.pageSize
 
-      const response = await fetch(url)
-      if (!response.ok) throw new Error("Failed to fetch questions")
-      const result = await response.json()
+      const params = new URLSearchParams()
+      if (exams.length) params.set("exam", exams[0])       // or pass multiple if your API supports
+      if (subjects.length) params.set("subject", subjects[0])
+      if (topics.length) params.set("topic", topics[0])
+      if (subtopics.length) params.set("subtopic", subtopics[0])
+      if (difficulties.length) params.set("difficulty", difficulties[0])
+      if (years.length) params.set("year", years[0])
+      if (types.length) params.set("type", types[0])
+      // status is local, not necessarily in server route, but you can do so if you want
+      // finally pagination
+      params.set("page", String(page))
+      params.set("pageSize", String(pageSize))
 
-      let data: QuestionType[] = []
+      const url = `/api/questions?${params.toString()}`
+
+      console.log("Fetching questions with =>", url)
+      const res = await fetch(url)
+      if (!res.ok) {
+        throw new Error("Failed to fetch questions with filters/pagination.")
+      }
+      const result = await res.json()
+
+      let questions: QuestionType[] = []
       let totalCount = 0
-
       if (Array.isArray(result)) {
-        // if no pagination returned
-        data = result
-        totalCount = data.length
+        questions = result
+        totalCount = result.length
       } else if (result.data) {
-        // paginated result
-        data = result.data
+        questions = result.data
         totalCount = result.totalCount
       }
 
-      // If needed, sort them by numeric portion of questionId or
-      // you can rely on server sorting
-      data.sort((a, b) => {
-        const aMatch = a.questionId?.match(/\d+/)
-        const bMatch = b.questionId?.match(/\d+/)
-        const aNum = aMatch ? parseInt(aMatch[0], 10) : 0
-        const bNum = bMatch ? parseInt(bMatch[0], 10) : 0
-        return aNum - bNum
-      })
+      // We assume the server does { orderBy: { questionId: 'asc' } }
+      // so they're already ascending. If needed, you can sort here as well:
+      questions = questions.map((q, i) => ({ ...q, id: i + 1 }))
 
-      // Convert 'year' from string => number if needed
-      const updatedQuestions = data.map((q, index) => ({
-        ...q,
-        id: index + 1,
-      }))
-
-      dispatch({ type: "SET_QUESTIONS", payload: updatedQuestions })
+      dispatch({ type: "SET_QUESTIONS", payload: questions })
       dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount })
-    } catch (error) {
-      console.error("Error fetching questions:", error)
+    } catch (err) {
+      console.error(err)
       toast({
         title: "Error",
-        description: "Failed to load questions. Please try again later.",
+        description: "Could not load questions from server.",
         variant: "destructive",
       })
     } finally {
       dispatch({ type: "SET_LOADING", payload: false })
     }
-  }, [state.currentPage, toast])
+  }, [state.filters, state.currentPage, state.pageSize, toast])
 
-  // re-fetch whenever currentPage changes
   useEffect(() => {
     fetchQuestions()
   }, [fetchQuestions])
 
-  // 2. Load localStorage progress on mount
+  // --------------------------------------------
+  // (C) Load local guest progress from localStorage on mount
+  // --------------------------------------------
   useEffect(() => {
-    const savedProgress = localStorage.getItem("guestProgress")
-    if (savedProgress) {
-      const progress = JSON.parse(savedProgress)
-      dispatch({ type: "SET_FEEDBACK", payload: progress.feedback || {} })
-      dispatch({ type: "SET_SELECTED_OPTIONS", payload: progress.selectedOptions || {} })
-      dispatch({ type: "SET_NOTES", payload: progress.notes || {} })
-      dispatch({ type: "SET_REVIEWED", payload: progress.reviewed || {} })
-      dispatch({ type: "SET_COMPLETED", payload: progress.completed || {} })
-      dispatch({ type: "SET_SHOW_MARKSCHEME", payload: progress.showMarkscheme || {} })
+    const saved = localStorage.getItem("guestQuestionBank")
+    if (saved) {
+      const data = JSON.parse(saved)
+      dispatch({ type: "SET_FEEDBACK", payload: data.feedback || {} })
+      dispatch({ type: "SET_SELECTED_OPTIONS", payload: data.selectedOptions || {} })
+      dispatch({ type: "SET_REVIEWED", payload: data.reviewed || {} })
+      dispatch({ type: "SET_COMPLETED", payload: data.completed || {} })
+      dispatch({ type: "SET_NOTES", payload: data.notes || {} })
+      dispatch({ type: "SET_SHOW_MARKSCHEME", payload: data.showMarkscheme || {} })
     }
   }, [])
 
-  // 3. Save local progress whenever these state slices change
+  // (D) Save local progress whenever these slices change
   useEffect(() => {
-    localStorage.setItem(
-      "guestProgress",
-      JSON.stringify({
-        feedback: state.feedback,
-        selectedOptions: state.selectedOptions,
-        notes: state.notes,
-        reviewed: state.reviewed,
-        completed: state.completed,
-        showMarkscheme: state.showMarkscheme,
-      })
-    )
+    const toStore = {
+      feedback: state.feedback,
+      selectedOptions: state.selectedOptions,
+      reviewed: state.reviewed,
+      completed: state.completed,
+      notes: state.notes,
+      showMarkscheme: state.showMarkscheme,
+    }
+    localStorage.setItem("guestQuestionBank", JSON.stringify(toStore))
   }, [
     state.feedback,
     state.selectedOptions,
-    state.notes,
     state.reviewed,
     state.completed,
+    state.notes,
     state.showMarkscheme,
   ])
 
-  // 4. Provide local searching + filtering on the single fetched slice
+  // --------------------------------------------
+  // (E) Local Searching + Filtering
+  // Here we filter the returned slice from the server.
+  // If your server does full filtering, you can skip this local step.
+  // --------------------------------------------
   const filteredQuestions = useMemo(() => {
-    const searchQuery = state.searchQuery.toLowerCase()
+    const search = state.searchQuery.toLowerCase()
     return state.questions.filter((q) => {
-      // Basic text search
-      const matchesSearch =
-        (q.text ?? "").toLowerCase().includes(searchQuery) ||
-        (q.topic ?? "").toLowerCase().includes(searchQuery) ||
-        (q.subtopic ?? "").toLowerCase().includes(searchQuery) ||
-        (q.subject ?? "").toLowerCase().includes(searchQuery)
+      // local text search
+      const textFields = [q.text, q.exam, q.subject, q.topic, q.subtopic, q.type]
+      const matchesSearch = textFields.some((f) => f && fuzzyContains(f, search))
 
-      // Basic filter by status
+      // local "status" filter
+      let matchesStatus = true
+      const qid = q.questionId || ""
       if (state.filters.status === "complete") {
-        // show only those with feedback = 'correct'
-        const fb = state.feedback[q.questionId ?? ""]
-        return matchesSearch && fb === "correct"
+        // show only those "completed"
+        if (!state.completed[qid]) matchesStatus = false
       } else if (state.filters.status === "review") {
-        // show only those marked as reviewed
-        return matchesSearch && !!state.reviewed[q.questionId ?? ""]
+        if (!state.reviewed[qid]) matchesStatus = false
+      } else if (state.filters.status === "incomplete") {
+        if (state.completed[qid]) matchesStatus = false
       }
-      // else 'all'
-      return matchesSearch
+      return matchesSearch && matchesStatus
     })
-  }, [state.questions, state.searchQuery, state.filters, state.feedback, state.reviewed])
+  }, [state.questions, state.searchQuery, state.filters.status, state.completed, state.reviewed])
 
-  // 5. Provide local pagination for the filtered slice
-  const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
-  const startIndex = (state.currentPage - 1) * PAGE_SIZE
-  const paginatedQuestions = filteredQuestions.slice(startIndex, startIndex + PAGE_SIZE)
+  // We can do single or list. If "single," we track singleIndex.
+  // If "list," we show them all (or do local pagination).
+  // We'll do a local approach here.
 
-  // local page change
+  // handle page change
   const handlePageChange = useCallback((newPage: number) => {
     dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
   }, [])
 
-  // For toggling filters in your popovers
-  const handleFilterChange = useCallback(
-    (tag: keyof FiltersType, value: string) => {
-      // This code is an example if you had arrays in state.filters
-      // But your code doesn't show that in detail. Adjust as needed.
-      // For now, we do nothing since we do not store an actual array-based filter for "exams", etc. 
-      console.log("handleFilterChange not fully implemented for guest, ignoring...", tag, value)
-    },
-    []
-  )
-
-  // 6. Basic feedback logic
-  const handleOptionClick = useCallback(
-    (questionId: string, option: string, correctOption: string) => {
-      const isCorrect = option === correctOption
-      const newFeedback = {
+  // feedback logic
+  const handleOptionClick = useCallback((questionId: string, option: string, correctOption: string) => {
+    const isCorrect = option === correctOption
+    dispatch({
+      type: "SET_FEEDBACK",
+      payload: {
         ...state.feedback,
         [questionId]: isCorrect ? "correct" : "incorrect",
-      }
-      const newSelectedOptions = { ...state.selectedOptions, [questionId]: option }
+      },
+    })
+    dispatch({
+      type: "SET_SELECTED_OPTIONS",
+      payload: {
+        ...state.selectedOptions,
+        [questionId]: option,
+      },
+    })
+  }, [state.feedback, state.selectedOptions])
 
-      dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
-      dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions })
-    },
-    [state.feedback, state.selectedOptions]
-  )
+  const handleNumericalSubmit = useCallback((questionId: string, userAnswer: string, correctAnswer: string) => {
+    const isCorrect = userAnswer === correctAnswer
+    dispatch({
+      type: "SET_FEEDBACK",
+      payload: {
+        ...state.feedback,
+        [questionId]: isCorrect ? "correct" : "incorrect",
+      },
+    })
+  }, [state.feedback])
 
-  const handleNumericalSubmit = useCallback(
-    (questionId: string, userAnswer: string, correctAnswer: string) => {
-      const isCorrect = userAnswer === correctAnswer
-      dispatch({
-        type: "SET_FEEDBACK",
-        payload: {
-          ...state.feedback,
-          [questionId]: isCorrect ? "correct" : "incorrect",
-        },
-      })
-    },
-    [state.feedback]
-  )
-
-  const handleNumericalChange = useCallback((questionId: string, value: string) => {
-    console.log(`Numerical answer for Q ${questionId} => ${value}`)
+  const handleNumericalChange = useCallback((questionId: string, val: string) => {
+    console.log("numericalChange:", questionId, val)
   }, [])
 
-  // 7. Mark for review, Mark complete
-  const handleMarkForReview = useCallback(
-    (questionId: string) => {
-      dispatch({
-        type: "SET_REVIEWED",
-        payload: { ...state.reviewed, [questionId]: true },
-      })
-    },
-    [state.reviewed]
-  )
+  const handleMarkForReview = useCallback((questionId: string) => {
+    const newReviewed = { ...state.reviewed }
+    newReviewed[questionId] = !newReviewed[questionId]
+    dispatch({ type: "SET_REVIEWED", payload: newReviewed })
+  }, [state.reviewed])
 
-  const handleMarkComplete = useCallback(
-    (questionId: string) => {
-      dispatch({
-        type: "SET_COMPLETED",
-        payload: { ...state.completed, [questionId]: true },
-      })
-    },
-    [state.completed]
-  )
+  const handleMarkComplete = useCallback((questionId: string) => {
+    const newCompleted = { ...state.completed }
+    newCompleted[questionId] = !newCompleted[questionId]
+    dispatch({ type: "SET_COMPLETED", payload: newCompleted })
+  }, [state.completed])
 
-  const handleMarkschemeToggle = useCallback(
-    (questionId: string) => {
-      dispatch({
-        type: "SET_SHOW_MARKSCHEME",
-        payload: {
-          ...state.showMarkscheme,
-          [questionId]: !state.showMarkscheme[questionId],
-        },
-      })
-    },
-    [state.showMarkscheme]
-  )
+  const handleMarkschemeToggle = useCallback((questionId: string) => {
+    const newShow = { ...state.showMarkscheme }
+    newShow[questionId] = !newShow[questionId]
+    dispatch({ type: "SET_SHOW_MARKSCHEME", payload: newShow })
+  }, [state.showMarkscheme])
 
-  // 8. Reset question logic
-  const handleResetQuestion = useCallback(
-    (questionId: string) => {
-      // Clear feedback & selected option
-      const newFeedback = { ...state.feedback }
-      delete newFeedback[questionId]
+  const handleResetQuestion = useCallback((questionId: string) => {
+    const newFdbk = { ...state.feedback }
+    delete newFdbk[questionId]
+    const newSel = { ...state.selectedOptions }
+    delete newSel[questionId]
+    const newRev = { ...state.reviewed, [questionId]: false }
+    const newCmpl = { ...state.completed, [questionId]: false }
 
-      const newSelected = { ...state.selectedOptions }
-      delete newSelected[questionId]
+    dispatch({ type: "SET_FEEDBACK", payload: newFdbk })
+    dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSel })
+    dispatch({ type: "SET_REVIEWED", payload: newRev })
+    dispatch({ type: "SET_COMPLETED", payload: newCmpl })
+  }, [state.feedback, state.selectedOptions, state.reviewed, state.completed])
 
-      dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
-      dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelected })
-
-      // Unmark completed + reviewed
-      const newReviewed = { ...state.reviewed, [questionId]: false }
-      dispatch({ type: "SET_REVIEWED", payload: newReviewed })
-
-      const newCompleted = { ...state.completed, [questionId]: false }
-      dispatch({ type: "SET_COMPLETED", payload: newCompleted })
-    },
-    [state.feedback, state.selectedOptions, state.reviewed, state.completed]
-  )
-
-  const handleNavigatorClick = useCallback(
-    (index: number) => {
-      setIsNavigatorOpen(false)
-      // If you want to auto-scroll, do so:
-      setTimeout(() => {
-        const questionElement = document.getElementById(
-          `question-${paginatedQuestions[index].questionId}`
-        )
-        if (questionElement) {
-          questionElement.scrollIntoView({ behavior: "smooth", block: "start" })
-        }
-      }, 100)
-    },
-    [paginatedQuestions]
-  )
-
-  // We'll compute stats for "answered", "not visited," etc. 
+  // stats
   const questionStats = useMemo(() => {
-    // We can do a quick map over paginated or entire filtered set
-    const subset = filteredQuestions // entire filtered set
-    let notVisited = 0
     let answered = 0
-    let markedForReview = 0
-    let notAnswered = 0
-
-    subset.forEach((q) => {
-      const qid = q.questionId || ""
-      if (state.reviewed[qid]) markedForReview++
-      const fb = state.feedback[qid]
-      if (fb === "correct") {
-        answered++
-      } else if (fb === "incorrect") {
-        notAnswered++
-      } else {
-        notVisited++
-      }
+    let markedReview = 0
+    filteredQuestions.forEach((q) => {
+      const qid = q.questionId ?? ""
+      if (state.reviewed[qid]) markedReview++
+      if (state.feedback[qid] === "correct") answered++
     })
-
     return {
-      notVisited,
+      total: filteredQuestions.length,
       answered,
-      markedForReview,
-      notAnswered,
+      markedReview,
     }
   }, [filteredQuestions, state.feedback, state.reviewed])
 
-  if (state.loading) {
+  // single vs list
+  // If single
+  if (state.viewMode === ViewMode.SINGLE) {
+    if (filteredQuestions.length === 0) {
+      return (
+        <div className="p-4 min-h-screen">
+          <Button onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.LIST })}>
+            Switch to List View
+          </Button>
+          <p className="mt-4 text-red-400">No questions found for these filters.</p>
+        </div>
+      )
+    }
+    const currentQ = filteredQuestions[singleIndex]
     return (
-      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-        <div className="max-w-6xl w-full">
-          <h1 className="mb-2 text-left text-3xl">Guest Question Bank</h1>
-          <Skeleton count={5} height={60} className="mb-4" />
+      <div className="p-4 min-h-screen">
+        <div className="flex justify-end mb-4">
+          <Button onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.LIST })}>
+            Switch to List View
+          </Button>
+        </div>
+        <p className="mb-2">{singleIndex+1} / {filteredQuestions.length}</p>
+        <Question
+          question={currentQ}
+          feedback={state.feedback[currentQ.questionId ?? ""] || ""}
+          selectedOption={state.selectedOptions[currentQ.questionId ?? ""] || ""}
+          numericalAnswer=""
+          handleOptionClick={handleOptionClick}
+          handleNumericalSubmit={handleNumericalSubmit}
+          handleNumericalChange={handleNumericalChange}
+          handleMarkForReview={() => handleMarkForReview(currentQ.questionId ?? "")}
+          handleMarkComplete={() => handleMarkComplete(currentQ.questionId ?? "")}
+          isMarkedForReview={!!state.reviewed[currentQ.questionId ?? ""]}
+          isMarkedComplete={!!state.completed[currentQ.questionId ?? ""]}
+          showMarkscheme={!!state.showMarkscheme[currentQ.questionId ?? ""]}
+          handleMarkschemeToggle={() => handleMarkschemeToggle(currentQ.questionId ?? "")}
+          markschemesDisabled={false}
+          handleResetQuestion={handleResetQuestion}
+          note={state.notes[currentQ.questionId ?? ""] || ""}
+          handleNoteChange={(qid, val) => {
+            const newNotes = { ...state.notes, [qid]: val }
+            dispatch({ type: "SET_NOTES", payload: newNotes })
+          }}
+          handleDeleteNote={async (qid) => {
+            const newNotes = { ...state.notes }
+            delete newNotes[qid]
+            dispatch({ type: "SET_NOTES", payload: newNotes })
+          }}
+          userId="guest"
+          totalQuestions={filteredQuestions.length}
+          currentQuestionIndex={singleIndex}
+          handleQuestionChange={() => {}}
+        />
+        <div className="flex justify-between mt-4">
+          <Button onClick={() => setSingleIndex(Math.max(0, singleIndex-1))} disabled={singleIndex===0}>
+            <ChevronLeft className="mr-2 h-4 w-4" />
+            Prev
+          </Button>
+          <Button onClick={() => setSingleIndex(Math.min(filteredQuestions.length-1, singleIndex+1))} disabled={singleIndex===filteredQuestions.length-1}>
+            Next
+            <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
         </div>
       </div>
     )
   }
 
+  // If list
+  if (state.loading) {
+    return (
+      <div className="p-4 min-h-screen">
+        <Skeleton count={5} />
+      </div>
+    )
+  }
+
+  // We are in LIST mode
+  // Display the entire "page" from the server. Then apply local search => filteredQuestions
+  // Possibly do local pagination of filteredQuestions if you want. For simplicity, let's show them all.
+  // We'll do a local approach of a "list" with no further slicing. If you want local pagination, re-add it.
+
   return (
     <TooltipProvider>
-      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-        <div className="max-w-6xl w-full">
-          <h1 className="mb-2 text-left text-3xl">Guest Question Bank</h1>
-          <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
-            <CardContent className="p-4 flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
-                  <HelpCircle className="h-5 w-5 text-blue-700" />
-                </div>
-                <div className="space-y-1">
-                  <h3 className="font-medium text-blue-900">Guest Access</h3>
-                  <p className="text-sm text-blue-700">
-                    Try out the Question Bank features. Sign in to save your progress.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* SEARCH + NAVIGATOR */}
-          <div className="mb-6 flex items-center space-x-4">
-            <div className="relative flex-grow">
-              <Input
-                type="text"
-                placeholder="Search questions..."
-                value={state.searchQuery}
-                onChange={(e) =>
-                  dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })
-                }
-                className="pl-10"
-              />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            </div>
-
-            <Dialog open={isNavigatorOpen} onOpenChange={setIsNavigatorOpen}>
-              <DialogTrigger asChild>
-                <Button variant="outline">
-                  <List className="mr-2 h-4 w-4" />
-                  Question Navigator
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[80vw] sm:max-h-[80vh]">
-                <DialogHeader>
-                  <DialogTitle>Question Navigator</DialogTitle>
-                </DialogHeader>
-                <ScrollArea className="h-[60vh]">
-                  <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
-                    {filteredQuestions.map((question, index) => {
-                      const qid = question.questionId ?? ""
-                      const isCorrect = state.feedback[qid] === "correct"
-                      return (
-                        <Tooltip key={qid}>
-                          <TooltipTrigger asChild>
-                            <Button
-                              variant={isCorrect ? "default" : "outline"}
-                              size="sm"
-                              className={`w-10 h-10 ${
-                                isCorrect
-                                  ? "bg-green-100 border-green-500 text-green-700"
-                                  : ""
-                              }`}
-                              onClick={() => {
-                                // We want to jump to the question
-                                // But that question might not be on the current page
-                                // We are only local-page. If you want to unify, adjust logic
-                                handleNavigatorClick(index)
-                              }}
-                            >
-                              {index + 1}
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>{(question.text ?? "").substring(0, 50)}...</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      )
-                    })}
-                  </div>
-                </ScrollArea>
-              </DialogContent>
-            </Dialog>
+      <div className="p-4 min-h-screen w-full">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex justify-end mb-4">
+            <Button onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.SINGLE })}>
+              Switch to Single View
+            </Button>
           </div>
 
-          {/* Progress Card */}
-          <Card className="bg-gradient-to-br from-gray-900 to-gray-800 text-white border-gray-700 mb-6">
-            <CardContent className="p-6">
-              <h2 className="text-2xl font-light tracking-tight text-gray-200 mb-6">
-                Question Progress
-              </h2>
-              <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-light tracking-tight text-gray-300">
-                    Overall Progress
-                  </span>
-                  <span className="text-sm font-light tracking-tight text-gray-300">
-                    {filteredQuestions.length > 0
-                      ? Math.round(
-                          (questionStats.answered / filteredQuestions.length) * 100
-                        )
-                      : 0}
-                    %
-                  </span>
-                </div>
-                <Progress
-                  value={
-                    filteredQuestions.length > 0
-                      ? (questionStats.answered / filteredQuestions.length) * 100
-                      : 0
+          <h1 className="text-2xl mb-2">Guest Question Bank with Full Filters</h1>
+
+          {/* status filter row */}
+          <div className="flex space-x-4 mb-4">
+            {["all", "complete", "review", "incomplete"].map((status) => (
+              <Button
+                key={status}
+                variant={state.filters.status === status ? "default" : "outline"}
+                onClick={() => {
+                  dispatch({
+                    type: "SET_FILTERS",
+                    payload: { ...state.filters, status },
+                  })
+                }}
+              >
+                {status.charAt(0).toUpperCase() + status.slice(1)}
+              </Button>
+            ))}
+          </div>
+
+          {/* The row of popovers for exam, subject, topic, subtopic, difficulty, year, type */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {([
+              "exams",
+              "subjects",
+              "topics",
+              "subtopics",
+              "difficulties",
+              "years",
+              "types",
+            ] as (keyof FilterOptions)[]).map((filterKey) => {
+              const distinctValues = state.filterOptions[filterKey]
+              return (
+                <Popover
+                  key={filterKey}
+                  content={
+                    <div className="w-full bg-white border rounded-md p-2 sm:w-80">
+                      <Input placeholder={`Search ${filterKey}...`} className="mb-2" />
+                      <div className="max-h-60 overflow-y-auto">
+                        {distinctValues.map((val) => (
+                          <div key={val} className="flex items-center px-2 py-1">
+                            <input
+                              type="checkbox"
+                              className="mr-2"
+                              checked={state.filters[filterKey].includes(val)}
+                              onChange={() => {
+                                const arr = state.filters[filterKey]
+                                const isIn = arr.includes(val)
+                                let newArr
+                                if (isIn) {
+                                  newArr = arr.filter((x) => x!== val)
+                                } else {
+                                  newArr = [...arr, val]
+                                }
+                                dispatch({
+                                  type: "SET_FILTERS",
+                                  payload: { ...state.filters, [filterKey]: newArr },
+                                })
+                              }}
+                            />
+                            <label>{val}</label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   }
-                  className="w-full h-1.5 bg-gray-700"
-                />
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
-                    <div className="text-blue-400 p-2 rounded-full bg-blue-400/10">
-                      <HelpCircle className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-light tracking-tighter text-blue-300">
-                        {questionStats.notVisited}
-                      </p>
-                      <p className="text-sm font-light tracking-tight text-gray-400">
-                        Not Answered
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
-                    <div className="text-green-400 p-2 rounded-full bg-green-400/10">
-                      <CheckCircle2 className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-light tracking-tighter text-green-300">
-                        {questionStats.answered}
-                      </p>
-                      <p className="text-sm font-light tracking-tight text-gray-400">
-                        Answered
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700">
-                    <div className="text-yellow-400 p-2 rounded-full bg-yellow-400/10">
-                      <Flag className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-light tracking-tighter text-yellow-300">
-                        {questionStats.markedForReview}
-                      </p>
-                      <p className="text-sm font-light tracking-tight text-gray-400">
-                        For Review
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                  openPopover={state.dropdowns[filterKey]}
+                  setOpenPopover={(open) => {
+                    dispatch({
+                      type: "SET_DROPDOWNS",
+                      payload: { key: filterKey, value: !!open },
+                    })
+                  }}
+                >
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      const isOpen = state.dropdowns[filterKey]
+                      dispatch({
+                        type: "SET_DROPDOWNS",
+                        payload: { key: filterKey, value: !isOpen },
+                      })
+                    }}
+                  >
+                    {filterKey.charAt(0).toUpperCase() + filterKey.slice(1)}
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </Popover>
+              )
+            })}
+          </div>
+
+          {/* SEARCH bar */}
+          <div className="relative flex mb-6">
+            <Input
+              placeholder="Search questions..."
+              value={state.searchQuery}
+              onChange={(e) =>
+                dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })
+              }
+              className="pl-10"
+            />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          </div>
+
+          <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
+            <CardContent className="p-4">
+              <h3 className="font-medium text-blue-900">Guest Access</h3>
+              <p className="text-sm text-blue-700">
+                This is a guest. Filter + progress is stored in local storage only.
+              </p>
             </CardContent>
           </Card>
 
-          {/* Display the local-page questions after filtering */}
-          {paginatedQuestions.length > 0 ? (
-            <>
-              {paginatedQuestions.map((question, index) => (
-                <Question
-                  key={question.questionId}
-                  question={question}
-                  // Provide local feedback
-                  feedback={state.feedback[question.questionId ?? ""] ?? ""}
-                  // Provide selected option for MCQ
-                  selectedOption={state.selectedOptions[question.questionId ?? ""] ?? ""}
-                  // If you store numeric answers, pass them here
-                  numericalAnswer=""
-                  // callbacks
-                  handleNumericalSubmit={handleNumericalSubmit}
-                  handleNumericalChange={handleNumericalChange}
-                  handleOptionClick={handleOptionClick}
-
-                  // Mark for review, complete
-                  handleMarkForReview={() => handleMarkForReview(question.questionId ?? "")}
-                  handleMarkComplete={() => handleMarkComplete(question.questionId ?? "")}
-
-                  // Are they marked for review or complete?
-                  isMarkedForReview={!!state.reviewed[question.questionId ?? ""]}
-                  isMarkedComplete={!!state.completed[question.questionId ?? ""]}
-
-                  // Markscheme
-                  showMarkscheme={!!state.showMarkscheme[question.questionId ?? ""]}
-                  handleMarkschemeToggle={() => handleMarkschemeToggle(question.questionId ?? "")}
-                  markschemesDisabled={false}
-
-                  // local note logic
-                  note={state.notes[question.questionId ?? ""] || ""}
-                  handleNoteChange={(qId, note) => {
-                    const newNotes = { ...state.notes, [qId]: note }
-                    dispatch({ type: "SET_NOTES", payload: newNotes })
-                  }}
-                  handleDeleteNote={async (qId) => {
-                    const newNotes = { ...state.notes }
-                    delete newNotes[qId]
-                    dispatch({ type: "SET_NOTES", payload: newNotes })
-                  }}
-
-                  // you can store userId = 'guest'
-                  userId="guest"
-
-                  // For next/prev question or nav
-                  totalQuestions={filteredQuestions.length}
-                  currentQuestionIndex={index + (state.currentPage - 1)*PAGE_SIZE}
-                  handleQuestionChange={handleNavigatorClick}
-
-                  // The newly added reset logic
-                  handleResetQuestion={handleResetQuestion}
-                />
-              ))}
-              {/* local pagination for the filtered results */}
-              <Pagination
-                currentPage={state.currentPage}
-                totalCount={filteredQuestions.length}
-                pageSize={PAGE_SIZE}
-                onPageChange={handlePageChange}
-              />
-            </>
+          {state.loading ? (
+            <Skeleton count={5} height={40} />
           ) : (
-            <p className="text-red-400">No questions found with the selected filters.</p>
+            <>
+              {filteredQuestions.length > 0 ? (
+                <>
+                  {filteredQuestions.map((question, idx) => {
+                    const qid = question.questionId ?? ""
+                    return (
+                      <Question
+                        key={qid}
+                        question={question}
+                        feedback={state.feedback[qid] || ""}
+                        selectedOption={state.selectedOptions[qid] || ""}
+                        numericalAnswer=""
+                        handleOptionClick={(qId, option, correct) => {
+                          const isCorrect = option === correct
+                          dispatch({
+                            type: "SET_FEEDBACK",
+                            payload: {
+                              ...state.feedback,
+                              [qId]: isCorrect ? "correct" : "incorrect",
+                            },
+                          })
+                          dispatch({
+                            type: "SET_SELECTED_OPTIONS",
+                            payload: { ...state.selectedOptions, [qId]: option },
+                          })
+                        }}
+                        handleNumericalSubmit={(qId, userAns, correctAns) => {
+                          const isCorrect = userAns === correctAns
+                          dispatch({
+                            type: "SET_FEEDBACK",
+                            payload: {
+                              ...state.feedback,
+                              [qId]: isCorrect ? "correct" : "incorrect",
+                            },
+                          })
+                        }}
+                        handleNumericalChange={() => {}}
+                        handleMarkForReview={(qId) => {
+                          const newRev = { ...state.reviewed }
+                          newRev[qId] = !newRev[qId]
+                          dispatch({ type: "SET_REVIEWED", payload: newRev })
+                        }}
+                        handleMarkComplete={(qId) => {
+                          const newC = { ...state.completed }
+                          newC[qId] = !newC[qId]
+                          dispatch({ type: "SET_COMPLETED", payload: newC })
+                        }}
+                        isMarkedForReview={!!state.reviewed[qid]}
+                        isMarkedComplete={!!state.completed[qid]}
+                        showMarkscheme={!!state.showMarkscheme[qid]}
+                        handleMarkschemeToggle={(qId) => {
+                          const newShow = { ...state.showMarkscheme }
+                          newShow[qId] = !newShow[qId]
+                          dispatch({ type: "SET_SHOW_MARKSCHEME", payload: newShow })
+                        }}
+                        markschemesDisabled={false}
+                        handleResetQuestion={(qId) => {
+                          // remove feedback + selected
+                          const fdbkCopy = { ...state.feedback }
+                          delete fdbkCopy[qId]
+                          const selCopy = { ...state.selectedOptions }
+                          delete selCopy[qId]
+                          const revCopy = { ...state.reviewed, [qId]: false }
+                          const compCopy = { ...state.completed, [qId]: false }
+                          dispatch({ type: "SET_FEEDBACK", payload: fdbkCopy })
+                          dispatch({ type: "SET_SELECTED_OPTIONS", payload: selCopy })
+                          dispatch({ type: "SET_REVIEWED", payload: revCopy })
+                          dispatch({ type: "SET_COMPLETED", payload: compCopy })
+                        }}
+
+                        note={state.notes[qid] || ""}
+                        handleNoteChange={(nid, val) => {
+                          const newN = { ...state.notes, [nid]: val }
+                          dispatch({ type: "SET_NOTES", payload: newN })
+                        }}
+                        handleDeleteNote={async (nid) => {
+                          const newN = { ...state.notes }
+                          delete newN[nid]
+                          dispatch({ type: "SET_NOTES", payload: newN })
+                        }}
+
+                        userId="guest"
+                        totalQuestions={filteredQuestions.length}
+                        currentQuestionIndex={idx}
+                        handleQuestionChange={() => {}}
+                      />
+                    )
+                  })}
+
+                  {/* Show a simple server pagination bar (for ascending order from question #1) */}
+                  <div className="mt-6 flex justify-center items-center space-x-4">
+                    <Button
+                      variant="outline"
+                      disabled={state.currentPage <= 1}
+                      onClick={() => dispatch({ type: "SET_CURRENT_PAGE", payload: state.currentPage-1 })}
+                    >
+                      <ChevronLeft className="mr-2 h-4 w-4" />
+                      Prev Page
+                    </Button>
+                    <p className="text-sm">
+                      Page {state.currentPage} of {Math.ceil(state.totalCount / state.pageSize)}
+                    </p>
+                    <Button
+                      variant="outline"
+                      disabled={state.currentPage >= Math.ceil(state.totalCount / state.pageSize)}
+                      onClick={() => dispatch({ type: "SET_CURRENT_PAGE", payload: state.currentPage+1 })}
+                    >
+                      Next Page
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <p className="text-red-400">No questions found with these filters.</p>
+              )}
+            </>
           )}
         </div>
       </div>
