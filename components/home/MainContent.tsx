@@ -4,12 +4,6 @@ import React, { useState } from "react";
 import Question from "@/components/shared/Question";
 import sampleQuestions from "@/components/shared/sampleQuestions.json";
 
-//
-// 1) Updated QuestionType to match <Question> requirements:
-//    - year?: number (instead of string)
-//    - id: number for internal numbering
-//    - options?: string[] ensures no `undefined` in the array
-//
 interface QuestionType {
   id: number;
   exam?: string;
@@ -20,21 +14,19 @@ interface QuestionType {
   subtopic?: string;
   difficulty?: string;
   type?: "Multiple Choice" | "Numerical" | string;
-  year?: number;              // Was string before, now number
+  year?: number; // numeric year, not string
   reviewed: boolean;
   completed: boolean;
-  options?: string[];
+  options?: string[];    // strictly string[], no undefined
   correctOption?: string;
   markscheme?: string;
 }
 
 export default function MainContent() {
-  //
-  // 2) Transform sampleQuestions so year => number, add id, filter out undefined from options
-  //
+  // Convert sampleQuestions => typed QuestionType[]
   const initialQuestions: QuestionType[] = (sampleQuestions as any[]).map((q, i) => ({
     ...q,
-    id: i + 1, // Provide numeric ID
+    id: i + 1, // numeric ID
     year: q.year ? parseInt(q.year, 10) : undefined,
     options: q.options
       ? q.options.filter((opt: string | undefined): opt is string => !!opt)
@@ -48,8 +40,9 @@ export default function MainContent() {
   const [showMarkscheme, setShowMarkscheme] = useState<Record<string, boolean>>({});
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
 
+  // (A) MCQ option click
   const handleOptionClick = (questionId: string, option: string, correctOption: string) => {
-    // If user clicks the same option again, de-select it
+    // If user clicks the same option again, de-select it:
     if (selectedOptions[questionId] === option) {
       setSelectedOptions((prev) => ({ ...prev, [questionId]: "" }));
       setFeedback((prev) => ({ ...prev, [questionId]: "" }));
@@ -59,7 +52,7 @@ export default function MainContent() {
         )
       );
     } else {
-      // Otherwise, select this option
+      // Otherwise, select this option and give feedback
       setSelectedOptions((prev) => ({ ...prev, [questionId]: option }));
       setFeedback((prev) => ({
         ...prev,
@@ -73,6 +66,7 @@ export default function MainContent() {
     }
   };
 
+  // (B) Numerical
   const handleNumericalSubmit = (
     questionId: string,
     userAnswer: string,
@@ -88,6 +82,7 @@ export default function MainContent() {
     setNumericalAnswers((prev) => ({ ...prev, [questionId]: value }));
   };
 
+  // (C) Toggle markscheme
   const handleMarkschemeToggle = (questionId: string) => {
     setShowMarkscheme((prev) => ({
       ...prev,
@@ -95,6 +90,7 @@ export default function MainContent() {
     }));
   };
 
+  // (D) Flag or Complete
   const handleMarkForReview = (questionId: string) => {
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) =>
@@ -111,7 +107,37 @@ export default function MainContent() {
     );
   };
 
-  // Placeholder note deletion logic
+  // (E) Required: handleResetQuestion
+  // Clears feedback, selected option, numeric answers, etc. and un-flags question.
+  const handleResetQuestion = (questionId: string) => {
+    setFeedback((prev) => {
+      const updated = { ...prev };
+      delete updated[questionId];
+      return updated;
+    });
+
+    setSelectedOptions((prev) => {
+      const updated = { ...prev };
+      delete updated[questionId];
+      return updated;
+    });
+
+    setNumericalAnswers((prev) => {
+      const updated = { ...prev };
+      delete updated[questionId];
+      return updated;
+    });
+
+    setQuestions((prev) =>
+      prev.map((q) =>
+        q.questionId === questionId
+          ? { ...q, reviewed: false, completed: false }
+          : q
+      )
+    );
+  };
+
+  // Just a placeholder for note deletion logic
   const handleDeleteNote = async (questionId: string): Promise<void> => {
     return Promise.resolve();
   };
@@ -123,22 +149,34 @@ export default function MainContent() {
           <Question
             key={question.questionId}
             question={question}
+            // Feedback, selections, markscheme states
             feedback={feedback[question.questionId ?? ""]}
             selectedOption={selectedOptions[question.questionId ?? ""]}
             numericalAnswer={numericalAnswers[question.questionId ?? ""]}
             showMarkscheme={showMarkscheme[question.questionId ?? ""]}
+
+            // Handlers
             handleOptionClick={handleOptionClick}
             handleNumericalSubmit={handleNumericalSubmit}
             handleNumericalChange={handleNumericalChange}
             handleMarkschemeToggle={handleMarkschemeToggle}
             handleMarkForReview={() => handleMarkForReview(question.questionId ?? "")}
             handleMarkComplete={() => handleMarkComplete(question.questionId ?? "")}
+
+            // The missing prop: handleResetQuestion
+            handleResetQuestion={handleResetQuestion}
+
+            // Flags
             isMarkedForReview={question.reviewed}
             isMarkedComplete={question.completed}
             markschemesDisabled={false}
+
+            // Simple placeholders for notes
             note=""
             handleNoteChange={() => {}}
             handleDeleteNote={handleDeleteNote}
+
+            // Additional props
             userId="user-id-placeholder"
             totalQuestions={questions.length}
             currentQuestionIndex={index}
