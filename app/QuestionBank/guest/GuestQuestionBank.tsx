@@ -65,10 +65,9 @@ interface QuestionType {
   type?: string
   options?: string[]
   correctOption?: string
-  // Additional fields if needed (e.g. completed, reviewed) 
+  // We'll handle "completed"/"reviewed" locally for a guest
 }
 
-// Distinct filter values from /api/filters
 interface FilterOptionsType {
   exams: string[]
   subjects: string[]
@@ -79,7 +78,6 @@ interface FilterOptionsType {
   types: string[]
 }
 
-// Our filters
 interface FiltersType {
   exams: string[]
   subjects: string[]
@@ -101,12 +99,12 @@ interface DropdownsType {
   types: boolean
 }
 
-// The local store
+// State shape
 interface StateType {
   loading: boolean
   viewMode: ViewMode
 
-  // The entire question set from /api/questions (in memory for a guest)
+  // The subset of questions from /api/questions (paginated)
   questions: QuestionType[]
 
   // Distinct filter sets from /api/filters
@@ -115,26 +113,26 @@ interface StateType {
   // The user’s chosen filters
   filters: FiltersType
 
-  // The “checkbox” popover open states
+  // Popover open states
   dropdowns: DropdownsType
 
-  // The user’s search text
+  // local search text
   searchQuery: string
 
-  // Local progress & tracking
+  // Local progress data (only stored in localStorage)
   feedback: Record<string, string>        // questionId => "correct"/"incorrect"
-  selectedOptions: Record<string, string> // questionId => chosen MCQ letter
+  selectedOptions: Record<string, string> // questionId => chosen MCQ
   reviewed: Record<string, boolean>       // questionId => flagged
-  completed: Record<string, boolean>      // questionId => marked complete
-  notes: Record<string, string>           // questionId => note text
-  showMarkscheme: Record<string, boolean> // questionId => whether markscheme is shown
+  completed: Record<string, boolean>      // questionId => done
+  notes: Record<string, string>           // questionId => note
+  showMarkscheme: Record<string, boolean> // questionId => markscheme visible
 
-  // Local pagination / single-index
+  // Pagination
   currentPage: number
   pageSize: number
+  totalCount: number
 }
 
-// Actions
 type ActionType =
   | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_VIEW_MODE"; payload: ViewMode }
@@ -150,6 +148,7 @@ type ActionType =
   | { type: "SET_NOTES"; payload: Record<string, string> }
   | { type: "SET_SHOW_MARKSCHEME"; payload: Record<string, boolean> }
   | { type: "SET_CURRENT_PAGE"; payload: number }
+  | { type: "SET_TOTAL_COUNT"; payload: number }
 
 const initialState: StateType = {
   loading: true,
@@ -193,15 +192,16 @@ const initialState: StateType = {
 
   currentPage: 1,
   pageSize: 10,
+  totalCount: 0,
 }
 
-// A fuzzyContains helper for local searching
+// Helper for local fuzzy search
 function fuzzyContains(haystack: string, needle: string): boolean {
   if (!needle) return true
   return haystack.toLowerCase().includes(needle.toLowerCase())
 }
 
-// The main reducer
+// Main reducer
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_LOADING":
@@ -238,6 +238,8 @@ function reducer(state: StateType, action: ActionType): StateType {
       return { ...state, showMarkscheme: action.payload }
     case "SET_CURRENT_PAGE":
       return { ...state, currentPage: action.payload }
+    case "SET_TOTAL_COUNT":
+      return { ...state, totalCount: action.payload }
     default:
       return state
   }
@@ -250,17 +252,17 @@ export default function GuestQuestionBank() {
   const [filtersOpenMobile, setFiltersOpenMobile] = React.useState(false)
   const { toast } = useToast()
 
-  // On mount, if small screen => single
+  // On mount, if window < 768 => single view
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.SINGLE })
     }
   }, [])
 
-  // (A) fetch distinct filter options from /api/filters
+  // (A) Fetch distinct filter options from /api/filters
   const fetchFilterOptions = useCallback(async () => {
     try {
-      const res = await fetch("/api/filters", { cache:"no-store" })
+      const res = await fetch("/api/filters", { cache: "no-store" })
       if (!res.ok) throw new Error("Failed to fetch filter options.")
       const data: FilterOptionsType = await res.json()
       dispatch({ type: "SET_FILTER_OPTIONS", payload: data })
@@ -278,27 +280,69 @@ export default function GuestQuestionBank() {
     fetchFilterOptions()
   }, [fetchFilterOptions])
 
-  // (B) fetch all questions for guest usage
+  // (B) Fetch a subset of questions from /api/questions using pagination + filters
   const fetchQuestions = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
     try {
-      const res = await fetch("/api/questions", { cache:"no-store" })
-      if (!res.ok) throw new Error("Failed to fetch all questions.")
-      let data: QuestionType[] = await res.json()
+      const page = state.currentPage
+      const pageSize = state.pageSize
 
-      // -- Sort ascending by numeric part of questionId
+      // Gather filters
+      const { exams, subjects, topics, subtopics, difficulties, years, types } = state.filters
+
+      function arrToComma(arr: string[]): string {
+        return arr.join(",")
+      }
+
+      const params = new URLSearchParams()
+      if (exams.length) params.set("exam", arrToComma(exams))
+      if (subjects.length) params.set("subject", arrToComma(subjects))
+      if (topics.length) params.set("topic", arrToComma(topics))
+      if (subtopics.length) params.set("subtopic", arrToComma(subtopics))
+      if (difficulties.length) params.set("difficulty", arrToComma(difficulties))
+      if (years.length) params.set("year", arrToComma(years))
+      if (types.length) params.set("type", arrToComma(types))
+
+      params.set("page", String(page))
+      params.set("pageSize", String(pageSize))
+
+      const url = `/api/questions?${params.toString()}`
+
+      const res = await fetch(url, { cache: "no-store" })
+      if (!res.ok) {
+        const txt = await res.text()
+        throw new Error("Failed to fetch questions. " + txt)
+      }
+
+      const result = await res.json()
+
+      let data: QuestionType[] = []
+      let totalCount = 0
+
+      // If your /api/questions returns { data, totalCount, ... }:
+      if (Array.isArray(result)) {
+        // Possibly no pagination info was returned
+        data = result
+        totalCount = data.length
+      } else {
+        data = result.data ?? []
+        totalCount = result.totalCount ?? 0
+      }
+
+      // Sort ascending by questionId numeric part
       data = data.sort((a, b) => {
         const aId = a.questionId?.match(/\d+/)?.[0] || "0"
         const bId = b.questionId?.match(/\d+/)?.[0] || "0"
         return parseInt(aId, 10) - parseInt(bId, 10)
       })
 
-      // Optionally add a local "id" if needed for indexing
+      // If needed, we add a local numeric "id"
       data = data.map((q, idx) => ({ ...q, id: idx + 1 }))
 
       dispatch({ type: "SET_QUESTIONS", payload: data })
-    } catch (err) {
-      console.error(err)
+      dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount })
+    } catch (error) {
+      console.error(error)
       toast({
         title: "Error",
         description: "Could not load questions. Please try again later.",
@@ -307,11 +351,15 @@ export default function GuestQuestionBank() {
     } finally {
       dispatch({ type: "SET_LOADING", payload: false })
     }
-  }, [toast])
+  }, [toast, state.currentPage, state.pageSize, state.filters])
 
-  // Load local progress from localStorage
+  // Run on mount & whenever page/filters change
   React.useEffect(() => {
     fetchQuestions()
+  }, [fetchQuestions])
+
+  // (C) Load local progress from localStorage
+  React.useEffect(() => {
     const saved = localStorage.getItem("guestQnBank")
     if (saved) {
       const obj = JSON.parse(saved)
@@ -322,9 +370,9 @@ export default function GuestQuestionBank() {
       dispatch({ type: "SET_NOTES", payload: obj.notes || {} })
       dispatch({ type: "SET_SHOW_MARKSCHEME", payload: obj.showMarkscheme || {} })
     }
-  }, [fetchQuestions])
+  }, [])
 
-  // Whenever local progress changes, save to localStorage
+  // (D) Whenever local data changes, save to localStorage
   React.useEffect(() => {
     const stored = {
       feedback: state.feedback,
@@ -344,7 +392,7 @@ export default function GuestQuestionBank() {
     state.showMarkscheme,
   ])
 
-  // (C) local searching + filter for status
+  // (E) local searching + status filter in the subset
   const filteredQuestions = useMemo(() => {
     const s = state.searchQuery.toLowerCase()
     return state.questions.filter((q) => {
@@ -365,7 +413,7 @@ export default function GuestQuestionBank() {
     })
   }, [state.questions, state.completed, state.reviewed, state.filters.status, state.searchQuery])
 
-  // (D) compute local question progress
+  // (F) local stats for "progress" (purely local)
   const localStats = useMemo(() => {
     const total = state.questions.length
     let answered = 0
@@ -373,7 +421,6 @@ export default function GuestQuestionBank() {
     state.questions.forEach((q) => {
       const qid = q.questionId ?? ""
       if (state.reviewed[qid]) forReview++
-      // define “answered” as completed or feedback="correct"
       if (state.feedback[qid] === "correct" || state.completed[qid]) answered++
     })
     const notAnswered = total - answered - forReview
@@ -381,19 +428,20 @@ export default function GuestQuestionBank() {
     return { total, answered, forReview, notAnswered, progress }
   }, [state.questions, state.reviewed, state.completed, state.feedback])
 
-  // (E) local pagination
-  const totalPages = Math.ceil(filteredQuestions.length / state.pageSize)
-  const startIndex = (state.currentPage - 1) * state.pageSize
-  const paginated = filteredQuestions.slice(startIndex, startIndex + state.pageSize)
-
+  // Basic pagination UI
+  const totalPages = Math.ceil(state.totalCount / state.pageSize)
   function handlePageChange(newPage: number) {
     dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
   }
 
-  // Single or list
+  // Slice out filtered results (optional). 
+  // If you want to show "list" beyond the page, you might just show filteredQuestions directly 
+  // or do actual server-side pagination. Here we show filtered results from the page.
+  const displayQuestions = filteredQuestions
+
+  // SINGLE or LIST
   const [singleQuestionIndex, setSingleQuestionIndex] = React.useState(0)
 
-  // If loading => skeleton
   if (state.loading) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -407,18 +455,22 @@ export default function GuestQuestionBank() {
 
   // SINGLE VIEW
   if (state.viewMode === ViewMode.SINGLE) {
-    if (!filteredQuestions.length) {
+    if (!displayQuestions.length) {
       return (
         <div className="p-4 min-h-screen">
-          <Button variant="outline" onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.LIST })}>
+          <Button
+            variant="outline"
+            onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.LIST })}
+          >
             Switch to List View
           </Button>
-          <p className="mt-4 text-red-400">No questions found.</p>
+          <p className="mt-4 text-red-400">No questions found for these filters.</p>
         </div>
       )
     }
-    const q = filteredQuestions[singleQuestionIndex]
+    const q = displayQuestions[singleQuestionIndex]
     const qid = q.questionId ?? ""
+
     return (
       <div className="p-4 min-h-screen w-full flex justify-center">
         <div className="max-w-xl w-full">
@@ -447,7 +499,7 @@ export default function GuestQuestionBank() {
               </DialogContent>
             </Dialog>
 
-            <span>{singleQuestionIndex + 1} / {filteredQuestions.length}</span>
+            <span>{singleQuestionIndex + 1} / {displayQuestions.length}</span>
           </div>
 
           <Question
@@ -474,7 +526,7 @@ export default function GuestQuestionBank() {
                 },
               })
             }}
-            // Numerical
+            // Numeric
             handleNumericalSubmit={(questionId, userAns, correctAns) => {
               const isCorrect = userAns === correctAns
               dispatch({
@@ -486,13 +538,13 @@ export default function GuestQuestionBank() {
               })
             }}
             handleNumericalChange={() => {}}
-            // Mark for review
+            // Flag
             handleMarkForReview={(questionId) => {
               const old = { ...state.reviewed }
               old[questionId] = !old[questionId]
               dispatch({ type: "SET_REVIEWED", payload: old })
             }}
-            // Mark complete
+            // Complete
             handleMarkComplete={(questionId) => {
               const old = { ...state.completed }
               old[questionId] = !old[questionId]
@@ -509,13 +561,13 @@ export default function GuestQuestionBank() {
             markschemesDisabled={false}
             // Reset
             handleResetQuestion={(questionId) => {
-              const newFeedback = { ...state.feedback }
-              delete newFeedback[questionId]
+              const newFb = { ...state.feedback }
+              delete newFb[questionId]
               const newSel = { ...state.selectedOptions }
               delete newSel[questionId]
               const newRev = { ...state.reviewed, [questionId]: false }
               const newComp = { ...state.completed, [questionId]: false }
-              dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
+              dispatch({ type: "SET_FEEDBACK", payload: newFb })
               dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSel })
               dispatch({ type: "SET_REVIEWED", payload: newRev })
               dispatch({ type: "SET_COMPLETED", payload: newComp })
@@ -531,12 +583,11 @@ export default function GuestQuestionBank() {
               dispatch({ type: "SET_NOTES", payload: cp })
             }}
             userId="guest"
-            totalQuestions={filteredQuestions.length}
+            totalQuestions={displayQuestions.length}
             currentQuestionIndex={singleQuestionIndex}
             handleQuestionChange={() => {}}
           />
 
-          {/* Prev/Next buttons */}
           <div className="flex justify-between mt-4">
             <Button
               onClick={() => setSingleQuestionIndex(Math.max(0, singleQuestionIndex - 1))}
@@ -546,8 +597,8 @@ export default function GuestQuestionBank() {
               Prev
             </Button>
             <Button
-              onClick={() => setSingleQuestionIndex(Math.min(filteredQuestions.length - 1, singleQuestionIndex + 1))}
-              disabled={singleQuestionIndex === filteredQuestions.length - 1}
+              onClick={() => setSingleQuestionIndex(Math.min(displayQuestions.length - 1, singleQuestionIndex + 1))}
+              disabled={singleQuestionIndex === displayQuestions.length - 1}
             >
               Next
               <ChevronRight className="ml-2 h-4 w-4" />
@@ -603,7 +654,6 @@ export default function GuestQuestionBank() {
               </DialogContent>
             </Dialog>
 
-            {/* question navigator */}
             <Dialog open={navigatorOpen} onOpenChange={setNavigatorOpen}>
               <DialogTrigger asChild>
                 <Button variant="outline" className="hidden sm:flex">
@@ -617,7 +667,7 @@ export default function GuestQuestionBank() {
                 </DialogHeader>
                 <ScrollArea className="h-[60vh]">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
-                    {filteredQuestions.map((q, idx) => {
+                    {displayQuestions.map((q, idx) => {
                       const qid = q.questionId ?? ""
                       const isCorrect = state.feedback[qid] === "correct"
                       return (
@@ -626,16 +676,14 @@ export default function GuestQuestionBank() {
                           variant={isCorrect ? "default" : "outline"}
                           size="sm"
                           onClick={() => {
-                            // Jump to the page containing this question
-                            const newPage = Math.floor(idx / state.pageSize) + 1
-                            dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
+                            // no real "page jump" here, but if you had multi-page you'd do setCurrentPage
+                            const el = document.getElementById(`question-${qid}`)
                             setNavigatorOpen(false)
-                            setTimeout(() => {
-                              const el = document.getElementById(`question-${qid}`)
-                              if (el) {
+                            if (el) {
+                              setTimeout(() => {
                                 el.scrollIntoView({ behavior: "smooth", block: "start" })
-                              }
-                            }, 200)
+                              }, 200)
+                            }
                           }}
                           className={`w-10 h-10 ${
                             isCorrect
@@ -655,25 +703,25 @@ export default function GuestQuestionBank() {
             </Dialog>
           </div>
 
-          {/* status row for desktop */}
+          {/* Desktop status row */}
           <div className="hidden sm:flex space-x-4 mb-2">
             {["all","complete","review","incomplete"].map((st) => (
               <Button
                 key={st}
                 variant={state.filters.status === st ? "default" : "outline"}
-                onClick={() => {
+                onClick={() =>
                   dispatch({
                     type: "SET_FILTERS",
                     payload: { ...state.filters, status: st },
                   })
-                }}
+                }
               >
                 {st.charAt(0).toUpperCase() + st.slice(1)}
               </Button>
             ))}
           </div>
 
-          {/* popovers for exam etc. */}
+          {/* Desktop popovers (exams, subjects, etc.) */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {(["exams","subjects","topics","subtopics","difficulties","years","types"] as (keyof FilterOptionsType)[]).map((filterKey) => {
               const distinctVals = state.filterOptions[filterKey] || []
@@ -738,7 +786,7 @@ export default function GuestQuestionBank() {
             })}
           </div>
 
-          {/* Local question progress card */}
+          {/* Local progress card */}
           <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
             <CardContent className="p-4">
               <h3 className="font-medium text-blue-900 mb-4">Guest Question Progress</h3>
@@ -748,9 +796,7 @@ export default function GuestQuestionBank() {
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-blue-700">Overall Progress</span>
-                      <span className="text-sm text-blue-700">
-                        {Math.round(progress)}%
-                      </span>
+                      <span className="text-sm text-blue-700">{Math.round(progress)}%</span>
                     </div>
                     <Progress value={progress} />
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
@@ -782,11 +828,9 @@ export default function GuestQuestionBank() {
             </CardContent>
           </Card>
 
-          {state.loading ? (
-            <Skeleton count={5} height={40} />
-          ) : paginated.length > 0 ? (
+          {displayQuestions.length > 0 ? (
             <>
-              {paginated.map((question, i) => {
+              {displayQuestions.map((question, i) => {
                 const qid = question.questionId ?? ""
                 return (
                   <Question
@@ -795,7 +839,6 @@ export default function GuestQuestionBank() {
                     feedback={state.feedback[qid] || ""}
                     selectedOption={state.selectedOptions[qid] || ""}
                     numericalAnswer=""
-                    // MCQ
                     handleOptionClick={(qId, option, correct) => {
                       const isCorrect = option === correct
                       dispatch({
@@ -807,7 +850,6 @@ export default function GuestQuestionBank() {
                         payload: { ...state.selectedOptions, [qId]: option },
                       })
                     }}
-                    // Numeric
                     handleNumericalSubmit={(qId, userAns, correctAns) => {
                       const isCorrect = userAns === correctAns
                       dispatch({
@@ -816,13 +858,11 @@ export default function GuestQuestionBank() {
                       })
                     }}
                     handleNumericalChange={() => {}}
-                    // Review
                     handleMarkForReview={(qId) => {
                       const old = { ...state.reviewed }
                       old[qId] = !old[qId]
                       dispatch({ type: "SET_REVIEWED", payload: old })
                     }}
-                    // Complete
                     handleMarkComplete={(qId) => {
                       const old = { ...state.completed }
                       old[qId] = !old[qId]
@@ -830,7 +870,6 @@ export default function GuestQuestionBank() {
                     }}
                     isMarkedForReview={!!state.reviewed[qid]}
                     isMarkedComplete={!!state.completed[qid]}
-                    // Markscheme
                     showMarkscheme={!!state.showMarkscheme[qid]}
                     handleMarkschemeToggle={(qId) => {
                       const cp = { ...state.showMarkscheme }
@@ -838,7 +877,6 @@ export default function GuestQuestionBank() {
                       dispatch({ type: "SET_SHOW_MARKSCHEME", payload: cp })
                     }}
                     markschemesDisabled={false}
-                    // Reset
                     handleResetQuestion={(qId) => {
                       const newFb = { ...state.feedback }
                       delete newFb[qId]
@@ -851,7 +889,6 @@ export default function GuestQuestionBank() {
                       dispatch({ type: "SET_REVIEWED", payload: newRev })
                       dispatch({ type: "SET_COMPLETED", payload: newComp })
                     }}
-                    // Notes
                     note={state.notes[qid] || ""}
                     handleNoteChange={(nid, val) => {
                       const cp = { ...state.notes, [nid]: val }
@@ -863,45 +900,41 @@ export default function GuestQuestionBank() {
                       dispatch({ type: "SET_NOTES", payload: cp })
                     }}
                     userId="guest"
-                    totalQuestions={filteredQuestions.length}
-                    currentQuestionIndex={i + (state.currentPage - 1) * state.pageSize}
+                    totalQuestions={displayQuestions.length}
+                    currentQuestionIndex={i}
                     handleQuestionChange={() => {}}
                   />
                 )
               })}
 
-              {/* local pagination controls */}
-              <div className="mt-6 flex justify-center space-x-4 items-center">
-                <Button
-                  variant="outline"
-                  onClick={() =>
-                    dispatch({
-                      type: "SET_CURRENT_PAGE",
-                      payload: Math.max(1, state.currentPage - 1),
-                    })
-                  }
-                  disabled={state.currentPage === 1}
-                >
-                  <ChevronLeft className="mr-2 h-4 w-4" />
-                  Prev Page
-                </Button>
-                <p className="text-sm">
-                  Page {state.currentPage} of {totalPages}
-                </p>
-                <Button
-                  variant="outline"
-                  onClick={() =>
-                    dispatch({
-                      type: "SET_CURRENT_PAGE",
-                      payload: Math.min(totalPages, state.currentPage + 1),
-                    })
-                  }
-                  disabled={state.currentPage === totalPages}
-                >
-                  Next Page
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
+              {/* Simple Pagination Controls for multiple pages */}
+              {totalPages > 1 && (
+                <div className="mt-6 flex justify-center space-x-4 items-center">
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      dispatch({ type: "SET_CURRENT_PAGE", payload: Math.max(1, state.currentPage - 1) })
+                    }
+                    disabled={state.currentPage === 1}
+                  >
+                    <ChevronLeft className="mr-2 h-4 w-4" />
+                    Prev Page
+                  </Button>
+                  <p className="text-sm">
+                    Page {state.currentPage} of {totalPages}
+                  </p>
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      dispatch({ type: "SET_CURRENT_PAGE", payload: Math.min(totalPages, state.currentPage + 1) })
+                    }
+                    disabled={state.currentPage === totalPages}
+                  >
+                    Next Page
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
+              )}
             </>
           ) : (
             <p className="text-red-400">No questions found for these filters.</p>
