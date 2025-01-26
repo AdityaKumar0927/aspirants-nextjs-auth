@@ -1,0 +1,839 @@
+[
+    {
+        "examGroup": "medical",
+        "exam": "neet",
+        "country": "in",
+        "key": "neet-2024-re-examination",
+        "date": "2024-06-24T08:30:00.000Z",
+        "description": null,
+        "isMemoryBased": false,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null,
+        "metaId": "73f64a1a-d5cc-5e5f-8a5e-2b6462b504f3",
+        "title": "NEET 2024 (Re-Examination)",
+        "year": 2024,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 200,
+                "private": 0,
+                "public": 200
+            }
+        }
+    },
+    {
+        "examGroup": "medical",
+        "key": "neet-2024",
+        "country": "in",
+        "exam": "neet",
+        "date": "2024-05-05T08:30:00.000Z",
+        "description": null,
+        "isMemoryBased": false,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null,
+        "metaId": "21fc32b4-a97c-59d9-8239-1fe0dea5e194",
+        "title": "NEET 2024",
+        "year": 2024,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 200,
+                "private": 0,
+                "public": 200
+            }
+        }
+    },
+    {
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "neet-2023-manipur",
+        "date": "2023-06-06T04:30:00.000Z",
+        "description": null,
+        "isMemoryBased": false,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null,
+        "metaId": "3c48616f-298a-5f69-91d2-bcd59444c455",
+        "title": "NEET 2023 Manipur",
+        "year": 2023,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 26,
+                "total": 200,
+                "private": 0,
+                "public": 200
+            }
+        }
+    },
+    {
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "neet-2023",
+        "date": "2023-05-07T04:30:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null,
+        "metaId": "cbfbed57-d7d8-5a07-9957-478e4cb62f17",
+        "title": "NEET 2023",
+        "year": 2023,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 28,
+                "total": 200,
+                "private": 0,
+                "public": 200
+            }
+        },
+        "isMemoryBased": false
+    },
+    {
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "neet-2022-phase-2",
+        "date": "2022-09-04T04:30:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null,
+        "metaId": "8dd253c6-09a8-5875-b127-a0c00a165a1b",
+        "testId": null,
+        "title": "NEET 2022 Phase 2",
+        "year": 2022,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 17,
+                "total": 200,
+                "private": 0,
+                "public": 200
+            }
+        },
+        "isMemoryBased": false
+    },
+    {
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "neet-2022",
+        "date": "2022-07-17T04:30:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "liveAt": null,
+        "metaId": "c7fb1fc7-cb24-58d1-99f5-4ced0111082d",
+        "testId": null,
+        "title": "NEET 2022 Phase 1",
+        "year": 2022,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 27,
+                "total": 200,
+                "private": 0,
+                "public": 200
+            }
+        },
+        "isMemoryBased": false
+    },
+    {
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "neet-2021",
+        "date": "2021-09-12T04:30:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "metaId": "2ff56f11-0061-566e-aeca-9cc14246e8fb",
+        "title": "NEET 2021",
+        "year": 2021,
+        "liveAt": null,
+        "testId": null,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 26,
+                "total": 200,
+                "private": 0,
+                "public": 200
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ]
+    },
+    {
+        "metaId": "27ba990b-5085-5196-87dd-9727f95fc228",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "neet-2020-phase-1",
+        "date": "2020-09-13T14:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "NEET 2020 Phase 1",
+        "year": 2020,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 20,
+                "total": 180,
+                "private": 0,
+                "public": 180
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null
+    },
+    {
+        "metaId": "c3ae87e9-4094-514a-b2a4-b6e98b1d7ec3",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "neet-2019",
+        "date": "2019-05-05T14:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "NEET 2019",
+        "year": 2019,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 22,
+                "total": 180,
+                "private": 0,
+                "public": 180
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null
+    },
+    {
+        "metaId": "ce68b80b-fff0-5db8-8d6a-668d729d487a",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "neet-2018",
+        "date": "2018-05-06T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "NEET 2018",
+        "year": 2018,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 22,
+                "total": 180,
+                "private": 0,
+                "public": 180
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null
+    },
+    {
+        "metaId": "57222784-be0a-5653-930c-8ac44c689e21",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "neet-2017",
+        "date": "2017-05-07T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "NEET 2017",
+        "year": 2017,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 17,
+                "total": 181,
+                "private": 0,
+                "public": 181
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null
+    },
+    {
+        "metaId": "80eef6f1-3522-515e-b73d-339d85018141",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "neet-2016-phase-2",
+        "date": "2016-07-24T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "NEET 2016 Phase 2",
+        "year": 2016,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 19,
+                "total": 180,
+                "private": 0,
+                "public": 180
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null
+    },
+    {
+        "metaId": "938f3847-eb62-525b-b1b0-02ee459e81f8",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "neet-2016-phase-1",
+        "date": "2016-05-01T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "NEET 2016 Phase 1",
+        "year": 2016,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 20,
+                "total": 180,
+                "private": 0,
+                "public": 180
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null
+    },
+    {
+        "metaId": "47778809-6194-57b2-868a-e4fedb6e9f3a",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2015",
+        "date": "2015-07-25T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2015",
+        "year": 2015,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 23,
+                "total": 173,
+                "private": 0,
+                "public": 173
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null
+    },
+    {
+        "metaId": "8713af28-1c8f-53cc-9230-bcc6ea3843c9",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2015-cancelled-paper",
+        "date": "2015-07-15T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2015 Cancelled Paper",
+        "year": 2015,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 21,
+                "total": 176,
+                "private": 0,
+                "public": 176
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null
+    },
+    {
+        "metaId": "8756d5f2-5c2a-506e-af0c-0198c9fc2187",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2014",
+        "date": "2014-05-04T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2014",
+        "year": 2014,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 15,
+                "total": 175,
+                "private": 0,
+                "public": 175
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null
+    },
+    {
+        "metaId": "1c4dc710-3261-5cd5-bb3e-ee281740f624",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "neet-2013-karnataka",
+        "date": "2013-05-18T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "NEET 2013 (Karnataka)",
+        "year": 2013,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 16,
+                "total": 180,
+                "private": 0,
+                "public": 180
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null
+    },
+    {
+        "metaId": "48007b77-2c75-5367-9ca7-98b53cceaca8",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "neet-2013",
+        "date": "2013-05-05T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "NEET 2013",
+        "year": 2013,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 17,
+                "total": 179,
+                "private": 0,
+                "public": 179
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null
+    },
+    {
+        "metaId": "068d67b3-bca5-5dc4-af63-9dbf0f7ce7be",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2012-mains",
+        "date": "2012-04-13T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2012 Mains",
+        "year": 2012,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 13,
+                "total": 120,
+                "private": 1,
+                "public": 120
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null
+    },
+    {
+        "metaId": "9bdb3f61-14cf-57d2-9324-5465da11de4d",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2012-prelims",
+        "date": "2012-04-01T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2012 Prelims",
+        "year": 2012,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 24,
+                "total": 200,
+                "private": 2,
+                "public": 200
+            }
+        },
+        "isMemoryBased": false,
+        "languages": [
+            "en",
+            "hi"
+        ],
+        "liveAt": null
+    },
+    {
+        "metaId": "a3afa98f-582a-5a4c-ada4-d17ad73090be",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2011-mains",
+        "date": "2011-05-15T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2011 Mains",
+        "year": 2011,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 10,
+                "total": 118,
+                "private": 1,
+                "public": 118
+            }
+        }
+    },
+    {
+        "metaId": "dfc116dc-cf26-5489-aa89-99266a7512a9",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2011-prelims",
+        "date": "2011-04-03T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2011 Prelims",
+        "year": 2011,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 32,
+                "total": 200,
+                "private": 0,
+                "public": 200
+            }
+        }
+    },
+    {
+        "metaId": "da3ac707-aeab-5c4d-807e-6a0705098929",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2010-mains",
+        "date": "2010-05-16T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2010 Mains",
+        "year": 2010,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 11,
+                "total": 112,
+                "private": 0,
+                "public": 112
+            }
+        }
+    },
+    {
+        "metaId": "b91bcb0a-a1ae-550b-a078-b25fcbd422ee",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2010-prelims",
+        "date": "2010-04-03T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2010 Prelims",
+        "year": 2010,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 15,
+                "total": 203,
+                "private": 0,
+                "public": 203
+            }
+        }
+    },
+    {
+        "metaId": "b0e9a6d4-f603-58b1-9723-66c27d5c959b",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2009",
+        "date": "2009-05-10T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2009",
+        "year": 2009,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 23,
+                "total": 198,
+                "private": 0,
+                "public": 198
+            }
+        }
+    },
+    {
+        "metaId": "4432d9cf-5356-5982-b930-2f9d9d752fef",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2008",
+        "date": "2008-05-11T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2008",
+        "year": 2008,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 22,
+                "total": 190,
+                "private": 0,
+                "public": 190
+            }
+        }
+    },
+    {
+        "metaId": "4076c9ee-750f-5bd9-a821-c59bed8ab4fd",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2007",
+        "date": "2007-05-06T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2007",
+        "year": 2007,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 23,
+                "total": 176,
+                "private": 0,
+                "public": 176
+            }
+        }
+    },
+    {
+        "metaId": "084ad628-cb2a-5390-80d1-ccc658633f19",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2006",
+        "date": "2006-05-07T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2006",
+        "year": 2006,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 18,
+                "total": 193,
+                "private": 0,
+                "public": 193
+            }
+        }
+    },
+    {
+        "metaId": "6c2de931-ef9f-52bc-af22-bebe0c0ff520",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2005",
+        "date": "2005-05-01T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2005",
+        "year": 2005,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 17,
+                "total": 192,
+                "private": 0,
+                "public": 192
+            }
+        }
+    },
+    {
+        "metaId": "e537df27-eaab-55a1-9a01-c84409f04935",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2004",
+        "date": "2004-05-02T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2004",
+        "year": 2004,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 19,
+                "total": 179,
+                "private": 0,
+                "public": 179
+            }
+        }
+    },
+    {
+        "metaId": "9f3fa1a4-1199-5b24-b381-d7df26102489",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2003",
+        "date": "2003-05-04T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2003",
+        "year": 2003,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 19,
+                "total": 194,
+                "private": 0,
+                "public": 194
+            }
+        }
+    },
+    {
+        "metaId": "3dbc2670-9688-5143-ae78-7fb777e3eaf6",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2002",
+        "date": "2002-05-05T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2002",
+        "year": 2002,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 16,
+                "total": 190,
+                "private": 0,
+                "public": 190
+            }
+        }
+    },
+    {
+        "metaId": "762be6c6-de8f-548d-859d-3a2343237947",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2001",
+        "date": "2001-05-06T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2001",
+        "year": 2001,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 19,
+                "total": 191,
+                "private": 0,
+                "public": 191
+            }
+        }
+    },
+    {
+        "metaId": "d594604a-f9e6-5929-b3bf-b720a34fabe3",
+        "country": "in",
+        "exam": "neet",
+        "examGroup": "medical",
+        "key": "aipmt-2000",
+        "date": "2000-05-07T10:00:00.000Z",
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "AIPMT 2000",
+        "year": 2000,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 22,
+                "total": 187,
+                "private": 0,
+                "public": 187
+            }
+        }
+    }
+]

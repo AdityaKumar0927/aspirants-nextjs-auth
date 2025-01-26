@@ -1,0 +1,54 @@
+[
+    {
+        "country": "in",
+        "exam": "aiims",
+        "examGroup": "medical",
+        "key": "aiims-2019",
+        "date": null,
+        "description": null,
+        "isMemoryBased": false,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "languages": [
+            "en"
+        ],
+        "liveAt": null,
+        "metaId": "3eea0e11-3990-565a-82ed-dd63b3bfe7c8",
+        "title": "AIIMS 2019",
+        "year": 2019,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 180,
+                "private": 20,
+                "public": 180
+            }
+        }
+    },
+    {
+        "country": "in",
+        "exam": "aiims",
+        "examGroup": "medical",
+        "key": "aiims-2018",
+        "date": "2018-05-27T09:30:00.000Z",
+        "description": null,
+        "isMemoryBased": false,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "languages": [
+            "en"
+        ],
+        "liveAt": null,
+        "metaId": "bc0cf796-929c-5702-9f33-32a369838ec6",
+        "title": "AIIMS 2018",
+        "year": 2018,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 180,
+                "private": 20,
+                "public": 180
+            }
+        }
+    }
+]

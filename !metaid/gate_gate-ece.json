@@ -1,0 +1,964 @@
+[
+    {
+        "exam": "gate-ece",
+        "country": "in",
+        "examGroup": "gate",
+        "key": "gate-ece-2024",
+        "date": "2024-02-11T04:00:00.000Z",
+        "description": null,
+        "isMemoryBased": false,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "languages": [
+            "en"
+        ],
+        "liveAt": "2023-03-21T03:42:00.000Z",
+        "metaId": "aab07db0-5fe4-5198-9b61-18fd1b3599b6",
+        "title": "GATE ECE 2024",
+        "year": 2024,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 65,
+                "private": 0,
+                "public": 65
+            }
+        }
+    },
+    {
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2023",
+        "date": "2023-02-05T09:00:00.000Z",
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "languages": [
+            "en"
+        ],
+        "liveAt": "2023-03-21T03:42:00.000Z",
+        "metaId": "5ebbc7ba-3873-5b0d-bda7-bbb78db2267a",
+        "title": "GATE ECE 2023",
+        "year": 2023,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 65,
+                "private": 0,
+                "public": 65
+            }
+        }
+    },
+    {
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2022",
+        "date": "2022-02-06T03:30:00.000Z",
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "liveAt": null,
+        "metaId": "741bf3f7-df10-51f7-9c88-aa997b2172c1",
+        "title": "GATE ECE 2022",
+        "year": 2022,
+        "languages": [
+            "en"
+        ],
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 65,
+                "private": 0,
+                "public": 65
+            }
+        }
+    },
+    {
+        "metaId": "e4dbe736-e7b1-5c6c-adf8-cc3e61505e33",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2021",
+        "date": "2021-02-07T09:30:00.000Z",
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2021",
+        "year": 2021,
+        "languages": [
+            "en"
+        ],
+        "liveAt": null,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 13,
+                "private": 52,
+                "public": 13
+            }
+        }
+    },
+    {
+        "metaId": "191684d1-3419-52fa-9424-920e2a295034",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2019",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2019",
+        "year": 2019,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 11,
+                "private": 0,
+                "public": 11
+            }
+        }
+    },
+    {
+        "metaId": "0b039fd8-253b-5339-817d-3da87009035d",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2018",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2018",
+        "year": 2018,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 38,
+                "private": 0,
+                "public": 38
+            }
+        }
+    },
+    {
+        "metaId": "337a8d40-e5e2-5ecc-830d-7aeda8927abc",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2017-set-1",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2017 Set 1",
+        "year": 2017,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 62,
+                "private": 0,
+                "public": 62
+            }
+        }
+    },
+    {
+        "metaId": "6f2d7e0a-793c-50f3-a4e0-ffeaa8acee54",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2017-set-2",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2017 Set 2",
+        "year": 2017,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 63,
+                "private": 0,
+                "public": 63
+            }
+        }
+    },
+    {
+        "metaId": "d9a5368c-f892-5c66-b3c5-0b69c6f2cffd",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2016-set-2",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2016 Set 2",
+        "year": 2016,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 54,
+                "private": 0,
+                "public": 54
+            }
+        }
+    },
+    {
+        "metaId": "d843ff67-965b-5bc8-8a2e-35d0663e551e",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2016-set-1",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2016 Set 1",
+        "year": 2016,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 52,
+                "private": 0,
+                "public": 52
+            }
+        }
+    },
+    {
+        "metaId": "5dad5391-654d-5da7-ad79-c2a8b76c22f7",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2016-set-3",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2016 Set 3",
+        "year": 2016,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 53,
+                "private": 0,
+                "public": 53
+            }
+        }
+    },
+    {
+        "metaId": "cca01a53-2af1-595c-90c4-b91d7910cd0d",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2015-set-2",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2015 Set 2",
+        "year": 2015,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 55,
+                "private": 0,
+                "public": 55
+            }
+        }
+    },
+    {
+        "metaId": "568992df-b377-513e-bed0-7436bb7e74b0",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2015-set-1",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2015 Set 1",
+        "year": 2015,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 59,
+                "private": 0,
+                "public": 59
+            }
+        }
+    },
+    {
+        "metaId": "8a1db953-c61f-570b-869a-67851dc0dee2",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2015-set-3",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2015 Set 3",
+        "year": 2015,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 58,
+                "private": 0,
+                "public": 58
+            }
+        }
+    },
+    {
+        "metaId": "6deadca6-e8ac-5d07-aa49-db8c532fa9c0",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2014-set-4",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2014 Set 4",
+        "year": 2014,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 54,
+                "private": 0,
+                "public": 54
+            }
+        }
+    },
+    {
+        "metaId": "1875430d-5fe6-54fb-a865-17a9ccccefe9",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2014-set-3",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2014 Set 3",
+        "year": 2014,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 55,
+                "private": 0,
+                "public": 55
+            }
+        }
+    },
+    {
+        "metaId": "cc1d8d17-27d4-51f6-9153-34c2c4a2b2fc",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2014-set-2",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2014 Set 2",
+        "year": 2014,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 50,
+                "private": 0,
+                "public": 50
+            }
+        }
+    },
+    {
+        "metaId": "697291ec-c877-5acd-83a0-916f4f7b8587",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2014-set-1",
+        "date": null,
+        "description": null,
+        "isOnline": true,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2014 Set 1",
+        "year": 2014,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 58,
+                "private": 0,
+                "public": 58
+            }
+        }
+    },
+    {
+        "metaId": "1b2cd62b-515f-5546-8cf7-99815b846201",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2013",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2013",
+        "year": 2013,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 58,
+                "private": 0,
+                "public": 58
+            }
+        }
+    },
+    {
+        "metaId": "5636260d-cbf3-502c-b24c-54befbe0a974",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2012",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2012",
+        "year": 2012,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 64,
+                "private": 0,
+                "public": 64
+            }
+        }
+    },
+    {
+        "metaId": "5f6d54f0-375a-5295-bde6-f2ed29240076",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2011",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2011",
+        "year": 2011,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 60,
+                "private": 0,
+                "public": 60
+            }
+        }
+    },
+    {
+        "metaId": "abb40163-9e0a-5e03-899f-80fdb90a71aa",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2010",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2010",
+        "year": 2010,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 65,
+                "private": 0,
+                "public": 65
+            }
+        }
+    },
+    {
+        "metaId": "f72f967b-75f8-5e26-854e-e9293ecaca40",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2009",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2009",
+        "year": 2009,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 44,
+                "private": 0,
+                "public": 44
+            }
+        }
+    },
+    {
+        "metaId": "676d6965-2429-5b57-a100-64f493a5f435",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2008",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2008",
+        "year": 2008,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 75,
+                "private": 0,
+                "public": 75
+            }
+        }
+    },
+    {
+        "metaId": "30076370-174a-5c21-ae6a-22b35ce32dfe",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2007",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2007",
+        "year": 2007,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 75,
+                "private": 0,
+                "public": 75
+            }
+        }
+    },
+    {
+        "metaId": "69a3d413-3fdc-54a1-ae35-146fccbf05f3",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2006",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2006",
+        "year": 2006,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 69,
+                "private": 0,
+                "public": 69
+            }
+        }
+    },
+    {
+        "metaId": "540d0548-b937-5b8e-9cf9-cb4d8ddd3af9",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2005",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2005",
+        "year": 2005,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 91,
+                "private": 0,
+                "public": 91
+            }
+        }
+    },
+    {
+        "metaId": "31b00431-8494-524f-9963-cdf0a7e08e54",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2004",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2004",
+        "year": 2004,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 70,
+                "private": 0,
+                "public": 70
+            }
+        }
+    },
+    {
+        "metaId": "3a147bec-8b57-5711-b333-8c5ee3eb7490",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2003",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2003",
+        "year": 2003,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 79,
+                "private": 0,
+                "public": 79
+            }
+        }
+    },
+    {
+        "metaId": "44613e2d-5779-5a6f-9f61-aa642002e89b",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2002",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2002",
+        "year": 2002,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 60,
+                "private": 0,
+                "public": 60
+            }
+        }
+    },
+    {
+        "metaId": "4a29824f-361b-5739-a891-d53799f89a2f",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2001",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2001",
+        "year": 2001,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 64,
+                "private": 0,
+                "public": 64
+            }
+        }
+    },
+    {
+        "metaId": "f7548c48-9226-5b20-ae3e-8e7d4f9e400a",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-2000",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 2000",
+        "year": 2000,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 55,
+                "private": 0,
+                "public": 55
+            }
+        }
+    },
+    {
+        "metaId": "79bf9571-a757-5962-ba7e-4cab4ee08084",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-1999",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 1999",
+        "year": 1999,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 61,
+                "private": 0,
+                "public": 61
+            }
+        }
+    },
+    {
+        "metaId": "f1ac274d-dabd-5b2f-aa4c-087d05bc2be6",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-1998",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 1998",
+        "year": 1998,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 87,
+                "private": 0,
+                "public": 87
+            }
+        }
+    },
+    {
+        "metaId": "30cd718b-08db-5705-ba45-6f3487b7674b",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-1997",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 1997",
+        "year": 1997,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 52,
+                "private": 0,
+                "public": 52
+            }
+        }
+    },
+    {
+        "metaId": "97f1097a-01d1-5146-84fa-af0a6f1c4251",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-1996",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 1996",
+        "year": 1996,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 48,
+                "private": 0,
+                "public": 48
+            }
+        }
+    },
+    {
+        "metaId": "205e17c1-0a74-592a-a996-ae78cfbddf02",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-1995",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 1995",
+        "year": 1995,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 71,
+                "private": 0,
+                "public": 71
+            }
+        }
+    },
+    {
+        "metaId": "a15c1119-affa-54d3-8003-0d2e97c510a9",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-1994",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 1994",
+        "year": 1994,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 60,
+                "private": 0,
+                "public": 60
+            }
+        }
+    },
+    {
+        "metaId": "14319d82-6d19-5723-bc1f-acd571fe55c6",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-1993",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 1993",
+        "year": 1993,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 43,
+                "private": 0,
+                "public": 43
+            }
+        }
+    },
+    {
+        "metaId": "fa633742-b3ba-5f24-88b1-6d8e9d98c17f",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-1992",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 1992",
+        "year": 1992,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 45,
+                "private": 0,
+                "public": 45
+            }
+        }
+    },
+    {
+        "metaId": "7ff1a1d1-ed09-544e-8b0d-0ac8e4489d7a",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-1991",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 1991",
+        "year": 1991,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 33,
+                "private": 0,
+                "public": 33
+            }
+        }
+    },
+    {
+        "metaId": "d3e27a90-d8bb-575e-abfd-e1ab1632b585",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-1990",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 1990",
+        "year": 1990,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 31,
+                "private": 0,
+                "public": 31
+            }
+        }
+    },
+    {
+        "metaId": "2d8dadb1-59be-56b3-902b-03cab2699481",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-1989",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 1989",
+        "year": 1989,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 30,
+                "private": 0,
+                "public": 30
+            }
+        }
+    },
+    {
+        "metaId": "b43dae7e-4596-5cf0-a25f-d41c576c3513",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-1988",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 1988",
+        "year": 1988,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 45,
+                "private": 0,
+                "public": 45
+            }
+        }
+    },
+    {
+        "metaId": "2370db31-d8ee-5b83-89de-18f18a253ae7",
+        "country": "in",
+        "exam": "gate-ece",
+        "examGroup": "gate",
+        "key": "gate-ece-1987",
+        "date": null,
+        "description": null,
+        "isOnline": false,
+        "keyValuePairs": {},
+        "title": "GATE ECE 1987",
+        "year": 1987,
+        "pyq": {
+            "count": {
+                "out_of_syllabus": 0,
+                "total": 33,
+                "private": 0,
+                "public": 33
+            }
+        }
+    }
+]
