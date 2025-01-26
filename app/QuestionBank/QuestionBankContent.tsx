@@ -9,7 +9,7 @@ import React, {
 } from "react"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
-import Question from "@/components/shared/Question" // adjust if needed
+import Question from "@/components/shared/Question" 
 import Popover from "@/components/shared/popover"
 import {
   ChevronDown,
@@ -44,20 +44,23 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Progress } from "@/components/ui/progress"
 import { motion, AnimatePresence } from "framer-motion"
 
-// ----------------------------
-//   FIX #1: Move enum up top
-// ----------------------------
-enum ViewMode {
-  LIST = "list",
-  SINGLE = "single",
-}
-
+// -----------------------------------------------------------------------
+// 1) Enums (declare these before usage to avoid TS errors)
+// -----------------------------------------------------------------------
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
   ARCHIVED = "ARCHIVED",
 }
 
+enum ViewMode {
+  LIST = "list",
+  SINGLE = "single",
+}
+
+// -----------------------------------------------------------------------
+// 2) Types
+// -----------------------------------------------------------------------
 type QuestionTypeString = "Multiple Choice" | "Numerical" | string
 
 interface QuestionType {
@@ -129,9 +132,7 @@ interface QuestionType {
   updatedAt?: string
 }
 
-// --------------------------------------------------
-//               Reducer Types
-// --------------------------------------------------
+// Filter keys for drop-down
 type FilterKey =
   | "exams"
   | "subjects"
@@ -151,6 +152,7 @@ type DropdownsType = {
   [K in FilterKey]: boolean
 }
 
+// Our main state
 type StateType = {
   questions: QuestionType[]
   filters: FiltersType
@@ -160,9 +162,12 @@ type StateType = {
   numericalAnswers: Record<string, string | undefined>
   showMarkscheme: Record<string, boolean>
   selectedOptions: Record<string, string | undefined>
-  notes: Record<string, string>
   loading: boolean
+
+  // [PAGINATION CHANGE] we store the page info
   currentPage: number
+  totalCount: number
+  pageSize: number
 }
 
 type ActionType =
@@ -174,15 +179,17 @@ type ActionType =
   | { type: "SET_NUMERICAL_ANSWERS"; payload: Record<string, string | undefined> }
   | { type: "SET_SHOW_MARKSCHEME"; payload: Record<string, boolean> }
   | { type: "SET_SELECTED_OPTIONS"; payload: Record<string, string | undefined> }
-  | { type: "SET_NOTES"; payload: Record<string, string> }
   | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_CURRENT_PAGE"; payload: number }
+  | { type: "SET_TOTAL_COUNT"; payload: number }
+  | { type: "SET_PAGE_SIZE"; payload: number }
 
 function fuzzyContains(haystack: string, needle: string): boolean {
   if (!needle) return true
   return haystack.toLowerCase().includes(needle.toLowerCase())
 }
 
+// The initial state
 const initialState: StateType = {
   questions: [],
   filters: {
@@ -209,14 +216,15 @@ const initialState: StateType = {
   numericalAnswers: {},
   showMarkscheme: {},
   selectedOptions: {},
-  notes: {},
   loading: true,
+
+  // [PAGINATION CHANGE]: we start at page=1, total=0, size=10
   currentPage: 1,
+  totalCount: 0,
+  pageSize: 10,
 }
 
-// --------------------------------------------------
-//   Reducer
-// --------------------------------------------------
+// The main reducer
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_QUESTIONS":
@@ -241,28 +249,33 @@ function reducer(state: StateType, action: ActionType): StateType {
       return { ...state, showMarkscheme: action.payload }
     case "SET_SELECTED_OPTIONS":
       return { ...state, selectedOptions: action.payload }
-    case "SET_NOTES":
-      return { ...state, notes: action.payload }
     case "SET_LOADING":
       return { ...state, loading: action.payload }
     case "SET_CURRENT_PAGE":
       return { ...state, currentPage: action.payload }
+    case "SET_TOTAL_COUNT":
+      return { ...state, totalCount: action.payload }
+    case "SET_PAGE_SIZE":
+      return { ...state, pageSize: action.payload }
     default:
       return state
   }
 }
 
-// Pagination component
-const PAGE_SIZE = 10
+// The main pagination UI
 function Pagination({
   currentPage,
-  totalPages,
+  totalCount,
+  pageSize,
   onPageChange,
 }: {
   currentPage: number
-  totalPages: number
+  totalCount: number
+  pageSize: number
   onPageChange: (page: number) => void
 }) {
+  const totalPages = Math.ceil(totalCount / pageSize)
+
   return (
     <nav className="flex items-center justify-center mt-6" aria-label="Pagination">
       <Button
@@ -271,84 +284,74 @@ function Pagination({
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
       >
+        <span className="sr-only">Previous page</span>
         <ChevronLeft className="h-4 w-4" />
       </Button>
-      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-        const pageNumber = currentPage + i - 2
-        if (pageNumber > 0 && pageNumber <= totalPages) {
-          return (
-            <Button
-              key={pageNumber}
-              variant={currentPage === pageNumber ? "default" : "outline"}
-              size="icon"
-              onClick={() => onPageChange(pageNumber)}
-            >
-              {pageNumber}
-            </Button>
-          )
-        }
-        return null
-      })}
-      {totalPages > 5 && currentPage < totalPages - 2 && (
-        <>
-          <span className="text-gray-500 dark:text-gray-400">...</span>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => onPageChange(totalPages)}
-          >
-            {totalPages}
-          </Button>
-        </>
-      )}
+      <span className="px-4 text-sm">
+        Page {currentPage} of {totalPages}
+      </span>
       <Button
         variant="outline"
         size="icon"
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
       >
+        <span className="sr-only">Next page</span>
         <ChevronRight className="h-4 w-4" />
       </Button>
     </nav>
   )
 }
 
+// The top-level component
 export default function QuestionBankContent() {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { toast } = useToast()
 
-  // --------------------------------------------------------
-  // FIX #2: We only declare singleIndex once
-  // --------------------------------------------------------
   const [viewMode, setViewMode] = useState<ViewMode>(ViewMode.LIST)
   const [singleIndex, setSingleIndex] = useState<number>(0)
   const [filtersOpenMobile, setFiltersOpenMobile] = useState(false)
 
-  // On mount, switch to single if mobile
+  // On mount, if small screen => single
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       setViewMode(ViewMode.SINGLE)
     }
   }, [])
 
-  // The main fetch function: use no-store
+  // fetch data with pagination
   const fetchAllData = useCallback(async () => {
-    console.log("Fetching /api/questions with no-store cache to fix reload issues.")
     dispatch({ type: "SET_LOADING", payload: true })
     try {
-      const response = await fetch("/api/questions", { cache: "no-store" })
-      if (!response.ok) {
-        const text = await response.text()
-        throw new Error(`Failed to fetch /api/questions: ${text}`)
-      }
-      const questionsData: QuestionType[] = await response.json()
-      console.log("Fetched questionsData length =", questionsData.length)
+      console.log("Fetching /api/questions with pagination...")
 
-      const merged = questionsData.map((q, idx) => ({
-        ...q,
-        id: idx + 1,
-      }))
-      dispatch({ type: "SET_QUESTIONS", payload: merged })
+      const page = state.currentPage
+      const pageSize = state.pageSize
+      // Build query string. If you want to do server-side filtering, also pass your filter params:
+      const url = `/api/questions?page=${page}&pageSize=${pageSize}`
+
+      const response = await fetch(url, { cache: "no-store" })
+      if (!response.ok) {
+        const errorText = await response.text()
+        throw new Error(`Failed to fetch /api/questions: ${errorText}`)
+      }
+      const result = await response.json()
+
+      // The route returns either an array or { data, currentPage, pageSize, totalCount}
+      let data: QuestionType[] = []
+      let totalCount = 0
+      if (Array.isArray(result)) {
+        // no pagination in response
+        data = result
+        totalCount = data.length
+      } else if (result.data) {
+        data = result.data
+        totalCount = result.totalCount
+      }
+
+      // We'll store them
+      dispatch({ type: "SET_QUESTIONS", payload: data })
+      dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount })
     } catch (err) {
       console.error("Error fetching data:", err)
       toast({
@@ -359,25 +362,37 @@ export default function QuestionBankContent() {
     } finally {
       dispatch({ type: "SET_LOADING", payload: false })
     }
-  }, [toast])
+  }, [state.currentPage, state.pageSize, toast])
 
+  // re-fetch each time page changes
   useEffect(() => {
     fetchAllData()
   }, [fetchAllData])
 
-  // MCQ + numeric feedback
+  // handle page change
+  function handlePageChange(newPage: number) {
+    dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
+  }
+
+  // CORE LOGIC FOR FEEDBACK (MCQ, numeric)
   const handleOptionClick = useCallback(
     (questionId: string, option: string, correctOption: string) => {
       const isCorrect = option === correctOption
       dispatch({
         type: "SET_FEEDBACK",
-        payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
+        payload: {
+          ...state.feedback,
+          [questionId]: isCorrect ? "correct" : "incorrect",
+        },
       })
       dispatch({
         type: "SET_SELECTED_OPTIONS",
-        payload: { ...state.selectedOptions, [questionId]: option },
+        payload: {
+          ...state.selectedOptions,
+          [questionId]: option,
+        },
       })
-      // Mark complete
+      // Mark question completed
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
@@ -393,13 +408,19 @@ export default function QuestionBankContent() {
       const isCorrect = userAnswer === correctAnswer
       dispatch({
         type: "SET_FEEDBACK",
-        payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
+        payload: {
+          ...state.feedback,
+          [questionId]: isCorrect ? "correct" : "incorrect",
+        },
       })
       dispatch({
         type: "SET_NUMERICAL_ANSWERS",
-        payload: { ...state.numericalAnswers, [questionId]: userAnswer },
+        payload: {
+          ...state.numericalAnswers,
+          [questionId]: userAnswer,
+        },
       })
-      // Mark complete
+      // mark question as completed
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
@@ -410,7 +431,7 @@ export default function QuestionBankContent() {
     [state.feedback, state.numericalAnswers, state.questions]
   )
 
-  // Reset question
+  // Reset question logic
   const handleResetQuestion = useCallback(
     async (questionId: string) => {
       dispatch({
@@ -425,18 +446,24 @@ export default function QuestionBankContent() {
         type: "SET_NUMERICAL_ANSWERS",
         payload: { ...state.numericalAnswers, [questionId]: undefined },
       })
-      // Mark un-complete
+      // Mark question un-complete & un-flagged
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
           q.questionId === questionId ? { ...q, completed: false, reviewed: false } : q
         ),
       })
+
+      // Optionally patch server
       try {
         await fetch("/api/questions", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, completed: false, reviewed: false }),
+          body: JSON.stringify({
+            questionId,
+            completed: false,
+            reviewed: false,
+          }),
         })
       } catch (err) {
         console.error("Error resetting question:", err)
@@ -452,7 +479,10 @@ export default function QuestionBankContent() {
         await fetch("/api/questions", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, completed: completedVal }),
+          body: JSON.stringify({
+            questionId,
+            completed: completedVal,
+          }),
         })
         dispatch({
           type: "SET_QUESTIONS",
@@ -474,7 +504,10 @@ export default function QuestionBankContent() {
         await fetch("/api/questions", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, reviewed: reviewedVal }),
+          body: JSON.stringify({
+            questionId,
+            reviewed: reviewedVal,
+          }),
         })
         dispatch({
           type: "SET_QUESTIONS",
@@ -489,45 +522,17 @@ export default function QuestionBankContent() {
     [state.questions]
   )
 
-  // Filter + search
+  // We do a local filter of the page's data (state.questions).
+  // If you want the server to do the filtering, you'd pass filter queries
   const filteredQuestions = useMemo(() => {
     const searchTerm = state.searchQuery.toLowerCase()
     return state.questions.filter((q) => {
       const textFields = [q.text, q.topic, q.subtopic, q.subject, q.exam, q.title]
-      const matchesSearch = textFields.some((field) => field && fuzzyContains(field, searchTerm))
+      const matchesSearch = textFields.some(
+        (field) => field && fuzzyContains(field, searchTerm)
+      )
 
       let matchesFilters = true
-      if (state.filters.exams.length && q.exam && !state.filters.exams.includes(q.exam)) {
-        matchesFilters = false
-      }
-      if (state.filters.subjects.length && q.subject && !state.filters.subjects.includes(q.subject)) {
-        matchesFilters = false
-      }
-      if (state.filters.topics.length && q.topic && !state.filters.topics.includes(q.topic)) {
-        matchesFilters = false
-      }
-      if (
-        state.filters.subtopics.length &&
-        q.subtopic &&
-        !state.filters.subtopics.includes(q.subtopic)
-      ) {
-        matchesFilters = false
-      }
-      if (
-        state.filters.difficulties.length &&
-        q.difficulty &&
-        !state.filters.difficulties.includes(q.difficulty)
-      ) {
-        matchesFilters = false
-      }
-      if (state.filters.types.length && q.type && !state.filters.types.includes(q.type)) {
-        matchesFilters = false
-      }
-      if (state.filters.years.length && q.year && !state.filters.years.includes(q.year.toString())) {
-        matchesFilters = false
-      }
-
-      // status check
       if (state.filters.status === "review" && !q.reviewed) {
         matchesFilters = false
       } else if (state.filters.status === "complete" && !q.completed) {
@@ -537,67 +542,9 @@ export default function QuestionBankContent() {
       }
       return matchesSearch && matchesFilters
     })
-  }, [state.filters, state.questions, state.searchQuery])
+  }, [state.questions, state.filters, state.searchQuery])
 
-  // pagination
-  const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
-  const startIndex = (state.currentPage - 1) * PAGE_SIZE
-  const paginatedQuestions = filteredQuestions.slice(startIndex, startIndex + PAGE_SIZE)
-
-  function handlePageChange(page: number) {
-    dispatch({ type: "SET_CURRENT_PAGE", payload: page })
-  }
-
-  // Single question nav
-  function handleSingleNext() {
-    setSingleIndex((prev) => Math.min(prev + 1, filteredQuestions.length - 1))
-  }
-  function handleSinglePrev() {
-    setSingleIndex((prev) => Math.max(prev - 1, 0))
-  }
-
-  // toggling filter popovers
-  function toggleFilterDropdown(filterType: FilterKey) {
-    const isOpen = state.dropdowns[filterType]
-    dispatch({
-      type: "SET_DROPDOWN",
-      payload: { tag: filterType, value: !isOpen },
-    })
-  }
-
-  const handleFilterChange = useCallback(
-    (filterType: FilterKey, value: string) => {
-      const oldValues = state.filters[filterType]
-      if (Array.isArray(oldValues)) {
-        const isSelected = oldValues.includes(value)
-        let newArr: string[]
-        if (isSelected) {
-          newArr = oldValues.filter((v) => v !== value)
-        } else {
-          newArr = [...oldValues, value]
-        }
-        dispatch({
-          type: "SET_FILTERS",
-          payload: { ...state.filters, [filterType]: newArr },
-        })
-      }
-    },
-    [state.filters]
-  )
-
-  // question navigator
-  function handleNavigatorClick(index: number) {
-    const newPage = Math.floor(index / PAGE_SIZE) + 1
-    dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
-    setTimeout(() => {
-      const questionElement = document.getElementById(`question-${filteredQuestions[index].questionId}`)
-      if (questionElement) {
-        questionElement.scrollIntoView({ behavior: "smooth", block: "start" })
-      }
-    }, 100)
-  }
-
-  // loading skeleton
+  // If loading skeleton
   if (state.loading) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -629,12 +576,9 @@ export default function QuestionBankContent() {
     )
   }
 
-  // Decide single or list
-  const filteredCount = filteredQuestions.length
-
-  // If single mode
+  // If single
   if (viewMode === ViewMode.SINGLE) {
-    if (filteredCount === 0) {
+    if (filteredQuestions.length === 0) {
       return (
         <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-8 text-gray-900 dark:text-gray-100">
           <div className="max-w-6xl mx-auto">
@@ -676,7 +620,7 @@ export default function QuestionBankContent() {
             </Dialog>
 
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              {singleIndex + 1} / {filteredCount}
+              {singleIndex + 1} / {filteredQuestions.length}
             </span>
           </div>
 
@@ -695,7 +639,6 @@ export default function QuestionBankContent() {
                 selectedOption={state.selectedOptions[currentQ.questionId]}
                 numericalAnswer={state.numericalAnswers[currentQ.questionId]}
                 showMarkscheme={state.showMarkscheme[currentQ.questionId]}
-                // handlers
                 handleOptionClick={handleOptionClick}
                 handleNumericalSubmit={handleNumericalSubmit}
                 handleNumericalChange={(qId, val) => {
@@ -719,11 +662,11 @@ export default function QuestionBankContent() {
                 isMarkedForReview={currentQ.reviewed || false}
                 isMarkedComplete={currentQ.completed || false}
                 markschemesDisabled={false}
-                note={state.notes[currentQ.questionId] || ""}
+                note={""}
                 handleNoteChange={() => {}}
                 handleDeleteNote={() => Promise.resolve()}
                 userId={"guest"}
-                totalQuestions={filteredCount}
+                totalQuestions={filteredQuestions.length}
                 currentQuestionIndex={singleIndex}
                 handleQuestionChange={() => {}}
               />
@@ -731,13 +674,16 @@ export default function QuestionBankContent() {
           </AnimatePresence>
 
           <div className="flex justify-between">
-            <Button onClick={handleSinglePrev} disabled={singleIndex === 0}>
+            <Button
+              onClick={() => setSingleIndex(Math.max(0, singleIndex - 1))}
+              disabled={singleIndex === 0}
+            >
               <ChevronLeft className="mr-1 h-4 w-4" />
               Prev
             </Button>
             <Button
-              onClick={handleSingleNext}
-              disabled={singleIndex === filteredCount - 1}
+              onClick={() => setSingleIndex(Math.min(filteredQuestions.length - 1, singleIndex + 1))}
+              disabled={singleIndex === filteredQuestions.length - 1}
             >
               Next
               <ChevronRight className="ml-1 h-4 w-4" />
@@ -748,7 +694,7 @@ export default function QuestionBankContent() {
     )
   }
 
-  // Otherwise list view
+  // LIST view
   return (
     <TooltipProvider>
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -767,13 +713,15 @@ export default function QuestionBankContent() {
                 type="text"
                 placeholder="Search questions..."
                 value={state.searchQuery}
-                onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
+                onChange={(e) =>
+                  dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })
+                }
                 className="pl-10 dark:text-gray-100 dark:bg-gray-800 dark:placeholder-gray-400"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
             </div>
 
-            {/* For mobile: single filters button */}
+            {/* mobile filters */}
             <div className="block sm:hidden">
               <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
                 <DialogTrigger asChild>
@@ -821,7 +769,15 @@ export default function QuestionBankContent() {
                           <Button
                             variant={question.completed ? "default" : "outline"}
                             size="sm"
-                            onClick={() => handleNavigatorClick(index)}
+                            onClick={() => {
+                              // We only have local page data; 
+                              // if you had many pages, you'd do a diff approach
+                              // For now, let's just scroll
+                              const el = document.getElementById(`question-${question.questionId}`)
+                              if (el) {
+                                el.scrollIntoView({ behavior: "smooth", block: "start" })
+                              }
+                            }}
                             className={`w-10 h-10 dark:border-gray-700 ${
                               question.completed
                                 ? "bg-green-100 border-green-500 text-green-700 dark:bg-green-900 dark:border-green-500 dark:text-green-300"
@@ -847,35 +803,30 @@ export default function QuestionBankContent() {
           {/* Desktop filter row for status */}
           <div className="hidden sm:flex space-x-4 mb-2">
             {["all", "complete", "review", "incomplete"].map((filterStatus) => (
-              <Tooltip key={filterStatus}>
-                <TooltipTrigger asChild>
-                  <button
-                    onClick={() =>
-                      dispatch({
-                        type: "SET_FILTERS",
-                        payload: { ...state.filters, status: filterStatus },
-                      })
-                    }
-                    className={`px-4 py-2 rounded-md transition-colors
-                      ${
-                        state.filters.status === filterStatus
-                          ? "bg-white dark:bg-gray-700 border dark:border-gray-600 hover:border-gray-500 dark:hover:border-gray-400 text-gray-500 dark:text-gray-100"
-                          : "bg-white dark:bg-gray-800 border border-gray-800 dark:border-gray-600 hover:border-gray-700 dark:hover:border-gray-500 text-gray-500 dark:text-gray-100"
-                      }`}
-                  >
-                    {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent className="dark:bg-gray-700 dark:text-gray-50">
-                  {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}
-                </TooltipContent>
-              </Tooltip>
+              <button
+                key={filterStatus}
+                onClick={() =>
+                  dispatch({
+                    type: "SET_FILTERS",
+                    payload: { ...state.filters, status: filterStatus },
+                  })
+                }
+                className={`px-4 py-2 rounded-md transition-colors
+                  ${
+                    state.filters.status === filterStatus
+                      ? "bg-white dark:bg-gray-700 border dark:border-gray-600 hover:border-gray-500 dark:hover:border-gray-400 text-gray-500 dark:text-gray-100"
+                      : "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-gray-700 dark:hover:border-gray-500 text-gray-500 dark:text-gray-100"
+                  }`}
+              >
+                {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}
+              </button>
             ))}
           </div>
 
           {/* Desktop filter popovers */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {(["exams","subjects","topics","subtopics","difficulties","years","types"] as FilterKey[]).map((filterType) => {
+              // gather unique values
               const filterValues = Array.from(
                 new Set(
                   state.questions
@@ -920,7 +871,20 @@ export default function QuestionBankContent() {
                               type="checkbox"
                               className="mr-2"
                               checked={(state.filters[filterType] as string[]).includes(value)}
-                              onChange={() => handleFilterChange(filterType, value)}
+                              onChange={() => {
+                                const oldVals = state.filters[filterType]
+                                const isSelected = oldVals.includes(value)
+                                let newArr: string[]
+                                if (isSelected) {
+                                  newArr = oldVals.filter((v) => v !== value)
+                                } else {
+                                  newArr = [...oldVals, value]
+                                }
+                                dispatch({
+                                  type: "SET_FILTERS",
+                                  payload: { ...state.filters, [filterType]: newArr },
+                                })
+                              }}
                             />
                             <label className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-700">
                               {value}
@@ -940,7 +904,13 @@ export default function QuestionBankContent() {
                   }}
                 >
                   <button
-                    onClick={() => toggleFilterDropdown(filterType)}
+                    onClick={() => {
+                      const isOpen = state.dropdowns[filterType]
+                      dispatch({
+                        type: "SET_DROPDOWN",
+                        payload: { tag: filterType, value: !isOpen },
+                      })
+                    }}
                     className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 dark:border-gray-700 px-4 py-2 bg-white dark:bg-gray-800 transition-all duration-75 hover:border-gray-800 dark:hover:border-gray-500 focus:outline-none active:bg-gray-100 dark:active:bg-gray-700"
                   >
                     <p className="text-gray-600 dark:text-gray-300">
@@ -969,10 +939,10 @@ export default function QuestionBankContent() {
                     Overall Progress
                   </span>
                   <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
-                    {filteredQuestions.length > 0
+                    {state.questions.length > 0
                       ? Math.round(
-                          (filteredQuestions.filter((qq) => qq.completed).length /
-                            filteredQuestions.length) *
+                          (state.questions.filter((qq) => qq.completed).length /
+                            state.questions.length) *
                             100
                         )
                       : 0}
@@ -981,9 +951,9 @@ export default function QuestionBankContent() {
                 </div>
                 <Progress
                   value={
-                    filteredQuestions.length > 0
-                      ? (filteredQuestions.filter((qq) => qq.completed).length /
-                          filteredQuestions.length) *
+                    state.questions.length > 0
+                      ? (state.questions.filter((qq) => qq.completed).length /
+                          state.questions.length) *
                         100
                       : 0
                   }
@@ -997,7 +967,7 @@ export default function QuestionBankContent() {
                     <div>
                       <p className="text-2xl font-light tracking-tighter text-blue-600 dark:text-blue-300">
                         {
-                          filteredQuestions.filter(
+                          state.questions.filter(
                             (qq) => !qq.reviewed && !qq.completed && !qq.lastAttempted
                           ).length
                         }
@@ -1021,7 +991,7 @@ export default function QuestionBankContent() {
                     </div>
                     <div>
                       <p className="text-2xl font-light tracking-tighter text-green-600 dark:text-green-300">
-                        {filteredQuestions.filter((qq) => qq.completed).length}
+                        {state.questions.filter((qq) => qq.completed).length}
                       </p>
                       <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
                         Answered
@@ -1034,7 +1004,7 @@ export default function QuestionBankContent() {
                     </div>
                     <div>
                       <p className="text-2xl font-light tracking-tighter text-yellow-600 dark:text-yellow-300">
-                        {filteredQuestions.filter((qq) => qq.reviewed).length}
+                        {state.questions.filter((qq) => qq.reviewed).length}
                       </p>
                       <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
                         For Review
@@ -1046,9 +1016,9 @@ export default function QuestionBankContent() {
             </CardContent>
           </Card>
 
-          {paginatedQuestions.length > 0 ? (
+          {state.questions.length > 0 ? (
             <>
-              {paginatedQuestions.map((question, index) => (
+              {state.questions.map((question, index) => (
                 <Question
                   key={question.questionId}
                   question={question}
@@ -1079,18 +1049,19 @@ export default function QuestionBankContent() {
                   isMarkedForReview={question.reviewed || false}
                   isMarkedComplete={question.completed || false}
                   markschemesDisabled={false}
-                  note={state.notes[question.questionId] || ""}
+                  note={""}
                   handleNoteChange={() => {}}
                   handleDeleteNote={() => Promise.resolve()}
                   userId={"guest"}
-                  totalQuestions={filteredQuestions.length}
-                  currentQuestionIndex={index + (state.currentPage - 1) * PAGE_SIZE}
-                  handleQuestionChange={handleNavigatorClick}
+                  totalQuestions={state.questions.length}
+                  currentQuestionIndex={index}
+                  handleQuestionChange={()=>{}}
                 />
               ))}
               <Pagination
                 currentPage={state.currentPage}
-                totalPages={totalPages}
+                totalCount={state.totalCount}
+                pageSize={state.pageSize}
                 onPageChange={handlePageChange}
               />
             </>
@@ -1105,6 +1076,7 @@ export default function QuestionBankContent() {
   )
 }
 
+// The mobile filter panel
 function FilterPanelMobile({
   state,
   dispatch,
@@ -1126,6 +1098,7 @@ function FilterPanelMobile({
   const handleStatusChange = (st: string) => {
     dispatch({ type: "SET_FILTERS", payload: { ...state.filters, status: st } })
   }
+
   const handleArrayFilterChange = (filterType: FilterKey, value: string) => {
     const oldValues = state.filters[filterType]
     const isSelected = oldValues.includes(value)
@@ -1185,7 +1158,6 @@ function FilterPanelMobile({
               .filter(Boolean) as string[]
           )
         )
-
         return (
           <div key={filterType}>
             <p className="font-semibold mb-2">
