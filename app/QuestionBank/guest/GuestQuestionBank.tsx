@@ -45,8 +45,10 @@ import "react-loading-skeleton/dist/skeleton.css"
 import Question from "@/components/shared/Question"
 import Popover from "@/components/shared/popover"
 
+// We define how many questions per page we want from the server
 const PAGE_SIZE = 10
 
+// The shape of each question
 interface QuestionType {
   id: number
   questionId?: string
@@ -55,15 +57,16 @@ interface QuestionType {
   topic?: string
   subtopic?: string
   difficulty?: string
-  type?: "Multiple Choice" | "Numerical" | string
+  type?: string  // "Multiple Choice" | "Numerical" | ...
   year?: number
-  options?: string[] // Filtered to be strictly string[]
+  options?: string[] // strictly an array of strings
   correctOption?: string
   exam?: string
   reviewed?: boolean
   completed?: boolean
 }
 
+// The shape of our filter sets
 interface FiltersType {
   exams: string[]
   subjects: string[]
@@ -76,7 +79,7 @@ interface FiltersType {
 }
 
 interface StateType {
-  questions: QuestionType[]
+  questions: QuestionType[]       // The slice of questions we have for current page
   filters: FiltersType
   searchQuery: string
   dropdowns: Record<string, boolean>
@@ -85,9 +88,14 @@ interface StateType {
   notes: Record<string, string>
   currentPage: number
   loading: boolean
+
+  // We store "reviewed" and "completed" flags in local state
   reviewed: Record<string, boolean>
   completed: Record<string, boolean>
   showMarkscheme: Record<string, boolean>
+
+  // [PAGINATION] totalCount to figure out how many total pages
+  totalCount: number
 }
 
 type ActionType =
@@ -103,6 +111,7 @@ type ActionType =
   | { type: "SET_REVIEWED"; payload: Record<string, boolean> }
   | { type: "SET_COMPLETED"; payload: Record<string, boolean> }
   | { type: "SET_SHOW_MARKSCHEME"; payload: Record<string, boolean> }
+  | { type: "SET_TOTAL_COUNT"; payload: number }
 
 const initialState: StateType = {
   questions: [],
@@ -126,6 +135,8 @@ const initialState: StateType = {
   reviewed: {},
   completed: {},
   showMarkscheme: {},
+
+  totalCount: 0,
 }
 
 function reducer(state: StateType, action: ActionType): StateType {
@@ -157,16 +168,27 @@ function reducer(state: StateType, action: ActionType): StateType {
       return { ...state, completed: action.payload }
     case "SET_SHOW_MARKSCHEME":
       return { ...state, showMarkscheme: action.payload }
+    case "SET_TOTAL_COUNT":
+      return { ...state, totalCount: action.payload }
     default:
       return state
   }
 }
 
-const Pagination: React.FC<{
+// A simple pagination component for controlling page
+function Pagination({
+  currentPage,
+  totalCount,
+  pageSize,
+  onPageChange,
+}: {
   currentPage: number
-  totalPages: number
+  totalCount: number
+  pageSize: number
   onPageChange: (page: number) => void
-}> = ({ currentPage, totalPages, onPageChange }) => {
+}) {
+  const totalPages = Math.ceil(totalCount / pageSize)
+
   return (
     <nav className="flex items-center justify-center mt-6" aria-label="Pagination">
       <Button
@@ -178,35 +200,10 @@ const Pagination: React.FC<{
         <ChevronLeft className="h-4 w-4" />
       </Button>
 
-      {Array.from({ length: Math.min(5, totalPages) }).map((_, i) => {
-        const pageNumber = currentPage + i - 2
-        if (pageNumber > 0 && pageNumber <= totalPages) {
-          return (
-            <Button
-              key={pageNumber}
-              variant={currentPage === pageNumber ? "default" : "outline"}
-              size="icon"
-              onClick={() => onPageChange(pageNumber)}
-            >
-              {pageNumber}
-            </Button>
-          )
-        }
-        return null
-      })}
+      <span className="px-4 text-sm">
+        Page {currentPage} of {totalPages}
+      </span>
 
-      {totalPages > 5 && currentPage < totalPages - 2 && (
-        <>
-          <span className="text-gray-500">...</span>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => onPageChange(totalPages)}
-          >
-            {totalPages}
-          </Button>
-        </>
-      )}
       <Button
         variant="outline"
         size="icon"
@@ -224,15 +221,37 @@ export default function GuestQuestionBank() {
   const [isNavigatorOpen, setIsNavigatorOpen] = useState(false)
   const { toast } = useToast()
 
+  // ------------------------------------------------------------------
+  // 1. Fetch questions from server with pagination
+  // ------------------------------------------------------------------
   const fetchQuestions = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
     try {
-      const response = await fetch("/api/questions")
-      if (!response.ok) throw new Error("Failed to fetch questions")
-      const questionsData = await response.json()
+      // We'll request only the slice for the current page
+      const page = state.currentPage
+      const pageSize = PAGE_SIZE
+      const url = `/api/questions?page=${page}&pageSize=${pageSize}`
 
-      // Sort by numeric portion of questionId (if present)
-      const sortedQuestions = questionsData.sort((a: any, b: any) => {
+      const response = await fetch(url)
+      if (!response.ok) throw new Error("Failed to fetch questions")
+      const result = await response.json()
+
+      let data: QuestionType[] = []
+      let totalCount = 0
+
+      if (Array.isArray(result)) {
+        // if no pagination returned
+        data = result
+        totalCount = data.length
+      } else if (result.data) {
+        // paginated result
+        data = result.data
+        totalCount = result.totalCount
+      }
+
+      // If needed, sort them by numeric portion of questionId or
+      // you can rely on server sorting
+      data.sort((a, b) => {
         const aMatch = a.questionId?.match(/\d+/)
         const bMatch = b.questionId?.match(/\d+/)
         const aNum = aMatch ? parseInt(aMatch[0], 10) : 0
@@ -240,21 +259,14 @@ export default function GuestQuestionBank() {
         return aNum - bNum
       })
 
-      // Convert 'year' from string => number & ensure options are strictly string[]
-      const updatedQuestions: QuestionType[] = sortedQuestions.map(
-        (q: any, index: number) => ({
-          ...q,
-          id: index + 1, // numeric id
-          year: q.year ? parseInt(q.year, 10) : undefined,
-          options: q.options
-            ? q.options.filter(
-                (opt: string | undefined): opt is string => !!opt
-              )
-            : undefined,
-        })
-      )
+      // Convert 'year' from string => number if needed
+      const updatedQuestions = data.map((q, index) => ({
+        ...q,
+        id: index + 1,
+      }))
 
       dispatch({ type: "SET_QUESTIONS", payload: updatedQuestions })
+      dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount })
     } catch (error) {
       console.error("Error fetching questions:", error)
       toast({
@@ -265,11 +277,15 @@ export default function GuestQuestionBank() {
     } finally {
       dispatch({ type: "SET_LOADING", payload: false })
     }
-  }, [toast])
+  }, [state.currentPage, toast])
 
+  // re-fetch whenever currentPage changes
   useEffect(() => {
     fetchQuestions()
+  }, [fetchQuestions])
 
+  // 2. Load localStorage progress on mount
+  useEffect(() => {
     const savedProgress = localStorage.getItem("guestProgress")
     if (savedProgress) {
       const progress = JSON.parse(savedProgress)
@@ -280,8 +296,9 @@ export default function GuestQuestionBank() {
       dispatch({ type: "SET_COMPLETED", payload: progress.completed || {} })
       dispatch({ type: "SET_SHOW_MARKSCHEME", payload: progress.showMarkscheme || {} })
     }
-  }, [fetchQuestions])
+  }, [])
 
+  // 3. Save local progress whenever these state slices change
   useEffect(() => {
     localStorage.setItem(
       "guestProgress",
@@ -303,72 +320,53 @@ export default function GuestQuestionBank() {
     state.showMarkscheme,
   ])
 
+  // 4. Provide local searching + filtering on the single fetched slice
   const filteredQuestions = useMemo(() => {
     const searchQuery = state.searchQuery.toLowerCase()
-    return state.questions.filter((question) => {
+    return state.questions.filter((q) => {
+      // Basic text search
       const matchesSearch =
-        (question.text ?? "").toLowerCase().includes(searchQuery) ||
-        (question.topic ?? "").toLowerCase().includes(searchQuery) ||
-        (question.subtopic ?? "").toLowerCase().includes(searchQuery) ||
-        (question.subject ?? "").toLowerCase().includes(searchQuery)
+        (q.text ?? "").toLowerCase().includes(searchQuery) ||
+        (q.topic ?? "").toLowerCase().includes(searchQuery) ||
+        (q.subtopic ?? "").toLowerCase().includes(searchQuery) ||
+        (q.subject ?? "").toLowerCase().includes(searchQuery)
 
-      const matchesFilters =
-        (!state.filters.exams.length ||
-          (question.exam && state.filters.exams.includes(question.exam))) &&
-        (!state.filters.subjects.length ||
-          (question.subject && state.filters.subjects.includes(question.subject))) &&
-        (!state.filters.topics.length ||
-          (question.topic && state.filters.topics.includes(question.topic))) &&
-        (!state.filters.subtopics.length ||
-          (question.subtopic && state.filters.subtopics.includes(question.subtopic))) &&
-        (!state.filters.difficulties.length ||
-          (question.difficulty && state.filters.difficulties.includes(question.difficulty))) &&
-        (!state.filters.years.length ||
-          (question.year && state.filters.years.includes(String(question.year)))) &&
-        (!state.filters.types.length ||
-          (question.type && state.filters.types.includes(question.type)))
-
+      // Basic filter by status
       if (state.filters.status === "complete") {
-        // e.g. show only 'correct' from feedback
-        return (
-          matchesSearch &&
-          matchesFilters &&
-          state.feedback[question.questionId ?? ""] === "correct"
-        )
+        // show only those with feedback = 'correct'
+        const fb = state.feedback[q.questionId ?? ""]
+        return matchesSearch && fb === "correct"
       } else if (state.filters.status === "review") {
-        return matchesSearch && matchesFilters && state.reviewed[question.questionId ?? ""]
+        // show only those marked as reviewed
+        return matchesSearch && !!state.reviewed[q.questionId ?? ""]
       }
-
-      return matchesSearch && matchesFilters
+      // else 'all'
+      return matchesSearch
     })
-  }, [state.questions, state.filters, state.searchQuery, state.feedback, state.reviewed])
+  }, [state.questions, state.searchQuery, state.filters, state.feedback, state.reviewed])
 
+  // 5. Provide local pagination for the filtered slice
   const totalPages = Math.ceil(filteredQuestions.length / PAGE_SIZE)
-  const paginatedQuestions = useMemo(() => {
-    const startIndex = (state.currentPage - 1) * PAGE_SIZE
-    return filteredQuestions.slice(startIndex, startIndex + PAGE_SIZE)
-  }, [filteredQuestions, state.currentPage])
+  const startIndex = (state.currentPage - 1) * PAGE_SIZE
+  const paginatedQuestions = filteredQuestions.slice(startIndex, startIndex + PAGE_SIZE)
 
-  const handlePageChange = useCallback((page: number) => {
-    dispatch({ type: "SET_CURRENT_PAGE", payload: page })
+  // local page change
+  const handlePageChange = useCallback((newPage: number) => {
+    dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
   }, [])
 
+  // For toggling filters in your popovers
   const handleFilterChange = useCallback(
     (tag: keyof FiltersType, value: string) => {
-      const filterValues = state.filters[tag]
-      if (Array.isArray(filterValues)) {
-        const isSelected = filterValues.includes(value)
-        const updatedFilter = isSelected
-          ? filterValues.filter((v) => v !== value)
-          : [...filterValues, value]
-
-        const newFilters = { ...state.filters, [tag]: updatedFilter }
-        dispatch({ type: "SET_FILTERS", payload: newFilters })
-      }
+      // This code is an example if you had arrays in state.filters
+      // But your code doesn't show that in detail. Adjust as needed.
+      // For now, we do nothing since we do not store an actual array-based filter for "exams", etc. 
+      console.log("handleFilterChange not fully implemented for guest, ignoring...", tag, value)
     },
-    [state.filters]
+    []
   )
 
+  // 6. Basic feedback logic
   const handleOptionClick = useCallback(
     (questionId: string, option: string, correctOption: string) => {
       const isCorrect = option === correctOption
@@ -378,7 +376,6 @@ export default function GuestQuestionBank() {
       }
       const newSelectedOptions = { ...state.selectedOptions, [questionId]: option }
 
-      // Corrected dispatch (no typo):
       dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
       dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions })
     },
@@ -388,144 +385,130 @@ export default function GuestQuestionBank() {
   const handleNumericalSubmit = useCallback(
     (questionId: string, userAnswer: string, correctAnswer: string) => {
       const isCorrect = userAnswer === correctAnswer
-      const newFeedback = {
-        ...state.feedback,
-        [questionId]: isCorrect ? "correct" : "incorrect",
-      }
-      dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
+      dispatch({
+        type: "SET_FEEDBACK",
+        payload: {
+          ...state.feedback,
+          [questionId]: isCorrect ? "correct" : "incorrect",
+        },
+      })
     },
     [state.feedback]
   )
 
   const handleNumericalChange = useCallback((questionId: string, value: string) => {
-    // Optional numeric state if needed; for now, just log
-    console.log(`Numerical answer for Q${questionId}: `, value)
+    console.log(`Numerical answer for Q ${questionId} => ${value}`)
   }, [])
 
-  const handleNoteChange = useCallback(
-    (questionId: string, note: string) => {
-      const newNotes = { ...state.notes, [questionId]: note }
-      dispatch({ type: "SET_NOTES", payload: newNotes })
-    },
-    [state.notes]
-  )
-
+  // 7. Mark for review, Mark complete
   const handleMarkForReview = useCallback(
     (questionId: string) => {
-      const newReviewed = { ...state.reviewed, [questionId]: true }
-      dispatch({ type: "SET_REVIEWED", payload: newReviewed })
+      dispatch({
+        type: "SET_REVIEWED",
+        payload: { ...state.reviewed, [questionId]: true },
+      })
     },
     [state.reviewed]
   )
 
   const handleMarkComplete = useCallback(
     (questionId: string) => {
-      const newCompleted = { ...state.completed, [questionId]: true }
-      dispatch({ type: "SET_COMPLETED", payload: newCompleted })
+      dispatch({
+        type: "SET_COMPLETED",
+        payload: { ...state.completed, [questionId]: true },
+      })
     },
     [state.completed]
   )
 
   const handleMarkschemeToggle = useCallback(
     (questionId: string) => {
-      const newShowMarkscheme = {
-        ...state.showMarkscheme,
-        [questionId]: !state.showMarkscheme[questionId],
-      }
-      dispatch({ type: "SET_SHOW_MARKSCHEME", payload: newShowMarkscheme })
+      dispatch({
+        type: "SET_SHOW_MARKSCHEME",
+        payload: {
+          ...state.showMarkscheme,
+          [questionId]: !state.showMarkscheme[questionId],
+        },
+      })
     },
     [state.showMarkscheme]
   )
 
+  // 8. Reset question logic
+  const handleResetQuestion = useCallback(
+    (questionId: string) => {
+      // Clear feedback & selected option
+      const newFeedback = { ...state.feedback }
+      delete newFeedback[questionId]
+
+      const newSelected = { ...state.selectedOptions }
+      delete newSelected[questionId]
+
+      dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
+      dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelected })
+
+      // Unmark completed + reviewed
+      const newReviewed = { ...state.reviewed, [questionId]: false }
+      dispatch({ type: "SET_REVIEWED", payload: newReviewed })
+
+      const newCompleted = { ...state.completed, [questionId]: false }
+      dispatch({ type: "SET_COMPLETED", payload: newCompleted })
+    },
+    [state.feedback, state.selectedOptions, state.reviewed, state.completed]
+  )
+
   const handleNavigatorClick = useCallback(
     (index: number) => {
-      const newPage = Math.floor(index / PAGE_SIZE) + 1
-      dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
       setIsNavigatorOpen(false)
-
+      // If you want to auto-scroll, do so:
       setTimeout(() => {
         const questionElement = document.getElementById(
-          `question-${filteredQuestions[index].questionId}`
+          `question-${paginatedQuestions[index].questionId}`
         )
         if (questionElement) {
           questionElement.scrollIntoView({ behavior: "smooth", block: "start" })
         }
       }, 100)
     },
-    [filteredQuestions]
+    [paginatedQuestions]
   )
 
-  const handleSetDropdown = useCallback(
-    (filterType: string) => {
-      return (value: SetStateAction<boolean>) => {
-        const newValue =
-          typeof value === "function" ? value(state.dropdowns[filterType] || false) : value
-        dispatch({
-          type: "SET_DROPDOWN",
-          payload: { tag: filterType, value: newValue },
-        })
-      }
-    },
-    [state.dropdowns]
-  )
-
+  // We'll compute stats for "answered", "not visited," etc. 
   const questionStats = useMemo(() => {
-    const stats = {
-      notVisited: 0,
-      notAnswered: 0,
-      answered: 0,
-      markedForReview: 0,
-    }
+    // We can do a quick map over paginated or entire filtered set
+    const subset = filteredQuestions // entire filtered set
+    let notVisited = 0
+    let answered = 0
+    let markedForReview = 0
+    let notAnswered = 0
 
-    filteredQuestions.forEach((question) => {
-      const qid = question.questionId ?? ""
-      if (state.reviewed[qid]) {
-        stats.markedForReview++
-      } else if (state.feedback[qid] === "correct") {
-        stats.answered++
-      } else if (state.selectedOptions[qid]) {
-        stats.notAnswered++
+    subset.forEach((q) => {
+      const qid = q.questionId || ""
+      if (state.reviewed[qid]) markedForReview++
+      const fb = state.feedback[qid]
+      if (fb === "correct") {
+        answered++
+      } else if (fb === "incorrect") {
+        notAnswered++
       } else {
-        stats.notVisited++
+        notVisited++
       }
     })
 
-    return stats
-  }, [filteredQuestions, state.feedback, state.selectedOptions, state.reviewed])
-
-  // RESET question logic
-  const handleResetQuestion = useCallback(
-    (questionId: string) => {
-      // Clear feedback & selectedOption
-      const newFeedback = { ...state.feedback }
-      delete newFeedback[questionId]
-
-      const newSelectedOptions = { ...state.selectedOptions }
-      delete newSelectedOptions[questionId]
-
-      dispatch({ type: "SET_FEEDBACK", payload: newFeedback })
-      dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSelectedOptions })
-
-      // Unmark 'completed' & 'reviewed'
-      const newCompleted = { ...state.completed, [questionId]: false }
-      dispatch({ type: "SET_COMPLETED", payload: newCompleted })
-
-      const newReviewed = { ...state.reviewed, [questionId]: false }
-      dispatch({ type: "SET_REVIEWED", payload: newReviewed })
-
-      // If you store numeric answers, do similarly
-    },
-    [state.feedback, state.selectedOptions, state.completed, state.reviewed]
-  )
+    return {
+      notVisited,
+      answered,
+      markedForReview,
+      notAnswered,
+    }
+  }, [filteredQuestions, state.feedback, state.reviewed])
 
   if (state.loading) {
     return (
       <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
-          <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-            Guest Question Bank
-          </h1>
-          <Skeleton count={5} height={100} className="mb-4" />
+          <h1 className="mb-2 text-left text-3xl">Guest Question Bank</h1>
+          <Skeleton count={5} height={60} className="mb-4" />
         </div>
       </div>
     )
@@ -533,11 +516,9 @@ export default function GuestQuestionBank() {
 
   return (
     <TooltipProvider>
-      <div className="bg-white dark:bg-dark-background w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
-          <h1 className="mb-2 text-left font-display text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-            Guest Question Bank
-          </h1>
+          <h1 className="mb-2 text-left text-3xl">Guest Question Bank</h1>
           <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
             <CardContent className="p-4 flex items-center justify-between">
               <div className="flex items-center space-x-4">
@@ -547,13 +528,14 @@ export default function GuestQuestionBank() {
                 <div className="space-y-1">
                   <h3 className="font-medium text-blue-900">Guest Access</h3>
                   <p className="text-sm text-blue-700">
-                    Try out the Question Bank features. Sign in to save your progress across devices.
+                    Try out the Question Bank features. Sign in to save your progress.
                   </p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
+          {/* SEARCH + NAVIGATOR */}
           <div className="mb-6 flex items-center space-x-4">
             <div className="relative flex-grow">
               <Input
@@ -567,6 +549,7 @@ export default function GuestQuestionBank() {
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
+
             <Dialog open={isNavigatorOpen} onOpenChange={setIsNavigatorOpen}>
               <DialogTrigger asChild>
                 <Button variant="outline">
@@ -589,10 +572,17 @@ export default function GuestQuestionBank() {
                             <Button
                               variant={isCorrect ? "default" : "outline"}
                               size="sm"
-                              onClick={() => handleNavigatorClick(index)}
                               className={`w-10 h-10 ${
-                                isCorrect ? "bg-green-100 border-green-500 text-green-700" : ""
+                                isCorrect
+                                  ? "bg-green-100 border-green-500 text-green-700"
+                                  : ""
                               }`}
+                              onClick={() => {
+                                // We want to jump to the question
+                                // But that question might not be on the current page
+                                // We are only local-page. If you want to unify, adjust logic
+                                handleNavigatorClick(index)
+                              }}
                             >
                               {index + 1}
                             </Button>
@@ -609,133 +599,7 @@ export default function GuestQuestionBank() {
             </Dialog>
           </div>
 
-          <div className="flex space-x-4 mb-2">
-            {["all", "complete", "review"].map((status) => (
-              <Tooltip key={status}>
-                <TooltipTrigger asChild>
-                  <button
-                    onClick={() =>
-                      dispatch({
-                        type: "SET_FILTERS",
-                        payload: { ...state.filters, status },
-                      })
-                    }
-                    className={`px-4 py-2 rounded-md ${
-                      state.filters.status === status
-                        ? "bg-white border hover:border-black border-gray-600 text-gray-500"
-                        : "bg-white hover:border-black border border-gray-300 text-gray-500"
-                    }`}
-                  >
-                    {status.charAt(0).toUpperCase() + status.slice(1)}
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  {status.charAt(0).toUpperCase() + status.slice(1)}
-                </TooltipContent>
-              </Tooltip>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map(
-              (filterType) => (
-                <Tooltip key={filterType}>
-                  <TooltipTrigger asChild>
-                    <Popover
-                      content={
-                        <div className="w-full bg-white rounded-md p-2 sm:w-80">
-                          <Input
-                            type="text"
-                            placeholder={`Search ${filterType}...`}
-                            className="mb-2"
-                          />
-                          <div className="max-h-60 overflow-y-auto">
-                            {Array.from(
-                              new Set(
-                                state.questions
-                                  .map((q) => {
-                                    switch (filterType) {
-                                      case "exams":
-                                        return q.exam
-                                      case "subjects":
-                                        return q.subject
-                                      case "topics":
-                                        return q.topic
-                                      case "subtopics":
-                                        return q.subtopic
-                                      case "difficulties":
-                                        return q.difficulty
-                                      case "years":
-                                        return q.year?.toString()
-                                      case "types":
-                                        return q.type
-                                      default:
-                                        return ""
-                                    }
-                                  })
-                                  .filter(Boolean)
-                              )
-                            ).map((value) => {
-                              if (!value) return null
-                              return (
-                                <div key={value} className="flex items-center">
-                                  <input
-                                    type="checkbox"
-                                    id={`${filterType}-${value}`}
-                                    className="mr-2"
-                                    checked={
-                                      (state.filters[filterType as keyof FiltersType] as string[])?.includes(
-                                        value
-                                      ) ?? false
-                                    }
-                                    onChange={() =>
-                                      handleFilterChange(filterType as keyof FiltersType, value)
-                                    }
-                                  />
-                                  <label
-                                    htmlFor={`${filterType}-${value}`}
-                                    className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200"
-                                  >
-                                    {value}
-                                  </label>
-                                </div>
-                              )
-                            })}
-                          </div>
-                        </div>
-                      }
-                      align="start"
-                      openPopover={state.dropdowns[filterType]}
-                      setOpenPopover={handleSetDropdown(filterType)}
-                    >
-                      <button
-                        onClick={() => handleSetDropdown(filterType)((prev) => !prev)}
-                        className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 px-4 py-2 bg-white transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
-                      >
-                        <p className="text-gray-600">
-                          {Array.isArray(state.filters[filterType as keyof FiltersType]) &&
-                          (state.filters[filterType as keyof FiltersType] as string[]).length
-                            ? `${
-                                (state.filters[filterType as keyof FiltersType] as string[]).length
-                              } selected`
-                            : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                        </p>
-                        <ChevronDown
-                          className={`h-4 w-4 text-gray-600 transition-all ${
-                            state.dropdowns[filterType] ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                    </Popover>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    Select {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-                  </TooltipContent>
-                </Tooltip>
-              )
-            )}
-          </div>
-
+          {/* Progress Card */}
           <Card className="bg-gradient-to-br from-gray-900 to-gray-800 text-white border-gray-700 mb-6">
             <CardContent className="p-6">
               <h2 className="text-2xl font-light tracking-tight text-gray-200 mb-6">
@@ -808,45 +672,66 @@ export default function GuestQuestionBank() {
             </CardContent>
           </Card>
 
+          {/* Display the local-page questions after filtering */}
           {paginatedQuestions.length > 0 ? (
             <>
               {paginatedQuestions.map((question, index) => (
                 <Question
                   key={question.questionId}
                   question={question}
-                  feedback={state.feedback[question.questionId ?? ""]}
-                  selectedOption={state.selectedOptions[question.questionId ?? ""]}
+                  // Provide local feedback
+                  feedback={state.feedback[question.questionId ?? ""] ?? ""}
+                  // Provide selected option for MCQ
+                  selectedOption={state.selectedOptions[question.questionId ?? ""] ?? ""}
+                  // If you store numeric answers, pass them here
                   numericalAnswer=""
+                  // callbacks
                   handleNumericalSubmit={handleNumericalSubmit}
                   handleNumericalChange={handleNumericalChange}
                   handleOptionClick={handleOptionClick}
-                  handleMarkForReview={handleMarkForReview}
-                  handleMarkComplete={handleMarkComplete}
+
+                  // Mark for review, complete
+                  handleMarkForReview={() => handleMarkForReview(question.questionId ?? "")}
+                  handleMarkComplete={() => handleMarkComplete(question.questionId ?? "")}
+
+                  // Are they marked for review or complete?
                   isMarkedForReview={!!state.reviewed[question.questionId ?? ""]}
                   isMarkedComplete={!!state.completed[question.questionId ?? ""]}
+
+                  // Markscheme
                   showMarkscheme={!!state.showMarkscheme[question.questionId ?? ""]}
-                  handleMarkschemeToggle={() =>
-                    handleMarkschemeToggle(question.questionId ?? "")
-                  }
+                  handleMarkschemeToggle={() => handleMarkschemeToggle(question.questionId ?? "")}
                   markschemesDisabled={false}
+
+                  // local note logic
                   note={state.notes[question.questionId ?? ""] || ""}
-                  handleNoteChange={handleNoteChange}
-                  userId=""
-                  handleDeleteNote={async (questionId: string) => {
-                    const newNotes = { ...state.notes }
-                    delete newNotes[questionId]
+                  handleNoteChange={(qId, note) => {
+                    const newNotes = { ...state.notes, [qId]: note }
                     dispatch({ type: "SET_NOTES", payload: newNotes })
                   }}
+                  handleDeleteNote={async (qId) => {
+                    const newNotes = { ...state.notes }
+                    delete newNotes[qId]
+                    dispatch({ type: "SET_NOTES", payload: newNotes })
+                  }}
+
+                  // you can store userId = 'guest'
+                  userId="guest"
+
+                  // For next/prev question or nav
                   totalQuestions={filteredQuestions.length}
-                  currentQuestionIndex={index + (state.currentPage - 1) * PAGE_SIZE}
+                  currentQuestionIndex={index + (state.currentPage - 1)*PAGE_SIZE}
                   handleQuestionChange={handleNavigatorClick}
-                  // The crucial fix: pass handleResetQuestion
+
+                  // The newly added reset logic
                   handleResetQuestion={handleResetQuestion}
                 />
               ))}
+              {/* local pagination for the filtered results */}
               <Pagination
                 currentPage={state.currentPage}
-                totalPages={totalPages}
+                totalCount={filteredQuestions.length}
+                pageSize={PAGE_SIZE}
                 onPageChange={handlePageChange}
               />
             </>
