@@ -29,13 +29,9 @@ import {
 } from "@/components/ui/tooltip"
 import Image from "next/image"
 
-// Import your posted MathRenderer that uses KaTeX
-import MathRenderer from "@/components/layout/MathRenderer"
+import MathRenderer from "@/components/layout/MathRenderer" // The KaTeX-based component
+import { QuestionType } from "@/lib/exam-helpers"            // Use your single source of truth
 
-// Import the single `QuestionType` from your `exam-helpers.ts` (must have same id type as your DB)
-import { QuestionType } from "@/lib/exam-helpers"
-
-// Example props interface
 interface ExamProps {
   currentQuestion: number
   filteredQuestions: QuestionType[]
@@ -64,10 +60,6 @@ interface ExamProps {
   selectedLevel: string
 }
 
-/**
- * Renders the exam screen with MCQ or Numeric input,
- * plus question text and optional diagram.
- */
 export default function Exam({
   currentQuestion,
   filteredQuestions,
@@ -89,17 +81,14 @@ export default function Exam({
   selectedYear,
   selectedLevel,
 }: ExamProps) {
-  // Format seconds -> "MM:SS"
+  // Format time
   function formatTime(seconds: number) {
     const minutes = Math.floor(seconds / 60)
     const secs = seconds % 60
     return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
   }
 
-  // Which question are we showing?
   const question = filteredQuestions[currentQuestion]
-
-  // If no question, user might have 0 questions or an out-of-bounds index
   if (!question) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
@@ -109,7 +98,7 @@ export default function Exam({
     )
   }
 
-  // Diagram (if present)
+  // Renders the diagram if present
   function renderDiagram(diagramUrl?: string) {
     if (!diagramUrl) return null
     return (
@@ -125,10 +114,16 @@ export default function Exam({
     )
   }
 
-  // Render MCQ or Numeric
+  // Renders MCQ or integer input
   function renderQuestionBody(q: QuestionType) {
-    if (q.type === "Multiple Choice") {
-      // We'll assume `q.options` is an object like { A: "some text", B: "some text" }
+    const lowerType = (q.type || "").toLowerCase()
+
+    // If 'mcq', 'mcqm', 'multiple choice', etc.:
+    if (
+      lowerType.includes("mcq") ||
+      lowerType === "multiple choice" ||
+      lowerType === "mcqm"
+    ) {
       return (
         <div className="space-y-4 mt-4">
           {Object.entries(q.options).map(([key, optionText]) => {
@@ -141,21 +136,25 @@ export default function Exam({
                 onClick={() => onAnswer(key)}
               >
                 <span className="font-semibold mr-2">{key}.</span>
-                {/* Render math if needed */}
                 <MathRenderer text={optionText} />
               </Button>
             )
           })}
         </div>
       )
-    } else if (q.type === "Numerical") {
-      // integer / numeric input
+    }
+    // If 'numerical', 'integer', etc.:
+    else if (
+      lowerType.includes("num") ||
+      lowerType.includes("int") ||
+      lowerType === "numerical" ||
+      lowerType === "integer"
+    ) {
       const currentVal = answers[currentQuestion] || ""
       return (
         <div className="mt-4">
           <Input
             type="text"
-            className="w-full p-2 text-base sm:text-lg"
             placeholder="Enter your numeric answer..."
             value={currentVal}
             onChange={(e) => onAnswer(e.target.value)}
@@ -163,7 +162,7 @@ export default function Exam({
         </div>
       )
     } else {
-      // Unrecognized question type => fallback
+      // fallback
       return (
         <p className="text-red-500">
           Unknown question type: {q.type}. Cannot render.
@@ -174,11 +173,10 @@ export default function Exam({
 
   return (
     <div className="min-h-screen w-full bg-background flex flex-col">
-      {/* Header with user info, timer, exit button */}
+      {/* Header: user info, timer, exit */}
       <header className="sticky top-0 z-10 bg-background border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
-            {/* User info */}
             <div className="flex items-center space-x-4">
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                 <User className="w-6 h-6 text-primary-foreground" />
@@ -190,8 +188,6 @@ export default function Exam({
                 </p>
               </div>
             </div>
-
-            {/* Timer + Exit */}
             <div className="flex items-center space-x-4">
               <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium flex items-center">
                 <Clock className="w-4 h-4 mr-2" />
@@ -205,9 +201,9 @@ export default function Exam({
         </div>
       </header>
 
-      {/* Main exam content */}
+      {/* Main area */}
       <main className="flex-grow flex overflow-hidden">
-        {/* Question content section */}
+        {/* Left side: question */}
         <div className="flex-grow overflow-y-auto p-4 sm:p-6 lg:p-8 max-h-screen flex flex-col">
           <Card className="mb-6 max-w-4xl mx-auto">
             <CardHeader>
@@ -220,21 +216,20 @@ export default function Exam({
             </CardHeader>
 
             <CardContent className="p-6 overflow-y-auto max-h-[60vh]">
-              {/* Render diagram if present */}
               {renderDiagram(question.diagramUrl)}
 
-              {/* Render question text (with math) */}
+              {/* Question text (with math) */}
               <div className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7">
                 <MathRenderer text={question.text} />
               </div>
 
-              {/* MCQ or Numeric */}
+              {/* MCQ or numeric input */}
               {renderQuestionBody(question)}
             </CardContent>
 
             <CardFooter className="flex flex-col gap-4">
               <div className="flex flex-wrap gap-3 justify-between w-full">
-                {/* Navigation buttons */}
+                {/* Nav buttons */}
                 <div className="flex gap-3">
                   <Button
                     onClick={onPrevious}
@@ -272,7 +267,6 @@ export default function Exam({
             </CardFooter>
           </Card>
 
-          {/* Submit exam */}
           <div className="flex justify-center mt-6">
             <Button
               onClick={() => {
@@ -290,7 +284,7 @@ export default function Exam({
 
         <Separator orientation="vertical" className="h-auto" />
 
-        {/* Side panel: Question Navigator + Status */}
+        {/* Right side: navigator/status */}
         <div className="w-80 bg-background overflow-y-auto p-4 space-y-6 max-h-screen">
           <Card>
             <CardHeader>
@@ -324,7 +318,9 @@ export default function Exam({
                     <Flag className="w-4 h-4 mr-2 text-blue-500" />
                     Marked for Review
                   </span>
-                  <span className="font-medium">{questionStatusCounts.markedForReview}</span>
+                  <span className="font-medium">
+                    {questionStatusCounts.markedForReview}
+                  </span>
                 </div>
               </div>
             </CardContent>
@@ -340,17 +336,17 @@ export default function Exam({
                   const status = questionStatuses[index] || "notVisited"
                   const isCurrent = currentQuestion === index
 
-                  let buttonClasses = "w-10 h-10 p-0 font-medium"
+                  let btn = "w-10 h-10 p-0 font-medium"
                   if (isCurrent) {
-                    buttonClasses += " border-blue-800 bg-blue-100 text-blue-600"
+                    btn += " border-blue-800 bg-blue-100 text-blue-600"
                   } else if (status === "markedForReview") {
-                    buttonClasses += " border-blue-600 bg-blue-100 text-blue-600"
+                    btn += " border-blue-600 bg-blue-100 text-blue-600"
                   } else if (status === "notAnswered") {
-                    buttonClasses += " border-yellow-600 bg-yellow-100 text-yellow-600"
+                    btn += " border-yellow-600 bg-yellow-100 text-yellow-600"
                   } else if (status === "answered") {
-                    buttonClasses += " border-green-600 bg-green-100 text-green-600"
+                    btn += " border-green-600 bg-green-100 text-green-600"
                   } else {
-                    buttonClasses += " border-gray-300 bg-white text-gray-600"
+                    btn += " border-gray-300 bg-white text-gray-600"
                   }
 
                   return (
@@ -359,7 +355,7 @@ export default function Exam({
                         <TooltipTrigger asChild>
                           <Button
                             variant="outline"
-                            className={buttonClasses}
+                            className={btn}
                             onClick={() => onNavigate(index)}
                             aria-label={`Question ${index + 1}: ${status}`}
                           >
