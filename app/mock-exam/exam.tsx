@@ -29,14 +29,16 @@ import {
 } from "@/components/ui/tooltip"
 import Image from "next/image"
 
-// IMPORTANT: import the single source of truth for your question interface:
-import { QuestionType } from "@/lib/exam-helpers" 
+// Import your posted MathRenderer that uses KaTeX
+import MathRenderer from "@/components/layout/MathRenderer"
 
-// If you had a local interface with id:number, remove it. 
-// Instead define only the props for the Exam component:
+// Import the single `QuestionType` from your `exam-helpers.ts` (must have same id type as your DB)
+import { QuestionType } from "@/lib/exam-helpers"
+
+// Example props interface
 interface ExamProps {
   currentQuestion: number
-  filteredQuestions: QuestionType[]  // <--- use the shared interface
+  filteredQuestions: QuestionType[]
   answers: (string | null)[]
   questionStatuses: { [index: number]: string }
   questionStatusCounts: {
@@ -46,7 +48,7 @@ interface ExamProps {
     markedForReview: number
   }
   examTimeLeft: number
-  onAnswer: (answerId: string) => void
+  onAnswer: (answer: string) => void
   onNext: () => void
   onPrevious: () => void
   onClear: () => void
@@ -55,17 +57,17 @@ interface ExamProps {
   onSubmit: () => void
   onExit: () => void
   onNavigate: (index: number) => void
+
   userName: string
   selectedSubject: string
   selectedYear: string
   selectedLevel: string
 }
 
-// A simple math/HTML renderer:
-function MathRenderer({ text }: { text: string }) {
-  return <span dangerouslySetInnerHTML={{ __html: text }} />
-}
-
+/**
+ * Renders the exam screen with MCQ or Numeric input,
+ * plus question text and optional diagram.
+ */
 export default function Exam({
   currentQuestion,
   filteredQuestions,
@@ -87,15 +89,18 @@ export default function Exam({
   selectedYear,
   selectedLevel,
 }: ExamProps) {
+  // Format seconds -> "MM:SS"
   function formatTime(seconds: number) {
     const minutes = Math.floor(seconds / 60)
     const secs = seconds % 60
     return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
   }
 
-  // The question to display
-  const currentQuestionData = filteredQuestions[currentQuestion]
-  if (!currentQuestionData) {
+  // Which question are we showing?
+  const question = filteredQuestions[currentQuestion]
+
+  // If no question, user might have 0 questions or an out-of-bounds index
+  if (!question) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
         <p className="text-gray-500">No question available. Please restart the exam.</p>
@@ -104,8 +109,8 @@ export default function Exam({
     )
   }
 
-  // Optionally render any diagram
-  function renderQuestionDiagram(diagramUrl?: string) {
+  // Diagram (if present)
+  function renderDiagram(diagramUrl?: string) {
     if (!diagramUrl) return null
     return (
       <div className="relative w-full h-64 mb-4">
@@ -120,9 +125,56 @@ export default function Exam({
     )
   }
 
+  // Render MCQ or Numeric
+  function renderQuestionBody(q: QuestionType) {
+    if (q.type === "Multiple Choice") {
+      // We'll assume `q.options` is an object like { A: "some text", B: "some text" }
+      return (
+        <div className="space-y-4 mt-4">
+          {Object.entries(q.options).map(([key, optionText]) => {
+            const isSelected = answers[currentQuestion] === key
+            return (
+              <Button
+                key={key}
+                variant={isSelected ? "secondary" : "outline"}
+                className="w-full justify-start text-left h-auto py-3 px-4"
+                onClick={() => onAnswer(key)}
+              >
+                <span className="font-semibold mr-2">{key}.</span>
+                {/* Render math if needed */}
+                <MathRenderer text={optionText} />
+              </Button>
+            )
+          })}
+        </div>
+      )
+    } else if (q.type === "Numerical") {
+      // integer / numeric input
+      const currentVal = answers[currentQuestion] || ""
+      return (
+        <div className="mt-4">
+          <Input
+            type="text"
+            className="w-full p-2 text-base sm:text-lg"
+            placeholder="Enter your numeric answer..."
+            value={currentVal}
+            onChange={(e) => onAnswer(e.target.value)}
+          />
+        </div>
+      )
+    } else {
+      // Unrecognized question type => fallback
+      return (
+        <p className="text-red-500">
+          Unknown question type: {q.type}. Cannot render.
+        </p>
+      )
+    }
+  }
+
   return (
     <div className="min-h-screen w-full bg-background flex flex-col">
-      {/* Header */}
+      {/* Header with user info, timer, exit button */}
       <header className="sticky top-0 z-10 bg-background border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
@@ -153,9 +205,9 @@ export default function Exam({
         </div>
       </header>
 
-      {/* Main exam body */}
+      {/* Main exam content */}
       <main className="flex-grow flex overflow-hidden">
-        {/* Question content */}
+        {/* Question content section */}
         <div className="flex-grow overflow-y-auto p-4 sm:p-6 lg:p-8 max-h-screen flex flex-col">
           <Card className="mb-6 max-w-4xl mx-auto">
             <CardHeader>
@@ -168,45 +220,16 @@ export default function Exam({
             </CardHeader>
 
             <CardContent className="p-6 overflow-y-auto max-h-[60vh]">
-              {renderQuestionDiagram(currentQuestionData.diagramUrl)}
+              {/* Render diagram if present */}
+              {renderDiagram(question.diagramUrl)}
 
+              {/* Render question text (with math) */}
               <div className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7">
-                <MathRenderer text={currentQuestionData.text} />
+                <MathRenderer text={question.text} />
               </div>
 
-              {/* If MCQ */}
-              {currentQuestionData.type === "Multiple Choice" && (
-                <div className="space-y-4 mt-4">
-                  {Object.entries(currentQuestionData.options).map(([key, optionText]) => {
-                    // e.g. key might be "A", "B", "C", ...
-                    const isSelected = answers[currentQuestion] === key
-                    return (
-                      <Button
-                        key={key} 
-                        variant={isSelected ? "secondary" : "outline"}
-                        className="w-full justify-start text-left h-auto py-3 px-4"
-                        onClick={() => onAnswer(key)}
-                      >
-                        <span className="font-semibold mr-2">{key}.</span>
-                        <MathRenderer text={optionText} />
-                      </Button>
-                    )
-                  })}
-                </div>
-              )}
-
-              {/* If Numerical */}
-              {currentQuestionData.type === "Numerical" && (
-                <div className="mt-4">
-                  <Input
-                    type="text"
-                    className="w-full p-2 text-base sm:text-lg"
-                    placeholder="Write your answer here..."
-                    value={answers[currentQuestion] || ""}
-                    onChange={(e) => onAnswer(e.target.value)}
-                  />
-                </div>
-              )}
+              {/* MCQ or Numeric */}
+              {renderQuestionBody(question)}
             </CardContent>
 
             <CardFooter className="flex flex-col gap-4">
@@ -222,7 +245,6 @@ export default function Exam({
                     <ChevronLeft className="w-4 h-4 mr-2" />
                     Previous
                   </Button>
-
                   <Button
                     onClick={onNext}
                     variant="outline"
@@ -268,7 +290,7 @@ export default function Exam({
 
         <Separator orientation="vertical" className="h-auto" />
 
-        {/* Question navigator */}
+        {/* Side panel: Question Navigator + Status */}
         <div className="w-80 bg-background overflow-y-auto p-4 space-y-6 max-h-screen">
           <Card>
             <CardHeader>

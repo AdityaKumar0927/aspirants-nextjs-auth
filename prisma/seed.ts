@@ -142,7 +142,7 @@ interface QuestionJson {
 ///////////////////////////////
 async function main() {
   const metaFilePath = "./!metaid/jee_jee-advanced.json";
-  const questionFolder = "./past-papers/jee_jee-advanced";
+  const questionFolder = "./past-papers/civil_services-upsc-civil-service";
 
   logInfo(`Reading meta file: ${metaFilePath}`);
   logInfo(`Reading question files from: ${questionFolder}`);
